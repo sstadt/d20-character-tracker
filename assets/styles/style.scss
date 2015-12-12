@@ -1,0 +1,18 @@
+/**
+ * styles.scss
+ *
+ * Stylesheets added here will be compiled at runtime
+ * and injected into the layout template.
+ */
+
+// settings
+@import "palette";
+@import "settings";
+
+// foundation
+@import "normalize";
+@import "foundation/functions";
+@import "foundation/settings";
+@import "foundation";
+
+// views
