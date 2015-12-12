@@ -25,7 +25,7 @@ module.exports = function (grunt) {
       files: ['views/**/*']
     },
     assets: {
-      files: ['assets/js/**/*', 'assets/images/**/*', 'tasks/pipeline.js'],
+      files: ['assets/js/**/*', 'assets/images/**/*', 'tasks/pipeline.js', '!assets/js/vendor/**/*'],
       tasks: ['copy:dev']
     },
     sass: {

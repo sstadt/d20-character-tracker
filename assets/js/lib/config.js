@@ -1,5 +1,3 @@
-/*jslint browser: true*/
-/*globals requirejs, io*/
 
 requirejs.config({
 
@@ -9,10 +7,16 @@ requirejs.config({
     // plugins
     'text'                   : 'vendor/requirejs-text/text',
 
-    // misc
+    // app
+    'component'              : 'lib/components',
+    'class'                  : 'lib/classes',
+    'service'                : 'lib/services',
+
+    // misc vendor
     'sails'                  : 'vendor/sails.io.js/dist/sails.io',
     'jquery'                 : 'vendor/jquery/dist/jquery',
     'lodash'                 : 'vendor/lodash/dist/lodash',
+    'vue'                    : 'vendor/vue/dist/vue',
 
     // foundation deps
     'fastclick'              : 'vendor/foundation/js/vendor/fastclick',
@@ -38,14 +42,6 @@ requirejs.config({
     'foundation.tab'         : 'vendor/foundation/js/foundation/foundation.tab',
     'foundation.tooltip'     : 'vendor/foundation/js/foundation/foundation.tooltip',
     'foundation.topbar'      : 'vendor/foundation/js/foundation/foundation.topbar',
-
-    // classes
-    'ShoppingList'           : 'lib/classes/ShoppingList',
-    'ListItem'               : 'lib/classes/ListItem',
-    'SharedUser'             : 'lib/classes/SharedUser',
-
-    // utils
-    'koutil'                 : 'lib/util/ko-util',
   },
 
   shim: {

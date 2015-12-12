@@ -1,9 +1,17 @@
 /*jslint browser: true*/
 
 require([
+  'vue',
+  'component/characterList/characterList',
   'lib/global',
-], function () {
+], function (Vue) {
   'use strict';
 
-  // initialize page specific javascript here
+  new Vue({
+    el: '#app',
+    data: {
+      hello: 'I\'m a character list!'
+    }
+  });
+
 });
