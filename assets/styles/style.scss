@@ -15,6 +15,10 @@
 @import "foundation/settings";
 @import "foundation";
 
+// transitions
+@import "transitions/expand";
+@import "transitions/fade";
+
 // components
 @import "../js/lib/components/characterCreator/characterCreator";
 

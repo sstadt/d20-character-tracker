@@ -8,6 +8,7 @@ requirejs.config({
     'text'                   : 'vendor/requirejs-text/text',
 
     // app
+    'constants'              : 'lib/constants',
     'component'              : 'lib/components',
     'class'                  : 'lib/classes',
     'service'                : 'lib/services',

@@ -2,7 +2,5 @@
 <div class="character-creator-component">
   <h3>Character Creator</h3>
 
-  <ul class="example-orbit-content" data-orbit>
-    <%= steps %>
-  </ul>
+  <component :is="currentStep" :character.sync="character" transition="fade" transition-mode="out-in" keep-alive></component>
 </div>

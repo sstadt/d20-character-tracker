@@ -1,24 +1,27 @@
 
 /**
  * 
- * stepTemplate
+ * Steps
  * ----------------------------
  * 
- * A listing of the various templates used for the
- * character creator steps
+ * Returns an object of step templates
  * 
  */
 
 define([
-  'text!./persona.html',
-  'text!./attributes.html',
-  'text!./class.html',
-], function (personaTemplate, attributesTemplate, classTemplate) {
-  'use strict'
+  'lodash',
+  'text!./_step.html',
+  'text!./templates/persona.html',
+  'text!./templates/attributes.html',
+  'text!./templates/class.html',
+], function (_, _stepTemplate, personaTemplate, attributesTemplate, classTemplate) {
+  'use strict';
 
-  return [
-    personaTemplate,
-    attributesTemplate,
-    classTemplate
-  ];
+  var stepTemplate = _.template(_stepTemplate);
+
+  return {
+    persona: stepTemplate({ step: personaTemplate }),
+    attributes: stepTemplate({ step: attributesTemplate }),
+    class: stepTemplate({ step: classTemplate })
+  };
 });

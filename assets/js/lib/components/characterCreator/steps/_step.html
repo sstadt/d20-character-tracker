@@ -1,5 +1,5 @@
 
-<li data-orbit-slide="headline-<%- index %>">
+<div class="step">
   <div class="row">
     <div class="small-12 columns">
       <%= step %>
@@ -8,15 +8,10 @@
 
   <div class="row">
     <div class="small-12 columns">
-      <% if (!first) { %>
-        <button class="left">Previous</button>
-      <% } %>
-
-      <% if (last) { %>
-        <button class="right">Finish</button>
-      <% } else { %>
-        <button class="right">Next</button>
-      <% } %>
+      <button v-if="prev" v-on:click="changeStep(prev)" class="left">Previous</button>
+      <button v-if="next" v-on:click="changeStep(next)" class="right">Next</button>
+      <button v-if="last" v-on:click="addCharacter" class="right">Finish</button>
+      <div class="clearfix"></div>
     </div>
   </div>
-</li>
+</div>

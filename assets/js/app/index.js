@@ -1,13 +1,18 @@
 /*jslint browser: true*/
 
 require([
+  'constants',
   'vue',
   'class/Character',
   'component/characterList/characterList',
   'component/characterCreator/characterCreator',
   'lib/global',
-], function (Vue, Character) {
+], function (constants, Vue, Character) {
   'use strict';
+
+  var characterListEvents = {};
+
+  Vue.config.debug = true;
 
   var characters = [
     { name: 'Luke Skywalker' },
@@ -21,18 +26,18 @@ require([
     return new Character(character);
   });
 
+  characterListEvents[constants.events.characterCreator.addCharacter] = function () {
+    this.characters.push(this.newCharacter);
+    this.newCharacter = new Character();
+  };
+
   new Vue({
     el: '#characterList',
     data: {
       newCharacter: new Character(),
       characters: characters
     },
-    methods: {
-      addCharacter: function () {
-        this.characters.push(new Character({ name: this.newCharacter }));
-        this.newCharacter = '';
-      }
-    }
+    events: characterListEvents
   });
 
 });

@@ -1,29 +1,59 @@
+
+/**
+ * 
+ * character-creator
+ * ----------------------------
+ *
+ * Builds a wizard for character creation from steps.
+ *
+ * To add a step:
+ *
+ *  1) Add a template to ./steps/stepTemplates.js
+ *  2) Add a child componet to characterCreator
+ * 
+ */
+
 define([
-  'jquery',
-  'lodash',
+  'constants',
   'vue',
-  './steps/stepTemplates',
-  'text!./steps/_step.html',
   'text!./characterCreator.html',
-], function ($, _, Vue, steps, stepTemplateBase, characterCreatorTemplateBase) {
+  './steps/stepTemplates'
+], function (constants, Vue, characterCreatorTemplate, stepTemplates) {
   'use strict';
 
-  var stepTemplate = _.template(stepTemplateBase),
-    characterCreatorTemplate = _.template(characterCreatorTemplateBase),
-    stepListTemplate = '';
+  var characterCreatorEvents = {};
 
-  _.each(steps, function (step, index) {
-    console.log(steps.length, index);
-    stepListTemplate += stepTemplate({
-      index: index + 1,
-      first: index === 0,
-      last: index + 1 >= steps.length,
-      step: step
-    });
-  });
+  function changeStep(newStep) {
+    this.currentStep = newStep;
+  }
+
+  function generateStepComponent(template, data) {
+    return {
+      template: template,
+      props: {
+        character: {
+          type: Object,
+          required: true,
+          twoWay: true
+        }
+      },
+      data: function () { return data; },
+      methods: {
+        changeStep: function (step) {
+          this.$dispatch(constants.events.characterCreator.changeTab, step);
+        },
+        addCharacter: function () {
+          this.$dispatch(constants.events.characterCreator.addCharacter);
+        }
+      }
+    };
+  }
+
+  characterCreatorEvents[constants.events.characterCreator.changeTab] = changeStep;
 
   Vue.component('characterCreator', {
-    template: characterCreatorTemplate({ steps: stepListTemplate }),
+    template: characterCreatorTemplate,
+    events: characterCreatorEvents,
     props: {
       character: {
         type: Object,
@@ -31,8 +61,18 @@ define([
         twoWay: true
       }
     },
-    ready: function () {
-      $(document).foundation('orbit', 'reflow');
+    data: function () {
+      return {
+        currentStep: 'persona'
+      };
+    },
+    components: {
+      persona: generateStepComponent(stepTemplates.persona, { next: 'attributes' }),
+      attributes: generateStepComponent(stepTemplates.attributes, { next: 'class', prev: 'persona' }),
+      class: generateStepComponent(stepTemplates.class, { prev: 'attributes', last: true })
+    },
+    methods: {
+      changeStep: changeStep
     }
   });
 
