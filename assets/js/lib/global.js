@@ -7,7 +7,8 @@ define([
   'foundation.alert',
   'foundation.abide',
   'foundation.reveal',
-  'foundation.tooltip'
+  'foundation.tooltip',
+  'foundation.orbit'
 ], function ($) {
   $(document).foundation();
 });

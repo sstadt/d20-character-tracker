@@ -1,10 +1,13 @@
 
 
+
+
+
 <div class="row">
   <div class="small-12 columns">
-    <div id="app">
-      <input type="text" v-model="hello" />
-      <character-list :greeting.sync="hello"></character-list>
+    <div id="characterList">
+      <character-creator :character.sync="newCharacter"></character-creator>
+      <character-list :characters.sync="characters"></character-list>
     </div>
   </div>
 </div>

@@ -1,13 +1,13 @@
 define([
   'vue',
-  'text!./characterListTemplate.html'
+  'text!./characterList.html'
 ], function (Vue, characterListTemplate) {
 
   Vue.component('characterList', {
     template: characterListTemplate,
     props: {
-      greeting: {
-        type: String,
+      characters: {
+        type: Array,
         required: true,
         twoWay: true
       }

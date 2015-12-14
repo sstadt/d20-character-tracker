@@ -1,0 +1,22 @@
+
+<li data-orbit-slide="headline-<%- index %>">
+  <div class="row">
+    <div class="small-12 columns">
+      <%= step %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <% if (!first) { %>
+        <button class="left">Previous</button>
+      <% } %>
+
+      <% if (last) { %>
+        <button class="right">Finish</button>
+      <% } else { %>
+        <button class="right">Next</button>
+      <% } %>
+    </div>
+  </div>
+</li>
