@@ -1,6 +1,8 @@
 
 <div class="character-creator-component">
   <h3>Character Creator</h3>
-
-  <component :is="currentStep" :character.sync="character" transition="fade" transition-mode="out-in" keep-alive></component>
+  <button v-on:click="startCharacterCreator">Create New Character</button>
+  <div class="creator-modal" transition="fade" v-show="show">
+    <component :is="currentStep" :character.sync="character" transition="fade" transition-mode="out-in" keep-alive></component>
+  </div>
 </div>
