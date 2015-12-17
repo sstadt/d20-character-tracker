@@ -15,11 +15,12 @@
 
 define([
   'constants',
+  'jquery',
   'vue',
   'class/Character',
   'text!./characterCreator.html',
   './steps/stepTemplates'
-], function (constants, Vue, Character, characterCreatorTemplate, stepTemplates) {
+], function (constants, $, Vue, Character, characterCreatorTemplate, stepTemplates) {
   'use strict';
 
   var characterCreatorEvents = {},

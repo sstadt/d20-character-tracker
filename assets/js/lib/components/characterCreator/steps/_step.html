@@ -1,17 +1,21 @@
 
 <div class="step">
-  <div class="row">
-    <div class="small-12 columns">
-      <%= step %>
+  <div class="step-content">
+    <div class="row">
+      <div class="small-12 columns">
+        <%= step %>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="small-12 columns">
-      <button v-if="prev" v-on:click="changeStep(prev)" class="left">Previous</button>
-      <button v-if="next" v-on:click="changeStep(next)" class="right">Next</button>
-      <button v-if="last" v-on:click="addCharacter" class="right">Finish</button>
-      <div class="clearfix"></div>
+  <div class="step-controls">
+    <div class="row">
+      <div class="small-12 columns">
+        <button v-if="prev" v-on:click="changeStep(prev)" class="left">Previous</button>
+        <button v-if="next" v-on:click="changeStep(next)" class="right">Next</button>
+        <button v-if="last" v-on:click="addCharacter" class="right">Finish</button>
+        <div class="clearfix"></div>
+      </div>
     </div>
   </div>
 </div>

@@ -6,6 +6,32 @@
     width: 100%;
     top: 0;
     left: 0;
+    padding: rem-calc(20);
     background-color: $bodyBg;
+
+    .step {
+      position: relative;
+      height: 100%;
+      padding-bottom: rem-calc(70);
+
+      .step-content {
+        max-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      .step-controls {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding-top: rem-calc(10);
+        background-color: $bodyBg;
+
+        button {
+          margin: 0;
+        }
+      }
+    }
   }
 }
