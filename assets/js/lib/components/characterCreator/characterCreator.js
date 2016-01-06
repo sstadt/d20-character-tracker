@@ -20,7 +20,9 @@ define([
   'class/Character',
   'text!./characterCreator.html',
   './steps/stepTemplates',
-  './steps/personaEditor/personaEditor'
+  './steps/personaEditor/personaEditor',
+  './steps/classEditor/classEditor',
+  './steps/attributesEditor/attributesEditor'
 ], function (constants, $, Vue, Character, characterCreatorTemplate, stepTemplates) {
   'use strict';
 
