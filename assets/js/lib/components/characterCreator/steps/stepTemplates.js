@@ -9,18 +9,21 @@
 
 define([
   'lodash',
-  'text!./_step.html',
-  'text!./templates/persona.html',
-  'text!./templates/attributes.html',
-  'text!./templates/class.html',
-], function (_, _stepTemplate, personaTemplate, attributesTemplate, classTemplate) {
+  'text!./_step.html'
+], function (_, _stepTemplate) {
   'use strict';
 
-  var stepTemplate = _.template(_stepTemplate);
+  var stepTemplate = _.template(_stepTemplate),
+    returnTemplates = {},
+    steps = [
+      'persona',
+      'attributes',
+      'class'
+    ];
 
-  return {
-    persona: stepTemplate({ step: 'persona' }),
-    attributes: stepTemplate({ step: 'attributes' }),
-    class: stepTemplate({ step: 'class' })
-  };
+  for (var i = 0, j = steps.length; i < j; i++) {
+    returnTemplates[steps[i]] = stepTemplate({ step: steps[i] });
+  }
+
+  return returnTemplates;
 });
