@@ -3,7 +3,7 @@
 define(function () {
 
     function getDieRoll(sides) {
-        return (Math.random() * sides) + 1;
+        return Math.floor(Math.random() * sides) + 1;
     }
 
     return {
