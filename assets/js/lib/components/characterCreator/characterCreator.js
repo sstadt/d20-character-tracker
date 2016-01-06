@@ -19,7 +19,8 @@ define([
   'vue',
   'class/Character',
   'text!./characterCreator.html',
-  './steps/stepTemplates'
+  './steps/stepTemplates',
+  './steps/personaEditor/personaEditor'
 ], function (constants, $, Vue, Character, characterCreatorTemplate, stepTemplates) {
   'use strict';
 
