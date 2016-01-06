@@ -1,7 +1,8 @@
 define([
   'vue',
+  'util/diceRoller',
   'text!./rollMethodBasic.html'
-], function (Vue, rollMethodBasicTemplate) {
+], function (Vue, diceRoller, rollMethodBasicTemplate) {
 
   return {
     template: rollMethodBasicTemplate,
@@ -10,6 +11,11 @@ define([
         type: Object,
         required: true,
         twoWay: true
+      }
+    },
+    methods: {
+      rollStats: function () {
+        console.log(diceRoller.roll(3, 6));
       }
     }
   };

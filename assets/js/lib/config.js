@@ -11,6 +11,7 @@ requirejs.config({
     'constants'              : 'lib/constants',
     'component'              : 'lib/components',
     'class'                  : 'lib/classes',
+    'util'                   : 'lib/util',
     'service'                : 'lib/services',
 
     // misc vendor
