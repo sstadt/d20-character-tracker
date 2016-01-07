@@ -10,7 +10,6 @@
 
 define([
   'constants',
-  'jquery',
   'vue',
   'class/Character',
   'text!./characterCreator.html',
@@ -18,17 +17,17 @@ define([
   './steps/personaEditor/personaEditor',
   './steps/classEditor/classEditor',
   './steps/attributesEditor/attributesEditor'
-], function (constants, $, Vue, Character, characterCreatorTemplate, stepTemplates) {
+], function (constants, Vue, Character, characterCreatorTemplate, stepTemplates) {
   'use strict';
 
   var characterCreatorEvents = {},
     firstStep = 'persona';
 
-  function changeStep(newStep) {
+  function ChangeStep(newStep) {
     this.currentStep = newStep;
   }
 
-  function closeCharacterCreator(reset) {
+  function CloseCharacterCreator(reset) {
     this.currentStep = firstStep;
     this.show = false;
     return true; // allow event propagation to continue
@@ -56,8 +55,8 @@ define([
     };
   }
 
-  characterCreatorEvents[constants.events.characterCreator.changeTab] = changeStep;
-  characterCreatorEvents[constants.events.characterCreator.addCharacter] = closeCharacterCreator;
+  characterCreatorEvents[constants.events.characterCreator.changeTab] = ChangeStep;
+  characterCreatorEvents[constants.events.characterCreator.addCharacter] = CloseCharacterCreator;
 
   Vue.component('characterCreator', {
     template: characterCreatorTemplate,
@@ -81,7 +80,7 @@ define([
       class: generateStepComponent(stepTemplates.class, { prev: 'attributes', last: true })
     },
     methods: {
-      changeStep: changeStep,
+      changeStep: ChangeStep,
       startCharacterCreator: function (reset) {
         if (reset && reset === true) this.character = new Character();
         this.show = true;
