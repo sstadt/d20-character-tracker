@@ -12,7 +12,7 @@ define(function () {
     charisma: 12
   };
 
-  return function Character(data) {
+  function Character(data) {
     data = data || {};
 
     this.name = data.name ||defaults.name;
@@ -23,5 +23,16 @@ define(function () {
     this.intelligence = data.intelligence || defaults.intelligence;
     this.wisdom = data.wisdom || defaults.wisdom;
     this.charisma = data.charisma || defaults.charisma;
+  }
+
+  Character.prototype.clearStats = function () {
+    this.strength = undefined;
+    this.dexterity = undefined;
+    this.constitution = undefined;
+    this.intelligence = undefined;
+    this.wisdom = undefined;
+    this.charisma = undefined;
   };
+
+  return Character;
 });

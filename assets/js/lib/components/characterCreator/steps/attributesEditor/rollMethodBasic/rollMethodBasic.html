@@ -1,10 +1,26 @@
 
+
+<div class="row">
+  <div class="small-12 columns">
+    <button class="expand" v-on:click="rollStats">Roll</button>
+
+    <ul class="rollResults small-block-grid-3 medium-block-grid-6 large-block-grid-12">
+      <li v-if="rolls.roll1.value > 0" v-on:click="assignRoll('roll1')"><div class="rollResult">{{ rolls.roll1.value }}</div></li>
+      <li v-if="rolls.roll2.value > 0" v-on:click="assignRoll('roll2')"><div class="rollResult">{{ rolls.roll2.value }}</div></li>
+      <li v-if="rolls.roll3.value > 0" v-on:click="assignRoll('roll3')"><div class="rollResult">{{ rolls.roll3.value }}</div></li>
+      <li v-if="rolls.roll4.value > 0" v-on:click="assignRoll('roll4')"><div class="rollResult">{{ rolls.roll4.value }}</div></li>
+      <li v-if="rolls.roll5.value > 0" v-on:click="assignRoll('roll5')"><div class="rollResult">{{ rolls.roll5.value }}</div></li>
+      <li v-if="rolls.roll6.value > 0" v-on:click="assignRoll('roll6')"><div class="rollResult">{{ rolls.roll6.value }}</div></li>
+    </ul>
+  </div>
+</div>
+
 <div class="row">
   <div class="small-8 columns">
     <h5>Strength</h5>
   </div>
   <div class="small-4 columns">
-    <input type="text" v-bind:value="character.strength" />
+    <p class="right">{{ character.strength }}<i class="fa fa-chevron-circle-right" v-if="activeRoll" v-on:click="setStatistic('strength')"></i></p>
   </div>
 </div>
 
@@ -13,7 +29,7 @@
     <h5>Dexterity</h5>
   </div>
   <div class="small-4 columns">
-    <input type="text" v-bind:value="character.dexterity" />
+    <p class="right">{{ character.dexterity }}<i class="fa fa-chevron-circle-right" v-if="activeRoll" v-on:click="setStatistic('dexterity')"></i></p>
   </div>
 </div>
 
@@ -22,7 +38,7 @@
     <h5>Constitution</h5>
   </div>
   <div class="small-4 columns">
-    <input type="text" v-bind:value="character.constitution" />
+    <p class="right">{{ character.constitution }}<i class="fa fa-chevron-circle-right" v-if="activeRoll" v-on:click="setStatistic('constitution')"></i></p>
   </div>
 </div>
 
@@ -31,7 +47,7 @@
     <h5>Intelligence</h5>
   </div>
   <div class="small-4 columns">
-    <input type="text" v-bind:value="character.intelligence" />
+    <p class="right">{{ character.intelligence }}<i class="fa fa-chevron-circle-right" v-if="activeRoll" v-on:click="setStatistic('intelligence')"></i></p>
   </div>
 </div>
 
@@ -40,7 +56,7 @@
     <h5>Wisdom</h5>
   </div>
   <div class="small-4 columns">
-    <input type="text" v-bind:value="character.wisdom" />
+    <p class="right">{{ character.wisdom }}<i class="fa fa-chevron-circle-right" v-if="activeRoll" v-on:click="setStatistic('wisdom')"></i></p>
   </div>
 </div>
 
@@ -49,12 +65,6 @@
     <h5>Charisma</h5>
   </div>
   <div class="small-4 columns">
-    <input type="text" v-bind:value="character.charisma" />
+    <p class="right">{{ character.charisma }}<i class="fa fa-chevron-circle-right" v-if="activeRoll" v-on:click="setStatistic('charisma')"></i></p>
   </div>
 </div>
-
-
-
-
-<p>Basic roll method</p>
-<button v-on:click="rollStats">Roll</button>

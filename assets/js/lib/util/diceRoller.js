@@ -7,6 +7,9 @@ define(function () {
     }
 
     return {
+        rollSimple: function (num, sides) {
+            return this.roll(num, sides).reduce(function (a, b) { return a + b; });
+        },
         roll: function (num, sides) {
             var rolls = [];
 

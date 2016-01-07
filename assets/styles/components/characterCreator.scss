@@ -34,4 +34,17 @@
       }
     }
   }
+
+  .rollResults {
+    .rollResult {
+      border: 1px solid #aaa;
+      text-align: center;
+      padding: rem-calc(14) 0;
+      cursor: pointer;
+
+      &:active {
+        background-color: #eee;
+      }
+    }
+  }
 }
