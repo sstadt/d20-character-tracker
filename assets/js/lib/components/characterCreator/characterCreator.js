@@ -5,11 +5,6 @@
  * ----------------------------
  *
  * Builds a wizard for character creation from steps.
- *
- * To add a step:
- *
- *  1) Add a template to ./steps/stepTemplates.js
- *  2) Add a child componet to characterCreator
  * 
  */
 
