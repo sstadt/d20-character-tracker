@@ -1,3 +1,7 @@
+/*
+  TODO: Disable rolls that have been assigned
+ */
+
 define([
   'vue',
   'util/diceRoller',
@@ -37,8 +41,10 @@ define([
         }
       },
       assignRoll: function (rollKey) {
-        this.rolls[rollKey].selected = true;
-        this.activeRoll = rollKey;
+        if (!this.rolls[rollKey].used) {
+          this.rolls[rollKey].selected = true;
+          this.activeRoll = rollKey;
+        }
       },
       setStatistic: function (statistic) {
         this.rolls[this.activeRoll].selected = false;
