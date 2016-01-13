@@ -6,6 +6,10 @@ define(['class/Character'], function (Character) {
       var character = new Character();
       expect(character).toEqual(jasmine.any(Object));
     });
+
+    it('should commit', function () {
+      expect(1).toEqual(1);
+    });
   });
 
 });
