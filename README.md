@@ -6,3 +6,4 @@ a [Sails](http://sailsjs.org) application
 
  - Set up symlink script and store pre-commit hook in the repo: http://stackoverflow.com/questions/3462955/putting-git-hooks-into-repository/3464399#3464399
  - Fix file timestamp errors in karma
+ - move karma base directory to a config file
