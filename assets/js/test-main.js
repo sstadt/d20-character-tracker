@@ -9,7 +9,7 @@ for (var file in window.__karma__.files) {
 }
 
 requirejs.config({
-  baseUrl: '/Users/scottstadt/Projects/d20-character-tracker/assets/js',
+  baseUrl: '/base/assets/js',
   deps: tests,
   callback: window.__karma__.start
 });
