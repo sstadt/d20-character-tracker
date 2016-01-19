@@ -1,9 +1,8 @@
 define([
-  'vue',
-  'text!./characterList.html'
-], function (Vue, characterListTemplate) {
+  'text!./template.html'
+], function (characterListTemplate) {
 
-  Vue.component('characterList', {
+  return {
     template: characterListTemplate,
     props: {
       characters: {
@@ -12,6 +11,6 @@ define([
         twoWay: true
       }
     }
-  });
+  };
 
 });

@@ -4,7 +4,7 @@ require([
   'constants',
   'vue',
   'class/Character',
-  'component/characterList/characterList',
+  'component/characterList/init',
   'component/characterCreator/characterCreator',
   'lib/global',
 ], function (constants, Vue, Character) {
