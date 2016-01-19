@@ -4,8 +4,8 @@ require([
   'constants',
   'vue',
   'class/Character',
-  'component/characterList/characterListInit',
-  'component/characterCreator/characterCreator',
+  'component/characterList/init',
+  'component/characterCreator/init',
   'lib/global',
 ], function (constants, Vue, Character) {
   'use strict';

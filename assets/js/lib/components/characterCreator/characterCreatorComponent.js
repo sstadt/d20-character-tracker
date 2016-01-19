@@ -12,7 +12,7 @@ define([
   'constants',
   'vue',
   'class/Character',
-  'text!./characterCreator.html',
+  'text!./characterCreatorTemplate.html',
   './steps/stepTemplates',
   './steps/personaEditor/personaEditor',
   './steps/classEditor/classEditor',
@@ -58,7 +58,7 @@ define([
   characterCreatorEvents[constants.events.characterCreator.changeTab] = ChangeStep;
   characterCreatorEvents[constants.events.characterCreator.addCharacter] = CloseCharacterCreator;
 
-  Vue.component('characterCreator', {
+  return {
     template: characterCreatorTemplate,
     events: characterCreatorEvents,
     props: {
@@ -86,6 +86,6 @@ define([
         this.show = true;
       }
     }
-  });
+  };
 
 });
