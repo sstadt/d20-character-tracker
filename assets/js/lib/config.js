@@ -19,6 +19,7 @@ requirejs.config({
     'jquery'                 : 'vendor/jquery/dist/jquery',
     'lodash'                 : 'vendor/lodash/dist/lodash',
     'vue'                    : 'vendor/vue/dist/vue',
+    'vue.min'                : 'vendor/vue/dist/vue.min',
 
     // foundation deps
     'fastclick'              : 'vendor/foundation/js/vendor/fastclick',

@@ -1,12 +1,18 @@
 
 define([
   'constants',
-  'vue',
+  'vue.min',
   'lodash',
   'component/characterCreator/characterCreatorComponent'
-], function (constants, Vue, _, component) {
+], function (constants, Vue, _, characterCreatorComponent) {
 
   describe('The character creator component', function () {
+    var component;
+
+    beforeEach(function () {
+      component = _.clone(characterCreatorComponent);
+    });
+
     it('to be an object', function () {
       expect(component).toEqual(jasmine.any(Object));
     });
@@ -15,31 +21,8 @@ define([
       expect(component.template).toEqual(jasmine.any(String));
     });
 
-    describe('events', function () {
-      it('should exist', function () {
-        expect(component.events).toEqual(jasmine.any(Object));
-      });
-
-      describe('*changeTab', function () {
-        it('should exist', function () {
-          expect(typeof component.events[constants.events.characterCreator.changeTab]).toBe('function');
-        });
-
-        // it('should set the current step', function () {
-        //   var componentInstance, standaloneComponent;
-
-        //   standaloneComponent = _.clone(component);
-        //   standaloneComponent.el = '#test'; // creating compile errors
-        //   componentInstance = new Vue(standaloneComponent);
-
-        //   componentInstance.$emit(constants.events.characterCreator.changeTab, 'bazinga');
-        //   expect(componentInstance.data.currentStep).toEqual('bazinga');
-        // });
-      });
-    });
-
     describe('character property', function () {
-      it('should exist', function () {
+      it('should be an object', function () {
         expect(component.props.character).toEqual(jasmine.any(Object));
       });
 
@@ -57,7 +40,7 @@ define([
     });
 
     describe('child components', function () {
-      it('should exist', function () {
+      it('should be an object', function () {
         expect(component.components).toEqual(jasmine.any(Object));
       });
 
@@ -86,7 +69,7 @@ define([
       });
 
       describe('character property', function () {
-        it('should exist', function () {
+        it('should be an object', function () {
           _.each(component.components, function (child) {
             expect(child.props.character).toEqual(jasmine.any(Object));
           });
@@ -111,6 +94,53 @@ define([
         });
       });
     });
+
+    describe('#changeTab', function () {
+      // need to figure out how to unit test component methods
+    });
+
+    describe('events', function () {
+      var componentInstance;
+
+      beforeEach(function () {
+        componentInstance = new Vue(component);
+      });
+
+      it('should be an object', function () {
+        expect(component.events).toEqual(jasmine.any(Object));
+      });
+
+      describe('*changeTab', function () {
+        it('should be a function', function () {
+          expect(typeof component.events[constants.events.characterCreator.changeTab]).toBe('function');
+        });
+
+        it('should set the current step', function () {
+          componentInstance.$emit(constants.events.characterCreator.changeTab, 'attributes');
+          expect(componentInstance.currentStep).toEqual('attributes');
+        });
+      });
+
+      describe('*addCharacter', function () {
+
+        it('should be a function', function () {
+          expect(typeof component.events[constants.events.characterCreator.changeTab]).toBe('function');
+        });
+
+        it('should reset the character creator to the first step', function () {
+          componentInstance.$emit(constants.events.characterCreator.changeTab, 'attributes');
+          componentInstance.$emit(constants.events.characterCreator.addCharacter);
+          expect(componentInstance.currentStep).toEqual('persona');
+        });
+
+        it('should hide the character creator', function () {
+          componentInstance.startCharacterCreator();
+          componentInstance.$emit(constants.events.characterCreator.addCharacter);
+          expect(componentInstance.show).toEqual(false);
+        });
+      });
+    });
+
   });
 
 });
