@@ -4,8 +4,9 @@ define([
   'vue.min',
   'lodash',
   'class/Character',
-  'component/characterCreator/characterCreatorComponent'
-], function (constants, Vue, _, Character, characterCreatorComponent) {
+  'component/characterCreator/characterCreatorComponent',
+  'component/characterCreator/steps/stepList'
+], function (constants, Vue, _, Character, characterCreatorComponent, stepList) {
 
   describe('The character creator component', function () {
     var component;
@@ -186,6 +187,20 @@ define([
           var newCharacter = new Character();
           expect(_.isEqual(newCharacter, componentInstance.character)).toEqual(true);
         });
+      });
+    });
+
+    describe('stepList', function () {
+      it('should have a persona step', function () {
+        expect(stepList.persona).toEqual(jasmine.any(String));
+      });
+
+      it('should have a attributes step', function () {
+        expect(stepList.attributes).toEqual(jasmine.any(String));
+      });
+
+      it('should have a class step', function () {
+        expect(stepList.class).toEqual(jasmine.any(String));
       });
     });
 

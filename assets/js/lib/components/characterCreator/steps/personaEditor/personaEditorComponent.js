@@ -1,10 +1,10 @@
 define([
   'vue',
-  'text!./rollMethodBestOfFour.html'
-], function (Vue, rollMethodBestOfFourTemplate) {
+  'text!./personaEditorTemplate.html'
+], function (Vue, personaEditorTemplate) {
 
   return {
-    template: rollMethodBestOfFourTemplate,
+    template: personaEditorTemplate,
     props: {
       character: {
         type: Object,

@@ -9,7 +9,7 @@
 
 define([
   'lodash',
-  'text!./_step.html'
+  'text!./stepTemplate.html'
 ], function (_, _stepTemplate) {
   'use strict';
 

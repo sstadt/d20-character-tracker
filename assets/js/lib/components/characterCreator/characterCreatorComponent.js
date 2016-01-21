@@ -14,11 +14,11 @@ define([
   'vue',
   'class/Character',
   'text!./characterCreatorTemplate.html',
-  './steps/stepTemplates',
+  './steps/stepList',
   './steps/personaEditor/personaEditor',
   './steps/classEditor/classEditor',
   './steps/attributesEditor/attributesEditor'
-], function (constants, _, Vue, Character, characterCreatorTemplate, stepTemplates) {
+], function (constants, _, Vue, Character, characterCreatorTemplate, stepList) {
   'use strict';
 
   var characterCreatorEvents = {},
@@ -76,9 +76,9 @@ define([
       };
     },
     components: {
-      persona: generateStepComponent(stepTemplates.persona, { next: 'attributes' }),
-      attributes: generateStepComponent(stepTemplates.attributes, { next: 'class', prev: 'persona' }),
-      class: generateStepComponent(stepTemplates.class, { prev: 'attributes', last: true })
+      persona: generateStepComponent(stepList.persona, { next: 'attributes' }),
+      attributes: generateStepComponent(stepList.attributes, { next: 'class', prev: 'persona' }),
+      class: generateStepComponent(stepList.class, { prev: 'attributes', last: true })
     },
     methods: {
       changeStep: ChangeStep,

@@ -5,7 +5,7 @@
 define([
   'vue',
   'util/diceRoller',
-  'text!./rollMethodBasic.html'
+  'text!./rollMethodBasicTemplate.html'
 ], function (Vue, diceRoller, rollMethodBasicTemplate) {
 
   return {

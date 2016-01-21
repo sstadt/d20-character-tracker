@@ -1,17 +1,8 @@
 define([
   'vue',
-  'text!./classEditor.html'
-], function (Vue, classEditorTemplate) {
+  './classEditorComponent'
+], function (Vue, classEditorComponent) {
 
-  Vue.component('classEditor', {
-    template: classEditorTemplate,
-    props: {
-      character: {
-        type: Object,
-        required: true,
-        twoWay: true
-      }
-    }
-  });
-
+  Vue.component('classEditor', classEditorComponent);
+  
 });
