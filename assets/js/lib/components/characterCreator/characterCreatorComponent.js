@@ -10,6 +10,7 @@
 
 define([
   'constants',
+  'lodash',
   'vue',
   'class/Character',
   'text!./characterCreatorTemplate.html',
@@ -17,7 +18,7 @@ define([
   './steps/personaEditor/personaEditor',
   './steps/classEditor/classEditor',
   './steps/attributesEditor/attributesEditor'
-], function (constants, Vue, Character, characterCreatorTemplate, stepTemplates) {
+], function (constants, _, Vue, Character, characterCreatorTemplate, stepTemplates) {
   'use strict';
 
   var characterCreatorEvents = {},
@@ -84,6 +85,11 @@ define([
       startCharacterCreator: function (reset) {
         if (reset && reset === true) this.character = new Character();
         this.show = true;
+      }
+    },
+    created: function () {
+      if (_.isUndefined(this.character)) {
+        this.character = new Character();
       }
     }
   };

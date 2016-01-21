@@ -3,8 +3,9 @@ define([
   'constants',
   'vue.min',
   'lodash',
+  'class/Character',
   'component/characterCreator/characterCreatorComponent'
-], function (constants, Vue, _, characterCreatorComponent) {
+], function (constants, Vue, _, Character, characterCreatorComponent) {
 
   describe('The character creator component', function () {
     var component;
@@ -95,8 +96,41 @@ define([
       });
     });
 
-    describe('#changeTab', function () {
-      // need to figure out how to unit test component methods
+    describe('methods', function () {
+      var componentInstance;
+
+      beforeEach(function () {
+        componentInstance = new Vue(component);
+      });
+
+      describe('#changeStep', function () {
+        it('should be a function', function () {
+          expect(typeof componentInstance.changeStep).toBe('function');
+        });
+
+        it('should set the current step', function () {
+          componentInstance.changeStep('attributes');
+          expect(componentInstance.currentStep).toEqual('attributes');
+        });
+      });
+
+      describe('#startCharacterCreator', function () {
+        it('should be a function', function () {
+          expect(typeof componentInstance.startCharacterCreator).toEqual('function');
+        });
+
+        it('should show the character creator', function () {
+          componentInstance.startCharacterCreator();
+          expect(componentInstance.show).toEqual(true);
+        });
+
+        it('should reset the character if passed true as the first argument', function () {
+          var newCharacter = new Character();
+          componentInstance.character.name = 'Joe';
+          componentInstance.startCharacterCreator(true);
+          expect(_.isEqual(newCharacter, componentInstance.character)).toEqual(true);
+        });
+      });
     });
 
     describe('events', function () {
@@ -122,7 +156,6 @@ define([
       });
 
       describe('*addCharacter', function () {
-
         it('should be a function', function () {
           expect(typeof component.events[constants.events.characterCreator.changeTab]).toBe('function');
         });
@@ -137,6 +170,21 @@ define([
           componentInstance.startCharacterCreator();
           componentInstance.$emit(constants.events.characterCreator.addCharacter);
           expect(componentInstance.show).toEqual(false);
+        });
+      });
+    });
+
+    describe('lifecycle methods', function () {
+      var componentInstance;
+
+      beforeEach(function () {
+        componentInstance = new Vue(component);
+      });
+
+      describe('#created', function () {
+        it('should instantiate a new character', function () {
+          var newCharacter = new Character();
+          expect(_.isEqual(newCharacter, componentInstance.character)).toEqual(true);
         });
       });
     });
