@@ -4,6 +4,7 @@ require([
   'constants',
   'vue',
   'class/Character',
+  'component/common/icon/icon',
   'component/characterList/characterList',
   'component/characterCreator/characterCreator',
   'lib/global',
