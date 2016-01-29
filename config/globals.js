@@ -16,7 +16,7 @@ module.exports.globals = {
   },
 
   site: {
-    title: 'D20 Character Tracker'
+    title: 'Force and Destiny Character Tracker'
   },
 
   requirejs: {
