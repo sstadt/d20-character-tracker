@@ -35,7 +35,23 @@ $amber      : #f08a24; // warning
 
 /* Usage */
 
-$bodyBg: $white;
+$primaryColor   : $periwinkle;
+$secondaryColor : $limestone;
+$alertColor     : $vermillion;
+$successColor   : $grass;
+$warningColor   : $amber;
+$infoColor      : $clearsky;
+
+$headerHighlightBg       : $silver;
+$headerHighlightBgHover  : $vapor;
+$headerHighlightBgActive : $white-smoke;
+
+$bodyBg         : $white;
+
+// title-bar
+$titleBarBg       : $headerHighlightBg;
+$titleBarBgHover  : $headerHighlightBgHover;
+$titleBarBgActive : $headerHighlightBgActive;
 
 
 

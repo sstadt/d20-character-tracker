@@ -1,0 +1,13 @@
+
+#sw-dice-roller-component {
+  position: fixed;
+  width: 100%;
+  background-color: $bodyBg;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .panel {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,21 @@
+
+.title-bar {
+  background-color: $titleBarBg;
+  padding: rem-calc(10) $columnGutter / 2;
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $titleBarBgHover;
+    }
+
+    &:active {
+      background-color: $titleBarBgActive;
+    }
+  }
+}

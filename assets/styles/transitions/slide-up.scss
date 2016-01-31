@@ -1,0 +1,8 @@
+.slide-up-transition {
+  transition: all .3s ease;
+  max-height: 100px;
+}
+.slide-up-enter, .slide-up-leave {
+  max-height: 0;
+  overflow: hidden;
+}

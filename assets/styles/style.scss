@@ -5,24 +5,32 @@
  * and injected into the layout template.
  */
 
+// baseline/utils
+@import "normalize";
+@import "foundation/functions";
+
 // settings
 @import "palette";
 @import "settings";
 
-// foundation
-@import "normalize";
-@import "foundation/functions";
+// foundation init
 @import "foundation/settings";
 @import "foundation";
 
 // transitions
 @import "transitions/expand";
 @import "transitions/fade";
+@import "transitions/slide-up";
 
 // global
+@import "global/icons";
 @import "global/scrollbar";
+
+// ui
+@import "ui/title-bar";
 
 // components
 @import "components/characterCreator";
+@import "../js/lib/components/common/swDiceRoller/_swDiceRoller";
 
 // views
