@@ -2,12 +2,14 @@
 #sw-dice-roller-component {
   position: fixed;
   width: 100%;
-  background-color: $bodyBg;
   bottom: 0;
   left: 0;
   right: 0;
 
-  .panel {
+  .content {
     margin-bottom: 0;
+    padding: rem-calc(20);
+    border-top: 1px solid $diceRollerContentBorderColor;
+    background-color: $diceRollerBG;
   }
 }

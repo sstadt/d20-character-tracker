@@ -42,16 +42,27 @@ $successColor   : $grass;
 $warningColor   : $amber;
 $infoColor      : $clearsky;
 
-$headerHighlightBg       : $silver;
-$headerHighlightBgHover  : $vapor;
-$headerHighlightBgActive : $white-smoke;
-
 $bodyBg         : $white;
 
+// buttons
+$secondaryButtonBgHover: scale-color($secondaryColor, $lightness: $buttonFunctionFactor);
+$secondaryButtonBorderColor: $secondaryButtonBgHover;
+
+// panel
+$panelBg: scale-color($white, $lightness: -5%);
+$panelBorderColor: scale-color($panelBg, $lightness: $panelFunctionFactor);
+
 // title-bar
-$titleBarBg       : $headerHighlightBg;
-$titleBarBgHover  : $headerHighlightBgHover;
-$titleBarBgActive : $headerHighlightBgActive;
+$titleBarBg           : $smoke;
+$titleBarBorder       : $gainsboro;
+$titleBarBgHover      : $white-smoke;
+$titleBarBorderHover  : $silver;
+$titleBarBgActive     : $vapor;
+$titleBarBorderActive : $white-smoke;
+
+// dice roller
+$diceRollerBG                 : $panelBg;
+$diceRollerContentBorderColor : $ghost;
 
 
 
