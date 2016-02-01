@@ -55,14 +55,10 @@ $panelBorderColor: scale-color($panelBg, $lightness: $panelFunctionFactor);
 // title-bar
 $titleBarBg           : $smoke;
 $titleBarBorder       : $gainsboro;
-$titleBarBgHover      : $white-smoke;
-$titleBarBorderHover  : $silver;
-$titleBarBgActive     : $vapor;
-$titleBarBorderActive : $white-smoke;
-
-// dice roller
-$diceRollerBG                 : $panelBg;
-$diceRollerContentBorderColor : $ghost;
+$titleBarBgHover      : lighten($titleBarBg, 1%);
+$titleBarBorderHover  : lighten($titleBarBorder, 1%);
+$titleBarBgActive     : $titleBarBg;
+$titleBarBorderActive : $titleBarBorder;
 
 
 

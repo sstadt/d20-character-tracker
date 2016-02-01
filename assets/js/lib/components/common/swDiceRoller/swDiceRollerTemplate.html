@@ -4,12 +4,98 @@
     <h3>Dice Roller</h3>
   </div>
   <div class="content" v-if="open" transition="slide-up" transition-mode="out-in" keep-alive>
-    <icon name="die-boost"></icon>
-    <icon name="die-ability"></icon>
-    <icon name="die-proficiency"></icon>
-    <icon name="die-setback"></icon>
-    <icon name="die-difficulty"></icon>
-    <icon name="die-challenge"></icon>
-    <icon name="die-force"></icon>
+    <div class="row">
+
+      <!-- potential dice -->
+      <div class="small-12 medium-4 large-12 columns">
+        <ul class="small-block-grid-4 medium-block-grid-3 large-block-grid-12 dice-additions">
+          <li><div class="add-die-button" v-on:click="addDie('ability')"><icon name="die-ability"></icon></div></li>
+          <li><div class="add-die-button" v-on:click="addDie('proficiency')"><icon name="die-proficiency"></icon></div></li>
+          <li><div class="add-die-button" v-on:click="addDie('difficulty')"><icon name="die-difficulty"></icon></div></li>
+          <li><div class="add-die-button" v-on:click="addDie('challenge')"><icon name="die-challenge"></icon></div></li>
+          <li><div class="add-die-button" v-on:click="addDie('boost')"><icon name="die-boost"></icon></div></li>
+          <li><div class="add-die-button" v-on:click="addDie('setback')"><icon name="die-setback"></icon></div></li>
+          <li><div class="add-die-button" v-on:click="addDie('force')"><icon name="die-force"></icon></div></li>
+        </ul>
+      </div>
+
+      <!-- roll area -->
+      <div class="small-12 medium-8 columns">
+
+        <!-- current dice pool -->
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="panel callout radius">
+              <h4>Active Dice Pool</h4>
+              <ul class="inline-list dice-pool">
+                <li v-for="die in dicePool.ability">
+                  <div class="remove-die-button" v-on:click="removeDie('ability')"><icon name="die-ability"></icon></div>
+                </li>
+                <li v-for="die in dicePool.proficiency">
+                  <div class="remove-die-button" v-on:click="removeDie('proficiency')"><icon name="die-proficiency"></icon></div>
+                </li>
+                <li v-for="die in dicePool.difficulty">
+                  <div class="remove-die-button" v-on:click="removeDie('difficulty')"><icon name="die-difficulty"></icon></div>
+                </li>
+                <li v-for="die in dicePool.challenge">
+                  <div class="remove-die-button" v-on:click="removeDie('challenge')"><icon name="die-challenge"></icon></div>
+                </li>
+                <li v-for="die in dicePool.boost">
+                  <div class="remove-die-button" v-on:click="removeDie('boost')"><icon name="die-boost"></icon></div>
+                </li>
+                <li v-for="die in dicePool.setback">
+                  <div class="remove-die-button" v-on:click="removeDie('setback')"><icon name="die-setback"></icon></div>
+                </li>
+                <li v-for="die in dicePool.force">
+                  <div class="remove-die-button" v-on:click="removeDie('force')"><icon name="die-force"></icon></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- rolls -->
+        <div class="row">
+          <div class="small-12 columns">
+
+            <!-- current dice pool -->
+            <div class="row">
+              <div class="small-12 columns">
+                <label>Roll Description</label>
+                <div class="row">
+                  <div class="small-12 columns">
+                    <div class="row collapse">
+                      <div class="small-10 columns">
+                        <input type="text" placeholder="optional" v-model="description">
+                      </div>
+                      <div class="small-2 columns">
+                        <a href="#" class="button postfix" v-on:click="rollDicePool()">Roll</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- roll history -->
+            <div class="row" v-for="roll in rollHistory">
+              <div class="small-12 columns">
+                <icon name="dice-success" v-for="n in roll.overallResults.success"></icon>
+                <icon name="dice-advantage" v-for="n in roll.overallResults.advantage"></icon>
+                <icon name="dice-triumph" v-for="n in roll.overallResults.triumph"></icon>
+                <icon name="dice-failure" v-for="n in roll.overallResults.failure"></icon>
+                <icon name="dice-threat" v-for="n in roll.overallResults.threat"></icon>
+                <icon name="dice-despair" v-for="n in roll.overallResults.despair"></icon>
+                <icon name="dice-light-side" v-for="n in roll.overallResults.light"></icon>
+                <icon name="dice-dark-side" v-for="n in roll.overallResults.dark"></icon>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
   </div>
 </div>

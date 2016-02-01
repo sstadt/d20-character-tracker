@@ -1,4 +1,19 @@
 
+/* Colors
+-------------------------------- */
+
+$diceRollerBG                 : $panelBg;
+$diceRollerContentBorderColor : $ghost;
+$diceRollerAddDieBorderColor  : $gainsboro;
+
+/* Settings
+-------------------------------- */
+
+$diceRollerAddDieIconSize: rem-calc(30);
+
+/* Styling
+-------------------------------- */
+
 #sw-dice-roller-component {
   position: fixed;
   width: 100%;
@@ -11,5 +26,38 @@
     padding: rem-calc(20);
     border-top: 1px solid $diceRollerContentBorderColor;
     background-color: $diceRollerBG;
+
+    .add-die-button, .remove-die-button {
+      height: $minButtonSize;
+      width: $minButtonSize;
+      cursor: pointer;
+      border: 1px solid transparent;
+
+      &:active {
+        border: 1px solid $diceRollerAddDieBorderColor;
+      }
+
+      .icon-image {
+        margin: ($minButtonSize - $diceRollerAddDieIconSize - rem-calc(1)) / 2;
+        height: $diceRollerAddDieIconSize;
+        width: $diceRollerAddDieIconSize;
+      }
+    }
+
+    .dice-additions {
+      li {
+        .add-die-button {
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .dice-pool {
+      margin-left: 0;
+
+      li {
+        margin-left: 0;
+      }
+    }
   }
 }
