@@ -3,35 +3,35 @@ define(function () {
 
   var defaults = {
     name: 'Bob',
-    class: 'Noob',
-    strength: 12,
-    dexterity: 12,
-    constitution: 12,
-    intelligence: 12,
-    wisdom: 12,
-    charisma: 12
+    career: 'Noob',
+    brawn: 2,
+    agility: 2,
+    cunning: 2,
+    intellect: 2,
+    willpower: 2,
+    presence: 2
   };
 
   function Character(data) {
     data = data || {};
 
     this.name = data.name ||defaults.name;
-    this.class = data.class || defaults.class;
-    this.strength = data.strength || defaults.strength;
-    this.dexterity = data.dexterity || defaults.dexterity;
-    this.constitution = data.constitution || defaults.constitution;
-    this.intelligence = data.intelligence || defaults.intelligence;
-    this.wisdom = data.wisdom || defaults.wisdom;
-    this.charisma = data.charisma || defaults.charisma;
+    this.career = data.career || defaults.career;
+    this.brawn = data.brawn || defaults.brawn;
+    this.agility = data.agility || defaults.agility;
+    this.intellect = data.intellect || defaults.intellect;
+    this.cunning = data.cunning || defaults.cunning;
+    this.willpower = data.willpower || defaults.willpower;
+    this.presence = data.presence || defaults.presence;
   }
 
   Character.prototype.clearStats = function () {
-    this.strength = undefined;
-    this.dexterity = undefined;
-    this.constitution = undefined;
-    this.intelligence = undefined;
-    this.wisdom = undefined;
-    this.charisma = undefined;
+    this.brawn = undefined;
+    this.agility = undefined;
+    this.intellect = undefined;
+    this.cunning = undefined;
+    this.willpower = undefined;
+    this.presence = undefined;
   };
 
   return Character;

@@ -75,8 +75,8 @@ define([
       };
     },
     components: {
-      persona: generateStepComponent(stepList.persona, { next: 'attributes' }),
-      class: generateStepComponent(stepList.class, { prev: 'attributes', last: true })
+      persona: generateStepComponent(stepList.persona, { next: 'class' }),
+      class: generateStepComponent(stepList.class, { prev: 'persona', last: true })
     },
     methods: {
       changeStep: ChangeStep,
