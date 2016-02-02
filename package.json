@@ -34,6 +34,7 @@
   "license": "MIT",
   "devDependencies": {
     "grunt-karma": "^0.12.1",
+    "grunt-template": "^0.2.3",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.19",
     "karma-jasmine": "^0.3.6",
