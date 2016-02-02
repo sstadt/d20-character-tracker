@@ -195,8 +195,8 @@ define([
         expect(stepList.persona).toEqual(jasmine.any(String));
       });
 
-      it('should have a class step', function () {
-        expect(stepList.class).toEqual(jasmine.any(String));
+      it('should have a career step', function () {
+        expect(stepList.career).toEqual(jasmine.any(String));
       });
     });
 

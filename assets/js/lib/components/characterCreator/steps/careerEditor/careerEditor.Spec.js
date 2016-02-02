@@ -1,13 +1,13 @@
 define([
   'lodash',
-  'component/characterCreator/steps/classEditor/classEditorComponent'
-], function (_, classEditorComponent) {
+  'component/characterCreator/steps/careerEditor/careerEditorComponent'
+], function (_, careerEditorComponent) {
 
-  describe('The classEditor component', function () {
+  describe('The careerEditor component', function () {
     var component;
 
     beforeEach(function () {
-      component = _.clone(classEditorComponent);
+      component = _.clone(careerEditorComponent);
     });
 
     it('should exist', function () {
@@ -20,19 +20,19 @@ define([
 
     describe('character property', function () {
       it('should exist', function () {
-        expect(classEditorComponent.props.character).toEqual(jasmine.any(Object));
+        expect(careerEditorComponent.props.character).toEqual(jasmine.any(Object));
       });
 
       it('should be an object', function () {
-        expect(classEditorComponent.props.character.type).toEqual(Object);
+        expect(careerEditorComponent.props.character.type).toEqual(Object);
       });
 
       it('should be required', function () {
-        expect(classEditorComponent.props.character.required).toEqual(true);
+        expect(careerEditorComponent.props.character.required).toEqual(true);
       });
 
       it('should be a two way binding', function () {
-        expect(classEditorComponent.props.character.twoWay).toEqual(true);
+        expect(careerEditorComponent.props.character.twoWay).toEqual(true);
       });
     });
   });

@@ -17,7 +17,7 @@ define([
     returnTemplates = {},
     steps = [
       'persona',
-      'class'
+      'career'
     ];
 
   for (var i = 0, j = steps.length; i < j; i++) {

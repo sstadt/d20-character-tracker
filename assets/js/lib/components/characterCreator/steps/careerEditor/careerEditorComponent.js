@@ -1,10 +1,10 @@
 define([
   'vue',
-  'text!./classEditorTemplate.html'
-], function (Vue, classEditorTemplate) {
+  'text!./careerEditorTemplate.html'
+], function (Vue, careerEditorTemplate) {
 
   return {
-    template: classEditorTemplate,
+    template: careerEditorTemplate,
     props: {
       character: {
         type: Object,
