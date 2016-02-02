@@ -50,6 +50,7 @@ $secondaryButtonBorderColor: $secondaryButtonBgHover;
 
 // panel
 $panelBg: scale-color($white, $lightness: -5%);
+$panelBgZebra: lighten($panelBg, 5%);
 $panelBorderColor: scale-color($panelBg, $lightness: $panelFunctionFactor);
 
 // title-bar

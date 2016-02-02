@@ -37,6 +37,11 @@ $diceRollerAddDieIconSize: rem-calc(30);
         border: 1px solid $diceRollerAddDieBorderColor;
       }
 
+      &.disabled {
+        opacity: 0.1;
+        pointer-events: none;
+      }
+
       .icon-image {
         margin: ($minButtonSize - $diceRollerAddDieIconSize - rem-calc(1)) / 2;
         height: $diceRollerAddDieIconSize;
@@ -52,12 +57,42 @@ $diceRollerAddDieIconSize: rem-calc(30);
       }
     }
 
+    .panel {
+      margin-bottom: 0;
+    }
+
     .dice-pool {
       margin-left: 0;
+      height: $minButtonSize * 2;
 
       li {
         margin-left: 0;
       }
+    }
+
+    .roll-details {
+      min-height: rem-calc(34);
+      padding: rem-calc(4) rem-calc(8);
+
+      &:nth-child(even) {
+        background-color: $panelBgZebra;
+      }
+
+      h6 {
+        margin-bottom: 0;
+      }
+
+      .roll-result {
+        .icon-image {
+          margin-top: 2px;
+          margin-bottom: -2px;
+        }
+      }
+    }
+
+    .roll-list {
+      max-height: rem-calc(236);
+      overflow-y: scroll;
     }
   }
 }

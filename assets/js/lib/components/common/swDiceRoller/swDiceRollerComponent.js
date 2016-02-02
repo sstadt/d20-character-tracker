@@ -45,7 +45,7 @@ define([
         { success: 1, advantage: 1 }, // 9
         { advantage: 2 },             // 10
         { advantage: 2 },             // 11
-        { triumph: 2 },               // 12
+        { triumph: 1 },               // 12
       ],
       setback: [ // d6
         {},             // 1
@@ -134,6 +134,7 @@ define([
 
     this.overallResults = overallResults;
     this.dieResults = data;
+    this.description = data.description;
   }
 
   return {
@@ -153,6 +154,19 @@ define([
           force: 0
         }
       };
+    },
+    computed: {
+      nonForceDieEnabled: function () {
+        return this.dicePool.force < 1;
+      },
+      forceDieEnabled: function () {
+        return this.dicePool.ability < 1
+          && this.dicePool.proficiency < 1
+          && this.dicePool.difficulty < 1
+          && this.dicePool.challenge < 1
+          && this.dicePool.boost < 1
+          && this.dicePool.setback < 1;
+      }
     },
     methods: {
       toggleOpen: function () {
@@ -178,7 +192,10 @@ define([
         this.dicePool.force = 0;
       },
       rollDicePool: function () {
-        var dicePoolRolls = {};
+        var self = this,
+          dicePoolRolls = {
+            description: self.description
+          };
 
         _.each(this.dicePool, function (num, type) {
           if (num > 0) {
