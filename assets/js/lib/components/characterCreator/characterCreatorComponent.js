@@ -5,6 +5,27 @@
  * ----------------------------
  *
  * Builds a wizard for character creation from steps.
+ *
+ * To add a new step
+ * 
+ *   1) add a child component with the 'Editor' suffix:
+ *     grunt component --name=newEditor --parent=characterCreator/steps
+ *   2) import the component bootstrapper
+ *     ...
+ *     './steps/newEditor/newEditor',
+ *     ...
+ *   3) add the component name to ./steps/stepList.js
+ *     steps = [
+ *       ...
+ *       'new',
+ *       ...
+ *     ];
+ *   4) add the child component to characterCreator
+ *     components: {
+ *       ...
+ *       new: generateStepComponent(stepList.new, { prev: 'persona', next: 'career' }),
+ *       ...
+ *     },
  * 
  */
 
