@@ -195,6 +195,10 @@ define([
         expect(stepList.persona).toEqual(jasmine.any(String));
       });
 
+      it('should have a race step', function () {
+        expect(stepList.race).toEqual(jasmine.any(String));
+      });
+
       it('should have a career step', function () {
         expect(stepList.career).toEqual(jasmine.any(String));
       });

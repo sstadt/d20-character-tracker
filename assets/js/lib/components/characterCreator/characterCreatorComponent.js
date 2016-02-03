@@ -16,6 +16,7 @@ define([
   'text!./characterCreatorTemplate.html',
   './steps/stepList',
   './steps/personaEditor/personaEditor',
+  './steps/raceEditor/raceEditor',
   './steps/careerEditor/careerEditor'
 ], function (constants, _, Vue, Character, characterCreatorTemplate, stepList) {
   'use strict';
@@ -75,8 +76,9 @@ define([
       };
     },
     components: {
-      persona: generateStepComponent(stepList.persona, { next: 'career' }),
-      career: generateStepComponent(stepList.career, { prev: 'persona', last: true })
+      persona: generateStepComponent(stepList.persona, { next: 'race' }),
+      race: generateStepComponent(stepList.race, { prev: 'persona', next: 'career' }),
+      career: generateStepComponent(stepList.career, { prev: 'race', last: true })
     },
     methods: {
       changeStep: ChangeStep,

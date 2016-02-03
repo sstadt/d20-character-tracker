@@ -3,6 +3,7 @@ define(function () {
 
   var defaults = {
     name: 'Bob',
+    race: '',
     career: 'Noob',
     brawn: 2,
     agility: 2,
@@ -16,6 +17,7 @@ define(function () {
     data = data || {};
 
     this.name = data.name ||defaults.name;
+    this.race = data.race || defaults.race;
     this.career = data.career || defaults.career;
     this.brawn = data.brawn || defaults.brawn;
     this.agility = data.agility || defaults.agility;

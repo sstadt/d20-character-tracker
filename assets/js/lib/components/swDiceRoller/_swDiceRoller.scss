@@ -15,6 +15,7 @@ $diceRollerAddDieIconSize: rem-calc(30);
 -------------------------------- */
 
 #sw-dice-roller-component {
+  z-index: $zIndexFooter;
   position: fixed;
   width: 100%;
   bottom: 0;

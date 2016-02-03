@@ -5,7 +5,7 @@ require([
   'vue',
   'class/Character',
   'component/common/icon/icon',
-  'component/common/swDiceRoller/swDiceRoller',
+  'component/swDiceRoller/swDiceRoller',
   'component/characterList/characterList',
   'component/characterCreator/characterCreator',
   'lib/global',

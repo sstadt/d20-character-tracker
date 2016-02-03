@@ -25,12 +25,13 @@
 // global
 @import "global/icons";
 @import "global/scrollbar";
+@import "global/zindex";
 
 // ui
 @import "ui/title-bar";
 
 // components
-@import "components/characterCreator";
-@import "../js/lib/components/common/swDiceRoller/_swDiceRoller";
+@import "../js/lib/components/characterCreator/_characterCreator";
+@import "../js/lib/components/swDiceRoller/_swDiceRoller";
 
 // views

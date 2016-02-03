@@ -1,9 +1,9 @@
 
 define([
-  'component/common/swDiceRoller/swDiceRollerComponent'
+  'component/characterCreator/steps/raceEditor/raceEditorComponent'
 ], function (component) {
 
-  describe('The swDiceRoller component', function () {
+  describe('The raceEditor component', function () {
     it('to be an object', function () {
       expect(component).toEqual(jasmine.any(Object));
     });

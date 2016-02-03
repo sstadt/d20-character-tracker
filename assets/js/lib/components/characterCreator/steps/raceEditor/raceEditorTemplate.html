@@ -1,0 +1,48 @@
+
+<div class="row">
+    <div class="small-12 medium-6 large-4 columns">
+        <select v-model="selectedRace" v-on:change="updateCharacterAbilities()">
+            <option v-for="race in races" v-bind:value="race">{{ race.name }}</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-6 medium-2 large-1 columns">
+        <div class="ability-score-framed">
+            <p><span class="label">Brawn</span></p>
+            <p>{{ character.brawn }}</p>
+        </div>
+    </div>
+    <div class="small-6 medium-2 large-1 columns">
+        <div class="ability-score-framed">
+            <p><span class="label">Agility</span></p>
+            <p>{{ character.agility }}</p>
+        </div>
+    </div>
+    <div class="small-6 medium-2 large-1 columns">
+        <div class="ability-score-framed">
+            <p><span class="label">Cunning</span></p>
+            <p>{{ character.cunning }}</p>
+        </div>
+    </div>
+    <div class="small-6 medium-2 large-1 columns">
+        <div class="ability-score-framed">
+            <p><span class="label">Intellect</span></p>
+            <p>{{ character.intellect }}</p>
+        </div>
+    </div>
+    <div class="small-6 medium-2 large-1 columns">
+        <div class="ability-score-framed">
+            <p><span class="label">Willpower</span></p>
+            <p>{{ character.willpower }}</p>
+        </div>
+    </div>
+    <div class="small-6 medium-2 large-1 columns">
+        <div class="ability-score-framed">
+            <p><span class="label">Presence</span></p>
+            <p>{{ character.presence }}</p>
+        </div>
+    </div>
+</div>
+
