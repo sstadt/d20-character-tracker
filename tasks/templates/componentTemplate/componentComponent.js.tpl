@@ -9,6 +9,11 @@ define([
       return {
         greeting: '<%- name %> component',
       };
+    },
+    methods: {
+      sayHi: function () {
+        console.log('hi!');
+      }
     }
   };
 
