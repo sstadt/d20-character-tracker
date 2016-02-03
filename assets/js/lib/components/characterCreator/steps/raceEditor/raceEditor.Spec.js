@@ -1,9 +1,10 @@
 
 define([
+  'lodash',
   'vue.min',
   'component/characterCreator/steps/raceEditor/raceEditorComponent',
   'class/Character'
-], function (Vue, raceEditorComponent, Character) {
+], function (_, Vue, raceEditorComponent, Character) {
 
   describe('The raceEditor component', function () {
     var component;
@@ -54,7 +55,7 @@ define([
       });
 
       it('should set the current race to the first index of races', function () {
-          expect(data.selectedRace).toEqual(data.races[0]);
+          expect(_.isEqual(data.selectedRace, data.races[0])).toEqual(true);
       });
     });
 
