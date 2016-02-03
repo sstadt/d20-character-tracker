@@ -26,6 +26,7 @@
  *       new: generateStepComponent(stepList.new, { prev: 'persona', next: 'career' }),
  *       ...
  *     },
+ *   5) Add a test for the new step to characterCreator.Spec.js
  * 
  */
 

@@ -27,14 +27,5 @@ define(function () {
     this.presence = data.presence || defaults.presence;
   }
 
-  Character.prototype.clearStats = function () {
-    this.brawn = undefined;
-    this.agility = undefined;
-    this.intellect = undefined;
-    this.cunning = undefined;
-    this.willpower = undefined;
-    this.presence = undefined;
-  };
-
   return Character;
 });
