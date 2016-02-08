@@ -11,7 +11,7 @@ var request = require('request'),
 
 module.exports = {
 	index: function (req, res) {
-    var endpoint = apiUrl + req.param('model');
+    var endpoint = apiUrl + req.param('model') + '?key=' + apiKey;
 
     request(endpoint, function (err, response) {
       if (err) {
@@ -22,7 +22,7 @@ module.exports = {
     });
   },
   show: function (req, res) {
-    var endpoint = apiUrl + req.param('model') + '/' + req.param('id');
+    var endpoint = apiUrl + req.param('model') + '/' + req.param('id') + '?key=' + apiKey;
 
     request(endpoint, function (err, response) {
       if (err) {

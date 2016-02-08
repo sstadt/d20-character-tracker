@@ -6,11 +6,44 @@ a [Sails](http://sailsjs.org) application
 
  - Set up symlink script and store pre-commit hook in the repo: http://stackoverflow.com/questions/3462955/putting-git-hooks-into-repository/3464399#3464399
 
+### Setup
+
+Copy the following to config/local.js and fill in values:
+
+
+```javascript
+module.exports = {
+  email: {
+    noreply: {
+      address: 'gmail email address',
+      password: 'gmail app password'
+    }
+  },
+
+  hash: 'unique hash',
+
+  fadApi: {
+    url: 'http://localhost:1338/',
+    key: 'your api key here'
+  },
+};
+```
+
+run the following fromt he console
+
+
+```bash
+npm install -g sails
+cd /path/to/repo
+npm install && bower install
+sails lift
+```
+
 ### Custom Tasks
 
 #### Component Scaffold
 
-```
+```bash
 grunt component --name=myComponent --parent=common
 ```
 

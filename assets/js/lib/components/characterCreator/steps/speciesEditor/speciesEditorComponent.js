@@ -24,7 +24,7 @@ define([
 
       apiService.index('species', function (err, speciesList) {
         if (err) {
-          console.log(err);
+          console.error(err);
         } else {
           self.speciesList = speciesList;
           self.selectedSpecies = self.speciesList[0];
