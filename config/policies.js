@@ -41,6 +41,12 @@ module.exports.policies = {
     'show': 'sessionAuth'
   },
 
+  ApiController: {
+    '*': false,
+    'index': true,
+    'show': true
+  },
+
   /***************************************************************************
   *                                                                          *
   * Here's an example of mapping some policies to run before a controller    *

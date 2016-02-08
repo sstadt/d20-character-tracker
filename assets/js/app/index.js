@@ -9,6 +9,7 @@ require([
   'component/characterList/characterList',
   'component/characterCreator/characterCreator',
   'lib/global',
+  'sails'
 ], function (constants, Vue, Character) {
   'use strict';
 

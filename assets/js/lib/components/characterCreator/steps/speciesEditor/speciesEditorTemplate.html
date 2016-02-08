@@ -1,8 +1,8 @@
 
 <div class="row">
     <div class="small-12 medium-6 large-4 columns">
-        <select v-model="selectedRace" v-on:change="updateCharacterAbilities()">
-            <option v-for="race in races" v-bind:value="race">{{ race.name }}</option>
+        <select v-model="selectedSpecies" v-on:change="updateCharacterAbilities()">
+            <option v-for="species in speciesList" v-bind:value="species">{{ species.name }}</option>
         </select>
     </div>
 </div>

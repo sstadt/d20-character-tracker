@@ -65,6 +65,18 @@ module.exports.routes = {
     action: 'show'
   },
 
+  /*
+    FaD API
+   */
+   '/api/:model': {
+    controller: 'api',
+    action: 'index'
+   },
+   '/api/:model/:id': {
+    controller: 'api',
+    action: 'show'
+   },
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

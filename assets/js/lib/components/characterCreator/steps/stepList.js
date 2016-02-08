@@ -17,7 +17,7 @@ define([
     returnTemplates = {},
     steps = [
       'persona',
-      'race',
+      'species',
       'career'
     ];
 

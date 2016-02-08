@@ -2,15 +2,15 @@
 define([
   'lodash',
   'vue.min',
-  'component/characterCreator/steps/raceEditor/raceEditorComponent',
+  'component/characterCreator/steps/speciesEditor/speciesEditorComponent',
   'class/Character'
-], function (_, Vue, raceEditorComponent, Character) {
+], function (_, Vue, speciesEditorComponent, Character) {
 
-  describe('The raceEditor component', function () {
+  describe('The speciesEditor component', function () {
     var component;
 
     beforeEach(function () {
-      component = _.clone(raceEditorComponent);
+      component = _.clone(speciesEditorComponent);
     });
 
     it('to be an object', function () {
@@ -46,16 +46,16 @@ define([
         data = component.data();
       });
 
-      it('should have a races property', function () {
-        expect(data.races).toEqual(jasmine.any(Array));
+      it('should have a speciesList property', function () {
+        expect(data.speciesList).toEqual(jasmine.any(Array));
       });
 
-      it('should have a selectedRace', function () {
-        expect(data.selectedRace).toEqual(jasmine.any(Object));
+      it('should have a selectedSpecies', function () {
+        expect(data.selectedSpecies).toEqual(jasmine.any(Object));
       });
 
-      it('should set the current race to the first index of races', function () {
-          expect(_.isEqual(data.selectedRace, data.races[0])).toEqual(true);
+      it('should set the current species to the first index of speciesList', function () {
+          expect(_.isEqual(data.selectedSpecies, data.speciesList[0])).toEqual(true);
       });
     });
 
@@ -79,7 +79,7 @@ define([
           expect(typeof componentInstance.updateCharacterAbilities).toBe('function');
         });
 
-        it('should set the character attributes to ehte current race settings', function () {
+        it('should set the character attributes to ehte current species settings', function () {
           componentInstance.updateCharacterAbilities();
           expect(componentInstance.character.brawn).toEqual(2);
           expect(componentInstance.character.agility).toEqual(2);
