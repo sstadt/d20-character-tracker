@@ -32,8 +32,11 @@
 @import "ui/title-bar";
 
 // components
+@import "../js/lib/components/common/panel/_panel";
+
 @import "../js/lib/components/characterCreator/_characterCreator";
 @import "../js/lib/components/characterCreator/steps/personaEditor/_personaEditor";
+
 @import "../js/lib/components/swDiceRoller/_swDiceRoller";
 
 // views

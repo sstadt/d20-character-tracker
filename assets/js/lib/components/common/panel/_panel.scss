@@ -1,0 +1,19 @@
+
+/* Colors
+-------------------------------- */
+
+$panelBgColor: rgba($black, 0.8);
+$panelBorderColor: $primaryColor;
+
+/* Settings
+-------------------------------- */
+
+/* Styling
+-------------------------------- */
+
+.panel {
+    background-color: $panelBgColor;
+    border: 2px solid $panelBorderColor;
+    border-radius: 4px;
+    box-shadow: 0 0 14px $panelBorderColor, 0 0 14px $panelBorderColor inset;
+}

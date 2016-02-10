@@ -9,6 +9,7 @@ body {
 }
 
 @mixin sw-button($color) {
+  color: $color;
   border-color: rgba($color, 0.5);
   box-shadow: 0 0 5px $color;
   background-color: rgba($color, 0.2);
@@ -22,6 +23,10 @@ body {
   &:active {
     background-color: rgba($color, 0.5);
     box-shadow: 0 0 30px $color; 
+  }
+
+  &:hover, &:focus, &:active {
+    color: $color;
   }
 
 }

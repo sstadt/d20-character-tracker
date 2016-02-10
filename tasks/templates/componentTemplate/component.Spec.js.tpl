@@ -1,7 +1,8 @@
 
 define([
+  'vue.min',
   'component<%- path %>/<%- name %>/<%- name %>Component'
-], function (<%- name %>Component) {
+], function (Vue, <%- name %>Component) {
 
   describe('The <%- name %> component', function () {
     var component;

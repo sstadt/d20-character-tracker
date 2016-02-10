@@ -33,17 +33,24 @@ $grass      : #43AC6A; // success
 $amber      : #f08a24; // warning
 /* Foundation Defaults End */
 
+/* star wars interface colors */
+$mayaBlue: #83a9da;
+$springGreen: #50d991;
+$maizeYellow: #e1df70;
+$lustRed: #fb2815;
+/* star wars interface colors end */
+
 /* Usage */
 
-$primaryColor   : $periwinkle;
+$primaryColor   : $mayaBlue;
 $secondaryColor : $limestone;
-$alertColor     : $vermillion;
-$successColor   : $grass;
-$warningColor   : $amber;
+$alertColor     : $lustRed;
+$successColor   : $springGreen;
+$warningColor   : $maizeYellow;
 $infoColor      : $clearsky;
 
 $bodyBg         : $black;
-$bodyFontColor  : $white;
+$bodyFontColor  : $snow;
 
 // buttons
 $secondaryButtonBgHover: scale-color($secondaryColor, $lightness: $buttonFunctionFactor);
