@@ -1,7 +1,8 @@
 define([
   'vue',
+  'marked',
   'text!./personaEditorTemplate.html'
-], function (Vue, personaEditorTemplate) {
+], function (Vue, marked, personaEditorTemplate) {
 
   return {
     template: personaEditorTemplate,
@@ -11,6 +12,9 @@ define([
         required: true,
         twoWay: true
       }
+    },
+    filters: {
+      marked: marked
     }
   };
 

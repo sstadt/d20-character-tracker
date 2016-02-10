@@ -29,9 +29,11 @@
 
 // ui
 @import "ui/title-bar";
+@import "ui/medium-editor";
 
 // components
 @import "../js/lib/components/characterCreator/_characterCreator";
+@import "../js/lib/components/characterCreator/steps/personaEditor/_personaEditor";
 @import "../js/lib/components/swDiceRoller/_swDiceRoller";
 
 // views

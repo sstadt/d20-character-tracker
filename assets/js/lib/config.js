@@ -20,6 +20,7 @@ requirejs.config({
     'lodash'                 : 'vendor/lodash/dist/lodash',
     'vue'                    : 'vendor/vue/dist/vue',
     'vue.min'                : 'vendor/vue/dist/vue.min',
+    'marked'                 : 'vendor/marked/lib/marked'
   },
 
   shim: {},

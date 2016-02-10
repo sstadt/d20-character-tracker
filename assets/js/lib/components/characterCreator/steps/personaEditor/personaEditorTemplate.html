@@ -1,7 +1,20 @@
 
-<div class="row">
-    <div class="small-12 columns">
-        <input type="text" v-model="character.name" />
+<div alss="persona-editor">
+    <div class="row">
+        <div class="small-12 columns">
+            <label>
+                Character Name
+                <input type="text" v-model="character.name" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+            <label>
+                Character Background
+                <textarea v-model="character.background" debounce="300"></textarea>
+                <div v-html="character.background | marked"></div>
+            </label>
+        </div>
     </div>
 </div>
-
