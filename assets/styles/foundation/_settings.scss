@@ -198,7 +198,7 @@ $body-font-color: $bodyFontColor;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: $jet;
+$header-font-color: $headerFontColor;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -450,8 +450,8 @@ $button-function-factor: $buttonFunctionFactor;
 // $button-bg-color: $primary-color;
 // $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
 // $button-border-color: $button-bg-hover;
-$secondary-button-bg-hover: $secondaryButtonBgHover;
-$secondary-button-border-color: $secondaryButtonBorderColor;
+// $secondary-button-bg-hover: scale-color($secondaryColor, $lightness: $buttonFunctionFactor);
+// $secondary-button-border-color: $secondary-button-bg-hover;
 // $success-button-bg-hover: scale-color($success-color, $lightness: $button-function-factor);
 // $success-button-border-color: $success-button-bg-hover;
 // $alert-button-bg-hover: scale-color($alert-color, $lightness: $button-function-factor);
@@ -619,22 +619,22 @@ $secondary-button-border-color: $secondaryButtonBorderColor;
 // $form-label-font-size: rem-calc(14);
 // $form-label-font-weight: $font-weight-normal;
 // $form-label-line-height: 1.5;
-// $form-label-font-color: scale-color($black, $lightness: 30%);
+$form-label-font-color: $formLabelFontColor;
 // $form-label-small-transform: capitalize;
 // $form-label-bottom-margin: 0;
 // $input-font-family: inherit;
-// $input-font-color: rgba(0,0,0,0.75);
+$input-font-color: $inputFontColor;
 // $input-font-size: rem-calc(14);
-// $input-bg-color: $white;
-// $input-focus-bg-color: scale-color($white, $lightness: -2%);
-// $input-border-color: scale-color($white, $lightness: -20%);
-// $input-focus-border-color: scale-color($white, $lightness: -40%);
-// $input-border-style: solid;
-// $input-border-width: 1px;
+$input-bg-color: $inputBgColor;
+$input-focus-bg-color: $inputFocusBgColor;
+$input-border-color: $inputBorderColor;
+$input-focus-border-color: $inputFocusBorderColor;
+$input-border-style: $inputBorderStyle;
+$input-border-width: $inputBorderWidth;
 // $input-border-radius: $global-radius;
-// $input-disabled-bg: $gainsboro;
+$input-disabled-bg: $inputDisabledBg;
 // $input-disabled-cursor: $cursor-default-value;
-// $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+$input-box-shadow: $inputBoxShadow;
 
 // We use these to style the fieldset border and spacing.
 // $fieldset-border-style: solid;
@@ -952,8 +952,8 @@ $inline-list-default-float-list-margin: $inlineListDefaultFloatListMargin;
 
 // We use these to control the background and border styles
 $panel-bg: $panelBg;
-// $panel-border-style: solid;
-// $panel-border-size: 1px;
+$panel-border-style: $panelBorderStyle;
+$panel-border-size: $panelBorderSize;
 
 // We use this % to control how much we darken things on hover
 $panel-function-factor: $panelFunctionFactor;
@@ -964,7 +964,7 @@ $panel-border-color: $panelBorderColor;
 // $panel-padding: rem-calc(20);
 
 // We use these to set default font colors
-// $panel-font-color: $oil;
+$panel-font-color: $panelFontColor;
 // $panel-font-color-alt: $white;
 
 // $panel-header-adjust: true;

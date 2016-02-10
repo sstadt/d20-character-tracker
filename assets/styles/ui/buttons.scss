@@ -1,12 +1,4 @@
 
-$swPrimary: #83a9da;
-$swSuccess: #50d991;
-$swWarning: #e1df70;
-$swAlert: #fb2815;
-
-body {
-  background-image: url(http://img08.deviantart.net/fd62/i/2010/282/5/d/blue_starfield_stock_by_arisechicken117-d30d8f8.png);
-}
 
 @mixin sw-button($color) {
   color: $color;
@@ -36,26 +28,26 @@ button, .button {
   border-style: solid;
   border-width: 2px;
   border-radius: 2px;
-  @include sw-button($swPrimary);
+  @include sw-button($primaryColor);
 
   &.secondary {
-    
+    @include sw-button($secondaryColor);
   }
 
   &.alert {
-    @include sw-button($swAlert);
+    @include sw-button($alertColor);
   }
 
   &.success {
-    @include sw-button($swSuccess);
+    @include sw-button($successColor);
   }
 
   &.warning {
-    @include sw-button($swWarning);
+    @include sw-button($warningColor);
   }
 
   &.info {
-    
+    @include sw-button($infoColor);
   }
 }
 
