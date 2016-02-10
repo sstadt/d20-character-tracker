@@ -1,0 +1,57 @@
+
+$swPrimary: #83a9da;
+$swSuccess: #50d991;
+$swWarning: #e1df70;
+$swAlert: #fb2815;
+
+body {
+  background-image: url(http://img08.deviantart.net/fd62/i/2010/282/5/d/blue_starfield_stock_by_arisechicken117-d30d8f8.png);
+}
+
+@mixin sw-button($color) {
+  border-color: rgba($color, 0.5);
+  box-shadow: 0 0 5px $color;
+  background-color: rgba($color, 0.2);
+
+  &:hover, &:focus {
+    outline: 0;
+    background-color: rgba($color, 0.3);
+    box-shadow: 0 0 30px $color;
+  }
+
+  &:active {
+    background-color: rgba($color, 0.5);
+    box-shadow: 0 0 30px $color; 
+  }
+
+}
+
+button, .button {
+  text-transform: uppercase;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 2px;
+  @include sw-button($swPrimary);
+
+  &.secondary {
+    
+  }
+
+  &.alert {
+    @include sw-button($swAlert);
+  }
+
+  &.success {
+    @include sw-button($swSuccess);
+  }
+
+  &.warning {
+    @include sw-button($swWarning);
+  }
+
+  &.info {
+    
+  }
+}
+
+

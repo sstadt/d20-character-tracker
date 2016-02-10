@@ -23,13 +23,13 @@
 @import "transitions/slide-up";
 
 // global
-@import "global/icons";
-@import "global/scrollbar";
 @import "global/zindex";
 
 // ui
+@import "ui/icons";
+@import "ui/buttons";
+@import "ui/scrollbar";
 @import "ui/title-bar";
-@import "ui/medium-editor";
 
 // components
 @import "../js/lib/components/characterCreator/_characterCreator";

@@ -42,7 +42,8 @@ $successColor   : $grass;
 $warningColor   : $amber;
 $infoColor      : $clearsky;
 
-$bodyBg         : $white;
+$bodyBg         : $black;
+$bodyFontColor  : $white;
 
 // buttons
 $secondaryButtonBgHover: scale-color($secondaryColor, $lightness: $buttonFunctionFactor);
