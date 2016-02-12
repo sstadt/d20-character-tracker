@@ -21,6 +21,7 @@ $swPanelBorder: $panelBorderSize $panelBorderStyle $swPanelBorderColor;
   }
 
   .sw-panel-content {
+    background-color: $swPanelBgColor;
     border-left: $swPanelBorder;
     border-right: $swPanelBorder;
     padding-right: $swPanelBevelSize;
@@ -29,6 +30,7 @@ $swPanelBorder: $panelBorderSize $panelBorderStyle $swPanelBorderColor;
 
   .corner-fill {
     flex: 1;
+    background-color: $swPanelBgColor;
     border-top: $swPanelBorder;
     border-bottom: $swPanelBorder;
     border-left: $swPanelBorder;
@@ -42,6 +44,12 @@ $swPanelBorder: $panelBorderSize $panelBorderStyle $swPanelBorderColor;
     }
 
     .left-corner {
+      &:before {
+        transform: rotate(45deg);
+        top: rem-calc(5);
+        left: rem-calc(9);
+      }
+
       &:after {
         transform: rotate(45deg);
         top: rem-calc(-17);
@@ -50,6 +58,12 @@ $swPanelBorder: $panelBorderSize $panelBorderStyle $swPanelBorderColor;
     }
 
     .right-corner {
+      &:before {
+        transform: rotate(-45deg);
+        top: rem-calc(5);
+        left: rem-calc(-37);
+      }
+
       &:after {
         transform: rotate(-45deg);
         top: rem-calc(-17);
@@ -65,6 +79,12 @@ $swPanelBorder: $panelBorderSize $panelBorderStyle $swPanelBorderColor;
     }
 
     .left-corner {
+      &:before {
+        transform: rotate(-45deg);
+        top: rem-calc(-33);
+        left: rem-calc(10);
+      }
+
       &:after {
         transform: rotate(-45deg);
         top: rem-calc(-18.5);
@@ -73,6 +93,12 @@ $swPanelBorder: $panelBorderSize $panelBorderStyle $swPanelBorderColor;
     }
 
     .right-corner {
+      &:before {
+        transform: rotate(45deg);
+        top: rem-calc(-33);
+        left: rem-calc(-40);
+      }
+
       &:after {
         transform: rotate(45deg);
         top: rem-calc(-17);
@@ -90,12 +116,20 @@ $swPanelBorder: $panelBorderSize $panelBorderStyle $swPanelBorderColor;
     overflow: hidden;
     position: relative;
 
+    &:before {
+      background-color: $swPanelBgColor;
+      width: $swPanelBevelLength;
+    }
+
     &:after {
+      background-color: $swPanelBorderColor;
+      width: $panelBorderSize;
+    }
+
+    &:before, &:after {
       content: "";
       position: absolute;
-      background-color: $swPanelBorderColor;
       height: $swPanelBevelLength;
-      width: $panelBorderSize;
     }
   }
 
