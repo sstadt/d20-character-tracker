@@ -1,19 +1,102 @@
 
-/* Colors
--------------------------------- */
-
-$panelBgColor: rgba($black, 0.8);
-$panelBorderColor: $primaryColor;
-
 /* Settings
 -------------------------------- */
+
+$swPanelBgColor: rgba($black, 0.8);
+$swPanelBevelSize: rem-calc(30);
+$swPanelBevelLength: $swPanelBevelSize * 2;
+$swPanelBorderColor: $primaryColor;
+$swPanelBorder: $panelBorderSize $panelBorderStyle $swPanelBorderColor;
 
 /* Styling
 -------------------------------- */
 
-.panel {
-    background-color: $panelBgColor;
-    border: 2px solid $panelBorderColor;
-    border-radius: 4px;
-    box-shadow: 0 0 14px $panelBorderColor, 0 0 14px $panelBorderColor inset;
+.sw-panel {
+  background-color: transparent;
+  border: none;
+  margin-bottom: rem-calc(20);
+
+  .sw-panel-head, .sw-panel-foot {
+    display: flex;
+  }
+
+  .sw-panel-content {
+    border-left: $swPanelBorder;
+    border-right: $swPanelBorder;
+    padding-right: $swPanelBevelSize;
+    padding-left: $swPanelBevelSize;
+  }
+
+  .corner-fill {
+    flex: 1;
+    border-top: $swPanelBorder;
+    border-bottom: $swPanelBorder;
+    border-left: $swPanelBorder;
+    border-right: $swPanelBorder;
+  }
+
+  .sw-panel-head {
+    .corner-fill {
+      border-bottom: none;
+      border-left: none;
+    }
+
+    .left-corner {
+      &:after {
+        transform: rotate(45deg);
+        top: rem-calc(-17);
+        left: rem-calc(17);
+      }
+    }
+
+    .right-corner {
+      &:after {
+        transform: rotate(-45deg);
+        top: rem-calc(-17);
+        left: rem-calc(11);
+      }
+    }
+  }
+
+  .sw-panel-foot {
+    .corner-fill {
+      border-top: none;
+      border-right: none;
+    }
+
+    .left-corner {
+      &:after {
+        transform: rotate(-45deg);
+        top: rem-calc(-18.5);
+        left: rem-calc(11.5);
+      }
+    }
+
+    .right-corner {
+      &:after {
+        transform: rotate(45deg);
+        top: rem-calc(-17);
+        left: rem-calc(15);
+      }
+    }
+  }
+
+  .corner-fill, .right-corner, .left-corner {
+    height: $swPanelBevelSize;
+  }
+
+  .right-corner, .left-corner {
+    flex: 0 0 $swPanelBevelSize;
+    overflow: hidden;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      background-color: $swPanelBorderColor;
+      height: $swPanelBevelLength;
+      width: $panelBorderSize;
+    }
+  }
+
 }

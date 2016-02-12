@@ -5,23 +5,27 @@ $zIndexOverlay  : 8000;
 $zIndexDropdown : 7000;
 $zIndexHeader   : 6000;
 $zIndexFooter   : 5000;
+$zIndexBeneath  : -1;
 
 [class*="modal"] {
-    z-index: $zIndexModal;
+  z-index: $zIndexModal;
 }
 
 .overlay {
-    z-index: $zIndexOverlay;
+  z-index: $zIndexOverlay;
 }
 
 .dropdown {
-    z-index: $zIndexDropdown;
+  z-index: $zIndexDropdown;
 }
 
 .header {
-    z-index: $zIndexHeader;
+  z-index: $zIndexHeader;
 }
 
 .footer {
-    z-index: $zIndexFooter;
+  z-index: $zIndexFooter;
+}
+.beneath {
+  z-index: $zIndexBeneath
 }

@@ -90,7 +90,7 @@ $minButtonSize : rem-calc(44);
 // this is going to eff up the dice roller - will need to restyle it to work with the new theme
 $panelBg          : scale-color($white, $lightness: -5%);
 $panelBgZebra     : lighten($panelBg, 5%);
-$panelBorderColor : scale-color($panelBg, $lightness: $panelFunctionFactor);
+$panelBorderColor : $bodyFontColor;
 // below this shouldn't need refactoring
 
 $panelFontColor   : $bodyFontColor;
