@@ -67,6 +67,7 @@ $infoColor      : $clearsky;
 
 $bodyBg         : $black;
 $bodyFontColor  : $primaryColor;
+$scrollBarBg    : $primaryColor;
 
 /* Grid
 -------------------------------- */
@@ -88,11 +89,12 @@ $minButtonSize : rem-calc(44);
 -------------------------------- */
 
 // this is going to eff up the dice roller - will need to restyle it to work with the new theme
-$panelBg          : scale-color($white, $lightness: -5%);
+$panelBg          : rgba($black, 0.8);
 $panelBgZebra     : lighten($panelBg, 5%);
 $panelBorderColor : $bodyFontColor;
 // below this shouldn't need refactoring
 
+$panelBevelSize   : rem-calc(30);
 $panelFontColor   : $bodyFontColor;
 $panelBorderStyle : $interfaceBorderStyle;
 $panelBorderSize  : $interfaceBorderSize;
@@ -117,6 +119,9 @@ $inputDisabledBg       : transparent;
 $inputBorderStyle      : solid;
 $inputBorderWidth      : 2px;
 $inputBoxShadow        : none;
+$inputOpacity          : 0.8;
+$inputFocusOpacity     : 1;
+$inputTransition       : 0.3s all linear;
 
 /* title-bar
 -------------------------------- */

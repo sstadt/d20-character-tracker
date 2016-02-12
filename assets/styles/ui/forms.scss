@@ -15,8 +15,15 @@ input[type="time"],
 input[type="url"],
 input[type="color"],
 textarea {
-    &:focus {
-        box-shadow: 0 0 20px $inputFocusBorderColor, 0 0 10px $inputFocusBorderColor inset;
-    }
+  opacity: $inputOpacity;
+  transition: $inputTransition;
+
+  &:focus, &:hover {
+    opacity: $inputFocusOpacity;
+  }
+
+  &:focus {
+    box-shadow: 0 0 10px $inputFocusBorderColor inset;
+  }
 }
 

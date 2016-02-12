@@ -2,19 +2,21 @@
 
 @mixin sw-button($color) {
   color: $color;
-  border-color: rgba($color, 0.5);
-  box-shadow: 0 0 5px $color;
-  background-color: rgba($color, 0.2);
+  border-color: $color;
+  background-color: rgba($color, 0.1);
 
   &:hover, &:focus {
     outline: 0;
-    background-color: rgba($color, 0.3);
-    box-shadow: 0 0 30px $color;
+    background-color: rgba($color, 0.2);
+  }
+
+  &:focus {
+    box-shadow: 0 0 10px $color inset;
   }
 
   &:active {
-    background-color: rgba($color, 0.5);
-    box-shadow: 0 0 30px $color; 
+    background-color: rgba($color, 0.4);
+    box-shadow: 0 0 10px $color inset;
   }
 
   &:hover, &:focus, &:active {

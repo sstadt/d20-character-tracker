@@ -2,8 +2,8 @@
 /* Settings
 -------------------------------- */
 
-$swPanelBgColor: rgba($black, 0.8);
-$swPanelBevelSize: rem-calc(30);
+$swPanelBgColor: $panelBg;
+$swPanelBevelSize: $panelBevelSize;
 $swPanelBevelLength: $swPanelBevelSize * 2;
 $swPanelBorderColor: $primaryColor;
 $swPanelBorder: $panelBorderSize $panelBorderStyle $swPanelBorderColor;

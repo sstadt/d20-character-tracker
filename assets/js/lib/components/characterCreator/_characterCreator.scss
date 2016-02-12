@@ -1,70 +1,71 @@
 
+$ccScrollBarGutter: rem-calc(21);
+
+
 .character-creator-component {
   .creator-modal {
     position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    padding: rem-calc(20) 0 rem-calc(20) rem-calc(20);
-    background-color: $bodyBg;
+    height: 98%;
+    width: 98%;
+    top: 1%;
+    left: 1%;
+    display: flex;
+    flex-flow: column;
+
+    .sw-panel-head {
+      position: relative;
+
+      span {
+        position: absolute;
+        right: rem-calc(8);
+        cursor: pointer;
+        color: $bodyFontColor;
+        opacity: $inputOpacity;
+        transition: $inputTransition;
+        font-size: rem-calc(24);
+        line-height: rem-calc(24);
+
+        &:hover {
+          opacity: $inputFocusOpacity;
+        }
+      }
+    }
+
+    .sw-panel-head, .sw-panel-foot {
+      height: $panelBevelSize;
+    }
+
+    .corner-fill {
+      border-left: none;
+    }
+
+    .sw-panel-content {
+      flex: 2;
+      display: flex;
+      flex-flow: column;
+      padding-right: $panelBevelSize - $ccScrollBarGutter;
+    }
 
     .step {
-      position: relative;
-      height: 100%;
-      padding-bottom: rem-calc(70);
+      flex: 2;
+      display: flex;
+      flex-flow: column;
 
       .step-content {
-        max-height: 100%;
-        overflow-x: hidden;
+        flex: 1 1 auto;
         overflow-y: auto;
-        padding-right: rem-calc(20);
+        padding-right: $ccScrollBarGutter;
       }
 
       .step-controls {
-        position: absolute;
-        bottom: 0;
-        left: 0;
+        flex: 0 1 auto;
         width: 100%;
         padding-top: rem-calc(10);
-        padding-right: rem-calc(20);
-        background-color: $bodyBg;
+        padding-right: $ccScrollBarGutter;
 
         button {
           margin: 0;
         }
-      }
-    }
-  }
-
-  .roll-method {
-    .roll-results {
-      .roll-result {
-        border: 1px solid #aaa;
-        text-align: center;
-        padding: rem-calc(14) 0;
-
-        &.disabled {
-          opacity: 0.5;
-        }
-
-        &:not(.disabled) {
-          cursor: pointer;
-
-          &:active {
-            background-color: #eee;
-          }
-        }
-      }
-    }
-
-    .stat-assignment {
-      p {
-        margin-bottom: 0;
-      }
-
-      .set-attribute-btn {
-        cursor: pointer;
       }
     }
   }
