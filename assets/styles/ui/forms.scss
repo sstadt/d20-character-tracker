@@ -1,4 +1,6 @@
 
+$selectCaret: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0aD0iMzdweCIgaGVpZ2h0PSIzN3B4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwIDEwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+Cjxwb2x5Z29uIGZpbGw9IiM4MkE4RDkiIHBvaW50cz0iMzQuMjE0LDQyLjQ5MyA1MCw1Ny41MDcgNjUuNzg3LDQyLjQ5MyAiLz4KPC9zdmc+);
+$inputBoxShadow: 0 0 10px $inputFocusBorderColor inset;
 
 input[type="text"],
 input[type="password"],
@@ -23,7 +25,17 @@ textarea {
   }
 
   &:focus {
-    box-shadow: 0 0 10px $inputFocusBorderColor inset;
+    box-shadow: $inputBoxShadow;
+  }
+}
+
+select {
+  background-image: $selectCaret;
+  transition: 0.3s all linear;
+
+  &:focus {
+    outline: 0;
+    box-shadow: $inputBoxShadow;
   }
 }
 

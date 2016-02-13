@@ -675,8 +675,8 @@ $input-box-shadow: $inputBoxShadow;
 // $glowing-effect-color: $input-focus-border-color;
 
 // Select variables
-// $select-bg-color: $ghost;
-// $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%);
+$select-bg-color: $selectBgColor;
+$select-hover-bg-color: $selectHoverBgColor;
 
 // 12. Icon Bar
 // - - - - - - - - - - - - - - - - - - - - - - - - -

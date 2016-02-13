@@ -55,12 +55,12 @@ $ccScrollBarGutter: rem-calc(21);
         flex: 1 1 auto;
         overflow-y: auto;
         padding-right: $ccScrollBarGutter;
+        margin: rem-calc(10) 0 rem-calc(20);
       }
 
       .step-controls {
         flex: 0 1 auto;
         width: 100%;
-        padding-top: rem-calc(10);
         padding-right: $ccScrollBarGutter;
 
         button {

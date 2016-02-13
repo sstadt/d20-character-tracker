@@ -111,6 +111,7 @@ $inlineListDefaultFloatListMargin : rem-calc(22);
 $formLabelFontColor    : $primaryColor;
 $inputFontColor        : $primaryColor;
 $inputBgColor          : transparent;
+$inputHoverBgColor     : transparent;
 $inputFocusBgColor     : transparent;
 $inputBorderColor      : $primaryColor;
 $inputFocusBorderColor : $primaryColor;
@@ -122,6 +123,9 @@ $inputBoxShadow        : none;
 $inputOpacity          : 0.8;
 $inputFocusOpacity     : 1;
 $inputTransition       : 0.3s all linear;
+
+$selectBgColor: $inputBgColor;
+$selectHoverBgColor: $inputBgColor;
 
 /* title-bar
 -------------------------------- */
