@@ -25,7 +25,7 @@
 
       <panel>
         <div slot="content">
-          <button>Default Button</button>
+          <button v-on:click="show = true">Default Button</button>
           <button class="info">Info Button</button>
           <button class="secondary">Secondary Button</button>
           <button class="success">Success Button</button>
@@ -33,6 +33,38 @@
           <button class="alert">Alert Button</button>
         </div>
       </panel>
+
+      <modal :show.sync="show">
+        <div slot="content">
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+          <p>Bazinga</p>
+        </div>
+      </modal>
 
       <!--sw-dice-roller></sw-dice-roller-->
     </div>

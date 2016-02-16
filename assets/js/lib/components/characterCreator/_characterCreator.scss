@@ -3,68 +3,36 @@ $ccScrollBarGutter: rem-calc(21);
 
 
 .character-creator-component {
-  .creator-modal {
-    position: fixed;
-    height: 98%;
-    width: 98%;
-    top: 1%;
-    left: 1%;
-    display: flex;
-    flex-flow: column;
 
-    .sw-panel-head {
-      position: relative;
+  .sw-panel-content {
+    position: relative;
+    padding-right: $panelBevelSize - $ccScrollBarGutter;
 
-      span {
-        position: absolute;
-        right: rem-calc(8);
-        cursor: pointer;
-        color: $bodyFontColor;
-        opacity: $inputOpacity;
-        transition: $inputTransition;
-        font-size: rem-calc(24);
-        line-height: rem-calc(24);
+    div[slot="content"] {
+      display: flex;
+      flex: 1;
+      padding-right: 0;
 
-        &:hover {
-          opacity: $inputFocusOpacity;
+      .step {
+        flex: 2;
+        display: flex;
+        flex-flow: column;
+
+        .step-content {
+          flex: 1 1 auto;
+          overflow-y: auto;
+          padding-right: $ccScrollBarGutter;
+          margin: rem-calc(10) 0 rem-calc(20);
         }
-      }
-    }
 
-    .sw-panel-head, .sw-panel-foot {
-      height: $panelBevelSize;
-    }
+        .step-controls {
+          flex: 0 1 auto;
+          width: 100%;
+          padding-right: $ccScrollBarGutter;
 
-    .corner-fill {
-      border-left: none;
-    }
-
-    .sw-panel-content {
-      flex: 2;
-      display: flex;
-      flex-flow: column;
-      padding-right: $panelBevelSize - $ccScrollBarGutter;
-    }
-
-    .step {
-      flex: 2;
-      display: flex;
-      flex-flow: column;
-
-      .step-content {
-        flex: 1 1 auto;
-        overflow-y: auto;
-        padding-right: $ccScrollBarGutter;
-        margin: rem-calc(10) 0 rem-calc(20);
-      }
-
-      .step-controls {
-        flex: 0 1 auto;
-        width: 100%;
-        padding-right: $ccScrollBarGutter;
-
-        button {
-          margin: 0;
+          button {
+            margin: 0;
+          }
         }
       }
     }

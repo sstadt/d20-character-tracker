@@ -37,7 +37,8 @@ require([
     el: '#characterList',
     data: {
       newCharacter: new Character(),
-      characters: characters
+      characters: characters,
+      show: false
     },
     events: characterListEvents
   });
