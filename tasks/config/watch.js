@@ -31,6 +31,9 @@ module.exports = function (grunt) {
     sass: {
       files: ['assets/styles/**/*'],
       tasks: ['sass:dev']
+    },
+    style: {
+      files: ['.tmp/public/styles/style.css']
     }
   });
 
