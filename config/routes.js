@@ -66,6 +66,18 @@ module.exports.routes = {
   },
 
   /*
+    Dice Roller
+   */
+  '/dice': {
+    controller: 'dice',
+    action: 'index'
+  },
+  '/roll': {
+    controller: 'dice',
+    action: 'roll'
+  },
+
+  /*
     FaD API
    */
    '/api/:model': {
