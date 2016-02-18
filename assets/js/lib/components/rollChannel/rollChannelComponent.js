@@ -1,13 +1,13 @@
 
 define([
-  'text!./rollLogTemplate.html'
-], function (rollLogTemplate) {
+  'text!./rollChannelTemplate.html'
+], function (rollChannelTemplate) {
 
   return {
-    template: rollLogTemplate,
+    template: rollChannelTemplate,
     data: function () {
       return {
-        greeting: 'rollLog component',
+        greeting: 'rollChannel component',
       };
     },
     methods: {

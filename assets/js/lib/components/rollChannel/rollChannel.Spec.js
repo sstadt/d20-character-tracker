@@ -1,14 +1,14 @@
 
 define([
   'vue.min',
-  'component/rollLog/rollLogComponent'
-], function (Vue, rollLogComponent) {
+  'component/rollChannel/rollChannelComponent'
+], function (Vue, rollChannelComponent) {
 
-  describe('The rollLog component', function () {
+  describe('The rollChannel component', function () {
     var component;
 
     beforeEach(function () {
-      component = _.clone(rollLogComponent);
+      component = _.clone(rollChannelComponent);
     });
 
     it('to be an object', function () {
@@ -26,11 +26,11 @@ define([
         componentInstance = new Vue(component);
       });
 
-      describe('#sayHi', function () {
-        it('should be a function', function () {
-          expect(typeof componentInstance.sayHi).toBe('function');
-        });
-      });
+      // describe('#sayHi', function () {
+      //   it('should be a function', function () {
+      //     expect(typeof componentInstance.sayHi).toBe('function');
+      //   });
+      // });
     });
 
   });

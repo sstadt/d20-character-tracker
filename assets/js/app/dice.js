@@ -4,7 +4,7 @@ require([
   'vue',
   'component/common/common',
   'component/diceRoller/diceRoller',
-  'component/rollLog/rollLog',
+  'component/rollLog/rollChannel',
   'sails'
 ], function (constants, Vue) {
   'use strict';
