@@ -14,7 +14,6 @@ define([
         type: String
       },
       value: {
-        type: String,
         required: true,
         twoWay: true
       }

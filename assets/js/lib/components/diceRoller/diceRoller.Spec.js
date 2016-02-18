@@ -26,11 +26,11 @@ define([
         componentInstance = new Vue(component);
       });
 
-      describe('#sayHi', function () {
-        it('should be a function', function () {
-          expect(typeof componentInstance.sayHi).toBe('function');
-        });
-      });
+      // describe('#sayHi', function () {
+      //   it('should be a function', function () {
+      //     expect(typeof componentInstance.sayHi).toBe('function');
+      //   });
+      // });
     });
 
   });

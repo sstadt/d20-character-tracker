@@ -24,7 +24,7 @@ define([
             expect(component.props.type).toEqual(jasmine.any(Object));
         });
 
-        it('should be a boolean', function () {
+        it('should be a string', function () {
           expect(component.props.type.type).toEqual(String);
         });
 
@@ -38,7 +38,7 @@ define([
             expect(component.props.label).toEqual(jasmine.any(Object));
         });
 
-        it('should be a boolean', function () {
+        it('should be a string', function () {
           expect(component.props.label.type).toEqual(String);
         });
       });
@@ -46,10 +46,6 @@ define([
       describe('value', function () {
         it('should exist', function () {
             expect(component.props.value).toEqual(jasmine.any(Object));
-        });
-
-        it('should be a boolean', function () {
-          expect(component.props.value.type).toEqual(String);
         });
 
         it('should be required', function () {

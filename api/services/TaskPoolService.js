@@ -99,58 +99,61 @@ var resultTypes = [
     ]
   };
 
-function getNewResultSet() {
-  var blankResults = {};
-
-  for (var i = 0, j = resultTypes.length; i < j; i++) {
-    blankResults[resultTypes[i]] = 0;
-  }
-
-  return blankResults;
-}
-
 function getDieRoll(sides) {
   return Math.floor(Math.random() * sides) + 1;
 }
 
-function rollDieGroup(type, num) {
-  var result = {},
-    roll;
+function getRollResult(type) {
+  var roll;
 
-  function parseResult(resultCount, resultType) {
-    if (result[resultType]) {
-      result[resultType] += resultCount;
-    } else {
-      result[resultType] = resultCount;
-    }
+  if (taskDieResults.hasOwnProperty(type)) {
+    roll = getDieRoll(taskDieResults[type].length);
   }
 
-  if (taskDieResults[type]) {
-    for (var i = 0; i < num; i++) {
-      roll = getDieRoll(taskDieResults[type].length);
-      _.each(roll, parseResult);
-    }
+  return _.clone(taskDieResults[type][roll-1]);
+}
+
+function rollDieGroup(type, num)  {
+  var rolls = [];
+
+  for (var i = 0; i < num; i++) {
+    rolls.push(getRollResult(type));
   }
 
-  return result;
+  return rolls;
+}
+
+function RollResult(data) {
+  var overallResults = {};
+
+  for (var i = 0, j = resultTypes.length; i < j; i++) {
+    overallResults[resultTypes[i]] = 0;
+  }
+
+  _.each(data, function (rolls, dieType) {
+    _.each(rolls, function (rollResult) {
+      _.each(rollResult, function (num, resultName) {
+        overallResults[resultName] += num;
+      });
+    });
+  });
+
+  this.overallResults = _.clone(overallResults);
+  this.results = _.clone(data);
 }
 
 
 module.exports = {
   roll: function (pool) {
-    var results = getNewResultSet;
+    var dicePoolRolls = {};
 
-    function addResults(result, type) {
-      results[type] += result;
-    }
-
-    for (var i = 0, j = dieTypes.length; i < j; i++) {
-      if (pool[dieTypes[i]]) {
-        _.each(rollDieGroup(dieTypes[i], pool[dieTypes[i]]), addResults);
+    _.each(pool, function (num, type) {
+      if (num > 0) {
+        dicePoolRolls[type] = rollDieGroup(type, num);
       }
-    }
+    });
 
-    return results;
+    return new RollResult(dicePoolRolls);
   }
 };
 

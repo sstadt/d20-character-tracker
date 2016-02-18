@@ -23,7 +23,14 @@ module.exports = {
       force: req.param('force') || 0
     };
 
-    res.json({ result: TaskPoolService.roll(pool) });
+    Roll.create(TaskPoolService.roll(pool), function (err, roll) {
+      if (err) {
+        res.serverError(err);
+      }
+
+      res.json(TaskPoolService.roll(pool));      
+    });
+
   }
 };
 
