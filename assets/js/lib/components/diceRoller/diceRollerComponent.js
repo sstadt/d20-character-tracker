@@ -1,8 +1,9 @@
 
 define([
+  'constants',
   'text!./diceRollerTemplate.html',
   'sails'
-], function (diceRollerTemplate) {
+], function (constants, diceRollerTemplate) {
 
   return {
     template: diceRollerTemplate,
@@ -31,7 +32,7 @@ define([
           setback: parseInt(self.setback, 10),
           force: parseInt(self.force, 10)
         }, function (response) {
-          console.log(response);
+          self.$emit(constants.events.diceRoller.newLocalRoll, response);
         });
       }
     }

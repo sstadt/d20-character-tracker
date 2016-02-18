@@ -1,19 +1,26 @@
 
 define([
+  'constants',
   'text!./rollChannelTemplate.html'
-], function (rollChannelTemplate) {
+], function (constants, rollChannelTemplate) {
+
+  var events = {};
+
+  events[constants.events.diceRoller.newLocalRoll] = function AddLocalRoll(roll) {
+    this.rolls.push(roll);
+    console.log('new roll received');
+    console.log(this.rolls);
+  };
 
   return {
     template: rollChannelTemplate,
+    events: events,
     data: function () {
       return {
-        greeting: 'rollChannel component',
+        rolls: [],
       };
     },
     methods: {
-      sayHi: function () {
-        console.log('hi!');
-      }
     }
   };
 
