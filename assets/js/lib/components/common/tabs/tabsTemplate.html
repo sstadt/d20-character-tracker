@@ -1,1 +1,13 @@
-<p>{{ greeting }}</p>
+<div class="tabs">
+    <!-- Tabs Nav -->
+    <ul class="tab-nav">
+        <li v-for="r in renderData" v-bind:class="{ 'active': r.active }" v-on:click.prevent="handleTabListClick($index, r)" :disabled="r.disabled">
+            <a href="#">{{ r.heading }}: {{ r.active }}</a>
+        </li>
+    </ul>
+
+    <!-- Tab Panes -->
+    <div class="tab-content" v-el:tabContent>
+        <slot></slot>
+    </div>
+</div>
