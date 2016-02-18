@@ -43,7 +43,8 @@ module.exports.policies = {
 
   Dice: {
     'index': true,
-    'roll': true
+    'roll': true,
+    'list': true
   },
 
   ApiController: {

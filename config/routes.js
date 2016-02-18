@@ -76,6 +76,10 @@ module.exports.routes = {
     controller: 'dice',
     action: 'roll'
   },
+  '/getrolls': {
+    controller: 'dice',
+    action: 'list'
+  },
 
   /*
     FaD API
