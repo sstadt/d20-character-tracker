@@ -19,6 +19,32 @@ define([
       expect(component.template).toEqual(jasmine.any(String));
     });
 
+    describe('props', function () {
+      describe('heading', function () {
+        it('should exist', function () {
+            expect(component.props.heading).toEqual(jasmine.any(Object));
+        });
+
+        it('should be a string', function () {
+          expect(component.props.heading.type).toEqual(String);
+        });
+      });
+
+      describe('disabled', function () {
+        it('should exist', function () {
+            expect(component.props.disabled).toEqual(jasmine.any(Object));
+        });
+
+        it('should be a boolean', function () {
+          expect(component.props.disabled.type).toEqual(Boolean);
+        });
+
+        it('should default to false', function () {
+          expect(component.props.disabled.default).toEqual(false);
+        });
+      });
+    });
+
     describe('methods', function () {
       var componentInstance;
 
@@ -26,11 +52,7 @@ define([
         componentInstance = new Vue(component);
       });
 
-      // describe('#sayHi', function () {
-      //   it('should be a function', function () {
-      //     expect(typeof componentInstance.sayHi).toBe('function');
-      //   });
-      // });
+      // need to find a way to compile this to test references to parent
     });
 
   });

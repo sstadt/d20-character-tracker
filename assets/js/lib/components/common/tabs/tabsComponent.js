@@ -13,15 +13,20 @@ define([
     },
     data: function () {
       return {
-        renderData: []
+        tabs: []
       };
+    },
+    ready: function () {
+      if (this.tabs[0]) {
+        this.tabs[0].active = true;
+      }
     },
     methods: {
       handleTabListClick: function (index, el) {
         if (!el.disabled) this.active = index;
 
-        for (var i = 0, j = this.renderData.length; i < j; i++) {
-          this.renderData[i].active = (i == index);
+        for (var i = 0, j = this.tabs.length; i < j; i++) {
+          this.tabs[i].active = (i == index);
         }
       }
     }

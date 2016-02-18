@@ -1,4 +1,3 @@
-// https://github.com/yuche/vue-strap/blob/master/src/Tabset.vue
 
 define([
   'vue',

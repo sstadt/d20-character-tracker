@@ -3,6 +3,7 @@
 -------------------------------- */
 
 $tabsBorderColor: $primaryColor;
+$tabsBorder: $interfaceBorderSize $interfaceBorderStyle $tabsBorderColor;
 
 /* Settings
 -------------------------------- */
@@ -11,25 +12,50 @@ $tabsBorderColor: $primaryColor;
 -------------------------------- */
 
 .tabs {
-    ul.tab-nav {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+  display: flex;
+  flex-flow: column;
+  margin-bottom: rem-calc(20);
 
-        li {
-            border: $interfaceBorderSize $interfaceBorderStyle $tabsBorderColor;
-            margin: 0;
-            padding: rem-calc(8) rem-calc(14);
-            display: inline-block;
+  ul.tab-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
 
-            &:not(:first-child) {
-                border-left: none;
-            }
+    li {
+      border: $tabsBorder;
+      margin: 0;
+      padding: rem-calc(8) rem-calc(14);
+      display: inline-block;
 
-            &.active {
-                border-bottom: none;
-            }
+      &:not(:first-child) {
+        border-left: none;
+      }
+
+      &.active {
+        border-bottom: none;
+        border-right: none;
+
+        + li {
+          border-left: $tabsBorder;
         }
+      }
+
+      &.tab-fill {
+        flex: 1;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+      }
     }
+  }
+
+  .tab-content {
+    flex: 1;
+    padding: rem-calc(20);
+    border-left: $tabsBorder;
+    border-right: $tabsBorder;
+    border-bottom: $tabsBorder;
+  }
 }
 
