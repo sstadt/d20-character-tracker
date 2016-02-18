@@ -69,16 +69,12 @@ module.exports.routes = {
     Dice Roller
    */
   '/dice': {
-    controller: 'dice',
+    controller: 'roll',
     action: 'index'
   },
   '/roll': {
-    controller: 'dice',
+    controller: 'roll',
     action: 'roll'
-  },
-  '/getrolls': {
-    controller: 'dice',
-    action: 'list'
   },
 
   /*

@@ -1,8 +1,8 @@
 /**
- * DiceController
+ * RollController
  *
- * @description :: Server-side logic for managing dice
- * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ * @description :: Server-side logic for managing Rolls
+ * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
 module.exports = {
@@ -21,16 +21,16 @@ module.exports = {
       boost: req.param('boost') || 0,
       setback: req.param('setback') || 0,
       force: req.param('force') || 0
-    };
+    },
+    roll = DicePoolService.roll(pool);
 
-    Roll.create(TaskPoolService.roll(pool), function (err, roll) {
+    Roll.create(roll, function (err, roll) {
       if (err) {
         res.serverError(err);
       }
 
-      res.json(TaskPoolService.roll(pool));      
+      res.json(roll);      
     });
 
   }
 };
-

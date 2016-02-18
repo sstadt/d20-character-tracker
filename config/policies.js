@@ -41,10 +41,9 @@ module.exports.policies = {
     'show': 'sessionAuth'
   },
 
-  Dice: {
+  RollController: {
     'index': true,
-    'roll': true,
-    'list': true
+    'roll': true
   },
 
   ApiController: {

@@ -16,7 +16,7 @@ module.exports = {
       type: 'json',
       required: true
     },
-    descrption: {
+    description: {
       type: 'string',
       defaultsTo: ''
     }
