@@ -2,8 +2,51 @@
 
 <div class="roll-channels">
   <tabs>
-    <tab heading="Roll Log">This is the first tab, yo</tab>
+
+    <tab heading="My Rolls">
+      <div class="roll-list">
+        <div class="roll-details clearfix" v-for="roll in myRolls">
+          <div class="roll-description" v-if="roll.description.length > 0"><h6>{{ roll.description }}</h6></div>
+          <div class="roll-result">
+            <span class="result" v-if="roll.overallResults.success > 0">
+              <span class="result-count">{{ roll.overallResults.success }}</span>
+              <icon name="dice-success"></icon>
+            </span>
+            <span class="result" v-if="roll.overallResults.advantage > 0">
+              <span class="result-count">{{ roll.overallResults.advantage }}</span>
+              <icon name="dice-advantage"></icon>
+            </span>
+            <span class="result" v-if="roll.overallResults.triumph > 0">
+              <span class="result-count">{{ roll.overallResults.triumph }}</span>
+              <icon name="dice-triumph"></icon>
+            </span>
+            <span class="result" v-if="roll.overallResults.failure > 0">
+              <span class="result-count">{{ roll.overallResults.failure }}</span>
+              <icon name="dice-failure"></icon>
+            </span>
+            <span class="result" v-if="roll.overallResults.threat > 0">
+              <span class="result-count">{{ roll.overallResults.threat }}</span>
+              <icon name="dice-threat"></icon>
+            </span>
+            <span class="result" v-if="roll.overallResults.despair > 0">
+              <span class="result-count">{{ roll.overallResults.despair }}</span>
+              <icon name="dice-despair"></icon>
+            </span>
+            <span class="result" v-if="roll.overallResults.light > 0">
+              <span class="result-count">{{ roll.overallResults.light }}</span>
+              <icon name="dice-light-side"></icon>
+            </span>
+            <span class="result" v-if="roll.overallResults.dark > 0">
+              <span class="result-count">{{ roll.overallResults.dark }}</span>
+              <icon name="dice-dark-side"></icon>
+            </span>
+          </div>
+        </div>
+      </div>
+    </tab>
+
     <tab heading="Roll Channel">This is the second tab, yo</tab>
+
   </tabs>
 </div>
 

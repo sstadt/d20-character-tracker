@@ -138,13 +138,14 @@ function RollResult(data) {
     });
   });
 
+  this.description = data.description || '';
   this.overallResults = _.clone(overallResults);
   this.results = _.clone(data);
 }
 
 
 module.exports = {
-  roll: function (pool) {
+  roll: function (description, pool) {
     var dicePoolRolls = {};
 
     _.each(pool, function (num, type) {
@@ -152,6 +153,8 @@ module.exports = {
         dicePoolRolls[type] = rollDieGroup(type, num);
       }
     });
+
+    dicePoolRolls.description = description;
 
     return new RollResult(dicePoolRolls);
   }

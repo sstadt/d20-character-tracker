@@ -47,6 +47,10 @@ $tabsBorder: $interfaceBorderSize $interfaceBorderStyle $tabsBorderColor;
         border-right: none;
         border-left: none;
       }
+
+      &:not(.tab-fill) {
+        background-color: $panelBg;
+      }
     }
   }
 
@@ -56,6 +60,7 @@ $tabsBorder: $interfaceBorderSize $interfaceBorderStyle $tabsBorderColor;
     border-left: $tabsBorder;
     border-right: $tabsBorder;
     border-bottom: $tabsBorder;
+    background-color: $panelBg;
   }
 }
 

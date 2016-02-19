@@ -2,8 +2,43 @@
 /* Colors
 -------------------------------- */
 
+$rollResultCountBg: rgba(0, 0, 0, 0.6);
+
 /* Settings
 -------------------------------- */
 
+$rollResultIconSize: rem-calc(40);
+
 /* Styling
 -------------------------------- */
+
+.roll-channels {
+  .roll-list {
+    .roll-details {
+      border: 1px solid $primaryColor;
+
+      .result {
+        position: relative;
+        height: 40px;
+        display: inline-block;
+
+        .icon-image {
+          height: $rollResultIconSize;
+          width: $rollResultIconSize;
+        }
+
+        .result-count {
+          position: absolute;
+          bottom: -2px;
+          right: -1px;
+          font-size: 15px;
+          display: block;
+          border-radius: 50%;
+          background-color: $rollResultCountBg;
+          padding: 0px 7px;
+        }
+      }
+    }
+  }
+}
+

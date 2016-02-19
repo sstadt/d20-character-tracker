@@ -41,8 +41,9 @@
 @import "../js/lib/components/common/tabs/_tabs";
 
 // app components
+@import "../js/lib/components/diceRoller/_diceRoller";
+@import "../js/lib/components/rollChannel/_rollChannel";
 @import "../js/lib/components/characterCreator/_characterCreator";
 @import "../js/lib/components/characterCreator/steps/personaEditor/_personaEditor";
-@import "../js/lib/components/swDiceRoller/_swDiceRoller";
 
 // views

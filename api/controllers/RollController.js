@@ -22,7 +22,7 @@ module.exports = {
       setback: req.param('setback') || 0,
       force: req.param('force') || 0
     },
-    roll = DicePoolService.roll(pool);
+    roll = DicePoolService.roll(req.param('description'), pool);
 
     Roll.create(roll, function (err, roll) {
       if (err) {

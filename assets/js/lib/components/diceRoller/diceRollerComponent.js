@@ -21,18 +21,22 @@ define([
     },
     methods: {
       roll: function () {
-        var self = this;
+        var self = this,
+          roll = {
+            description: self.description,
+            ability: parseInt(self.ability, 10),
+            proficiency: parseInt(self.proficiency, 10),
+            difficulty: parseInt(self.difficulty, 10),
+            challenge: parseInt(self.challenge, 10),
+            boost: parseInt(self.boost, 10),
+            setback: parseInt(self.setback, 10),
+            force: parseInt(self.force, 10)
+          };
 
-        io.socket.get('/roll', {
-          ability: parseInt(self.ability, 10),
-          proficiency: parseInt(self.proficiency, 10),
-          difficulty: parseInt(self.difficulty, 10),
-          challenge: parseInt(self.challenge, 10),
-          boost: parseInt(self.boost, 10),
-          setback: parseInt(self.setback, 10),
-          force: parseInt(self.force, 10)
-        }, function (response) {
-          self.$emit(constants.events.diceRoller.newLocalRoll, response);
+        console.log(roll.description);
+
+        io.socket.get('/roll', roll, function (response) {
+          self.$parent.$broadcast(constants.events.diceRoller.newLocalRoll, response);
         });
       }
     }

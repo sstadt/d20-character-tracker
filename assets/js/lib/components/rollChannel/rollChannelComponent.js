@@ -1,15 +1,16 @@
 
 define([
+  'lodash',
   'constants',
   'text!./rollChannelTemplate.html'
-], function (constants, rollChannelTemplate) {
+], function (_, constants, rollChannelTemplate) {
 
   var events = {};
 
   events[constants.events.diceRoller.newLocalRoll] = function AddLocalRoll(roll) {
-    this.rolls.push(roll);
+    this.myRolls.push(roll);
     console.log('new roll received');
-    console.log(this.rolls);
+    console.log(this.myRolls);
   };
 
   return {
@@ -17,10 +18,9 @@ define([
     events: events,
     data: function () {
       return {
-        rolls: [],
+        myRolls: [],
+        channelRolls: []
       };
-    },
-    methods: {
     }
   };
 
