@@ -17,7 +17,8 @@ define(function () {
         addCharacter: 'VE_CHARACTER_CREATOR_ADD_CHARACTER'
       },
       diceRoller: {
-        newLocalRoll: 'VE_DICE_ROLLER_NEW_LOCAL_ROLL'
+        newLocalRoll: 'VE_DICE_ROLLER_NEW_LOCAL_ROLL',
+        joinedChannel: 'VE_DICE_ROLLER_JOINED_CHANNEL'
       }
     }
   };

@@ -46,6 +46,11 @@ module.exports.policies = {
     'roll': true
   },
 
+  ChannelController: {
+    '*': false,
+    'join': 'sessionAuth'
+  },
+
   ApiController: {
     '*': false,
     'index': true,

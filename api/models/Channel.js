@@ -8,7 +8,15 @@
 module.exports = {
 
   attributes: {
-
+    name: {
+      type: 'string',
+      required: true,
+      unique: true
+    },
+    rolls: {
+      type: 'array',
+      defaultsTo: []
+    }
   }
 };
 

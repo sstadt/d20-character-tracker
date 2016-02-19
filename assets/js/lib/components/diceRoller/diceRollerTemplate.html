@@ -1,44 +1,52 @@
 
-
-<div class="dice-roller">
-    <div class="row">
-        <div class="small-12 columns">
-            <v-input type="text" label="Description" :value.sync="description"></v-input>
+<div class="row">
+    <div class="small-12 medium-4 columns">
+        <div class="dice-roller">
+            <div class="row">
+                <div class="small-12 columns">
+                    <v-input type="text" label="Description" :value.sync="description"></v-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-6 columns">
+                    <v-input type="number" label="Ability" :value.sync="ability"></v-input>
+                </div>
+                <div class="small-6 columns">
+                    <v-input type="number" label="Proficiency" :value.sync="proficiency"></v-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-6 columns">
+                    <v-input type="number" label="Difficulty" :value.sync="difficulty"></v-input>
+                </div>
+                <div class="small-6 columns">
+                    <v-input type="number" label="Challenge" :value.sync="challenge"></v-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-6 columns">
+                    <v-input type="number" label="Boost" :value.sync="boost"></v-input>
+                </div>
+                <div class="small-6 columns">
+                    <v-input type="number" label="Setback" :value.sync="setback"></v-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 columns">
+                    <v-input type="number" label="Force" :value.sync="force"></v-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 columns">
+                    <button v-on:click="roll()">Roll</button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="small-6 columns">
-            <v-input type="number" label="Ability" :value.sync="ability"></v-input>
-        </div>
-        <div class="small-6 columns">
-            <v-input type="number" label="Proficiency" :value.sync="proficiency"></v-input>
-        </div>
-    </div>
-    <div class="row">
-        <div class="small-6 columns">
-            <v-input type="number" label="Difficulty" :value.sync="difficulty"></v-input>
-        </div>
-        <div class="small-6 columns">
-            <v-input type="number" label="Challenge" :value.sync="challenge"></v-input>
-        </div>
-    </div>
-    <div class="row">
-        <div class="small-6 columns">
-            <v-input type="number" label="Boost" :value.sync="boost"></v-input>
-        </div>
-        <div class="small-6 columns">
-            <v-input type="number" label="Setback" :value.sync="setback"></v-input>
-        </div>
-    </div>
-    <div class="row">
-        <div class="small-12 columns">
-            <v-input type="number" label="Force" :value.sync="force"></v-input>
-        </div>
-    </div>
-    <div class="row">
-        <div class="small-12 columns">
-            <button v-on:click="roll()">Roll</button>
-        </div>
+    <div class="small-12 medium-8 columns">
+        <roll-channel :localRolls="localRolls" :channelRolls="channelRolls" :channel.sync="channel"></roll-channel>
     </div>
 </div>
+
+
 

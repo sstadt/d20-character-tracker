@@ -2,23 +2,35 @@
 define([
   'lodash',
   'constants',
-  'text!./rollChannelTemplate.html'
+  'text!./rollChannelTemplate.html',
+  'sails'
 ], function (_, constants, rollChannelTemplate) {
-
-  var events = {};
-
-  events[constants.events.diceRoller.newLocalRoll] = function AddLocalRoll(roll) {
-    this.myRolls.unshift(roll);
-  };
 
   return {
     template: rollChannelTemplate,
-    events: events,
-    data: function () {
-      return {
-        myRolls: [],
-        channelRolls: []
-      };
+    props: {
+      channel: {
+        type: Object,
+        required: true,
+        twoWay: true
+      },
+      localRolls: {
+        type: Array,
+        required: true
+      },
+      channelRolls: {
+        type: Array,
+        required: true
+      }
+    },
+    methods: {
+      joinChannel: function () {
+        var channel = prompt('Enter a channel name:');
+
+        io.socket.post('/channel/join', { name: channel }, function (channel) {
+          this.channel = channel;
+        });
+      }
     }
   };
 

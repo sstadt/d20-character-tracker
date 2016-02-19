@@ -2,6 +2,8 @@
 define([
   'constants',
   'text!./diceRollerTemplate.html',
+  'component/rollChannel/rollChannel',
+  'component/rollLog/rollLog',
   'sails'
 ], function (constants, diceRollerTemplate) {
 
@@ -16,7 +18,10 @@ define([
         challenge: 0,
         boost: 0,
         setback: 0,
-        force: 0
+        force: 0,
+        channel: {},
+        localRolls: [],
+        channelRolls: []
       };
     },
     methods: {
@@ -33,10 +38,8 @@ define([
             force: parseInt(self.force, 10)
           };
 
-        console.log(roll.description);
-
         io.socket.get('/roll', roll, function (response) {
-          self.$parent.$broadcast(constants.events.diceRoller.newLocalRoll, response);
+          this.localRolls.unshift(response);
         });
       }
     }
