@@ -20,7 +20,7 @@ module.exports = function (grunt) {
       files: [{
         expand: true,
         cwd: './assets',
-        src: ['images/**/*', 'js/**/*', 'favicon.ico', 'robots.txt'],
+        src: ['images/**/*', 'js/**/*', 'fonts/**/*', 'favicon.ico', 'robots.txt'],
         dest: '.tmp/public'
       }]
     },
@@ -28,7 +28,7 @@ module.exports = function (grunt) {
       files: [{
         expand: true,
         cwd: './assets',
-        src: ['images/*', 'favicon.ico', 'robots.txt'],
+        src: ['images/*', 'fonts/**/*', 'favicon.ico', 'robots.txt'],
         dest: '.tmp/public'
       }]
     },

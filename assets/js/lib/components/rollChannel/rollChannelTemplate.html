@@ -6,7 +6,7 @@
     <tab heading="My Rolls">
       <div class="roll-list">
         <div class="roll-details clearfix" v-for="roll in myRolls">
-          <div class="roll-description" v-if="roll.description.length > 0"><h6>{{ roll.description }}</h6></div>
+          <div class="roll-description" v-if="roll.description.length > 0"><p>{{ roll.description }}</p></div>
           <div class="roll-result">
             <span class="result" v-if="roll.overallResults.success > 0">
               <span class="result-count">{{ roll.overallResults.success }}</span>

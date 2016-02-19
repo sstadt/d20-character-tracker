@@ -8,9 +8,7 @@ define([
   var events = {};
 
   events[constants.events.diceRoller.newLocalRoll] = function AddLocalRoll(roll) {
-    this.myRolls.push(roll);
-    console.log('new roll received');
-    console.log(this.myRolls);
+    this.myRolls.unshift(roll);
   };
 
   return {

@@ -14,28 +14,48 @@ $rollResultIconSize: rem-calc(40);
 
 .roll-channels {
   .roll-list {
+    margin-left: rem-calc(-20);
+    margin-right: rem-calc(-20);
+    max-height: rem-calc(400);
+    overflow: auto;
+
     .roll-details {
-      border: 1px solid $primaryColor;
+      padding: rem-calc(4) rem-calc(20);
 
-      .result {
-        position: relative;
-        height: 40px;
-        display: inline-block;
+      &:nth-child(even) {
+        background-color: rgba($primaryColor, 0.2);
+      }
 
-        .icon-image {
-          height: $rollResultIconSize;
-          width: $rollResultIconSize;
+      .roll-description {
+        p {
+          font-family: $headerFontFamily;
+          text-transform: uppercase;
+          margin-bottom: 0;
         }
+      }
 
-        .result-count {
-          position: absolute;
-          bottom: -2px;
-          right: -1px;
-          font-size: 15px;
-          display: block;
-          border-radius: 50%;
-          background-color: $rollResultCountBg;
-          padding: 0px 7px;
+      .roll-result {
+        .result {
+          position: relative;
+          height: $rollResultIconSize;
+          display: inline-block;
+
+          .icon-image {
+            height: $rollResultIconSize;
+            width: $rollResultIconSize;
+          }
+
+          .result-count {
+            font-family: $headerFontFamily;
+            position: absolute;
+            bottom: -2px;
+            right: -1px;
+            font-size: 15px;
+            display: block;
+            border-radius: 50%;
+            background-color: $rollResultCountBg;
+            padding: 0 rem-calc(7);
+          }
         }
       }
     }
