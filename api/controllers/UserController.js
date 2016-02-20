@@ -31,7 +31,6 @@ module.exports = {
     req.session.User.config.chatHandle = req.param('handle');
 
     User.update(req.session.User.id, req.session.User, function (err, user) {
-      console.log('bazinga');
       if (err) {
         res.serverError(err);
       }
