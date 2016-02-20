@@ -26,7 +26,8 @@ module.exports = {
       type: 'string'
     },
     config: {
-      type: 'json'
+      type: 'json',
+      defaultsTo: {}
     },
     toJSON: function () {
       var obj = this.toObject();

@@ -14,16 +14,15 @@ requirejs.config({
     'util'                   : 'lib/util',
     'service'                : 'lib/services',
 
-    // misc vendor
+    // vendor
     'sails'                  : 'vendor/sails.io.js/dist/sails.io',
     'jquery'                 : 'vendor/jquery/dist/jquery',
     'lodash'                 : 'vendor/lodash/dist/lodash',
     'vue'                    : 'vendor/vue/dist/vue',
     'vue.min'                : 'vendor/vue/dist/vue.min',
-    'marked'                 : 'vendor/marked/lib/marked'
+    'marked'                 : 'vendor/marked/lib/marked',
+    'moment'                 : 'vendor/moment/moment',
   },
-
-  shim: {},
 
 });
 

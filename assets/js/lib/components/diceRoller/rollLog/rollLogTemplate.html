@@ -1,7 +1,10 @@
 
 <div class="roll-log">
   <div class="roll-details clearfix" v-for="roll in rolls">
-    <div class="roll-description" v-if="roll.description.length > 0"><p>{{ roll.description }}</p></div>
+    <div class="roll-description">
+      <p v-if="roll.description.length > 0"><span class="roll-user" v-if="roll.username">{{ roll.username }}: </span>{{ roll.description }}</p>
+      <p class="roll-timestamp" v-if="roll.createdAt">{{ roll.createdAt | rollTimestamp }}</p>
+    </div>
     <div class="roll-result">
       <span class="result" v-if="roll.overallResults.success > 0">
         <span class="result-count">{{ roll.overallResults.success }}</span>

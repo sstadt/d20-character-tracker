@@ -7,7 +7,7 @@
 
 module.exports = {
   join: function (req, res) {
-    var channelName = req.param('channel');
+    var channelName = req.param('name');
 
     Channel.findOne({ name: channelName }, function (err, channel) {
       if (err) {
@@ -15,16 +15,30 @@ module.exports = {
       }
 
       if (channel) {
-        Channel.subscribe(req.socket, channel);
-        res.json(channel);
-      } else {
-        Channel.create({ name: channel }, function (err, channel) {
+        Channel.subscribe(req.socket, channel.id);
+
+        Roll.find({ channel: channel.id }, function (err, rolls) {
           if (err) {
             res.serverError(err);
           }
 
-          Channel.subscribe(req.socket, channel);
-          res.json(channel);
+          res.json({
+            channel: channel,
+            rolls: rolls
+          });
+        });
+      } else {
+        Channel.create({ name: channelName }, function (err, channel) {
+          if (err) {
+            res.serverError(err);
+          }
+
+          Channel.subscribe(req.socket, channel.id);
+
+          res.json({
+            channel: channel,
+            rolls: []
+          });
         });
       }
     });

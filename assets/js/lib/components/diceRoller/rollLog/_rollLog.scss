@@ -3,6 +3,7 @@
 -------------------------------- */
 
 $rollResultCountBg: rgba(0, 0, 0, 0.6);
+$rollTimestampColor: $subtextColor;
 
 /* Settings
 -------------------------------- */
@@ -30,6 +31,15 @@ $rollResultIconSize: rem-calc(40);
         font-family: $headerFontFamily;
         text-transform: uppercase;
         margin-bottom: 0;
+
+        .roll-user {
+          color: $successColor;
+        }
+
+        &.roll-timestamp {
+          font-size: rem-calc(12);
+          color: $rollTimestampColor;
+        }
       }
     }
 

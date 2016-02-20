@@ -14,6 +14,11 @@ define([
         required: true,
         twoWay: true
       },
+      chatHandle: {
+        type: String,
+        required: true,
+        twoWay: true
+      },
       localRolls: {
         type: Array,
         required: true
@@ -23,13 +28,34 @@ define([
         required: true
       }
     },
-    methods: {
-      joinChannel: function () {
-        var channel = prompt('Enter a channel name:');
+    ready: function () {
+      var self = this;
 
-        io.socket.post('/channel/join', { name: channel }, function (channel) {
-          this.channel = channel;
-        });
+      io.socket.on('channel', function (event) {
+        self.channelRolls.unshift(event.data.newRoll);
+      });
+    },
+    methods: {
+      setChatHandle: function () {
+        var self = this,
+          newHandle = prompt('Enter a new chat handle:');
+
+          if (newHandle) {
+            io.socket.post('/setHandle', { handle: newHandle }, function (response) {
+              self.chatHandle = newHandle;
+            });
+          }
+      },
+      joinChannel: function () {
+        var self = this,
+          channelName = prompt('Enter a channel name:');
+
+        if (channelName) {
+          io.socket.post('/channel/join', { name: channelName }, function (response) {
+            self.channel = response.channel;
+            self.channelRolls = response.rolls.reverse();
+          });
+        }
       }
     }
   };

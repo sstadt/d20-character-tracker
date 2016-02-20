@@ -9,6 +9,12 @@ define([
 
   return {
     template: diceRollerTemplate,
+    props: {
+      chatHandle: {
+        type: String,
+        required: true
+      }
+    },
     data: function () {
       return {
         description: '',
@@ -37,6 +43,10 @@ define([
             setback: parseInt(self.setback, 10),
             force: parseInt(self.force, 10)
           };
+
+        if (self.channel.id) {
+          roll.channel = self.channel.id;
+        }
 
         io.socket.get('/roll', roll, function (response) {
           self.localRolls.unshift(response);

@@ -27,6 +27,19 @@ module.exports = {
     });
   },
 
+  setHandle: function (req, res) {
+    req.session.User.config.chatHandle = req.param('handle');
+
+    User.update(req.session.User.id, req.session.User, function (err, user) {
+      console.log('bazinga');
+      if (err) {
+        res.serverError(err);
+      }
+
+      res.send(200);
+    });
+  },
+
   verify: function (req, res) {
     Token.findOne({ token: req.param('token') }, function (err, token) {
       if (err) {

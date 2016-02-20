@@ -12,7 +12,8 @@
         <roll-log :rolls="channelRolls"></roll-log>
       </div>
       <div v-else>
-        <button class="small" v-on:click="joinChannel()">Join Channel</button>
+        <button class="small" v-on:click="joinChannel()" :disabled="chatHandle === ''">Join Channel</button>
+        <button class="small" v-on:click="setChatHandle()">Set Chat Handle</button>
       </div>
     </tab>
 

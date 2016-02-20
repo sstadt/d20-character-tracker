@@ -38,12 +38,16 @@ module.exports.policies = {
   UserController: {
     '*': ['flash', true],
     'create': true,
-    'show': 'sessionAuth'
+    'show': 'sessionAuth',
+    'search': false,
+    'setHandle': 'sessionAuth'
   },
 
   RollController: {
-    'index': true,
-    'roll': true
+    '*': 'socketSessionAuth',
+    'index': 'sessionAuth',
+    'destroy': false,
+    'update': false
   },
 
   ChannelController: {

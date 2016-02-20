@@ -8,6 +8,7 @@
 module.exports = {
   index: function (req, res) {
     res.view({
+      chatHandle: req.session.User.config.chatHandle || '',
       title: 'Dice Roller',
       script: 'dice'
     });
@@ -22,15 +23,24 @@ module.exports = {
       setback: req.param('setback') || 0,
       force: req.param('force') || 0
     },
-    roll = DicePoolService.roll(req.param('description'), pool);
+    roll = DicePoolService.roll(req.param('description'), pool),
+    channel = req.param('channel');
 
-    Roll.create(roll, function (err, roll) {
-      if (err) {
-        res.serverError(err);
-      }
+    if (channel) {
+      roll.channel = channel;
+      roll.username = req.session.User.config.chatHandle || 'Unknown';
 
-      res.json(roll);      
-    });
+      Roll.create(roll, function (err, roll) {
+        if (err) {
+          res.serverError(err);
+        }
+
+        Channel.publishUpdate(channel, { newRoll: roll });
+        res.json(roll);      
+      });
+    } else {
+      res.json(roll);
+    }
 
   }
 };
