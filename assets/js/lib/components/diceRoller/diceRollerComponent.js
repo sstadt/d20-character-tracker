@@ -2,8 +2,8 @@
 define([
   'constants',
   'text!./diceRollerTemplate.html',
-  'component/rollChannel/rollChannel',
-  'component/rollLog/rollLog',
+  './rollChannels/rollChannels',
+  './rollLog/rollLog',
   'sails'
 ], function (constants, diceRollerTemplate) {
 

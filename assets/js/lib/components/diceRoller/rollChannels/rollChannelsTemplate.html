@@ -8,7 +8,7 @@
     </tab>
 
     <tab heading="Roll Channel">
-      <div v-if="channel">
+      <div v-if="channel.name">
         <roll-log :rolls="channelRolls"></roll-log>
       </div>
       <div v-else>

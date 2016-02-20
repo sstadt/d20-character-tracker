@@ -2,12 +2,12 @@
 define([
   'lodash',
   'constants',
-  'text!./rollChannelTemplate.html',
+  'text!./rollChannelsTemplate.html',
   'sails'
-], function (_, constants, rollChannelTemplate) {
+], function (_, constants, rollChannelsTemplate) {
 
   return {
-    template: rollChannelTemplate,
+    template: rollChannelsTemplate,
     props: {
       channel: {
         type: Object,

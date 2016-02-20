@@ -1,7 +1,7 @@
 
 define([
   'vue.min',
-  'component/rollLog/rollLogComponent'
+  'component/diceRoller/rollLog/rollLogComponent'
 ], function (Vue, rollLogComponent) {
 
   describe('The rollLog component', function () {

@@ -1,14 +1,14 @@
 
 define([
   'vue.min',
-  'component/rollChannel/rollChannelComponent'
-], function (Vue, rollChannelComponent) {
+  'component/diceRoller/rollChannels/rollChannelsComponent'
+], function (Vue, rollChannelsComponent) {
 
-  describe('The rollChannel component', function () {
+  describe('The rollChannels component', function () {
     var component;
 
     beforeEach(function () {
-      component = _.clone(rollChannelComponent);
+      component = _.clone(rollChannelsComponent);
     });
 
     it('to be an object', function () {
