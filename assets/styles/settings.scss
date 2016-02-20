@@ -102,7 +102,7 @@ $minButtonSize : rem-calc(44);
 // this is going to eff up the dice roller - will need to restyle it to work with the new theme
 $panelBg          : rgba($black, 0.8);
 $panelBgZebra     : lighten($panelBg, 5%);
-$panelBorderColor : $bodyFontColor;
+$panelBorderColor : $mayaBlue;
 // below this shouldn't need refactoring
 
 $panelBevelSize   : rem-calc(30);
