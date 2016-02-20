@@ -21,7 +21,7 @@ module.exports.passwords = {
   lowerCase : true,
 
   // (bool) require uppercase
-  upperCase : true,
+  upperCase : false,
 
   // (bool) require number
   number    : true,

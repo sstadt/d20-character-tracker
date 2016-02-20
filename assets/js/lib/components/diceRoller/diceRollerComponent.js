@@ -39,7 +39,7 @@ define([
           };
 
         io.socket.get('/roll', roll, function (response) {
-          this.localRolls.unshift(response);
+          self.localRolls.unshift(response);
         });
       }
     }
