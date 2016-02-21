@@ -1,0 +1,53 @@
+
+
+@function generate-corner-border($top, $left, $width, $size) {
+  $adjLength    : tan(22.5deg) * $width;
+  $oppAdjLength : $size - $adjLength;
+  $subSize      : $size - $width;
+
+  @if $top { // top
+    @if $left { // left
+      $points: svg-point($size, 0) + svg-point($size, $width) + svg-point($width, $size) + svg-point(0, $size) + svg-point(0, $oppAdjLength) + svg-point($oppAdjLength, 0);
+    } @else { // right
+      $points: svg-point(0, 0) + svg-point($adjLength, 0) + svg-point($size, $oppAdjLength) + svg-point($size, $size) + svg-point($subSize, $size) + svg-point(0, $width);
+    }
+  } @else { // bottom
+    @if $left { // left
+      $points: svg-point(0, 0) + svg-point($width, 0) + svg-point($size, $subSize) + svg-point($size, $size) + svg-point($oppAdjLength, $size) + svg-point(0, $adjLength);
+    } @else { // right
+      $points: svg-point($size, 0) + svg-point($size, $adjLength) + svg-point($adjLength, $size) + svg-point(0, $size) + svg-point(0, $subSize) + svg-point($subSize, 0);
+    }
+  }
+
+  @return $points;
+}
+
+@function generate-corner-background($top, $left, $size) {
+  @if $top { // top
+    @if $left { // left
+      $points: svg-point(0, $size) + svg-point($size, $size) + svg-point($size, 0);
+    } @else { // right
+      $points: svg-point(0, 0) + svg-point(0, $size) + svg-point($size, $size);
+    }
+  } @else { // bottom
+    @if $left { // left
+      $points: svg-point(0, 0) + svg-point($size, $size) + svg-point($size, 0);
+    } @else { // right
+      $points: svg-point(0, 0) + svg-point(0, $size) + svg-point($size, 0);
+    }
+  }
+
+  @return $points;
+}
+
+@mixin angled-corner($top, $left, $borderWidth, $borderColor, $cornerSize) {
+  $borderShape: generate-polygon(generate-corner-border($top, $left, $borderWidth, $cornerSize), $borderColor);
+  $borderBackground: generate-polygon(generate-corner-background($top, $left, $cornerSize), $panelBgColor, $panelBgOpacity);
+  $cornerShapes: $borderBackground + $borderShape;
+
+  height: to-px($cornerSize);
+  width: to-px($cornerSize);
+  background-image: url(generate-svg($cornerSize, $cornerShapes));
+  background-repeat: no-repeat;
+}
+

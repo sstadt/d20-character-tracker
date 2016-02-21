@@ -7,6 +7,25 @@
   @return $num + 0px;
 }
 
+/* SVG Functions
+-------------------------------- */
+
+@function generate-svg($size, $shapes) {
+  $docType   : 'data:image/svg+xml;utf-8,';
+  $imgPrefix : '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$size} #{$size}">';
+  $imgSuffix : '</svg>';
+
+  @return $docType + $imgPrefix + $shapes + $imgSuffix;  
+}
+
+@function svg-point($x, $y) {
+  @return '#{$x},#{$y} ';
+}
+
+@function generate-polygon($points, $fill, $opacity: 1) {
+  @return '<polygon fill="#{$fill}" style="fill-opacity: #{$opacity};" points="#{$points}" />';
+}
+
 /* Math Functions
 -------------------------------- */
 

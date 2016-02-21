@@ -1,0 +1,81 @@
+
+/* Settings
+-------------------------------- */
+
+$swPanelBgColor: $panelBg;
+$swPanelBevelSize: $panelBevelSize;
+$swPanelBevelSizeNum: $panelBevelSizeNum;
+$swPanelBorderNum: $interfaceBorderNum;
+$swPanelBorderColor: $panelBorderColor;
+$swPanelBorder: $panelBorderSize $panelBorderStyle $swPanelBorderColor;
+
+/* Styling
+-------------------------------- */
+
+.sw-panel {
+  background-color: transparent;
+  border: none;
+  margin-bottom: rem-calc(20);
+
+  .sw-panel-head, .sw-panel-foot {
+    display: flex;
+  }
+
+  .sw-panel-content {
+    background-color: $swPanelBgColor;
+    border-left: $swPanelBorder;
+    border-right: $swPanelBorder;
+    padding-right: $swPanelBevelSize;
+    padding-left: $swPanelBevelSize;
+  }
+
+  .corner-fill {
+    flex: 1;
+    background-color: $swPanelBgColor;
+    border-top: $swPanelBorder;
+    border-bottom: $swPanelBorder;
+    border-left: $swPanelBorder;
+    border-right: $swPanelBorder;
+  }
+
+  .sw-panel-head {
+    .corner-fill {
+      border-bottom: none;
+      border-left: none;
+    }
+
+    .left-corner {
+      @include angled-corner(true, true, $swPanelBorderNum, $swPanelBorderColor, $swPanelBevelSizeNum);
+    }
+
+    .right-corner {
+      @include angled-corner(true, false, $swPanelBorderNum, $swPanelBorderColor, $swPanelBevelSizeNum);
+    }
+  }
+
+  .sw-panel-foot {
+    .corner-fill {
+      border-top: none;
+      border-right: none;
+    }
+
+    .left-corner {
+      @include angled-corner(false, true, $swPanelBorderNum, $swPanelBorderColor, $panelBevelSizeNum);
+    }
+
+    .right-corner {
+      @include angled-corner(false, false, $swPanelBorderNum, $swPanelBorderColor, $panelBevelSizeNum);
+    }
+  }
+
+  .corner-fill, .right-corner, .left-corner {
+    height: $swPanelBevelSize;
+  }
+
+  .right-corner, .left-corner {
+    flex: 0 0 $swPanelBevelSize;
+    overflow: hidden;
+    position: relative;
+  }
+
+}

@@ -100,16 +100,19 @@ $minButtonSize : rem-calc(44);
 /* Panel
 -------------------------------- */
 
+$panelBgOpacity    : 0.6;
+$panelBgColor      : $black;
 // this is going to eff up the dice roller - will need to restyle it to work with the new theme
-$panelBg          : rgba($black, 0.8);
-$panelBgZebra     : lighten($panelBg, 5%);
-$panelBorderColor : $mayaBlue;
+$panelBg           : rgba($panelBgColor, $panelBgOpacity);
+$panelBgZebra      : lighten($panelBg, 5%);
+$panelBorderColor  : $mayaBlue;
 // below this shouldn't need refactoring
 
-$panelBevelSize   : rem-calc(30);
-$panelFontColor   : $bodyFontColor;
-$panelBorderStyle : $interfaceBorderStyle;
-$panelBorderSize  : $interfaceBorderSize;
+$panelBevelSizeNum : 30;
+$panelBevelSize    : rem-calc($panelBevelSizeNum);
+$panelFontColor    : $bodyFontColor;
+$panelBorderStyle  : $interfaceBorderStyle;
+$panelBorderSize   : $interfaceBorderSize;
 
 /* Inline Lists
 -------------------------------- */

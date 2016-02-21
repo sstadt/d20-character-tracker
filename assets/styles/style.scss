@@ -28,9 +28,11 @@
 // global
 @import "global/document";
 @import "global/zindex";
+@import "global/corners";
 
 // ui
 @import "ui/icons";
+@import "ui/panel";
 @import "ui/buttons";
 @import "ui/forms";
 @import "ui/scrollbar";
@@ -49,3 +51,5 @@
 @import "../js/lib/components/characterCreator/steps/personaEditor/_personaEditor";
 
 // views
+
+

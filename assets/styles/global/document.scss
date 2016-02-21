@@ -2,23 +2,3 @@
 body {
   background-image: url(http://img08.deviantart.net/fd62/i/2010/282/5/d/blue_starfield_stock_by_arisechicken117-d30d8f8.png);
 }
-
-.top-left-test {
-  display: inline-block;
-  @include angled-corner(true, true, $interfaceBorderNum, $panelBorderColor, 400);
-}
-
-.top-right-test {
-  display: inline-block;
-  @include angled-corner(true, false, $interfaceBorderNum, $panelBorderColor, 400);
-}
-
-.bottom-left-test {
-  display: inline-block;
-  @include angled-corner(false, true, $interfaceBorderNum, $panelBorderColor, 400);
-}
-
-.bottom-right-test {
-  display: inline-block;
-  @include angled-corner(false, false, $interfaceBorderNum, $panelBorderColor, 400);
-}

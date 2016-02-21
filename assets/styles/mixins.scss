@@ -25,38 +25,5 @@
     border-bottom-right-radius: $radius;
 }
 
-@mixin corner-bg($top, $left, $width, $color, $size) {
-  $docType      : 'data:image/svg+xml;utf-8,';
-  $imgPrefix    : '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + $size + ' ' + $size + '"><polygon fill="' + $color + '" points="';
-  $imgSuffix    : '"/></svg>';
 
-  $adjLength    : tan(22.5deg) * $width;
-  $oppAdjLength : $size - $adjLength;
-  $subSize      : $size - $width;
-
-  @if $top { // top
-    @if $left { // left
-      $points: $size + ',0 ' + $size + ',' + $width + ' ' + $width + ',' + $size + ' 0,' + $size + ' 0,' + $oppAdjLength + ' ' + $oppAdjLength + ',0';
-    } @else { // right
-      $points: '0,0 ' + $adjLength + ',0 ' + $size + ',' + $oppAdjLength + ' ' + $size + ',' + $size + ' ' + $subSize + ',' + $size + ' 0,' + $width;
-    }
-  } @else { // bottom
-    @if $left { // left
-      $points: '0,0 ' + $width + ',0 ' + $size + ',' + $subSize + ' ' + $size + ',' + $size + ' ' + $oppAdjLength + ',' + $size + ' 0,' + $adjLength;
-    } @else { // right
-      $points: $size + ',0 ' + $size + ',' + $adjLength + ' ' + $adjLength + ',' + $size + ' 0,' + $size + ' 0,' + $subSize + ' ' + $subSize + ',0';
-    }
-  }
-
-  $svgImg: $docType + $imgPrefix + $points + $imgSuffix;
-
-  background-image: url($svgImg);
-  background-repeat: no-repeat;
-}
-
-@mixin angled-corner($top, $left, $borderWidth, $borderColor, $cornerSize) {
-  height: to-px($cornerSize);
-  width: to-px($cornerSize);
-  @include corner-bg($top, $left, $borderWidth, $borderColor, $cornerSize);
-}
 
