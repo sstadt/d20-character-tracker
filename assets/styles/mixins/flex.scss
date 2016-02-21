@@ -1,0 +1,86 @@
+
+
+/**
+ * Flex panel header with 45deg "cut corners"
+ * 
+ * @param  {number}  $borderNum         The size of the border
+ * @param  {hex}     $borderColor       The border color
+ * @param  {hex}     $backgroundColor   The background color
+ * @param  {decimal} $backgroundOpacity The background color opacity
+ * @param  {number}  $paddingNum        The panel padding
+ */
+@mixin flex-panel-header($borderNum, $borderColor, $backgroundColor, $backgroundOpacity, $paddingNum) {
+  display: flex;
+
+  .corner-fill {
+    flex: 1;
+    background-color: rgba($backgroundColor, $backgroundOpacity);
+    border-top: to-px($borderNum) solid $borderColor;
+
+    &:not(.full) {
+      border-right: to-px($borderNum) solid $borderColor;
+    }
+  }
+
+  .left-corner {
+    @include angled-corner(true, true, $borderNum, $borderColor, $paddingNum);
+  }
+
+  .right-corner {
+    @include angled-corner(true, false, $borderNum, $borderColor, $paddingNum);
+  }
+}
+
+/**
+ * Flex panel content with no top or bottom borders
+ * 
+ * @param  {number}  $borderNum         The size of the border
+ * @param  {hex}     $borderColor       The border color
+ * @param  {hex}     $backgroundColor   The background color
+ * @param  {decimal} $backgroundOpacity The background color opacity
+ * @param  {number}  $paddingNum        The panel padding
+ */
+@mixin flex-panel-content($borderNum, $borderColor, $backgroundColor, $backgroundOpacity, $paddingNum) {
+  background-color: rgba($backgroundColor, $backgroundOpacity);
+  border-left: to-px($borderNum) solid $borderColor;
+  border-right: to-px($borderNum) solid $borderColor;
+  padding-right: to-px($paddingNum);
+  padding-left: to-px($paddingNum);
+}
+
+/**
+ * Flex panel header with 45deg "cut corners"
+ * 
+ * @param  {number}  $borderNum         The size of the border
+ * @param  {hex}     $borderColor       The border color
+ * @param  {hex}     $backgroundColor   The background color
+ * @param  {decimal} $backgroundOpacity The background color opacity
+ * @param  {number}  $paddingNum        The panel padding
+ */
+@mixin flex-panel-footer($borderNum, $borderColor, $backgroundColor, $backgroundOpacity, $paddingNum) {
+  display: flex;
+
+  .corner-fill {
+    flex: 1;
+    height: rem-calc($paddingNum);
+    background-color: $backgroundColor;
+    border-bottom: to-px($borderNum) solid $borderColor;
+
+    &:not(.full) {
+      border-left: to-px($borderNum) solid $borderColor;
+    }
+  }
+
+  .left-corner + .corner-fill {
+    border-left: none;
+  }
+
+  .left-corner {
+    @include angled-corner(false, true, $borderNum, $borderColor, $paddingNum);
+  }
+
+  .right-corner {
+    @include angled-corner(false, false, $borderNum, $borderColor, $paddingNum);
+  }
+}
+

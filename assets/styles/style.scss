@@ -13,7 +13,11 @@
 @import "functions";
 @import "fonts";
 @import "settings";
-@import "mixins";
+
+// mixins
+@import "mixins/corners";
+@import "mixins/prefix";
+@import "mixins/flex";
 
 // foundation init
 @import "foundation/settings";
@@ -28,7 +32,6 @@
 // global
 @import "global/document";
 @import "global/zindex";
-@import "global/corners";
 
 // ui
 @import "ui/icons";
