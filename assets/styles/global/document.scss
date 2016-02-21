@@ -1,29 +1,24 @@
 
-$topLeftCornerBgImage: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IiBoZWlnaHQ9IjQwMHB4IiB3aWR0aD0iNDAwcHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaWQ9ImJnLWNvcm5lci10b3AtbGVmdCIgdmlld0JveD0iMCAwIDQwIDQwIj4KICAgICAgICA8cG9seWdvbiBmaWxsPSIjODNhOWRhIiBwb2ludHM9IjQwLDAgNDAsMiAyLDQwIDAsNDAgMCwzOS4xNzE2IDM5LjE3MTYsMCIvPgogICAgICA8L3N2Zz4=);
-$topRightCornerBgImage: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IiBoZWlnaHQ9IjQwMHB4IiB3aWR0aD0iNDAwcHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaWQ9ImJnLWNvcm5lci10b3AtcmlnaHQiIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgICAgICAgPHBvbHlnb24gZmlsbD0iIzgzYTlkYSIgcG9pbnRzPSIwLDAgMC44Mjg0LDAgNDAsMzkuMTcxNiA0MCw0MCAzOCw0MCAwLDIiLz4KICAgICAgPC9zdmc+);
-$bottomLeftCornerBgImage: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IiBoZWlnaHQ9IjQwMHB4IiB3aWR0aD0iNDAwcHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaWQ9ImJnLWNvcm5lci1ib3R0b20tbGVmdCIgdmlld0JveD0iMCAwIDQwIDQwIj4KICAgICAgICA8cG9seWdvbiBmaWxsPSIjODNhOWRhIiBwb2ludHM9IjAsMCAyLDAgNDAsMzggNDAsNDAgMzkuMTcxNiw0MCAwLDAuODI4NCIvPgogICAgICA8L3N2Zz4=);
-$bottomRightCornerBgImage: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IiBoZWlnaHQ9IjQwMHB4IiB3aWR0aD0iNDAwcHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaWQ9ImJnLWNvcm5lci1ib3R0b20tcmlnaHQiIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgICAgICAgPHBvbHlnb24gZmlsbD0iIzgzYTlkYSIgcG9pbnRzPSI0MCwwIDQwLDAuODI4NCAwLjgyODQsNDAgMCw0MCAwLDM4IDM4LDAiLz4KICAgICAgPC9zdmc+);
-
 body {
   background-image: url(http://img08.deviantart.net/fd62/i/2010/282/5/d/blue_starfield_stock_by_arisechicken117-d30d8f8.png);
 }
 
-[class*="corner"] {
-  background-size: cover;
+.top-left-test {
+  display: inline-block;
+  @include angled-corner(true, true, $interfaceBorderNum, $panelBorderColor, 400);
 }
 
-.top-left-corner {
-  background-image: $topLeftCornerBgImage;
+.top-right-test {
+  display: inline-block;
+  @include angled-corner(true, false, $interfaceBorderNum, $panelBorderColor, 400);
 }
 
-.top-right-corner {
-  background-image: $topRightCornerBgImage;
+.bottom-left-test {
+  display: inline-block;
+  @include angled-corner(false, true, $interfaceBorderNum, $panelBorderColor, 400);
 }
 
-.bottom-left-corner {
-  background-image: $bottomLeftCornerBgImage;
-}
-
-.bottom-right-corner {
-  background-image: $bottomRightCornerBgImage;
+.bottom-right-test {
+  display: inline-block;
+  @include angled-corner(false, false, $interfaceBorderNum, $panelBorderColor, 400);
 }

@@ -8,7 +8,8 @@ $panelFunctionFactor: -11%;
 /* Global Settings
 -------------------------------- */
 
-$interfaceBorderSize: 2px;
+$interfaceBorderNum: 2;
+$interfaceBorderSize: to-px($interfaceBorderNum);
 $interfaceBorderStyle: solid;
 
 /* Font Settings
