@@ -1,0 +1,24 @@
+
+
+<div class="prompt" transition="zoom-in" v-show="show">
+  <div class="prompt-overlay" v-on:click="cancel()"></div>
+  <div class="prompt-wrap">
+    <div class="prompt-head">
+      <div class="left-corner"></div>
+      <div class="corner-fill full"></div>
+      <div class="right-corner"></div>
+    </div>
+    <div class="prompt-content">
+      <p class="text-center">{{ label }}</p>
+      <v-input type="text" :value.sync="promptValue"></v-input>
+      <button class="tiny" v-on:click="cancel()">Cancel</button>
+      <button class="tiny" v-on:click="submit()">OK</button>
+    </div>
+    <div class="prompt-foot">
+      <div class="left-corner"></div>
+      <div class="corner-fill"></div>
+      <div class="right-corner"></div>
+    </div>
+  </div>
+</div>
+

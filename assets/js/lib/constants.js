@@ -11,6 +11,9 @@ define(function () {
 
   return {
     events: {
+      prompt: {
+        valueSubmitted: 'VE_PROMPT_VALUE_SUBMITTED'
+      },
       characterCreator: {
         changeTab: 'VE_CHARACTER_CREATOR_CHANGE_TAB',
         newCharacter: 'VE_CHARACTER_CREATOR_NEW_CHARACTER',

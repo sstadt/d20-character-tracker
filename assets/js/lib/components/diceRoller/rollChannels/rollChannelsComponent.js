@@ -6,8 +6,32 @@ define([
   'sails'
 ], function (_, constants, rollChannelsTemplate) {
 
+  var events = {};
+
+  events[constants.events.prompt.valueSubmitted] = function PromptValueSubmitted(data) {
+    var self = this;
+
+    if (data.value.length > 0) {
+      switch (data.name) {
+        case this.handlePrompt.name:
+          self.chatHandle = '';
+          io.socket.post('/setHandle', { handle: data.value }, function (response) {
+            self.chatHandle = data.value;
+          });
+          break;
+        case this.joinChannelPrompt.name:
+          io.socket.post('/channel/join', { name: data.value }, function (response) {
+            self.channel = response.channel;
+            self.channelRolls = response.rolls.reverse();
+          });
+          break;
+      }
+    }
+  }; 
+
   return {
     template: rollChannelsTemplate,
+    events: events,
     props: {
       channel: {
         type: Object,
@@ -28,6 +52,18 @@ define([
         required: true
       }
     },
+    data: function () {
+      return {
+        joinChannelPrompt: {
+          name: 'join-channel-prompt',
+          label: ''
+        },
+        handlePrompt: {
+          name: 'chat-handle-prompt',
+          label: ''
+        }
+      };
+    },
     ready: function () {
       var self = this;
 
@@ -37,25 +73,10 @@ define([
     },
     methods: {
       setChatHandle: function () {
-        var self = this,
-          newHandle = prompt('Enter a new chat handle:');
-
-          if (newHandle) {
-            io.socket.post('/setHandle', { handle: newHandle }, function (response) {
-              self.chatHandle = newHandle;
-            });
-          }
+        this.handlePrompt.label = 'Enter new chat handle';
       },
       joinChannel: function () {
-        var self = this,
-          channelName = prompt('Enter a channel name:');
-
-        if (channelName) {
-          io.socket.post('/channel/join', { name: channelName }, function (response) {
-            self.channel = response.channel;
-            self.channelRolls = response.rolls.reverse();
-          });
-        }
+        this.joinChannelPrompt.label = 'Enter a channel name';
       }
     }
   };
