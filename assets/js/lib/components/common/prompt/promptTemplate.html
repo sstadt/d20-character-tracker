@@ -9,10 +9,12 @@
       <div class="right-corner"></div>
     </div>
     <div class="prompt-content">
-      <p class="text-center">{{ label }}</p>
-      <v-input type="text" :value.sync="promptValue"></v-input>
-      <button class="tiny" v-on:click="cancel()">Cancel</button>
-      <button class="tiny" v-on:click="submit()">OK</button>
+      <form v-on:submit.prevent="submit()">
+        <p class="text-center">{{ label }}</p>
+        <v-input type="text" :value.sync="promptValue"></v-input>
+        <button class="tiny" type="button" v-on:click="cancel()">Cancel</button>
+        <button class="tiny" type="submit">OK</button>
+      </form>
     </div>
     <div class="prompt-foot">
       <div class="left-corner"></div>
