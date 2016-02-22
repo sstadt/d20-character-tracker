@@ -45,7 +45,7 @@
     </div>
     <div class="small-12 medium-8 columns">
         <roll-channels
-            :local-rolls="localRolls"
+            :local-rolls.sync="localRolls"
             :channel-rolls="channelRolls"
             :chat-handle.sync="chatHandle"
             :channel.sync="channel">

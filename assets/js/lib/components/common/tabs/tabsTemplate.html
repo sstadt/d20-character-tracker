@@ -5,8 +5,8 @@
     <ul class="tab-nav">
         <li v-for="tab in tabs" v-bind:class="{ 'active': tab.active }" v-on:click.prevent="handleTabListClick($index, tab)" :disabled="tab.disabled">
             <a href="#">{{ tab.heading }}</a>
+            <div class="bg-glow"></div>
         </li>
-        <li class="tab-fill"></li>
     </ul>
 
     <!-- Tab Panes -->

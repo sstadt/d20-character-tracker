@@ -41,13 +41,13 @@
 }
 
 @mixin angled-corner($top, $left, $borderWidth, $borderColor, $cornerSize) {
-  $borderShape: generate-polygon(generate-corner-border($top, $left, $borderWidth, $cornerSize), $borderColor);
-  $borderBackground: generate-polygon(generate-corner-background($top, $left, $cornerSize), $panelBgColor, $panelBgOpacity);
+  $borderShape: svg-polygon(generate-corner-border($top, $left, $borderWidth, $cornerSize), $borderColor);
+  $borderBackground: svg-polygon(generate-corner-background($top, $left, $cornerSize), $panelBgColor, $panelBgOpacity);
   $cornerShapes: $borderBackground + $borderShape;
 
   height: to-px($cornerSize);
   width: to-px($cornerSize);
-  background-image: url(generate-svg($cornerSize, $cornerShapes));
+  background-image: url(generate-svg($cornerSize, $cornerSize, $cornerShapes));
   background-repeat: no-repeat;
 }
 

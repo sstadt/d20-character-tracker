@@ -45,7 +45,8 @@ define([
       },
       localRolls: {
         type: Array,
-        required: true
+        required: true,
+        twoWay: true
       },
       channelRolls: {
         type: Array,
@@ -77,6 +78,9 @@ define([
       },
       joinChannel: function () {
         this.$broadcast(constants.events.prompt.promptUser, this.joinChannelPrompt.name);
+      },
+      clearLocalRolls: function () {
+        this.localRolls = [];
       }
     }
   };

@@ -14,9 +14,7 @@ $rollResultIconSize: rem-calc(40);
 -------------------------------- */
 
 .roll-log {
-  margin-left: rem-calc(-20);
-  margin-right: rem-calc(-20);
-  max-height: rem-calc(400);
+  height: rem-calc(400);
   overflow: auto;
 
   .roll-details {

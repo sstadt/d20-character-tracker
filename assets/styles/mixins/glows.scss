@@ -1,0 +1,13 @@
+
+
+@mixin bottom-glow($color) {
+  $x: 50%;
+  $y: 180%;
+
+  background-repeat: no-repeat;
+  background-image: -webkit-radial-gradient($x $y, $color, transparent 75%);
+  background-image: -moz-radial-gradient($x $y, $color, transparent 75%);
+  background-image: -o-radial-gradient($x $y, $color, transparent 75%);
+  background-image: radial-gradient(at $x $y, $color, transparent 75%);
+}
+

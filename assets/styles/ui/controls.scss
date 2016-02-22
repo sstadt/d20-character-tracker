@@ -1,0 +1,16 @@
+
+
+.controls {
+  text-align: right;
+  margin: rem-calc(10) 0;
+
+  button {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+

@@ -9,13 +9,18 @@
 @import "normalize";
 @import "foundation/functions";
 
+// libs
+@import "functions/conversion";
+@import "functions/math";
+@import "functions/svg";
+
 // settings
-@import "functions";
 @import "fonts";
 @import "settings";
 
 // mixins
 @import "mixins/corners";
+@import "mixins/glows";
 @import "mixins/prefix";
 @import "mixins/flex";
 
@@ -36,6 +41,7 @@
 // ui
 @import "ui/icons";
 @import "ui/panel";
+@import "ui/controls";
 @import "ui/buttons";
 @import "ui/forms";
 @import "ui/scrollbar";

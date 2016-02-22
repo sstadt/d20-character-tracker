@@ -12,8 +12,10 @@
       <form v-on:submit.prevent="submit()">
         <p class="text-center">{{ label }}</p>
         <v-input type="text" :value.sync="promptValue"></v-input>
-        <button class="tiny" type="button" v-on:click="cancel()">Cancel</button>
-        <button class="tiny" type="submit">OK</button>
+        <div class="controls">
+          <button class="tiny" type="button" v-on:click="cancel()">Cancel</button>
+          <button class="tiny" type="submit">OK</button>
+        </div>
       </form>
     </div>
     <div class="prompt-foot">

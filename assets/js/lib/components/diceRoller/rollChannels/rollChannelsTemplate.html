@@ -1,23 +1,33 @@
 
 
 <div class="roll-channels">
-  <tabs>
+  <panel>
+    <div slot="content">
+      <tabs>
+        <tab heading="My Rolls">
+            <div class="controls">
+              <button class="tiny" v-on:click="clearLocalRolls()">Clear</button>
+            </div>
+          <roll-log :rolls="localRolls"></roll-log>
+        </tab>
 
-    <tab heading="My Rolls">
-      <roll-log :rolls="localRolls"></roll-log>
-    </tab>
-
-    <tab heading="Roll Channel">
-      <div v-if="channel.name">
-        <roll-log :rolls="channelRolls"></roll-log>
-      </div>
-      <div v-else>
-        <button class="small" v-on:click="joinChannel()" :disabled="chatHandle === ''">Join Channel</button>
-        <button class="small" v-on:click="setChatHandle()">Set Chat Handle</button>
-      </div>
-    </tab>
-
-  </tabs>
+        <tab heading="Roll Channel">
+          <div v-if="channel.name">
+            <div class="controls">
+              <button class="tiny">Leave Channel</button>
+            </div>
+            <roll-log :rolls="channelRolls"></roll-log>
+          </div>
+          <div v-else>
+            <div class="controls">
+              <button class="tiny" v-on:click="joinChannel()" :disabled="chatHandle === ''">Join Channel</button>
+              <button class="tiny" v-on:click="setChatHandle()">Set Chat Handle</button>
+            </div>
+          </div>
+        </tab>
+      </tabs>
+    </div>
+  </panel>
 
   <prompt :name="joinChannelPrompt.name" :label.sync="joinChannelPrompt.label"></prompt>
   <prompt :name="handlePrompt.name" :label.sync="handlePrompt.label"></prompt>

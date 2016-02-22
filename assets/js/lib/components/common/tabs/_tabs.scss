@@ -1,12 +1,9 @@
 
-/* Colors
+/* Settings
 -------------------------------- */
 
 $tabsBorderColor: $primaryColor;
 $tabsBorder: $interfaceBorderSize $interfaceBorderStyle $tabsBorderColor;
-
-/* Settings
--------------------------------- */
 
 /* Styling
 -------------------------------- */
@@ -14,53 +11,48 @@ $tabsBorder: $interfaceBorderSize $interfaceBorderStyle $tabsBorderColor;
 .tabs {
   display: flex;
   flex-flow: column;
-  margin-bottom: rem-calc(20);
 
   ul.tab-nav {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
+    border-bottom: $tabsBorder;
 
     li {
-      border: $tabsBorder;
+      position: relative;
       margin: 0;
-      padding: rem-calc(8) rem-calc(14);
+      padding: rem-calc(4) rem-calc(10);
       display: inline-block;
+      cursor: pointer;
 
-      &:not(:first-child) {
-        border-left: none;
+      .bg-glow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: 0.3s all linear;
+        @include bottom-glow($tabsBorderColor);
       }
 
-      &.active {
-        border-bottom: none;
-        border-right: none;
-
-        + li {
-          border-left: $tabsBorder;
+      &:hover {
+        .bg-glow {
+          opacity: 0.6;
         }
       }
 
-      &.tab-fill {
-        flex: 1;
-        border-top: none;
-        border-right: none;
-        border-left: none;
-      }
-
-      &:not(.tab-fill) {
-        background-color: $panelBg;
+      &.active {
+        .bg-glow {
+          opacity: 1;
+        }
       }
     }
   }
 
   .tab-content {
     flex: 1;
-    padding: rem-calc(20);
-    border-left: $tabsBorder;
-    border-right: $tabsBorder;
-    border-bottom: $tabsBorder;
-    background-color: $panelBg;
   }
 }
 
