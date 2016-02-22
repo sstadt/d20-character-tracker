@@ -79,14 +79,14 @@ define([
       }
     },
     methods: {
+      clearLocalRolls: function () {
+        this.localRolls = [];
+      },
       setChatHandle: function () {
         this.$broadcast(constants.events.prompt.promptUser, this.handlePrompt.name);
       },
       joinChannel: function () {
         this.$broadcast(constants.events.prompt.promptUser, this.joinChannelPrompt.name);
-      },
-      clearLocalRolls: function () {
-        this.localRolls = [];
       },
       leaveChannel: function () {
         var self = this;
