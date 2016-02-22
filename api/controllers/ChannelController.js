@@ -42,6 +42,14 @@ module.exports = {
         });
       }
     });
+  },
+
+  leave: function (req, res) {
+    var id = req.param('channel');
+
+    Channel.unsubscribe(req.socket, id);
+
+    res.send(200);
   }
 };
 

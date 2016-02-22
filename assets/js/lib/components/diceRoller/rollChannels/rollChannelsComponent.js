@@ -88,9 +88,14 @@ define([
       clearLocalRolls: function () {
         this.localRolls = [];
       },
-      updateChannelLabel: function () {
-        // this -> panel -> tabs -> tab[1]
-        
+      leaveChannel: function () {
+        var self = this;
+
+        io.socket.post('/channel/leave', { channel: self.channel.id }, function () {
+          self.channel = {};
+          self.channelLabel = 'Roll Channel';
+          self.channelRolls = [];
+        });
       }
     }
   };

@@ -14,7 +14,7 @@
         <tab :heading="channelLabel">
           <div v-if="channel.name">
             <div class="controls">
-              <button class="tiny">Leave Channel</button>
+              <button class="tiny" v-on:click="leaveChannel()">Leave Channel</button>
             </div>
             <roll-log :rolls="channelRolls"></roll-log>
           </div>

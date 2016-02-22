@@ -52,7 +52,8 @@ module.exports.policies = {
 
   ChannelController: {
     '*': false,
-    'join': 'sessionAuth'
+    'join': 'sessionAuth',
+    'leave': 'sessionAuth'
   },
 
   ApiController: {
