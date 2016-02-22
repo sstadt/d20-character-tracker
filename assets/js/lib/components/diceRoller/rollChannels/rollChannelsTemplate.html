@@ -11,7 +11,7 @@
           <roll-log :rolls="localRolls"></roll-log>
         </tab>
 
-        <tab heading="Roll Channel">
+        <tab :heading="channelLabel">
           <div v-if="channel.name">
             <div class="controls">
               <button class="tiny">Leave Channel</button>

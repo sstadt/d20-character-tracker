@@ -7,7 +7,8 @@ define([
     template: tabTemplate,
     props: {
       heading: {
-        type: String
+        type: String,
+        required: true
       },
       disabled: {
         type: Boolean,
@@ -23,6 +24,11 @@ define([
     computed: {
       show: function () {
         return (this.$parent.active == this.index);
+      }
+    },
+    watch: {
+      heading: function () {
+        this.$parent.tabs[this.index].heading = this.heading;
       }
     },
     created: function () {

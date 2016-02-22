@@ -22,6 +22,7 @@ define([
         case self.joinChannelPrompt.name:
           io.socket.post('/channel/join', { name: data.value }, function (response) {
             self.channel = response.channel;
+            self.channelLabel = response.channel.name;
             self.channelRolls = response.rolls.reverse();
           });
           break;
@@ -72,6 +73,11 @@ define([
         self.channelRolls.unshift(event.data.newRoll);
       });
     },
+    computed: {
+      channelLabel: function () {
+        return (this.channel.name && this.channel.name.length > 0) ? this.channel.name : 'Roll Channel';
+      }
+    },
     methods: {
       setChatHandle: function () {
         this.$broadcast(constants.events.prompt.promptUser, this.handlePrompt.name);
@@ -81,6 +87,10 @@ define([
       },
       clearLocalRolls: function () {
         this.localRolls = [];
+      },
+      updateChannelLabel: function () {
+        // this -> panel -> tabs -> tab[1]
+        
       }
     }
   };

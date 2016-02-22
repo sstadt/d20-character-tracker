@@ -25,7 +25,7 @@ define([
         boost: 0,
         setback: 0,
         force: 0,
-        channel: {},
+        channel: { label: 'Roll Channel' },
         localRolls: [],
         channelRolls: []
       };
