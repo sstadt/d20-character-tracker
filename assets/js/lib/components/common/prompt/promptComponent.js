@@ -4,8 +4,20 @@ define([
   'text!./promptTemplate.html'
 ], function (constants, promptTemplate) {
 
+  var events = {};
+
+  events[constants.events.prompt.promptUser] = function PromptUser(name) {
+    if (name === this.name) {
+      this.show = true;
+    } else {
+      // if we're not catching this event, allow the next prompt to try
+      return true;
+    }
+  };
+
   return {
     template: promptTemplate,
+    events: events,
     props: {
       name: {
         type: String,
@@ -13,8 +25,7 @@ define([
       },
       label: {
         type: String,
-        required: true,
-        twoWay: true
+        required: true
       }
     },
     data: function () {
@@ -24,30 +35,27 @@ define([
       };
     },
     watch: {
-      label: function (val) {
-        if (val !== '') {
-          this.show = true;
+      show: function (val) {
+        if (val === true) {
           this.$children[0].$els.input.focus();
         }
       }
     },
     methods: {
       submit: function () {
-        console.log('submit');
-        if (this.promptValue !== '') {
-          this.$dispatch(constants.events.prompt.valueSubmitted, { name: this.name, value: this.promptValue });
-          this.show = false;
-          this.promptValue = '';
+        var self = this;
+
+        if (self.promptValue !== '') {
+
+          self.$dispatch(constants.events.prompt.valueSubmitted, { name: self.name, value: self.promptValue });
+          self.show = false;
+          setTimeout(function () {
+            self.promptValue = '';
+          },  300);
         }
       },
       cancel: function () {
-        var self = this;
-
-        self.show = false;
-        
-        setTimeout(function () {
-          self.label = '';
-        }, 300);
+        this.show = false;
       }
     }
   };

@@ -13,13 +13,13 @@ define([
 
     if (data.value.length > 0) {
       switch (data.name) {
-        case this.handlePrompt.name:
+        case self.handlePrompt.name:
           self.chatHandle = '';
           io.socket.post('/setHandle', { handle: data.value }, function (response) {
             self.chatHandle = data.value;
           });
           break;
-        case this.joinChannelPrompt.name:
+        case self.joinChannelPrompt.name:
           io.socket.post('/channel/join', { name: data.value }, function (response) {
             self.channel = response.channel;
             self.channelRolls = response.rolls.reverse();
@@ -55,12 +55,12 @@ define([
     data: function () {
       return {
         joinChannelPrompt: {
-          name: 'join-channel-prompt',
-          label: ''
+          name: 'roll-channels-prompt__join-channel',
+          label: 'Enter new channel name'
         },
         handlePrompt: {
-          name: 'chat-handle-prompt',
-          label: ''
+          name: 'roll-channels-prompt__new-chat-handle',
+          label: 'Enter a chat handle'
         }
       };
     },
@@ -73,10 +73,10 @@ define([
     },
     methods: {
       setChatHandle: function () {
-        this.handlePrompt.label = 'Enter new chat handle';
+        this.$broadcast(constants.events.prompt.promptUser, this.handlePrompt.name);
       },
       joinChannel: function () {
-        this.joinChannelPrompt.label = 'Enter a channel name';
+        this.$broadcast(constants.events.prompt.promptUser, this.joinChannelPrompt.name);
       }
     }
   };

@@ -12,6 +12,7 @@ define(function () {
   return {
     events: {
       prompt: {
+        promptUser: 'VE_PROMPT_PROMPT_USER',
         valueSubmitted: 'VE_PROMPT_VALUE_SUBMITTED'
       },
       characterCreator: {
