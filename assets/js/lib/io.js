@@ -9,6 +9,12 @@ define([
   }
 
   io = sailsIOClient(socketIOClient);
+
+  // mute console.logs during unit testing
+  if (/PhantomJS/.test(window.navigator.appVersion)) {
+    io.sails.environment = 'production';
+  }
+
   io.sails.url = location.origin;
 
   return io;
