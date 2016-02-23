@@ -19,8 +19,6 @@
     "tests"
   ],
   "dependencies": {
-    "foundation": "~5.4.7",
-    "jquery": "~2.1.1",
     "requirejs-text": "~2.0.12",
     "requirejs": "~2.1.15",
     "vue": "~1.0.11",

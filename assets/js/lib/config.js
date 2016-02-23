@@ -1,4 +1,5 @@
 
+
 requirejs.config({
 
   urlArgs: "v=" + (new Date()).getTime(),
@@ -27,10 +28,4 @@ requirejs.config({
   },
 
 });
-
-
-
-
-
-
 
