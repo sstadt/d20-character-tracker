@@ -2,9 +2,9 @@
 define([
   'lodash',
   'constants',
-  'text!./rollChannelsTemplate.html',
-  'sails'
-], function (_, constants, rollChannelsTemplate) {
+  'io',
+  'text!./rollChannelsTemplate.html'
+], function (_, constants, io, rollChannelsTemplate) {
 
   var events = {};
 

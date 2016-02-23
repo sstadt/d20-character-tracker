@@ -7,8 +7,7 @@ require([
   'component/common/common',
   'component/swDiceRoller/swDiceRoller',
   'component/characterList/characterList',
-  'component/characterCreator/characterCreator',
-  'sails'
+  'component/characterCreator/characterCreator'
 ], function (constants, Vue, Character) {
   'use strict';
 

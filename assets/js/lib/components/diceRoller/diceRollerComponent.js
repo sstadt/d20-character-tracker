@@ -1,11 +1,11 @@
 
 define([
   'constants',
+  'io',
   'text!./diceRollerTemplate.html',
   './rollChannels/rollChannels',
-  './rollLog/rollLog',
-  'sails'
-], function (constants, diceRollerTemplate) {
+  './rollLog/rollLog'
+], function (constants, io, diceRollerTemplate) {
 
   return {
     template: diceRollerTemplate,

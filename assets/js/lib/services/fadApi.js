@@ -2,8 +2,8 @@
 
 define([
   'lodash',
-  'sails'
-], function (_) {
+  'io'
+], function (_, io) {
   var data = {};
 
   function populateModel(model, callback) {

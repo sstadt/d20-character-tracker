@@ -3,8 +3,7 @@ require([
   'constants',
   'vue',
   'component/common/common',
-  'component/diceRoller/diceRoller',
-  'sails'
+  'component/diceRoller/diceRoller'
 ], function (constants, Vue) {
   'use strict';
 

@@ -5,5 +5,13 @@ $icon-size: 20px;
   width: $icon-size;
   height: $icon-size;
   fill: $primaryColor;
+
+  &[class*="die-"] {
+    fill: $black;
+  }
+
+  &.dice-dark-side, &.dice-light-side, &.force-point {
+    fill: $white;
+  }
 }
 

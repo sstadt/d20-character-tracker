@@ -21,13 +21,14 @@
   "dependencies": {
     "foundation": "~5.4.7",
     "jquery": "~2.1.1",
-    "sails.io.js": "~0.10.3",
     "requirejs-text": "~2.0.12",
     "requirejs": "~2.1.15",
     "vue": "~1.0.11",
     "lodash": "~4.0.0",
     "marked": "~0.3.5",
     "moment": "~2.11.2",
-    "vue-tooltip": "*"
+    "vue-tooltip": "*",
+    "sails.io.js": "~0.13.5",
+    "socket.io-client": "~1.4.5"
   }
 }
