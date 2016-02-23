@@ -45,7 +45,6 @@
   $borderBackground: svg-polygon(generate-corner-background($top, $left, $cornerSize), $backgroundColor, $backgroundOpacity);
   $cornerShapes: $borderBackground + $borderShape;
 
-  debug: $backgroundColor;
   height: to-px($cornerSize);
   width: to-px($cornerSize);
   background-image: url(generate-svg($cornerSize, $cornerSize, $cornerShapes));
