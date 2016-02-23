@@ -68,6 +68,10 @@ module.exports.routes = {
     controller: 'user',
     action: 'setHandle'
   },
+  '/sandbox': {
+    controller: 'user',
+    action: 'sandbox'
+  },
 
   /*
     Dice Roller

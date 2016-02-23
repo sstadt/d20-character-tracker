@@ -32,6 +32,9 @@
           <!-- Left Nav Section -->
           <ul class="left">
             <li><a href="/dice">Dice Roller</a></li>
+            <% if (sails.config.environment === 'development') { %>
+              <li><a href="/sandbox">Sandbox</a></li>
+            <% } %>
           </ul>
 
           <!-- Right Nav Section -->

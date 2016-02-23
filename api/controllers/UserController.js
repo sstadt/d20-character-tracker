@@ -27,6 +27,13 @@ module.exports = {
     });
   },
 
+  sandbox: function (req, res) {
+    res.view({
+      title: 'sandbox',
+      script: 'sandbox'
+    });
+  },
+
   setHandle: function (req, res) {
     req.session.User.config.chatHandle = req.param('handle');
 

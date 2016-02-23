@@ -40,7 +40,8 @@ module.exports.policies = {
     'create': true,
     'show': 'sessionAuth',
     'search': false,
-    'setHandle': 'sessionAuth'
+    'setHandle': 'sessionAuth',
+    'sandbox': 'sandbox'
   },
 
   RollController: {

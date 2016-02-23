@@ -1,4 +1,4 @@
 
 require(['lib/config'], function () {
-  require(['app/index']);
+  require(['app/sandbox']);
 });
