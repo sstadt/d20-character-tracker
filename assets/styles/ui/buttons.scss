@@ -23,6 +23,19 @@
     color: $color;
   }
 
+  &[disabled] {
+    cursor: not-allowed;
+    color: $color;
+    border-color: $color;
+    background-color: rgba($color, 0.1);
+
+    &:hover, &:focus, &:active {
+      color: $color;
+      border-color: $color;
+      background-color: rgba($color, 0.1);
+    }
+  }
+
 }
 
 button, .button {
