@@ -26,6 +26,10 @@ $tabsBorder: $interfaceBorderSize $interfaceBorderStyle $tabsBorderColor;
       display: inline-block;
       cursor: pointer;
 
+      a {
+        text-shadow: 0 0 10px $black;
+      }
+
       .bg-glow {
         position: absolute;
         top: 0;

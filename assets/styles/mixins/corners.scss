@@ -40,9 +40,9 @@
   @return $points;
 }
 
-@mixin angled-corner($top, $left, $borderWidth, $borderColor, $cornerSize) {
+@mixin angled-corner($top, $left, $borderWidth, $borderColor, $backgroundColor, $backgroundOpacity, $cornerSize) {
   $borderShape: svg-polygon(generate-corner-border($top, $left, $borderWidth, $cornerSize), $borderColor);
-  $borderBackground: svg-polygon(generate-corner-background($top, $left, $cornerSize), $panelBgColor, $panelBgOpacity);
+  $borderBackground: svg-polygon(generate-corner-background($top, $left, $cornerSize), $backgroundColor, $backgroundOpacity);
   $cornerShapes: $borderBackground + $borderShape;
 
   height: to-px($cornerSize);

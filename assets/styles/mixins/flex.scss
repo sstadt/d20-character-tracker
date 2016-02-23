@@ -23,11 +23,11 @@
   }
 
   .left-corner {
-    @include angled-corner(true, true, $borderNum, $borderColor, $paddingNum);
+    @include angled-corner(true, true, $borderNum, $borderColor, $backgroundColor, $backgroundOpacity, $paddingNum);
   }
 
   .right-corner {
-    @include angled-corner(true, false, $borderNum, $borderColor, $paddingNum);
+    @include angled-corner(true, false, $borderNum, $borderColor, $backgroundColor, $backgroundOpacity, $paddingNum);
   }
 }
 
@@ -76,11 +76,11 @@
   }
 
   .left-corner {
-    @include angled-corner(false, true, $borderNum, $borderColor, $paddingNum);
+    @include angled-corner(false, true, $borderNum, $borderColor, $backgroundColor, $backgroundOpacity, $paddingNum);
   }
 
   .right-corner {
-    @include angled-corner(false, false, $borderNum, $borderColor, $paddingNum);
+    @include angled-corner(false, false, $borderNum, $borderColor, $backgroundColor, $backgroundOpacity, $paddingNum);
   }
 }
 
