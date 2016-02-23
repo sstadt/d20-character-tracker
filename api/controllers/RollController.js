@@ -9,7 +9,7 @@ module.exports = {
   index: function (req, res) {
     res.view({
       chatHandle: req.session.User.config.chatHandle || '',
-      title: 'Dice Roller',
+      title: sails.config.globals.pageTitle.diceRoller,
       script: 'dice'
     });
   },

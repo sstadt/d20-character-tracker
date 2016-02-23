@@ -16,20 +16,20 @@ module.exports = {
 
   splash: function (req, res) {
     res.view({
-      title: 'splash'
+      title: sails.config.globals.pageTitle.splash
     });
   },
 
   'new': function (req, res) {
     res.view({
-      title: 'register',
+      title: sails.config.globals.pageTitle.register,
       script: 'public'
     });
   },
 
   sandbox: function (req, res) {
     res.view({
-      title: 'sandbox',
+      title: sails.config.globals.pageTitle.sandbox,
       script: 'sandbox'
     });
   },

@@ -19,6 +19,13 @@ module.exports.globals = {
     title: 'Force and Destiny Character Tracker'
   },
 
+  pageTitle: {
+    diceRoller: 'Dice Roller',
+    sandbox: 'Sandbox',
+    splash: 'Home',
+    register: 'Registration'
+  },
+
   requirejs: {
     development: '/js/vendor/requirejs/require.js',
     production: '//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js',

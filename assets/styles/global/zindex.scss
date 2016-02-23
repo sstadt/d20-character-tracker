@@ -1,12 +1,5 @@
 
 
-$zIndexModal    : 9000; 
-$zIndexOverlay  : 8000;
-$zIndexDropdown : 7000;
-$zIndexHeader   : 6000;
-$zIndexFooter   : 5000;
-$zIndexBeneath  : -1;
-
 [class*="modal"] {
   z-index: $zIndexModal;
 }

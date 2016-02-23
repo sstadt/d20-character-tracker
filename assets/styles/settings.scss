@@ -81,6 +81,13 @@ $bodyFontColor  : $primaryColor;
 $subtextColor   : $stormySky;
 $scrollBarBg    : $primaryColor;
 
+$zIndexModal    : 9000; 
+$zIndexOverlay  : 8000;
+$zIndexDropdown : 7000;
+$zIndexHeader   : 6000;
+$zIndexFooter   : 5000;
+$zIndexBeneath  : -1;
+
 /* Grid
 -------------------------------- */
 
@@ -141,6 +148,19 @@ $inputTransition       : 0.3s all linear;
 
 $selectBgColor: $inputBgColor;
 $selectHoverBgColor: $inputBgColor;
+
+/* top-bar
+-------------------------------- */
+
+$topbarBgColor: rgba($panelBgColor, $panelBgOpacity);
+$topbarLinkColor: $primaryColor;
+$topbarLinkBg: transparent;
+$topbarLinkBgHover: transparent;
+$topbarLinkBgActive: transparent;
+$topbarLinkBgActiveHover: $topbarLinkBgActive;
+$topbarDropdownBg: transparent;
+$topbarDropdownLinkColor: $topbarLinkColor;
+$topbarDropdownLinkBg: transparent;
 
 /* title-bar
 -------------------------------- */

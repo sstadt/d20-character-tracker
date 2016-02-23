@@ -7,3 +7,17 @@ body {
   background-image: url(../images/bg-starfield.jpg);
 }
 
+nav.top-bar {
+  margin-bottom: rem-calc(20);
+  border-bottom: $interfaceBorderSize $interfaceBorderStyle $panelBorderColor;
+
+  .top-bar-section {
+    ul {
+      li {
+        cursor: pointer;
+        @include button-bottom-glow($panelBorderColor);
+      }
+    }
+  }
+}
+
