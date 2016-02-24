@@ -19,6 +19,40 @@ define([
       expect(component.template).toEqual(jasmine.any(String));
     });
 
+    describe('props', function () {
+      describe('name', function () {
+        it('should exist', function () {
+          expect(component.props.name).toEqual(jasmine.any(Object));
+        });
+
+        it('should be a string', function () {
+          expect(component.props.name.type).toEqual(String);
+        });
+
+        it('should be required', function () {
+          expect(component.props.name.required).toEqual(true);
+        });
+      });
+
+      describe('label', function () {
+        it('should exist', function () {
+          expect(component.props.label).toEqual(jasmine.any(Object));
+        });
+
+        it('should be a string', function () {
+          expect(component.props.label.type).toEqual(String);
+        });
+
+        it('should be required', function () {
+          expect(component.props.label.required).toEqual(true);
+        });
+      });
+    });
+
+    // describe('data', function () {
+    //   beforeEach(function () {});
+    // });
+
     describe('methods', function () {
       var componentInstance;
 
