@@ -1,8 +1,9 @@
 
 define([
   'vue.min',
+  'constants',
   'component/common/prompt/promptComponent'
-], function (Vue, promptComponent) {
+], function (Vue, constants, promptComponent) {
 
   describe('The prompt component', function () {
     var component;
@@ -49,9 +50,21 @@ define([
       });
     });
 
-    // describe('data', function () {
-    //   beforeEach(function () {});
-    // });
+    describe('data', function () {
+      var data;
+
+      beforeEach(function () {
+        data = component.data();
+      });
+
+      it('should set promptValue to an empty string', function () {
+        expect(data.promptValue).toEqual('');
+      });
+
+      it('should set show to false', function () {
+        expect(data.show).toEqual(false);
+      });
+    });
 
     describe('methods', function () {
       var componentInstance;
@@ -60,11 +73,55 @@ define([
         componentInstance = new Vue(component);
       });
 
-      // describe('#sayHi', function () {
-      //   it('should be a function', function () {
-      //     expect(typeof componentInstance.sayHi).toBe('function');
-      //   });
-      // });
+      describe('#submit', function () {
+        beforeEach(function () {
+          componentInstance.show = true;
+        });
+
+        describe('with a prompt value', function () {
+          beforeEach(function (done) {
+            componentInstance.promptValue = 'test';
+            componentInstance.submit();
+            setTimeout(done, 301);
+          });
+
+          it('should hide the prompt', function () {
+            expect(componentInstance.show).toEqual(false);
+          });
+
+          it('should reset the prompt value after the animation completes', function () {
+            expect(componentInstance.promptValue).toEqual('');
+          });
+        });
+
+        describe('with an empty prompt value', function () {
+          beforeEach(function (done) {
+            componentInstance.promptValue = '';
+            componentInstance.submit();
+            setTimeout(done, 301);
+          });
+
+          it('should not hide the prompt', function () {
+            expect(componentInstance.show).toEqual(true);
+          });
+        });
+      });
+
+      describe('#cancel', function () {
+        beforeEach(function () {
+          componentInstance.promptValue = 'test';
+          componentInstance.show = true;
+          componentInstance.cancel();
+        });
+
+        it('should close the prompt', function () {
+          expect(componentInstance.show).toEqual(false);
+        });
+
+        it('should not reset the prompt value', function () {
+          expect(componentInstance.promptValue).toEqual('test');
+        });
+      });
     });
 
   });

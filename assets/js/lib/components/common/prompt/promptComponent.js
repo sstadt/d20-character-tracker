@@ -36,7 +36,7 @@ define([
     },
     watch: {
       show: function (val) {
-        if (val === true) {
+        if (val === true && this.$children.length > 0) {
           this.$children[0].$els.input.focus();
         }
       }
@@ -46,7 +46,6 @@ define([
         var self = this;
 
         if (self.promptValue !== '') {
-
           self.$dispatch(constants.events.prompt.valueSubmitted, { name: self.name, value: self.promptValue });
           self.show = false;
           setTimeout(function () {
