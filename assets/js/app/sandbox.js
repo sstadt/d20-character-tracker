@@ -4,7 +4,6 @@ require([
   'vue',
   'class/Character',
   'component/common/common',
-  'component/swDiceRoller/swDiceRoller',
   'component/characterList/characterList',
   'component/characterCreator/characterCreator'
 ], function (constants, Vue, Character) {

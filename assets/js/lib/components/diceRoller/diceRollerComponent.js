@@ -4,7 +4,8 @@ define([
   'io',
   'text!./diceRollerTemplate.html',
   './rollChannels/rollChannels',
-  './rollLog/rollLog'
+  './rollLog/rollLog',
+  'component/dieCounter/dieCounter'
 ], function (constants, io, diceRollerTemplate) {
 
   return {

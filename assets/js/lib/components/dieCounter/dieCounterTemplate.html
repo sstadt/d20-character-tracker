@@ -1,0 +1,10 @@
+
+<div class="die-counter">
+    <button v-on:click="increment()">Increment</button>
+    <div class="die-count">
+        <span>{{ count }}</span>
+        <icon :name="dieType"></icon>
+    </div>
+    <button v-on:click="decrement()">Decrement</button>
+</div>
+

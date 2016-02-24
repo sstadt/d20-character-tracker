@@ -39,6 +39,7 @@
             <div class="row">
                 <div class="small-12 columns">
                     <button v-on:click="roll()">Roll</button>
+                    <die-counter die="ability" :count.sync="ability"></die-counter>
                 </div>
             </div>
         </div>
