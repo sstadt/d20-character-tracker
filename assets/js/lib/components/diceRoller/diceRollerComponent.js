@@ -48,7 +48,7 @@ define([
           roll.channel = self.channel.id;
         }
 
-        io.socket.get('/roll', roll, function (response) {
+        io.socket.get(constants.endpoints.dice.roll, roll, function (response) {
           self.localRolls.unshift(response);
         });
       }

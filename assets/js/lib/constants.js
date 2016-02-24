@@ -24,6 +24,18 @@ define(function () {
         newLocalRoll: 'VE_DICE_ROLLER_NEW_LOCAL_ROLL',
         joinedChannel: 'VE_DICE_ROLLER_JOINED_CHANNEL'
       }
+    },
+    endpoints: {
+      dice: {
+        roll: '/roll'
+      },
+      channel: {
+        join: '/channel/join',
+        leave: '/channel/leave'
+      },
+      user: {
+        setHandle: '/user/setHandle'
+      }
     }
   };
 });

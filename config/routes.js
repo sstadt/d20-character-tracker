@@ -64,10 +64,10 @@ module.exports.routes = {
     controller: 'user',
     action: 'show'
   },
-  '/setHandle': {
-    controller: 'user',
-    action: 'setHandle'
-  },
+  // '/setHandle': {
+  //   controller: 'user',
+  //   action: 'setHandle'
+  // },
   '/sandbox': {
     controller: 'user',
     action: 'sandbox'

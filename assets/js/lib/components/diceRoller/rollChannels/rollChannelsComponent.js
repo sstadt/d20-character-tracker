@@ -15,12 +15,12 @@ define([
       switch (data.name) {
         case self.handlePrompt.name:
           self.chatHandle = '';
-          io.socket.post('/setHandle', { handle: data.value }, function (response) {
+          io.socket.post(constants.endpoints.user.setHandle, { handle: data.value }, function (response) {
             self.chatHandle = data.value;
           });
           break;
         case self.joinChannelPrompt.name:
-          io.socket.post('/channel/join', { name: data.value }, function (response) {
+          io.socket.post(constants.endpoints.channel.join, { name: data.value }, function (response) {
             self.channel = response.channel;
             self.channelLabel = response.channel.name;
             self.channelRolls = response.rolls.reverse();
@@ -91,7 +91,7 @@ define([
       leaveChannel: function () {
         var self = this;
 
-        io.socket.post('/channel/leave', { channel: self.channel.id }, function () {
+        io.socket.post(constants.channel.endpoints.leave, { channel: self.channel.id }, function () {
           self.channel = {};
           self.channelLabel = 'Roll Channel';
           self.channelRolls = [];
