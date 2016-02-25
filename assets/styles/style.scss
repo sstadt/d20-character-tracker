@@ -54,9 +54,11 @@
 @import "../js/lib/components/common/tabs/_tabs";
 
 // app components
+@import "../js/lib/components/dieCounter/_dieCounter";
 @import "../js/lib/components/diceRoller/_diceRoller";
-@import "../js/lib/components//diceRoller/rollChannels/_rollChannels";
-@import "../js/lib/components//diceRoller/rollLog/_rollLog";
+@import "../js/lib/components/dicePool/_dicePool";
+@import "../js/lib/components/diceRoller/rollChannels/_rollChannels";
+@import "../js/lib/components/diceRoller/rollLog/_rollLog";
 @import "../js/lib/components/characterCreator/_characterCreator";
 @import "../js/lib/components/characterCreator/steps/personaEditor/_personaEditor";
 

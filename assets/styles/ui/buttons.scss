@@ -3,24 +3,40 @@
 @mixin sw-button($color) {
   color: $color;
   border-color: $color;
-  background-color: rgba($color, 0.1);
+
+  &:not(.mini) {
+    background-color: rgba($color, 0.1);
+  }
+
+  &.mini {
+    background-color: transparent;
+    @include button-center-glow($color);
+  }
 
   &:hover, &:focus {
     outline: 0;
-    background-color: rgba($color, 0.2);
+
+    &:not(.mini) {
+      background-color: rgba($color, 0.2);
+    }
   }
 
   &:focus {
     box-shadow: 0 0 10px $color inset;
   }
 
-  &:active {
+  &:active:not(.mini) {
     background-color: rgba($color, 0.4);
     box-shadow: 0 0 10px $color inset;
   }
 
   &:hover, &:focus, &:active {
     color: $color;
+
+    &.mini {
+      background-color: transparent;
+      box-shadow: none;
+    }
   }
 
   &[disabled] {
@@ -34,6 +50,13 @@
       border-color: $color;
       background-color: rgba($color, 0.1);
     }
+  }
+
+  &.postfix {
+    border-top: $interfaceBorderSize $interfaceBorderStyle $color;
+    border-right: $interfaceBorderSize $interfaceBorderStyle $color;
+    border-bottom: $interfaceBorderSize $interfaceBorderStyle $color;
+    @include postfix-border-radius(2px);
   }
 
 }
@@ -68,6 +91,7 @@ button, .button {
   &.mini {
     font-size: rem-calc(22);
     padding: rem-calc(9px) rem-calc(14px);
+    border-width: 0;
 
     @media #{$large-up} {
       font-size: rem-calc(18);

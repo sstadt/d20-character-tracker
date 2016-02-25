@@ -3,6 +3,7 @@ body {
   background-color: $black;
   background-repeat: no-repeat;
   background-position: center center;
+  background-attachment: fixed;
   background-size: cover;
   background-image: url(../images/bg-starfield.jpg);
 }

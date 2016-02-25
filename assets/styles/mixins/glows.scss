@@ -1,24 +1,24 @@
 
 
-@mixin bottom-glow($color) {
-  $x: 50%;
-  $y: 180%;
-
+@mixin glow($x, $y, $strength, $color) {
   background-repeat: no-repeat;
-  background-image: -webkit-radial-gradient($x $y, $color, transparent 75%);
-  background-image: -moz-radial-gradient($x $y, $color, transparent 75%);
-  background-image: -o-radial-gradient($x $y, $color, transparent 75%);
-  background-image: radial-gradient(at $x $y, $color, transparent 75%);
+  background-image: -webkit-radial-gradient($x $y, $color, transparent $strength);
+  background-image: -moz-radial-gradient($x $y, $color, transparent $strength);
+  background-image: -o-radial-gradient($x $y, $color, transparent $strength);
+  background-image: radial-gradient(at $x $y, $color, transparent $strength);
 }
 
-
-@mixin button-bottom-glow($color) {
-  position: relative;
+@mixin glow-text-shadow() {
   text-shadow: 0 0 10px $black;
 
   a {
     text-shadow: 0 0 10px $black;
   }
+}
+
+@mixin button-glow($x, $y, $strength, $color) {
+  position: relative;
+  @include glow-text-shadow();
 
   &:before {
     position: absolute;
@@ -30,16 +30,25 @@
     height: 100%;
     opacity: 0;
     transition: 0.3s all linear;
-    @include bottom-glow($color);
+    @include glow($x, $y, $strength, $color);
   }
 
   &:hover:before {
     opacity: 0.6;
   }
 
-  &.active:before {
+  &.active:before, &:active:before {
     opacity: 1;
   }
+}
+
+@mixin button-center-glow($color) {
+  @include button-glow(50%, 50%, 65%, $color);
+}
+
+
+@mixin button-bottom-glow($color) {
+  @include button-glow(50%, 180%, 75%, $color);
 }
 
 
