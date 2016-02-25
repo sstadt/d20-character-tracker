@@ -1,0 +1,21 @@
+
+/* Colors
+-------------------------------- */
+
+/* Settings
+-------------------------------- */
+
+/* Styling
+-------------------------------- */
+
+
+.dice-pool {
+  > [class*="block-grid"] {
+    margin: 0;
+
+    li {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

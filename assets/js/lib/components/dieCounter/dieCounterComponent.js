@@ -23,7 +23,9 @@ define([
     },
     methods: {
       increment: function () {
-        this.count++;
+        if (this.count < 5) {
+          this.count++;
+        }
       },
       decrement: function () {
         if (this.count > 0) {

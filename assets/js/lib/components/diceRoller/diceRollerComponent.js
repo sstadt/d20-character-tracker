@@ -5,6 +5,7 @@ define([
   'text!./diceRollerTemplate.html',
   './rollChannels/rollChannels',
   './rollLog/rollLog',
+  'component/dicePool/dicePool',
   'component/dieCounter/dieCounter'
 ], function (constants, io, diceRollerTemplate) {
 

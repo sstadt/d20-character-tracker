@@ -7,3 +7,41 @@
 
 /* Styling
 -------------------------------- */
+
+.die-counter {
+  text-align: center;
+
+  button {
+    margin-bottom: 0;
+  }
+
+  button, .die-count {
+    display: inline-block;
+  }
+
+  .die-count {
+    position: relative;
+    vertical-align: middle;
+    margin: -10px;
+
+    span {
+      font-family: prototype, sans-serif;
+      display: block;
+      position: absolute;
+      color: black;
+      left: 0;
+      top: -10px;
+      width: 50px;
+      line-height: 50px;
+    }
+
+    .icon-image {
+      height: 50px;
+      width: 50px;
+      margin-top: -10px;
+      margin-bottom: -10px;
+    }
+  }
+}
+
+
