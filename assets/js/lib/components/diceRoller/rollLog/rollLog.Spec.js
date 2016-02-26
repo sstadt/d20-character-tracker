@@ -19,20 +19,21 @@ define([
       expect(component.template).toEqual(jasmine.any(String));
     });
 
-    describe('methods', function () {
-      var componentInstance;
+    describe('props', function () {
+      describe('rolls', function () {
+        it('should exist', function () {
+          expect(component.props.rolls).toEqual(jasmine.any(Object));
+        });
 
-      beforeEach(function () {
-        componentInstance = new Vue(component);
+        it('should be an Array type', function () {
+          expect(component.props.rolls.type).toEqual(Array);
+        });
+
+        it('should be required', function () {
+          expect(component.props.rolls.required).toEqual(true);
+        });
       });
-
-      // describe('#sayHi', function () {
-      //   it('should be a function', function () {
-      //     expect(typeof componentInstance.sayHi).toBe('function');
-      //   });
-      // });
     });
-
   });
 
 });
