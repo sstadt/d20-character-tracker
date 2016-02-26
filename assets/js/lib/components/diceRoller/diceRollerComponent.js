@@ -37,13 +37,13 @@ define([
         var self = this,
           roll = {
             description: self.description,
-            ability: parseInt(self.ability, 10),
-            proficiency: parseInt(self.proficiency, 10),
-            difficulty: parseInt(self.difficulty, 10),
-            challenge: parseInt(self.challenge, 10),
-            boost: parseInt(self.boost, 10),
-            setback: parseInt(self.setback, 10),
-            force: parseInt(self.force, 10)
+            ability: self.ability,
+            proficiency: self.proficiency,
+            difficulty: self.difficulty,
+            challenge: self.challenge,
+            boost: self.boost,
+            setback: self.setback,
+            force: self.force
           };
 
         if (self.channel.id) {

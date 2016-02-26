@@ -3,6 +3,6 @@
 require(function () {
   'use strict';
 
-  console.log('index page!')
+  console.log('index page!');
 
 });
