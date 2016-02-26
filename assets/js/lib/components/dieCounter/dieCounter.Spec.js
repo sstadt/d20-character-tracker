@@ -25,11 +25,9 @@ define([
           expect(component.props.count).toEqual(jasmine.any(Object));
         });
 
-        // count.type returns a function ?!?!?!?
-        // it('should be a number', function () {
-        //   console.log(component.props.count.type);
-        //   expect(component.props.count.type).toEqual(jasmine.any(Number));
-        // });
+        it('should be a number', function () {
+          expect(component.props.count.type).toEqual(Number);
+        });
 
         it('should be required', function () {
           expect(component.props.count.required).toEqual(true);
@@ -57,6 +55,12 @@ define([
         it('should increment the count', function () {
           componentInstance.increment();
           expect(componentInstance.count).toEqual(1);
+        });
+
+        it('should not increase the count above 5', function () {
+          componentInstance.count = 5;
+          componentInstance.increment();
+          expect(componentInstance.count).toEqual(5);
         });
       });
 
