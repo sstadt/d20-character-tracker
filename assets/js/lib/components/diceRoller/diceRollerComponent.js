@@ -1,13 +1,14 @@
 
 define([
+  'q',
   'constants',
-  'io',
+  'service/rollService',
   'text!./diceRollerTemplate.html',
   './rollChannels/rollChannels',
   './rollLog/rollLog',
   'component/dicePool/dicePool',
   'component/dieCounter/dieCounter'
-], function (constants, io, diceRollerTemplate) {
+], function (q, constants, rollService, diceRollerTemplate) {
 
   return {
     template: diceRollerTemplate,
@@ -35,7 +36,8 @@ define([
     methods: {
       roll: function () {
         var self = this,
-          roll = {
+          deferred = q.defer(),
+          dicePool = {
             description: self.description,
             ability: self.ability,
             proficiency: self.proficiency,
@@ -47,12 +49,17 @@ define([
           };
 
         if (self.channel.id) {
-          roll.channel = self.channel.id;
+          dicePool.channel = self.channel.id;
         }
 
-        io.socket.get(constants.endpoints.dice.roll, roll, function (response) {
-          self.localRolls.unshift(response);
+        rollService.roll(dicePool).then(function (result) {
+          self.localRolls.unshift(result);
+          deferred.resolve();
+        }, function (reason) {
+          deferred.reject(reason);
         });
+
+        return deferred.promise;
       }
     }
   };

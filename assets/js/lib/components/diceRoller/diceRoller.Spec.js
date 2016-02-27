@@ -1,8 +1,10 @@
 
 define([
+  'q',
   'vue.min',
+  'service/rollService',
   'component/diceRoller/diceRollerComponent'
-], function (Vue, diceRollerComponent) {
+], function (q, Vue, rollService, diceRollerComponent) {
 
   describe('The diceRoller component', function () {
     var component;
@@ -96,8 +98,26 @@ define([
       });
 
       describe('#roll', function () {
+        var done;
+
+        beforeEach(function () {
+          done = false;
+        });
+
         it('should be a function', function () {
           expect(typeof componentInstance.roll).toBe('function');
+        });
+
+        it('should add a new roll on success', function () {
+          spyOn(rollService, 'roll').and.callFake(function () {
+            var deferred = q.defer();
+            deferred.resolve({});
+            return deferred.promise;
+          });
+
+          componentInstance.roll().then(function () {
+            expect(componentInstance.localRolls.length).toEqual(1);
+          });
         });
       });
     });

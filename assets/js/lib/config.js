@@ -25,10 +25,10 @@ requirejs.config({
     'vue.min'       : 'vendor/vue/dist/vue.min',
     'marked'        : 'vendor/marked/lib/marked',
     'moment'        : 'vendor/moment/moment',
+    'q'             : 'vendor/q/q',
 
     // support
     'testComponent' : 'spec/testComponent',
   },
 
 });
-

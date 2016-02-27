@@ -27,6 +27,7 @@
     "moment": "~2.11.2",
     "vue-tooltip": "*",
     "sails.io.js": "~0.13.5",
-    "socket.io-client": "~1.4.5"
+    "socket.io-client": "~1.4.5",
+    "q": "~1.0.1"
   }
 }
