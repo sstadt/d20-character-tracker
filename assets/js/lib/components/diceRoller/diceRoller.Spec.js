@@ -98,25 +98,23 @@ define([
       });
 
       describe('#roll', function () {
-        var done;
-
-        beforeEach(function () {
-          done = false;
-        });
-
         it('should be a function', function () {
           expect(typeof componentInstance.roll).toBe('function');
         });
 
-        it('should add a new roll on success', function () {
-          spyOn(rollService, 'roll').and.callFake(function () {
-            var deferred = q.defer();
-            deferred.resolve({});
-            return deferred.promise;
+        describe('on success', function () {
+          beforeEach(function () {
+            spyOn(rollService, 'roll').and.callFake(function () {
+              var deferred = q.defer();
+              deferred.resolve({});
+              return deferred.promise;
+            });
           });
 
-          componentInstance.roll().then(function () {
-            expect(componentInstance.localRolls.length).toEqual(1);
+          it('should add a new roll', function () {
+            componentInstance.roll().done(function () {
+              expect(componentInstance.localRolls.length).toEqual(1);
+            });
           });
         });
       });

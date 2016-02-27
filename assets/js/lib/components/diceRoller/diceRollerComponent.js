@@ -52,12 +52,17 @@ define([
           dicePool.channel = self.channel.id;
         }
 
-        rollService.roll(dicePool).then(function (result) {
-          self.localRolls.unshift(result);
-          deferred.resolve();
-        }, function (reason) {
-          deferred.reject(reason);
-        });
+        rollService.roll(dicePool)
+          .then(function success(result) {
+            self.localRolls.unshift(result);
+          }, function error(reason) {
+            // handle error
+            console.log(reason);
+          })
+          .done(function () {
+            // resolve for unit testing
+            deferred.resolve();
+          });
 
         return deferred.promise;
       }
