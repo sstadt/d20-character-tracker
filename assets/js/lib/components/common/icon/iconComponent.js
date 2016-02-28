@@ -5,7 +5,7 @@ define([
 
   return {
     template: iconTemplate,
-    props: ["name"]
+    props: ['name']
   };
 
 });

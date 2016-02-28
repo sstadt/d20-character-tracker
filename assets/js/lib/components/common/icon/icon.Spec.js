@@ -11,6 +11,10 @@ define([
     it('should have a template', function () {
       expect(component.template).toEqual(jasmine.any(String));
     });
+
+    it('should have a name property', function () {
+      expect(component.props[0]).toEqual('name');
+    });
   });
 
 });
