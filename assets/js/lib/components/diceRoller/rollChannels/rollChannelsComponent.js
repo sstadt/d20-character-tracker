@@ -2,12 +2,12 @@
 define([
   'lodash',
   'q',
-  'constants',
   'io',
+  'constants',
   'service/channelService',
   'service/userService',
   'text!./rollChannelsTemplate.html'
-], function (_, q, constants, io, channelService, userService, rollChannelsTemplate) {
+], function (_, q, io, constants, channelService, userService, rollChannelsTemplate) {
 
   var events = {};
 
