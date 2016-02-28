@@ -5,30 +5,45 @@ define([
   'constants',
   'io',
   'service/channelService',
+  'service/userService',
   'text!./rollChannelsTemplate.html'
-], function (_, q, constants, io, channelService, rollChannelsTemplate) {
+], function (_, q, constants, io, channelService, userService, rollChannelsTemplate) {
 
   var events = {};
 
   events[constants.events.prompt.valueSubmitted] = function PromptValueSubmitted(data) {
-    var self = this;
+    var self = this,
+      deferred = q.defer();
 
     if (data.value.length > 0) {
       switch (data.name) {
         case self.handlePrompt.name:
           self.chatHandle = '';
-          io.socket.post(constants.endpoints.user.setHandle, { handle: data.value }, function (response) {
-            self.chatHandle = data.value;
-          });
+          userService.setChatHandle(data.value)
+            .then(function success(newHandle) {
+              self.chatHandle = data.value;
+            }, function error(reason) {
+              console.error(reason);
+            })
+            .done(function () { deferred.resolve(); });
+
           break;
         case self.joinChannelPrompt.name:
-          io.socket.post(constants.endpoints.channel.join, { name: data.value }, function (response) {
-            self.channel = response.channel;
-            self.channelLabel = response.channel.name;
-            self.channelRolls = response.rolls.reverse();
-          });
+          channelService.join(data.value)
+            .then(function success(channelData) {
+              self.channel = channelData.channel;
+              self.channelLabel = channelData.channel.name;
+              self.channelRolls = channelData.rolls.reverse();
+            }, function error(reason) {
+              console.error(reason);
+            }).done(function () { deferred.resolve(); });
+
           break;
+        default:
+          deferred.resolve();
       }
+    } else {
+      deferred.resolve();
     }
   };
 
@@ -101,10 +116,7 @@ define([
           }, function error(reason) {
             console.error(reason);
           })
-          .done(function () {
-            // resolve for unit tests
-            deferred.resolve();
-          });
+          .done(function () { deferred.resolve(); });
 
         return deferred.promise;
       }

@@ -183,12 +183,6 @@ define([
           });
         });
       });
-
-      // describe('#sayHi', function () {
-      //   it('should be a function', function () {
-      //     expect(typeof componentInstance.sayHi).toBe('function');
-      //   });
-      // });
     });
 
     describe('events', function () {

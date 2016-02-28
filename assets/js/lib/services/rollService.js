@@ -1,10 +1,10 @@
 
 
 define([
-  'constants',
   'q',
-  'io'
-], function (constants, q, io) {
+  'io',
+  'constants'
+], function (q, io, constants) {
   return {
     roll: function (roll) {
       var deferred = q.defer();
