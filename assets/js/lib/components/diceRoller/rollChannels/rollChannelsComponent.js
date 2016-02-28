@@ -12,38 +12,18 @@ define([
   var events = {};
 
   events[constants.events.prompt.valueSubmitted] = function PromptValueSubmitted(data) {
-    var self = this,
-      deferred = q.defer();
+    var self = this;
 
     if (data.value.length > 0) {
       switch (data.name) {
         case self.handlePrompt.name:
-          self.chatHandle = '';
-          userService.setChatHandle(data.value)
-            .then(function success(newHandle) {
-              self.chatHandle = data.value;
-            }, function error(reason) {
-              console.error(reason);
-            })
-            .done(function () { deferred.resolve(); });
-
+          self.setChatHandle(data.value);
           break;
+
         case self.joinChannelPrompt.name:
-          channelService.join(data.value)
-            .then(function success(channelData) {
-              self.channel = channelData.channel;
-              self.channelLabel = channelData.channel.name;
-              self.channelRolls = channelData.rolls.reverse();
-            }, function error(reason) {
-              console.error(reason);
-            }).done(function () { deferred.resolve(); });
-
+          self.joinChannel(data.value);
           break;
-        default:
-          deferred.resolve();
       }
-    } else {
-      deferred.resolve();
     }
   };
 
@@ -99,11 +79,40 @@ define([
       clearLocalRolls: function () {
         this.localRolls = [];
       },
-      setChatHandle: function () {
+      openSetChatHandlePrompt: function () {
         this.$broadcast(constants.events.prompt.promptUser, this.handlePrompt.name);
       },
-      joinChannel: function () {
+      openJoinChannelPrompt: function () {
         this.$broadcast(constants.events.prompt.promptUser, this.joinChannelPrompt.name);
+      },
+      setChatHandle: function (newHandle) {
+        var self = this,
+          deferred = q.defer();
+
+        self.chatHandle = '';
+        userService.setChatHandle(newHandle)
+          .then(function success() {
+            self.chatHandle = newHandle;
+          }, function error(reason) {
+            console.error(reason);
+          }).done(function () { deferred.resolve(); });
+
+        return deferred.promise;
+      },
+      joinChannel: function (channelName) {
+        var self = this,
+          deferred = q.defer();
+
+        channelService.join(channelName)
+          .then(function success(channelData) {
+            self.channel = channelData.channel;
+            self.channelLabel = channelData.channel.name;
+            self.channelRolls = channelData.rolls.reverse();
+          }, function error(reason) {
+            console.error(reason);
+          }).done(function () { deferred.resolve(); });
+
+        return deferred.promise;
       },
       leaveChannel: function () {
         var self = this,
@@ -115,8 +124,7 @@ define([
             self.channelRolls = [];
           }, function error(reason) {
             console.error(reason);
-          })
-          .done(function () { deferred.resolve(); });
+          }).done(function () { deferred.resolve(); });
 
         return deferred.promise;
       }

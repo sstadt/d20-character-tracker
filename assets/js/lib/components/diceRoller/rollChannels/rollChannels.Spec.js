@@ -135,9 +135,9 @@ define([
         });
       });
 
-      describe('#setChatHandle', function () {
+      describe('#openSetChatHandlePrompt', function () {
         beforeEach(function () {
-          componentInstance.setChatHandle();
+          componentInstance.openSetChatHandlePrompt();
         });
 
         it('should open the chat handle prompt', function () {
@@ -145,9 +145,10 @@ define([
         });
       });
 
-      describe('#joinChannel', function () {
+      describe('#openJoinChannelPrompt', function () {
         beforeEach(function () {
-          componentInstance.joinChannel();
+          console.log(componentInstance.openJoinChannelPrompt);
+          componentInstance.openJoinChannelPrompt();
         });
 
         it('should open the join channel prompt', function () {
