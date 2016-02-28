@@ -147,7 +147,6 @@ define([
 
       describe('#openJoinChannelPrompt', function () {
         beforeEach(function () {
-          console.log(componentInstance.openJoinChannelPrompt);
           componentInstance.openJoinChannelPrompt();
         });
 
