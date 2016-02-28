@@ -156,30 +156,60 @@ define([
       });
 
       describe('#leaveChannel', function () {
+        beforeEach(function () {
+          componentInstance.channelRolls = [{}];
+        });
+
         it('should exist', function () {
           expect(typeof componentInstance.leaveChannel).toBe('function');
         });
 
         describe('on success', function () {
-          beforeEach(function () {
+          beforeEach(function (done) {
             componentInstance.channel = { id: '1234' };
+
             spyOn(channelService, 'leave').and.callFake(function () {
               var deferred = q.defer();
               deferred.resolve({});
               return deferred.promise;
             });
+
+            componentInstance.leaveChannel().done(function () { done(); });
           });
 
           it('should remove the channel data', function () {
-            componentInstance.leaveChannel().done(function () {
-              expect(componentInstance.channel).toEqual({});
-            });
+            expect(componentInstance.channel).toEqual({});
           });
 
           it('should reset the channelRolls', function () {
-            componentInstance.leaveChannel().done(function () {
-              expect(componentInstance.channelRolls).toEqual([]);
+            expect(componentInstance.channelRolls.length).toEqual(0);
+          });
+        });
+
+        describe('on error', function () {
+          beforeEach(function (done) {
+            componentInstance.channel = { id: '1234' };
+
+            spyOn(console, 'error');
+            spyOn(channelService, 'leave').and.callFake(function () {
+              var deferred = q.defer();
+              deferred.reject('test error');
+              return deferred.promise;
             });
+
+            componentInstance.leaveChannel().done(function () { done(); });
+          });
+
+          it('should not remove the channel data', function () {
+            expect(componentInstance.channel).toEqual({ id: '1234' });
+          });
+
+          it('should not reset the channelRolls', function () {
+            expect(componentInstance.channelRolls.length).toEqual(1);
+          });
+
+          it('should log an error', function () {
+            expect(console.error).toHaveBeenCalled();
           });
         });
       });

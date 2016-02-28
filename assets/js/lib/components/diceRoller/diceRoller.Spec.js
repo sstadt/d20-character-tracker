@@ -105,34 +105,39 @@ define([
         // todo: this only works once! re-setting the spy will break the original deferred spy
 
         describe('on success', function () {
-          beforeEach(function () {
+          beforeEach(function (done) {
             spyOn(rollService, 'roll').and.callFake(function () {
               var deferred = q.defer();
               deferred.resolve({});
               return deferred.promise;
             });
+
+            componentInstance.roll().done(function () { done(); });
           });
 
           it('should add a new roll', function () {
-            componentInstance.roll().done(function () {
-              expect(componentInstance.localRolls.length).toEqual(1);
-            });
+            expect(componentInstance.localRolls.length).toEqual(1);
           });
         });
 
         describe('on error', function () {
-          beforeEach(function () {
+          beforeEach(function (done) {
+            spyOn(console, 'error');
             spyOn(rollService, 'roll').and.callFake(function () {
               var deferred = q.defer();
               deferred.reject('test error');
               return deferred.promise;
             });
+
+            componentInstance.roll().done(function () { done(); });
           });
 
           it('should not add a new roll', function () {
-            componentInstance.roll().done(function () {
-              expect(componentInstance.localRolls.length).toEqual(0);
-            });
+            expect(componentInstance.localRolls.length).toEqual(0);
+          });
+
+          it('should log an error', function () {
+            expect(console.error).toHaveBeenCalled();
           });
         });
       });
