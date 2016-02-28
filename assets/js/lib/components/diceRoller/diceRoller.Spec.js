@@ -119,6 +119,22 @@ define([
             });
           });
         });
+
+        describe('on error', function () {
+          beforeEach(function () {
+            spyOn(rollService, 'roll').and.callFake(function () {
+              var deferred = q.defer();
+              deferred.reject('test error');
+              return deferred.promise;
+            });
+          });
+
+          it('should not add a new roll', function () {
+            componentInstance.roll().done(function () {
+              expect(componentInstance.localRolls.length).toEqual(0);
+            });
+          });
+        });
       });
     });
 
