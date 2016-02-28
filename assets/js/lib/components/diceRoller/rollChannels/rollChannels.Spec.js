@@ -263,14 +263,29 @@ define([
       });
 
       describe('*valueSubmitted', function () {
+        var data;
+
+        beforeEach(function () {
+          spyOn(componentInstance, 'setChatHandle');
+          spyOn(componentInstance, 'joinChannel');
+          data = { value: 'test' };
+        });
+
         it('should be a function', function () {
           expect(typeof component.events[constants.events.prompt.valueSubmitted]).toBe('function');
         });
 
-        // it('should set the current step', function () {
-        //   componentInstance.$emit(constants.events.prompt.valueSubmitted, 'attributes');
-        //   expect(componentInstance.currentStep).toEqual('attributes');
-        // });
+        it('should call #setChatHandle when passed a value and the name of the handle prompt', function () {
+          data.name = componentInstance.handlePrompt.name;
+          componentInstance.$emit(constants.events.prompt.valueSubmitted, data);
+          expect(componentInstance.setChatHandle).toHaveBeenCalled();
+        });
+
+        it('should call #joinChannel when passed a value and the name of the join channel prompt', function () {
+          data.name = componentInstance.joinChannelPrompt.name;
+          componentInstance.$emit(constants.events.prompt.valueSubmitted, data);
+          expect(componentInstance.joinChannel).toHaveBeenCalled();
+        });
       });
     });
 
