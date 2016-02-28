@@ -56,8 +56,7 @@ define([
           .then(function success(result) {
             self.localRolls.unshift(result);
           }, function error(reason) {
-            // handle error
-            console.log(reason);
+            console.error(reason);
           })
           .done(function () {
             // resolve for unit testing

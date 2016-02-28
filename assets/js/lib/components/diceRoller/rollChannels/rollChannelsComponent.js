@@ -1,10 +1,12 @@
 
 define([
   'lodash',
+  'q',
   'constants',
   'io',
+  'service/channelService',
   'text!./rollChannelsTemplate.html'
-], function (_, constants, io, rollChannelsTemplate) {
+], function (_, q, constants, io, channelService, rollChannelsTemplate) {
 
   var events = {};
 
@@ -28,7 +30,7 @@ define([
           break;
       }
     }
-  }; 
+  };
 
   return {
     template: rollChannelsTemplate,
@@ -89,13 +91,22 @@ define([
         this.$broadcast(constants.events.prompt.promptUser, this.joinChannelPrompt.name);
       },
       leaveChannel: function () {
-        var self = this;
+        var self = this,
+          deferred = q.defer();
 
-        io.socket.post(constants.channel.endpoints.leave, { channel: self.channel.id }, function () {
-          self.channel = {};
-          self.channelLabel = 'Roll Channel';
-          self.channelRolls = [];
-        });
+        channelService.leave(self.channel.id)
+          .then(function success() {
+            self.channel = {};
+            self.channelRolls = [];
+          }, function error(reason) {
+            console.error(reason);
+          })
+          .done(function () {
+            // resolve for unit tests
+            deferred.resolve();
+          });
+
+        return deferred.promise;
       }
     }
   };

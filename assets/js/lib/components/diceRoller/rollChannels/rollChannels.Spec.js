@@ -1,8 +1,10 @@
 
 define([
+  'q',
   'vue.min',
+  'service/channelService',
   'component/diceRoller/rollChannels/rollChannelsComponent'
-], function (Vue, rollChannelsComponent) {
+], function (q, Vue, channelService, rollChannelsComponent) {
 
   describe('The rollChannels component', function () {
     var component;
@@ -89,11 +91,75 @@ define([
       });
     });
 
+    describe('data', function () {
+      var data;
+
+      beforeEach(function () {
+        data = component.data();
+      });
+
+      it('should have a joinChannelPrompt', function () {
+        expect(data.joinChannelPrompt).toEqual(jasmine.any(Object));
+        expect(data.joinChannelPrompt.name).toEqual(jasmine.any(String));
+        expect(data.joinChannelPrompt.label).toEqual(jasmine.any(String));
+      });
+
+      it('should have a handlePrompt', function () {
+        expect(data.handlePrompt).toEqual(jasmine.any(Object));
+        expect(data.handlePrompt.name).toEqual(jasmine.any(String));
+        expect(data.handlePrompt.label).toEqual(jasmine.any(String));
+      });
+    });
+
     describe('methods', function () {
       var componentInstance;
 
       beforeEach(function () {
         componentInstance = new Vue(component);
+      });
+
+      describe('#clearLocalRolls', function () {
+        beforeEach(function () {
+          componentInstance.localRolls = [{}];
+          componentInstance.clearLocalRolls();
+        });
+
+        it('should exist', function () {
+          expect(typeof componentInstance.clearLocalRolls).toBe('function');
+        });
+
+        it('should reset localRolls', function () {
+          expect(componentInstance.localRolls).toEqual([]);
+        });
+      });
+
+      describe('#leaveChannel', function () {
+        it('should exist', function () {
+          expect(typeof componentInstance.leaveChannel).toBe('function');
+        });
+
+        describe('on success', function () {
+          beforeEach(function () {
+            componentInstance.channel = { id: '1234' };
+            spyOn(channelService, 'leave').and.callFake(function () {
+              var deferred = q.defer();
+              deferred.resolve({});
+              return deferred.promise;
+            });
+          });
+
+          it('should remove the channel data', function () {
+            componentInstance.leaveChannel().done(function () {
+              expect(componentInstance.channel).toEqual({});
+            });
+          });
+
+          it('should reset the channelRolls', function () {
+            componentInstance.leaveChannel().done(function () {
+              expect(componentInstance.channelRolls).toEqual([]);
+            });
+          });
+        });
       });
 
       // describe('#sayHi', function () {

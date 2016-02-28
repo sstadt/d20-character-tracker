@@ -102,6 +102,8 @@ define([
           expect(typeof componentInstance.roll).toBe('function');
         });
 
+        // todo: this only works once! re-setting the spy will break the original deferred spy
+
         describe('on success', function () {
           beforeEach(function () {
             spyOn(rollService, 'roll').and.callFake(function () {
