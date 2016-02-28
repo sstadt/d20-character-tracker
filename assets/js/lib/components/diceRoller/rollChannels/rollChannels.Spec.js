@@ -2,9 +2,10 @@
 define([
   'q',
   'vue.min',
+  'constants',
   'service/channelService',
   'component/diceRoller/rollChannels/rollChannelsComponent'
-], function (q, Vue, channelService, rollChannelsComponent) {
+], function (q, Vue, constants, channelService, rollChannelsComponent) {
 
   describe('The rollChannels component', function () {
     var component;
@@ -116,6 +117,7 @@ define([
 
       beforeEach(function () {
         componentInstance = new Vue(component);
+        spyOn(componentInstance, '$broadcast');
       });
 
       describe('#clearLocalRolls', function () {
@@ -130,6 +132,26 @@ define([
 
         it('should reset localRolls', function () {
           expect(componentInstance.localRolls).toEqual([]);
+        });
+      });
+
+      describe('#setChatHandle', function () {
+        beforeEach(function () {
+          componentInstance.setChatHandle();
+        });
+
+        it('should open the chat handle prompt', function () {
+          expect(componentInstance.$broadcast).toHaveBeenCalledWith(constants.events.prompt.promptUser, componentInstance.handlePrompt.name);
+        });
+      });
+
+      describe('#joinChannel', function () {
+        beforeEach(function () {
+          componentInstance.joinChannel();
+        });
+
+        it('should open the join channel prompt', function () {
+          expect(componentInstance.$broadcast).toHaveBeenCalledWith(constants.events.prompt.promptUser, componentInstance.joinChannelPrompt.name);
         });
       });
 
@@ -167,6 +189,29 @@ define([
       //     expect(typeof componentInstance.sayHi).toBe('function');
       //   });
       // });
+    });
+
+    describe('events', function () {
+      var componentInstance;
+
+      beforeEach(function () {
+        componentInstance = new Vue(component);
+      });
+
+      it('should be an object', function () {
+        expect(component.events).toEqual(jasmine.any(Object));
+      });
+
+      describe('*valueSubmitted', function () {
+        it('should be a function', function () {
+          expect(typeof component.events[constants.events.prompt.valueSubmitted]).toBe('function');
+        });
+
+        // it('should set the current step', function () {
+        //   componentInstance.$emit(constants.events.prompt.valueSubmitted, 'attributes');
+        //   expect(componentInstance.currentStep).toEqual('attributes');
+        // });
+      });
     });
 
   });
