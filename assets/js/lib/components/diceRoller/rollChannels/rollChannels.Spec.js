@@ -3,9 +3,10 @@ define([
   'q',
   'vue.min',
   'constants',
+  'service/userService',
   'service/channelService',
   'component/diceRoller/rollChannels/rollChannelsComponent'
-], function (q, Vue, constants, channelService, rollChannelsComponent) {
+], function (q, Vue, constants, userService, channelService, rollChannelsComponent) {
 
   describe('The rollChannels component', function () {
     var component;
@@ -126,10 +127,6 @@ define([
           componentInstance.clearLocalRolls();
         });
 
-        it('should exist', function () {
-          expect(typeof componentInstance.clearLocalRolls).toBe('function');
-        });
-
         it('should reset localRolls', function () {
           expect(componentInstance.localRolls).toEqual([]);
         });
@@ -155,13 +152,52 @@ define([
         });
       });
 
+      describe('#setChatHandle', function () {
+        beforeEach(function () {
+          componentInstance.chatHandle = '';
+        });
+
+        describe('on success', function () {
+          beforeEach(function (done) {
+            spyOn(userService, 'setChatHandle').and.callFake(function () {
+              var deferred = q.defer();
+              deferred.resolve();
+              return deferred.promise;
+            });
+
+            componentInstance.setChatHandle('test handle').done(function () { done(); });
+          });
+
+          it('should set the chat handle', function () {
+            expect(componentInstance.chatHandle).toEqual('test handle');
+          });
+        });
+
+        describe('on error', function () {
+          beforeEach(function (done) {
+            spyOn(console, 'error');
+            spyOn(userService, 'setChatHandle').and.callFake(function () {
+              var deferred = q.defer();
+              deferred.reject('test error');
+              return deferred.promise;
+            });
+
+            componentInstance.setChatHandle('test handle').done(function () { done(); });
+          });
+
+          it('should not set the chat handle', function () {
+            expect(componentInstance.chatHandle).toEqual('');
+          });
+
+          it('should log an error', function () {
+            expect(console.error).toHaveBeenCalled();
+          });
+        });
+      });
+
       describe('#leaveChannel', function () {
         beforeEach(function () {
           componentInstance.channelRolls = [{}];
-        });
-
-        it('should exist', function () {
-          expect(typeof componentInstance.leaveChannel).toBe('function');
         });
 
         describe('on success', function () {
