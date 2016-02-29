@@ -5,7 +5,8 @@ define([
   'constants',
   'service/userService',
   'service/channelService',
-  'component/diceRoller/rollChannels/rollChannelsComponent'
+  'component/diceRoller/rollChannels/rollChannelsComponent',
+  'component/common/alert/alert'
 ], function (q, Vue, constants, userService, channelService, rollChannelsComponent) {
 
   describe('The rollChannels component', function () {
@@ -175,6 +176,7 @@ define([
 
         describe('on error', function () {
           beforeEach(function (done) {
+            componentInstance.rollChannelsAlert.error = jasmine.createSpy('error');
             spyOn(console, 'error');
             spyOn(userService, 'setChatHandle').and.callFake(function () {
               var deferred = q.defer();
@@ -189,11 +191,13 @@ define([
             expect(componentInstance.chatHandle).toEqual('');
           });
 
-          it('should log an error', function () {
-            expect(console.error).toHaveBeenCalled();
+          it('should show an error', function () {
+            expect(componentInstance.rollChannelsAlert.error).toHaveBeenCalled();
           });
         });
       });
+
+      // TODO: Need tests for #joinChannel
 
       describe('#leaveChannel', function () {
         beforeEach(function () {
@@ -225,7 +229,7 @@ define([
         describe('on error', function () {
           beforeEach(function (done) {
             componentInstance.channel = { id: '1234' };
-
+            componentInstance.rollChannelsAlert.error = jasmine.createSpy('error');
             spyOn(console, 'error');
             spyOn(channelService, 'leave').and.callFake(function () {
               var deferred = q.defer();
@@ -244,8 +248,8 @@ define([
             expect(componentInstance.channelRolls.length).toEqual(1);
           });
 
-          it('should log an error', function () {
-            expect(console.error).toHaveBeenCalled();
+          it('should show an error', function () {
+            expect(componentInstance.rollChannelsAlert.error).toHaveBeenCalled();
           });
         });
       });

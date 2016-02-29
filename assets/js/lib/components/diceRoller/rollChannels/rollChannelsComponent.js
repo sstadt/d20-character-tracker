@@ -95,7 +95,7 @@ define([
           .then(function success() {
             self.chatHandle = newHandle;
           }, function error(reason) {
-            console.error(reason);
+            self.rollChannelsAlert.error(reason);
           }).done(function () { deferred.resolve(); });
 
         return deferred.promise;
@@ -110,7 +110,7 @@ define([
             self.channelLabel = channelData.channel.name;
             self.channelRolls = channelData.rolls.reverse();
           }, function error(reason) {
-            console.error(reason);
+            self.rollChannelsAlert.error(reason);
           }).done(function () { deferred.resolve(); });
 
         return deferred.promise;
@@ -124,7 +124,7 @@ define([
             self.channel = {};
             self.channelRolls = [];
           }, function error(reason) {
-            console.error(reason);
+            self.rollChannelsAlert.error(reason);
           }).done(function () { deferred.resolve(); });
 
         return deferred.promise;
