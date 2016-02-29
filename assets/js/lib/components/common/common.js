@@ -1,6 +1,7 @@
 
 
 define([
+  'component/common/alert/alert',
   'component/common/icon/icon',
   'component/common/panel/panel',
   'component/common/modal/modal',
@@ -8,4 +9,3 @@ define([
   'component/common/tabs/tabs',
   'component/common/vInput/vInput'
 ]);
-

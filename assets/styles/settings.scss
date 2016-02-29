@@ -81,7 +81,7 @@ $bodyFontColor  : $primaryColor;
 $subtextColor   : $stormySky;
 $scrollBarBg    : $primaryColor;
 
-$zIndexModal    : 9000; 
+$zIndexModal    : 9000;
 $zIndexOverlay  : 8000;
 $zIndexDropdown : 7000;
 $zIndexHeader   : 6000;
@@ -109,11 +109,9 @@ $minButtonSize : rem-calc(44);
 
 $panelBgOpacity    : 0.6;
 $panelBgColor      : $black;
-// this is going to eff up the dice roller - will need to restyle it to work with the new theme
 $panelBg           : rgba($panelBgColor, $panelBgOpacity);
 $panelBgZebra      : lighten($panelBg, 5%);
 $panelBorderColor  : $mayaBlue;
-// below this shouldn't need refactoring
 
 $panelBevelSizeNum : 30;
 $panelBevelSize    : rem-calc($panelBevelSizeNum);
@@ -138,11 +136,12 @@ $inputFocusBgColor     : transparent;
 $inputBorderColor      : $primaryColor;
 $inputFocusBorderColor : $primaryColor;
 $inputDisabledBg       : transparent;
+$placeholderColor      : rgba($primaryColor, 0.7);
 
 $inputBorderStyle      : solid;
 $inputBorderWidth      : 2px;
 $inputBoxShadow        : none;
-$inputOpacity          : 0.8;
+$inputOpacity          : 1;
 $inputFocusOpacity     : 1;
 $inputTransition       : 0.3s all linear;
 
@@ -171,4 +170,3 @@ $titleBarBgHover      : lighten($titleBarBg, 1%);
 $titleBarBorderHover  : lighten($titleBarBorder, 1%);
 $titleBarBgActive     : $titleBarBg;
 $titleBarBorderActive : $titleBarBorder;
-

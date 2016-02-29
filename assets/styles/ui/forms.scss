@@ -27,6 +27,19 @@ textarea {
   &:focus {
     box-shadow: $inputBoxShadow;
   }
+
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $placeholderColor;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $placeholderColor;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $placeholderColor;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $placeholderColor;
+  }
 }
 
 select {
@@ -38,4 +51,3 @@ select {
     box-shadow: $inputBoxShadow;
   }
 }
-

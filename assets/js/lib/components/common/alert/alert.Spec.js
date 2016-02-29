@@ -20,39 +20,21 @@ define([
     });
 
     describe('props', function () {
-      describe('messages', function () {
+      describe('alert', function () {
         it('should exist', function () {
-            expect(component.props.messages).toEqual(jasmine.any(Object));
+            expect(component.props.alert).toEqual(jasmine.any(Object));
         });
 
         it('should be a array', function () {
-          expect(component.props.messages.type).toEqual(Array);
+          expect(component.props.alert.type).toEqual(Object);
         });
 
         it('should be required', function () {
-          expect(component.props.messages.required).toEqual(true);
+          expect(component.props.alert.required).toEqual(true);
         });
 
         it('should be a two way binding', function () {
-          expect(component.props.messages.twoWay).toEqual(true);
-        });
-      });
-
-      describe('type', function () {
-        it('should exist', function () {
-            expect(component.props.type).toEqual(jasmine.any(Object));
-        });
-
-        it('should be a string', function () {
-          expect(component.props.type.type).toEqual(String);
-        });
-
-        it('should be required', function () {
-          expect(component.props.type.required).toEqual(true);
-        });
-
-        it('should be a two way binding', function () {
-          expect(component.props.type.twoWay).toEqual(true);
+          expect(component.props.alert.twoWay).toEqual(true);
         });
       });
     });
@@ -69,12 +51,12 @@ define([
           expect(typeof componentInstance.close).toBe('function');
         });
 
-        it('should clear the messages in the alert', function () {
-          componentInstance.messages = ['test'];
-          componentInstance.close();
-
-          expect(componentInstance.messages).toEqual([]);
-        });
+        // it('should clear the messages in the alert', function () {
+        //   componentInstance.alert.messages = ['test'];
+        //   componentInstance.close();
+        //
+        //   expect(componentInstance.alert.messages).toEqual([]);
+        // });
       });
     });
 

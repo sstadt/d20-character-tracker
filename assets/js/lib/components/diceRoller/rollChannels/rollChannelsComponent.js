@@ -53,6 +53,7 @@ define([
     },
     data: function () {
       return {
+        rollChannelsAlert: {},
         joinChannelPrompt: {
           name: 'roll-channels-prompt__join-channel',
           label: 'Enter new channel name'

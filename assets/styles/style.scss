@@ -48,6 +48,7 @@
 @import "ui/title-bar";
 
 // common components
+@import "../js/lib/components/common/alert/_alert";
 @import "../js/lib/components/common/panel/_panel";
 @import "../js/lib/components/common/prompt/_prompt";
 @import "../js/lib/components/common/modal/_modal";
@@ -63,5 +64,3 @@
 @import "../js/lib/components/characterCreator/steps/personaEditor/_personaEditor";
 
 // views
-
-
