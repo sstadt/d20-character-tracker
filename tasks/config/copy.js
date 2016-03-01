@@ -20,32 +20,8 @@ module.exports = function (grunt) {
       files: [{
         expand: true,
         cwd: './assets',
-        src: ['images/**/*', 'js/**/*', 'fonts/**/*', 'favicon.ico', 'robots.txt'],
+        src: ['images/**/*', 'fonts/**/*', 'favicon.ico', 'robots.txt'],
         dest: '.tmp/public'
-      }]
-    },
-    prod: {
-      files: [{
-        expand: true,
-        cwd: './assets',
-        src: ['images/*', 'fonts/**/*', 'favicon.ico', 'robots.txt'],
-        dest: '.tmp/public'
-      }]
-    },
-    jsbuild: {
-      files: [{
-        expand: true,
-        cwd: '.tmp/public/js-build/app',
-        src: ['*.js'],
-        dest: '.tmp/public/js'
-      }]
-    },
-    build: {
-      files: [{
-        expand: true,
-        cwd: '.tmp/public',
-        src: ['**/*'],
-        dest: 'www'
       }]
     }
   });

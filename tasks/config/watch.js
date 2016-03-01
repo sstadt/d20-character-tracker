@@ -18,23 +18,24 @@ module.exports = function (grunt) {
     options: {
       livereload: 9090,
     },
-    api: {
-      files: ['api/**/*']
-    },
     views: {
       files: ['views/**/*']
     },
     assets: {
-      files: ['assets/js/**/*.js', 'assets/js/**/*.html', 'assets/images/**/*', 'tasks/pipeline.js', '!assets/js/vendor/**/*'],
+      files: ['assets/images/**/*'],
       tasks: ['copy:dev']
+    },
+    js: {
+      files: ['assets/js/**/*'],
+      tasks: ['browserify:dev']
     },
     sass: {
       files: ['assets/**/*.scss'],
       tasks: ['sass:dev']
     },
-    style: {
-      files: ['.tmp/public/styles/style.css']
-    }
+    // style: { // not sure if I need this anymore
+    //   files: ['.tmp/public/styles/style.css']
+    // }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');

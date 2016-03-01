@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 
   grunt.config.set('sails-linker', {
 
-    devStyles: {
+    dev: {
       options: {
         startTag: '<!--STYLES-->',
         endTag: '<!--STYLES END-->',
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
       }
     },
 
-    prodStyles: {
+    prod: {
       options: {
         startTag: '<!--STYLES-->',
         endTag: '<!--STYLES END-->',
