@@ -2,7 +2,7 @@
 
 /**
  * Flex panel header with 45deg "cut corners"
- * 
+ *
  * @param  {number}  $borderNum         The size of the border
  * @param  {hex}     $borderColor       The border color
  * @param  {hex}     $backgroundColor   The background color
@@ -33,7 +33,7 @@
 
 /**
  * Flex panel content with no top or bottom borders
- * 
+ *
  * @param  {number}  $borderNum         The size of the border
  * @param  {hex}     $borderColor       The border color
  * @param  {hex}     $backgroundColor   The background color
@@ -46,11 +46,12 @@
   border-right: to-px($borderNum) solid $borderColor;
   padding-right: to-px($paddingNum);
   padding-left: to-px($paddingNum);
+  overflow: hidden;
 }
 
 /**
  * Flex panel header with 45deg "cut corners"
- * 
+ *
  * @param  {number}  $borderNum         The size of the border
  * @param  {hex}     $borderColor       The border color
  * @param  {hex}     $backgroundColor   The background color
@@ -83,4 +84,3 @@
     @include angled-corner(false, false, $borderNum, $borderColor, $backgroundColor, $backgroundOpacity, $paddingNum);
   }
 }
-
