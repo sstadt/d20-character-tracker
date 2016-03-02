@@ -1,38 +1,36 @@
 
+var q = require('Q');
 
-define([
-  'q',
-  'io',
-  'constants'
-], function (q, io, constants) {
-  return {
-    join: function (channelName) {
-      var deferred = q.defer();
+var io = require('../config/io.js');
+var constants = require('../config/constants.js');
 
-      io.socket.post(constants.endpoints.channel.join, { name: channelName }, function (response) {
-        if (response.err) {
-          console.error(response.err);
-          deferred.reject('There was an error joining that channel');
-        } else {
-          deferred.resolve(response);
-        }
-      });
+module.exports = {
+  join: function (channelName) {
+    var deferred = q.defer();
 
-      return deferred.promise;
-    },
-    leave: function (channelId) {
-      var deferred = q.defer();
+    io.socket.post(constants.endpoints.channel.join, { name: channelName }, function (response) {
+      if (response.err) {
+        console.error(response.err);
+        deferred.reject('There was an error joining that channel');
+      } else {
+        deferred.resolve(response);
+      }
+    });
 
-      io.socket.post(constants.endpoints.channel.leave, { channel: channelId }, function (err) {
-        if (err) {
-          console.error(err);
-          deferred.reject('There was an error leaving the channel');
-        } else {
-          deferred.resolve();
-        }
-      });
+    return deferred.promise;
+  },
+  leave: function (channelId) {
+    var deferred = q.defer();
 
-      return deferred.promise;
-    }
-  };
-});
+    io.socket.post(constants.endpoints.channel.leave, { channel: channelId }, function (err) {
+      if (err) {
+        console.error(err);
+        deferred.reject('There was an error leaving the channel');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
+  }
+};

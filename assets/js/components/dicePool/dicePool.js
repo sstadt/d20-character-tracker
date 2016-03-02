@@ -1,8 +1,5 @@
-define([
-  'vue',
-  './dicePoolComponent'
-], function (Vue, dicePoolComponent) {
 
-  Vue.component('dicePool', dicePoolComponent);
+var Vue = require('Vue');
+var dicePoolComponent = require('./dicePoolComponent.js');
 
-});
+Vue.component('dicePool', dicePoolComponent);

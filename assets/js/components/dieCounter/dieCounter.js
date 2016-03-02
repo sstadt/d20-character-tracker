@@ -1,8 +1,5 @@
-define([
-  'vue',
-  './dieCounterComponent'
-], function (Vue, dieCounterComponent) {
 
-  Vue.component('dieCounter', dieCounterComponent);
+var Vue = require('Vue');
+var dieCounterComponent = require('./dieCounterComponent.js');
 
-});
+Vue.component('dieCounter', dieCounterComponent);
