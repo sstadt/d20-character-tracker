@@ -4,6 +4,7 @@
   $adjLength    : tan(22.5deg) * $width;
   $oppAdjLength : $size - $adjLength;
   $subSize      : $size - $width;
+  $points       : null;
 
   @if $top { // top
     @if $left { // left
@@ -23,6 +24,8 @@
 }
 
 @function generate-corner-background($top, $left, $size) {
+  $points : null;
+
   @if $top { // top
     @if $left { // left
       $points: svg-point(0, $size) + svg-point($size, $size) + svg-point($size, 0);
@@ -50,4 +53,3 @@
   background-image: url(generate-svg($cornerSize, $cornerSize, $cornerShapes));
   background-repeat: no-repeat;
 }
-

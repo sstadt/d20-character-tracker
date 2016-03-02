@@ -1,29 +1,26 @@
 /**
- * 
+ *
  * Steps
  * ----------------------------
- * 
+ *
  * Returns an object of step templates
- * 
+ *
  */
 
-define([
-  'lodash',
-  'text!./stepTemplate.html'
-], function (_, _stepTemplate) {
-  'use strict';
+var _ = require('lodash');
 
-  var stepTemplate = _.template(_stepTemplate),
-    returnTemplates = {},
-    steps = [
-      'persona',
-      'species',
-      'career'
-    ];
+var _stepTemplate = require('./stepTemplate.html');
 
-  for (var i = 0, j = steps.length; i < j; i++) {
-    returnTemplates[steps[i]] = stepTemplate({ step: steps[i] });
-  }
+var stepTemplate = _.template(_stepTemplate),
+  returnTemplates = {},
+  steps = [
+    'persona',
+    'species',
+    'career'
+  ];
 
-  return returnTemplates;
-});
+for (var i = 0, j = steps.length; i < j; i++) {
+  returnTemplates[steps[i]] = stepTemplate({ step: steps[i] });
+}
+
+module.exports = returnTemplates;

@@ -1,8 +1,5 @@
-define([
-  'vue',
-  './careerEditorComponent'
-], function (Vue, careerEditorComponent) {
 
-  Vue.component('careerEditor', careerEditorComponent);
-  
-});
+var Vue = require('Vue');
+var careerEditorComponent = require('./careerEditorComponent.js');
+
+Vue.component('careerEditor', careerEditorComponent);

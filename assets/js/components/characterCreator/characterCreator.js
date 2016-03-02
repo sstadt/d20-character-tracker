@@ -1,8 +1,5 @@
-define([
-  'vue',
-  './characterCreatorComponent'
-], function (Vue, characterCreatorComponent) {
 
-  Vue.component('characterCreator', characterCreatorComponent);
-  
-});
+var Vue = require('Vue');
+var characterCreatorComponent = require('./characterCreatorComponent.js');
+
+Vue.component('characterCreator', characterCreatorComponent);

@@ -1,8 +1,5 @@
-define([
-  'vue',
-  './characterListComponent'
-], function (Vue, characterListComponent) {
 
-  Vue.component('characterList', characterListComponent);
+var Vue = require('Vue');
+var characterListComponent = require('./characterListComponent.js');
 
-});
+Vue.component('characterList', characterListComponent);

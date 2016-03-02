@@ -1,13 +1,13 @@
 
 /**
- * 
+ *
  * character-creator
  * ----------------------------
  *
  * Builds a wizard for character creation from steps.
  *
  * To add a new step
- * 
+ *
  *   1) add a child component with the 'Editor' suffix:
  *     grunt component --name=newEditor --parent=characterCreator/steps
  *   2) import the component bootstrapper
@@ -27,63 +27,39 @@
  *       ...
  *     },
  *   5) Add a test for the new step to characterCreator.Spec.js
- * 
+ *
  */
 
-define([
-  'constants',
-  'lodash',
-  'vue',
-  'class/Character',
-  'text!./characterCreatorTemplate.html',
-  './steps/stepList',
-  './steps/personaEditor/personaEditor',
-  './steps/speciesEditor/speciesEditor',
-  './steps/careerEditor/careerEditor'
-], function (constants, _, Vue, Character, characterCreatorTemplate, stepList) {
-  'use strict';
+var _ = require('lodash');
+var Vue = require('Vue');
 
-  var characterCreatorEvents = {},
-    firstStep = 'persona';
+var constants = require('../../config/constants.js');
+var Character = require('../../classes/Character.js');
+var characterCreatorTemplate = require('./characterCreatorTemplate.html');
+var stepList = require('./steps/stepList');
 
-  function ChangeStep(newStep) {
-    this.currentStep = newStep;
-  }
+console.log(characterCreatorTemplate);
 
-  function CloseCharacterCreator(reset) {
-    this.currentStep = firstStep;
-    this.show = false;
-    return true; // allow event propagation to continue
-  }
+require('./steps/personaEditor/personaEditor.js');
+require('./steps/speciesEditor/speciesEditor.js');
+require('./steps/careerEditor/careerEditor.js');
 
-  function generateStepComponent(template, data) {
-    return {
-      template: template,
-      props: {
-        character: {
-          type: Object,
-          required: true,
-          twoWay: true
-        }
-      },
-      data: function () { return data; },
-      methods: {
-        changeStep: function (step) {
-          this.$dispatch(constants.events.characterCreator.changeTab, step);
-        },
-        addCharacter: function () {
-          this.$dispatch(constants.events.characterCreator.addCharacter);
-        }
-      }
-    };
-  }
+var characterCreatorEvents = {},
+  firstStep = 'persona';
 
-  characterCreatorEvents[constants.events.characterCreator.changeTab] = ChangeStep;
-  characterCreatorEvents[constants.events.characterCreator.addCharacter] = CloseCharacterCreator;
+function ChangeStep(newStep) {
+  this.currentStep = newStep;
+}
 
+function CloseCharacterCreator(reset) {
+  this.currentStep = firstStep;
+  this.show = false;
+  return true; // allow event propagation to continue
+}
+
+function generateStepComponent(template, data) {
   return {
-    template: characterCreatorTemplate,
-    events: characterCreatorEvents,
+    template: template,
     props: {
       character: {
         type: Object,
@@ -91,29 +67,52 @@ define([
         twoWay: true
       }
     },
-    data: function () {
-      return {
-        show: false,
-        currentStep: firstStep
-      };
-    },
-    components: {
-      persona: generateStepComponent(stepList.persona, { next: 'species' }),
-      species: generateStepComponent(stepList.species, { prev: 'persona', next: 'career' }),
-      career: generateStepComponent(stepList.career, { prev: 'species', last: true })
-    },
+    data: function () { return data; },
     methods: {
-      changeStep: ChangeStep,
-      startCharacterCreator: function (reset) {
-        if (reset && reset === true) this.character = new Character();
-        this.show = true;
-      }
-    },
-    created: function () {
-      if (_.isUndefined(this.character)) {
-        this.character = new Character();
+      changeStep: function (step) {
+        this.$dispatch(constants.events.characterCreator.changeTab, step);
+      },
+      addCharacter: function () {
+        this.$dispatch(constants.events.characterCreator.addCharacter);
       }
     }
   };
+}
 
-});
+characterCreatorEvents[constants.events.characterCreator.changeTab] = ChangeStep;
+characterCreatorEvents[constants.events.characterCreator.addCharacter] = CloseCharacterCreator;
+
+return {
+  template: characterCreatorTemplate,
+  events: characterCreatorEvents,
+  props: {
+    character: {
+      type: Object,
+      required: true,
+      twoWay: true
+    }
+  },
+  data: function () {
+    return {
+      show: false,
+      currentStep: firstStep
+    };
+  },
+  components: {
+    persona: generateStepComponent(stepList.persona, { next: 'species' }),
+    species: generateStepComponent(stepList.species, { prev: 'persona', next: 'career' }),
+    career: generateStepComponent(stepList.career, { prev: 'species', last: true })
+  },
+  methods: {
+    changeStep: ChangeStep,
+    startCharacterCreator: function (reset) {
+      if (reset && reset === true) this.character = new Character();
+      this.show = true;
+    }
+  },
+  created: function () {
+    if (_.isUndefined(this.character)) {
+      this.character = new Character();
+    }
+  }
+};

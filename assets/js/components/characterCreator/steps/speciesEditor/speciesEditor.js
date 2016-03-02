@@ -1,8 +1,5 @@
-define([
-  'vue',
-  './speciesEditorComponent'
-], function (Vue, speciesEditorComponent) {
 
-  Vue.component('speciesEditor', speciesEditorComponent);
+var Vue = require('Vue');
+var speciesEditorComponent = require('./speciesEditorComponent.js');
 
-});
+Vue.component('speciesEditor', speciesEditorComponent);
