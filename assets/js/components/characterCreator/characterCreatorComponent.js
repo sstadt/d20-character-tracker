@@ -38,14 +38,12 @@ var Character = require('../../classes/Character.js');
 var characterCreatorTemplate = require('./characterCreatorTemplate.html');
 var stepList = require('./steps/stepList');
 
-console.log(characterCreatorTemplate);
-
 require('./steps/personaEditor/personaEditor.js');
 require('./steps/speciesEditor/speciesEditor.js');
 require('./steps/careerEditor/careerEditor.js');
 
-var characterCreatorEvents = {},
-  firstStep = 'persona';
+var characterCreatorEvents = {};
+var firstStep = 'persona';
 
 function ChangeStep(newStep) {
   this.currentStep = newStep;
@@ -82,7 +80,7 @@ function generateStepComponent(template, data) {
 characterCreatorEvents[constants.events.characterCreator.changeTab] = ChangeStep;
 characterCreatorEvents[constants.events.characterCreator.addCharacter] = CloseCharacterCreator;
 
-return {
+module.exports = {
   template: characterCreatorTemplate,
   events: characterCreatorEvents,
   props: {
