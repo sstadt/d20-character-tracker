@@ -10,28 +10,23 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: ['jasmine', 'browserify'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: 'assets/js/test-main.js', included: true},
-      {pattern: 'assets/js/lib/config.js', included: true},
-      {pattern: 'assets/js/**/*.js', included: false},
-      {pattern: 'assets/js/**/*.html', included: false}
+      'assets/js/**/*.Spec.js'
     ],
 
 
     // list of files to exclude
-    exclude: [
-      'assets/js/index.js',
-      'assets/js/app/index.js'
-    ],
+    // exclude: [],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'assets/js/**/*.Spec.js' : [ 'browserify' ]
     },
 
 
@@ -61,7 +56,7 @@ module.exports = function(config) {
     // plugins
     plugins: [
         'karma-jasmine',
-        'karma-requirejs',
+        'karma-browserify',
         'karma-phantomjs-launcher'
     ],
 
@@ -77,6 +72,12 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultanous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+
+    browserify: {
+      debug: true,
+      transform: [ 'stringify' ]
+    }
   });
 };

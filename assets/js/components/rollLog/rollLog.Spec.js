@@ -1,39 +1,39 @@
 
-define([
-  'vue.min',
-  'component/diceRoller/rollLog/rollLogComponent'
-], function (Vue, rollLogComponent) {
+var Vue = require('Vue');
+var _ = require('lodash');
 
-  describe('The rollLog component', function () {
-    var component;
+var rollLogComponent = require('./rollLogComponent.js');
 
-    beforeEach(function () {
-      component = _.clone(rollLogComponent);
-    });
+Vue.config.silent = true;
 
-    it('to be an object', function () {
-      expect(component).toEqual(jasmine.any(Object));
-    });
+describe('The rollLog component', function () {
+  var component;
 
-    it('should have a template', function () {
-      expect(component.template).toEqual(jasmine.any(String));
-    });
+  beforeEach(function () {
+    component = _.clone(rollLogComponent);
+  });
 
-    describe('props', function () {
-      describe('rolls', function () {
-        it('should exist', function () {
-          expect(component.props.rolls).toEqual(jasmine.any(Object));
-        });
+  it('to be an object', function () {
+    expect(component).toEqual(jasmine.any(Object));
+  });
 
-        it('should be an Array type', function () {
-          expect(component.props.rolls.type).toEqual(Array);
-        });
+  it('should have a template', function () {
+    expect(component.template).toEqual(jasmine.any(String));
+  });
 
-        it('should be required', function () {
-          expect(component.props.rolls.required).toEqual(true);
-        });
+  describe('props', function () {
+    describe('rolls', function () {
+      it('should exist', function () {
+        expect(component.props.rolls).toEqual(jasmine.any(Object));
+      });
+
+      it('should be an Array type', function () {
+        expect(component.props.rolls.type).toEqual(Array);
+      });
+
+      it('should be required', function () {
+        expect(component.props.rolls.required).toEqual(true);
       });
     });
   });
-
 });
