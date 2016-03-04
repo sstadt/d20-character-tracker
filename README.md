@@ -6,10 +6,6 @@ a [Sails](http://sailsjs.org) application
 
  - Set up symlink script and store pre-commit hook in the repo: http://stackoverflow.com/questions/3462955/putting-git-hooks-into-repository/3464399#3464399
 
-### Dev to do:
-
- - move all socket calls to service files so the components can be better isolated for unit testing
-
 ### Setup
 
 Copy the following to config/local.js and fill in values:
@@ -33,14 +29,13 @@ module.exports = {
 };
 ```
 
-run the following fromt he console
+run the following from the console
 
 
 ```bash
 npm install -g sails
 cd /path/to/repo
-npm install && bower install
-sails lift
+npm install && sails lift
 ```
 
 ### Custom Tasks
@@ -51,6 +46,6 @@ sails lift
 grunt component --name=myComponent --parent=common
 ```
 
-This command will create a new Vue.js component in /assets/js/lib/components/common with all the necessary files for a component to work, including a testing spec scaffold.
+This command will create a new Vue.js component in /assets/js/components/common with all the necessary files for a component to work, including a testing spec scaffold.
 
 The parent attribute is optional, and tells the generator where in the components folder to place the new component.
