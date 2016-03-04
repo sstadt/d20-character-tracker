@@ -1,8 +1,5 @@
-define([
-  'vue',
-  './<%- name %>Component'
-], function (Vue, <%- name %>Component) {
 
-  Vue.component('<%- name %>', <%- name %>Component);
+var Vue = require('Vue');
+var <%- name %>Component = require('./<%- name %>Component.js');
 
-});
+Vue.component('<%- name %>', <%- name %>Component);

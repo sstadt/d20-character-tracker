@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   var parentArg = grunt.option('parent'),
     name = grunt.option('name'),
     parent = parentArg ? parentArg + '/' : '',
-    componentPath = 'assets/js/lib/components/' + parent + name + '/',
+    componentPath = 'assets/js/components/' + parent + name + '/',
     files = {};
 
   files[componentPath + '_' + name + '.scss'] = ['tasks/templates/componentTemplate/_component.scss.tpl'];

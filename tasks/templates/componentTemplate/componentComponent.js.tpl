@@ -1,20 +1,16 @@
 
-define([
-  'text!./<%- name %>Template.html'
-], function (<%- name %>Template) {
+var <%- name %>Template = require('./<%- name %>Template.html');
 
-  return {
-    template: <%- name %>Template,
-    data: function () {
-      return {
-        greeting: '<%- name %> component',
-      };
-    },
-    methods: {
-      sayHi: function () {
-        console.log('hi!');
-      }
+module.exports = {
+  template: <%- name %>Template,
+  data: function () {
+    return {
+      greeting: '<%- name %> component',
+    };
+  },
+  methods: {
+    sayHi: function () {
+      console.log('hi!');
     }
-  };
-
-});
+  }
+};
