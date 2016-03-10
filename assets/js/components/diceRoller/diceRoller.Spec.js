@@ -1,5 +1,5 @@
 
-var q = require('Q');
+var q = require('q');
 var Vue = require('vue');
 
 var rollService = require('../../services/rollService.js');

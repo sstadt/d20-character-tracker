@@ -1,6 +1,6 @@
 
 var _ = require('lodash');
-var q = require('Q');
+var q = require('q');
 
 var io = require('../../config/io.js');
 var constants = require('../../config/constants.js');
