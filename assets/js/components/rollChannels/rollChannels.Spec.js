@@ -1,6 +1,6 @@
 
 var q = require('Q');
-var Vue = require('Vue');
+var Vue = require('vue');
 
 var constants = require('../../config/constants.js');
 var userService = require('../../services/userService.js');

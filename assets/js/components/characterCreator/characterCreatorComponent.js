@@ -31,7 +31,7 @@
  */
 
 var _ = require('lodash');
-var Vue = require('Vue');
+var Vue = require('vue');
 
 var constants = require('../../config/constants.js');
 var Character = require('../../classes/Character.js');

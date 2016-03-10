@@ -1,6 +1,6 @@
 
 var q = require('Q');
-var Vue = require('Vue');
+var Vue = require('vue');
 
 var rollService = require('../../services/rollService.js');
 var diceRollerComponent = require('./diceRollerComponent.js');

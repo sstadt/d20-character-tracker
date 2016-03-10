@@ -1,5 +1,5 @@
 
-var Vue = require('Vue');
+var Vue = require('vue');
 var <%- name %>Component = require('./<%- name %>Component.js');
 
 describe('The <%- name %> component', function () {

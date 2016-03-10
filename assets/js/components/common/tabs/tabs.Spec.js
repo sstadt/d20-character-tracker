@@ -1,5 +1,5 @@
 
-var Vue = require('Vue');
+var Vue = require('vue');
 var tabsComponent = require('./tabsComponent.js');
 
 Vue.config.silent = true;

@@ -1,5 +1,5 @@
 
-var Vue = require('Vue');
+var Vue = require('vue');
 var alertComponent = require('./alertComponent.js');
 
 Vue.component('alert', alertComponent);

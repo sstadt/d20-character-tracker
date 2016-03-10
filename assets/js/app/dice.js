@@ -1,5 +1,5 @@
 
-var Vue = require('Vue');
+var Vue = require('vue');
 
 require('../components/common/common.js');
 require('../components/diceRoller/diceRoller.js');

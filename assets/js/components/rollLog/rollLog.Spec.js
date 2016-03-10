@@ -1,5 +1,5 @@
 
-var Vue = require('Vue');
+var Vue = require('vue');
 var _ = require('lodash');
 
 var rollLogComponent = require('./rollLogComponent.js');

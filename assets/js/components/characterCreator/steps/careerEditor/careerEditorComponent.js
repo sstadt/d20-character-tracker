@@ -1,5 +1,5 @@
 
-var Vue = require('Vue');
+var Vue = require('vue');
 var careerEditorTemplate = require('./careerEditorTemplate.html');
 
 module.exports = {

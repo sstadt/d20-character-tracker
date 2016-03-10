@@ -1,5 +1,5 @@
 
-var Vue = require('Vue');
+var Vue = require('vue');
 var moment = require('moment');
 
 var rollLogTemplate = require('./rollLogTemplate.html');
