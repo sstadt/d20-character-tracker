@@ -1,0 +1,135 @@
+
+/**
+ *
+ * Star Wars Crawl
+ *
+ * Created by Tim PieTrusky
+ * https://codepen.io/TimPietrusky/pen/eHGfj
+ *
+ */
+
+.starwars-backdrop {
+  font: 700 1em "News Cycle", sans-serif;
+  letter-spacing: .15em;
+	color: #ff6;
+	overflow: hidden;
+  margin: 0;
+}
+
+.starwars {
+
+  section {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    z-index: 1;
+  }
+
+  .start {
+    font-size: 200%;
+    width: $swCrawlStartWidth;
+    margin: -4em 0 0 (- $swCrawlStartWidth / 2);
+    text-align: center;
+    cursor: pointer;
+
+    span {
+      color: rgb(75, 213, 238);
+    }
+  }
+
+  .intro {
+  	width: $swCrawlIntroWidth;
+    margin: 0 0 0 (- $swCrawlIntroWidth / 2);
+	  font-size: 200%;
+	  font-weight: 400;
+  	color: rgb(75, 213, 238);
+    opacity: 0;
+	  animation: intro 6s ease-out 1s;
+  }
+
+  .logo {
+    opacity: 0;
+    animation: logo 9s ease-out 9s;
+
+    svg {
+      width: inherit;
+    }
+  }
+
+  .titles {
+    width: $swCrawlTitlesWidth;
+    margin: 0 0 0 (- $swCrawlTitlesWidth / 2);
+    top: auto;
+    bottom: 0;
+  	height: 50em;
+  	font-size: 350%;
+  	text-align: justify;
+	  overflow: hidden;
+    transform-origin: 50% 100%;
+    transform: perspective(400px) rotateX(28deg);
+
+    > div {
+	    position: absolute;
+	    top: 100%;
+	    animation: titles $swCrawlDuration linear $swCrawlFadeDuration;
+
+      > p {
+	      margin: 1.35em 0 1.85em 0;
+        line-height: 1.35em;
+      	font-size: rem-calc(60);
+
+        backface-visibility: hidden;
+      }
+    }
+  }
+}
+
+@keyframes intro {
+  0% {
+    opacity: 0;
+  }
+	20% {
+    opacity: 1;
+  }
+	90% {
+    opacity: 1;
+  }
+	100% {
+    opacity: 0;
+  }
+}
+
+@keyframes logo {
+	0% {
+  	width: $swLogoWidth;
+    margin: (- $swLogoWidth / 2) 0 0 (- $swLogoWidth / 2);
+
+    transform: scale(2.75);
+    opacity: 1;
+  }
+	50% {
+    opacity: 1;
+  	width: $swLogoWidth;
+    margin: (- $swLogoWidth / 2) 0 0 (- $swLogoWidth / 2);
+  }
+	100% {
+    transform: scale(.1);
+    opacity: 0;
+  	width: $swLogoWidth;
+    margin: (- $swLogoWidth / 2) 0 0 (- $swLogoWidth / 2);
+  }
+}
+
+@keyframes titles {
+	0% {
+    top: 100%;
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+	100% {
+    top: 0%;
+    opacity: 0;
+  }
+}

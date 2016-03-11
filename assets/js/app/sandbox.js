@@ -7,6 +7,7 @@ var Character = require('../classes/Character.js');
 require('../components/common/common.js');
 require('../components/characterList/characterList.js');
 require('../components/characterCreator/characterCreator.js');
+require('../components/starWarsCrawl/starWarsCrawl.js');
 
 var characterListEvents = {};
 
