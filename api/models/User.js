@@ -29,6 +29,16 @@ module.exports = {
       type: 'json',
       defaultsTo: {}
     },
+
+    gameMaster: {
+      collection: 'game',
+      via: 'gameMaster'
+    },
+    player: {
+      collection: 'game',
+      via: 'players'
+    },
+
     toJSON: function () {
       var obj = this.toObject();
 
@@ -63,4 +73,3 @@ module.exports = {
       });
   }
 };
-

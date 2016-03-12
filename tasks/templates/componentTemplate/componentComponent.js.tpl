@@ -1,8 +1,6 @@
 
-var <%- name %>Template = require('./<%- name %>Template.html');
-
 module.exports = {
-  template: <%- name %>Template,
+  template: require('./<%- name %>Template.html'),
   data: function () {
     return {
       greeting: '<%- name %> component',
