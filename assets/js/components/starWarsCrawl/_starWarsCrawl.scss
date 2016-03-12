@@ -9,8 +9,14 @@ $swLogoWidth: 18em;
 $swCrawlStartWidth: 14em;
 $swCrawlIntroWidth: 15em;
 $swCrawlTitlesWidth: 16em;
+
 $swCrawlDuration: 81s;
 $swCrawlFadeDuration: 13s;
+
+$swCrawlPanDuration: 5s;
+$swCrawlPanDelay: $swCrawlDuration + $swCrawlFadeDuration + 1;
+
+$swCrawlExitDelay: $swCrawlPanDelay + $swCrawlPanDuration + 2;
 
 /* Styling
 -------------------------------- */
@@ -32,6 +38,7 @@ $swCrawlFadeDuration: 13s;
   height: 100%;
   top: 0;
   left: 0;
+  background-image: url('../images/bg-stars-tiled.jpg');
 
   .backdrop {
     position: absolute;
@@ -51,29 +58,39 @@ $swCrawlFadeDuration: 13s;
 
     img.corner {
       bottom: 0;
-      right: 0;
+      left: 0;
     }
   }
 
   &.pan-down {
     .backdrop {
-      animation: panstars 5s ease-in-out forwards;
-      animation-delay: $swCrawlDuration + $swCrawlFadeDuration + 1;
+      animation: panstars $swCrawlPanDuration ease-in-out forwards;
+      animation-delay: $swCrawlPanDelay;
     }
   }
 }
 
 .starwars {
-  .start {
-    button {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
+
+  .controls {
+    position: absolute;
+    bottom: rem-calc(10);
+    right: rem-calc(10);
+    margin: 0;
+
+    li {
+      list-style: none;
+      text-align: right;
+
+      span {
+        cursor: pointer;
+      }
     }
   }
 
   .animation {
+    pointer-events: none;
+
     .titles > div > p {
       &.title {
         text-transform: uppercase;

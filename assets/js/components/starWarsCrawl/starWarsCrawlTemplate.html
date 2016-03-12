@@ -1,22 +1,24 @@
 
-<div class="starwars-backdrop starwars-crawl-modal" v-bind:class="{'pan-down': running}">
-  <div class="backdrop">
+<div class="starwars-backdrop starwars-crawl-modal" v-show="show" transition="fade" v-bind:class="{'pan-down': running}">
+  <div class="backdrop" v-if="running">
     <img class="center" src="images/Star_Destroyer_Render.png" />
   </div>
+
   <article class="starwars">
     <audio preload="auto" v-el:crawl-music v-on:ended="endCrawl()">
       <source src="https://s3-us-west-2.amazonaws.com/scottstadtcom/fad/star_wars_crawl.mp3" type="audio/mpeg" />
     </audio>
 
-    <section class="start" v-show="!running" transition="fade">
-      <button v-on:click="startCrawl()">Play</button>
-    </section>
+    <ul class="controls" v-show="finished" transition="fade">
+      <li><span v-on:click="replay()">Replay</span></li>
+      <li><span v-on:click="close()">Close</span></li>
+    </ul>
 
     <div class="animation" v-if="running">
       <section class="intro">A long time ago, in a galaxy far,<br> far away....</section>
 
       <section class="titles">
-        <div contenteditable="true" spellcheck="false">
+        <div>
           <p class="title">Episode i</p>
           <p class="subtitle">A New Hope</p>
           <p>It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire.</p>
