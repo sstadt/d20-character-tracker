@@ -6,7 +6,6 @@ var io = require('../../config/io.js');
 var constants = require('../../config/constants.js');
 var channelService = require('../../services/channelService.js');
 var userService = require('../../services/userService.js');
-var rollChannelsTemplate = require('./rollChannelsTemplate.html');
 
 require('../rollLog/rollLog.js');
 
@@ -29,7 +28,7 @@ events[constants.events.prompt.valueSubmitted] = function PromptValueSubmitted(d
 };
 
 module.exports = {
-  template: rollChannelsTemplate,
+  template: require('./rollChannelsTemplate.html'),
   events: events,
   props: {
     channel: {

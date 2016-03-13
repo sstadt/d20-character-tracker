@@ -57,6 +57,10 @@ module.exports.policies = {
     'leave': 'sessionAuth'
   },
 
+  GameController: {
+    '*': 'sessionAuth'
+  },
+
   ApiController: {
     '*': false,
     'index': true,

@@ -31,7 +31,7 @@ module.exports = {
         .then(function resolve(user) {
           req.session.authenticated = true;
           req.session.User = user.toJSON();
-          res.redirect('/');
+          res.redirect('/home');
         }, function reject(err) {
           FlashService.error(req, err);
           res.redirect('/login');
@@ -51,4 +51,3 @@ module.exports = {
     });
   }
 };
-

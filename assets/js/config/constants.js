@@ -32,6 +32,11 @@ module.exports = {
     },
     user: {
       setHandle: '/user/setHandle'
+    },
+    game: {
+      search: '/game/search',
+      ownedIndex: '/game/owned',
+      create: '/game/create'
     }
   }
 };

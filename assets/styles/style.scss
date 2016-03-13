@@ -53,14 +53,21 @@
 @import "../js/components/common/prompt/_prompt";
 @import "../js/components/common/modal/_modal";
 @import "../js/components/common/tabs/_tabs";
+@import "../js/components/common/vInput/_vInput";
 
 // app components
 @import "../js/components/starWarsCrawl/_starWarsCrawl";
+
+@import "../js/components/gameBrowser/_gameBrowser";
+@import "../js/components/gameList/_gameList";
+
 @import "../js/components/dieCounter/_dieCounter";
 @import "../js/components/diceRoller/_diceRoller";
 @import "../js/components/dicePool/_dicePool";
+
 @import "../js/components/rollChannels/_rollChannels";
 @import "../js/components/rollLog/_rollLog";
+
 @import "../js/components/characterCreator/_characterCreator";
 @import "../js/components/characterCreator/steps/personaEditor/_personaEditor";
 

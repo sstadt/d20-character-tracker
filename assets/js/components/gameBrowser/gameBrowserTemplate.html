@@ -1,13 +1,23 @@
 
 <div class="game-browser">
   <panel>
-    <tabs>
-      <tab heading="My Games">
-        <game-list :games="myGames"></game-list>
-      </tab>
-      <tab heading="Find Game">
-        <game-list :games="filteredGames"></game-list>
-      </tab>
-    </tabs>
+    <div slot="content">
+      <alert :alert.sync="gameBrowserAlert"></alert>
+      <tabs>
+        <tab heading="My Games">
+          <div class="controls">
+            <button class="tiny" v-on:click="openNewGamePrompt()">New</button>
+          </div>
+          <game-list :games="myGames"></game-list>
+        </tab>
+        <tab heading="Find Game">
+          <div class="controls">
+            <v-input type="text" :icon="filterIcon" :value.sync="filter"></v-input>
+          </div>
+          <game-list :games="filteredGames"></game-list>
+        </tab>
+      </tabs>
+    </div>
   </panel>
+  <prompt :name="newGamePrompt.name" :label.sync="newGamePrompt.label"></prompt>
 </div>

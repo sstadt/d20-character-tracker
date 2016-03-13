@@ -33,8 +33,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    controller: 'user',
-    action: 'splash'
+    view: 'public/index'
   },
 
   /*
@@ -67,6 +66,18 @@ module.exports.routes = {
   '/sandbox': {
     controller: 'user',
     action: 'sandbox'
+  },
+
+  /*
+    Game
+   */
+  '/home': {
+    controller: 'game',
+    action: 'browser'
+  },
+  '/game/search': {
+    controller: 'game',
+    action: 'search'
   },
 
   /*

@@ -1,5 +1,6 @@
 
-<label>
+<label class="v-input">
   {{ label }}
-  <input type="{{ type }}" v-el:input v-model="value" />
+  <i class="fa fa-{{ icon }}" v-if="icon"></i>
+  <input type="{{ type }}" placeholder="{{ placeholder }}" v-el:input v-model="value" />
 </label>

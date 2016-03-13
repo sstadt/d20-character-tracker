@@ -7,3 +7,18 @@
 
 /* Styling
 -------------------------------- */
+
+.v-input {
+  position: relative;
+
+  i {
+    position: absolute;
+    right: rem-calc(12);
+    bottom: rem-calc(12);
+    font-size: rem-calc(14);
+
+    + input {
+      padding-right: rem-calc(30);
+    }
+  }
+}

@@ -1,14 +1,13 @@
 
-
 <div class="roll-channels">
   <panel>
     <div slot="content">
       <alert :alert.sync="rollChannelsAlert"></alert>
       <tabs>
         <tab heading="My Rolls">
-            <div class="controls">
-              <button class="tiny" v-on:click="clearLocalRolls()">Clear</button>
-            </div>
+          <div class="controls">
+            <button class="tiny" v-on:click="clearLocalRolls()">Clear</button>
+          </div>
           <roll-log :rolls="localRolls"></roll-log>
         </tab>
 

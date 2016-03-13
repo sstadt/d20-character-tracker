@@ -11,6 +11,12 @@ module.exports = {
     label: {
       type: String
     },
+    placeholder: {
+      type: String
+    },
+    icon: {
+      type: String
+    },
     value: {
       required: true,
       twoWay: true

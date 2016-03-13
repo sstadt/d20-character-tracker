@@ -12,12 +12,9 @@ module.exports = {
       type: 'string',
       required: true
     },
-    description: {
-      type: 'string',
-      defaultsTo: ''
-    },
     gameMaster: {
-      model: 'user'
+      model: 'user',
+      required: true
     },
     players: {
       collection: 'user',
