@@ -13,9 +13,36 @@ module.exports = {
 		});
 	},
 
+	show: function (req, res) {
+		Game.findOne(req.param('id'), function (err, game) {
+			if (err) {
+				res.serverError(err);
+			} else {
+				res.view({
+					title: game.title,
+					id: game.id,
+					script: 'game'
+				});
+			}
+		});
+	},
+
 	/*
 	 * API
 	 */
+
+	get: function (req, res) {
+		Game.findOne(req.param('id'))
+			.populate('gameMaster')
+			.populate('players')
+			.exec(function (err, game) {
+				if (err) {
+					res.jsonError(err);
+				} else {
+					res.json(game);
+				}
+			});
+	},
 
 	owned: function (req, res) {
 		Game.find({ gameMaster: req.session.User.id })
@@ -23,10 +50,10 @@ module.exports = {
 			.populate('players')
 			.exec(function (err, games) {
 				if (err) {
-					res.serverError(err);
+					res.jsonError(err);
+				} else {
+					res.json(games);
 				}
-
-				res.json(games);
 			});
 	},
 
@@ -40,10 +67,10 @@ module.exports = {
 			.populate('players')
 			.exec(function (err, games) {
 				if (err) {
-					res.serverError(err);
+					res.jsonError(err);
+				} else {
+					res.json(games);
 				}
-
-				res.json(games);
 			});
 	},
 
@@ -53,19 +80,19 @@ module.exports = {
 			gameMaster: req.session.User.id
 		}, function (err, game) {
 			if (err) {
-				res.serverError(err);
+				res.jsonError(err);
+			} else {
+				Game.findOne(game.id)
+					.populate('gameMaster')
+					.populate('players')
+					.exec(function (err, game) {
+						if (err) {
+							res.jsonError(err);
+						} else {
+							res.json(game);
+						}
+					});
 			}
-
-			Game.findOne(game.id)
-				.populate('gameMaster')
-				.populate('players')
-				.exec(function (err, game) {
-					if (err) {
-						res.serverError(err);
-					}
-
-					res.json(game);
-				});
 		});
 	}
 

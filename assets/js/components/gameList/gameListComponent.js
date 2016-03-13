@@ -19,7 +19,7 @@ module.exports = {
   },
   filters: {
     launchGameLink: function (game) {
-      return '/game/' + game.id;
+      return '/play/' + game.id;
     },
     canLaunchGame: function (game, user) {
       return _.isEqual(game.gameMaster, user) || _.includes(game.players, user);

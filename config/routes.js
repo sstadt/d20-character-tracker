@@ -83,6 +83,14 @@ module.exports.routes = {
     controller: 'game',
     action: 'search'
   },
+  '/play/:id': {
+    controller: 'game',
+    action: 'show'
+  },
+  '/game/get': {
+    controller: 'game',
+    action: 'get'
+  },
 
   /*
     Dice Roller
