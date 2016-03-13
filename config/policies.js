@@ -40,6 +40,7 @@ module.exports.policies = {
     'create': true,
     'show': 'sessionAuth',
     'search': false,
+    'self': 'sessionAuth',
     'setHandle': 'sessionAuth',
     'sandbox': 'sandbox'
   },

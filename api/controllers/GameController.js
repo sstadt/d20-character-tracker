@@ -18,25 +18,33 @@ module.exports = {
 	 */
 
 	owned: function (req, res) {
-		Game.find({ gameMaster: req.session.User.id }, function (err, games) {
-			if (err) {
-				res.serverError(err);
-			}
+		Game.find({ gameMaster: req.session.User.id })
+			.populate('gameMaster')
+			.populate('players')
+			.exec(function (err, games) {
+				if (err) {
+					res.serverError(err);
+				}
 
-			res.json(games);
-		});
+				res.json(games);
+			});
 	},
 
 	search: function (req, res) {
-		Game.find({
+		var searchParams = {
       title: { contains: req.param('filter') }
-    }, function (err, games) {
-			if (err) {
-				res.serverError(err);
-			}
+    };
 
-			res.json(games);
-		});
+		Game.find(searchParams)
+			.populate('gameMaster')
+			.populate('players')
+			.exec(function (err, games) {
+				if (err) {
+					res.serverError(err);
+				}
+
+				res.json(games);
+			});
 	},
 
 	create: function (req, res) {
@@ -48,7 +56,16 @@ module.exports = {
 				res.serverError(err);
 			}
 
-			res.json(game);
+			Game.findOne(game.id)
+				.populate('gameMaster')
+				.populate('players')
+				.exec(function (err, game) {
+					if (err) {
+						res.serverError(err);
+					}
+
+					res.json(game);
+				});
 		});
 	}
 

@@ -230,6 +230,10 @@ module.exports = {
     });
   },
 
+  self: function (req, res) {
+    res.json(req.session.User);
+  },
+
   search: function (req, res) {
     User.find({
       id: { '!': req.session.User.id },

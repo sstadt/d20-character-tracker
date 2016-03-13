@@ -31,6 +31,7 @@ module.exports = {
       leave: '/channel/leave'
     },
     user: {
+      getSelf: '/self',
       setHandle: '/user/setHandle'
     },
     game: {

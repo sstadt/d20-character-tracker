@@ -67,6 +67,10 @@ module.exports.routes = {
     controller: 'user',
     action: 'sandbox'
   },
+  '/self': {
+    controller: 'user',
+    action: 'self'
+  },
 
   /*
     Game
