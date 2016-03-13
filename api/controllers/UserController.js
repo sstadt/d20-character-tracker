@@ -35,7 +35,7 @@ module.exports = {
   },
 
   setHandle: function (req, res) {
-    req.session.User.config.chatHandle = req.param('handle');
+    req.session.User.chatHandle = req.param('handle');
 
     User.update(req.session.User.id, req.session.User, function (err, user) {
       if (err) {
@@ -70,14 +70,18 @@ module.exports = {
   create: function (req, res) {
     var userObj = {
       email: req.param('email'),
+      chatHandle: req.param('handle'),
       password: req.param('password'),
-      confirmation: req.param('confirmation')
+      confirmation: req.param('confirmation'),
     };
 
     if (PasswordService.isSecure(userObj.password, userObj.confirmation)) {
       User.create(userObj, function userCreated(err, user) {
         if (err) {
-          var errorMsg = (err._e.code === 11000) ? userErrors.duplicateEmail : err._e.err;
+          var errorMsg = userErrors.cannotCreateUser;
+          if (err._e.code === 11000) {
+            errorMsg = (err._e.err.indexOf('chatHandle') > -1) ? userErrors.duplicateChatHandle : userErrors.duplicateEmail;
+          }
 
           FlashService.warning(req, errorMsg);
           res.redirect('/register');
@@ -91,7 +95,7 @@ module.exports = {
               res.redirect('/register');
             });
         }
-      }); 
+      });
     } else {
       _.each(PasswordService.getLastError(), function (error) {
         FlashService.error(req, error);
@@ -180,7 +184,7 @@ module.exports = {
         var errors;
 
         view.user = user;
-        
+
         // a password was submitted for reset
         if (password || confirmation) {
 
@@ -204,12 +208,12 @@ module.exports = {
             }
             FlashService.cycleFlash(req, res);
 
-            res.view(view);  
+            res.view(view);
           }
 
         // a password was not submitted for reset
         } else {
-          res.view(view);          
+          res.view(view);
         }
 
       }, function reject(err) {
@@ -241,4 +245,3 @@ module.exports = {
     });
   }
 };
-

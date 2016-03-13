@@ -18,6 +18,11 @@ module.exports = {
       required: true,
       unique: true
     },
+    chatHandle: {
+      type: 'string',
+      required: true,
+      unique: true
+    },
     confirmed: {
       type: 'boolean',
       defaultsTo: false

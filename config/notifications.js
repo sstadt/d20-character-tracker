@@ -11,16 +11,18 @@ module.exports.notifications = {
   User: {
     success: {
       passwordReset: 'Your password was successfully reset!',
-      passwordResetSent: 'Success! Check your email for instruction to reset your password.',
-      verificationSent: 'Check the email address you registered with to verify your account.',
+      passwordResetSent: 'Success! Check your email for instruction to reset your password',
+      verificationSent: 'Check the email address you registered with to verify your account',
       verified: 'Account verified, you may now log in!'
     },
     error: {
+      cannotCreateUser: 'We could not sign up up at this time, please try again later',
       cannotResetPassword: 'Unable to reset your password at this time',
-      cannotRegister: 'Registration could not be completed at this time.',
-      notFound: 'Could not find a user with that email address.',
+      cannotRegister: 'Registration could not be completed at this time',
+      notFound: 'Could not find a user with that email address',
       cannotVerify: 'Could not activate your account at this time',
-      duplicateEmail: 'There is already an account associated with that email address.',
+      duplicateEmail: 'That email address is already in use',
+      duplicateChatHandle: 'That chat handle is already in use',
       notVerified: function (email) {
         return 'You must verify your account before logging in. <a href="/resend?email=' + email + '">resend</a>';
       }
@@ -75,7 +77,7 @@ module.exports.notifications = {
 
   RegistrationService: {
     error: {
-      
+
     }
   }
 
