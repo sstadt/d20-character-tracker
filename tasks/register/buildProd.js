@@ -5,6 +5,7 @@ module.exports = function (grunt) {
     'browserify:vendor',
     'browserify:dev',
     'sails-linker:prod',
+    'uglify:prod',
     'copy:dev'
   ]);
 };
