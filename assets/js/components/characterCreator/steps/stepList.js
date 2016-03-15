@@ -7,8 +7,6 @@
  *
  */
 
-var _ = require('lodash');
-
 var _stepTemplate = require('./stepTemplate.html');
 
 var stepTemplate = _.template(_stepTemplate),

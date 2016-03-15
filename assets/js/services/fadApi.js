@@ -1,7 +1,4 @@
 
-var _ = require('lodash');
-var io = require('../config/io.js');
-
 var data = {};
 
 function populateModel(model, callback) {

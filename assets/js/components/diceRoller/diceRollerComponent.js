@@ -1,5 +1,4 @@
 
-var q = require('q');
 var rollService = require('../../services/rollService.js');
 var diceRollerTemplate = require('./diceRollerTemplate.html');
 

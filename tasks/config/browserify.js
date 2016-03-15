@@ -5,21 +5,27 @@
 module.exports = function (grunt) {
 
   grunt.config.set('browserify', {
-    dev: {
-      options: {
-        browserifyOptions: {
-          debug: true
-        },
-        transform: ['stringify']
+    options: {
+      browserifyOptions: {
+        debug: true
       },
-      files: [
-        {
-          expand: true,
-          cwd: 'assets/js/app',
-          src: ['*.js'],
-          dest: '.tmp/public/js/'
-        }
-      ]
+      transform: ['stringify']
+    },
+    vendor: {
+      files: [{
+        expand: true,
+        cwd: 'assets/js/app',
+        src: ['vendor.js'],
+        dest: '.tmp/public/js/'
+      }]
+    },
+    dev: {
+      files: [{
+        expand: true,
+        cwd: 'assets/js/app',
+        src: ['*.js', '!vendor.js'],
+        dest: '.tmp/public/js/'
+      }]
     }
   });
 

@@ -2,7 +2,8 @@ module.exports = function (grunt) {
   grunt.registerTask('buildProd', [
     'clean:dev',
     'sass:dev',
-    'browserify',
+    'browserify:vendor',
+    'browserify:dev',
     'sails-linker:prod',
     'copy:dev'
   ]);

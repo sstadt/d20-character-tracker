@@ -1,7 +1,4 @@
 
-var Vue = require('vue');
-var _ = require('lodash');
-
 var userService = require('../../services/userService.js');
 
 module.exports = {

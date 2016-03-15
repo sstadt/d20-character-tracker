@@ -1,6 +1,4 @@
 
-var Vue = require('vue');
-
 module.exports = {
   template: require('./starWarsCrawlTemplate.html'),
   props: {

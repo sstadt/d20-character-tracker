@@ -1,7 +1,4 @@
 
-var Vue = require('vue');
-var moment = require('moment');
-
 var rollLogTemplate = require('./rollLogTemplate.html');
 
 Vue.filter('rollTimestamp', function (value) {

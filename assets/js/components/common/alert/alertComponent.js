@@ -1,5 +1,4 @@
 
-var _ = require('lodash');
 var Alert = require('./alert.class.js');
 var alertTemplate = require('./alertTemplate.html');
 

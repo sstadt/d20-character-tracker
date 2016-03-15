@@ -1,8 +1,4 @@
 
-var _ = require('lodash');
-var q = require('q');
-
-var io = require('../../config/io.js');
 var constants = require('../../config/constants.js');
 var channelService = require('../../services/channelService.js');
 var userService = require('../../services/userService.js');

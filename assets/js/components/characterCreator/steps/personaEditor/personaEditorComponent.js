@@ -1,5 +1,4 @@
 
-var marked = require('marked');
 var personaEditorTemplate = require('./personaEditorTemplate.html');
 
 module.exports = {

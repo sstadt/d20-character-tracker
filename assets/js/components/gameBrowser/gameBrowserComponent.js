@@ -1,6 +1,4 @@
 
-var _ = require('lodash');
-
 var constants = require('../../config/constants.js');
 var gameService = require('../../services/gameService.js');
 
