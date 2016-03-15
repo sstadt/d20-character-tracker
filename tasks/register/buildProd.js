@@ -4,8 +4,10 @@ module.exports = function (grunt) {
     'sass:dev',
     'browserify:vendor',
     'browserify:dev',
-    'sails-linker:prod',
     'uglify:prod',
+    'cssmin',
+    'sails-linker:prodJs',
+    'sails-linker:prodCss',
     'copy:dev'
   ]);
 };

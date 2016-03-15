@@ -9,9 +9,9 @@
     <!-- Font Awesome -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!--STYLES-->
-    <link rel="stylesheet" href="/styles/style.css?v=1458080281331">
-    <!--STYLES END-->
+    <!-- STYLES -->
+    <link rel="stylesheet" href="/styles/style.css">
+    <!-- STYLES END -->
 
     <%- partial('components/images') %>
 
@@ -57,12 +57,15 @@
 
     <%- body %>
 
+
+    <!-- SCRIPT -->
+    <script type="text/javascript" src="/js/vendor.js"></script>
+    <!-- SCRIPT END -->
+
     <% if (typeof script !== 'string') { script = 'index'; } %>
     <% if (sails.config.environment === 'production') { %>
-      <script type="text/javascript" src="/js/vendor.min.js"></script>
       <script type="text/javascript" src="/js/<%= script %>.min.js"></script>
     <% } else { %>
-      <script type="text/javascript" src="/js/vendor.js"></script>
       <script type="text/javascript" src="/js/<%= script %>.js"></script>
       <script src="//localhost:9090/livereload.js"></script>
     <% } %>
