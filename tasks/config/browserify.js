@@ -9,7 +9,9 @@ module.exports = function (grunt) {
       browserifyOptions: {
         debug: true
       },
-      transform: ['stringify']
+      transform: ['stringify'],
+      watch: true,
+      livereload: true
     },
     vendor: {
       files: [{

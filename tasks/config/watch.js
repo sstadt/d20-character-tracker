@@ -26,16 +26,12 @@ module.exports = function (grunt) {
       tasks: ['copy:dev']
     },
     js: {
-      files: ['assets/js/**/*'],
-      tasks: ['browserify:dev']
+      files: ['.tmp/public/js/*'],
     },
     sass: {
       files: ['assets/**/*.scss'],
       tasks: ['sass:dev']
     },
-    // style: { // not sure if I need this anymore
-    //   files: ['.tmp/public/styles/style.css']
-    // }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
