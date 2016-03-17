@@ -1,6 +1,10 @@
 
 var gameService = require('../../services/gameService.js');
 
+require('./crawlMenu/crawlMenu.js');
+require('./playersMenu/playersMenu.js');
+require('./settingsMenu/settingsMenu.js');
+
 module.exports = {
   template: require('./gameTemplate.html'),
   props: {
@@ -11,7 +15,11 @@ module.exports = {
   },
   data: function () {
     return {
-      game: {}
+      gameAlert: {},
+      game: {},
+      crawlModalOpen: false,
+      playersModalOpen: false,
+      settingsModalOpen: false
     };
   },
   ready: function () {
@@ -20,11 +28,6 @@ module.exports = {
     gameService.get(this.gameId)
       .then(function (game) {
         self.game = game;
-      });
-  },
-  methods: {
-    sayHi: function () {
-      console.log('hi!');
-    }
+      }, self.gameAlert.error);
   }
 };

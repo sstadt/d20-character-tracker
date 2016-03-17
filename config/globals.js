@@ -26,11 +26,6 @@ module.exports.globals = {
     register: 'Registration'
   },
 
-  requirejs: {
-    development: '/js/vendor/requirejs/require.js',
-    production: '//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js',
-  },
-
   /****************************************************************************
   *                                                                           *
   * Expose the lodash installed in Sails core as a global variable. If this   *

@@ -88,6 +88,8 @@ $zIndexHeader   : 6000;
 $zIndexFooter   : 5000;
 $zIndexBeneath  : -1;
 
+$interfaceBorder: $interfaceBorderSize $interfaceBorderStyle $mayaBlue;
+
 /* Grid
 -------------------------------- */
 
@@ -107,7 +109,7 @@ $minButtonSize : rem-calc(44);
 /* Panel
 -------------------------------- */
 
-$panelBgOpacity    : 0.6;
+$panelBgOpacity    : 0.7;
 $panelBgColor      : $black;
 $panelBg           : rgba($panelBgColor, $panelBgOpacity);
 $panelBgZebra      : lighten($panelBg, 5%);
