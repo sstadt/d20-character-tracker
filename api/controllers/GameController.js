@@ -18,11 +18,17 @@ module.exports = {
 			if (err) {
 				res.serverError(err);
 			} else {
-				res.view({
-					title: game.title,
-					id: game.id,
-					script: 'game'
-				});
+				GameService.validateConfig(game)
+					.then(function success() {
+						res.view({
+							title: game.title,
+							id: game.id,
+							script: 'game'
+						});
+					}, function error(err) {
+						res.serverError(err);
+					});
+
 			}
 		});
 	},

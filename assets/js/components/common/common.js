@@ -6,3 +6,4 @@ require('./modal/modal.js');
 require('./prompt/prompt.js');
 require('./tabs/tabs.js');
 require('./vInput/vInput.js');
+require('./vCheckbox/vCheckbox.js');

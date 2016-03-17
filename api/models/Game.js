@@ -24,6 +24,10 @@ module.exports = {
     crawls: {
       collection: 'crawl',
       via: 'game'
+    },
+    config: {
+      type: 'json',
+      defaultsTo: _.extend(sails.config.models.game.defaultconfig)
     }
   }
 

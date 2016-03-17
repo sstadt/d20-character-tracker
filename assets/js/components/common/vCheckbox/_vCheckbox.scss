@@ -1,0 +1,26 @@
+
+/* Colors
+-------------------------------- */
+
+/* Settings
+-------------------------------- */
+
+/* Styling
+-------------------------------- */
+
+.checkbox {
+  height: rem-calc(20);
+
+  svg {
+    vertical-align: sub;
+  }
+
+  svg, span {
+    cursor: pointer;
+  }
+
+  span {
+    line-height: rem-calc(20);
+    font-size: rem-calc(14);
+  }
+}
