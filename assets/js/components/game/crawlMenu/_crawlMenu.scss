@@ -20,4 +20,8 @@ $crawlBodyLinesToShow: 2;
 
 .new-crawl {
   padding-top: rem-calc(20);
+
+  textarea {
+    min-height: rem-calc(150);
+  }
 }
