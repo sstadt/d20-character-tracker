@@ -8,12 +8,20 @@
     <tab heading="Crawls">
       <div class="crawl-list">
         <ul class="zebra-list">
-          <li v-for="crawl in game.crawls">
-            <p>crawl.title</p>
+          <li class="crawl-description" v-for="crawl in game.crawls">
+            <h4 class="title">{{ crawl.title }}</h4>
+            <h6 class="subtitle">{{ crawl.subtitle }}</h6>
+            <p class="crawl-body">{{ crawl.crawl }}</p>
+            <div class="controls">
+              <button class="mini"><i class="fa fa-play"></i></button>
+              <button class="mini"><i class="fa fa-folder-open"></i></button>
+              <button class="mini"><i class="fa fa-trash"></i></button>
+            </div>
           </li>
         </ul>
       </div>
     </tab>
+
     <tab heading="New Crawl">
       <div class="new-crawl">
         <v-input type="text" label="Title" :value.sync="newCrawl.title"></v-input>
@@ -21,7 +29,9 @@
         <v-input type="textarea" label="Crawl" :value.sync="newCrawl.crawl"></v-input>
         <v-input type="text" label="Image URL" :value.sync="newCrawl.imageUrl"></v-input>
         <div class="controls">
-          <button class="tiny" v-on:click="addCrawl()" :disabled="saving">Add Crawl</button>
+          <button class="tiny" v-on:click="closeModal()" :disabled="saving">Cancel</button>
+          <button class="tiny" v-on:click="addCrawl(false)" :disabled="saving">Save</button>
+          <button class="tiny" v-on:click="addCrawl(true)" :disabled="saving">Publish</button>
         </div>
       </div>
     </tab>

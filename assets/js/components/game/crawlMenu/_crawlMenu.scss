@@ -5,8 +5,18 @@
 /* Settings
 -------------------------------- */
 
+$crawlBodyFontSize: $paragraphFontSize;
+$crawlBodyLineHeight: $paragraphLineHeight;
+$crawlBodyLinesToShow: 2;
+
 /* Styling
 -------------------------------- */
+
+.crawl-description {
+  .crawl-body {
+    @include multi-line-ellipsis($crawlBodyFontSize, $crawlBodyLineHeight, $crawlBodyLinesToShow);
+  }
+}
 
 .new-crawl {
   padding-top: rem-calc(20);

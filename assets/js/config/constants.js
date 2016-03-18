@@ -20,6 +20,11 @@ module.exports = {
     diceRoller: {
       newLocalRoll: 'VE_DICE_ROLLER_NEW_LOCAL_ROLL',
       joinedChannel: 'VE_DICE_ROLLER_JOINED_CHANNEL'
+    },
+    game: {
+      closeCrawl: 'VE_GAME_CLOSE_CRAWL_MODAL',
+      closePlayers: 'VE_GAME_CLOSE_PLAYERS_MODAL',
+      closeSettings: 'VE_GAME_CLOSE_SETTINGS_MODAL',
     }
   },
   endpoints: {

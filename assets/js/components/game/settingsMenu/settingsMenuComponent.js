@@ -1,5 +1,6 @@
 
 var gameService = require('../../../services/gameService.js');
+var constants = require('../../../config/constants.js');
 
 module.exports = {
   template: require('./settingsMenuTemplate.html'),
@@ -18,7 +19,7 @@ module.exports = {
   },
   methods: {
     closeModal: function () {
-      this.$parent.show = false;
+      this.$dispatch(constants.events.game.closeSettings);
     },
     updateConfig: function () {
       var self = this;
@@ -27,7 +28,7 @@ module.exports = {
 
       gameService.updateConfig(self.game.id, self.game.config)
         .then(function success() {
-          self.$parent.show = false;
+          self.$dispatch(constants.events.game.closeSettings);
         }, self.gameSettingsAlert.error)
         .done(function () {
           self.saving = false;

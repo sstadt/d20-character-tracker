@@ -1,0 +1,12 @@
+
+@mixin multi-line-ellipsis($fontSize, $lineHeight, $numLines) {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 100%;
+  height: $lineHeight * $fontSize * $numLines; /* Fallback for non-webkit */
+  margin: 0 auto;
+  -webkit-line-clamp: $numLines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
