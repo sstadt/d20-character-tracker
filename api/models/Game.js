@@ -21,6 +21,16 @@ module.exports = {
       via: 'player',
       dominant: true
     },
+    invitedPlayers: {
+      collection: 'user',
+      via: 'invitedGames',
+      dominant: true
+    },
+    requestingPlayers: {
+      collection: 'user',
+      via: 'requestedGames',
+      dominant: true
+    },
     crawls: {
       collection: 'crawl',
       via: 'game'

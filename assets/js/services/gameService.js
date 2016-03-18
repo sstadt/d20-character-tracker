@@ -57,5 +57,19 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+  updateConfig: function (id, config) {
+    var deferred = q.defer();
+
+    io.socket.post(constants.endpoints.game.updateConfig, { id: id, config: config }, function (response) {
+      if (response && response.err) {
+        console.log(response.err);
+        deferred.reject('There was an error updating the game config');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
   }
 };

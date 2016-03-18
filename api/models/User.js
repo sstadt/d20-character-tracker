@@ -43,6 +43,14 @@ module.exports = {
       collection: 'game',
       via: 'players'
     },
+    invitedGames: {
+      collection: 'game',
+      via: 'invitedPlayers'
+    },
+    requestedGames: {
+      collection: 'game',
+      via: 'requestingPlayers'
+    },
 
     toJSON: function () {
       var obj = this.toObject();

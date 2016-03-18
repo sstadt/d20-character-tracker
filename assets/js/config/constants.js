@@ -38,7 +38,8 @@ module.exports = {
       get: '/game/get',
       search: '/game/search',
       ownedIndex: '/game/owned',
-      create: '/game/create'
+      create: '/game/create',
+      updateConfig: '/game/updateConfig'
     }
   }
 };

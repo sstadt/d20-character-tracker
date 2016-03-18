@@ -1,17 +1,21 @@
 
-<div class="crawl-menu" v-if="game.config">
+<div class="settings-menu">
   <h3>{{ game.title }} Settings</h3>
 
   <p>Game specific settings and configuration.</p>
 
-  <h4 class="section-header">Social<h4>
+  <alert :alert.sync="gameSettingsAlert"></alert>
 
-  <ul class="small-block-grid-3">
-    <li><v-checkbox :checked.sync="game.config.isPublic" label="Make game searchable"></v-checkbox></li>
-  </ul>
+  <div v-if="game.config">
+    <h4 class="section-header">Social<h4>
 
-  <div class="controls">
-    <button class="tiny" v-on:click="cancel()">Cancel</button>
-    <button class="tiny">Save</button>
+    <ul class="small-block-grid-3">
+      <li><v-checkbox :checked.sync="game.config.isPublic" label="Make game searchable"></v-checkbox></li>
+    </ul>
+
+    <div class="controls">
+      <button class="tiny" v-on:click="closeModal()" :disabled="saving">Cancel</button>
+      <button class="tiny" v-on:click="updateConfig()" :disabled="saving">Save</button>
+    </div>
   </div>
 </div>

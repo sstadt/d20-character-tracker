@@ -1,8 +1,6 @@
 
-var modalTemplate = require('./modalTemplate.html');
-
 module.exports = {
-  template: modalTemplate,
+  template: require('./modalTemplate.html'),
   props: {
     show: {
       type: Boolean,

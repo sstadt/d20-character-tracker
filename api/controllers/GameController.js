@@ -100,6 +100,16 @@ module.exports = {
 					});
 			}
 		});
+	},
+
+	updateConfig: function (req, res) {
+		Game.update(req.param('id'), { config: req.param('config') }, function (err, game) {
+			if (err) {
+				res.jsonError(err);
+			} else {
+				res.send(200);
+			}
+		});
 	}
 
 };
