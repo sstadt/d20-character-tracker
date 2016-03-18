@@ -1,0 +1,13 @@
+
+ul.zebra-list {
+  margin: 0;
+
+  > li {
+    list-style: none;
+    padding: rem-calc(10) rem-calc(20);
+
+    &:nth-child(even) {
+      background-color: rgba($primaryColor, 0.2);
+    }
+  }
+}

@@ -1,4 +1,29 @@
 
 <div class="crawl-menu">
   <h3>{{ game.title }} Crawls</h3>
+
+  <alert :alert.sync="gameCrawlsAlert"></alert>
+
+  <tabs>
+    <tab heading="Crawls">
+      <div class="crawl-list">
+        <ul class="zebra-list">
+          <li v-for="crawl in game.crawls">
+            <p>crawl.title</p>
+          </li>
+        </ul>
+      </div>
+    </tab>
+    <tab heading="New Crawl">
+      <div class="new-crawl">
+        <v-input type="text" label="Title" :value.sync="newCrawl.title"></v-input>
+        <v-input type="text" label="Sub title" :value.sync="newCrawl.subtitle"></v-input>
+        <v-input type="textarea" label="Crawl" :value.sync="newCrawl.crawl"></v-input>
+        <v-input type="text" label="Image URL" :value.sync="newCrawl.imageUrl"></v-input>
+        <div class="controls">
+          <button class="tiny" v-on:click="addCrawl()" :disabled="saving">Add Crawl</button>
+        </div>
+      </div>
+    </tab>
+  </tabs>
 </div>

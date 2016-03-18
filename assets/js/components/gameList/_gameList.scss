@@ -9,36 +9,23 @@
 -------------------------------- */
 
 .game-list {
-  > ul {
+  h3, .controls {
     margin: 0;
+    line-height: 1.8rem;
 
-    > li {
-      list-style: none;
-      padding: rem-calc(10) rem-calc(20);
+    a {
+      line-height: 1.8rem;
+    }
+  }
 
-      &:nth-child(even) {
-        background-color: rgba($primaryColor, 0.2);
-      }
+  p {
+    padding-top: rem-calc(8);
+    margin: 0;
+  }
 
-      h3, .controls {
-        margin: 0;
-        line-height: 1.8rem;
-
-        a {
-          line-height: 1.8rem;
-        }
-      }
-
-      p {
-        padding-top: rem-calc(8);
-        margin: 0;
-      }
-
-      .playerList {
-        .gameMaster {
-          color: $successColor;
-        }
-      }
+  .playerList {
+    .gameMaster {
+      color: $successColor;
     }
   }
 }

@@ -71,5 +71,19 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+  addCrawl: function (crawl) {
+    var deferred = q.defer();
+
+    io.socket.post(constants.endpoints.game.addCrawl, { crawl: crawl }, function (response) {
+      if (response.err) {
+        console.log(response.err);
+        deferred.reject('There was an error adding the crawl');
+      } else {
+        deferred.resolve(response);
+      }
+    });
+
+    return deferred.promise;
   }
 };

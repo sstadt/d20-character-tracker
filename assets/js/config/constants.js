@@ -39,7 +39,8 @@ module.exports = {
       search: '/game/search',
       ownedIndex: '/game/owned',
       create: '/game/create',
-      updateConfig: '/game/updateConfig'
+      updateConfig: '/game/updateConfig',
+      addCrawl: '/game/addCrawl'
     }
   }
 };

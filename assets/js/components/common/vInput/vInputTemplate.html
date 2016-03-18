@@ -2,5 +2,6 @@
 <label class="v-input">
   {{ label }}
   <i class="fa fa-{{ icon }}" v-if="icon"></i>
-  <input type="{{ type }}" placeholder="{{ placeholder }}" v-el:input v-model="value" />
+  <textarea v-if="type === 'textarea'" placeholder="{{ placeholder }}" v-el:input v-model="value"></textarea>
+  <input v-if="type !== 'textarea'" type="{{ type }}" placeholder="{{ placeholder }}" v-el:input v-model="value" />
 </label>

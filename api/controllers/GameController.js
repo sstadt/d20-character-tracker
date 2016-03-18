@@ -41,6 +41,7 @@ module.exports = {
 		Game.findOne(req.param('id'))
 			.populate('gameMaster')
 			.populate('players')
+			.populate('crawls')
 			.exec(function (err, game) {
 				if (err) {
 					res.jsonError(err);
@@ -108,6 +109,16 @@ module.exports = {
 				res.jsonError(err);
 			} else {
 				res.send(200);
+			}
+		});
+	},
+
+	addCrawl: function (req, res) {
+		Crawl.create(req.param('crawl'), function (err, crawl) {
+			if (err) {
+				res.jsonError(err);
+			} else {
+				res.json(crawl);
 			}
 		});
 	}
