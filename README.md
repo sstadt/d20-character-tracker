@@ -12,6 +12,7 @@ a [Sails](http://sailsjs.org) application
  - put login/signup page content in a panel so the starfield doesn't overpower the content
  - Fix sandbox so it doesn't show in production
  - add a splash page
+ - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
 
 ### Setup
 
