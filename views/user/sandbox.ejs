@@ -1,11 +1,6 @@
 
-
 <div class="row">
   <div class="small-12 columns">
-    <div id="sandbox">
-      <button v-on:click="showCrawl = true">Play</button>
-      <star-wars-crawl :show.sync="showCrawl"></star-wars-crawl>
-    </div>
     <div id="characterList">
       <character-creator :character.sync="newCharacter"></character-creator>
       <character-list :characters.sync="characters"></character-list>

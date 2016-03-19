@@ -46,7 +46,7 @@ module.exports = {
     startCrawl: function (musicDelay) {
       var self = this;
 
-      musicDelay = musicDelay || 8800;
+      musicDelay = musicDelay || 8750;
 
       self.running = true;
       self.finished = false;
