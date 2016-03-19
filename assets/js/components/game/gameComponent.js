@@ -5,6 +5,7 @@ var constants = require('../../config/constants.js');
 require('./crawlMenu/crawlMenu.js');
 require('./playersMenu/playersMenu.js');
 require('./settingsMenu/settingsMenu.js');
+require('../starWarsCrawl/starWarsCrawl.js');
 
 var events = {};
 

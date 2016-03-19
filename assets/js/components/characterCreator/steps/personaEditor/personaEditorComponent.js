@@ -9,8 +9,5 @@ module.exports = {
       required: true,
       twoWay: true
     }
-  },
-  filters: {
-    marked: marked
   }
 };

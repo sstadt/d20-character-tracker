@@ -6,6 +6,22 @@ module.exports = {
       type: Boolean,
       require: true,
       twoWay: false
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    subtitle: {
+      type: String,
+      defaultsTo: ''
+    },
+    body: {
+      type: String,
+      required: true
+    },
+    image: {
+      type: String,
+      required: true
     }
   },
   data: function () {

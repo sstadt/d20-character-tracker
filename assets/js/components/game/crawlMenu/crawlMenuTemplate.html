@@ -28,11 +28,11 @@
               <p class="crawl-body">{{ crawl.crawl }}</p>
             </div>
             <div class="small-12 medium-4 large-3 columns">
-              <img v-bind:src="crawl.imageUrl" />
+              <img :src="crawl.imageUrl" />
             </div>
           </div>
           <div class="controls">
-            <button class="mini"><i class="fa fa-play"></i></button>
+            <button class="mini" v-on:click="playCrawl(crawl)"><i class="fa fa-play"></i></button>
             <button class="mini" v-on:click="editCrawl(crawl)"><i class="fa fa-folder-open"></i></button>
             <button class="mini"><i class="fa fa-trash"></i></button>
           </div>
@@ -48,5 +48,7 @@
       </li>
     </ul>
   </div>
+
+  <star-wars-crawl :show.sync="showDemoCrawl" :title="demoTitle" :subtitle="demoSubtitle" :body="demoCrawl" :image="demoImage"></star-wars-crawl>
 
 </div>

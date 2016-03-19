@@ -24,7 +24,12 @@ module.exports = {
       gameCrawlsAlert: {},
       activeCrawl: new Crawl(),
       addingCrawl: false,
-      saving: false
+      saving: false,
+      showDemoCrawl: false,
+      demoTitle: '',
+      demoSubtitle: '',
+      demoCrawl: '',
+      demoImage: ''
     };
   },
   partials: {
@@ -71,6 +76,13 @@ module.exports = {
     },
     cancelEdit: function () {
       this.activeCrawl = new Crawl();
+    },
+    playCrawl: function (crawl) {
+      this.demoTitle = crawl.title;
+      this.demoSubtitle = crawl.subtitle;
+      this.demoCrawl = crawl.crawl;
+      this.demoImage = crawl.imageUrl;
+      this.showDemoCrawl = true;
     }
   }
 };
