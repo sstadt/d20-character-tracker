@@ -63,7 +63,7 @@ module.exports = {
 
     io.socket.post(constants.endpoints.game.updateConfig, { id: id, config: config }, function (response) {
       if (response && response.err) {
-        console.log(response.err);
+        console.error(response.err);
         deferred.reject('There was an error updating the game config');
       } else {
         deferred.resolve();
@@ -77,10 +77,24 @@ module.exports = {
 
     io.socket.post(constants.endpoints.game.addCrawl, { crawl: crawl }, function (response) {
       if (response.err) {
-        console.log(response.err);
+        console.error(response.err);
         deferred.reject('There was an error adding the crawl');
       } else {
         deferred.resolve(response);
+      }
+    });
+
+    return deferred.promise;
+  },
+  updateCrawl: function (crawl) {
+    var deferred = q.defer();
+
+    io.socket.post(constants.endpoints.game.updateCrawl, { crawl: crawl }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('There was an error saving the crawl ' + crawl.title);
+      } else {
+        deferred.resolve();
       }
     });
 

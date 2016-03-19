@@ -13,13 +13,19 @@ $crawlBodyLinesToShow: 2;
 -------------------------------- */
 
 .crawl-description {
+  img {
+    max-height: rem-calc(125);
+    display: block;
+    margin: 0 auto;
+  }
+
   .crawl-body {
     @include multi-line-ellipsis($crawlBodyFontSize, $crawlBodyLineHeight, $crawlBodyLinesToShow);
   }
 }
 
-.new-crawl {
-  padding-top: rem-calc(20);
+.edit-crawl {
+  padding: rem-calc(20) 0;
 
   textarea {
     min-height: rem-calc(150);

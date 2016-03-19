@@ -45,7 +45,8 @@ module.exports = {
       ownedIndex: '/game/owned',
       create: '/game/create',
       updateConfig: '/game/updateConfig',
-      addCrawl: '/game/addCrawl'
+      addCrawl: '/game/addCrawl',
+      updateCrawl: '/crawl/update'
     }
   }
 };
