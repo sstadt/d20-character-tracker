@@ -1,5 +1,10 @@
 
+function generateError(msg) {
+  return { err: msg };
+}
+
 module.exports = {
+  generate: generateError,
   parse: function (error) {
     var message = (error.message) ? error.message : 'There was an error completing your request';
 
@@ -10,6 +15,6 @@ module.exports = {
       console.log('--------------------------------------------');
     }
 
-    return { err: message };
+    return generateError(message);
   }
 };

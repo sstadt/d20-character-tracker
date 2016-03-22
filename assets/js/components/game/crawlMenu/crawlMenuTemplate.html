@@ -34,7 +34,7 @@
           <div class="controls">
             <button class="mini" v-on:click="playCrawl(crawl)"><i class="fa fa-play"></i></button>
             <button class="mini" v-on:click="editCrawl(crawl)"><i class="fa fa-folder-open"></i></button>
-            <button class="mini"><i class="fa fa-trash"></i></button>
+            <button class="mini" v-on:click="deleteCrawl($index)"><i class="fa fa-trash"></i></button>
           </div>
         </div>
         <div class="edit-crawl" v-show="activeCrawl.id === crawl.id" transition="slide-up">

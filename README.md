@@ -9,7 +9,9 @@ a [Sails](http://sailsjs.org) application
 
 ### Dev to do:
 
+ - BREAKING - not using a URL in imageURL sets the crawl id to NaN and breaks the game page
  - INPUT VALIDATION !!!
+ - CONFIRM DELETION/CONFIRM PROMPT COMPONENT !!!
  - Cache bust production app javascript
  - put login/signup page content in a panel so the starfield doesn't overpower the content
  - Fix sandbox so it doesn't show in production

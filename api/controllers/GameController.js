@@ -17,6 +17,8 @@ module.exports = {
 		Game.findOne(req.param('id'), function (err, game) {
 			if (err) {
 				res.serverError(err);
+			} else if (!game) {
+				res.serverError('Game not found');
 			} else {
 				GameService.validateConfig(game)
 					.then(function success() {
@@ -121,6 +123,6 @@ module.exports = {
 				res.json(crawl);
 			}
 		});
-	}
+	},
 
 };

@@ -48,11 +48,13 @@ module.exports = {
       self.saving = true;
 
       gameService.addCrawl(newCrawl)
-        .then(function (crawl) {
+        .then(function success(crawl) {
           self.game.crawls.push(crawl);
           self.activeCrawl = new Crawl();
           self.addingCrawl = false;
-        }, self.gameCrawlsAlert.error)
+        }, function error(reason) {
+          self.gameCrawlsAlert.error(reason);
+        })
         .done(function () {
           self.saving = false;
         });
@@ -73,11 +75,25 @@ module.exports = {
         .then(function success() {
           self.game.crawls.$set(index, _.extend(self.activeCrawl));
           self.activeCrawl = new Crawl();
+        }, function error(reason) {
+          self.gameCrawlsAlert.error(reason);
+        })
+        .done(function () {
           self.saving = false;
-        }, self.gameCrawlsAlert.error);
+        });
     },
     cancelEdit: function () {
       this.activeCrawl = new Crawl();
+    },
+    deleteCrawl: function (index) {
+      var self = this;
+
+      gameService.deleteCrawl(self.game.crawls[index])
+        .then(function success() {
+          self.game.crawls.splice(index, 1);
+        }, function error(reason) {
+          self.gameCrawlsAlert.error(reason);
+        });
     },
     playCrawl: function (crawl) {
       this.demoTitle = crawl.title;

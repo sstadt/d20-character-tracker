@@ -1,6 +1,14 @@
 
 var userService = require('../../services/userService.js');
 
+function hasJoinedGame(game, user) {
+  var playerIndex = _.findIndex(game.players, function (player) {
+    return player.id === user.id;
+  });
+
+  return game.gameMaster.id === user.id || playerIndex > -1;
+}
+
 module.exports = {
   template: require('./gameListTemplate.html'),
   props: {
@@ -18,14 +26,12 @@ module.exports = {
     launchGameLink: function (game) {
       return '/play/' + game.id;
     },
-    canLaunchGame: function (game, user) {
-      return game.gameMaster.id === user.id || _.includes(game.players, user);
-    },
+    canLaunchGame: hasJoinedGame,
     canJoinGame: function (game, user) {
-      return !(game.gameMaster.id === user.id || _.includes(game.players, user));
+      return !hasJoinedGame(game, user);
     },
     joinedPlayerList: function (value) {
-      var playerNames = _.clone(value).map(function (player) {
+      var playerNames = _.extend(value).map(function (player) {
         return player.chatHandle;
       });
 

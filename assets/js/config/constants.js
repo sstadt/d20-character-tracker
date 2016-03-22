@@ -46,7 +46,8 @@ module.exports = {
       create: '/game/create',
       updateConfig: '/game/updateConfig',
       addCrawl: '/game/addCrawl',
-      updateCrawl: '/crawl/update'
+      updateCrawl: '/crawl/update',
+      removeCrawl: '/crawl/destroy'
     }
   }
 };

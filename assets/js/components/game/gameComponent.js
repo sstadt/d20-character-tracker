@@ -42,9 +42,13 @@ module.exports = {
   ready: function () {
     var self = this;
 
-    gameService.get(this.gameId)
-      .then(function (game) {
+    console.log(self.game);
+
+    gameService.get(self.gameId)
+      .then(function success(game) {
         self.game = game;
-      }, self.gameAlert.error);
+      }, function error(reason) {
+        self.gameAlert.error(reason);
+      });
   }
 };

@@ -99,5 +99,19 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+  deleteCrawl: function (crawl) {
+    var deferred = q.defer();
+
+    io.socket.post(constants.endpoints.game.removeCrawl, { crawl: crawl }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('There was an error deleting the crawl');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
   }
 };
