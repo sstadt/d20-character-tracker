@@ -28,7 +28,7 @@ module.exports = {
 
     if (channel) {
       roll.channel = channel;
-      roll.username = req.session.User.config.chatHandle || 'Unknown';
+      roll.username = req.session.User.chatHandle || 'Unknown';
 
       Roll.create(roll, function (err, roll) {
         if (err) {
@@ -36,7 +36,7 @@ module.exports = {
         }
 
         Channel.publishUpdate(channel, { newRoll: roll });
-        res.json(roll);      
+        res.json(roll);
       });
     } else {
       res.json(roll);
