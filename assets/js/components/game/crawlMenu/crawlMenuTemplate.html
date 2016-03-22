@@ -41,8 +41,8 @@
           <partial name="crawl-input-form"></partial>
           <div class="controls">
             <button class="tiny" v-on:click="cancelEdit()" :disabled="saving">Cancel</button>
-            <button class="tiny" v-on:click="saveCrawl($index, false)" :disabled="saving">Save</button>
-            <button class="tiny" v-on:click="saveCrawl($index, true)" :disabled="saving">Publish</button>
+            <button class="tiny" v-on:click="saveCrawl($index)" :disabled="saving">Save</button>
+            <button class="tiny" v-on:click="saveCrawl($index, true)" :disabled="saving" v-if="!crawl.publish">Publish</button>
           </div>
         </div>
       </li>

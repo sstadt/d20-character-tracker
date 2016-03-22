@@ -10,6 +10,7 @@ a [Sails](http://sailsjs.org) application
 ### Dev to do:
 
  - INPUT VALIDATION !!!
+ - Cache bust production app javascript
  - put login/signup page content in a panel so the starfield doesn't overpower the content
  - Fix sandbox so it doesn't show in production
  - add a splash page

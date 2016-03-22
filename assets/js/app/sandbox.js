@@ -8,8 +8,6 @@ require('../components/starWarsCrawl/starWarsCrawl.js');
 
 var characterListEvents = {};
 
-Vue.config.debug = true;
-
 var characters = [
   { name: 'Luke Skywalker' },
   { name: 'Han Solo' },

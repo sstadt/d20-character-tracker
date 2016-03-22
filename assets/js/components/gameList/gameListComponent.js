@@ -19,10 +19,10 @@ module.exports = {
       return '/play/' + game.id;
     },
     canLaunchGame: function (game, user) {
-      return _.isEqual(game.gameMaster, user) || _.includes(game.players, user);
+      return game.gameMaster.id === user.id || _.includes(game.players, user);
     },
     canJoinGame: function (game, user) {
-      return !(_.isEqual(game.gameMaster, user) || _.includes(game.players, user));
+      return !(game.gameMaster.id === user.id || _.includes(game.players, user));
     },
     joinedPlayerList: function (value) {
       var playerNames = _.clone(value).map(function (player) {

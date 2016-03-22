@@ -64,7 +64,9 @@ module.exports = {
     saveCrawl: function (index, publish) {
       var self = this;
 
-      self.activeCrawl.publish = publish || false;
+      if (publish) {
+        self.activeCrawl.publish = publish;
+      }
       self.saving = true;
 
       gameService.updateCrawl(self.activeCrawl)
