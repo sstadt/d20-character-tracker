@@ -4,6 +4,7 @@ require('./icon/icon.js');
 require('./panel/panel.js');
 require('./modal/modal.js');
 require('./prompt/prompt.js');
+require('./confirm/confirm.js');
 require('./tabs/tabs.js');
 require('./vInput/vInput.js');
 require('./vCheckbox/vCheckbox.js');

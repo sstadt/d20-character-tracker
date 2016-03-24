@@ -3,6 +3,9 @@
   <h3>{{ game.title }} Crawls</h3>
 
   <alert :alert.sync="gameCrawlsAlert"></alert>
+  <confirm v-ref:game-crawls-confirm></confirm>
+
+  <button type="button" v-on:click="testConfirm()">Test</button>
 
   <div class="controls">
     <button class="tiny" v-on:click="addingCrawl = true">New Crawl</button>

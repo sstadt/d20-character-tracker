@@ -29,7 +29,24 @@ module.exports = {
       demoTitle: '',
       demoSubtitle: '',
       demoCrawl: '',
-      demoImage: ''
+      demoImage: '',
+      testConfirm: function () {
+        var self = this;
+
+        self.$refs.gameCrawlsConfirm.ask({
+          question: 'join me, and together we will rule the galaxy!',
+          yesLabel: 'I\'ll never join you!',
+          noLabel: 'no thx, bro',
+          yes: function () {
+            console.log('!!! confirmed !!!');
+            console.log(self);
+          },
+          no: function () {
+            console.log('!!! denied !!!');
+            console.log(self);
+          }
+        });
+      }
     };
   },
   partials: {
