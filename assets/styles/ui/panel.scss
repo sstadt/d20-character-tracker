@@ -18,7 +18,7 @@ $swPanelBorderNum: $interfaceBorderNum;
     @include flex-panel-header($swPanelBorderNum, $swPanelBorderColor, $swPanelBgColor, $swPanelBgOpacity, $swPanelBevelSizeNum);
   }
 
-  .sw-panel-content {
+  .sw-panel-content, .sw-panel-header {
     @include flex-panel-content($swPanelBorderNum, $swPanelBorderColor, $swPanelBgColor, $swPanelBgOpacity, $swPanelBevelSizeNum);
   }
 

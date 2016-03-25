@@ -1,4 +1,13 @@
 
 <div class="players-menu">
-  <h3>{{ game.title }} Players</h3>
+  <alert :alert.sync="gamePlayersAlert"></alert>
+
+  <h4 class="section-header">Active Players<h4>
+
+  <h4 class="section-header">Pending Players<h4>
+
+  <h4 class="section-header">Add Players<h4>
+  <div class="controls">
+    <v-input type="text" :icon="filterIcon" :value.sync="filter"></v-input>
+  </div>
 </div>

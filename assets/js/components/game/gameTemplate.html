@@ -14,18 +14,30 @@
   </panel>
 
   <modal :show.sync="crawlModalOpen">
+    <div slot="header">
+      <h3>{{ game.title }} Crawls</h3>
+      <p>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</p>
+    </div>
     <div slot="content">
       <crawl-menu :game.sync="game"></crawl-menu>
     </div>
   </modal>
 
   <modal :show.sync="playersModalOpen">
+    <div slot="header">
+      <h3>{{ game.title }} Players</h3>
+      <p>Add, approve, or remove players from the game.</p>
+    </div>
     <div slot="content">
       <players-menu :game.sync="game"></players-menu>
     </div>
   </modal>
 
   <modal :show.sync="settingsModalOpen">
+    <div slot="header">
+      <h3>{{ game.title }} Settings</h3>
+      <p>Game specific settings and configuration.</p>
+    </div>
     <div slot="content">
       <settings-menu :game.sync="game"></settings-menu>
     </div>

@@ -38,7 +38,9 @@ module.exports = {
     gameService.getMyGames()
       .then(function success(myGames) {
         self.myGames = myGames;
-      }, self.gameBrowserAlert.error);
+      }, function (reason) {
+        self.gameBrowserAlert.error(reason);
+      });
   },
   watch: {
     filter: _.debounce(function (val) {
@@ -49,7 +51,9 @@ module.exports = {
         gameService.search(val)
           .then(function success(filteredGames) {
             self.filteredGames = filteredGames;
-          }, self.gameBrowserAlert.error)
+          }, function (reason) {
+            self.gameBrowserAlert.error(reason);
+          })
           .done(function () {
             self.searching = false;
           });
@@ -71,7 +75,9 @@ module.exports = {
       gameService.create(name)
         .then(function success(game) {
           self.myGames.push(game);
-        }, self.gameBrowserAlert.error);
+        }, function (reason) {
+          self.gameBrowserAlert.error(reason);
+        });
     }
   }
 };
