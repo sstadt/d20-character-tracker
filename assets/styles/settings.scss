@@ -156,6 +156,8 @@ $selectHoverBgColor: $inputBgColor;
 /* top-bar
 -------------------------------- */
 
+$topbarHeight: 45px;
+$topbarMarginBottom: 20px;
 $topbarBgColor: rgba($panelBgColor, $panelBgOpacity);
 $topbarLinkColor: $primaryColor;
 $topbarLinkBg: transparent;

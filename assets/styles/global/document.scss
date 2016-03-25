@@ -9,8 +9,8 @@ body {
 }
 
 nav.top-bar {
-  margin-bottom: rem-calc(20);
-  border-bottom: $interfaceBorderSize $interfaceBorderStyle $panelBorderColor;
+  margin-bottom: $topbarMarginBottom;
+  border-bottom: $interfaceBorder;
 
   .top-bar-section {
     ul {
@@ -21,4 +21,3 @@ nav.top-bar {
     }
   }
 }
-
