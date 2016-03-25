@@ -29,24 +29,7 @@ module.exports = {
       demoTitle: '',
       demoSubtitle: '',
       demoCrawl: '',
-      demoImage: '',
-      testConfirm: function () {
-        var self = this;
-
-        self.$refs.gameCrawlsConfirm.ask({
-          question: 'join me, and together we will rule the galaxy!',
-          yesLabel: 'I\'ll never join you!',
-          noLabel: 'no thx, bro',
-          yes: function () {
-            console.log('!!! confirmed !!!');
-            console.log(self);
-          },
-          no: function () {
-            console.log('!!! denied !!!');
-            console.log(self);
-          }
-        });
-      }
+      demoImage: ''
     };
   },
   partials: {
@@ -105,12 +88,17 @@ module.exports = {
     deleteCrawl: function (index) {
       var self = this;
 
-      gameService.deleteCrawl(self.game.crawls[index])
-        .then(function success() {
-          self.game.crawls.splice(index, 1);
-        }, function error(reason) {
-          self.gameCrawlsAlert.error(reason);
-        });
+      self.$refs.gameCrawlsConfirm.ask({
+        question: 'Are you sure you want to delete ' + self.game.crawls[index].title + '?',
+        yes: function () {
+          gameService.deleteCrawl(self.game.crawls[index])
+            .then(function success() {
+              self.game.crawls.splice(index, 1);
+            }, function error(reason) {
+              self.gameCrawlsAlert.error(reason);
+            });
+        }
+      });
     },
     playCrawl: function (crawl) {
       this.demoTitle = crawl.title;

@@ -23,8 +23,6 @@ module.exports = {
         self.confirmed = undefined;
         self.show = true;
 
-        console.log(self.show);
-
         unwatch = self.$watch('$data.confirmed', function (newVal, oldVal) {
           if (newVal === true && _.isFunction(data.yes)) {
             data.yes();
