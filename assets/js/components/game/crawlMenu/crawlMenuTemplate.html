@@ -7,7 +7,7 @@
   </div>
 
   <div class="edit-crawl" v-show="addingCrawl" transition="slide-up">
-    <v-form v-ref:addCrawlForm :ajax="true">
+    <v-form v-ref:add-crawl-form :ajax="true">
       <partial name="crawl-input-form"></partial>
       <div class="controls">
         <button class="tiny" v-on:click="addingCrawl = false" :disabled="saving">Cancel</button>

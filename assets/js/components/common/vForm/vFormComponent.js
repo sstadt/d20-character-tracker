@@ -27,11 +27,11 @@ module.exports = {
       var self = this,
         formIsValid = true;
 
-      _.forEach(self.$children, function (child) {
-        if (_.isFunction(child.isValid)) { // has input validation attached
-          formIsValid = formIsValid && child.isValid();
+      for (var i = 0, j = self.$children.length; i < j; i++) {
+        if (_.isFunction(self.$children[i].isValid)) { // has input validation attached
+          formIsValid = formIsValid && self.$children[i].isValid();
         }
-      });
+      }
 
       return formIsValid;
     }

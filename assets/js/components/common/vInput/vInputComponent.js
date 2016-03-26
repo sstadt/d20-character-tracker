@@ -43,7 +43,10 @@ module.exports = {
 
       return (this.error.length === 0);
     },
-    validate: _.debounce(function () {
+    debounceValidate: _.debounce(function () {
+      this.validate();
+    }, 500),
+    validate: function () {
       var label = this.label || this.name;
 
       if (this.name) {
@@ -60,6 +63,6 @@ module.exports = {
           this.error = '';
         }
       }
-    }, 500)
+    }
   }
 };
