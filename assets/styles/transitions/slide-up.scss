@@ -1,9 +1,21 @@
+
 .slide-up-transition {
   transition: all .3s ease-in-out;
   max-height: 800px;
   opacity: 1;
 }
 .slide-up-enter, .slide-up-leave {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.slide-up-x-small-transition {
+  transition: all .3s ease-in-out;
+  max-height: 30px;
+  opacity: 1;
+}
+.slide-up-x-small-enter, .slide-up-x-small-leave {
   max-height: 0;
   opacity: 0;
   overflow: hidden;

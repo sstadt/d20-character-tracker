@@ -1,4 +1,4 @@
-<v-input type="text" label="Title" :value.sync="activeCrawl.title"></v-input>
-<v-input type="text" label="Sub title" :value.sync="activeCrawl.subtitle"></v-input>
-<v-input type="textarea" label="Crawl" :value.sync="activeCrawl.crawl"></v-input>
-<v-input type="text" label="Image URL" :value.sync="activeCrawl.imageUrl"></v-input>
+<v-input type="text" name="title" label="Title" :value.sync="activeCrawl.title" :required="true"></v-input>
+<v-input type="text" name="subtitle" label="Sub title" :value.sync="activeCrawl.subtitle"></v-input>
+<v-input type="textarea" name="crawl" label="Crawl" :value.sync="activeCrawl.crawl" :required="true"></v-input>
+<v-input type="url" name="image" label="Image URL" :value.sync="activeCrawl.imageUrl" :required="true"></v-input>

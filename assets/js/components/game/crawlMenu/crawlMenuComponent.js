@@ -43,21 +43,28 @@ module.exports = {
       var self = this,
         newCrawl = _.extend(self.activeCrawl);
 
-      newCrawl.game = self.game.id;
-      newCrawl.published = publish || false;
-      self.saving = true;
+      console.log(self.$refs);
+      self.$refs.addCrawlForm.validate();
 
-      gameService.addCrawl(newCrawl)
-        .then(function success(crawl) {
-          self.game.crawls.push(crawl);
-          self.activeCrawl = new Crawl();
-          self.addingCrawl = false;
-        }, function error(reason) {
-          self.gameCrawlsAlert.error(reason);
-        })
-        .done(function () {
-          self.saving = false;
-        });
+      Vue.nextTick(function () {
+        if (self.$refs.addCrawlForm.isValid()) {
+          newCrawl.game = self.game.id;
+          newCrawl.published = publish || false;
+          self.saving = true;
+
+          gameService.addCrawl(newCrawl)
+            .then(function success(crawl) {
+              self.game.crawls.push(crawl);
+              self.activeCrawl = new Crawl();
+              self.addingCrawl = false;
+            }, function error(reason) {
+              self.gameCrawlsAlert.error(reason);
+            })
+            .done(function () {
+              self.saving = false;
+            });
+        }
+      });
     },
     editCrawl: function (crawl) {
       this.addingCrawl = false;

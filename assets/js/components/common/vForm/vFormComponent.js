@@ -36,6 +36,10 @@ module.exports = {
     action: {
       type: String,
       defaultsTo: ''
+    },
+    ajax: {
+      type: Boolean,
+      defaultsTo: false
     }
   },
   data: function () {
@@ -50,7 +54,7 @@ module.exports = {
       return _.keys(this.errors).length === 0;
     },
     validate: function (event) {
-      if (!this.validated || !this.isValid()) {
+      if (this.ajax || !this.validated || !this.isValid()) {
         event.preventDefault();
       }
 

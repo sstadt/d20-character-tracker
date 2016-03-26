@@ -1,22 +1,25 @@
 
 <label class="v-input">
   {{ label }} <span v-if="!required" class="right">optional</span>
-  <i class="fa fa-{{ icon }}" v-if="icon"></i>
-  <textarea v-if="type === 'textarea'"
-    v-el:input
-    :class="{ 'error': hasError }"
-    name="{{ name }}"
-    placeholder="{{ placeholder }}"
-    v-model="value"
-    v-on:blur="validate()"
-    v-on:input="validate()"></textarea>
-  <input v-else
-    v-el:input
-    :class="{ 'error': hasError }"
-    name="{{ name }}"
-    type="{{ type }}"
-    placeholder="{{ placeholder }}"
-    v-model="value"
-    v-on:blur="validate()"
-    v-on:input="validate()" />
+  <div class="input-wrap">
+    <i class="fa fa-{{ icon }}" v-if="icon"></i>
+    <textarea v-if="type === 'textarea'"
+      v-el:input
+      :class="{ 'error': hasError }"
+      name="{{ name }}"
+      placeholder="{{ placeholder }}"
+      v-model="value"
+      v-on:blur="validate()"
+      v-on:input="validate()"></textarea>
+    <input v-else
+      v-el:input
+      :class="{ 'error': hasError }"
+      name="{{ name }}"
+      type="{{ type }}"
+      placeholder="{{ placeholder }}"
+      v-model="value"
+      v-on:blur="validate()"
+      v-on:input="validate()" />
+    <small v-if="error.length > 0" transition="slide-up-x-small" class="error">{{ error }}</small>
+  </div>
 </label>

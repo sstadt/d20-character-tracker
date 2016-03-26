@@ -40,6 +40,7 @@ module.exports = {
   },
   data: function () {
     return {
+      error: '',
       hasError: false
     };
   },
@@ -53,11 +54,17 @@ module.exports = {
 
         // required validation
         if (this.required && this.value.length === 0) {
+          this.error = label + ' is required';
           errors[this.name].push(label + ' is required');
 
         // html5 data type validation
         } else if (constants.validation.hasOwnProperty(this.type) && !constants.validation[this.type].regex.test(this.value)) {
+          this.error = constants.validation[this.type].defaultError;
           errors[this.name].push(constants.validation[this.type].defaultError);
+
+        // input is valid
+        } else {
+          this.error = '';
         }
 
         // notify self and parent form that validation has occured

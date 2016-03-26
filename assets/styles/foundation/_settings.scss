@@ -92,7 +92,7 @@ $column-gutter: $columnGutter;
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
 // We use these to define default font weights
-// $font-weight-normal: normal !default;
+$font-weight-normal: $fontWeightNormal;
 // $font-weight-bold: bold !default;
 
 // $white       : #FFFFFF;
@@ -661,13 +661,13 @@ $input-box-shadow: $inputBoxShadow;
 // $input-number-spinners: true;
 
 // We use these to style the error states for inputs and labels
-// $input-error-message-padding: rem-calc(6 9 9);
-// $input-error-message-top: -1px;
-// $input-error-message-font-size: rem-calc(12);
-// $input-error-message-font-weight: $font-weight-normal;
-// $input-error-message-font-style: italic;
-// $input-error-message-font-color: $white;
-// $input-error-message-font-color-alt: $oil;
+$input-error-message-padding: $inputErrorMessagePadding;
+$input-error-message-top: $inputErrorMessageTop;
+$input-error-message-font-size: $inputErrorMessageFontSize;
+$input-error-message-font-weight: $inputErrorMessageFontWeight;
+$input-error-message-font-style: $inputErrorMessageFontStyle;
+$input-error-message-font-color: $inputErrorMessageFontColor;
+$input-error-message-font-color-alt: $inputErrorMessageFontColorAlt;
 
 // We use this to style the glowing effect of inputs when focused
 // $input-include-glowing-effect: true;

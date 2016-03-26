@@ -1,51 +1,10 @@
 
-$selectCaret: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0aD0iMzdweCIgaGVpZ2h0PSIzN3B4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwIDEwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+Cjxwb2x5Z29uIGZpbGw9IiM4MkE4RDkiIHBvaW50cz0iMzQuMjE0LDQyLjQ5MyA1MCw1Ny41MDcgNjUuNzg3LDQyLjQ5MyAiLz4KPC9zdmc+);
-$inputBoxShadow: 0 0 10px $inputFocusBorderColor inset;
+/*
+  this is temporary
 
-input[type="text"],
-input[type="password"],
-input[type="date"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="month"],
-input[type="week"],
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="tel"],
-input[type="time"],
-input[type="url"],
-input[type="color"],
-textarea {
-  opacity: $inputOpacity;
-  transition: $inputTransition;
-
-  &.error {
-    margin-bottom: 1rem;
-    border-color: $alertColor;
-  }
-
-  &:focus, &:hover {
-    opacity: $inputFocusOpacity;
-  }
-
-  &:focus {
-    box-shadow: $inputBoxShadow;
-  }
-
-  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: $placeholderColor;
-  }
-  &::-moz-placeholder { /* Firefox 19+ */
-    color: $placeholderColor;
-  }
-  &:-ms-input-placeholder { /* IE 10+ */
-    color: $placeholderColor;
-  }
-  &:-moz-placeholder { /* Firefox 18- */
-    color: $placeholderColor;
-  }
-}
+  individual input styling should live
+  in the component stylesheet
+*/
 
 select {
   background-image: $selectCaret;
