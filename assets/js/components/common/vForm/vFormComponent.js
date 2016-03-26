@@ -17,13 +17,13 @@ events[constants.events.form.inputValid] = function InputValid(name) {
   this.parseErrors();
 };
 
-events[constants.events.form.answerValidationRequest] = _.debounce(function ValidationAnswered() {
+events[constants.events.form.answerValidationRequest] = function ValidationAnswered() {
   var self = this;
 
   Vue.nextTick(function () {
     self.$els.form.submit();
   });
-}, 300);
+};
 
 module.exports = {
   template: require('./vFormTemplate.html'),

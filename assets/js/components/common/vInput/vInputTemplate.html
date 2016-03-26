@@ -9,7 +9,7 @@
     placeholder="{{ placeholder }}"
     v-model="value"
     v-on:blur="validate()"
-    v-on:keyup="validate()"></textarea>
+    v-on:input="validate()"></textarea>
   <input v-else
     v-el:input
     :class="{ 'error': hasError }"
@@ -18,5 +18,5 @@
     placeholder="{{ placeholder }}"
     v-model="value"
     v-on:blur="validate()"
-    v-on:keyup="validate()" />
+    v-on:input="validate()" />
 </label>
