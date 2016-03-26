@@ -10,30 +10,14 @@
 						<%- partial('../components/flashmsg') %>
 					<% } %>
 
-					<form action="/user/create">
-						<label class="v-input">
-						  Email Address
-						  <i class="fa fa-user"></i>
-						  <input type="email" name="email" />
-						</label>
-						<label class="v-input">
-						  Chat Handle
-						  <i class="fa fa-comment"></i>
-						  <input type="text" name="handle" />
-						</label>
-						<label class="v-input">
-						  Password
-						  <i class="fa fa-lock"></i>
-						  <input type="password" name="password" />
-						</label>
-						<label class="v-input">
-						  Confirm Password
-						  <i class="fa fa-repeat"></i>
-						  <input type="password" name="confirmation" />
-						</label>
+					<v-form action="/user/create">
+						<v-input type="email" label="Email Address" name="email" icon="user" :value.sync="''" :required="true"></v-input>
+						<v-input type="text" label="Chat Handle" name="handle" icon="comment" :value.sync="''" :required="true"></v-input>
+						<v-input type="password" label="Password" name="password" icon="lock" :value.sync="''" :required="true"></v-input>
+						<v-input type="password" label="Confirm Password" name="confirmation" icon="repeat" :value.sync="''" :required="true"></v-input>
 						<button type="submit" class="expand radius"><i class="fa fa-user"></i> Create Account</button>
 						<a href="/login"><i class="fa fa-chevron-circle-left"></i> Log In</a>
-					</form>
+					</v-form>
 				</div>
 			</panel>
 		</div>
