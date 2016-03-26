@@ -11,7 +11,8 @@ a [Sails](http://sailsjs.org) application
 ### Dev to do:
 
  - BREAKING - not using a URL in imageURL sets the crawl id to NaN and breaks the game page
- - INPUT VALIDATION - look into creating a form component that can receive error events from inputs and having inputs dispatch error events on failed validation criteria ??? http://vuejs.github.io/vue-validator/index.html ???
+ - validation - include mechanism for passing submit function to form
+ - validate crawl input form
  - refactor the prompt component to use the same technique as the confirm component
  - Cache bust production app javascript
  - Fix sandbox so it doesn't show in production
@@ -22,7 +23,6 @@ a [Sails](http://sailsjs.org) application
 ### Setup
 
 Copy the following to config/local.js and fill in values:
-
 
 ```javascript
 module.exports = {

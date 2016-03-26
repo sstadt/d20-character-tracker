@@ -54,10 +54,9 @@ module.exports = {
         // required validation
         if (this.required && this.value.length === 0) {
           errors[this.name].push(label + ' is required');
-        }
 
         // html5 data type validation
-        if (constants.validation.hasOwnProperty(this.type) && !constants.validation[this.type].regex.test(this.value)) {
+        } else if (constants.validation.hasOwnProperty(this.type) && !constants.validation[this.type].regex.test(this.value)) {
           errors[this.name].push(constants.validation[this.type].defaultError);
         }
 
