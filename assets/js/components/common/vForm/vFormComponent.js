@@ -15,12 +15,19 @@ module.exports = {
     ajax: {
       type: Boolean,
       defaultsTo: false
+    },
+    submitCallback: {
+      type: Function
     }
   },
   methods: {
     submitForm: function (event) {
       if (this.ajax || !this.isValid()) {
         event.preventDefault();
+      }
+
+      if (this.ajax && this.isValid() && typeof this.submitCallback === 'function') {
+        this.submitCallback();
       }
     },
     isValid: function () {

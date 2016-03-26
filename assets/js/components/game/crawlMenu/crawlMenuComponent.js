@@ -39,43 +39,41 @@ module.exports = {
     closeModal: function () {
       this.$dispatch(constants.events.game.closeCrawl);
     },
-    addCrawl: function (publish) {
+    addCrawl: function () {
       var self = this,
         newCrawl = _.extend(self.activeCrawl);
 
-      if (self.$refs.addCrawlForm.isValid()) {
-        newCrawl.game = self.game.id;
-        newCrawl.published = publish || false;
-        self.saving = true;
+      newCrawl.game = self.game.id;
+      newCrawl.published = false;
+      self.saving = true;
 
-        gameService.addCrawl(newCrawl)
-          .then(function success(crawl) {
-            self.game.crawls.push(crawl);
-            self.activeCrawl = new Crawl();
-            self.addingCrawl = false;
-          }, function error(reason) {
-            self.gameCrawlsAlert.error(reason);
-          })
-          .done(function () {
-            self.saving = false;
-          });
-      }
+      gameService.addCrawl(newCrawl)
+        .then(function success(crawl) {
+          self.game.crawls.push(crawl);
+          self.activeCrawl = new Crawl();
+          self.addingCrawl = false;
+        }, function error(reason) {
+          self.gameCrawlsAlert.error(reason);
+        })
+        .done(function () {
+          self.saving = false;
+        });
     },
     editCrawl: function (crawl) {
       this.addingCrawl = false;
       this.activeCrawl = _.extend(crawl);
     },
-    saveCrawl: function (index, publish) {
-      var self = this;
+    saveCrawl: function () {
+      var self = this,
+        crawlIndex = _.findIndex(self.crawls, function (crawl) {
+          return self.activeCrawl.id === crawl.id;
+        });
 
-      if (publish) {
-        self.activeCrawl.publish = publish;
-      }
       self.saving = true;
 
       gameService.updateCrawl(self.activeCrawl)
         .then(function success() {
-          self.game.crawls.$set(index, _.extend(self.activeCrawl));
+          self.game.crawls.$set(crawlIndex, _.extend(self.activeCrawl));
           self.activeCrawl = new Crawl();
         }, function error(reason) {
           self.gameCrawlsAlert.error(reason);
