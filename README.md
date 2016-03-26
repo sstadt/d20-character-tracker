@@ -11,11 +11,9 @@ a [Sails](http://sailsjs.org) application
 ### Dev to do:
 
  - BREAKING - not using a URL in imageURL sets the crawl id to NaN and breaks the game page
- - INPUT VALIDATION !!!
- - CONFIRM DELETION/CONFIRM PROMPT COMPONENT !!!
+ - INPUT VALIDATION - look into creating a form component that can receive error events from inputs and having inputs dispatch error events on failed validation criteria ??? http://vuejs.github.io/vue-validator/index.html ???
  - refactor the prompt component to use the same technique as the confirm component
  - Cache bust production app javascript
- - put login/signup page content in a panel so the starfield doesn't overpower the content
  - Fix sandbox so it doesn't show in production
  - add a splash page
  - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
