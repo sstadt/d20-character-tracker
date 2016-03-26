@@ -5,7 +5,7 @@
     <i class="fa fa-{{ icon }}" v-if="icon"></i>
     <textarea v-if="type === 'textarea'"
       v-el:input
-      :class="{ 'error': hasError }"
+      :class="{ 'error': error.length > 0 }"
       name="{{ name }}"
       placeholder="{{ placeholder }}"
       v-model="value"
@@ -13,7 +13,7 @@
       v-on:input="validate()"></textarea>
     <input v-else
       v-el:input
-      :class="{ 'error': hasError }"
+      :class="{ 'error': error.length > 0 }"
       name="{{ name }}"
       type="{{ type }}"
       placeholder="{{ placeholder }}"

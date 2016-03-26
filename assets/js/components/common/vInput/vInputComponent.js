@@ -1,17 +1,8 @@
 
-var vInputTemplate = require('./vInputTemplate.html');
 var constants = require('../../../config/constants.js');
 
-var events = {};
-
-events[constants.events.form.requestValidation] = function () {
-  this.validate();
-  this.$dispatch(constants.events.form.answerValidationRequest);
-};
-
 module.exports = {
-  template: vInputTemplate,
-  events: events,
+  template: require('./vInputTemplate.html'),
   props: {
     label: {
       type: String
@@ -41,38 +32,32 @@ module.exports = {
   data: function () {
     return {
       error: '',
-      hasError: false
+      validated: false,
     };
   },
   methods: {
+    isValid: function () {
+      if (!this.validated) {
+        this.validate();
+      }
+
+      return (this.error.length === 0);
+    },
     validate: _.debounce(function () {
-      var label = this.label || this.name,
-        errors = {};
+      var label = this.label || this.name;
 
       if (this.name) {
-        errors[this.name] = [];
-
         // required validation
         if (this.required && this.value.length === 0) {
           this.error = label + ' is required';
-          errors[this.name].push(label + ' is required');
 
         // html5 data type validation
         } else if (constants.validation.hasOwnProperty(this.type) && !constants.validation[this.type].regex.test(this.value)) {
           this.error = constants.validation[this.type].defaultError;
-          errors[this.name].push(constants.validation[this.type].defaultError);
 
         // input is valid
         } else {
           this.error = '';
-        }
-
-        // notify self and parent form that validation has occured
-        this.hasError = errors[this.name].length > 0;
-        if (this.hasError) {
-          this.$dispatch(constants.events.form.inputError, errors);
-        } else {
-          this.$dispatch(constants.events.form.inputValid, this.name);
         }
       }
     }, 500)

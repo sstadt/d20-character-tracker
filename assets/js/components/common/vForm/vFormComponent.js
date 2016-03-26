@@ -1,33 +1,8 @@
 
 var constants = require('../../../config/constants.js');
 
-var events = {};
-
-events[constants.events.form.inputError] = function InputError(error) {
-  for (var name in error) {
-    this.errors[name] = error[name];
-  }
-  this.parseErrors();
-};
-
-events[constants.events.form.inputValid] = function InputValid(name) {
-  if (this.errors.hasOwnProperty(name)) {
-    delete this.errors[name];
-  }
-  this.parseErrors();
-};
-
-events[constants.events.form.answerValidationRequest] = function ValidationAnswered() {
-  var self = this;
-
-  Vue.nextTick(function () {
-    self.$els.form.submit();
-  });
-};
-
 module.exports = {
   template: require('./vFormTemplate.html'),
-  events: events,
   props: {
     method: {
       type: String,
@@ -42,34 +17,23 @@ module.exports = {
       defaultsTo: false
     }
   },
-  data: function () {
-    return {
-      formAlert: {},
-      errors: {},
-      validated: false
-    };
-  },
   methods: {
-    isValid: function () {
-      return _.keys(this.errors).length === 0;
-    },
-    validate: function (event) {
-      if (this.ajax || !this.validated || !this.isValid()) {
+    submitForm: function (event) {
+      if (this.ajax || !this.isValid()) {
         event.preventDefault();
       }
-
-      if (!this.validated) {
-        this.$broadcast(constants.events.form.requestValidation);
-      }
     },
-    parseErrors: function () {
-      this.validated = true;
-      this.formAlert.clearMessages();
-      for (var name in this.errors) {
-        for (var i = 0, j = name.length; i < j; i++) {
-          this.formAlert.error(this.errors[name][i]);
+    isValid: function () {
+      var self = this,
+        formIsValid = true;
+
+      _.forEach(self.$children, function (child) {
+        if (_.isFunction(child.isValid)) { // has input validation attached
+          formIsValid = formIsValid && child.isValid();
         }
-      }
+      });
+
+      return formIsValid;
     }
   }
 };
