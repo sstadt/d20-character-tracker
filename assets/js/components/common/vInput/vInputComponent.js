@@ -5,7 +5,6 @@ var constants = require('../../../config/constants.js');
 var events = {};
 
 events[constants.events.form.requestValidation] = function () {
-  console.log('validation request received');
   this.validate();
   this.$dispatch(constants.events.form.answerValidationRequest);
 };
@@ -45,34 +44,31 @@ module.exports = {
     };
   },
   methods: {
-    validate: function () {
-      var self = this,
-        label = self.label || self.name,
+    validate: _.debounce(function () {
+      var label = this.label || this.name,
         errors = {};
 
-      if (self.name) {
-        errors[self.name] = [];
+      if (this.name) {
+        errors[this.name] = [];
 
+        // required validation
         if (this.required && this.value.length === 0) {
-          errors[self.name].push(label + ' is required');
+          errors[this.name].push(label + ' is required');
         }
 
-        if (errors[self.name].length > 0) {
+        // html5 data type validation
+        if (constants.validation.hasOwnProperty(this.type) && !constants.validation[this.type].regex.test(this.value)) {
+          errors[this.name].push(constants.validation[this.type].defaultError);
+        }
+
+        // notify self and parent form that validation has occured
+        this.hasError = errors[this.name].length > 0;
+        if (this.hasError) {
           this.$dispatch(constants.events.form.inputError, errors);
-        }
-
-        self.hasError = errors.hasOwnProperty(self.name);
-      }
-    },
-    softValidate: _.debounce(function () {
-      var self = this;
-
-      if (self.name) {
-        if (this.required && this.value.length > 0) {
-          this.hasError = false;
-          this.$dispatch(constants.events.form.inputValid, self.name);
+        } else {
+          this.$dispatch(constants.events.form.inputValid, this.name);
         }
       }
-    }, 300)
+    }, 500)
   }
 };
