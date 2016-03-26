@@ -1,5 +1,5 @@
 
-<form v-on:submit="validate">
+<form v-el:form v-on:submit="validate" :method="method" :action="action" novalidate>
   <slot name="alert">
     <alert :alert.sync="formAlert" />
   </slot>

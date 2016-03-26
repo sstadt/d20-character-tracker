@@ -5,9 +5,9 @@
   <div class="small-12 columns">
 
     <div id="sandbox">
-      <v-form>
+      <v-form method="POST">
         <v-input type="text" label="Test" name="testRequired" :value.sync="''" :required="true"></v-input>
-        <v-input type="email" label="Email" name="testEmail" :value.sync="''"></v-input>
+        <v-input type="email" label="Email" name="testEmail" :value.sync="''" :required="true"></v-input>
         <button type="submit">Submit</button>
       </v-form>
     </div>

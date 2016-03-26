@@ -9,6 +9,10 @@ module.exports = {
       type: Object,
       required: true,
       twoWay: true
+    },
+    canClear: {
+      type: Boolean,
+      defaultsTo: false
     }
   },
   ready: function () {

@@ -39,6 +39,11 @@ module.exports = {
       defaultTo: false
     }
   },
+  data: function () {
+    return {
+      hasError: false
+    };
+  },
   methods: {
     validate: function () {
       var self = this,
@@ -55,6 +60,8 @@ module.exports = {
         if (errors[self.name].length > 0) {
           this.$dispatch(constants.events.form.inputError, errors);
         }
+
+        self.hasError = errors.hasOwnProperty(self.name);
       }
     },
     softValidate: _.debounce(function () {
@@ -62,6 +69,7 @@ module.exports = {
 
       if (self.name) {
         if (this.required && this.value.length > 0) {
+          this.hasError = false;
           this.$dispatch(constants.events.form.inputValid, self.name);
         }
       }

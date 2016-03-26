@@ -20,6 +20,11 @@ textarea {
   opacity: $inputOpacity;
   transition: $inputTransition;
 
+  &.error {
+    margin-bottom: 1rem;
+    border-color: $alertColor;
+  }
+
   &:focus, &:hover {
     opacity: $inputFocusOpacity;
   }

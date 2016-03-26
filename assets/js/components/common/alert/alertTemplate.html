@@ -9,5 +9,5 @@
   <ul>
     <li v-for="message in alert.messages" track-by="$index">{{ message }}</li>
   </ul>
-  <a href="#" class="close" v-on:click="close()"><icon name="multiply"></icon></a>
+  <a href="#" class="close" v-if="canClose" v-on:click="close()"><icon name="multiply"></icon></a>
 </div>

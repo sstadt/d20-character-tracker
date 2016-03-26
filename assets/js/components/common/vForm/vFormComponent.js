@@ -18,17 +18,31 @@ events[constants.events.form.inputValid] = function InputValid(name) {
 };
 
 events[constants.events.form.answerValidationRequest] = _.debounce(function ValidationAnswered() {
-  console.log('validation answered');
-  console.log(this.isValid());
+  var self = this;
+
+  Vue.nextTick(function () {
+    self.$els.form.submit();
+  });
 }, 300);
 
 module.exports = {
   template: require('./vFormTemplate.html'),
   events: events,
+  props: {
+    method: {
+      type: String,
+      defaultsTo: 'POST'
+    },
+    action: {
+      type: String,
+      defaultsTo: ''
+    }
+  },
   data: function () {
     return {
       formAlert: {},
-      errors: {}
+      errors: {},
+      validated: false
     };
   },
   methods: {
@@ -36,13 +50,16 @@ module.exports = {
       return _.keys(this.errors).length === 0;
     },
     validate: function (event) {
-      event.preventDefault();
-      console.log('broadcasting validation request');
-      this.$broadcast(constants.events.form.requestValidation);
-      // if (_.keys(this.errors).length > 0) {
-      // }
+      if (!this.validated || !this.isValid()) {
+        event.preventDefault();
+      }
+
+      if (!this.validated) {
+        this.$broadcast(constants.events.form.requestValidation);
+      }
     },
     parseErrors: function () {
+      this.validated = true;
       this.formAlert.clearMessages();
       for (var name in this.errors) {
         for (var i = 0, j = name.length; i < j; i++) {
