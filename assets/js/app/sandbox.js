@@ -26,10 +26,7 @@ characterListEvents[constants.events.characterCreator.addCharacter] = function (
 };
 
 new Vue({
-  el: '#sandbox',
-  data: {
-    showCrawl: false
-  }
+  el: '#sandbox'
 });
 
 new Vue({

@@ -1,0 +1,7 @@
+
+<form v-on:submit="validate">
+  <slot name="alert">
+    <alert :alert.sync="formAlert" />
+  </slot>
+  <slot></slot>
+</form>

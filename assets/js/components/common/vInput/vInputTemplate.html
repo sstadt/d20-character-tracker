@@ -2,6 +2,17 @@
 <label class="v-input">
   {{ label }}
   <i class="fa fa-{{ icon }}" v-if="icon"></i>
-  <textarea v-if="type === 'textarea'" placeholder="{{ placeholder }}" v-el:input v-model="value"></textarea>
-  <input v-if="type !== 'textarea'" type="{{ type }}" placeholder="{{ placeholder }}" v-el:input v-model="value" />
+  <textarea v-if="type === 'textarea'"
+    v-el:input
+    placeholder="{{ placeholder }}"
+    v-model="value"
+    v-on:blur="validate()"
+    v-on:change="softValidate()"></textarea>
+  <input v-else
+    v-el:input
+    type="{{ type }}"
+    placeholder="{{ placeholder }}"
+    v-model="value"
+    v-on:blur="validate()"
+    v-on:change="softValidate()" />
 </label>

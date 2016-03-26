@@ -8,6 +8,12 @@
 
 module.exports = {
   events: {
+    form: {
+      inputError: 'VE_FORM_INPUT_ERROR',
+      inputValid: 'VE_FORM_INPUT_VALID',
+      requestValidation: 'VE_FORM_REQUEST_VALIDATION',
+      answerValidationRequest: 'VE_FORM_ANSWER_VALIDATION_REQUEST'
+    },
     prompt: {
       promptUser: 'VE_PROMPT_PROMPT_USER',
       valueSubmitted: 'VE_PROMPT_VALUE_SUBMITTED'
@@ -24,7 +30,7 @@ module.exports = {
     game: {
       closeCrawl: 'VE_GAME_CLOSE_CRAWL_MODAL',
       closePlayers: 'VE_GAME_CLOSE_PLAYERS_MODAL',
-      closeSettings: 'VE_GAME_CLOSE_SETTINGS_MODAL',
+      closeSettings: 'VE_GAME_CLOSE_SETTINGS_MODAL'
     }
   },
   endpoints: {

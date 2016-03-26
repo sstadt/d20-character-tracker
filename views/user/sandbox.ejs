@@ -1,46 +1,21 @@
 
+
+
 <div class="row">
   <div class="small-12 columns">
+
+    <div id="sandbox">
+      <v-form>
+        <v-input type="text" label="Test" name="testRequired" :value.sync="''" :required="true"></v-input>
+        <v-input type="email" label="Email" name="testEmail" :value.sync="''"></v-input>
+        <button type="submit">Submit</button>
+      </v-form>
+    </div>
+
     <div id="characterList">
       <character-creator :character.sync="newCharacter"></character-creator>
       <character-list :characters.sync="characters"></character-list>
-
-      <icon name="dice-success"></icon>
-      <icon name="dice-advantage"></icon>
-      <icon name="dice-triumph"></icon>
-      <icon name="dice-failure"></icon>
-      <icon name="dice-threat"></icon>
-      <icon name="dice-despair"></icon>
-      <icon name="dice-dark-side"></icon>
-      <icon name="dice-light-side"></icon>
-
-      <icon name="die-boost"></icon>
-      <icon name="die-ability"></icon>
-      <icon name="die-proficiency"></icon>
-      <icon name="die-setback"></icon>
-      <icon name="die-difficulty"></icon>
-      <icon name="die-challenge"></icon>
-      <icon name="die-force"></icon>
-
-      <icon name="force-point"></icon>
-
-      <panel>
-        <div slot="content">
-          <button v-on:click="show = true">Default Button</button>
-          <button class="info">Info Button</button>
-          <button class="secondary">Secondary Button</button>
-          <button class="success">Success Button</button>
-          <button class="warning">Warning Button</button>
-          <button class="alert">Alert Button</button>
-        </div>
-      </panel>
-
-      <modal :show.sync="show">
-        <div slot="content">
-          <p>Bazinga</p>
-        </div>
-      </modal>
-
     </div>
+
   </div>
 </div>
