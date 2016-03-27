@@ -2,12 +2,48 @@
 <div class="players-menu">
   <alert :alert.sync="gamePlayersAlert"></alert>
 
-  <h4 class="section-header">Active Players<h4>
-
-  <h4 class="section-header">Pending Players<h4>
-
-  <h4 class="section-header">Add Players<h4>
-  <div class="controls">
-    <v-input type="text" :icon="filterIcon" :value.sync="filter"></v-input>
-  </div>
+  <tabs>
+    <tab heading="Active">
+      <ul class="zebra-list">
+        <li v-for="player in game.players">
+          <partial name="player-details"></partial>
+          <div class="controls">
+            <button type="button" class="tiny" v-on:click="removePlayer(player)">Remove</button>
+          </div>
+        </li>
+      </ul>
+    </tab>
+    <tab heading="Invited">
+      <li v-for="player in game.invitedPlayers">
+        <partial name="player-details"></partial>
+        <div class="controls">
+          <button type="button" class="tiny" v-on:click="uninvitePlayer(player)">Cancel</button>
+        </div>
+      </li>
+    </tab>
+    <tab heading="Applied">
+      <ul class="zebra-list">
+        <li v-for="player in game.requestingPlayers">
+          <partial name="player-details"></partial>
+          <div class="controls">
+            <button type="button" class="tiny" v-on:click="declinePlayer(player)">Decline</button>
+            <button type="button" class="tiny" v-on:click="approvePlayer(player)">Approve</button>
+          </div>
+        </li>
+      </ul>
+    </tab>
+    <tab heading="Find">
+      <div class="controls">
+        <v-input type="text" label="Find Players" :icon="filterIcon" :value.sync="filter"></v-input>
+      </div>
+      <ul class="zebra-list">
+        <li v-for="player in filteredPlayers">
+          <partial name="player-details"></partial>
+          <div class="controls">
+            <button type="button" class="tiny" v-on:click="invitePlayer(player)">Invite</button>
+          </div>
+        </li>
+      </ul>
+    </tab>
+  </tabs>
 </div>

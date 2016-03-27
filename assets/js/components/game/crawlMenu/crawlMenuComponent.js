@@ -33,7 +33,7 @@ module.exports = {
     };
   },
   partials: {
-    'crawl-input-form': require('./crawlMenuFormPartial.html')
+    'crawl-input-form': require('./partials/crawlMenuForm.html')
   },
   methods: {
     closeModal: function () {

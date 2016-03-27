@@ -13,12 +13,6 @@ module.exports = {
    * ----------------------------
    */
   events: {
-    form: {
-      inputError: 'VE_FORM_INPUT_ERROR',
-      inputValid: 'VE_FORM_INPUT_VALID',
-      requestValidation: 'VE_FORM_REQUEST_VALIDATION',
-      answerValidationRequest: 'VE_FORM_ANSWER_VALIDATION_REQUEST'
-    },
     prompt: {
       promptUser: 'VE_PROMPT_PROMPT_USER',
       valueSubmitted: 'VE_PROMPT_VALUE_SUBMITTED'
