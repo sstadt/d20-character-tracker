@@ -49,6 +49,7 @@ module.exports = {
 				if (err) {
 					res.jsonError(err);
 				} else {
+					Game.subscribe(req.socket, game.id);
 					res.json(game);
 				}
 			});
@@ -141,6 +142,10 @@ module.exports = {
 						if (err) {
 							res.jsonError(err);
 						} else {
+							Game.message(game.id, {
+								type: 'playerRequestedJoin',
+								data: { player: req.session.User }
+							});
 							res.send(200);
 						}
 					});

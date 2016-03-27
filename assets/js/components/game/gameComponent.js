@@ -7,6 +7,12 @@ require('./playersMenu/playersMenu.js');
 require('./settingsMenu/settingsMenu.js');
 require('../starWarsCrawl/starWarsCrawl.js');
 
+var socketHandler = {
+  playerRequestedJoin: function (game, data) {
+    game.requestingPlayers.push(data.player);
+  }
+};
+
 var events = {};
 
 events[constants.events.game.closeCrawl] = function CloseCrawlModal() {
@@ -42,7 +48,7 @@ module.exports = {
   ready: function () {
     var self = this;
 
-    console.log(self.game);
+    self.subscribe();
 
     gameService.get(self.gameId)
       .then(function success(game) {
@@ -50,5 +56,16 @@ module.exports = {
       }, function error(reason) {
         self.gameAlert.error(reason);
       });
+  },
+  methods: {
+    subscribe: function () {
+      var self = this;
+
+      io.socket.on('game', function (message) {
+        if (message.data.type && socketHandler.hasOwnProperty(message.data.type)) {
+          socketHandler[message.data.type](self.game, message.data.data);//.bind(self, message.data.data);
+        }
+      });
+    }
   }
 };
