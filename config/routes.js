@@ -95,6 +95,10 @@ module.exports.routes = {
     controller: 'game',
     action: 'updateconfig'
   },
+  '/game/join': {
+    controller: 'game',
+    action: 'join'
+  },
 
   /*
     Dice Roller

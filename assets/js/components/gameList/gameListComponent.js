@@ -1,5 +1,6 @@
 
 var userService = require('../../services/userService.js');
+var gameService = require('../../services/gameService.js');
 
 function hasJoinedGame(game, user) {
   var playerIndex = _.findIndex(game.players, function (player) {
@@ -45,5 +46,18 @@ module.exports = {
       .then(function success(user) {
         self.user = user;
       });
+  },
+  methods: {
+    joinGame: function (game) {
+      var self = this;
+
+      gameService.join(game)
+        .then(function success() {
+          console.log('joined game successfully');
+        }, function error(reason) {
+          console.log('error from service');
+          // dispatch game error and render in parent
+        });
+    }
   }
 };

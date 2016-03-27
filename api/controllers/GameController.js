@@ -74,6 +74,7 @@ module.exports = {
 		Game.find(searchParams)
 			.populate('gameMaster')
 			.populate('players')
+			.populate('requestingPlayers')
 			.exec(function (err, games) {
 				if (err) {
 					res.jsonError(err);
@@ -124,5 +125,29 @@ module.exports = {
 			}
 		});
 	},
+
+	join: function (req, res) {
+		Game.findOne(req.param('game'))
+			.populate('requestingPlayers')
+			.exec(function (err, game) {
+				if (err) {
+					res.jsonError(err);
+				} else if (!game) {
+					res.json(ErrorService.generate('Game not found'));
+				} else {
+					game.requestingPlayers.add(req.session.User.id);
+					console.log(game);
+
+					game.save(function (err) {
+						if (err) {
+							res.jsonError(err);
+						} else {
+							console.log('join successful');
+							res.send(200);
+						}
+					});
+				}
+			});
+	}
 
 };

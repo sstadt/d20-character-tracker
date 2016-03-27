@@ -53,7 +53,8 @@ module.exports = {
       updateConfig: '/game/updateConfig',
       addCrawl: '/game/addCrawl',
       updateCrawl: '/crawl/update',
-      removeCrawl: '/crawl/destroy'
+      removeCrawl: '/crawl/destroy',
+      join: '/game/join'
     }
   },
   validation: {

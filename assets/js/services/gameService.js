@@ -113,5 +113,19 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+  join: function (game) {
+    var deferred = q.defer();
+
+    io.socket.post(constants.endpoints.game.join, { game: game.id }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('Could not join game at this time.');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
   }
 };

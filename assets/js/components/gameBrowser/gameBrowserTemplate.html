@@ -12,7 +12,7 @@
         </tab>
         <tab heading="Find Game">
           <div class="controls">
-            <v-input type="text" :icon="filterIcon" :value.sync="filter"></v-input>
+            <v-input type="text" label="Search for Games" :icon="filterIcon" :value.sync="filter"></v-input>
           </div>
           <game-list :games="filteredGames"></game-list>
         </tab>

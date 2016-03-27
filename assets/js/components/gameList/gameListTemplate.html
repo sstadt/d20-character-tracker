@@ -8,7 +8,7 @@
         </div>
         <div class="small-12 medium-4 columns">
           <ul class="inline-list right controls">
-            <li v-if="user.id && game | canJoinGame user"><a href="#">join</a></li>
+            <li v-if="user.id && game | canJoinGame user"><a href="#" v-on:click.prevent="joinGame(game)">join</a></li>
             <li v-if="user.id && game | canLaunchGame user"><a href="{{ game | launchGameLink }}">launch</a></li>
           </ul>
         </div>

@@ -10,9 +10,15 @@ a [Sails](http://sailsjs.org) application
 
 ### Dev to do:
 
+ - sockets...
+ - ... game chat message
+ - ... on player join
+ - ... on join approved
+ - ... on player invited
+ - ... on player accepted
+ - ... player online
+ - ... player offline
  - BREAKING - not using a URL in imageURL sets the crawl id to NaN and breaks the game page
- - validation - include mechanism for passing submit function to form
- - validate crawl input form
  - refactor the prompt component to use the same technique as the confirm component
  - Cache bust production app javascript
  - Fix sandbox so it doesn't show in production
