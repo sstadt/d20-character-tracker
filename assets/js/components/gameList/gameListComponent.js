@@ -1,4 +1,5 @@
 
+var constants = require('../../config/constants.js');
 var userService = require('../../services/userService.js');
 var gameService = require('../../services/gameService.js');
 
@@ -66,8 +67,7 @@ module.exports = {
         .then(function success() {
           game.requestingPlayers.push(self.user);
         }, function error(reason) {
-          console.log('error from service');
-          // dispatch game error and render in parent
+          self.$dispatch(constants.errors.gameBrowser.error, reason);
         });
     }
   }

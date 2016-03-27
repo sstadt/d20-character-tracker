@@ -16,6 +16,10 @@ events[constants.events.prompt.valueSubmitted] = function PromptValueSubmitted(d
   }
 };
 
+events[constants.events.gameBrowser.error] = function GameBrowserErrorReceived(reason) {
+  this.gameBrowserAlert.error(reason);
+};
+
 module.exports = {
   template: require('./gameBrowserTemplate.html'),
   events: events,

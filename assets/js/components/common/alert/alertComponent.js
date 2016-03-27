@@ -10,7 +10,7 @@ module.exports = {
       required: true,
       twoWay: true
     },
-    canClear: {
+    canClose: {
       type: Boolean,
       defaultsTo: false
     }

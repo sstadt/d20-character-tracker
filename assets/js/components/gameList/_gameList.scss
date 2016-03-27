@@ -13,7 +13,7 @@
     margin: 0;
     line-height: 1.8rem;
 
-    a {
+    a:not(.button) {
       line-height: 1.8rem;
     }
   }

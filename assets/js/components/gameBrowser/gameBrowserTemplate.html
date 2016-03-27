@@ -2,7 +2,7 @@
 <div class="game-browser">
   <panel>
     <div slot="content">
-      <alert :alert.sync="gameBrowserAlert"></alert>
+      <alert :alert.sync="gameBrowserAlert" :can-close="true"></alert>
       <tabs>
         <tab heading="My Games">
           <div class="controls">

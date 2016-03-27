@@ -2,25 +2,15 @@
 <div class="game-list">
   <ul class="zebra-list">
     <li v-for="game in games">
-      <div class="row">
-        <div class="small-12 medium-8 columns">
-          <h3>{{ game.title }}</h3>
-        </div>
-        <div class="small-12 medium-4 columns">
-          <ul v-if="user.id" class="inline-list right controls">
-            <li v-if="game | joinIsPending user">join request pending</li>
-            <li v-if="game | canJoinGame user"><a href="#" v-on:click.prevent="joinGame(game)">join</a></li>
-            <li v-if="game | canLaunchGame user"><a href="{{ game | launchGameLink }}">launch</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="small-12 columns">
-          <p class="playerList">
-            <span class="gameMaster"><i class="fa fa-empire"></i> {{ game.gameMaster.chatHandle }}</span>
-            <span class="players" v-if="game.players.length > 0"><i class="fa fa-users"></i> {{ game.players | joinedPlayerList }}</span>
-          </p>
-        </div>
+      <h3>{{ game.title }}</h3>
+      <p class="playerList">
+        <span class="gameMaster"><i class="fa fa-empire"></i> {{ game.gameMaster.chatHandle }}</span>
+        <span class="players" v-if="game.players.length > 0"><i class="fa fa-users"></i> {{ game.players | joinedPlayerList }}</span>
+      </p>
+      <div v-if="user.id" class="controls">
+        <button class="tiny" v-if="game | joinIsPending user" disabled>join request pending</button>
+        <button class="tiny" v-if="game | canJoinGame user" v-on:click="joinGame(game)">join</button>
+        <a class="button tiny" v-if="game | canLaunchGame user" href="{{ game | launchGameLink }}">launch</a>
       </div>
     </li>
   </ul>

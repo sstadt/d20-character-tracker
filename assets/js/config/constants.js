@@ -7,6 +7,11 @@
  */
 
 module.exports = {
+
+  /*
+   * Events
+   * ----------------------------
+   */
   events: {
     form: {
       inputError: 'VE_FORM_INPUT_ERROR',
@@ -27,12 +32,20 @@ module.exports = {
       newLocalRoll: 'VE_DICE_ROLLER_NEW_LOCAL_ROLL',
       joinedChannel: 'VE_DICE_ROLLER_JOINED_CHANNEL'
     },
+    gameBrowser: {
+      error: 'VE_GAME_BROWSER_ERROR'
+    },
     game: {
       closeCrawl: 'VE_GAME_CLOSE_CRAWL_MODAL',
       closePlayers: 'VE_GAME_CLOSE_PLAYERS_MODAL',
       closeSettings: 'VE_GAME_CLOSE_SETTINGS_MODAL'
     }
   },
+
+  /*
+   * Endpoints
+   * ----------------------------
+   */
   endpoints: {
     dice: {
       roll: '/roll'
@@ -57,6 +70,11 @@ module.exports = {
       join: '/game/join'
     }
   },
+
+  /*
+   * Validation Rules
+   * ----------------------------
+   */
   validation: {
     email: {
       regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -71,4 +89,5 @@ module.exports = {
       defaultError: 'Please enter a valid number'
     }
   }
+
 };
