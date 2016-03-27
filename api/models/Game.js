@@ -29,8 +29,7 @@ module.exports = {
     requestingPlayers: {
       collection: 'user',
       via: 'requestedGames',
-      dominant: true,
-      defaultsTo: []
+      dominant: true
     },
     crawls: {
       collection: 'crawl',

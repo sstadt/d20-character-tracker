@@ -2,14 +2,6 @@
 var userService = require('../../services/userService.js');
 var gameService = require('../../services/gameService.js');
 
-function hasJoinedGame(game, user) {
-  var playerIndex = _.findIndex(game.players, function (player) {
-    return player.id === user.id;
-  });
-
-  return game.gameMaster.id === user.id || playerIndex > -1;
-}
-
 module.exports = {
   template: require('./gameListTemplate.html'),
   props: {
@@ -27,9 +19,14 @@ module.exports = {
     launchGameLink: function (game) {
       return '/play/' + game.id;
     },
-    canLaunchGame: hasJoinedGame,
+    canLaunchGame: function (game, user) {
+      return this.hasJoined(game, user);
+    },
     canJoinGame: function (game, user) {
-      return !hasJoinedGame(game, user);
+      return !this.hasJoined(game, user) && !this.hasRequestedJoin(game, user);
+    },
+    joinIsPending: function (game, user) {
+      return !this.hasJoined(game, user) && this.hasRequestedJoin(game, user);
     },
     joinedPlayerList: function (value) {
       var playerNames = _.extend(value).map(function (player) {
@@ -48,12 +45,26 @@ module.exports = {
       });
   },
   methods: {
+    hasRequestedJoin: function (game, user) {
+      var playerIndex = _.findIndex(game.requestingPlayers, function (player) {
+        return player.id === user.id;
+      });
+
+      return playerIndex > -1;
+    },
+    hasJoined: function (game, user) {
+      var playerIndex = _.findIndex(game.players, function (player) {
+        return player.id === user.id;
+      });
+
+      return game.gameMaster.id === user.id || playerIndex > -1;
+    },
     joinGame: function (game) {
       var self = this;
 
       gameService.join(game)
         .then(function success() {
-          console.log('joined game successfully');
+          game.requestingPlayers.push(self.user);
         }, function error(reason) {
           console.log('error from service');
           // dispatch game error and render in parent

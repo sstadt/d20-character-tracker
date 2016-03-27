@@ -7,9 +7,10 @@
           <h3>{{ game.title }}</h3>
         </div>
         <div class="small-12 medium-4 columns">
-          <ul class="inline-list right controls">
-            <li v-if="user.id && game | canJoinGame user"><a href="#" v-on:click.prevent="joinGame(game)">join</a></li>
-            <li v-if="user.id && game | canLaunchGame user"><a href="{{ game | launchGameLink }}">launch</a></li>
+          <ul v-if="user.id" class="inline-list right controls">
+            <li v-if="game | joinIsPending user">join request pending</li>
+            <li v-if="game | canJoinGame user"><a href="#" v-on:click.prevent="joinGame(game)">join</a></li>
+            <li v-if="game | canLaunchGame user"><a href="{{ game | launchGameLink }}">launch</a></li>
           </ul>
         </div>
       </div>

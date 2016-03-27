@@ -43,6 +43,7 @@ module.exports = {
 		Game.findOne(req.param('id'))
 			.populate('gameMaster')
 			.populate('players')
+			.populate('requestingPlayers')
 			.populate('crawls')
 			.exec(function (err, game) {
 				if (err) {
@@ -136,13 +137,10 @@ module.exports = {
 					res.json(ErrorService.generate('Game not found'));
 				} else {
 					game.requestingPlayers.add(req.session.User.id);
-					console.log(game);
-
 					game.save(function (err) {
 						if (err) {
 							res.jsonError(err);
 						} else {
-							console.log('join successful');
 							res.send(200);
 						}
 					});
