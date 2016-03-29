@@ -26,7 +26,7 @@ module.exports = {
     },
     required: {
       type: Boolean,
-      defaultTo: false
+      defaultsTo: false
     }
   },
   data: function () {

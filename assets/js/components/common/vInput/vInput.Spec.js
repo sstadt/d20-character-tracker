@@ -72,7 +72,7 @@ describe('The vInput component', function () {
       });
 
       it('should default to false', function () {
-        expect(component.props.required.defaultTo).toEqual(false);
+        expect(component.props.required.defaultsTo).toEqual(false);
       });
     });
   });
