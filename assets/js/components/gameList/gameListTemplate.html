@@ -4,8 +4,8 @@
     <li v-for="game in games">
       <h3>{{ game.title }}</h3>
       <p class="playerList">
-        <span class="gameMaster"><i class="fa fa-empire"></i> {{ game.gameMaster.chatHandle }}</span>
-        <span class="players" v-if="game.players.length > 0"><i class="fa fa-users"></i> {{ game.players | joinedPlayerList }}</span>
+        <span class="gameMaster"><icon name="empire"></icon> {{ game.gameMaster.chatHandle }}</span>
+        <span class="players" v-if="game.players.length > 0"><icon name="rebel"></icon> {{ game.players | joinedPlayerList }}</span>
       </p>
       <div v-if="user.id" class="controls">
         <button class="tiny" v-if="game | joinIsPending user" disabled>join request pending</button>

@@ -35,5 +35,51 @@ module.exports = {
     }
 
     return deferred.promise;
+  },
+  getUserGames: function (userId) {
+    var deferred = q.defer();
+
+		Game.find({ gameMaster: userId })
+			.populate('gameMaster')
+			.populate('players')
+			.exec(function (err, games) {
+				if (err) {
+          deferred.reject(err);
+				} else {
+          deferred.resolve(games);
+				}
+			});
+
+    return deferred.promise;
+  },
+  getUserParticipatingGames: function (userId) {
+    var deferred = q.defer();
+
+    User.findOne(userId)
+      .populate('player')
+      .exec(function (err, user) {
+        if (err) {
+          deferred.reject(err);
+        } else if (!user) {
+          deferred.reject(ErrorService.generate('Player not found')); // TODO: this is going to break the jsonHandler response
+        } else {
+          gameIds = _.extend(user.player).map(function (game) {
+            return game.id;
+          });
+
+          Game.find(gameIds)
+            .populate('gameMaster')
+            .populate('players')
+            .exec(function (err, games) {
+              if (err) {
+                deferred.reject('Could not retrieve games');
+              } else {
+                deferred.resolve(games);
+              }
+            });
+        }
+      });
+
+    return deferred.promise;
   }
 };

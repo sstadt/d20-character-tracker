@@ -55,13 +55,14 @@ module.exports = {
     game: {
       get: '/game/get',
       search: '/game/search',
-      ownedIndex: '/game/owned',
+      playing: '/game/playing',
       create: '/game/create',
       updateConfig: '/game/updateConfig',
       addCrawl: '/game/addCrawl',
       updateCrawl: '/crawl/update',
       removeCrawl: '/crawl/destroy',
-      join: '/game/join'
+      join: '/game/join',
+      approvePlayer: '/game/approvePlayer'
     }
   },
 

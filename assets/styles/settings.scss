@@ -62,16 +62,22 @@ $mayaBlue    : #83a9da;
 $springGreen : #50d991;
 $maizeYellow : #e1df70;
 $lustRed     : #fb2815;
+$purple      : #A364EF;
+$rebelOrange : #f9731c;
+$empireRed   : #bf1616;
 /* star wars interface colors end */
 
 /* Usage */
 
-$primaryColor   : $mayaBlue;
-$secondaryColor : lighten($primaryColor, 10%);
-$alertColor     : $lustRed;
-$successColor   : $springGreen;
-$warningColor   : $maizeYellow;
-$infoColor      : $clearsky;
+$primaryColor    : $mayaBlue;
+$secondaryColor  : lighten($primaryColor, 10%);
+$alertColor      : $lustRed;
+$successColor    : $springGreen;
+$warningColor    : $maizeYellow;
+$infoColor       : $clearsky;
+
+$gameMasterColor : $empireRed;
+$playerColor     : $rebelOrange;
 
 /* Document
 -------------------------------- */

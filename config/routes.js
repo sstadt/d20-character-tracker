@@ -99,6 +99,10 @@ module.exports.routes = {
     controller: 'game',
     action: 'join'
   },
+  '/game/approvePlayer': {
+    controller: 'game',
+    action: 'approvePlayer'
+  },
 
   /*
     Dice Roller

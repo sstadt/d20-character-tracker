@@ -10,6 +10,17 @@ require('../starWarsCrawl/starWarsCrawl.js');
 var socketHandler = {
   playerRequestedJoin: function (game, data) {
     game.requestingPlayers.push(data.player);
+  },
+  playerJoinApproved: function (game, data) {
+    var playerIndex = _.findIndex(game.requestingPlayers, function (player) {
+      return player.id === data.player.id;
+    });
+
+    if (playerIndex > -1) {
+      game.requestingPlayers.$remove(game.requestingPlayers[playerIndex]);
+    }
+
+    game.players.push(data.player);
   }
 };
 
@@ -48,7 +59,11 @@ module.exports = {
   ready: function () {
     var self = this;
 
-    self.subscribe();
+    io.socket.on('game', function (message) {
+      if (message.data.type && socketHandler.hasOwnProperty(message.data.type)) {
+        socketHandler[message.data.type](self.game, message.data.data);
+      }
+    });
 
     gameService.get(self.gameId)
       .then(function success(game) {
@@ -56,16 +71,5 @@ module.exports = {
       }, function error(reason) {
         self.gameAlert.error(reason);
       });
-  },
-  methods: {
-    subscribe: function () {
-      var self = this;
-
-      io.socket.on('game', function (message) {
-        if (message.data.type && socketHandler.hasOwnProperty(message.data.type)) {
-          socketHandler[message.data.type](self.game, message.data.data);//.bind(self, message.data.data);
-        }
-      });
-    }
   }
 };

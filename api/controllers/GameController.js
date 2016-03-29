@@ -55,16 +55,23 @@ module.exports = {
 			});
 	},
 
-	owned: function (req, res) {
-		Game.find({ gameMaster: req.session.User.id })
-			.populate('gameMaster')
-			.populate('players')
-			.exec(function (err, games) {
-				if (err) {
-					res.jsonError(err);
-				} else {
-					res.json(games);
-				}
+	playing: function (req, res) {
+		var myGames;
+
+		GameService.getUserGames(req.session.User.id)
+			.then(function succes(games) {
+				myGames = games;
+			}, function error(err) {
+				res.jsonError(err);
+			})
+			.then(function success() {
+				return GameService.getUserParticipatingGames(req.session.User.id);
+			})
+			.then(function success(games) {
+				var combinedGames = myGames.concat(games);
+				res.json(combinedGames);
+			}, function error(err) {
+				res.jsonError(err);
 			});
 	},
 
@@ -151,6 +158,37 @@ module.exports = {
 					});
 				}
 			});
+	},
+
+	approvePlayer: function (req, res) {
+		var userId = req.param('player'),
+			gameId = req.param('game');
+
+		Game.findOne(gameId, function (err, game) {
+			if (err) {
+				res.jsonError(err);
+			} else if (!game) {
+				res.json(ErrorService.generate('Game not found'));
+			} else {
+				User.findOne(userId, function (err, user) {
+					if (err) {
+						res.jsonError(err);
+					} else if (!user) {
+						res.json(ErrorService.generate('Player not found'));
+					} else {
+						game.requestingPlayers.remove(user.id);
+						game.players.add(user.id);
+						game.save(function (err) {
+							Game.message(game.id, {
+								type: 'playerJoinApproved',
+								data: { player: user }
+							});
+							res.send(200);
+						});
+					}
+				});
+			}
+		});
 	}
 
 };

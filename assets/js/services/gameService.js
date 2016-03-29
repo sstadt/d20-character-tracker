@@ -5,7 +5,7 @@ module.exports = {
   getMyGames: function () {
     var deferred = q.defer();
 
-    io.socket.get(constants.endpoints.game.ownedIndex, function (response) {
+    io.socket.get(constants.endpoints.game.playing, function (response) {
       if (response.err) {
         console.error(response.err);
         deferred.reject('There was an error retrieving your games');
@@ -121,6 +121,20 @@ module.exports = {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('Could not join game at this time.');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
+  },
+  approvePlayer: function (game, player) {
+    var deferred = q.defer();
+
+    io.socket.post(constants.endpoints.game.approvePlayer, { game: game.id, player: player.id }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('Could not approve player at this time.');
       } else {
         deferred.resolve();
       }

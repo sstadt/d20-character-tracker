@@ -1,4 +1,7 @@
 
+var constants = require('../../../config/constants.js');
+var gameService = require('../../../services/gameService.js');
+
 module.exports = {
   template: require('./playersMenuTemplate.html'),
   props: {
@@ -31,7 +34,12 @@ module.exports = {
       console.log('uninvite player method', player.chatHandle);
     },
     approvePlayer: function (player) {
-      console.log('approve player method', player.chatHandle);
+      var self = this;
+
+      gameService.approvePlayer(self.game, player)
+        .fail(function error(reason) {
+          self.gamePlayersAlert.error(reason);
+        });
     },
     declinePlayer: function (player) {
       console.log('decline player method', player.chatHandle);

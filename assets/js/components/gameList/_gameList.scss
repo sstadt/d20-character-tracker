@@ -25,7 +25,17 @@
 
   .playerList {
     .gameMaster {
-      color: $successColor;
+      margin-right: rem-calc(8);
+
+      .icon-image {
+        fill: $gameMasterColor;
+      }
+    }
+
+    .players {
+      .icon-image {
+        fill: $playerColor;
+      }
     }
   }
 }
