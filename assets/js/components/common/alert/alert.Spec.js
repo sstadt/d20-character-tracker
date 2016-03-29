@@ -21,10 +21,6 @@ describe('The alert component', function () {
 
   describe('props', function () {
     describe('alert', function () {
-      it('should exist', function () {
-          expect(component.props.alert).toEqual(jasmine.any(Object));
-      });
-
       it('should be a array', function () {
         expect(component.props.alert.type).toEqual(Object);
       });
@@ -35,6 +31,16 @@ describe('The alert component', function () {
 
       it('should be a two way binding', function () {
         expect(component.props.alert.twoWay).toEqual(true);
+      });
+    });
+
+    describe('canClose', function () {
+      it('should be a boolean', function () {
+        expect(component.props.canClose.type).toEqual(Boolean);
+      });
+
+      it('should default to false', function () {
+        expect(component.props.canClose.defaultsTo).toEqual(false);
       });
     });
   });
