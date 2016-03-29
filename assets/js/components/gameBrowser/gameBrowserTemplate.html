@@ -6,7 +6,7 @@
       <tabs>
         <tab heading="My Games">
           <div class="controls">
-            <button class="tiny" v-on:click="openNewGamePrompt()">New</button>
+            <button class="tiny" v-on:click="newGame()">New</button>
           </div>
           <game-list :games="myGames"></game-list>
         </tab>
@@ -19,5 +19,5 @@
       </tabs>
     </div>
   </panel>
-  <prompt :name="newGamePrompt.name" :label.sync="newGamePrompt.label"></prompt>
+  <prompt v-ref:game-browser-prompt></prompt>
 </div>

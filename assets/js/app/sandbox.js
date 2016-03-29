@@ -26,7 +26,17 @@ characterListEvents[constants.events.characterCreator.addCharacter] = function (
 };
 
 new Vue({
-  el: '#sandbox'
+  el: '#sandbox',
+  methods: {
+    openPrompt: function () {
+      this.$refs.testPrompt.ask({
+        question: 'There has been an awakening, have you felt it?',
+        yes: function (val) {
+          console.log(val);
+        }
+      });
+    }
+  }
 });
 
 new Vue({
