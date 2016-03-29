@@ -19,7 +19,8 @@ module.exports = {
   get: function (id) {
     var deferred = q.defer();
 
-    io.socket.get(constants.endpoints.game.get, { id: id }, function (response) {
+    // TODO: refactor controller to take standardized gameId for policy
+    io.socket.get(constants.endpoints.game.get, { gameId: id, id: id }, function (response) {
       if (response.err) {
         console.error(response.err);
         deferred.reject('The requested game could not be found');
@@ -61,7 +62,8 @@ module.exports = {
   updateConfig: function (id, config) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.updateConfig, { id: id, config: config }, function (response) {
+    // TODO: refactor controller to take standardized gameId for policy
+    io.socket.post(constants.endpoints.game.updateConfig, { gameId: id, id: id, config: config }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('There was an error updating the game config');
@@ -75,7 +77,7 @@ module.exports = {
   addCrawl: function (crawl) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.addCrawl, { crawl: crawl }, function (response) {
+    io.socket.post(constants.endpoints.game.addCrawl, { gameId: crawl.game, crawl: crawl }, function (response) {
       if (response.err) {
         console.error(response.err);
         deferred.reject('There was an error adding the crawl');
@@ -89,7 +91,7 @@ module.exports = {
   updateCrawl: function (crawl) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.updateCrawl, { crawl: crawl }, function (response) {
+    io.socket.post(constants.endpoints.game.updateCrawl, { gameId: grawl.game, crawl: crawl }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('There was an error saving the crawl ' + crawl.title);
@@ -103,7 +105,7 @@ module.exports = {
   deleteCrawl: function (crawl) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.removeCrawl, { crawl: crawl }, function (response) {
+    io.socket.post(constants.endpoints.game.removeCrawl, { gameId: crawl.game, crawl: crawl }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('There was an error deleting the crawl');
@@ -131,7 +133,8 @@ module.exports = {
   approvePlayer: function (game, player) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.approvePlayer, { game: game.id, player: player.id }, function (response) {
+    // TODO: refactor controller to take standardized gameId for policy
+    io.socket.post(constants.endpoints.game.approvePlayer, { gameId: id, game: game.id, player: player.id }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('Could not approve player at this time.');

@@ -59,13 +59,16 @@ module.exports.policies = {
   },
 
   GameController: {
-    '*': 'sessionAuth'
+    '*': 'sessionAuth',
+    'updateConfig': ['sessionAuth', 'gameMaster'],
+    'addCrawl': ['sessionAuth', 'gameMaster'],
+    'approvePlayer': ['sessionAuth', 'gameMaster'],
   },
 
   CrawlController: {
     '*': 'sessionAuth',
-    'update': ['sessionAuth', 'crawlOwner'],
-    'destroy': ['sessionAuth', 'crawlOwner']
+    'update': ['sessionAuth', 'gameMaster'],
+    'destroy': ['sessionAuth', 'gameMaster']
   },
 
   ApiController: {
