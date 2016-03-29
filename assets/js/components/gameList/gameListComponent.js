@@ -61,14 +61,20 @@ module.exports = {
       return game.gameMaster.id === user.id || playerIndex > -1;
     },
     joinGame: function (game) {
-      var self = this;
+      var self = this,
+        deferred = q.defer();
 
       gameService.join(game)
         .then(function success() {
           game.requestingPlayers.push(self.user);
         }, function error(reason) {
-          self.$dispatch(constants.errors.gameBrowser.error, reason);
+          self.$dispatch(constants.events.gameBrowser.error, reason);
+        })
+        .done(function () {
+          deferred.resolve();
         });
+
+      return deferred.promise;
     }
   }
 };
