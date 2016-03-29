@@ -1,6 +1,6 @@
 
 <div class="game">
-  <div class="controls">
+  <div class="controls" v-if="game.gameMaster && game.gameMaster.id === user.id">
     <button class="mini" v-on:click="crawlModalOpen = true"><i class="fa fa-bars"></i></button>
     <button class="mini" v-on:click="playersModalOpen = true"><i class="fa fa-rebel"></i></button>
     <button class="mini" v-on:click="settingsModalOpen = true"><i class="fa fa-cog"></i></button>
@@ -13,7 +13,7 @@
     </div>
   </panel>
 
-  <modal :show.sync="crawlModalOpen">
+  <modal :show.sync="crawlModalOpen" v-if="game.gameMaster && game.gameMaster.id === user.id">
     <div slot="header">
       <h3>{{ game.title }} Crawls</h3>
       <p>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</p>
@@ -23,7 +23,7 @@
     </div>
   </modal>
 
-  <modal :show.sync="playersModalOpen">
+  <modal :show.sync="playersModalOpen" v-if="game.gameMaster && game.gameMaster.id === user.id">
     <div slot="header">
       <h3>{{ game.title }} Players</h3>
       <p>Add, approve, or remove players from the game.</p>
@@ -33,7 +33,7 @@
     </div>
   </modal>
 
-  <modal :show.sync="settingsModalOpen">
+  <modal :show.sync="settingsModalOpen" v-if="game.gameMaster && game.gameMaster.id === user.id">
     <div slot="header">
       <h3>{{ game.title }} Settings</h3>
       <p>Game specific settings and configuration.</p>

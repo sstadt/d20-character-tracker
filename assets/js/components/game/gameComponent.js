@@ -1,6 +1,7 @@
 
-var gameService = require('../../services/gameService.js');
 var constants = require('../../config/constants.js');
+var userService = require('../../services/userService.js');
+var gameService = require('../../services/gameService.js');
 
 require('./crawlMenu/crawlMenu.js');
 require('./playersMenu/playersMenu.js');
@@ -49,6 +50,7 @@ module.exports = {
   },
   data: function () {
     return {
+      user: {},
       gameAlert: {},
       game: {},
       crawlModalOpen: false,
@@ -64,6 +66,11 @@ module.exports = {
         socketHandler[message.data.type](self.game, message.data.data);
       }
     });
+
+    userService.getUserInfo()
+      .then(function success(user) {
+        self.user = user;
+      });
 
     gameService.get(self.gameId)
       .then(function success(game) {
