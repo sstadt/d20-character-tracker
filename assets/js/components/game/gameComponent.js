@@ -39,6 +39,10 @@ events[constants.events.game.closeSettings] = function CloseCrawlModal() {
   this.settingsModalOpen = false;
 };
 
+function socketMessageIsValid(message) {
+  return message.data.game && message.data.type && message.data.data;
+}
+
 module.exports = {
   template: require('./gameTemplate.html'),
   events: events,
@@ -62,7 +66,7 @@ module.exports = {
     var self = this;
 
     io.socket.on('game', function (message) {
-      if (message.data.type && socketHandler.hasOwnProperty(message.data.type)) {
+      if (socketMessageIsValid(message) && self.game.id === message.data.game && socketHandler.hasOwnProperty(message.data.type)) {
         socketHandler[message.data.type](self.game, message.data.data);
       }
     });

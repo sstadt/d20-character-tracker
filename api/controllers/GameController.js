@@ -151,6 +151,7 @@ module.exports = {
 						} else {
 							Game.message(game.id, {
 								type: 'playerRequestedJoin',
+								game: game.id,
 								data: { player: req.session.User }
 							});
 							res.send(200);
@@ -181,6 +182,7 @@ module.exports = {
 						game.save(function (err) {
 							Game.message(game.id, {
 								type: 'playerJoinApproved',
+								game: game.id,
 								data: { player: user }
 							});
 							res.send(200);
