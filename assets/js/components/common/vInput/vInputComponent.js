@@ -49,20 +49,20 @@ module.exports = {
     validate: function () {
       var label = this.label || this.name;
 
-      if (this.name) {
-        // required validation
-        if (this.required && this.value.length === 0) {
-          this.error = label + ' is required';
+      // required validation
+      if (this.required && this.value.length === 0) {
+        this.error = label + ' is required';
 
-        // html5 data type validation
-        } else if (constants.validation.hasOwnProperty(this.type) && !constants.validation[this.type].regex.test(this.value)) {
-          this.error = constants.validation[this.type].defaultError;
+      // html5 data type validation
+      } else if (constants.validation.hasOwnProperty(this.type) && !constants.validation[this.type].regex.test(this.value)) {
+        this.error = constants.validation[this.type].defaultError;
 
-        // input is valid
-        } else {
-          this.error = '';
-        }
+      // input is valid
+      } else {
+        this.error = '';
       }
+
+      this.validated = true;
     }
   }
 };
