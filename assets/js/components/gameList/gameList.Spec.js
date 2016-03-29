@@ -92,7 +92,6 @@ describe('The gameList component', function () {
           componentInstance.joinGame(componentInstance.games[0])
             .then(function () {
               var index = _.findIndex(componentInstance.games[0].requestingPlayers, function (player) {
-                console.log('(' + player.id + ',' + componentInstance.user.id + ')');
                 return player.id === componentInstance.user.id;
               });
 
@@ -111,7 +110,7 @@ describe('The gameList component', function () {
           });
         });
 
-        it('should add the player to the requestingPlayers', function () {
+        it('should dispatch an event to the parent', function () {
           componentInstance.joinGame(mockGame3)
             .then(function () {
               expect(componentInstance.$dispatch).toHaveBeenCalled();
