@@ -10,7 +10,7 @@ describe('The prompt component', function () {
   var component;
 
   beforeEach(function () {
-    component = _.clone(promptComponent);
+    component = _.extend(promptComponent);
   });
 
   it('to be an object', function () {
@@ -71,15 +71,10 @@ describe('The prompt component', function () {
       var askData, yesSpy, noSpy;
 
       beforeEach(function () {
-        yesSpy = jasmine.createSpy('yes');
-        noSpy = jasmine.createSpy('no');
-
         askData = {
           question: 'test question',
           yesLabel: 'yessir',
-          noLabel: 'nosir',
-          yes: yesSpy,
-          no: noSpy
+          noLabel: 'nosir'
         };
 
         componentInstance.ask(askData);
@@ -99,10 +94,27 @@ describe('The prompt component', function () {
         expect(componentInstance.confirmed).toEqual(undefined);
       });
 
-      // it('should call the yes function when confirmed it set to true', function () {
-      //   componentInstance.confirmed = true;
-      //   expect(yesSpy).toHaveBeenCalled();
-      // });
+      it('should call the yes function and hide the prompt when confirmed it set to true', function () {
+        yesSpy = jasmine.createSpy('yes');
+        askData.yes = yesSpy;
+        componentInstance.promptValue = 'test value';
+        componentInstance.confirmed = true;
+        Vue.nextTick(function () {
+          expect(componentInstance.show).toEqual(false);
+          expect(yesSpy).toHaveBeenCalledWith('test value');
+        });
+      });
+
+      // TODO: enabling this breaks the 'yes' test
+      it('should call the no function and hide the prompt when confirmed it set to false', function () {
+        noSpy = jasmine.createSpy('no');
+        askData.no = noSpy;
+        componentInstance.confirmed = false;
+        Vue.nextTick(function () {
+          expect(componentInstance.show).toEqual(false);
+          expect(noSpy).toHaveBeenCalled();
+        });
+      });
 
     });
   });

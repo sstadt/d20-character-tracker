@@ -28,9 +28,9 @@ module.exports = {
         self.show = true;
 
         unwatch = self.$watch('$data.confirmed', function (newVal, oldVal) {
-          if (newVal === true && _.isFunction(data.yes)) {
+          if (newVal && _.isFunction(data.yes)) {
             data.yes(self.promptValue);
-          } else if (newVal !== oldVal && _.isFunction (data.no)) {
+          } else if (!newVal && _.isFunction (data.no)) {
             data.no();
           }
           unwatch();
