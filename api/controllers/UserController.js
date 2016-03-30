@@ -231,6 +231,7 @@ module.exports = {
   },
 
   self: function (req, res) {
+    // TODO: check to see if the user is already subscribed
     User.subscribe(req.socket, req.session.User.id);
     res.json(req.session.User);
   },

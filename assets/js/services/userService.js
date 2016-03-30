@@ -7,6 +7,8 @@ module.exports = {
   getUserInfo: function () {
     var deferred = q.defer();
 
+    // TODO: set a flag to override additional calls, but make sure all requestors get data
+
     if (user) {
       deferred.resolve(user);
     } else {
