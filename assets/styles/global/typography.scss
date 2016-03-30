@@ -6,3 +6,9 @@
 .rebel {
   color: $rebelOrange;
 }
+
+.title + .subtitle {
+  line-height: 0.8;
+  margin-top: -($headerBottomMargin * 2);
+  margin-bottom: $headerBottomMargin * 2;
+}

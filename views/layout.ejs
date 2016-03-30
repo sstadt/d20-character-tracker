@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- STYLES -->
-    <link rel="stylesheet" href="/styles/style.min.css?v=1459360014536"></script>
+    <link rel="stylesheet" href="/styles/style.css">
     <!-- STYLES END -->
 
     <%- partial('components/images') %>
@@ -19,10 +19,10 @@
     <%- body %>
 
     <!-- SCRIPT -->
-    <script type="text/javascript" src="/js/vendor.min.js?v=1459360014536"></script>
+    <script type="text/javascript" src="/js/vendor.js"></script>
     <!-- SCRIPT END -->
 
-    <% if (typeof script !== 'string') { script = 'index'; } %>
+    <% if (typeof script !== 'string') { script = 'public'; } %>
     <% if (sails.config.environment === 'production') { %>
       <script type="text/javascript" src="/js/<%= script %>.min.js"></script>
     <% } else { %>

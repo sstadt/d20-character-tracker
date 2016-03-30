@@ -20,7 +20,6 @@ a [Sails](http://sailsjs.org) application
  - ... player offline
  - validate crawl url on back end
  - Cache bust production app javascript
- - Fix sandbox so it returns a 404
  - add a splash page
  - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
  - set up CSRF globally: https://github.com/balderdashy/sails.io.js/blob/master/README.md#set-global-headers-to-be-used-with-each-socket-request
