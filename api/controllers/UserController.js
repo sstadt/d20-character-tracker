@@ -231,6 +231,7 @@ module.exports = {
   },
 
   self: function (req, res) {
+    User.subscribe(req.socket, req.session.User.id);
     res.json(req.session.User);
   },
 

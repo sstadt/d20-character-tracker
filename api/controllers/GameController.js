@@ -30,7 +30,6 @@ module.exports = {
 					}, function error(err) {
 						res.serverError(err);
 					});
-
 			}
 		});
 	},
@@ -163,7 +162,7 @@ module.exports = {
 
 	approvePlayer: function (req, res) {
 		var userId = req.param('player'),
-			gameId = req.param('game');
+			gameId = req.param('gameId');
 
 		Game.findOne(gameId, function (err, game) {
 			if (err) {
@@ -185,6 +184,13 @@ module.exports = {
 								game: game.id,
 								data: { player: user }
 							});
+
+							sails.log('broadcasting message to user ' + user.id);
+							User.message(user.id, {
+								type: 'playerJoinApproved',
+								game: game.id
+							});
+
 							res.send(200);
 						});
 					}

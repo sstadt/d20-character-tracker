@@ -131,7 +131,7 @@ module.exports = {
   approvePlayer: function (game, player) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.approvePlayer, { gameId: id, game: game.id, player: player.id }, function (response) {
+    io.socket.post(constants.endpoints.game.approvePlayer, { gameId: game.id, player: player.id }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('Could not approve player at this time.');
