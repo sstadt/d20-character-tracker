@@ -19,7 +19,6 @@ module.exports = {
   get: function (id) {
     var deferred = q.defer();
 
-    // TODO: refactor controller to take standardized gameId for policy
     io.socket.get(constants.endpoints.game.get, { gameId: id, id: id }, function (response) {
       if (response.err) {
         console.error(response.err);
@@ -62,7 +61,6 @@ module.exports = {
   updateConfig: function (id, config) {
     var deferred = q.defer();
 
-    // TODO: refactor controller to take standardized gameId for policy
     io.socket.post(constants.endpoints.game.updateConfig, { gameId: id, id: id, config: config }, function (response) {
       if (response && response.err) {
         console.error(response.err);
@@ -133,7 +131,6 @@ module.exports = {
   approvePlayer: function (game, player) {
     var deferred = q.defer();
 
-    // TODO: refactor controller to take standardized gameId for policy
     io.socket.post(constants.endpoints.game.approvePlayer, { gameId: id, game: game.id, player: player.id }, function (response) {
       if (response && response.err) {
         console.error(response.err);

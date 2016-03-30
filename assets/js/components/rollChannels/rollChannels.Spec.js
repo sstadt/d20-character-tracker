@@ -199,8 +199,6 @@ describe('The rollChannels component', function () {
       });
     });
 
-    // TODO: Need tests for #joinChannel
-
     describe('#leaveChannel', function () {
       beforeEach(function () {
         componentInstance.channelRolls = [{}];

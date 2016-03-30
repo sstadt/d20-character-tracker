@@ -105,7 +105,6 @@ describe('The prompt component', function () {
         });
       });
 
-      // TODO: enabling this breaks the 'yes' test
       it('should call the no function and hide the prompt when confirmed it set to false', function () {
         noSpy = jasmine.createSpy('no');
         askData.no = noSpy;
