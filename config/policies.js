@@ -42,12 +42,12 @@ module.exports.policies = {
     'search': false,
     'self': 'sessionAuth',
     'setHandle': 'sessionAuth',
-    'sandbox': 'sandbox'
+    'sandbox': 'dev'
   },
 
   RollController: {
     '*': 'socketSessionAuth',
-    'index': 'sessionAuth',
+    'index': 'dev',
     'destroy': false,
     'update': false
   },
