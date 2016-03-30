@@ -1,9 +1,10 @@
 
 <div class="game">
-  <div class="controls" v-if="userIsGameMaster">
-    <button class="mini" v-on:click="crawlModalOpen = true"><i class="fa fa-bars"></i></button>
-    <button class="mini" v-on:click="playersModalOpen = true"><i class="fa fa-rebel"></i></button>
-    <button class="mini" v-on:click="settingsModalOpen = true"><i class="fa fa-cog"></i></button>
+  <div class="controls">
+    <button class="mini" v-if="userIsGameMaster" v-on:click="crawlModalOpen = true"><icon name="crawl"></i></button>
+    <button class="mini" v-if="userIsGameMaster" v-on:click="playersModalOpen = true"><icon name="rebel"></i></button>
+    <button class="mini" v-if="userIsGameMaster" v-on:click="settingsModalOpen = true"><icon name="empire"></i></button>
+    <button class="mini" v-on:click="navigationOpen = true"><icon name="menu"></icon></butotn>
   </div>
 
   <panel>
@@ -40,6 +41,21 @@
     </div>
     <div slot="content">
       <settings-menu :game.sync="game"></settings-menu>
+    </div>
+  </modal>
+
+  <modal :show.sync="navigationOpen" modal-size="menu">
+    <div slot="content">
+      <section>
+        <a href="/home" class="button expand">Games</a>
+      </section>
+      <section>
+        <button v-show="!confirmLogout" type="button" class="expand" v-on:click="confirmLogout = true">Logout</button>
+        <a v-show="confirmLogout" href="/logout" class="button expand warning">Confirm Logout</a>
+      </section>
+      <section>
+        <button type="button" class="expand" v-on:click="navigationOpen = false, confirmLogout = false">Cancel</a>
+      </section>
     </div>
   </modal>
 </div>

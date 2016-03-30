@@ -18,10 +18,6 @@ describe('The modal component', function () {
 
   describe('props', function () {
     describe('show', function () {
-      it('should exist', function () {
-          expect(component.props.show).toEqual(jasmine.any(Object));
-      });
-
       it('should be a boolean', function () {
         expect(component.props.show.type).toEqual(Boolean);
       });
@@ -32,6 +28,16 @@ describe('The modal component', function () {
 
       it('should be a two way binding', function () {
         expect(component.props.show.twoWay).toEqual(true);
+      });
+    });
+
+    describe('modalSize', function () {
+      it('should be a string', function () {
+        expect(component.props.modalSize.type).toEqual(String);
+      });
+
+      it('should default to full', function () {
+        expect(component.props.modalSize.defaultsTo).toEqual('full');
       });
     });
   });

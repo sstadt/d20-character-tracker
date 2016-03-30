@@ -59,7 +59,9 @@ module.exports = {
       game: {},
       crawlModalOpen: false,
       playersModalOpen: false,
-      settingsModalOpen: false
+      settingsModalOpen: false,
+      navigationOpen: false,
+      confirmLogout: false
     };
   },
   ready: function () {

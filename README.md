@@ -19,7 +19,6 @@ a [Sails](http://sailsjs.org) application
  - ... player online
  - ... player offline
  - validate crawl url on back end
- - move navigation to a popover menu
  - Cache bust production app javascript
  - Fix sandbox so it doesn't show in production
  - add a splash page

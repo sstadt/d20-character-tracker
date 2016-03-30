@@ -1,5 +1,8 @@
 
 <div class="game-browser">
+  <div class="controls">
+    <button class="mini" v-on:click="navigationOpen = true"><icon name="menu"></icon></butotn>
+  </div>
   <panel>
     <div slot="content">
       <alert :alert.sync="gameBrowserAlert" :can-close="true"></alert>
@@ -20,4 +23,15 @@
     </div>
   </panel>
   <prompt v-ref:game-browser-prompt></prompt>
+  <modal :show.sync="navigationOpen" modal-size="menu">
+    <div slot="content">
+      <section>
+        <button v-show="!confirmLogout" type="button" class="expand" v-on:click="confirmLogout = true">Logout</button>
+        <a v-show="confirmLogout" href="/logout" class="button expand warning">Confirm Logout</a>
+      </section>
+      <section>
+        <button type="button" class="expand" v-on:click="navigationOpen = false, confirmLogout = false">Cancel</a>
+      </section>
+    </div>
+  </modal>
 </div>

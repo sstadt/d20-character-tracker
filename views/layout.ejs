@@ -15,42 +15,6 @@
   </head>
 
   <body>
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <% if (session.authenticated) { %>
-            <h1><a href="/home"><%= sails.config.globals.site.title %></a></h1>
-          <% } else { %>
-            <h1><a href="/"><%= sails.config.globals.site.title %></a></h1>
-          <% } %>
-        </li>
-         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-      </ul>
-
-      <section class="top-bar-section">
-        <!-- Left Nav Section -->
-        <ul class="left">
-          <li <% if (title && title === sails.config.globals.pageTitle.diceRoller) { %> class="active"<% } %>>
-            <a href="/dice">Dice Roller</a>
-          </li>
-          <% if (sails.config.environment === 'development') { %>
-            <li <% if (title && title === sails.config.globals.pageTitle.sandbox) { %> class="active"<% } %>>
-              <a href="/sandbox">Sandbox</a>
-            </li>
-          <% } %>
-        </ul>
-
-        <!-- Right Nav Section -->
-        <ul class="right">
-          <% if (session.authenticated) { %>
-            <li><a href="/logout">Logout</a></li>
-          <% } else { %>
-            <li><a href="/login">Login</a></li>
-          <% } %>
-        </ul>
-      </section>
-    </nav>
 
     <%- body %>
 

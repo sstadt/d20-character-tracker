@@ -10,7 +10,9 @@ module.exports = {
       searching: false,
       myGames: [],
       filteredGames: [],
-      gameBrowserAlert: {}
+      gameBrowserAlert: {},
+      navigationOpen: false,
+      confirmLogout: false
     };
   },
   ready: function () {
