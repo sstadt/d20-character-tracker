@@ -1,4 +1,4 @@
-# FaD Character Tracker
+# FaD Game Table
 
 a [Sails](http://sailsjs.org) application
 
@@ -18,8 +18,8 @@ a [Sails](http://sailsjs.org) application
  - ... on player accepted
  - ... player online
  - ... player offline
- - BREAKING - not using a URL in imageURL sets the crawl id to NaN and breaks the game page
- - refactor the prompt component to use the same technique as the confirm component
+ - validate crawl url on back end
+ - move navigation to a popover menu
  - Cache bust production app javascript
  - Fix sandbox so it doesn't show in production
  - add a splash page

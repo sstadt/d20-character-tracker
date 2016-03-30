@@ -82,5 +82,10 @@ module.exports = {
       }, function error(reason) {
         self.gameAlert.error(reason);
       });
+  },
+  computed: {
+    userIsGameMaster: function () {
+      return this.game.gameMaster && this.game.gameMaster.id === this.user.id;
+    }
   }
 };
