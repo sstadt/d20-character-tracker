@@ -3,18 +3,6 @@ var constants = require('../../config/constants.js');
 var userService = require('../../services/userService.js');
 var gameService = require('../../services/gameService.js');
 
-var userSocketHandler = {
-  playerJoinApproved: function (game, user) {
-    console.log('player join received');
-    gmae.requestingPlayers.$remove(user);
-    game.players.push(user);
-  }
-};
-
-function userSocketMessageIsValid(message) {
-  return !!(message.data.game && message.data.game.id);
-}
-
 module.exports = {
   template: require('./gameListTemplate.html'),
   props: {
@@ -52,25 +40,8 @@ module.exports = {
   ready: function () {
     var self = this;
 
-    // listen for updates
-    io.socket.on('user', function (message) {
-      console.log('user socket message recevied');
-      console.log(message);
-      console.log(userSocketMessageIsValid(message));
-      if (userSocketMessageIsValid(message) && self.user.id && userSocketHandler.hasOwnProperty(message.data.type)) {
-        var index = _.findIndex(self.games, function (game) {
-          return game.id === message.data.game.id;
-        });
-
-        if (index > -1) {
-          socketHandler[message.data.type](self.games[index], self.user);
-        }
-      }
-    });
-
     userService.getUserInfo()
       .then(function success(user) {
-        // set user
         self.user = user;
       });
   },

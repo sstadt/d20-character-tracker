@@ -1,11 +1,32 @@
 
 var constants = require('../../config/constants.js');
 var gameService = require('../../services/gameService.js');
+var userService = require('../../services/userService.js');
+
+var userSocketHandler = {
+  playerJoinApproved: _.debounce(function (approvedGame) {
+    var filteredGamesIndex = _.findIndex(this.filteredGames, function (game) {
+      return game.id === approvedGame.id;
+    });
+
+    this.myGames.push(approvedGame);
+
+    if (filteredGamesIndex > -1) {
+      this.filteredGames[filteredGamesIndex].requestingPlayers.$remove(this.user);
+      this.filteredGames[filteredGamesIndex].players.push(this.user);
+    }
+  }, 200)
+};
+
+function userSocketMessageIsValid(message) {
+  return !!(message.data.game && message.data.game.id);
+}
 
 module.exports = {
   template: require('./gameBrowserTemplate.html'),
   data: function () {
     return {
+      user: {},
       filter: '',
       searching: false,
       myGames: [],
@@ -17,6 +38,17 @@ module.exports = {
   },
   ready: function () {
     var self = this;
+
+    io.socket.on('user', function (message) {
+      if (userSocketMessageIsValid(message) && self.user.id && userSocketHandler.hasOwnProperty(message.data.type)) {
+        userSocketHandler[message.data.type].call(self, message.data.game, self.user);
+      }
+    });
+
+    userService.getUserInfo()
+      .then(function success(user) {
+        self.user = user;
+      });
 
     gameService.getMyGames()
       .then(function success(myGames) {

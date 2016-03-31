@@ -81,5 +81,53 @@ module.exports = {
       });
 
     return deferred.promise;
+  },
+  approvePlayer: function (gameId, userId) {
+    var deferred = q.defer();
+
+    Game.findOne(gameId, function (err, game) {
+      if (err) {
+        deferred.reject(ErrorService.parse(err));
+      } else if (!game) {
+        deferred.reject(ErrorService.generate('Game not found'));
+      } else {
+        User.findOne(userId, function (err, user) {
+          if (err) {
+            deferred.reject(ErrorService.parse(err));
+          } else if (!user) {
+            deferred.reject(ErrorService.generate('Player not found'));
+          } else {
+            game.requestingPlayers.remove(user.id);
+            game.players.add(user.id);
+            game.save(function (err) {
+              if (err) {
+                deferred.reject(ErrorService.parse(err));
+              } else {
+                Game.message(game.id, {
+                  type: 'playerJoinApproved',
+                  game: game.id,
+                  data: { player: user }
+                });
+
+                Game.findOne(game.id)
+                  .populate('gameMaster')
+                  .populate('players')
+                  .populate('requestingPlayers')
+                  .exec(function (err, populatedGame) {
+                    User.message(user.id, {
+                      type: 'playerJoinApproved',
+                      game: populatedGame
+                    });
+                  });
+
+                deferred.resolve();
+              }
+            });
+          }
+        });
+      }
+    });
+
+    return deferred.promise;
   }
 };

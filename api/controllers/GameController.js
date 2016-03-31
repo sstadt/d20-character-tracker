@@ -164,39 +164,12 @@ module.exports = {
 		var userId = req.param('player'),
 			gameId = req.param('gameId');
 
-		Game.findOne(gameId, function (err, game) {
-			if (err) {
-				res.jsonError(err);
-			} else if (!game) {
-				res.json(ErrorService.generate('Game not found'));
-			} else {
-				User.findOne(userId, function (err, user) {
-					if (err) {
-						res.jsonError(err);
-					} else if (!user) {
-						res.json(ErrorService.generate('Player not found'));
-					} else {
-						game.requestingPlayers.remove(user.id);
-						game.players.add(user.id);
-						game.save(function (err) {
-							Game.message(game.id, {
-								type: 'playerJoinApproved',
-								game: game.id,
-								data: { player: user }
-							});
-
-							sails.log('broadcasting message to user ' + user.id);
-							User.message(user.id, {
-								type: 'playerJoinApproved',
-								game: game.id
-							});
-
-							res.send(200);
-						});
-					}
-				});
-			}
-		});
+		GameService.approvePlayer(gameId, userId)
+			.then(function success() {
+				res.send(200);
+			}, function error(err) {
+				res.json(err);
+			});
 	}
 
 };
