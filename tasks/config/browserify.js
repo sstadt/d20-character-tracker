@@ -9,11 +9,13 @@ module.exports = function (grunt) {
       browserifyOptions: {
         debug: true
       },
-      transform: ['stringify'],
       watch: true,
       livereload: true
     },
     vendor: {
+      options: {
+        transform: ['stringify']
+      },
       files: [{
         expand: true,
         cwd: 'assets/js/app',
@@ -22,6 +24,15 @@ module.exports = function (grunt) {
       }]
     },
     dev: {
+      options: {
+        transform: [
+          'stringify',
+          ['babelify', {
+            presets: ['es2015'],
+            ignore: 'vendor.js'
+          }]
+        ],
+      },
       files: [{
         expand: true,
         cwd: 'assets/js/app',
