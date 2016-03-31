@@ -12,12 +12,11 @@ a [Sails](http://sailsjs.org) application
 
  - sockets...
  - ... game chat message
- - ... on player join
- - ... on join approved
- - ... on player invited
- - ... on player accepted
- - ... player online
- - ... player offline
+ - ... on player join game
+ - ... on player invited - feature on hold
+ - ... on player accepted - feature on hold
+ - ... player online - feature on hold
+ - ... player offline - feature on hold
  - validate crawl url on back end
  - Cache bust production app javascript
  - add a splash page

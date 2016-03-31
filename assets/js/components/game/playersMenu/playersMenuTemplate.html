@@ -13,14 +13,14 @@
         </li>
       </ul>
     </tab>
-    <tab heading="Invited">
+    <!-- <tab heading="Invited">
       <li v-for="player in game.invitedPlayers">
         <partial name="player-details"></partial>
         <div class="controls">
           <button type="button" class="tiny" v-on:click="uninvitePlayer(player)">Cancel</button>
         </div>
       </li>
-    </tab>
+    </tab> -->
     <tab heading="Applied">
       <ul class="zebra-list">
         <li v-for="player in game.requestingPlayers">
@@ -32,7 +32,7 @@
         </li>
       </ul>
     </tab>
-    <tab heading="Find">
+    <!-- <tab heading="Find">
       <div class="controls">
         <v-input type="text" label="Find Players" :icon="filterIcon" :value.sync="filter"></v-input>
       </div>
@@ -44,6 +44,6 @@
           </div>
         </li>
       </ul>
-    </tab>
+    </tab> -->
   </tabs>
 </div>

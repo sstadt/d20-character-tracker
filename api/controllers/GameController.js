@@ -39,7 +39,7 @@ module.exports = {
 	 */
 
 	get: function (req, res) {
-		Game.findOne(req.param('id'))
+		Game.findOne(req.param('gameId'))
 			.populate('gameMaster')
 			.populate('players')
 			.populate('requestingPlayers')

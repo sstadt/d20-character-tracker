@@ -19,7 +19,7 @@ module.exports = {
   get: function (id) {
     var deferred = q.defer();
 
-    io.socket.get(constants.endpoints.game.get, { gameId: id, id: id }, function (response) {
+    io.socket.get(constants.endpoints.game.get, { gameId: id }, function (response) {
       if (response.err) {
         console.error(response.err);
         deferred.reject('The requested game could not be found');
@@ -61,6 +61,7 @@ module.exports = {
   updateConfig: function (id, config) {
     var deferred = q.defer();
 
+    // TODO: refactor endpoint to use gameId
     io.socket.post(constants.endpoints.game.updateConfig, { gameId: id, id: id, config: config }, function (response) {
       if (response && response.err) {
         console.error(response.err);
