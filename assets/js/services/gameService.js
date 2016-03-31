@@ -141,5 +141,19 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+  removePlayer: function (game, player) {
+    var deferred = q.defer();
+
+    io.socket.post(constants.endpoints.game.removePlayer, { gameId: game.id, player: player.id }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('Could not remove player at this time');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
   }
 };

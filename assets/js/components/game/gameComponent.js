@@ -8,20 +8,35 @@ require('./playersMenu/playersMenu.js');
 require('./settingsMenu/settingsMenu.js');
 require('../starWarsCrawl/starWarsCrawl.js');
 
-var socketHandler = {
+function getPlayerIndex(list, id) {
+  return _.findIndex(list, function (player) {
+    return player.id === id;
+  });
+}
+
+var playerSocketHandler = {
   playerRequestedJoin: function (game, data) {
     game.requestingPlayers.push(data.player);
   },
   playerJoinApproved: function (game, data) {
-    var playerIndex = _.findIndex(game.requestingPlayers, function (player) {
-      return player.id === data.player.id;
-    });
+    var playerIndex = getPlayerIndex(game.requestingPlayers, data.player.id);
 
     if (playerIndex > -1) {
       game.requestingPlayers.$remove(game.requestingPlayers[playerIndex]);
     }
 
     game.players.push(data.player);
+  },
+  playerRemoved: function (game, data, user) {
+    var playerIndex = getPlayerIndex(game.players, data.player.id);
+
+    if (playerIndex > -1) {
+      game.players.$remove(game.players[playerIndex]);
+    }
+
+    if (data.player.id === user.id) {
+      window.location.href = '/home';
+    }
   }
 };
 
@@ -39,7 +54,7 @@ events[constants.events.game.closeSettings] = function CloseCrawlModal() {
   this.settingsModalOpen = false;
 };
 
-function socketMessageIsValid(message) {
+function playerSocketMessageIsValid(message) {
   return message.data.game && message.data.type && message.data.data;
 }
 
@@ -68,8 +83,8 @@ module.exports = {
     var self = this;
 
     io.socket.on('game', function (message) {
-      if (socketMessageIsValid(message) && self.game.id === message.data.game && socketHandler.hasOwnProperty(message.data.type)) {
-        socketHandler[message.data.type](self.game, message.data.data);
+      if (playerSocketMessageIsValid(message) && self.game.id === message.data.game && playerSocketHandler.hasOwnProperty(message.data.type)) {
+        playerSocketHandler[message.data.type](self.game, message.data.data, self.user);
       }
     });
 

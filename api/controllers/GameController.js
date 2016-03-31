@@ -170,6 +170,18 @@ module.exports = {
 			}, function error(err) {
 				res.json(err);
 			});
+	},
+
+	removePlayer: function (req, res) {
+		var userId = req.param('player'),
+			gameId = req.param('gameId');
+
+		GameService.removePlayer(gameId, userId)
+			.then(function success() {
+				res.send(200);
+			}, function error(err) {
+				res.json(err);
+			});
 	}
 
 };

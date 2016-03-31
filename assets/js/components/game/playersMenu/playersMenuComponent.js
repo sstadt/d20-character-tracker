@@ -45,7 +45,12 @@ module.exports = {
       console.log('decline player method', player.chatHandle);
     },
     removePlayer: function (player) {
-      console.log('remove player method', player.chatHandle);
+      var self = this;
+
+      gameService.removePlayer(self.game, player)
+        .fail(function error(reason) {
+          self.gamePlayersAlert.error(reason);
+        });
     }
   }
 };

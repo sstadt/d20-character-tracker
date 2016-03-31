@@ -3,6 +3,12 @@ var constants = require('../../config/constants.js');
 var gameService = require('../../services/gameService.js');
 var userService = require('../../services/userService.js');
 
+function getGameIndex(list, id) {
+  return _.findIndex(list, function (game) {
+    return game.id === id;
+  });
+}
+
 var userSocketHandler = {
   playerJoinApproved: _.debounce(function (approvedGame) {
     var filteredGamesIndex = _.findIndex(this.filteredGames, function (game) {
@@ -15,7 +21,21 @@ var userSocketHandler = {
       this.filteredGames[filteredGamesIndex].requestingPlayers.$remove(this.user);
       this.filteredGames[filteredGamesIndex].players.push(this.user);
     }
-  }, 200)
+  }, 200),
+  removedFromGame: function (removedGame) {
+    var filteredGamesIndex = getGameIndex(this.filteredGames, removedGame.id),
+      myGamesIndex = getGameIndex(this.myGames, removedGame.id);
+
+    this.myGames.$remove(removedGame);
+
+    if (filteredGamesIndex > -1) {
+      this.filteredGames[filteredGamesIndex].players.$remove(this.user);
+    }
+
+    if (myGamesIndex > -1) {
+      this.myGames.$remove(this.myGames[myGamesIndex]);
+    }
+  }
 };
 
 function userSocketMessageIsValid(message) {

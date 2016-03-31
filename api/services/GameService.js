@@ -91,7 +91,7 @@ module.exports = {
       } else if (!game) {
         deferred.reject(ErrorService.generate('Game not found'));
       } else {
-        User.findOne(userId, function (err, user) {
+        UserService.fetchPublicUser(userId, function (err, user) {
           if (err) {
             deferred.reject(ErrorService.parse(err));
           } else if (!user) {
@@ -127,6 +127,47 @@ module.exports = {
         });
       }
     });
+
+    return deferred.promise;
+  },
+  removePlayer: function (gameId, playerId) {
+    var deferred = q.defer();
+
+		Game.findOne(gameId, function (err, game) {
+			if (err) {
+				deferred.reject(ErrorService.parse(err));
+      } else if (!game) {
+        deferred.reject(ErrorService.generate('Game not found'));
+			} else {
+        UserService.fetchPublicUser(playerId, function (err, user) {
+          if (err) {
+            deferred.reject(ErrorService.parse(err));
+          } else if (!user) {
+            deferred.reject(ErrorService.generate('Player not found'));
+          } else {
+            game.players.remove(user.id);
+    				game.save(function (err) {
+    					if (err) {
+    						deferred.reject(ErrorService.parse(err));
+    					} else {
+    						Game.message(game.id, {
+    							type: 'playerRemoved',
+    							game: game.id,
+    							data: { player: user }
+    						});
+
+    						User.message(user.id, {
+    							type: 'removedFromGame',
+    							game: game
+    						});
+
+    						deferred.resolve();
+    					}
+    				});
+          }
+        });
+			}
+		});
 
     return deferred.promise;
   }
