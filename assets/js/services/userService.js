@@ -1,17 +1,35 @@
 
 var constants = require('../config/constants.js');
 
-var user;
+var user,
+  fetchingUser = false;
 
 module.exports = {
   getUserInfo: function () {
-    var deferred = q.defer();
+    var deferred = q.defer(),
+      interval;
 
-    // TODO: set a flag to override additional calls, but make sure all requestors get data
-
+    // data is already populated, return it
     if (user) {
       deferred.resolve(user);
+
+    // call is processing, wait until finished and return data
+    } else if (fetchingUser) {
+      interval = setInterval(function () {
+        if (!fetchingUser) {
+          if (user) {
+            deferred.resolve(user);
+          } else {
+            deferred.reject('there was an error retrieving your user data');
+          }
+
+          clearInterval(interval);
+        }
+      }, 200);
+
+    // data has not been requested yet, request it
     } else {
+      fetchingUser = true;
       io.socket.get(constants.endpoints.user.getSelf, function (data) {
         if (data.err) {
           console.error(err);
@@ -20,6 +38,8 @@ module.exports = {
           user = data;
           deferred.resolve(user);
         }
+
+        fetchingUser = false;
       });
     }
 
