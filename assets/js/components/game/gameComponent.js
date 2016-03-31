@@ -40,27 +40,12 @@ var playerSocketHandler = {
   }
 };
 
-var events = {};
-
-events[constants.events.game.closeCrawl] = function CloseCrawlModal() {
-  this.crawlModalOpen = false;
-};
-
-events[constants.events.game.closePlayers] = function CloseCrawlModal() {
-  this.playersModalOpen = false;
-};
-
-events[constants.events.game.closeSettings] = function CloseCrawlModal() {
-  this.settingsModalOpen = false;
-};
-
 function playerSocketMessageIsValid(message) {
   return message.data.game && message.data.type && message.data.data;
 }
 
 module.exports = {
   template: require('./gameTemplate.html'),
-  events: events,
   props: {
     gameId: {
       type: String,
@@ -104,5 +89,16 @@ module.exports = {
     userIsGameMaster: function () {
       return this.game.gameMaster && this.game.gameMaster.id === this.user.id;
     }
-  }
+  },
+  events: {
+    [constants.events.game.closeCrawl]: function CloseCrawlModal() {
+      this.crawlModalOpen = false;
+    },
+    [constants.events.game.closePlayers]: function CloseCrawlModal() {
+      this.playersModalOpen = false;
+    },
+    [constants.events.game.closeSettings]: function CloseCrawlModal() {
+      this.settingsModalOpen = false;
+    }
+  },
 };
