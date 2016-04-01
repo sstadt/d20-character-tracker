@@ -11,16 +11,12 @@ a [Sails](http://sailsjs.org) application
 ### Dev to do:
 
  - sockets...
+ - ... crawl added/published
  - ... game chat message
  - ... on player join game
- - ... on player invited - feature on hold
- - ... on player accepted - feature on hold
- - ... player online - feature on hold
- - ... player offline - feature on hold
  - validate crawl url on back end
  - Cache bust production app javascript
  - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
- - set up CSRF globally: https://github.com/balderdashy/sails.io.js/blob/master/README.md#set-global-headers-to-be-used-with-each-socket-request
 
 ### Setup
 
