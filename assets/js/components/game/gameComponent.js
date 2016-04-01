@@ -27,6 +27,13 @@ var playerSocketHandler = {
 
     game.players.push(data.player);
   },
+  playerJoinDeclined: function (game, data) {
+    var playerIndex = getPlayerIndex(game.requestingPlayers, data.player.id);
+
+    if (playerIndex > -1) {
+      game.requestingPlayers.$remove(game.requestingPlayers[playerIndex]);
+    }
+  },
   playerRemoved: function (game, data, user) {
     var playerIndex = getPlayerIndex(game.players, data.player.id);
 

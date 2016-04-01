@@ -143,6 +143,20 @@ module.exports = {
 
     return deferred.promise;
   },
+  declinePlayer: function (game, player) {
+    var deferred = q.defer();
+
+    io.socket.post(constants.endpoints.game.declinePlayer, { gameId: game.id, player: player.id }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('Could not decline player at this time');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
+  },
   removePlayer: function (game, player) {
     var deferred = q.defer();
 

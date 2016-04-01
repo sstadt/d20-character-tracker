@@ -42,7 +42,12 @@ module.exports = {
         });
     },
     declinePlayer: function (player) {
-      console.log('decline player method', player.chatHandle);
+      var self = this;
+
+      gameService.declinePlayer(self.game, player)
+        .fail(function error(reason) {
+          self.gamePlayersAlert.error(reason);
+        });
     },
     removePlayer: function (player) {
       var self = this;

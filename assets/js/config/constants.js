@@ -63,6 +63,7 @@ module.exports = {
       removeCrawl: '/crawl/destroy',
       join: '/game/join',
       approvePlayer: '/game/approvePlayer',
+      declinePlayer: '/game/declinePlayer',
       removePlayer: '/game/removePlayer'
     }
   },

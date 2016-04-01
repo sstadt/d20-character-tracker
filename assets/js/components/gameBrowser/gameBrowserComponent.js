@@ -11,9 +11,7 @@ function getGameIndex(list, id) {
 
 var userSocketHandler = {
   playerJoinApproved: _.debounce(function (approvedGame) {
-    var filteredGamesIndex = _.findIndex(this.filteredGames, function (game) {
-      return game.id === approvedGame.id;
-    });
+    var filteredGamesIndex = getGameIndex(this.filteredGames, approvedGame.id);
 
     this.myGames.push(approvedGame);
 
@@ -22,6 +20,13 @@ var userSocketHandler = {
       this.filteredGames[filteredGamesIndex].players.push(this.user);
     }
   }, 200),
+  playerJoinDeclined: function (declinedGame) {
+    var filteredGamesIndex = getGameIndex(this.filteredGames, declinedGame.id);
+
+    if (filteredGamesIndex > -1) {
+      this.filteredGames[filteredGamesIndex].requestingPlayers.$remove(this.user);
+    }
+  },
   removedFromGame: function (removedGame) {
     var filteredGamesIndex = getGameIndex(this.filteredGames, removedGame.id),
       myGamesIndex = getGameIndex(this.myGames, removedGame.id);

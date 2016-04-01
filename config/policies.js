@@ -63,6 +63,8 @@ module.exports.policies = {
     'updateConfig': ['sessionAuth', 'gameMaster'],
     'addCrawl': ['sessionAuth', 'gameMaster'],
     'approvePlayer': ['sessionAuth', 'gameMaster'],
+    'declinePlayer': ['sessionAuth', 'gameMaster'],
+    'removePlayer': ['sessionAuth', 'gameMaster']
   },
 
   CrawlController: {

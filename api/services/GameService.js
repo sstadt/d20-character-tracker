@@ -130,6 +130,47 @@ module.exports = {
 
     return deferred.promise;
   },
+  declinePlayer: function (gameId, playerId) {
+    var deferred = q.defer();
+
+    Game.findOne(gameId, function (err, game) {
+      if (err) {
+        deferred.reject(ErrorService.parse(err));
+      } else if (!game) {
+        deferred.reject(ErrorService.generate('Game not found'));
+      } else {
+        UserService.fetchPublicUser(playerId, function (err, user) {
+          if (err) {
+            deferred.reject(ErrorService.parse(err));
+          } else if (!user) {
+            deferred.reject('Player not found');
+          } else {
+            game.requestingPlayers.remove(user.id);
+            game.save(function (err) {
+              if (err) {
+                deferred.reject(err);
+              } else {
+    						Game.message(game.id, {
+    							type: 'playerJoinDeclined',
+    							game: game.id,
+    							data: { player: user }
+    						});
+
+    						User.message(user.id, {
+    							type: 'playerJoinDeclined',
+    							game: game
+    						});
+
+                deferred.resolve();
+              }
+            });
+          }
+        });
+      }
+    });
+
+    return deferred.promise;
+  },
   removePlayer: function (gameId, playerId) {
     var deferred = q.defer();
 

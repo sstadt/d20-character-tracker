@@ -27,10 +27,7 @@ module.exports = function (grunt) {
       options: {
         transform: [
           'stringify',
-          ['babelify', {
-            presets: ['es2015'],
-            ignore: 'vendor.js'
-          }]
+          ['babelify', { presets: ['es2015'] }]
         ],
       },
       files: [{
