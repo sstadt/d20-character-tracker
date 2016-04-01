@@ -97,6 +97,11 @@ module.exports = {
       return this.game.gameMaster && this.game.gameMaster.id === this.user.id;
     }
   },
+  partials: {
+    'players-pane': require('./partials/playersPane.html'),
+    'crawl-pane': require('./partials/crawlPane.html'),
+    'chat-pane': require('./partials/chatPane.html')
+  },
   events: {
     [constants.events.game.closeCrawl]: function CloseCrawlModal() {
       this.crawlModalOpen = false;
