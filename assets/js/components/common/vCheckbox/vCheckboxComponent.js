@@ -14,7 +14,11 @@ module.exports = {
     },
     label: {
       type: String,
-      requires: true
+      required: true
+    },
+    required: {
+      type: Boolean,
+      defaultsTo: false
     }
   },
   watch: {
@@ -28,6 +32,9 @@ module.exports = {
   methods: {
     toggle: function () {
       this.checked = !this.checked;
+    },
+    isValid: function () {
+      return !this.required || this.required && this.checked;
     }
   }
 };
