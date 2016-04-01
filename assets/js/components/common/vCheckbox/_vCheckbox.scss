@@ -23,4 +23,14 @@
     line-height: rem-calc(20);
     font-size: rem-calc(14);
   }
+
+  &.error {
+    svg {
+      fill: $alertColor;
+    }
+
+    span {
+      color: $alertColor;
+    }
+  }
 }

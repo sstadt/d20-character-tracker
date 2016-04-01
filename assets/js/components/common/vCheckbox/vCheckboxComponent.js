@@ -3,7 +3,8 @@ module.exports = {
   template: require('./vCheckboxTemplate.html'),
   data: function () {
     return {
-      icon: 'unchecked'
+      icon: 'unchecked',
+      isError: false
     };
   },
   props: {
@@ -34,7 +35,8 @@ module.exports = {
       this.checked = !this.checked;
     },
     isValid: function () {
-      return !this.required || this.required && this.checked;
+      this.isError = !this.required || this.required && this.checked;
+      return this.isError;
     }
   }
 };

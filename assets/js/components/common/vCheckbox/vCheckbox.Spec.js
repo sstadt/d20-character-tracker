@@ -71,28 +71,32 @@ describe('The vCheckbox component', function () {
     });
 
     describe('#isValid', function () {
-      it('should always return true if required is false and checked is false', function () {
+      it('should return true and set isError if required is false and checked is false', function () {
         componentInstance.required = false;
         componentInstance.checked = false;
         expect(componentInstance.isValid()).toEqual(true);
+        expect(componentInstance.isError).toEqual(true);
       });
 
-      it('should always return true if required is false and checked is true', function () {
+      it('should return true and set isError if required is false and checked is true', function () {
         componentInstance.required = false;
         componentInstance.checked = true;
         expect(componentInstance.isValid()).toEqual(true);
+        expect(componentInstance.isError).toEqual(true);
       });
 
-      it('should return true if required is true and checked is true', function () {
+      it('should return true and set isError if required is true and checked is true', function () {
         componentInstance.required = true;
         componentInstance.checked = true;
         expect(componentInstance.isValid()).toEqual(true);
+        expect(componentInstance.isError).toEqual(true);
       });
 
-      it('should return false if required is true and checked is false', function () {
+      it('should return false and set isError if required is true and checked is false', function () {
         componentInstance.required = true;
         componentInstance.checked = false;
         expect(componentInstance.isValid()).toEqual(false);
+        expect(componentInstance.isError).toEqual(false);
       });
     });
   });
