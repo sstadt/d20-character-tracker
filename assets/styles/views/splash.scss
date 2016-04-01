@@ -1,0 +1,24 @@
+
+#splash-page {
+  text-align: center;
+
+  svg {
+    display: block;
+  }
+
+  .button {
+    min-width: rem-calc(140);
+  }
+
+  h1 {
+    margin-top: rem-calc(-30);
+    margin-bottom: rem-calc(40);
+    color: $crawlColor;
+    font-family: $crawlFontFamily;
+    font-weight: bold;
+  }
+
+  svg, .button {
+    margin: 0 auto;
+  }
+}

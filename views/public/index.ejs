@@ -1,6 +1,17 @@
 
-<div id="splash-page">
-  <svg>
-    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-star-wars"></use>
-  </svg>
+<div id="splash-page" class="vertical-center full-size-abs">
+  <div class="row">
+    <div class="small-12 columns">
+      <svg width="560px" height="326px">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-star-wars"></use>
+      </svg>
+      <h1 class="text-center uppercase">Game Table</h1>
+      <% if (session.authenticated) { %>
+        <p><a href="/home" class="button">My Games</a></p>
+      <% } else { %>
+        <p><a href="/login" class="button">Log In</a></p>
+        <p><a href="/register" class="button">Sign Up</a></p>
+      <% } %>
+    </div>
+  </div>
 </div>

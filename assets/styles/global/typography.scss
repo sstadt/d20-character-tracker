@@ -1,4 +1,8 @@
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .empire {
   color: $empireRed;
 }
@@ -7,8 +11,10 @@
   color: $rebelOrange;
 }
 
-.title + .subtitle {
-  line-height: 0.8;
-  margin-top: -($headerBottomMargin * 2);
-  margin-bottom: $headerBottomMargin * 2;
+.vertical-center.full-size-abs {
+  .title + .subtitle {
+    line-height: 0.8;
+    margin-top: -($headerBottomMargin * 2);
+    margin-bottom: $headerBottomMargin * 2;
+  }
 }

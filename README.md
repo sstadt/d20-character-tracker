@@ -19,7 +19,6 @@ a [Sails](http://sailsjs.org) application
  - ... player offline - feature on hold
  - validate crawl url on back end
  - Cache bust production app javascript
- - add a splash page
  - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
  - set up CSRF globally: https://github.com/balderdashy/sails.io.js/blob/master/README.md#set-global-headers-to-be-used-with-each-socket-request
 

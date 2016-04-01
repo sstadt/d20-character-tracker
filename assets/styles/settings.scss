@@ -15,8 +15,13 @@ $interfaceBorderStyle: solid;
 /* Font Settings
 -------------------------------- */
 
-$bodyFontFamily: "Open Sans", sans-serif;
-$headerFontFamily: prototype, sans-serif;
+$fontFaceOpenSans: "Open Sans", sans-serif;
+$fontFacePrototype: prototype, sans-serif;
+$fontFaceNewsCycle: "News Cycle", sans-serif;
+
+$bodyFontFamily: $fontFaceOpenSans;
+$headerFontFamily: $fontFacePrototype;
+$crawlFontFamily: $fontFaceNewsCycle;
 
 /*
 	Colors
