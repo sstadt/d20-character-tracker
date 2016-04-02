@@ -106,9 +106,6 @@ module.exports = {
     }
   },
   methods: {
-    openNewGamePrompt: function () {
-      this.$broadcast(constants.events.prompt.promptUser, this.newGamePrompt.name);
-    },
     newGame: function () {
       var self = this;
 

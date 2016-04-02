@@ -17,6 +17,42 @@ describe('The vCheckbox component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
+  describe('props', function () {
+    describe('checked', function () {
+      it('should be a boolean', function () {
+        expect(component.props.checked.type).toEqual(Boolean);
+      });
+
+      it('should be required', function () {
+        expect(component.props.checked.required).toEqual(true);
+      });
+
+      it('should be a two way binding', function () {
+        expect(component.props.checked.twoWay).toEqual(true);
+      });
+    });
+
+    describe('label', function () {
+      it('should be a string', function () {
+        expect(component.props.label.type).toEqual(String);
+      });
+
+      it('should be required', function () {
+        expect(component.props.label.required).toEqual(true);
+      });
+    });
+
+    describe('required', function () {
+      it('should be a boolean', function () {
+        expect(component.props.required.type).toEqual(Boolean);
+      });
+
+      it('should default to false', function () {
+        expect(component.props.required.defaultsTo).toEqual(false);
+      });
+    });
+  });
+
   describe('methods', function () {
     var componentInstance;
 
@@ -24,11 +60,45 @@ describe('The vCheckbox component', function () {
       componentInstance = new Vue(component);
     });
 
-    // describe('#sayHi', function () {
-    //   it('should be a function', function () {
-    //     expect(typeof componentInstance.sayHi).toBe('function');
-    //   });
-    // });
+    describe('#toggle', function () {
+      it('should toggle the value of the checked prop', function () {
+        componentInstance.checked = true;
+        componentInstance.toggle();
+        expect(componentInstance.checked).toEqual(false);
+        componentInstance.toggle();
+        expect(componentInstance.checked).toEqual(true);
+      });
+    });
+
+    describe('#isValid', function () {
+      it('should return true and set isError if required is false and checked is false', function () {
+        componentInstance.required = false;
+        componentInstance.checked = false;
+        expect(componentInstance.isValid()).toEqual(true);
+        expect(componentInstance.isError).toEqual(true);
+      });
+
+      it('should return true and set isError if required is false and checked is true', function () {
+        componentInstance.required = false;
+        componentInstance.checked = true;
+        expect(componentInstance.isValid()).toEqual(true);
+        expect(componentInstance.isError).toEqual(true);
+      });
+
+      it('should return true and set isError if required is true and checked is true', function () {
+        componentInstance.required = true;
+        componentInstance.checked = true;
+        expect(componentInstance.isValid()).toEqual(true);
+        expect(componentInstance.isError).toEqual(true);
+      });
+
+      it('should return false and set isError if required is true and checked is false', function () {
+        componentInstance.required = true;
+        componentInstance.checked = false;
+        expect(componentInstance.isValid()).toEqual(false);
+        expect(componentInstance.isError).toEqual(false);
+      });
+    });
   });
 
 });
