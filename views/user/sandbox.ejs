@@ -4,10 +4,20 @@
 <div class="row">
   <div class="small-12 columns">
 
-    <div id="sandbox">
+    <div id="sandbox" style="margin-top: 20px;">
+      <!-- place test components here... -->
+
+      <panel>
+        <div slot="content">
+          <p>test panel</p>
+        </div>
+      </panel>
+
       <prompt v-ref:test-prompt></prompt>
       <button v-on:click="openPrompt()">Test Prompt</button>
     </div>
+
+    <!-- ..unless you want to bootstrap a new app below -->
 
     <div id="characterList">
       <character-creator :character.sync="newCharacter"></character-creator>

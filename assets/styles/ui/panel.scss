@@ -25,5 +25,4 @@ $swPanelBorderNum: $interfaceBorderNum;
   .sw-panel-foot {
     @include flex-panel-footer($swPanelBorderNum, $swPanelBorderColor, $swPanelBgColor, $swPanelBgOpacity, $swPanelBevelSizeNum);
   }
-
 }

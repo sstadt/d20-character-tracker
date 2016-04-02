@@ -1,7 +1,10 @@
 
+@function get-adj-length($oppositeLength) {
+  @return tan(22.5deg) * $oppositeLength;
+}
 
 @function generate-corner-border($top, $left, $width, $size) {
-  $adjLength    : tan(22.5deg) * $width;
+  $adjLength    : get-adj-length($width);
   $oppAdjLength : $size - $adjLength;
   $subSize      : $size - $width;
   $points       : null;
@@ -17,6 +20,49 @@
       $points: svg-point(0, 0) + svg-point($width, 0) + svg-point($size, $subSize) + svg-point($size, $size) + svg-point($oppAdjLength, $size) + svg-point(0, $adjLength);
     } @else { // right
       $points: svg-point($size, 0) + svg-point($size, $adjLength) + svg-point($adjLength, $size) + svg-point(0, $size) + svg-point(0, $subSize) + svg-point($subSize, 0);
+    }
+  }
+
+  @return $points;
+}
+
+@function generate-inner-corner-border($top, $left, $width, $size) {
+  $adjLength    : get-adj-length($width);
+  $oppAdjLength : $size - $adjLength;
+  $subSize      : $size - $width;
+  $points       : null;
+
+  @if $top { // top
+    @if $left { // left
+      $points: svg-point(0, 0) + svg-point($adjLength, 0) + svg-point($size, $subSize) + svg-point($size, $size) + svg-point($oppAdjLength, $size) + svg-point(0, $width);
+    } @else { // right
+      $points: svg-point($size, 0) + svg-point($size, $width) + svg-point($adjLength, $size) + svg-point(0, $size) + svg-point(0, $subSize) + svg-point($oppAdjLength, 0);
+    }
+  } @else { // bottom
+    @if $left { // left
+      $points: svg-point($size, 0) + svg-point($size, $width) + svg-point($adjLength, $size) + svg-point(0, $size) svg-point(0, $subSize) + svg-point($oppAdjLength, 0);
+    } @else { // right
+      $points: svg-point(0, 0) + svg-point($adjLength, 0) + svg-point($size, $subSize) + svg-point($size, $size) + svg-point($oppAdjLength, $size) + svg-point(0, $width);
+    }
+  }
+
+  @return $points;
+}
+
+@function generate-inner-corner-background($top, $left, $size) {
+  $points : null;
+
+  @if $top { // top
+    @if $left { // left
+      $points: svg-point(0, 0) + svg-point($size, $size) + svg-point(0, $size);
+    } @else { // right
+      $points: svg-point($size, 0) + svg-point($size, $size) + svg-point(0, $size);
+    }
+  } @else { // bottom
+    @if $left { // left
+      $points: svg-point(0, 0) + svg-point(0, $size) + svg-point($size, 0);
+    } @else { // right
+      $points: svg-point(0, 0) + svg-point($size, 0) + svg-point($size, $size);
     }
   }
 
@@ -41,6 +87,17 @@
   }
 
   @return $points;
+}
+
+@mixin angled-inner-corner($top, $left, $borderWidth, $borderColor, $backgroundColor, $backgroundOpacity, $cornerSize) {
+  $borderShape: svg-polygon(generate-inner-corner-border($top, $left, $borderWidth, $cornerSize), $borderColor);
+  $borderBackground: svg-polygon(generate-inner-corner-background($top, $left, $cornerSize), $backgroundColor, $backgroundOpacity);
+  $cornerShapes: $borderBackground + $borderShape;
+
+  height: to-px($cornerSize);
+  width: to-px($cornerSize);
+  background-image: url(generate-svg($cornerSize, $cornerSize, $cornerShapes));
+  background-repeat: no-repeat;
 }
 
 @mixin angled-corner($top, $left, $borderWidth, $borderColor, $backgroundColor, $backgroundOpacity, $cornerSize) {
