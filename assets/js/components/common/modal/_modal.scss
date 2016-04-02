@@ -31,8 +31,26 @@ $modalScrollBarGutter: rem-calc(22);
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 
-    section:not(:last-child) {
-      margin-bottom: 1rem;
+    div[slot="content"] {
+      margin-bottom: rem-calc(10);
+    }
+
+    section {
+      button, .button {
+        margin-bottom: 0.5rem;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+
+        :last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
     }
   }
 
