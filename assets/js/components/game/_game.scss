@@ -1,0 +1,12 @@
+
+.game {
+  div[slot="content"] {
+    .section-header + .alert-box {
+      margin: rem-calc(10) 0;
+    }
+  }
+
+  .game-content {
+    flex: 1;
+  }
+}

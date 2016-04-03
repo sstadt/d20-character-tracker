@@ -9,15 +9,19 @@
 
   <panel>
     <div slot="content">
-      <h1 class="section-header">{{ game.title }}</h1>
-      <alert :alert.sync="gameAlert"></alert>
-      <div class="row">
-        <div class="small-12 medium-3 columns">
-          <partial name="crawl-pane"></partial>
-          <partial name="players-pane"></partial>
-        </div>
-        <div class="small-12 medium-9 columns">
-          <partial name="chat-pane"></partial>
+      <div class="margin-wrap">
+        <h1 class="section-header">{{ game.title }}</h1>
+        <alert :alert.sync="gameAlert" :can-close="true"></alert>
+      </div>
+      <div class="game-content">
+        <div class="row">
+          <div class="small-12 medium-3 columns">
+            <partial name="crawl-pane"></partial>
+            <partial name="players-pane"></partial>
+          </div>
+          <div class="small-12 medium-9 columns">
+            <partial name="chat-pane"></partial>
+          </div>
         </div>
       </div>
     </div>
