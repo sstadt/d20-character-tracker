@@ -87,7 +87,11 @@ module.exports = {
 				if (err) {
 					res.jsonError(err);
 				} else {
-					res.json(games);
+					var publicGames = _.filter(games, function (game) {
+						return game.config.isPublic === true;
+					});
+
+					res.json(publicGames);
 				}
 			});
 	},
