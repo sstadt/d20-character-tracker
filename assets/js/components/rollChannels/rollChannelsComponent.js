@@ -5,27 +5,25 @@ var userService = require('../../services/userService.js');
 
 require('../rollLog/rollLog.js');
 
-var events = {};
-
-events[constants.events.prompt.valueSubmitted] = function PromptValueSubmitted(data) {
-  var self = this;
-
-  if (data.value.length > 0) {
-    switch (data.name) {
-      case self.handlePrompt.name:
-        self.setChatHandle(data.value);
-        break;
-
-      case self.joinChannelPrompt.name:
-        self.joinChannel(data.value);
-        break;
-    }
-  }
-};
-
 module.exports = {
   template: require('./rollChannelsTemplate.html'),
-  events: events,
+  events: {
+    [constants.events.prompt.valueSubmitted]: function PromptValueSubmitted(data) {
+      var self = this;
+
+      if (data.value.length > 0) {
+        switch (data.name) {
+          case self.handlePrompt.name:
+            self.setChatHandle(data.value);
+            break;
+
+          case self.joinChannelPrompt.name:
+            self.joinChannel(data.value);
+            break;
+        }
+      }
+    }
+  },
   props: {
     channel: {
       type: Object,
