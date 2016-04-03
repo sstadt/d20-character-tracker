@@ -12,7 +12,7 @@ $swPanelBorderNum: $interfaceBorderNum;
 -------------------------------- */
 
 .sw-panel {
-  margin-bottom: rem-calc(20);
+  margin-bottom: $panelMarginBottom;
 
   .sw-panel-head {
     @include flex-panel-header($swPanelBorderNum, $swPanelBorderColor, $swPanelBgColor, $swPanelBgOpacity, $swPanelBevelSizeNum);

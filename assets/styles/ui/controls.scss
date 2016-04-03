@@ -3,6 +3,8 @@
 .controls {
   text-align: right;
   margin: rem-calc(10) 0;
+  display: inline-block;
+  width: 100%;
 
   label {
     text-align: left;

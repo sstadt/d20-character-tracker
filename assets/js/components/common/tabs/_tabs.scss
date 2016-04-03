@@ -18,6 +18,7 @@ $tabsBorder: $interfaceBorderSize $interfaceBorderStyle $tabsBorderColor;
     padding: 0;
     display: flex;
     border-bottom: $tabsBorder;
+    flex-shrink: 0;
 
     li {
       margin: 0;
@@ -32,4 +33,3 @@ $tabsBorder: $interfaceBorderSize $interfaceBorderStyle $tabsBorderColor;
     flex: 1;
   }
 }
-

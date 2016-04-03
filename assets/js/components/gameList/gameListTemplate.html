@@ -10,7 +10,7 @@
       <div v-if="user.id" class="controls">
         <button class="tiny" v-if="game | joinIsPending user" disabled>join request pending</button>
         <button class="tiny" v-if="game | canJoinGame user" v-on:click="joinGame(game)">join</button>
-        <a class="button tiny" v-if="game | canLaunchGame user" href="{{ game | launchGameLink }}">launch</a>
+        <a class="button tiny success" v-if="game | canLaunchGame user" href="{{ game | launchGameLink }}">launch</a>
       </div>
     </li>
   </ul>
