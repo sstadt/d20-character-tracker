@@ -59,7 +59,7 @@ module.exports = {
       required: true
     }
   },
-  data: function () {
+  data() {
     return {
       user: {},
       gameAlert: {},
@@ -71,7 +71,7 @@ module.exports = {
       confirmLogout: false
     };
   },
-  ready: function () {
+  ready() {
     var self = this;
 
     io.socket.on('game', function (message) {
@@ -93,7 +93,7 @@ module.exports = {
       });
   },
   computed: {
-    userIsGameMaster: function () {
+    userIsGameMaster() {
       return this.game.gameMaster && this.game.gameMaster.id === this.user.id;
     }
   },
@@ -103,13 +103,13 @@ module.exports = {
     'chat-pane': require('./partials/chatPane.html')
   },
   events: {
-    [constants.events.game.closeCrawl]: function CloseCrawlModal() {
+    [constants.events.game.closeCrawl]() {
       this.crawlModalOpen = false;
     },
-    [constants.events.game.closePlayers]: function CloseCrawlModal() {
+    [constants.events.game.closePlayers]() {
       this.playersModalOpen = false;
     },
-    [constants.events.game.closeSettings]: function CloseCrawlModal() {
+    [constants.events.game.closeSettings]() {
       this.settingsModalOpen = false;
     }
   },

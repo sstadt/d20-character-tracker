@@ -11,25 +11,25 @@ module.exports = {
       required: true
     }
   },
-  data: function () {
+  data() {
     return {
       user: {}
     };
   },
   filters: {
-    launchGameLink: function (game) {
+    launchGameLink(game) {
       return '/play/' + game.id;
     },
-    canLaunchGame: function (game, user) {
+    canLaunchGame(game, user) {
       return this.hasJoined(game, user);
     },
-    canJoinGame: function (game, user) {
+    canJoinGame(game, user) {
       return !this.hasJoined(game, user) && !this.hasRequestedJoin(game, user);
     },
-    joinIsPending: function (game, user) {
+    joinIsPending(game, user) {
       return !this.hasJoined(game, user) && this.hasRequestedJoin(game, user);
     },
-    joinedPlayerList: function (value) {
+    joinedPlayerList(value) {
       var playerNames = _.extend(value).map(function (player) {
         return player.chatHandle;
       });
@@ -37,7 +37,7 @@ module.exports = {
       return playerNames.join(', ');
     }
   },
-  ready: function () {
+  ready() {
     var self = this;
 
     userService.getUserInfo()
@@ -46,21 +46,21 @@ module.exports = {
       });
   },
   methods: {
-    hasRequestedJoin: function (game, user) {
+    hasRequestedJoin(game, user) {
       var playerIndex = _.findIndex(game.requestingPlayers, function (player) {
         return player.id === user.id;
       });
 
       return playerIndex > -1;
     },
-    hasJoined: function (game, user) {
+    hasJoined(game, user) {
       var playerIndex = _.findIndex(game.players, function (player) {
         return player.id === user.id;
       });
 
       return game.gameMaster.id === user.id || playerIndex > -1;
     },
-    joinGame: function (game) {
+    joinGame(game) {
       var self = this,
         deferred = q.defer();
 

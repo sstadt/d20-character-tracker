@@ -49,7 +49,7 @@ function userSocketMessageIsValid(message) {
 
 module.exports = {
   template: require('./gameBrowserTemplate.html'),
-  data: function () {
+  data() {
     return {
       user: {},
       filter: '',
@@ -61,7 +61,7 @@ module.exports = {
       confirmLogout: false
     };
   },
-  ready: function () {
+  ready() {
     var self = this;
 
     io.socket.on('user', function (message) {
@@ -101,12 +101,12 @@ module.exports = {
     }, 400)
   },
   computed: {
-    filterIcon: function () {
+    filterIcon() {
       return (this.searching) ? 'spinner fa-spin' : 'search';
     }
   },
   methods: {
-    newGame: function () {
+    newGame() {
       var self = this;
 
       self.$refs.gameBrowserPrompt.ask({

@@ -24,7 +24,7 @@ module.exports = {
       required: true
     }
   },
-  data: function () {
+  data() {
     return {
       running: false,
       finished: false,
@@ -32,7 +32,7 @@ module.exports = {
     };
   },
   watch: {
-    show: function (val) {
+    show(val) {
       var self = this;
 
       if (val === true) {
@@ -43,7 +43,7 @@ module.exports = {
     }
   },
   methods: {
-    startCrawl: function (musicDelay) {
+    startCrawl(musicDelay) {
       var self = this;
 
       musicDelay = musicDelay || 8750;
@@ -54,10 +54,10 @@ module.exports = {
         self.$els.crawlMusic.play();
       }, musicDelay);
     },
-    endCrawl: function () {
+    endCrawl() {
       this.finished = true;
     },
-    replay: function () {
+    replay() {
       var self = this;
 
       self.running = false;
@@ -65,7 +65,7 @@ module.exports = {
         self.startCrawl();
       });
     },
-    close: function () {
+    close() {
       clearTimeout(this.timer);
       this.$els.crawlMusic.pause();
       this.$els.crawlMusic.currentTime = 0;
