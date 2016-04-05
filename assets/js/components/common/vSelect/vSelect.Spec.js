@@ -18,6 +18,16 @@ describe('The vSelect component', function () {
   });
 
   describe('props', function () {
+    describe('label', function () {
+      it('should be a string', function () {
+        expect(component.props.label.type).toEqual(String);
+      });
+
+      it('should default to an empty string', function () {
+        expect(component.props.label.defaultsTo).toEqual('');
+      });
+    });
+
     describe('selected', function () {
       it('should be a string', function () {
         expect(component.props.selected.type).toEqual(String);

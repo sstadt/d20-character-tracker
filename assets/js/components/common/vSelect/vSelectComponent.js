@@ -2,6 +2,10 @@
 module.exports = {
   template: require('./vSelectTemplate.html'),
   props: {
+    label: {
+      type: String,
+      defaultsTo: ''
+    },
     selected: {
       type: String,
       required: true,
