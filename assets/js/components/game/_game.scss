@@ -45,6 +45,25 @@
     .players-pane {
       flex: 1;
       overflow-y: scroll;
+
+      .player {
+        padding: rem-calc(4) rem-calc(0);
+
+        p {
+          text-transform: uppercase;
+          margin: 0;
+
+          &.online {
+            color: $playerColor;
+          }
+        }
+
+        &.gm {
+          p.online {
+            color: $gameMasterColor;
+          }
+        }
+      }
     }
 
     .chat-pane {

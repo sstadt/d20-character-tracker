@@ -18,6 +18,10 @@ a [Sails](http://sailsjs.org) application
  - Cache bust production app javascript
  - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
 
+### Post Launch
+
+ - Show player online indicator on game page
+
 ### Setup
 
 Copy the following to config/local.js and fill in values:

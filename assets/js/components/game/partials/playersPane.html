@@ -1,4 +1,12 @@
 
-<div class="players-pane">
-  <p v-for="n in 50">player {{ n }}</p>
+<div class="players-pane" v-if="game.gameMaster && game.players">
+  <div class="player gm">
+    <p>{{ game.gameMaster.chatHandle }}</p>
+  </div>
+  <div class="player" v-for="player in game.players">
+    <p>{{ player.chatHandle }}<p>
+  </div>
+</div>
+<div class="players-pane" v-else>
+  <p>Loading players...</p>
 </div>
