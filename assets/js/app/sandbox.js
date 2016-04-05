@@ -27,6 +27,19 @@ characterListEvents[constants.events.characterCreator.addCharacter] = function (
 
 new Vue({
   el: '#sandbox',
+  data: {
+    selected: '',
+    options: [{
+      label: '1',
+      value: '1'
+    }, {
+      label: '2',
+      value: '2'
+    }, {
+      label: '3',
+      value: '3'
+    }]
+  },
   methods: {
     openPrompt: function () {
       this.$refs.testPrompt.ask({
