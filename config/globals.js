@@ -16,7 +16,7 @@ module.exports.globals = {
   },
 
   site: {
-    title: 'Force and Destiny Character Tracker'
+    title: 'Star Wars Game Table'
   },
 
   pageTitle: {
