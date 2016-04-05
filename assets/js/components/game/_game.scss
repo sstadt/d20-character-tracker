@@ -40,6 +40,12 @@
 
     .crawl-pane {
       flex: 0;
+
+      .selected-crawl {
+        .synopsis {
+          @include multi-line-ellipsis($paragraphFontSize, $paragraphLineHeight, 3);
+        }
+      }
     }
 
     .players-pane {

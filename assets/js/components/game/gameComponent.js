@@ -68,7 +68,8 @@ module.exports = {
       playersModalOpen: false,
       settingsModalOpen: false,
       navigationOpen: false,
-      confirmLogout: false
+      confirmLogout: false,
+      selectedCrawlId: ''
     };
   },
   ready() {
@@ -88,6 +89,7 @@ module.exports = {
     gameService.get(self.gameId)
       .then(function success(game) {
         self.game = game;
+        // TODO: set the active crawl to the most recent one
       }, function error(reason) {
         self.gameAlert.error(reason);
       });
@@ -95,6 +97,29 @@ module.exports = {
   computed: {
     userIsGameMaster() {
       return this.game.gameMaster && this.game.gameMaster.id === this.user.id;
+    },
+    crawlOptions() {
+      var self = this,
+        crawlOptions = [];
+
+      if (self.game && self.game.crawls) {
+        _.forEach(self.game.crawls, function (crawl) {
+          crawlOptions.push({
+            value: crawl.id,
+            label: crawl.title
+          });
+        });
+      }
+
+      return crawlOptions;
+    },
+    selectedCrawl() {
+      var self = this,
+        index = _.findIndex(self.game.crawls, function (crawl) {
+          return crawl.id === self.selectedCrawlId;
+        });
+
+      return index > -1 ? self.game.crawls[index] : null;
     }
   },
   partials: {
@@ -113,4 +138,9 @@ module.exports = {
       this.settingsModalOpen = false;
     }
   },
+  methods: {
+    playCrawl(crawl) {
+      // TODO: Add crawl component to game and trigger play
+    }
+  }
 };

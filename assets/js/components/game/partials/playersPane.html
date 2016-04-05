@@ -1,5 +1,6 @@
 
 <div class="players-pane" v-if="game.gameMaster && game.players">
+  <h3>Players</h3>
   <div class="player gm">
     <p>{{ game.gameMaster.chatHandle }}</p>
   </div>
@@ -7,6 +8,8 @@
     <p>{{ player.chatHandle }}<p>
   </div>
 </div>
+
 <div class="players-pane" v-else>
+  <h3>Players</h3>
   <p>Loading players...</p>
 </div>

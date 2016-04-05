@@ -90,7 +90,7 @@ module.exports = {
   updateCrawl: function (crawl) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.updateCrawl, { gameId: grawl.game, crawl: crawl }, function (response) {
+    io.socket.post(constants.endpoints.game.updateCrawl, { gameId: crawl.game, crawl: crawl }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('There was an error saving the crawl ' + crawl.title);

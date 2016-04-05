@@ -1,7 +1,20 @@
 
 <div class="crawl-pane" v-if="game.crawls">
-  <p>crawl pane</p>
+  <h3>Crawls</h3>
+  <v-select :selected.sync="selectedCrawlId" :options="crawlOptions"></v-select>
+  <div class="selected-crawl" v-if="selectedCrawl">
+    <h5 class="subtitle">{{ selectedCrawl.subtitle }}</h5>
+    <p class="synopsis">{{ selectedCrawl.crawl }}</p>
+    <div class="controls">
+      <button type="button mini" v-on:click="playCrawl(selectedCrawl)"><i class="fa fa-play"></i></button>
+    </div>
+  </div>
+  <div class="selected-crawl" v-else>
+    <p>No active crawl</p>
+  </div>
 </div>
+
 <div class="crawl-pane" v-else>
+  <h3>Crawls</h3>
   <p>Loading Crawls...</p>
 </div>
