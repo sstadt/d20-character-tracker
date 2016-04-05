@@ -6,7 +6,51 @@
     }
   }
 
+  > .margin-wrap {
+    flex-shrink: 0;
+  }
+
   .game-content {
+    display: flex;
     flex: 1;
+
+    > .row {
+      display: flex;
+      flex: 1;
+
+      > .columns {
+        display: flex;
+        flex: 1;
+        flex-flow: column;
+
+        &:first-child {
+          flex: 0;
+          padding-left: 0;
+
+          > * {
+            width: rem-calc(200);
+          }
+        }
+
+        &:last-child {
+          flex: 1;
+          padding-right: 0;
+        }
+      }
+    }
+
+    .chat-pane {
+      display: flex;
+      flex-flow: column;
+
+      .chat-log {
+        flex: 1;
+        overflow-y: scroll;
+      }
+
+      .chat-entry {
+        flex-shrink: 0;
+      }
+    }
   }
 }
