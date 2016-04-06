@@ -7,25 +7,37 @@
 
 module.exports = {
 	update: function (req, res) {
-		var crawl = req.param('crawl');
+		var crawl = req.param('crawl'),
+			gameId = req.param('gameId');
 
 		Crawl.update(crawl.id, crawl, function (err, crawl) {
 			if (err) {
 				res.jsonError(err);
 			} else {
+				Game.message(gameId, {
+					type: 'gameCrawlUpdated',
+					game: gameId,
+					data: { crawl: crawl }
+				});
 				res.send(200);
 			}
 		});
 	},
 
 	destroy: function (req, res) {
-		var crawl = req.param('crawl');
+		var crawl = req.param('crawl'),
+			gameId = req.param('gameId');
 
 		if (crawl && crawl.id) {
 			Crawl.destroy(crawl.id, function (err) {
 				if (err) {
 					res.jsonError(err);
 				} else {
+					Game.message(gameId, {
+						type: 'gameCrawlDestroyed',
+						game: gameId,
+						data: { crawl: crawl }
+					});
 					res.send(200);
 				}
 			});

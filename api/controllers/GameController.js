@@ -129,10 +129,17 @@ module.exports = {
 	},
 
 	addCrawl: function (req, res) {
+		var gameId = req.param('gameId');
+
 		Crawl.create(req.param('crawl'), function (err, crawl) {
 			if (err) {
 				res.jsonError(err);
 			} else {
+				Game.message(gameId, {
+					type: 'gameCrawlAdded',
+					game: gameId,
+					data: { crawl: crawl }
+				});
 				res.json(crawl);
 			}
 		});

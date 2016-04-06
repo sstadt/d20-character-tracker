@@ -47,8 +47,42 @@ var playerSocketHandler = {
   }
 };
 
-function playerSocketMessageIsValid(message) {
-  return message.data.game && message.data.type && message.data.data;
+function getCrawlIndex(list, id) {
+  return _.findIndex(list, function (crawl) {
+    return id === crawl.id;
+  });
+}
+
+var gameSocketHandler = {
+  gameCrawlAdded: function (game, data) {
+    var crawl = data.crawl;
+
+    if (_.isObject(crawl)) {
+      game.crawls.push(crawl);
+    }
+  },
+  gameCrawlUpdated: function (game, data) {
+    if (_.isObject(data.crawl)) {
+      var crawlIndex = getCrawlIndex(game.crawls, data.crawl.id);
+
+      if (crawlIndex > -1) {
+        game.crawls.$set(crawlIndex, _.extend(data.crawl));
+      }
+    }
+  },
+  gameCrawlDestroyed: function (game, data) {
+    if (_.isObject(data.crawl)) {
+      var crawlIndex = getCrawlIndex(game.crawls, data.crawl.id);
+
+      if (crawlIndex > -1) {
+        game.crawls.$remove(game.crawls[crawlIndex]);
+      }
+    }
+  },
+};
+
+function socketMessageIsValid(message, gameId) {
+  return message.data.game && message.data.type && message.data.data && message.data.game === gameId;
 }
 
 module.exports = {
@@ -93,8 +127,12 @@ module.exports = {
 
     // listen for game updates
     io.socket.on('game', function (message) {
-      if (playerSocketMessageIsValid(message) && self.game.id === message.data.game && playerSocketHandler.hasOwnProperty(message.data.type)) {
-        playerSocketHandler[message.data.type](self.game, message.data.data, self.user);
+      if (socketMessageIsValid(message, self.game.id)) {
+        if (playerSocketHandler.hasOwnProperty(message.data.type)) {
+          playerSocketHandler[message.data.type](self.game, message.data.data, self.user);
+        } else if (gameSocketHandler.hasOwnProperty(message.data.type)) {
+          gameSocketHandler[message.data.type](self.game, message.data.data);
+        }
       }
     });
 
