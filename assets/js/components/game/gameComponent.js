@@ -66,6 +66,7 @@ module.exports = {
 
       // game data
       game: {},
+      gameLog: [],
 
       // interface pieces
       gameAlert: {},
@@ -87,36 +88,30 @@ module.exports = {
   ready() {
     var self = this;
 
+    // listen for game updates
     io.socket.on('game', function (message) {
       if (playerSocketMessageIsValid(message) && self.game.id === message.data.game && playerSocketHandler.hasOwnProperty(message.data.type)) {
         playerSocketHandler[message.data.type](self.game, message.data.data, self.user);
       }
     });
 
+    // get user data
     userService.getUserInfo()
       .then(function success(user) {
         self.user = user;
       });
 
+    // get game data
     gameService.get(self.gameId)
       .then(function success(game) {
-        var crawlId, nextTimestamp, crawlTimestamp = 0;
-
         self.game = game;
-
-        if (game.crawls.length > 0) {
-          _.forEach(game.crawls, function (crawl) {
-            nextTimestamp = moment(crawl.createdAt).valueOf();
-            if (crawl.published && (!crawlId || nextTimestamp > crawlTimestamp)) {
-              crawlId = crawl.id;
-              crawlTimestamp = nextTimestamp;
-            }
-          });
-        }
-
-        if (crawlId) {
-          self.selectedCrawlId = crawlId;
-        }
+        self.initCrawlOptions();
+      }, function error(reason) {
+        return q.reject(reason);
+      }).then(function () {
+        return gameService.getLog(self.gameId);
+      }).then(function success(log) {
+        self.gameLog = log;
       }, function error(reason) {
         self.gameAlert.error(reason);
       });
@@ -168,6 +163,26 @@ module.exports = {
     }
   },
   methods: {
+    initCrawlOptions() {
+      var self = this,
+        crawlTimestamp = 0,
+        crawlId,
+        nextTimestamp;
+
+      if (self.game.crawls.length > 0) {
+        _.forEach(self.game.crawls, function (crawl) {
+          nextTimestamp = moment(crawl.createdAt).valueOf();
+          if (crawl.published && (!crawlId || nextTimestamp > crawlTimestamp)) {
+            crawlId = crawl.id;
+            crawlTimestamp = nextTimestamp;
+          }
+        });
+      }
+
+      if (crawlId) {
+        self.selectedCrawlId = crawlId;
+      }
+    },
     playCrawl(crawl) {
       this.crawlTitle = crawl.title;
       this.crawlSubtitle = crawl.subtitle;

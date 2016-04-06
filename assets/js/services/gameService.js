@@ -30,6 +30,21 @@ module.exports = {
 
     return deferred.promise;
   },
+  getLog: function (id) {
+    var deferred = q.defer();
+
+    io.socket.get(constants.endpoints.game.getLog, { gameId: id }, function (response) {
+      console.log(response);
+      if (response.err) {
+        console.error(response.err);
+        deferred.reject('There was an error retriving the game log');
+      } else {
+        deferred.resovle(response);
+      }
+    });
+
+    return deferred.promise;
+  },
   search: function (filter) {
     var deferred = q.defer();
 

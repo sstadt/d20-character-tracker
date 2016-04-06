@@ -54,6 +54,7 @@ module.exports = {
     },
     game: {
       get: '/game/get',
+      getLog: '/game/getLog',
       search: '/game/search',
       playing: '/game/playing',
       create: '/game/create',
