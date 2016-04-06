@@ -67,6 +67,11 @@ module.exports.policies = {
     'removePlayer': ['sessionAuth', 'gameMaster']
   },
 
+  GameLogController: {
+    '*': false, // Game controller is responsible for creation/deletion
+    'addMessage': 'sessionAuth' // TODO need an isPlayer policy here
+  },
+
   CrawlController: {
     '*': 'sessionAuth',
     'update': ['sessionAuth', 'gameMaster'],
