@@ -10,7 +10,7 @@ function LogMessage(data) {
 
 module.exports = {
 
-  get: function (gameId) {
+  getLog: function (gameId) {
     var deferred = q.defer();
 
     GameLog.findOne({ game: gameId }, function (err, log) {

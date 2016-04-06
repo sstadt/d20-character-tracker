@@ -34,12 +34,11 @@ module.exports = {
     var deferred = q.defer();
 
     io.socket.get(constants.endpoints.game.getLog, { gameId: id }, function (response) {
-      console.log(response);
-      if (response.err) {
+      if (!response || response.err) {
         console.error(response.err);
         deferred.reject('There was an error retriving the game log');
       } else {
-        deferred.resovle(response);
+        deferred.resolve(response);
       }
     });
 

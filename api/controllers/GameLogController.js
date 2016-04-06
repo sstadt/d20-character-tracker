@@ -8,15 +8,10 @@
 module.exports = {
 
 	get: function (req, res) {
-		console.log('getting game log');
 		GameLogService.getLog(req.param('gameId'))
 			.then(function success(log) {
-				console.log('log retrieved');
-				console.log(log);
 				res.json(log);
 			}, function error(err) {
-				console.log('error getting log');
-				console.log(err);
 				res.jsonError(err);
 			});
 	},
