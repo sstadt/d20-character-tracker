@@ -94,13 +94,10 @@ $swCrawlExitDelay: $swCrawlPanDelay + $swCrawlPanDuration + 2;
     pointer-events: none;
 
     .titles > div > p {
-      &.title {
-        text-transform: uppercase;
+      &.title + .subtitle {
         font-weight: 700;
-
-        + .subtitle {
-          margin-top: -1.35em;
-        }
+        text-transform: uppercase;
+        margin-top: -1.35em;
       }
 
       &.title, &.subtitle {

@@ -40,6 +40,11 @@
 
     .crawl-pane {
       flex: 0;
+      border-bottom: $interfaceBorder;
+
+      .controls {
+        margin-bottom: rem-calc(20);
+      }
 
       .selected-crawl {
         .synopsis {

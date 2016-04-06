@@ -61,15 +61,27 @@ module.exports = {
   },
   data() {
     return {
+      // user data
       user: {},
-      gameAlert: {},
+
+      // game data
       game: {},
+
+      // interface pieces
+      gameAlert: {},
       crawlModalOpen: false,
       playersModalOpen: false,
       settingsModalOpen: false,
       navigationOpen: false,
       confirmLogout: false,
-      selectedCrawlId: ''
+
+      // crawl data
+      selectedCrawlId: '',
+      crawlTitle: '',
+      crawlSubtitle: '',
+      crawlCrawl: '',
+      crawlImage: '',
+      showCrawl: false
     };
   },
   ready() {
@@ -88,8 +100,23 @@ module.exports = {
 
     gameService.get(self.gameId)
       .then(function success(game) {
+        var crawlId, nextTimestamp, crawlTimestamp = 0;
+
         self.game = game;
-        // TODO: set the active crawl to the most recent one
+
+        if (game.crawls.length > 0) {
+          _.forEach(game.crawls, function (crawl) {
+            nextTimestamp = moment(crawl.createdAt).valueOf();
+            if (crawl.published && (!crawlId || nextTimestamp > crawlTimestamp)) {
+              crawlId = crawl.id;
+              crawlTimestamp = nextTimestamp;
+            }
+          });
+        }
+
+        if (crawlId) {
+          self.selectedCrawlId = crawlId;
+        }
       }, function error(reason) {
         self.gameAlert.error(reason);
       });
@@ -104,10 +131,12 @@ module.exports = {
 
       if (self.game && self.game.crawls) {
         _.forEach(self.game.crawls, function (crawl) {
-          crawlOptions.push({
-            value: crawl.id,
-            label: crawl.title
-          });
+          if (crawl.published) {
+            crawlOptions.push({
+              value: crawl.id,
+              label: crawl.title
+            });
+          }
         });
       }
 
@@ -140,7 +169,11 @@ module.exports = {
   },
   methods: {
     playCrawl(crawl) {
-      // TODO: Add crawl component to game and trigger play
+      this.crawlTitle = crawl.title;
+      this.crawlSubtitle = crawl.subtitle;
+      this.crawlCrawl = crawl.crawl;
+      this.crawlImage = crawl.imageUrl;
+      this.showCrawl = true;
     }
   }
 };

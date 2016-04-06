@@ -27,6 +27,8 @@
     </div>
   </panel>
 
+  <star-wars-crawl :show.sync="showCrawl" :title="crawlTitle" :subtitle="crawlSubtitle" :body="crawlCrawl" :image="crawlImage"></star-wars-crawl>
+
   <modal :show.sync="crawlModalOpen" v-if="userIsGameMaster">
     <div slot="header">
       <h3>{{ game.title }} Crawls</h3>
