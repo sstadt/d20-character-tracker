@@ -2,3 +2,4 @@
 <v-input type="text" name="subtitle" label="Sub title" :value.sync="activeCrawl.subtitle"></v-input>
 <v-input type="textarea" name="crawl" label="Crawl" :value.sync="activeCrawl.crawl" :required="true"></v-input>
 <v-input type="url" name="image" label="Image URL" :value.sync="activeCrawl.imageUrl" :required="true"></v-input>
+<v-checkbox :checked.sync="activeCrawl.published" label="Publish"></v-checkbox>

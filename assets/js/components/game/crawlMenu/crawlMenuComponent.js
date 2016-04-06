@@ -8,6 +8,7 @@ function Crawl(data) {
   this.subtitle = '';
   this.crawl = '';
   this.imageUrl = '';
+  this.published = false;
 }
 
 module.exports = {
@@ -44,7 +45,6 @@ module.exports = {
         newCrawl = _.extend(self.activeCrawl);
 
       newCrawl.game = self.game.id;
-      newCrawl.published = false;
       self.saving = true;
 
       gameService.addCrawl(newCrawl)
