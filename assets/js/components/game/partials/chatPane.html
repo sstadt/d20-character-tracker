@@ -4,7 +4,17 @@
     <p v-for="n in 50">test</p>
   </div>
   <div class="chat-entry">
-    <p>line 1</p>
-    <p>line 2</p>
+    <tabs>
+      <tab heading="Chat">
+        <v-form :submit-callback="sendChatMessage" :ajax="true">
+          <v-input type="text" label="Message" :value.sync="chatMessage" :simple="true"></v-input>
+          <div class="controls">
+            <button type="submit" class="tiny">Send</button>
+          </div>
+        </v-form>
+      </tab>
+      <tab heading="Dice Pool">
+      </tab>
+    </tabs>
   </div>
 </div>

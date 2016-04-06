@@ -42,7 +42,8 @@ module.exports.policies = {
     'search': false,
     'self': 'sessionAuth',
     'setHandle': 'sessionAuth',
-    'sandbox': 'dev'
+    'sandbox': 'dev',
+    'destroy': false
   },
 
   RollController: {
@@ -64,7 +65,8 @@ module.exports.policies = {
     'addCrawl': ['sessionAuth', 'gameMaster'],
     'approvePlayer': ['sessionAuth', 'gameMaster'],
     'declinePlayer': ['sessionAuth', 'gameMaster'],
-    'removePlayer': ['sessionAuth', 'gameMaster']
+    'removePlayer': ['sessionAuth', 'gameMaster'],
+    'destroy': false
   },
 
   GameLogController: {

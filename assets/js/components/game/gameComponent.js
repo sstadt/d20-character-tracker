@@ -82,7 +82,10 @@ module.exports = {
       crawlSubtitle: '',
       crawlCrawl: '',
       crawlImage: '',
-      showCrawl: false
+      showCrawl: false,
+
+      // chat data
+      chatMessage: ''
     };
   },
   ready() {
@@ -189,6 +192,10 @@ module.exports = {
       this.crawlCrawl = crawl.crawl;
       this.crawlImage = crawl.imageUrl;
       this.showCrawl = true;
+    },
+    sendChatMessage() {
+      console.log(this.chatMessage);
+      this.chatMessage = '';
     }
   }
 };

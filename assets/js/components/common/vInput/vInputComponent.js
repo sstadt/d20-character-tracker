@@ -27,6 +27,10 @@ module.exports = {
     required: {
       type: Boolean,
       defaultsTo: false
+    },
+    simple: {
+      type: Boolean,
+      defaultsTo: false
     }
   },
   data: function () {
@@ -34,6 +38,11 @@ module.exports = {
       error: '',
       validated: false,
     };
+  },
+  filters: {
+    isSimple: function (val) {
+      return (this.simple) ? '' : val;
+    }
   },
   methods: {
     isValid: function () {

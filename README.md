@@ -26,6 +26,7 @@ a [Sails](http://sailsjs.org) application
  - sockets...
  - ... on player join game
  - abstract more heavy controller functionality to services
+ - up/down keys to navigate to previously sent chat messages
 
 ### Setup
 
