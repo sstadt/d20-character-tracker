@@ -11,11 +11,6 @@ a [Sails](http://sailsjs.org) application
 
 ### Dev to do:
 
- - set up chat message service and config to consistently parse out appropriately structured chat messages
- - set up a GameLog Model to store game chat - load in deferred after other game data loads to prevent front loading the same controller request
- - sockets...
- - ... crawl added/published !!!
- - ... game chat message
  - validate crawl url on back end
  - Cache bust production app javascript
  - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
