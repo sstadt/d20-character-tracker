@@ -83,7 +83,7 @@ module.exports.policies = {
   },
 
   CrawlController: {
-    '*'       : 'sessionAuth', // TODO does this leave default crawl blueprints open?
+    '*'       : false,
     'update'  : ['sessionAuth', 'gameMaster'],
     'destroy' : ['sessionAuth', 'gameMaster']
   },
