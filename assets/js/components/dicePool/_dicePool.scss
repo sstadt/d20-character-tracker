@@ -10,12 +10,8 @@
 
 
 .dice-pool {
-  > [class*="block-grid"] {
-    margin: 0;
-
-    li {
-      padding-left: 0;
-      padding-right: 0;
-    }
+  .inline-list {
+    margin-top: rem-calc(10);
+    margin-bottom: rem-calc(10);
   }
 }

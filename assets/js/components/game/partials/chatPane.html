@@ -18,15 +18,40 @@
   </div>
   <div class="chat-entry">
     <tabs>
-      <tab heading="Chat">
-        <v-form :submit-callback="sendChatMessage" :ajax="true">
-          <v-input type="text" label="Message" :value.sync="chatMessage" :simple="true"></v-input>
-          <div class="controls">
-            <button type="submit" class="tiny">Send</button>
+      <!-- dice pool -->
+      <tab heading="Dice Pool">
+        <dice-pool
+            :ability.sync="ability"
+            :proficiency.sync="proficiency"
+            :difficulty.sync="difficulty"
+            :challenge.sync="challenge"
+            :boost.sync="boost"
+            :setback.sync="setback"
+            :force.sync="force">
+        </dice-pool>
+        <v-form :submit-callback="sendChatRoll" :ajax="true">
+          <div class="row">
+            <div class="small-9 large-10 columns">
+              <v-input type="text" label="Roll Description" :value.sync="rollDescription" :simple="true" :required="true" :simple="true"></v-input>
+            </div>
+            <div class="small-3 large-2 columns">
+              <button type="submit" class="tiny">Roll</button>
+            </div>
           </div>
         </v-form>
       </tab>
-      <tab heading="Dice Pool">
+      <!-- chat -->
+      <tab heading="Chat">
+        <v-form :submit-callback="sendChatMessage" :ajax="true">
+          <div class="row">
+            <div class="small-9 large-10 columns">
+              <v-input type="text" label="Message" :value.sync="chatMessage" :simple="true"></v-input>
+            </div>
+            <div class="small-3 large-2 column">
+              <button type="submit" class="tiny">Send</button>
+            </div>
+          </div>
+        </v-form>
       </tab>
     </tabs>
   </div>

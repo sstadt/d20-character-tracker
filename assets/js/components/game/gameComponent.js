@@ -4,9 +4,13 @@ var userService = require('../../services/userService.js');
 var gameService = require('../../services/gameService.js');
 var socketHandler = require('./socketHandler.js');
 
+// game menus
 require('./crawlMenu/crawlMenu.js');
 require('./playersMenu/playersMenu.js');
 require('./settingsMenu/settingsMenu.js');
+
+// sibling dependencies
+require('../dicePool/dicePool.js');
 require('../starWarsCrawl/starWarsCrawl.js');
 
 module.exports = {
@@ -44,7 +48,17 @@ module.exports = {
 
       // chat data
       chatMessage: '',
-      isScrolledToBottom: true
+      isScrolledToBottom: true,
+
+      // dice pool
+      rollDescription: '',
+      ability: 0,
+      proficiency: 0,
+      difficulty: 0,
+      challenge: 0,
+      boost: 0,
+      setback: 0,
+      force: 0
     };
   },
   ready() {
@@ -175,6 +189,9 @@ module.exports = {
             self.gameAlert.error(reason);
           });
       }
+    },
+    sendChatRoll() {
+      console.log('submit game rolls here...');
     },
     scrollChatToBottom() {
       // TODO Need to call this function when chat input tabs switch
