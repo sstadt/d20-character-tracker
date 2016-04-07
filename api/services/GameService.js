@@ -59,9 +59,9 @@ module.exports = {
       .populate('player')
       .exec(function (err, user) {
         if (err) {
-          deferred.reject(err);
+          deferred.reject(ErrorService.parse(err));
         } else if (!user) {
-          deferred.reject(ErrorService.generate('Player not found')); // TODO: this is going to break the jsonHandler response
+          deferred.reject(ErrorService.generate('Player not found'));
         } else {
           gameIds = _.extend(user.player).map(function (game) {
             return game.id;
@@ -72,7 +72,7 @@ module.exports = {
             .populate('players')
             .exec(function (err, games) {
               if (err) {
-                deferred.reject('Could not retrieve games');
+                deferred.reject(ErrorService.parse(err));
               } else {
                 deferred.resolve(games);
               }

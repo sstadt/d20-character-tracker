@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var q = require('q');
+
 module.exports = {
 
 	browser: function (req, res) {
@@ -61,16 +63,18 @@ module.exports = {
 			.then(function succes(games) {
 				myGames = games;
 			}, function error(err) {
-				res.jsonError(err);
+				return q.reject(err);
 			})
 			.then(function success() {
 				return GameService.getUserParticipatingGames(req.session.User.id);
+			}, function error(err) {
+				return q.reject(err);
 			})
 			.then(function success(games) {
 				var combinedGames = myGames.concat(games);
 				res.json(combinedGames);
 			}, function error(err) {
-				res.jsonError(err);
+				res.json(err);
 			});
 	},
 
