@@ -78,14 +78,15 @@ module.exports.policies = {
 
   GameLogController: {
     '*'          : false, // Game controller is responsible for creation/deletion
-    'get'        : ['sessionAuth', 'gamePlayer'],
-    'addMessage' : ['sessionAuth', 'gamePlayer']
+    'get'        : ['socketSessionAuth', 'gamePlayer'],
+    'addMessage' : ['socketSessionAuth', 'gamePlayer'],
+    'addRoll'    : ['socketSessionAuth', 'gamePlayer']
   },
 
   CrawlController: {
     '*'       : false,
-    'update'  : ['sessionAuth', 'gameMaster'],
-    'destroy' : ['sessionAuth', 'gameMaster']
+    'update'  : ['socketSessionAuth', 'gameMaster'],
+    'destroy' : ['socketSessionAuth', 'gameMaster']
   },
 
   ApiController: {

@@ -12,7 +12,6 @@
       <div class="controls">
         <button type="button" class="tiny" v-on:click="addingCrawl = false" :disabled="saving">Cancel</button>
         <button type="submit" class="tiny" :disabled="saving">Save</button>
-        <!-- <button type="submit" class="tiny" :disabled="saving">Publish</button> -->
       </div>
     </v-form>
   </div>
@@ -43,7 +42,6 @@
             <div class="controls">
               <button type="button" class="tiny" v-on:click="cancelEdit()" :disabled="saving">Cancel</button>
               <button type="submit" class="tiny" :disabled="saving">Save</button>
-              <!-- <button type="submit" class="tiny" :disabled="saving" v-if="!crawl.publish">Publish</button> -->
             </div>
           </v-form>
         </div>
