@@ -5,6 +5,7 @@ require('./panel/panel.js');
 require('./modal/modal.js');
 require('./prompt/prompt.js');
 require('./confirm/confirm.js');
+require('./loader/loader.js');
 require('./tabs/tabs.js');
 require('./vForm/vForm.js');
 require('./vInput/vInput.js');
