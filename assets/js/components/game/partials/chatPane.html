@@ -1,7 +1,17 @@
 
 <div class="chat-pane">
   <div class="chat-log">
-    <p v-for="n in 50">test</p>
+    <ul class="zebra-list" v-if="gameLog.log">
+      <li v-for="item in gameLog.log">
+        <div v-if="item.type === 'crawl'" class="crawl-message">
+          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has published a new crawl: <span class="chat-accent">{{ item.message.title }}</span></p>
+          <button type="button" v-on:click="playCrawl(item.message)"><i class="fa fa-play"></i></button>
+        </div>
+      </li>
+    </ul>
+    <ul v-else>
+      <li>Loading Chat History...</li>
+    </ul>
   </div>
   <div class="chat-entry">
     <tabs>

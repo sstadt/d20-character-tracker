@@ -10,15 +10,20 @@ module.exports = {
 		var crawl = req.param('crawl'),
 			gameId = req.param('gameId');
 
-		Crawl.update(crawl.id, crawl, function (err, crawl) {
+		Crawl.update(crawl.id, crawl, function (err, updatedCrawl) {
 			if (err) {
 				res.jsonError(err);
 			} else {
 				Game.message(gameId, {
 					type: 'gameCrawlUpdated',
 					game: gameId,
-					data: { crawl: crawl }
+					data: { crawl: updatedCrawl[0] }
 				});
+
+				if (updatedCrawl[0].published === true) {
+					GameLogService.addCrawlMessage(gameId, req.session.User.chatHandle, updatedCrawl[0]);
+				}
+
 				res.send(200);
 			}
 		});

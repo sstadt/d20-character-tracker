@@ -56,6 +56,8 @@ module.exports = {
           socketHandler.player[message.data.type](self.game, message.data.data, self.user);
         } else if (socketHandler.game.hasOwnProperty(message.data.type)) {
           socketHandler.game[message.data.type](self.game, message.data.data);
+        } else if (socketHandler.gameLog.hasOwnProperty(message.data.type)) {
+          socketHandler.gameLog[message.data.type](self.gameLog, message.data.data);
         }
       }
     });

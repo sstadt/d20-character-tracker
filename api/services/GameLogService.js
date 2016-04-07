@@ -8,6 +8,32 @@ function LogMessage(data) {
   this.message = data.message;
 }
 
+function addLogMessage(gameId, type, chatHandle, message) {
+  var deferred = q.defer(),
+    newMessage = new LogMessage({
+      type: type,
+      chatHandle: chatHandle,
+      message: message
+    });
+
+  GameLog.findOne({ game: gameId }, function (err, log) {
+    if (err) {
+      deferred.reject(err);
+    } else {
+      log.log.unshift(newMessage);
+      log.save(function (err) {
+        if (err) {
+          deferred.reject(err);
+        } else {
+          deferred.resolve(newMessage);
+        }
+      });
+    }
+  });
+
+  return deferred.promise;
+}
+
 module.exports = {
 
   getLog: function (gameId) {
@@ -32,28 +58,49 @@ module.exports = {
     return deferred.promise;
   },
 
-  chatMessage: function (chatHandle, message) {
-    return new LogMessage({
-      type: 'chat',
-      chatHandle: chatHandle,
-      message: message
-    });
+  addChatMessage: function (gameId, chatHandle, message) {
+    var deferred = q.defer();
+
+    addLogMessage(gameId, 'chat', chatHandle, message)
+      .then(function success() {
+        deferred.resolve();
+      }, function error(err) {
+        deferred.reject(err);
+      });
+
+    return deferred.promise;
   },
 
-  rollMessage: function (chatHandle, pool) {
-    return new LogMessage({
-      type: 'roll',
-      chatHandle: chatHandle,
-      message: DicePoolService.roll(pool)
-    });
+  addRollMessage: function (gameId, chatHandle, pool) {
+    var deferred = q.defer();
+
+    addLogMessage(gameId, 'roll', chatHandle, DicePoolService.roll(pool))
+      .then(function success() {
+        deferred.resolve();
+      }, function error(err) {
+        deferred.reject(err);
+      });
+
+    return deferred.promise;
   },
 
-  crawlMessage: function (chatHandle, crawl) {
-    return new LogMessage({
-      type: 'crawl',
-      chatHandle: chatHandle,
-      message: crawl
-    });
+  addCrawlMessage: function (gameId, chatHandle, crawl) {
+    var deferred = q.defer();
+
+    addLogMessage(gameId, 'crawl', chatHandle, crawl)
+      .then(function success(message) {
+				Game.message(gameId, {
+					type: 'newCrawlMessage',
+					game: gameId,
+					data: message
+				});
+        deferred.resolve();
+      }, function error(err) {
+        sails.log(err);
+        deferred.reject(err);
+      });
+
+    return deferred.promise;
   }
 
 };

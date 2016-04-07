@@ -66,6 +66,11 @@ module.exports = {
           game.crawls.$remove(game.crawls[crawlIndex]);
         }
       }
-    },
+    }
+  },
+  gameLog: {
+    newCrawlMessage: function (gameLog, data) {
+      gameLog.log.unshift(data);
+    }
   }
 };

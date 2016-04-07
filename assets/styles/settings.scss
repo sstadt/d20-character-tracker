@@ -206,3 +206,9 @@ $titleBarBgHover      : lighten($titleBarBg, 1%);
 $titleBarBorderHover  : lighten($titleBarBorder, 1%);
 $titleBarBgActive     : $titleBarBg;
 $titleBarBorderActive : $titleBarBorder;
+
+/* Chat
+-------------------------------- */
+
+$chatAuthor : $springGreen;
+$chatAccent : $secondaryColor;
