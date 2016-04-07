@@ -35,8 +35,8 @@ module.exports = {
       this.checked = !this.checked;
     },
     isValid: function () {
-      this.isError = !this.required || this.required && this.checked;
-      return this.isError;
+      this.isError = (this.required) ? !this.checked : false;
+      return !this.isError;
     }
   }
 };
