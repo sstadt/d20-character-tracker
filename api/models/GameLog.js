@@ -1,7 +1,7 @@
 /**
  * GameLog.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @description :: Holds the chat history for a game; stored separately to cut down on front loading of game data during game page rendering
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 

@@ -1,7 +1,8 @@
 /**
 * Token.js
 *
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @description :: User Registration/Password reset tokens
+*                 TODO set up ttl and expire/remove tokens after 24 hours
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
@@ -20,4 +21,3 @@ module.exports = {
 
   }
 };
-

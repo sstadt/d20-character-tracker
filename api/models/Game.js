@@ -1,7 +1,7 @@
 /**
  * Game.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @description :: Holds basic game data inclusing title, players, crawls, and config; chat log is stored in GameLog
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 

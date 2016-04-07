@@ -1,7 +1,8 @@
 /**
 * Channel.js
 *
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @description :: Chat channel information
+*                 TODO separate into user chat channels as a future feature
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
@@ -19,4 +20,3 @@ module.exports = {
     }
   }
 };
-

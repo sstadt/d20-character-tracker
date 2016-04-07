@@ -1,7 +1,7 @@
 /**
 * Roll.js
 *
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @description :: TODO will be removed once rolls are integrated with game logs
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
@@ -22,4 +22,3 @@ module.exports = {
     }
   }
 };
-
