@@ -19,7 +19,9 @@ module.exports = {
   get: function (id) {
     var deferred = q.defer();
 
-    io.socket.get(constants.endpoints.game.get, { gameId: id }, function (response) {
+    io.socket.get(constants.endpoints.game.get, {
+      gameId: id
+    }, function (response) {
       if (response.err) {
         console.error(response.err);
         deferred.reject('The requested game could not be found');
@@ -33,7 +35,9 @@ module.exports = {
   getLog: function (id) {
     var deferred = q.defer();
 
-    io.socket.get(constants.endpoints.game.getLog, { gameId: id }, function (response) {
+    io.socket.get(constants.endpoints.game.getLog, {
+      gameId: id
+    }, function (response) {
       if (!response || response.err) {
         console.error(response.err);
         deferred.reject('There was an error retriving the game log');
@@ -47,7 +51,9 @@ module.exports = {
   search: function (filter) {
     var deferred = q.defer();
 
-    io.socket.get(constants.endpoints.game.search, { filter: filter }, function (response) {
+    io.socket.get(constants.endpoints.game.search, {
+      filter: filter
+    }, function (response) {
       if (response.err) {
         console.error(response.err);
         deferred.reject('There was an error looking for games');
@@ -61,7 +67,9 @@ module.exports = {
   create: function (title) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.create, { title: title }, function (response) {
+    io.socket.post(constants.endpoints.game.create, {
+      title: title
+    }, function (response) {
       if (response.err) {
         console.error(response.err);
         deferred.reject('There was an error creating the game');
@@ -76,7 +84,11 @@ module.exports = {
     var deferred = q.defer();
 
     // TODO: refactor endpoint to use gameId
-    io.socket.post(constants.endpoints.game.updateConfig, { gameId: id, id: id, config: config }, function (response) {
+    io.socket.post(constants.endpoints.game.updateConfig, {
+      gameId: id,
+      id: id,
+      config: config
+    }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('There was an error updating the game config');
@@ -90,7 +102,10 @@ module.exports = {
   addCrawl: function (crawl) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.addCrawl, { gameId: crawl.game, crawl: crawl }, function (response) {
+    io.socket.post(constants.endpoints.game.addCrawl, {
+      gameId: crawl.game,
+      crawl: crawl
+    }, function (response) {
       if (response.err) {
         console.error(response.err);
         deferred.reject('There was an error adding the crawl');
@@ -104,7 +119,10 @@ module.exports = {
   updateCrawl: function (crawl) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.updateCrawl, { gameId: crawl.game, crawl: crawl }, function (response) {
+    io.socket.post(constants.endpoints.game.updateCrawl, {
+      gameId: crawl.game,
+      crawl: crawl
+    }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('There was an error saving the crawl ' + crawl.title);
@@ -118,7 +136,10 @@ module.exports = {
   deleteCrawl: function (crawl) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.removeCrawl, { gameId: crawl.game, crawl: crawl }, function (response) {
+    io.socket.post(constants.endpoints.game.removeCrawl, {
+      gameId: crawl.game,
+      crawl: crawl
+    }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('There was an error deleting the crawl');
@@ -132,7 +153,9 @@ module.exports = {
   join: function (game) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.join, { game: game.id }, function (response) {
+    io.socket.post(constants.endpoints.game.join, {
+      game: game.id
+    }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('Could not join game at this time.');
@@ -146,7 +169,10 @@ module.exports = {
   approvePlayer: function (game, player) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.approvePlayer, { gameId: game.id, player: player.id }, function (response) {
+    io.socket.post(constants.endpoints.game.approvePlayer, {
+      gameId: game.id,
+      player: player.id
+    }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('Could not approve player at this time.');
@@ -160,7 +186,10 @@ module.exports = {
   declinePlayer: function (game, player) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.declinePlayer, { gameId: game.id, player: player.id }, function (response) {
+    io.socket.post(constants.endpoints.game.declinePlayer, {
+      gameId: game.id,
+      player: player.id
+    }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('Could not decline player at this time');
@@ -174,10 +203,30 @@ module.exports = {
   removePlayer: function (game, player) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.removePlayer, { gameId: game.id, player: player.id }, function (response) {
+    io.socket.post(constants.endpoints.game.removePlayer, {
+      gameId: game.id,
+      player: player.id
+    }, function (response) {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('Could not remove player at this time');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
+  },
+  sendMessage: function (game, message) {
+    var deferred = q.defer();
+
+    io.socket.post(constants.endpoints.game.sendMessage, {
+      gameId: game.id,
+      message: message
+    }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('Could not send chat message at this time');
       } else {
         deferred.resolve();
       }

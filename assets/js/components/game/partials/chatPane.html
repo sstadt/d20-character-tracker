@@ -3,10 +3,13 @@
   <div class="chat-log">
     <ul class="zebra-list" v-if="gameLog.log">
       <li v-for="item in gameLog.log">
-        <div v-if="item.type === 'crawl'" class="crawl-message">
-          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has published a new crawl: <span class="chat-accent">{{ item.message.title }}</span></p>
-          <button type="button" v-on:click="playCrawl(item.message)"><i class="fa fa-play"></i></button>
+        <div v-if="item.type === 'chat'" class="chat-message">
+          <p class="message"><span class="message-author">{{ item.chatHandle }}:</span> {{ item.message }}</p>
         </div>
+          <div v-if="item.type === 'crawl'" class="crawl-message">
+            <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has published a new crawl: <span class="chat-accent">{{ item.message.title }}</span></p>
+            <button type="button" v-on:click="playCrawl(item.message)"><i class="fa fa-play"></i></button>
+          </div>
       </li>
     </ul>
     <ul v-else>

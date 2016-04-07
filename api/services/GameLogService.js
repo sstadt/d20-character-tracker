@@ -18,12 +18,14 @@ function addLogMessage(gameId, type, chatHandle, message) {
 
   GameLog.findOne({ game: gameId }, function (err, log) {
     if (err) {
-      deferred.reject(err);
+      deferred.reject(ErrorService.parse(err));
+    } else if (!log) {
+      deferred.reject(ErrorService.generate('Game log not found'));
     } else {
       log.log.unshift(newMessage);
       log.save(function (err) {
         if (err) {
-          deferred.reject(err);
+          deferred.reject(ErrorService.parse(err));
         } else {
           deferred.resolve(newMessage);
         }
@@ -62,7 +64,12 @@ module.exports = {
     var deferred = q.defer();
 
     addLogMessage(gameId, 'chat', chatHandle, message)
-      .then(function success() {
+      .then(function success(newMessage) {
+				Game.message(gameId, {
+					type: 'newChatMessage',
+					game: gameId,
+					data: newMessage
+				});
         deferred.resolve();
       }, function error(err) {
         deferred.reject(err);
@@ -75,7 +82,12 @@ module.exports = {
     var deferred = q.defer();
 
     addLogMessage(gameId, 'roll', chatHandle, DicePoolService.roll(pool))
-      .then(function success() {
+      .then(function success(message) {
+				Game.message(gameId, {
+					type: 'newRollMessage',
+					game: gameId,
+					data: message
+				});
         deferred.resolve();
       }, function error(err) {
         deferred.reject(err);

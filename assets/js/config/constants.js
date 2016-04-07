@@ -65,7 +65,8 @@ module.exports = {
       join: '/game/join',
       approvePlayer: '/game/approvePlayer',
       declinePlayer: '/game/declinePlayer',
-      removePlayer: '/game/removePlayer'
+      removePlayer: '/game/removePlayer',
+      sendMessage: '/game/sendMessage'
     }
   },
 

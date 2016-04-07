@@ -91,10 +91,6 @@ module.exports.routes = {
     controller: 'game',
     action: 'get'
   },
-  '/game/getLog': {
-    controller: 'gameLog',
-    action: 'get'
-  },
   '/game/updateConfig': {
     controller: 'game',
     action: 'updateconfig'
@@ -106,6 +102,18 @@ module.exports.routes = {
   '/game/approvePlayer': {
     controller: 'game',
     action: 'approvePlayer'
+  },
+
+  /*
+    Game Log
+   */
+  '/game/getLog': {
+    controller: 'gameLog',
+    action: 'get'
+  },
+  '/game/sendMessage': {
+    controller: 'gameLog',
+    action: 'addMessage'
   },
 
   /*

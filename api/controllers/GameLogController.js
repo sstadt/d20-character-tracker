@@ -16,17 +16,20 @@ module.exports = {
 			});
 	},
 
-	addChat: function (req, res) {
-		// TODO add message with GameLogService
-		res.send(200);
+	addMessage: function (req, res) {
+		var gameId = req.param('gameId'),
+			chatHandle = req.session.User.chatHandle,
+			message = req.param('message');
+
+		GameLogService.addChatMessage(gameId, chatHandle, message)
+			.then(function success() {
+				res.send(200);
+			}, function error(err) {
+				res.json(err);
+			});
 	},
 
 	addRoll: function (req, res) {
-		// TODO add message with GameLogService
-		res.send(200);
-	},
-
-	addCrawl: function (req, res) {
 		// TODO add message with GameLogService
 		res.send(200);
 	},

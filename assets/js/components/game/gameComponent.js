@@ -158,8 +158,16 @@ module.exports = {
       this.showCrawl = true;
     },
     sendChatMessage() {
-      console.log(this.chatMessage);
-      this.chatMessage = '';
+      var self = this;
+
+      if (self.chatMessage.length > 0) {
+        gameService.sendMessage(self.game, self.chatMessage)
+          .then(function success() {
+            self.chatMessage = '';
+          }, function error(reason) {
+            self.gameAlert.error(reason);
+          });
+      }
     }
   }
 };

@@ -59,7 +59,7 @@ module.exports.policies = {
     'leave': 'sessionAuth'
   },
 
-  GameController: {
+  GameController: { // TODO map out policies for all game controller actions
     '*': 'sessionAuth',
     'updateConfig': ['sessionAuth', 'gameMaster'],
     'addCrawl': ['sessionAuth', 'gameMaster'],
