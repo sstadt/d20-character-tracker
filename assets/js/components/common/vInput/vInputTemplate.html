@@ -9,8 +9,7 @@
       name="{{ name }}"
       placeholder="{{ placeholder }}"
       v-model="value"
-      v-on:blur="validate()"
-      v-on:input="debounceValidate()"></textarea>
+      v-on:blur="validate()"></textarea>
     <input v-else
       v-el:input
       :class="{ 'error': error.length > 0 }"
@@ -18,8 +17,7 @@
       type="{{ type }}"
       placeholder="{{ placeholder }}"
       v-model="value"
-      v-on:blur="validate()"
-      v-on:input="debounceValidate()" />
+      v-on:blur="validate()" />
     <small v-if="error.length > 0" transition="slide-up-x-small" class="error">{{ error }}</small>
   </div>
 </label>
