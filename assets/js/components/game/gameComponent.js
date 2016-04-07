@@ -2,88 +2,12 @@
 var constants = require('../../config/constants.js');
 var userService = require('../../services/userService.js');
 var gameService = require('../../services/gameService.js');
+var socketHandler = require('./socketHandler.js');
 
 require('./crawlMenu/crawlMenu.js');
 require('./playersMenu/playersMenu.js');
 require('./settingsMenu/settingsMenu.js');
 require('../starWarsCrawl/starWarsCrawl.js');
-
-function getPlayerIndex(list, id) {
-  return _.findIndex(list, function (player) {
-    return player.id === id;
-  });
-}
-
-var playerSocketHandler = {
-  playerRequestedJoin: function (game, data) {
-    game.requestingPlayers.push(data.player);
-  },
-  playerJoinApproved: function (game, data) {
-    var playerIndex = getPlayerIndex(game.requestingPlayers, data.player.id);
-
-    if (playerIndex > -1) {
-      game.requestingPlayers.$remove(game.requestingPlayers[playerIndex]);
-    }
-
-    game.players.push(data.player);
-  },
-  playerJoinDeclined: function (game, data) {
-    var playerIndex = getPlayerIndex(game.requestingPlayers, data.player.id);
-
-    if (playerIndex > -1) {
-      game.requestingPlayers.$remove(game.requestingPlayers[playerIndex]);
-    }
-  },
-  playerRemoved: function (game, data, user) {
-    var playerIndex = getPlayerIndex(game.players, data.player.id);
-
-    if (playerIndex > -1) {
-      game.players.$remove(game.players[playerIndex]);
-    }
-
-    if (data.player.id === user.id) {
-      window.location.href = '/home';
-    }
-  }
-};
-
-function getCrawlIndex(list, id) {
-  return _.findIndex(list, function (crawl) {
-    return id === crawl.id;
-  });
-}
-
-var gameSocketHandler = {
-  gameCrawlAdded: function (game, data) {
-    var crawl = data.crawl;
-
-    if (_.isObject(crawl)) {
-      game.crawls.push(crawl);
-    }
-  },
-  gameCrawlUpdated: function (game, data) {
-    if (_.isObject(data.crawl)) {
-      var crawlIndex = getCrawlIndex(game.crawls, data.crawl.id);
-
-      if (crawlIndex > -1) {
-        game.crawls.$set(crawlIndex, _.extend(data.crawl));
-      }
-    }
-  },
-  gameCrawlDestroyed: function (game, data) {
-    if (_.isObject(data.crawl)) {
-      var crawlIndex = getCrawlIndex(game.crawls, data.crawl.id);
-
-      if (crawlIndex > -1) {
-        game.crawls.$remove(game.crawls[crawlIndex]);
-      }
-    }
-  },
-};
-
-function socketMessageIsValid(message, gameId) {
-  return message.data.game && message.data.type && message.data.data && message.data.game === gameId;
-}
 
 module.exports = {
   template: require('./gameTemplate.html'),
@@ -127,11 +51,11 @@ module.exports = {
 
     // listen for game updates
     io.socket.on('game', function (message) {
-      if (socketMessageIsValid(message, self.game.id)) {
-        if (playerSocketHandler.hasOwnProperty(message.data.type)) {
-          playerSocketHandler[message.data.type](self.game, message.data.data, self.user);
-        } else if (gameSocketHandler.hasOwnProperty(message.data.type)) {
-          gameSocketHandler[message.data.type](self.game, message.data.data);
+      if (socketHandler.isValidMessage(message, self.game.id)) {
+        if (socketHandler.player.hasOwnProperty(message.data.type)) {
+          socketHandler.player[message.data.type](self.game, message.data.data, self.user);
+        } else if (socketHandler.game.hasOwnProperty(message.data.type)) {
+          socketHandler.game[message.data.type](self.game, message.data.data);
         }
       }
     });
