@@ -177,6 +177,7 @@ module.exports = {
       }
     },
     scrollChatToBottom() {
+      // TODO Need to call this function when chat input tabs switch
       this.$els.chatLog.scrollTop = this.$els.chatLog.scrollHeight - this.$els.chatLog.offsetHeight;
     },
     userScrolling(event) {

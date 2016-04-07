@@ -71,12 +71,12 @@ module.exports.policies = {
 
   GameLogController: {
     '*': false, // Game controller is responsible for creation/deletion
-    'get': 'sessionAuth', // TODO need an isPlayer policy here
-    'addMessage': 'sessionAuth' // TODO need an isPlayer policy here
+    'get': ['sessionAuth', 'gamePlayer'],
+    'addMessage': ['sessionAuth', 'gamePlayer']
   },
 
   CrawlController: {
-    '*': 'sessionAuth',
+    '*': 'sessionAuth', // TODO does this leave default crawl blueprints open?
     'update': ['sessionAuth', 'gameMaster'],
     'destroy': ['sessionAuth', 'gameMaster']
   },
