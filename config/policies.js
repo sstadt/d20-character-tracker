@@ -31,59 +31,66 @@ module.exports.policies = {
   '/': true,
 
   SessionController: {
-    '*': ['flash', true],
-    'destroy': 'sessionAuth'
+    '*'       : ['flash', true],
+    'destroy' : 'sessionAuth'
   },
 
   UserController: {
-    '*': ['flash', true],
-    'create': true,
-    'show': 'sessionAuth',
-    'search': false,
-    'self': 'sessionAuth',
-    'setHandle': 'sessionAuth',
-    'sandbox': 'dev',
-    'destroy': false
+    '*'         : ['flash', true],
+    'create'    : true,
+    'show'      : 'sessionAuth',
+    'search'    : false,
+    'self'      : 'sessionAuth',
+    'setHandle' : 'sessionAuth',
+    'sandbox'   : 'dev',
+    'destroy'   : false
   },
 
+  // TODO remove this and associated controller/model once functionality is integrated into game
   RollController: {
-    '*': 'socketSessionAuth',
-    'index': 'dev',
-    'destroy': false,
-    'update': false
+    '*'       : 'socketSessionAuth',
+    'index'   : 'dev',
+    'destroy' : false,
+    'update'  : false
   },
 
   ChannelController: {
-    '*': false,
-    'join': 'sessionAuth',
-    'leave': 'sessionAuth'
+    '*'     : false,
+    'join'  : 'socketSessionAuth',
+    'leave' : 'socketSessionAuth'
   },
 
-  GameController: { // TODO map out policies for all game controller actions
-    '*': 'sessionAuth',
-    'updateConfig': ['sessionAuth', 'gameMaster'],
-    'addCrawl': ['sessionAuth', 'gameMaster'],
-    'approvePlayer': ['sessionAuth', 'gameMaster'],
-    'declinePlayer': ['sessionAuth', 'gameMaster'],
-    'removePlayer': ['sessionAuth', 'gameMaster'],
-    'destroy': false
+  GameController: {
+    '*'             : false,
+    'browser'       : ['sessionAuth'],
+    'show'          : ['sessionAuth',       'gamePlayer'],
+    'get'           : ['socketSessionAuth', 'gamePlayer'],
+    'playing'       : ['socketSessionAuth'],
+    'search'        : ['socketSessionAuth'],
+    'create'        : ['socketSessionAuth'],
+    'updateConfig'  : ['socketSessionAuth', 'gameMaster'],
+    'addCrawl'      : ['socketSessionAuth', 'gameMaster'],
+    'join'          : ['socketSessionAuth'],
+    'approvePlayer' : ['socketSessionAuth', 'gameMaster'],
+    'declinePlayer' : ['socketSessionAuth', 'gameMaster'],
+    'removePlayer'  : ['socketSessionAuth', 'gameMaster']
   },
 
   GameLogController: {
-    '*': false, // Game controller is responsible for creation/deletion
-    'get': ['sessionAuth', 'gamePlayer'],
-    'addMessage': ['sessionAuth', 'gamePlayer']
+    '*'          : false, // Game controller is responsible for creation/deletion
+    'get'        : ['sessionAuth', 'gamePlayer'],
+    'addMessage' : ['sessionAuth', 'gamePlayer']
   },
 
   CrawlController: {
-    '*': 'sessionAuth', // TODO does this leave default crawl blueprints open?
-    'update': ['sessionAuth', 'gameMaster'],
-    'destroy': ['sessionAuth', 'gameMaster']
+    '*'       : 'sessionAuth', // TODO does this leave default crawl blueprints open?
+    'update'  : ['sessionAuth', 'gameMaster'],
+    'destroy' : ['sessionAuth', 'gameMaster']
   },
 
   ApiController: {
-    '*': false,
-    'index': true,
-    'show': true
+    '*'     : false,
+    'index' : true,
+    'show'  : true
   }
 };

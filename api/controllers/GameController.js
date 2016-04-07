@@ -14,7 +14,7 @@ module.exports = {
 	},
 
 	show: function (req, res) {
-		Game.findOne(req.param('id'), function (err, game) {
+		Game.findOne(req.param('gameId'), function (err, game) {
 			if (err) {
 				res.serverError(err);
 			} else if (!game) {
@@ -88,7 +88,7 @@ module.exports = {
 					res.jsonError(err);
 				} else {
 					var publicGames = _.filter(games, function (game) {
-						return game.config.isPublic === true;
+						return game.config && game.config.isPublic === true;
 					});
 
 					res.json(publicGames);
@@ -119,7 +119,7 @@ module.exports = {
 	},
 
 	updateConfig: function (req, res) {
-		Game.update(req.param('id'), { config: req.param('config') }, function (err, game) {
+		Game.update(req.param('gameId'), { config: req.param('config') }, function (err, game) {
 			if (err) {
 				res.jsonError(err);
 			} else {

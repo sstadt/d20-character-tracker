@@ -83,7 +83,7 @@ module.exports.routes = {
     controller: 'game',
     action: 'search'
   },
-  '/play/:id': {
+  '/play/:gameId': {
     controller: 'game',
     action: 'show'
   },

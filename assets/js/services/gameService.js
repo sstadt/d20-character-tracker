@@ -83,10 +83,8 @@ module.exports = {
   updateConfig: function (id, config) {
     var deferred = q.defer();
 
-    // TODO: refactor endpoint to use gameId
     io.socket.post(constants.endpoints.game.updateConfig, {
       gameId: id,
-      id: id,
       config: config
     }, function (response) {
       if (response && response.err) {

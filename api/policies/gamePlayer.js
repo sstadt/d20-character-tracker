@@ -14,7 +14,7 @@ module.exports = function (req, res, next) {
     .populate('players')
     .exec(function (err, game) {
       if (err) {
-        res.jsonError('Error retriving game');
+        res.jsonError('Error retrieving game');
       } else if (!game) {
         res.json(ErrorService.generate('Game not found'));
       } else {
