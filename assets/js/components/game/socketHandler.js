@@ -69,14 +69,8 @@ module.exports = {
     }
   },
   gameLog: {
-    newChatMessage: function (gameLog, data) {
-      gameLog.log.unshift(data);
-    },
-    newRollMessage: function (gameLog, data) {
-      gameLog.log.unshift(data);
-    },
-    newCrawlMessage: function (gameLog, data) {
-      gameLog.log.unshift(data);
+    newLogMessage: function (gameLog, data) {
+      gameLog.log.push(data);
     }
   }
 };

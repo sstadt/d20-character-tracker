@@ -1,6 +1,6 @@
 
 <div class="chat-pane">
-  <div class="chat-log">
+  <div class="chat-log" v-el:chat-log v-on:scroll="userScrolling">
     <ul class="zebra-list" v-if="gameLog.log">
       <li v-for="item in gameLog.log">
         <div v-if="item.type === 'chat'" class="chat-message">

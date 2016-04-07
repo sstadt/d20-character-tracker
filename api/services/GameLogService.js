@@ -22,7 +22,7 @@ function addLogMessage(gameId, type, chatHandle, message) {
     } else if (!log) {
       deferred.reject(ErrorService.generate('Game log not found'));
     } else {
-      log.log.unshift(newMessage);
+      log.log.push(newMessage);
       log.save(function (err) {
         if (err) {
           deferred.reject(ErrorService.parse(err));
@@ -34,6 +34,14 @@ function addLogMessage(gameId, type, chatHandle, message) {
   });
 
   return deferred.promise;
+}
+
+function sendLogMessage(gameId, message) {
+  Game.message(gameId, {
+    type: 'newLogMessage',
+    game: gameId,
+    data: message
+  });
 }
 
 module.exports = {
@@ -60,16 +68,12 @@ module.exports = {
     return deferred.promise;
   },
 
-  addChatMessage: function (gameId, chatHandle, message) {
+  addChatMessage: function (gameId, chatHandle, chatMessage) {
     var deferred = q.defer();
 
-    addLogMessage(gameId, 'chat', chatHandle, message)
-      .then(function success(newMessage) {
-				Game.message(gameId, {
-					type: 'newChatMessage',
-					game: gameId,
-					data: newMessage
-				});
+    addLogMessage(gameId, 'chat', chatHandle, chatMessage)
+      .then(function success(message) {
+        sendLogMessage(gameId, message);
         deferred.resolve();
       }, function error(err) {
         deferred.reject(err);
@@ -83,11 +87,7 @@ module.exports = {
 
     addLogMessage(gameId, 'roll', chatHandle, DicePoolService.roll(pool))
       .then(function success(message) {
-				Game.message(gameId, {
-					type: 'newRollMessage',
-					game: gameId,
-					data: message
-				});
+        sendLogMessage(gameId, message);
         deferred.resolve();
       }, function error(err) {
         deferred.reject(err);
@@ -101,11 +101,7 @@ module.exports = {
 
     addLogMessage(gameId, 'crawl', chatHandle, crawl)
       .then(function success(message) {
-				Game.message(gameId, {
-					type: 'newCrawlMessage',
-					game: gameId,
-					data: message
-				});
+        sendLogMessage(gameId, message);
         deferred.resolve();
       }, function error(err) {
         sails.log(err);

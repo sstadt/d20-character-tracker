@@ -43,7 +43,8 @@ module.exports = {
       showCrawl: false,
 
       // chat data
-      chatMessage: ''
+      chatMessage: '',
+      isScrolledToBottom: true
     };
   },
   ready() {
@@ -58,6 +59,11 @@ module.exports = {
           socketHandler.game[message.data.type](self.game, message.data.data);
         } else if (socketHandler.gameLog.hasOwnProperty(message.data.type)) {
           socketHandler.gameLog[message.data.type](self.gameLog, message.data.data);
+
+          // if this is a chat log message, adjust scrolling appropriately
+          if (message.data.type === 'newLogMessage' && self.isScrolledToBottom) {
+            Vue.nextTick(self.scrollChatToBottom);
+          }
         }
       }
     });
@@ -79,6 +85,7 @@ module.exports = {
         return gameService.getLog(self.gameId);
       }).then(function success(log) {
         self.gameLog = log;
+        Vue.nextTick(self.scrollChatToBottom);
       }, function error(reason) {
         self.gameAlert.error(reason);
       });
@@ -168,6 +175,12 @@ module.exports = {
             self.gameAlert.error(reason);
           });
       }
+    },
+    scrollChatToBottom() {
+      this.$els.chatLog.scrollTop = this.$els.chatLog.scrollHeight - this.$els.chatLog.offsetHeight;
+    },
+    userScrolling(event) {
+      this.isScrolledToBottom = this.$els.chatLog.offsetHeight + this.$els.chatLog.scrollTop === this.$els.chatLog.scrollHeight;
     }
   }
 };
