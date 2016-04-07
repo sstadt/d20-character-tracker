@@ -1,13 +1,7 @@
 
-function getPlayerIndex(list, id) {
-  return _.findIndex(list, function (player) {
-    return player.id === id;
-  });
-}
-
-function getCrawlIndex(list, id) {
-  return _.findIndex(list, function (crawl) {
-    return id === crawl.id;
+function getIndexById(list, id) {
+  return _.findIndex(list, function (item) {
+    return item.id === id;
   });
 }
 
@@ -20,7 +14,7 @@ module.exports = {
       game.requestingPlayers.push(data.player);
     },
     playerJoinApproved: function (game, data) {
-      var playerIndex = getPlayerIndex(game.requestingPlayers, data.player.id);
+      var playerIndex = getIndexById(game.requestingPlayers, data.player.id);
 
       if (playerIndex > -1) {
         game.requestingPlayers.$remove(game.requestingPlayers[playerIndex]);
@@ -29,14 +23,14 @@ module.exports = {
       game.players.push(data.player);
     },
     playerJoinDeclined: function (game, data) {
-      var playerIndex = getPlayerIndex(game.requestingPlayers, data.player.id);
+      var playerIndex = getIndexById(game.requestingPlayers, data.player.id);
 
       if (playerIndex > -1) {
         game.requestingPlayers.$remove(game.requestingPlayers[playerIndex]);
       }
     },
     playerRemoved: function (game, data, user) {
-      var playerIndex = getPlayerIndex(game.players, data.player.id);
+      var playerIndex = getIndexById(game.players, data.player.id);
 
       if (playerIndex > -1) {
         game.players.$remove(game.players[playerIndex]);
@@ -57,7 +51,7 @@ module.exports = {
     },
     gameCrawlUpdated: function (game, data) {
       if (_.isObject(data.crawl)) {
-        var crawlIndex = getCrawlIndex(game.crawls, data.crawl.id);
+        var crawlIndex = getIndexById(game.crawls, data.crawl.id);
 
         if (crawlIndex > -1) {
           game.crawls.$set(crawlIndex, _.extend(data.crawl));
@@ -66,7 +60,7 @@ module.exports = {
     },
     gameCrawlDestroyed: function (game, data) {
       if (_.isObject(data.crawl)) {
-        var crawlIndex = getCrawlIndex(game.crawls, data.crawl.id);
+        var crawlIndex = getIndexById(game.crawls, data.crawl.id);
 
         if (crawlIndex > -1) {
           game.crawls.$remove(game.crawls[crawlIndex]);

@@ -49,7 +49,6 @@ module.exports = {
 
       gameService.addCrawl(newCrawl)
         .then(function success(crawl) {
-          //self.game.crawls.push(crawl);
           self.activeCrawl = new Crawl();
           self.addingCrawl = false;
         }, function error(reason) {
@@ -73,7 +72,6 @@ module.exports = {
 
       gameService.updateCrawl(self.activeCrawl)
         .then(function success() {
-          //self.game.crawls.$set(crawlIndex, _.extend(self.activeCrawl));
           self.activeCrawl = new Crawl();
         }, function error(reason) {
           self.gameCrawlsAlert.error(reason);
@@ -92,9 +90,7 @@ module.exports = {
         question: 'Are you sure you want to delete ' + self.game.crawls[index].title + '?',
         yes: function () {
           gameService.deleteCrawl(self.game.crawls[index])
-            .then(function success() {
-              //self.game.crawls.splice(index, 1);
-            }, function error(reason) {
+            .fail(function error(reason) {
               self.gameCrawlsAlert.error(reason);
             });
         }
