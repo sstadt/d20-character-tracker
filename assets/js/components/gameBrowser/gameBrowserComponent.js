@@ -78,6 +78,7 @@ module.exports = {
     gameService.getMyGames()
       .then(function success(myGames) {
         self.myGames = myGames;
+        self.gameBrowserAlert.close();
       }, function (reason) {
         self.gameBrowserAlert.error(reason);
       });
@@ -91,6 +92,7 @@ module.exports = {
         gameService.search(val)
           .then(function success(filteredGames) {
             self.filteredGames = filteredGames;
+            self.gameBrowserAlert.close();
           }, function (reason) {
             self.gameBrowserAlert.error(reason);
           })
@@ -115,6 +117,7 @@ module.exports = {
           gameService.create(name)
             .then(function success(game) {
               self.myGames.push(game);
+              self.gameBrowserAlert.close();
             }, function (reason) {
               self.gameBrowserAlert.error(reason);
             });

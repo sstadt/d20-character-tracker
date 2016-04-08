@@ -1,6 +1,6 @@
 
 <div class="settings-menu">
-  <alert :alert.sync="gameSettingsAlert"></alert>
+  <alert :alert.sync="gameSettingsAlert" :can-close="true"></alert>
 
   <div v-if="game.config">
     <h4 class="section-header">Social<h4>

@@ -28,8 +28,11 @@ module.exports = {
 
       gameService.updateConfig(self.game.id, self.game.config)
         .then(function success() {
+          self.gameSettingsAlert.close();
           self.$dispatch(constants.events.game.closeSettings);
-        }, self.gameSettingsAlert.error)
+        }, function error(reason) {
+          self.gameSettingsAlert.error(reason);
+        })
         .done(function () {
           self.saving = false;
         });

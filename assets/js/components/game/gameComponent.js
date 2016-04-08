@@ -100,6 +100,7 @@ module.exports = {
       }).then(function success(log) {
         self.gameLog = log;
         Vue.nextTick(self.scrollChatToBottom);
+        self.gameAlert.close();
       }, function error(reason) {
         self.gameAlert.error(reason);
       });
@@ -186,6 +187,7 @@ module.exports = {
         gameService.sendMessage(self.game, self.chatMessage)
           .then(function success() {
             self.chatMessage = '';
+            self.gameAlert.close();
           }, function error(reason) {
             self.gameAlert.error(reason);
           });
@@ -206,6 +208,7 @@ module.exports = {
       gameService.sendRoll(self.game, self.rollDescription, dicePool)
         .then(function success() {
           self.rollDescription = '';
+          self.gameAlert.close();
         }, function error(reason) {
           self.gameAlert.error(reason);
         });

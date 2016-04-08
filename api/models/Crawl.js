@@ -22,7 +22,8 @@ module.exports = {
     },
     imageUrl: {
       type: 'string',
-      required: true
+      required: true,
+      url: true
     },
     published: {
       type: 'boolean',

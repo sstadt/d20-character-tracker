@@ -37,7 +37,9 @@ module.exports = {
       var self = this;
 
       gameService.approvePlayer(self.game, player)
-        .fail(function error(reason) {
+        .then(function success() {
+          self.gamePlayersAlert.close();
+        }, function error(reason) {
           self.gamePlayersAlert.error(reason);
         });
     },
@@ -45,7 +47,9 @@ module.exports = {
       var self = this;
 
       gameService.declinePlayer(self.game, player)
-        .fail(function error(reason) {
+        .then(function () {
+          self.gamePlayersAlert.close();
+        }, function error(reason) {
           self.gamePlayersAlert.error(reason);
         });
     },
@@ -53,7 +57,9 @@ module.exports = {
       var self = this;
 
       gameService.removePlayer(self.game, player)
-        .fail(function error(reason) {
+        .then(function success() {
+          self.gamePlayersAlert.close();
+        }, function error(reason) {
           self.gamePlayersAlert.error(reason);
         });
     }

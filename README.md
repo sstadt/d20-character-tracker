@@ -11,7 +11,6 @@ a [Sails](http://sailsjs.org) application
 
 ### Dev to do:
 
- - validate crawl url on back end
  - Cache bust production app javascript
  - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
 

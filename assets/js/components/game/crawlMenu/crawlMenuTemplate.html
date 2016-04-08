@@ -1,6 +1,6 @@
 
 <div class="crawl-menu">
-  <alert :alert.sync="gameCrawlsAlert"></alert>
+  <alert :alert.sync="gameCrawlsAlert" :can-close="true"></alert>
 
   <div class="controls">
     <button class="tiny" v-on:click="addingCrawl = true" :disabled="addingCrawl">New Crawl</button>
