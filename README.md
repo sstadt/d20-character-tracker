@@ -17,11 +17,16 @@ a [Sails](http://sailsjs.org) application
 
 ### Post Launch
 
+ - add ability to conceal GM rolls in chat
+ - add game sidebar dropdown or icon tabs to show different game options
+ - add jukebox/soundboard to sidebar
  - Show player online indicator on game page
  - sockets...
  - ... on player join game
+ - ... on player leave game http://stackoverflow.com/questions/21515268/logic-on-disconnect-sails-js-socket-io
  - abstract more heavy controller functionality to services
  - up/down keys to navigate to previously sent chat messages
+ - GM clear game log in settingsMenu
 
 ### Setup
 

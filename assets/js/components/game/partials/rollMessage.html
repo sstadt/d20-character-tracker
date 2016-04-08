@@ -1,0 +1,37 @@
+
+<p class="message"><span class="message-author">{{ item.chatHandle }}:</span> {{ item.message.description }}</p>
+<p class="message-timestamp">{{ item.timestamp | chatTimestamp }}</p>
+<div class="roll-result">
+  <span class="result" v-if="item.message.overallResults.success > 0">
+    <span class="result-count">{{ item.message.overallResults.success }}</span>
+    <icon name="dice-success"></icon>
+  </span>
+  <span class="result" v-if="item.message.overallResults.advantage > 0">
+    <span class="result-count">{{ item.message.overallResults.advantage }}</span>
+    <icon name="dice-advantage"></icon>
+  </span>
+  <span class="result" v-if="item.message.overallResults.triumph > 0">
+    <span class="result-count">{{ item.message.overallResults.triumph }}</span>
+    <icon name="dice-triumph"></icon>
+  </span>
+  <span class="result" v-if="item.message.overallResults.failure > 0">
+    <span class="result-count">{{ item.message.overallResults.failure }}</span>
+    <icon name="dice-failure"></icon>
+  </span>
+  <span class="result" v-if="item.message.overallResults.threat > 0">
+    <span class="result-count">{{ item.message.overallResults.threat }}</span>
+    <icon name="dice-threat"></icon>
+  </span>
+  <span class="result" v-if="item.message.overallResults.despair > 0">
+    <span class="result-count">{{ item.message.overallResults.despair }}</span>
+    <icon name="dice-despair"></icon>
+  </span>
+  <span class="result" v-if="item.message.overallResults.light > 0">
+    <span class="result-count">{{ item.message.overallResults.light }}</span>
+    <icon name="dice-light-side"></icon>
+  </span>
+  <span class="result" v-if="item.message.overallResults.dark > 0">
+    <span class="result-count">{{ item.message.overallResults.dark }}</span>
+    <icon name="dice-dark-side"></icon>
+  </span>
+</div>

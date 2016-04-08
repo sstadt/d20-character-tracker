@@ -15,5 +15,10 @@ for (var lib in vendor) {
 
 Vue.filter('marked', require('marked'));
 
+Vue.filter('chatTimestamp', function (value) {
+  var date = moment(value);
+  return date.isValid() ? date.format('MMM Do, YYYY - h:mm A') : 'Invalid Date';
+});
+
 // common Vue components
 require('../components/common/common.js');

@@ -212,5 +212,12 @@ $titleBarBorderActive : $titleBarBorder;
 /* Chat
 -------------------------------- */
 
-$chatAuthor : $springGreen;
-$chatAccent : $secondaryColor;
+$chatAuthor         : $springGreen;
+$chatAccent         : $secondaryColor;
+$chatTimestampColor : $subtextColor;
+
+/* Rolls
+-------------------------------- */
+
+$rollResultCountBg  : rgba($black, 0.6);
+$rollResultIconSize : rem-calc(40);

@@ -244,7 +244,7 @@ module.exports = {
         console.error(response.err);
         deferred.reject('Could not send dice roll at this time');
       } else {
-        deferred.solve();
+        deferred.resolve();
       }
     });
 

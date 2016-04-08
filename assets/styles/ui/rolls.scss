@@ -1,0 +1,25 @@
+
+.roll-result {
+  .result {
+    position: relative;
+    height: $rollResultIconSize;
+    display: inline-block;
+
+    .icon-image {
+      height: $rollResultIconSize;
+      width: $rollResultIconSize;
+    }
+
+    .result-count {
+      font-family: $headerFontFamily;
+      position: absolute;
+      bottom: -2px;
+      right: -1px;
+      font-size: 15px;
+      display: block;
+      border-radius: 50%;
+      background-color: $rollResultCountBg;
+      padding: 0 rem-calc(7);
+    }
+  }
+}
