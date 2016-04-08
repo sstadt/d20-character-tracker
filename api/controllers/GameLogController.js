@@ -30,8 +30,23 @@ module.exports = {
 	},
 
 	addRoll: function (req, res) {
-		// TODO add message with GameLogService
-		res.send(200);
+		var gameId = req.param('gameId'),
+			chatHandle = req.session.User.chatHandle,
+			description = req.param('description'),
+			dicePool = req.param('dicePool');
+
+		if (!_.isString(description)) {
+			res.json(ErrorService.generate('Invalid roll description'));
+		} else if (!DicePoolService.isValid(dicePool)) {
+			res.json(ErrorService.generate('Invalid dice pool'));
+		} else {
+			GameLogService.addRollMessage(gameId, chatHandle, description, dicePool)
+				.then(function success() {
+					res.send(200);
+				}, function error(err) {
+					res.json(err);
+				});
+		}
 	},
 
 };

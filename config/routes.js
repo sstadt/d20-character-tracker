@@ -115,6 +115,10 @@ module.exports.routes = {
     controller: 'gameLog',
     action: 'addMessage'
   },
+  '/game/sendRoll': {
+    controller: 'gameLog',
+    action: 'addRoll'
+  },
 
   /*
     Dice Roller

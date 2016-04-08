@@ -231,5 +231,23 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+  sendRoll: function (game, description, dicePool) {
+    var deferred = q.defer();
+
+    io.socket.post(constants.endpoints.game.sendRoll, {
+      gameId: game.id,
+      dicePool: dicePool,
+      description: description
+    }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('Could not send dice roll at this time');
+      } else {
+        deferred.solve();
+      }
+    });
+
+    return deferred.promise;
   }
 };

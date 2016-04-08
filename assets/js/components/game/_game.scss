@@ -41,12 +41,17 @@
     .crawl-pane {
       flex: 0;
 
-      &:not(.loading) {
-        border-bottom: $interfaceBorder;
+      .subtitle {
+        i {
+          line-height: 1.4;
+          cursor: pointer;
+        }
       }
 
-      .controls {
-        margin-bottom: rem-calc(20);
+      &:not(.loading) {
+        margin-bottom: rem-calc(10);
+        padding-bottom: rem-calc(14);
+        border-bottom: $interfaceBorder;
       }
 
       .selected-crawl {
@@ -127,6 +132,17 @@
 
       .chat-entry {
         flex-shrink: 0;
+
+        .dice-pool {
+          .inline-list {
+            margin-top: rem-calc(10);
+            margin-bottom: 0;
+          }
+        }
+
+        .chat-controls {
+          padding-top: rem-calc(10);
+        }
 
         .input-wrap {
           margin: 0;

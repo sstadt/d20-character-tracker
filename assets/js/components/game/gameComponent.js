@@ -137,7 +137,8 @@ module.exports = {
   partials: {
     'players-pane': require('./partials/playersPane.html'),
     'crawl-pane': require('./partials/crawlPane.html'),
-    'chat-pane': require('./partials/chatPane.html')
+    'chat-pane': require('./partials/chatPane.html'),
+    'roll-message': require('./partials/rollMessage.html')
   },
   events: {
     [constants.events.game.closeCrawl]() {
@@ -191,7 +192,23 @@ module.exports = {
       }
     },
     sendChatRoll() {
-      console.log('submit game rolls here...');
+      var self = this,
+        dicePool = {
+          ability: self.ability,
+          proficiency: self.proficiency,
+          difficulty: self.difficulty,
+          challenge: self.challenge,
+          boost: self.boost,
+          setback: self.setback,
+          force: self.force
+        };
+
+      gameService.sendRoll(self.game, self.rollDescription, dicePool)
+        .then(function success() {
+          self.rollDescription = '';
+        }, function error(reason) {
+          self.gameAlert.error(reason);
+        });
     },
     scrollChatToBottom() {
       // TODO Need to call this function when chat input tabs switch
@@ -199,6 +216,6 @@ module.exports = {
     },
     userScrolling(event) {
       this.isScrolledToBottom = this.$els.chatLog.offsetHeight + this.$els.chatLog.scrollTop === this.$els.chatLog.scrollHeight;
-    }
+    },
   }
 };

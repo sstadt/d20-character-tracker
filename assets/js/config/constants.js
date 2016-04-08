@@ -66,7 +66,8 @@ module.exports = {
       approvePlayer: '/game/approvePlayer',
       declinePlayer: '/game/declinePlayer',
       removePlayer: '/game/removePlayer',
-      sendMessage: '/game/sendMessage'
+      sendMessage: '/game/sendMessage',
+      sendRoll: '/game/sendRoll'
     }
   },
 

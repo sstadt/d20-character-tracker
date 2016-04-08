@@ -3,11 +3,11 @@
   <h3>Crawls</h3>
   <v-select :selected.sync="selectedCrawlId" :options="crawlOptions"></v-select>
   <div class="selected-crawl" v-if="selectedCrawl">
-    <h5 class="subtitle">{{ selectedCrawl.subtitle }}</h5>
+    <h5 class="subtitle">
+      {{ selectedCrawl.subtitle }}
+      <i class="fa fa-play right" v-on:click="playCrawl(selectedCrawl)"></i>
+    </h5>
     <p class="synopsis">{{ selectedCrawl.crawl }}</p>
-    <div class="controls">
-      <button type="button" class="mini" v-on:click="playCrawl(selectedCrawl)"><i class="fa fa-play"></i></button>
-    </div>
   </div>
   <div class="selected-crawl" v-else>
     <p>No active crawl</p>

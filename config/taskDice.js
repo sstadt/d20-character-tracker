@@ -10,6 +10,15 @@ module.exports.taskDice = {
     'light',
     'dark'
   ],
+  dieTypes: [
+    'boost',
+    'ability',
+    'proficiency',
+    'setback',
+    'difficulty',
+    'challenge',
+    'force'
+  ],
   dieResults: {
     boost: [ // d6
       {},                           // 1

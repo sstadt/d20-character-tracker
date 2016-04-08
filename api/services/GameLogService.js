@@ -82,10 +82,10 @@ module.exports = {
     return deferred.promise;
   },
 
-  addRollMessage: function (gameId, chatHandle, pool) {
+  addRollMessage: function (gameId, chatHandle, description, pool) {
     var deferred = q.defer();
 
-    addLogMessage(gameId, 'roll', chatHandle, DicePoolService.roll(pool))
+    addLogMessage(gameId, 'roll', chatHandle, DicePoolService.roll(description, pool))
       .then(function success(message) {
         sendLogMessage(gameId, message);
         deferred.resolve();

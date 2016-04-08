@@ -4,7 +4,7 @@ $counterInnerSize: rem-calc(24);
 .die-counter {
   position: relative;
   display: inline-block;
-  padding: rem-calc(4) rem-calc(8);
+  padding: rem-calc(4) rem-calc(12);
 
   svg {
     width: rem-calc(30);
@@ -17,7 +17,7 @@ $counterInnerSize: rem-calc(24);
     position: absolute;
     font-size: $counterInnerSize;
     top: 0;
-    left: rem-calc(40);
+    left: rem-calc(45);
   }
 
   .die-counter-controls {

@@ -6,10 +6,13 @@
         <div v-if="item.type === 'chat'" class="chat-message">
           <p class="message"><span class="message-author">{{ item.chatHandle }}:</span> {{ item.message }}</p>
         </div>
-          <div v-if="item.type === 'crawl'" class="crawl-message">
-            <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has published a new crawl: <span class="chat-accent">{{ item.message.title }}</span></p>
-            <button type="button" v-on:click="playCrawl(item.message)"><i class="fa fa-play"></i></button>
-          </div>
+        <div v-if="item.type === 'crawl'" class="crawl-message">
+          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has published a new crawl: <span class="chat-accent">{{ item.message.title }}</span></p>
+          <button type="button" v-on:click="playCrawl(item.message)"><i class="fa fa-play"></i></button>
+        </div>
+        <div v-if="item.type === 'roll'" class="crawl-message">
+          <partial name="roll-message"></partial>
+        </div>
       </li>
     </ul>
     <ul v-else>
@@ -30,9 +33,9 @@
             :force.sync="force">
         </dice-pool>
         <v-form :submit-callback="sendChatRoll" :ajax="true">
-          <div class="row">
+          <div class="row chat-controls">
             <div class="small-9 large-10 columns">
-              <v-input type="text" label="Roll Description" :value.sync="rollDescription" :simple="true" :required="true" :simple="true"></v-input>
+              <v-input type="text" label="Roll Description" :value.sync="rollDescription" :simple="true"></v-input>
             </div>
             <div class="small-3 large-2 columns">
               <button type="submit" class="tiny">Roll</button>
@@ -43,11 +46,11 @@
       <!-- chat -->
       <tab heading="Chat">
         <v-form :submit-callback="sendChatMessage" :ajax="true">
-          <div class="row">
+          <div class="row chat-controls">
             <div class="small-9 large-10 columns">
               <v-input type="text" label="Message" :value.sync="chatMessage" :simple="true"></v-input>
             </div>
-            <div class="small-3 large-2 column">
+            <div class="small-3 large-2 columns">
               <button type="submit" class="tiny">Send</button>
             </div>
           </div>

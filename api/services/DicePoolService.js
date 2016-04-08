@@ -1,5 +1,6 @@
 
 var resultTypes = sails.config.taskDice.resultTypes,
+  dieTypes = sails.config.taskDice.dieTypes,
   dieResults = sails.config.taskDice.dieResults;
 
 function getDieRoll(sides) {
@@ -26,7 +27,7 @@ function rollDieGroup(type, num)  {
   return rolls;
 }
 
-function RollResult(data) {
+function RollResult(data, description) {
   var overallResults = {};
 
   for (var i = 0, j = resultTypes.length; i < j; i++) {
@@ -41,12 +42,34 @@ function RollResult(data) {
     });
   });
 
-  this.description = data.description || '';
+  this.description = description;
   this.overallResults = _.clone(overallResults);
   this.results = _.clone(data);
 }
 
 module.exports = {
+  isValid: function (pool) {
+    var hasInvalidProp = false,
+      hasPositiveDieQuantity = false;
+
+    _.forEach(pool, function (dieQuantity, dieName) {
+      var dieTypeIndex = _.findIndex(dieTypes, function (type) {
+        return type === dieName;
+      });
+
+      if (dieTypeIndex === -1) {
+        hasInvalidProp = true;
+      }
+
+      if (!_.isNumber(dieQuantity)) {
+        hasInvalidProp = true;
+      } else if (dieQuantity > 0) {
+        hasPositiveDieQuantity = true;
+      }
+    });
+
+    return !hasInvalidProp && hasPositiveDieQuantity;
+  },
   roll: function (description, pool) {
     var dicePoolRolls = {};
 
@@ -56,8 +79,6 @@ module.exports = {
       }
     });
 
-    dicePoolRolls.description = description;
-
-    return new RollResult(dicePoolRolls);
+    return new RollResult(dicePoolRolls, description);
   }
 };
