@@ -20,7 +20,7 @@ module.exports = {
   },
   methods: {
     close: function () {
-      this.alert.clearMessages();
+      this.alert.close();
     }
   }
 };

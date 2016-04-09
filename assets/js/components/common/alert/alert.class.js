@@ -6,7 +6,7 @@ function Alert() {
   this.type = '';
 }
 
-Alert.prototype.clearMessages = function () {
+Alert.prototype.close = function () {
   this.messages = [];
 };
 
