@@ -27,7 +27,7 @@
           padding-left: 0;
 
           > * {
-            width: rem-calc(200);
+            width: rem-calc(250);
           }
         }
 
@@ -56,7 +56,7 @@
 
       .selected-crawl {
         .synopsis {
-          @include multi-line-ellipsis($paragraphFontSize, $paragraphLineHeight, 3);
+          @include multi-line-ellipsis($paragraphFontSize, $paragraphLineHeight, 2);
         }
       }
     }

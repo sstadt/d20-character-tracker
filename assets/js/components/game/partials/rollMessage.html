@@ -1,5 +1,5 @@
 
-<p class="message"><span class="message-author">{{ item.chatHandle }}:</span> {{ item.message.description }}</p>
+<p class="message"><span class="message-author">{{ item.chatHandle }}:</span> [<partial name="rolled-dice"></partial>] {{ item.message.description }}</p>
 <p class="message-timestamp">{{ item.timestamp | chatTimestamp }}</p>
 <div class="roll-result">
   <span class="result" v-if="item.message.overallResults.success > 0">

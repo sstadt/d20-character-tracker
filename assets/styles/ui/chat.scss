@@ -20,6 +20,14 @@
     .chat-accent {
       color: $chatAccent;
     }
+
+    .icon-image {
+      margin: 0 -1px;
+
+      &.die-ability, &.die-difficulty {
+        margin: 0 -3px;
+      }
+    }
   }
 
   .crawl-message {
