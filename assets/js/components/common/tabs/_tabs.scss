@@ -26,6 +26,10 @@ $tabsBorder: $interfaceBorderSize $interfaceBorderStyle $tabsBorderColor;
       display: inline-block;
       cursor: pointer;
       @include button-bottom-glow($tabsBorderColor);
+
+      a {
+        border-bottom: 0;
+      }
     }
   }
 
