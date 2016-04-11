@@ -18,3 +18,9 @@
     margin-bottom: $headerBottomMargin * 2;
   }
 }
+
+a:not(.button) {
+  // TODO: style links so they don't blend in with text
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+}
