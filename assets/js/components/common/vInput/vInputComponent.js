@@ -21,6 +21,7 @@ module.exports = {
       type: String
     },
     value: {
+      type: String,
       required: true,
       twoWay: true
     },
@@ -39,8 +40,7 @@ module.exports = {
   },
   data: function () {
     return {
-      error: '',
-      validated: false,
+      error: ''
     };
   },
   filters: {
@@ -50,10 +50,7 @@ module.exports = {
   },
   methods: {
     isValid: function () {
-      if (!this.validated) {
-        this.validate();
-      }
-
+      this.validate();
       return (this.error.length === 0);
     },
     debounceValidate: _.debounce(function () {
@@ -71,15 +68,13 @@ module.exports = {
         this.error = constants.validation[this.type].defaultError;
 
       // equivalency validation
-    } else if (this.equalTo && this.equalTo.value !== this.value) {
+      } else if (this.equalTo && this.equalTo.value !== this.value) {
         this.error = 'Must match ' + this.equalTo.label;
 
       // input is valid
       } else {
         this.error = '';
       }
-
-      this.validated = true;
     }
   }
 };

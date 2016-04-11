@@ -25,8 +25,8 @@ describe('The vInput component', function () {
     });
 
     describe('name', function () {
-      if('should be a string', function () {
-        expect(component.props.name).toEqual(String);
+      it('should be a string', function () {
+        expect(component.props.name.type).toEqual(String);
       });
     });
 
@@ -41,20 +41,20 @@ describe('The vInput component', function () {
     });
 
     describe('placeholder', function () {
-      if('should be a string', function () {
-        expect(component.props.placeholder).toEqual(String);
+      it('should be a string', function () {
+        expect(component.props.placeholder.type).toEqual(String);
       });
     });
 
     describe('icon', function () {
-      if('should be a string', function () {
-        expect(component.props.icon).toEqual(String);
+      it('should be a string', function () {
+        expect(component.props.icon.type).toEqual(String);
       });
     });
 
     describe('value', function () {
-      if('should be a string', function () {
-        expect(component.props.value).toEqual(String);
+      it('should be a string', function () {
+        expect(component.props.value.type).toEqual(String);
       });
 
       it('should be required', function () {
@@ -67,12 +67,22 @@ describe('The vInput component', function () {
     });
 
     describe('required', function () {
-      if('should be a string', function () {
-        expect(component.props.required).toEqual(Boolean);
+      it('should be a string', function () {
+        expect(component.props.required.type).toEqual(Boolean);
       });
 
       it('should default to false', function () {
         expect(component.props.required.defaultsTo).toEqual(false);
+      });
+    });
+
+    describe('equalTo', function () {
+      it('should be an object', function () {
+        expect(component.props.equalTo.type).toEqual(Object);
+      });
+
+      it('should default to null', function () {
+        expect(component.props.equalTo.defaultsTo).toEqual(null);
       });
     });
   });
@@ -87,12 +97,6 @@ describe('The vInput component', function () {
     describe('#isValid', function () {
       beforeEach(function () {
         spyOn(componentInstance, 'validate').and.callThrough();
-      });
-
-      it('should call the validate method anc set validated', function () {
-        componentInstance.isValid();
-        expect(componentInstance.validated).toEqual(true);
-        expect(componentInstance.validate).toHaveBeenCalled();
       });
 
       describe('when required', function () {
@@ -143,11 +147,21 @@ describe('The vInput component', function () {
           expect(componentInstance.isValid()).toEqual(true);
         });
       });
-    });
 
-    describe('#validate', function () {
-      it('should perform validation and set the valid flag', function () {
-        // do stuff
+      describe('when equalTo is provided a value', function () {
+        beforeEach(function () {
+          componentInstance.equalTo = { label: 'test', value: 'foo' };
+        });
+
+        it('should return false if the value does not match', function () {
+          componentInstance.value = 'bar';
+          expect(componentInstance.isValid()).toEqual(false);
+        });
+
+        it('should return true if the value matches', function () {
+          componentInstance.value = 'foo';
+          expect(componentInstance.isValid()).toEqual(true);
+        });
       });
     });
   });
