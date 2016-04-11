@@ -26,14 +26,7 @@
       <!-- chat -->
       <tab heading="Chat">
         <v-form :submit-callback="sendChatMessage" :ajax="true">
-          <div class="row chat-controls">
-            <div class="small-9 large-10 columns">
-              <v-input type="text" label="Message" :value.sync="chatMessage" :simple="true"></v-input>
-            </div>
-            <div class="small-3 large-2 columns">
-              <button type="submit" class="tiny">Send</button>
-            </div>
-          </div>
+          <v-input type="text" label="Message" placeholder="message" :value.sync="chatMessage" :simple="true"></v-input>
         </v-form>
       </tab>
       <!-- dice pool -->
@@ -48,14 +41,7 @@
             :force.sync="force">
         </dice-pool>
         <v-form :submit-callback="sendChatRoll" :ajax="true">
-          <div class="row chat-controls">
-            <div class="small-9 large-10 columns">
-              <v-input type="text" label="Roll Description" :value.sync="rollDescription" :simple="true"></v-input>
-            </div>
-            <div class="small-3 large-2 columns">
-              <button type="submit" class="tiny">Roll</button>
-            </div>
-          </div>
+          <v-input type="text" label="Roll Description" placeholder="description" :value.sync="rollDescription" :simple="true"></v-input>
         </v-form>
       </tab>
     </tabs>
