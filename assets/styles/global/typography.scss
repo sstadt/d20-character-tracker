@@ -20,7 +20,11 @@
 }
 
 a:not(.button) {
-  // TODO: style links so they don't blend in with text
-  text-decoration-line: underline;
-  text-decoration-style: wavy;
+  color: $bodyFontColor;
+  border-bottom: 1px dotted rgba($bodyFontColor, 0.5);
+
+  &:hover, &:focus {
+    color: $bodyFontColor;
+    border-bottom: 1px dotted $bodyFontColor;
+  }
 }
