@@ -17,6 +17,18 @@ describe('The game component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
+  describe('props', function () {
+    describe('gameId', function () {
+      it('should be a string', function () {
+        expect(component.props.gameId.type).toEqual(String);
+      });
+
+      it('should be required', function () {
+        expect(component.props.gameId.required).toEqual(true);
+      });
+    });
+  });
+
   describe('methods', function () {
     var componentInstance;
 

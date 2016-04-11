@@ -74,7 +74,7 @@ module.exports = {
 
   /**
    * Generate a password reset email
-   * 
+   *
    * @param  {object} user The user to generate a reset email for
    * @return {promise}
    */
@@ -150,7 +150,3 @@ module.exports = {
   }
 
 };
-
-
-
-

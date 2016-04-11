@@ -71,6 +71,18 @@ module.exports.routes = {
     controller: 'user',
     action: 'self'
   },
+  '/recover': {
+    controller: 'user',
+    action: 'recoverPassword'
+  },
+  '/sendreset': {
+    controller: 'user',
+    action: 'sendResetEmail'
+  },
+  '/reset': {
+    controller: 'user',
+    action: 'resetPassword'
+  },
 
   /*
     Game

@@ -28,6 +28,10 @@ module.exports = {
       type: Boolean,
       defaultsTo: false
     },
+    equalTo: {
+      type: Object,
+      defaultsTo: null
+    },
     simple: {
       type: Boolean,
       defaultsTo: false
@@ -65,6 +69,10 @@ module.exports = {
       // html5 data type validation
       } else if (constants.validation.hasOwnProperty(this.type) && !constants.validation[this.type].regex.test(this.value)) {
         this.error = constants.validation[this.type].defaultError;
+
+      // equivalency validation
+    } else if (this.equalTo && this.equalTo.value !== this.value) {
+        this.error = 'Must match ' + this.equalTo.label;
 
       // input is valid
       } else {
