@@ -182,7 +182,8 @@ module.exports = {
       this.showCrawl = true;
     },
     sendChatMessage() {
-      var self = this;
+      var self = this,
+        deferred = q.defer();
 
       if (self.chatMessage.length > 0) {
         gameService.sendMessage(self.game, self.chatMessage)
@@ -191,8 +192,13 @@ module.exports = {
             self.gameAlert.close();
           }, function error(reason) {
             self.gameAlert.error(reason);
+          })
+          .done(function () {
+            deferred.resolve();
           });
       }
+
+      return deferred.promise;
     },
     sendChatRoll() {
       var self = this,
