@@ -1,6 +1,7 @@
 
-var Vue = require('vue');
 var playersMenuComponent = require('./playersMenuComponent.js');
+
+Vue.config.silent = true;
 
 describe('The playersMenu component', function () {
   var component;

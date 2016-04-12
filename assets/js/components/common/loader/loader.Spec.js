@@ -1,5 +1,4 @@
 
-var Vue = require('vue');
 var loaderComponent = require('./loaderComponent.js');
 
 describe('The loader component', function () {

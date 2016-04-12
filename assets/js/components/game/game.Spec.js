@@ -1,11 +1,19 @@
 
-var Vue = require('vue');
 var gameComponent = require('./gameComponent.js');
+var testData = require('./_testData.js');
+
+Vue.config.silent = true;
 
 describe('The game component', function () {
-  var component;
+  var component, mockGame, mockGameLog, mockUser1, mockUser2, mockUser3;
 
   beforeEach(function () {
+    mockGame = _.clone(testData.game);
+    mockGameLog = _.clone(testData.log);
+    mockUser1 = _.clone(testData.user1);
+    mockUser2 = _.clone(testData.user2);
+    mockUser3 = _.clone(testData.user3);
+
     component = _.clone(gameComponent);
   });
 
@@ -34,6 +42,8 @@ describe('The game component', function () {
 
     beforeEach(function () {
       componentInstance = new Vue(component);
+      componentInstance.game = mockGame;
+      componentInstance.gameLog = mockGameLog;
     });
 
     // describe('#sayHi', function () {

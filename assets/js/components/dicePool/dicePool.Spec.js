@@ -1,6 +1,4 @@
 
-var Vue = require('vue');
-
 var dicePoolComponent = require('./dicePoolComponent.js');
 
 Vue.config.silent = true;

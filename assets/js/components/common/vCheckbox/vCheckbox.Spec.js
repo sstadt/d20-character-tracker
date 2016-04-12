@@ -1,6 +1,7 @@
 
-var Vue = require('vue');
 var vCheckboxComponent = require('./vCheckboxComponent.js');
+
+Vue.config.silent = true;
 
 describe('The vCheckbox component', function () {
   var component;

@@ -1,6 +1,7 @@
 
-var Vue = require('vue');
 var vInputComponent = require('./vInputComponent.js');
+
+Vue.config.silent = true;
 
 describe('The vInput component', function () {
   var component;

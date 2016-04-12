@@ -1,6 +1,7 @@
 
-var Vue = require('vue');
 var vSelectComponent = require('./vSelectComponent.js');
+
+Vue.config.silent = true;
 
 describe('The vSelect component', function () {
   var component;

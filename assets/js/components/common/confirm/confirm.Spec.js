@@ -1,5 +1,4 @@
 
-var Vue = require('vue');
 var confirmComponent = require('./confirmComponent.js');
 
 describe('The confirm component', function () {

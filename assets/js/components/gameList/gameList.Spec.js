@@ -1,7 +1,8 @@
 
-var Vue = require('vue');
 var gameListComponent = require('./gameListComponent.js');
 var gameService = require('../../services/gameService');
+
+Vue.config.silent = true;
 
 describe('The gameList component', function () {
   var component;

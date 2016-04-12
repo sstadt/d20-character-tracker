@@ -1,6 +1,4 @@
 
-var Vue = require('vue');
-
 var dieCounterComponent = require('./dieCounterComponent.js');
 
 Vue.config.silent = true;

@@ -1,7 +1,4 @@
 
-var _ = require('lodash');
-var Vue = require('vue');
-
 var Character = require('../../../../classes/Character.js');
 var speciesEditorComponent = require('./speciesEditorComponent.js');
 

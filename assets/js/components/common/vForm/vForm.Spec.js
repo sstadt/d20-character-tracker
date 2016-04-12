@@ -1,6 +1,7 @@
 
-var Vue = require('vue');
 var vFormComponent = require('./vFormComponent.js');
+
+Vue.config.silent = true;
 
 describe('The vForm component', function () {
   var component;

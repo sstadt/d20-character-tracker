@@ -2,7 +2,7 @@
 var constants = require('../../config/constants.js');
 var userService = require('../../services/userService.js');
 var gameService = require('../../services/gameService.js');
-var socketHandler = require('./socketHandler.js');
+var socketHandler = require('./gameSocketHandler.js');
 
 // game menus
 require('./crawlMenu/crawlMenu.js');

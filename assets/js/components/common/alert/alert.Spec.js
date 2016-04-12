@@ -1,5 +1,4 @@
 
-var Vue = require('vue');
 var alertComponent = require('./alertComponent.js');
 
 Vue.config.silent = true;

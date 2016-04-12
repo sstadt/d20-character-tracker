@@ -1,6 +1,7 @@
 
-var Vue = require('vue');
 var starWarsCrawlComponent = require('./starWarsCrawlComponent.js');
+
+Vue.config.silent = true;
 
 describe('The starWarsCrawl component', function () {
   var component;

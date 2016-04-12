@@ -1,6 +1,7 @@
 
-var Vue = require('vue');
 var crawlMenuComponent = require('./crawlMenuComponent.js');
+
+Vue.config.silent = true;
 
 describe('The crawlMenu component', function () {
   var component;

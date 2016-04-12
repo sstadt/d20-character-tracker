@@ -1,6 +1,7 @@
 
-var Vue = require('vue');
 var settingsMenuComponent = require('./settingsMenuComponent.js');
+
+Vue.config.silent = true;
 
 describe('The settingsMenu component', function () {
   var component;

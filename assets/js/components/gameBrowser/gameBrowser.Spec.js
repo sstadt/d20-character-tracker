@@ -1,6 +1,7 @@
 
-var Vue = require('vue');
 var gameBrowserComponent = require('./gameBrowserComponent.js');
+
+Vue.config.silent = true;
 
 describe('The gameBrowser component', function () {
   var component;
