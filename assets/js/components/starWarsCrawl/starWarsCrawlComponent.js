@@ -28,7 +28,8 @@ module.exports = {
     return {
       running: false,
       finished: false,
-      timer: {}
+      timer: {},
+      player: {}
     };
   },
   watch: {
@@ -42,16 +43,20 @@ module.exports = {
       }
     }
   },
+  ready() {
+    // assumes the root has a game component as the first child with a crawlMusic el where the audio player lives
+    this.player = this.$root.$children[0].$els.crawlMusic;
+  },
   methods: {
     startCrawl(musicDelay) {
       var self = this;
 
-      musicDelay = musicDelay || 8750;
+      musicDelay = musicDelay || 8900;
 
       self.running = true;
       self.finished = false;
       self.timer = setTimeout(function () {
-        self.$els.crawlMusic.play();
+        self.player.play();
       }, musicDelay);
     },
     endCrawl() {
@@ -67,8 +72,8 @@ module.exports = {
     },
     close() {
       clearTimeout(this.timer);
-      this.$els.crawlMusic.pause();
-      this.$els.crawlMusic.currentTime = 0;
+      this.player.pause();
+      this.player.currentTime = 0;
       this.running = false;
       this.finished = false;
       this.show = false;
