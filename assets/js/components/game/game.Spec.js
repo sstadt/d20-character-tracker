@@ -88,7 +88,7 @@ describe('The game component', function () {
       it('should be the crawl with an id that matches selectedCrawlId', function () {
         componentInstance.selectedCrawlId = '2';
         expect(componentInstance.selectedCrawl).toEqual(jasmine.any(Object));
-        expect(componentInstance.selectedCrawl).toEqual('2');
+        expect(componentInstance.selectedCrawl.id).toEqual('2');
       });
     });
   });

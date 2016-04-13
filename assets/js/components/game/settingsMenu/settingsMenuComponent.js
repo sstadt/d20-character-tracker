@@ -22,7 +22,8 @@ module.exports = {
       this.$dispatch(constants.events.game.closeSettings);
     },
     updateConfig: function () {
-      var self = this;
+      var self = this,
+        deferred = q.defer();
 
       self.saving = true;
 
@@ -35,7 +36,10 @@ module.exports = {
         })
         .done(function () {
           self.saving = false;
+          deferred.resolve();
         });
+
+      return deferred.promise;
     }
   }
 };
