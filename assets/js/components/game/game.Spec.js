@@ -57,73 +57,64 @@ describe('The game component', function () {
 
     describe('#sendChatMessage', function () {
       describe('on success', function () {
-        beforeEach(function () {
+        beforeEach(function (done) {
           componentInstance.chatMessage = 'foo';
           spyOn(gameService, 'sendMessage').and.callFake(function () {
             return q.resolve();
           });
+
+          componentInstance.sendChatMessage().done(function () { done(); });
         });
 
         it('should call the chatMessage method of gameService', function () {
-          componentInstance.sendChatMessage()
-            .then(function () {
-              expect(gameService.sendMessage).toHaveBeenCalledWith(mockGame, 'foo');
-            });
+          expect(gameService.sendMessage).toHaveBeenCalledWith(mockGame, 'foo');
         });
 
         it('should clear the chat message', function () {
-          componentInstance.sendChatMessage()
-            .then(function () {
-              expect(componentInstance.chatMessage).toEqual('');
-            });
+          expect(componentInstance.chatMessage).toEqual('');
         });
 
         it('should close the game alert', function () {
-          componentInstance.sendChatMessage()
-            .then(function () {
-              expect(componentInstance.gameAlert.close).toHaveBeenCalled();
-            });
+          expect(componentInstance.gameAlert.close).toHaveBeenCalled();
         });
       });
 
       describe('on error', function () {
-        beforeEach(function () {
+        beforeEach(function (done) {
           componentInstance.chatMessage = 'foo';
           spyOn(gameService, 'sendMessage').and.callFake(function () {
             return q.reject('bar');
           });
+
+          componentInstance.sendChatMessage().done(function () { done(); });
         });
 
         it('should call the chatMessage method of gameService', function () {
-          componentInstance.sendChatMessage()
-            .then(function () {
-              expect(gameService.sendMessage).toHaveBeenCalledWith(mockGame, 'foo');
-            });
+          expect(gameService.sendMessage).toHaveBeenCalledWith(mockGame, 'foo');
         });
 
         it('should show an error', function () {
-          componentInstance.sendChatMessage()
-            .then(function () {
-              expect(componentInstance.gameAlert.error).toHaveBeenCalledWith('bar');
-            });
+          expect(componentInstance.gameAlert.error).toHaveBeenCalledWith('bar');
         });
       });
     });
 
-    // TODO: this is breaking the other tests
-    // describe('#playCrawl', function () {
-    //   beforeEach(function () {
-    //     componentInstance.playCrawl(mockCrawl);
-    //   });
-    //
-    //   it('should set the crawl data', function () {
-    //     expect(componentInstance.crawlTitle).toEqual(mockCrawl.title);
-    //     expect(componentInstance.crawlSubtitle).toEqual(mockCrawl.subtitle);
-    //     expect(componentInstance.crawlCrawl).toEqual(mockCrawl.crawl);
-    //     expect(componentInstance.crawlImage).toEqual(mockCrawl.imageUrl);
-    //     expect(componentInstance.showCrawl).toEqual(true);
-    //   });
-    // });
+    describe('#playCrawl', function () {
+      beforeEach(function () {
+        componentInstance.playCrawl(mockCrawl);
+      });
+
+      it('should set the crawl data', function () {
+        expect(componentInstance.crawlTitle).toEqual(mockCrawl.title);
+        expect(componentInstance.crawlSubtitle).toEqual(mockCrawl.subtitle);
+        expect(componentInstance.crawlCrawl).toEqual(mockCrawl.crawl);
+        expect(componentInstance.crawlImage).toEqual(mockCrawl.imageUrl);
+      });
+
+      it('should start the crawl', function () {
+        expect(componentInstance.showCrawl).toEqual(true);
+      });
+    });
   });
 
 });
