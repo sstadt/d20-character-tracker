@@ -27,10 +27,11 @@ module.exports = function (grunt) {
     },
     js: {
       files: ['.tmp/public/js/*'],
+      tasks: ['json-replace:cache']
     },
     sass: {
       files: ['assets/**/*.scss'],
-      tasks: ['sass:dev']
+      tasks: ['sass:dev', 'json-replace:cache']
     },
   });
 

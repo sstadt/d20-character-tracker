@@ -26,6 +26,8 @@ module.exports.globals = {
     register: 'Registration'
   },
 
+  cacheVersion: require('../build.json').build,
+
   /****************************************************************************
   *                                                                           *
   * Expose the lodash installed in Sails core as a global variable. If this   *

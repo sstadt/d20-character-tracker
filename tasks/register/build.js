@@ -6,6 +6,7 @@ module.exports = function (grunt) {
     'browserify:dev',
     'sails-linker:devJs',
     'sails-linker:devCss',
-    'copy:dev'
+    'copy:dev',
+    'json-replace:cache'
   ]);
 };

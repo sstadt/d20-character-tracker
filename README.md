@@ -12,7 +12,6 @@ a [Sails](http://sailsjs.org) application
 ### Dev to do:
 
  - sw crawl music is being downloaded multiple times on the game page
- - Cache bust production app javascript
  - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
 
 ### Post Launch
