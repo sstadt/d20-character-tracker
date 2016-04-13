@@ -48,7 +48,7 @@
   "author": "Scott Stadt <scott.stadt@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "grunt-contrib-symlink": "^1.0.0",
+    "grunt-githooks": "^0.6.0",
     "grunt-karma": "^0.12.1",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.19",
