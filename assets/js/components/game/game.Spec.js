@@ -41,6 +41,58 @@ describe('The game component', function () {
     });
   });
 
+  describe('computed', function () {
+    var componentInstance;
+
+    beforeEach(function () {
+      componentInstance = new Vue(component);
+
+      componentInstance.game = mockGame;
+      componentInstance.gameLog = mockGameLog;
+    });
+
+    describe('userIsGameMaster', function () {
+      it('should be true if the current user is the game master', function () {
+        componentInstance.user = mockUser1;
+        expect(componentInstance.userIsGameMaster).toEqual(true);
+      });
+
+      it('should be false if the current user is not the game master', function () {
+        componentInstance.user = mockUser2;
+        expect(componentInstance.userIsGameMaster).toEqual(false);
+      });
+    });
+
+    describe('crawlOptions', function () {
+      it('should initialize an array of published crawl options', function () {
+        expect(componentInstance.crawlOptions).toEqual(jasmine.any(Array));
+      });
+
+      it('should be a list of object with label and value attributes', function () {
+        for (var i = 0, j = componentInstance.crawlOptions; i < j; i++) {
+          expect(componentInstance.crawlOptions[i].hasOwnProperty('label')).toEqual(true);
+          expect(componentInstance.crawlOptions[i].hasOwnProperty('value')).toEqual(true);
+        }
+      });
+
+      it('should only include published crawls', function () {
+        var numPublishedCrawls = _.filter(componentInstance.game.crawls, function (crawl) {
+          return crawl.published === true;
+        }).length;
+
+        expect(componentInstance.crawlOptions.length).toEqual(numPublishedCrawls);
+      });
+    });
+
+    describe('selectedCrawl', function () {
+      it('should be the crawl with an id that matches selectedCrawlId', function () {
+        componentInstance.selectedCrawlId = '2';
+        expect(componentInstance.selectedCrawl).toEqual(jasmine.any(Object));
+        expect(componentInstance.selectedCrawl).toEqual('2');
+      });
+    });
+  });
+
   describe('methods', function () {
     var componentInstance;
 
