@@ -6,8 +6,6 @@ a [Sails](http://sailsjs.org) application
 
  - set up SSL for all apps w/nginx and let's encrypt
  - make a kitchen sink page for css/js components
- - set up grunt-autoprefixer https://github.com/nDmitry/grunt-autoprefixer
- - Set up symlink script and store pre-commit hook in the repo: http://stackoverflow.com/questions/3462955/putting-git-hooks-into-repository/3464399#3464399
 
 ### Post Launch
 
@@ -28,6 +26,8 @@ a [Sails](http://sailsjs.org) application
 
  - waterline isn't behaving as expected when querying against dates
  - ... need to figure out a TTL solution that will not infringe upon registration while expiring reset tokens after 24 hours
+ - set up grunt-autoprefixer http://grunt-tasks.com/autoprefixer/
+ - ... grunt peer dependency conflicts with multiple sails.js packages
 
 ### Setup
 
