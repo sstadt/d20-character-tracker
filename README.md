@@ -9,10 +9,6 @@ a [Sails](http://sailsjs.org) application
  - set up grunt-autoprefixer https://github.com/nDmitry/grunt-autoprefixer
  - Set up symlink script and store pre-commit hook in the repo: http://stackoverflow.com/questions/3462955/putting-git-hooks-into-repository/3464399#3464399
 
-### Dev to do:
-
- - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
-
 ### Post Launch
 
  - game force points
@@ -27,6 +23,11 @@ a [Sails](http://sailsjs.org) application
  - abstract more heavy controller functionality to services
  - up/down keys to navigate to previously sent chat messages
  - GM clear game log in settingsMenu
+
+### Need more research
+
+ - waterline isn't behaving as expected when querying against dates
+ - ... need to figure out a TTL solution that will not infringe upon registration while expiring reset tokens after 24 hours
 
 ### Setup
 
