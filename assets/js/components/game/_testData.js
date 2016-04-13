@@ -29,6 +29,7 @@ module.exports = {
       crawl: "Something, something, something, DARK SIDE!!!\n\nSomething, something, something, COMPLETE!!!",
       imageUrl: "http://www.somelink.com/image.jpg",
       published: true,
+      createdAt : "2016-04-12T13:53:53.767Z",
       game: "1"
     }, {
       id: "2",
@@ -36,7 +37,17 @@ module.exports = {
       subtitle: "Another Title",
       crawl: "Something, something, something, DARK SIDE!!!\n\nSomething, something, something, COMPLETE!!!",
       imageUrl: "http://www.somelink.com/image.jpg",
+      published: true,
+      createdAt : "2063-04-05T13:53:53.767Z", // first contact day !!! - this should test as the selected crawl
+      game: "1"
+    }, {
+      id: "3",
+      title: "Episode IV",
+      subtitle: "Blue Harvest",
+      crawl: "Something, something, something, DARK SIDE!!!\n\nSomething, something, something, COMPLETE!!!",
+      imageUrl: "http://www.somelink.com/image.jpg",
       published: false,
+      createdAt : "2016-04-12T13:53:53.767Z",
       game: "1"
     }],
     config: {

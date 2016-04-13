@@ -196,12 +196,15 @@ module.exports = {
           .done(function () {
             deferred.resolve();
           });
+      } else {
+        deferred.resolve();
       }
 
       return deferred.promise;
     },
     sendChatRoll() {
       var self = this,
+        deferred = q.defer(),
         dicePool = {
           ability: self.ability,
           proficiency: self.proficiency,
@@ -218,7 +221,12 @@ module.exports = {
           self.gameAlert.close();
         }, function error(reason) {
           self.gameAlert.error(reason);
+        })
+        .done(function () {
+          deferred.resolve();
         });
+
+      return deferred.promise;
     },
     scrollChatToBottom() {
       // TODO Need to call this function when chat input tabs switch
