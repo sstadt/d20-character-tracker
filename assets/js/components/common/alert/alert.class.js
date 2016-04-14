@@ -17,8 +17,10 @@ Alert.prototype.setType = function (type) {
   this.type = type;
 };
 
-Alert.prototype.addMessage = function (message, fade) {
+Alert.prototype.addMessage = function (message, fade, fadeDuration, onFade) {
   var self = this;
+
+  fadeDuration = fadeDuration || 10000;
 
   self.messages.push(message);
 
@@ -27,33 +29,36 @@ Alert.prototype.addMessage = function (message, fade) {
       self.messages.splice(_.findIndex(this.messages, function (existingMessage) {
         return existingMessage === message;
       }), 1);
-    }, 10000);
+      if (typeof onFade === 'function') {
+        onFade();
+      }
+    }, fadeDuration);
   }
 };
 
-Alert.prototype.message = function (message, fade) {
+Alert.prototype.message = function (message, fade, duration, onFade) {
   this.setType('');
-  this.addMessage(message, fade);
+  this.addMessage(message, fade, duration, onFade);
 };
 
-Alert.prototype.info = function (message, fade) {
+Alert.prototype.info = function (message, fade, duration, onFade) {
   this.setType('info');
-  this.addMessage(message, fade);
+  this.addMessage(message, fade, duration, onFade);
 };
 
-Alert.prototype.success = function (message, fade) {
+Alert.prototype.success = function (message, fade, duration, onFade) {
   this.setType('success');
-  this.addMessage(message, fade);
+  this.addMessage(message, fade, duration, onFade);
 };
 
-Alert.prototype.warning = function (message, fade) {
+Alert.prototype.warning = function (message, fade, duration, onFade) {
   this.setType('warning');
-  this.addMessage(message, fade);
+  this.addMessage(message, fade, duration, onFade);
 };
 
-Alert.prototype.error = function (message, fade) {
+Alert.prototype.error = function (message, fade, duration, onFade) {
   this.setType('alert');
-  this.addMessage(message, fade);
+  this.addMessage(message, fade, duration, onFade);
 };
 
 module.exports = Alert;

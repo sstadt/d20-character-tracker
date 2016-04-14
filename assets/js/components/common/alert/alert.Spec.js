@@ -1,4 +1,5 @@
 
+var Alert = require('./alert.class.js');
 var alertComponent = require('./alertComponent.js');
 
 Vue.config.silent = true;
@@ -49,19 +50,16 @@ describe('The alert component', function () {
 
     beforeEach(function () {
       componentInstance = new Vue(component);
+      componentInstance.alert = new Alert();
     });
 
     describe('#close', function () {
-      it('should be a function', function () {
-        expect(typeof componentInstance.close).toBe('function');
-      });
+      it('should clear the messages in the alert', function () {
+        componentInstance.alert.messages = ['test'];
+        componentInstance.close();
 
-      // it('should clear the messages in the alert', function () {
-      //   componentInstance.alert.messages = ['test'];
-      //   componentInstance.close();
-      //
-      //   expect(componentInstance.alert.messages).toEqual([]);
-      // });
+        expect(componentInstance.alert.messages).toEqual([]);
+      });
     });
   });
 
