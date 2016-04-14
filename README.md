@@ -4,12 +4,13 @@ a [Sails](http://sailsjs.org) application
 
 ### DevOps to do:
 
- - set up SSL for all apps w/nginx and let's encrypt
+ - set up SSL for all apps w/nginx and let's encrypt https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04
  - make a kitchen sink page for css/js components
 
 ### Post Launch
 
  - add coverage for socket handlers
+ - add coverage for services
  - game force points
  - player whispers
  - add ability to conceal GM rolls in chat
