@@ -9,6 +9,7 @@ a [Sails](http://sailsjs.org) application
 
 ### Post Launch
 
+ - add coverage for socket handlers
  - game force points
  - player whispers
  - add ability to conceal GM rolls in chat
