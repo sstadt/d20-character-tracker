@@ -13,6 +13,7 @@ a [Sails](http://sailsjs.org) application
  - add coverage for services
  - game force points
  - player whispers
+ - parse inline simple dice rolls
  - add ability to conceal GM rolls in chat
  - add game sidebar dropdown or icon tabs to show different game options
  - add jukebox/soundboard to sidebar
