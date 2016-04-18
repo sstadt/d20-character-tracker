@@ -1,4 +1,6 @@
 
+var constants = require('../../../config/constants.js');
+
 var tabsTemplate = require('./tabsTemplate.html');
 
 module.exports = {
@@ -25,6 +27,9 @@ module.exports = {
 
       for (var i = 0, j = this.tabs.length; i < j; i++) {
         this.tabs[i].active = (i == index);
+        if (this.tabs[i].active) {
+          this.$children[i].$emit(constants.events.tabs.tabClicked);
+        }
       }
     }
   }

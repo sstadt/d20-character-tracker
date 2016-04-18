@@ -23,6 +23,9 @@ module.exports = {
       promptUser: 'VE_PROMPT_PROMPT_USER',
       valueSubmitted: 'VE_PROMPT_VALUE_SUBMITTED'
     },
+    tabs: {
+      tabClicked: 'VE_TABS_TAB_CLICKED'
+    },
     characterCreator: {
       changeTab: 'VE_CHARACTER_CREATOR_CHANGE_TAB',
       newCharacter: 'VE_CHARACTER_CREATOR_NEW_CHARACTER',

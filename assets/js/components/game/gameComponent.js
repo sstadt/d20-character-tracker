@@ -237,8 +237,11 @@ module.exports = {
       return deferred.promise;
     },
     scrollChatToBottom() {
-      // TODO Need to call this function when chat input tabs switch
-      this.$els.chatLog.scrollTop = this.$els.chatLog.scrollHeight - this.$els.chatLog.offsetHeight;
+      var self = this;
+
+      Vue.nextTick(function () {
+        self.$els.chatLog.scrollTop = self.$els.chatLog.scrollHeight - self.$els.chatLog.offsetHeight;
+      });
     },
     userScrolling(event) {
       this.isScrolledToBottom = this.$els.chatLog.offsetHeight + this.$els.chatLog.scrollTop === this.$els.chatLog.scrollHeight;
