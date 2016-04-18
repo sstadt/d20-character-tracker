@@ -1,4 +1,6 @@
 
+var constants = require('../../config/constants.js');
+
 module.exports = {
   template: require('./starWarsCrawlTemplate.html'),
   props: {
@@ -46,6 +48,15 @@ module.exports = {
   ready() {
     // assumes the root has a game component as the first child with a crawlMusic el where the audio player lives
     this.player = this.$root.$children[0].$els.crawlMusic;
+  },
+  events: {
+    [constants.events.game.crawlMusicEnded]() {
+      if (this.running) {
+        this.finished = true;
+      }
+
+      return !this.running;
+    }
   },
   methods: {
     startCrawl(musicDelay) {

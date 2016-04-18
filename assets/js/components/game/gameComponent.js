@@ -235,5 +235,8 @@ module.exports = {
     userScrolling(event) {
       this.isScrolledToBottom = this.$els.chatLog.offsetHeight + this.$els.chatLog.scrollTop === this.$els.chatLog.scrollHeight;
     },
+    crawlMusicEnded() {
+      this.$broadcast(constants.events.game.crawlMusicEnded);
+    }
   }
 };

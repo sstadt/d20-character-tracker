@@ -32,7 +32,8 @@ module.exports = {
     game: {
       closeCrawl: 'VE_GAME_CLOSE_CRAWL_MODAL',
       closePlayers: 'VE_GAME_CLOSE_PLAYERS_MODAL',
-      closeSettings: 'VE_GAME_CLOSE_SETTINGS_MODAL'
+      closeSettings: 'VE_GAME_CLOSE_SETTINGS_MODAL',
+      crawlMusicEnded: 'VE_GAME_CRAWL_MUSIC_ENDED'
     }
   },
 
