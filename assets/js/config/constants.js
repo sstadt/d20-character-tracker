@@ -9,9 +9,15 @@
 module.exports = {
 
   /*
-   * Events
+   * Die Types - pulled from BE
    * ----------------------------
    */
+  dieTypes: require('../../../config/taskDice.js').taskDice.dieTypes,
+
+   /*
+    * Events
+    * ----------------------------
+    */
   events: {
     prompt: {
       promptUser: 'VE_PROMPT_PROMPT_USER',

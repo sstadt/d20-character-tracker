@@ -140,7 +140,7 @@ module.exports = {
     'crawl-pane': require('./partials/crawlPane.html'),
     'chat-pane': require('./partials/chatPane.html'),
     'roll-message': require('./partials/rollMessage.html'),
-    'rolled-dice': require('./partials/rolledDice.html')
+    'rolled-dice': require('./partials/_rolledDice.js')
   },
   events: {
     [constants.events.game.closeCrawl]() {
