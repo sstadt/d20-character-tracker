@@ -71,15 +71,15 @@
         p {
           text-transform: uppercase;
           margin: 0;
+          padding-left: rem-calc(16);
+          position: relative;
 
-          &.online {
-            color: $playerColor;
-          }
-        }
-
-        &.gm {
-          p.online {
-            color: $gameMasterColor;
+          i {
+            position: absolute;
+            top: rem-calc(6);
+            left: 0;
+            font-size: rem-calc(11);
+            color: $successColor;
           }
         }
       }

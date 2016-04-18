@@ -5,6 +5,7 @@
 var q = require('q');
 
 module.exports = {
+
   validateConfig: function (game) {
     var defaultConfig = _.extend(sails.config.models.game.defaultConfig),
       deferred = q.defer(),
@@ -36,6 +37,53 @@ module.exports = {
 
     return deferred.promise;
   },
+
+  subscribe: function (req, game) {
+    var userId = req.session.User.id;
+
+    Game.subscribe(req.socket, game.id);
+
+    if (!_.isArray(game.online)) {
+      game.online = [];
+    }
+
+    if (game.online.indexOf(userId) === -1) {
+      game.online.push(userId);
+      game.save(function (err) {
+        if (err) {
+          sails.error(err);
+        } else {
+          Game.message(game.id, {
+            type: 'playerOnline',
+            game: game.id,
+            data: { player: req.session.User.id }
+          });
+        }
+      });
+    }
+  },
+
+  unsubscribe: function (session, socket, gameId) {
+    Game.findOne(gameId, function (err, game) {
+      if (err) {
+        sails.error(err);
+      } else {
+        game.online.splice(game.online.indexOf(session.User.id), 1);
+        game.save(function (err) {
+          if (err) {
+            sails.error(err);
+          } else {
+            Game.message(game.id, {
+              type: 'playerOffline',
+              game: game.id,
+              data: { player: session.User.id }
+            });
+          }
+        });
+      }
+    });
+  },
+
   getUserGames: function (userId) {
     var deferred = q.defer();
 
@@ -52,6 +100,7 @@ module.exports = {
 
     return deferred.promise;
   },
+
   getUserParticipatingGames: function (userId) {
     var deferred = q.defer();
 
@@ -82,6 +131,7 @@ module.exports = {
 
     return deferred.promise;
   },
+
   approvePlayer: function (gameId, userId) {
     var deferred = q.defer();
 
@@ -130,6 +180,7 @@ module.exports = {
 
     return deferred.promise;
   },
+
   declinePlayer: function (gameId, playerId) {
     var deferred = q.defer();
 
@@ -171,6 +222,7 @@ module.exports = {
 
     return deferred.promise;
   },
+
   removePlayer: function (gameId, playerId) {
     var deferred = q.defer();
 
@@ -212,4 +264,5 @@ module.exports = {
 
     return deferred.promise;
   }
+
 };
