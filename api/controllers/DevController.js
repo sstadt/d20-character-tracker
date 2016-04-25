@@ -16,7 +16,7 @@ module.exports = {
 
   components: function (req, res) {
     res.view({
-      title: sails.config.globals.pageTitle.sandbox,
+      title: sails.config.globals.pageTitle.components,
       script: 'components'
     });
   }

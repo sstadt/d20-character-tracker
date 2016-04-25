@@ -1,1 +1,55 @@
-<p>Style guide will go here</p>
+
+
+<div class="row">
+  <div class="small-12 columns">
+
+    <div class="controls">
+      <button class="mini" v-on:click="navigationOpen = true"><icon name="menu"></icon></butotn>
+    </div>
+
+    <panel>
+      <div slot="content">
+        <h1>Components and Style Guide</h1>
+        <p>Here you'll find a list of all the components used in this application, excluding components that are intended to be used as a page's base application bootstrap i.e. game, gameBrowser. The remainder of components are built for reusability and will be documented here along with code snippets and usage instructions.</p>
+
+        <h2 class="section-header">Common Components</h2>
+
+        <h3>Panel</h3>
+        <div class="row">
+          <div class="small-12 medium-6 columns">
+            <panel>
+              <div slot="content">
+                <p>Panels are a simple contruct meant to create a box around content and stifle noisy background images - which we need, because Star Wars.</p>
+              </div>
+            </panel>
+          </div>
+          <div class="small-12 medium-6 columns">
+            <tabs>
+              <tab heading="HTML">
+                <pre><code class="html"><%= partial('./snippets/panel.html.ejs') %></code></pre>
+              </tab>
+            </tabs>
+          </div>
+        </div>
+
+      </div>
+    </panel>
+
+    <modal :show.sync="navigationOpen" modal-size="menu">
+      <div slot="content">
+        <section>
+          <a href="/home" class="button expand">Games</a>
+          <a href="/dev/sandbox" class="button expand">Sandbox</a>
+        </section>
+        <section>
+          <button v-show="!confirmLogout" type="button" class="expand" v-on:click="confirmLogout = true">Logout</button>
+          <a v-show="confirmLogout" href="/logout" class="button expand warning">Confirm Logout</a>
+        </section>
+        <section>
+          <button type="button" class="expand" v-on:click="navigationOpen = false, confirmLogout = false">Cancel</a>
+        </section>
+      </div>
+    </modal>
+
+  </div>
+</div>

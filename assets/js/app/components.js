@@ -1,2 +1,9 @@
 
-console.log('pull in and initialize components page, along with syntax highlighting');
+//require('highlight').initHighlightingOnLoad();
+
+new Vue({
+  el: 'body',
+  data: {
+    navigationOpen: false
+  }
+});

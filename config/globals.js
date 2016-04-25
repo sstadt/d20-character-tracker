@@ -21,9 +21,10 @@ module.exports.globals = {
 
   pageTitle: {
     diceRoller: 'Dice Roller',
-    sandbox: 'Sandbox',
     splash: 'Home',
-    register: 'Registration'
+    register: 'Registration',
+    sandbox: 'Sandbox',
+    components: 'Components and Style Guide'
   },
 
   cacheVersion: require('../build.json').build,
