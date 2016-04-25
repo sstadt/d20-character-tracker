@@ -63,10 +63,6 @@ module.exports.routes = {
     controller: 'user',
     action: 'show'
   },
-  '/sandbox': {
-    controller: 'user',
-    action: 'sandbox'
-  },
   '/self': {
     controller: 'user',
     action: 'self'
@@ -147,14 +143,26 @@ module.exports.routes = {
   /*
     FaD API
    */
-   '/api/:model': {
+  '/api/:model': {
     controller: 'api',
     action: 'index'
-   },
-   '/api/:model/:id': {
+  },
+  '/api/:model/:id': {
     controller: 'api',
     action: 'show'
-   },
+  },
+
+  /*
+    Dev
+   */
+  '/dev/sandbox': {
+    controller: 'dev',
+    action: 'sandbox'
+  },
+  '/dev/components': {
+    controller: 'dev',
+    action: 'components'
+  },
 
   /***************************************************************************
   *                                                                          *

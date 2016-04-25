@@ -9,6 +9,7 @@ a [Sails](http://sailsjs.org) application
 
 ### Post Launch
 
+ - refactor disparate menus into a global menu component
  - add coverage for socket handlers
  - add coverage for services
  - game force points

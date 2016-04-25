@@ -27,13 +27,6 @@ module.exports = {
     });
   },
 
-  sandbox: function (req, res) {
-    res.view({
-      title: sails.config.globals.pageTitle.sandbox,
-      script: 'sandbox'
-    });
-  },
-
   setHandle: function (req, res) {
     req.session.User.chatHandle = req.param('handle');
 

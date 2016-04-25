@@ -42,8 +42,11 @@ module.exports.policies = {
     'search'    : false,
     'self'      : 'sessionAuth',
     'setHandle' : 'sessionAuth',
-    'sandbox'   : 'dev',
     'destroy'   : false
+  },
+
+  DevController: {
+    '*' : 'dev'
   },
 
   // TODO remove this and associated controller/model once functionality is integrated into game
