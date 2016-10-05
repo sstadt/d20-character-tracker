@@ -2,9 +2,9 @@
 <div class="players-pane" v-if="game.gameMaster && game.players">
   <h3>Players</h3>
   <div class="player gm">
-    <p>{{ game.gameMaster.chatHandle }}</p>
+    <p><i v-if="gameMasterIsOnline" class="fa fa-circle"></i>{{ game.gameMaster.chatHandle }}</p>
   </div>
   <div class="player" v-for="player in game.players">
-    <p>{{ player.chatHandle }}<p>
+    <p><i v-if="player | playerIsOnline" class="fa fa-circle"></i>{{ player.chatHandle }}<p>
   </div>
 </div>

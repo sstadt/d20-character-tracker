@@ -1,5 +1,9 @@
 
 <div class="game">
+  <audio preload="auto" v-el:crawl-music v-on:ended="crawlMusicEnded">
+    <source src="https://s3-us-west-2.amazonaws.com/scottstadtcom/fad/star_wars_crawl.mp3" type="audio/mpeg" />
+  </audio>
+
   <div class="controls">
     <button class="mini" v-if="userIsGameMaster" v-on:click="crawlModalOpen = true"><icon name="crawl"></i></button>
     <button class="mini" v-if="userIsGameMaster" v-on:click="playersModalOpen = true"><icon name="rebel"></i></button>

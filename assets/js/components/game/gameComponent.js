@@ -15,6 +15,13 @@ require('../starWarsCrawl/starWarsCrawl.js');
 
 module.exports = {
   template: require('./gameTemplate.html'),
+  partials: {
+    'players-pane': require('./partials/playersPane.html'),
+    'crawl-pane': require('./partials/crawlPane.html'),
+    'chat-pane': require('./partials/chatPane.html'),
+    'roll-message': require('./partials/rollMessage.html'),
+    'rolled-dice': require('./partials/_rolledDice.js')
+  },
   props: {
     gameId: {
       type: String,
@@ -61,6 +68,44 @@ module.exports = {
       force: 0
     };
   },
+  computed: {
+    userIsGameMaster() {
+      return this.game.gameMaster && this.game.gameMaster.id === this.user.id;
+    },
+    crawlOptions() {
+      var self = this,
+        crawlOptions = [];
+
+      if (self.game && self.game.crawls) {
+        _.forEach(self.game.crawls, function (crawl) {
+          if (crawl.published) {
+            crawlOptions.push({
+              value: crawl.id,
+              label: crawl.title
+            });
+          }
+        });
+      }
+
+      return crawlOptions;
+    },
+    selectedCrawl() {
+      var self = this,
+        index = _.findIndex(self.game.crawls, function (crawl) {
+          return crawl.id === self.selectedCrawlId;
+        });
+
+      return index > -1 ? self.game.crawls[index] : null;
+    },
+    gameMasterIsOnline() {
+      return this.game.online.indexOf(this.game.gameMaster.id) > -1;
+    }
+  },
+  filters: {
+    playerIsOnline(player) {
+      return this.game.online.indexOf(player.id) > -1;
+    }
+  },
   ready() {
     var self = this;
 
@@ -104,43 +149,6 @@ module.exports = {
       }, function error(reason) {
         self.gameAlert.error(reason);
       });
-  },
-  computed: {
-    userIsGameMaster() {
-      return this.game.gameMaster && this.game.gameMaster.id === this.user.id;
-    },
-    crawlOptions() {
-      var self = this,
-        crawlOptions = [];
-
-      if (self.game && self.game.crawls) {
-        _.forEach(self.game.crawls, function (crawl) {
-          if (crawl.published) {
-            crawlOptions.push({
-              value: crawl.id,
-              label: crawl.title
-            });
-          }
-        });
-      }
-
-      return crawlOptions;
-    },
-    selectedCrawl() {
-      var self = this,
-        index = _.findIndex(self.game.crawls, function (crawl) {
-          return crawl.id === self.selectedCrawlId;
-        });
-
-      return index > -1 ? self.game.crawls[index] : null;
-    }
-  },
-  partials: {
-    'players-pane': require('./partials/playersPane.html'),
-    'crawl-pane': require('./partials/crawlPane.html'),
-    'chat-pane': require('./partials/chatPane.html'),
-    'roll-message': require('./partials/rollMessage.html'),
-    'rolled-dice': require('./partials/rolledDice.html')
   },
   events: {
     [constants.events.game.closeCrawl]() {
@@ -196,12 +204,15 @@ module.exports = {
           .done(function () {
             deferred.resolve();
           });
+      } else {
+        deferred.resolve();
       }
 
       return deferred.promise;
     },
     sendChatRoll() {
       var self = this,
+        deferred = q.defer(),
         dicePool = {
           ability: self.ability,
           proficiency: self.proficiency,
@@ -218,14 +229,25 @@ module.exports = {
           self.gameAlert.close();
         }, function error(reason) {
           self.gameAlert.error(reason);
+        })
+        .done(function () {
+          deferred.resolve();
         });
+
+      return deferred.promise;
     },
     scrollChatToBottom() {
-      // TODO Need to call this function when chat input tabs switch
-      this.$els.chatLog.scrollTop = this.$els.chatLog.scrollHeight - this.$els.chatLog.offsetHeight;
+      var self = this;
+
+      Vue.nextTick(function () {
+        self.$els.chatLog.scrollTop = self.$els.chatLog.scrollHeight - self.$els.chatLog.offsetHeight;
+      });
     },
     userScrolling(event) {
       this.isScrolledToBottom = this.$els.chatLog.offsetHeight + this.$els.chatLog.scrollTop === this.$els.chatLog.scrollHeight;
     },
+    crawlMusicEnded() {
+      this.$broadcast(constants.events.game.crawlMusicEnded);
+    }
   }
 };

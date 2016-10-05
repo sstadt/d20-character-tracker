@@ -6,14 +6,14 @@ function getIndexById(list, id) {
 }
 
 module.exports = {
-  isValidMessage: function (message, gameId) {
+  isValidMessage(message, gameId) {
     return message.data.game && message.data.type && message.data.data && message.data.game === gameId;
   },
   player: {
-    playerRequestedJoin: function (game, data) {
+    playerRequestedJoin(game, data) {
       game.requestingPlayers.push(data.player);
     },
-    playerJoinApproved: function (game, data) {
+    playerJoinApproved(game, data) {
       var playerIndex = getIndexById(game.requestingPlayers, data.player.id);
 
       if (playerIndex > -1) {
@@ -22,14 +22,14 @@ module.exports = {
 
       game.players.push(data.player);
     },
-    playerJoinDeclined: function (game, data) {
+    playerJoinDeclined(game, data) {
       var playerIndex = getIndexById(game.requestingPlayers, data.player.id);
 
       if (playerIndex > -1) {
         game.requestingPlayers.$remove(game.requestingPlayers[playerIndex]);
       }
     },
-    playerRemoved: function (game, data, user) {
+    playerRemoved(game, data, user) {
       var playerIndex = getIndexById(game.players, data.player.id);
 
       if (playerIndex > -1) {
@@ -39,17 +39,29 @@ module.exports = {
       if (data.player.id === user.id) {
         window.location.href = '/home';
       }
+    },
+    playerOnline(game, data) {
+      if (game.online.indexOf(data.player) === -1) {
+        game.online.push(data.player);
+      }
+    },
+    playerOffline(game, data) {
+      var index = game.online.indexOf(data.player);
+
+      if (index > -1) {
+        game.online.$remove(game.online[index]);
+      }
     }
   },
   game: {
-    gameCrawlAdded: function (game, data) {
+    gameCrawlAdded(game, data) {
       var crawl = data.crawl;
 
       if (_.isObject(crawl)) {
         game.crawls.push(crawl);
       }
     },
-    gameCrawlUpdated: function (game, data) {
+    gameCrawlUpdated(game, data) {
       if (_.isObject(data.crawl)) {
         var crawlIndex = getIndexById(game.crawls, data.crawl.id);
 
@@ -58,7 +70,7 @@ module.exports = {
         }
       }
     },
-    gameCrawlDestroyed: function (game, data) {
+    gameCrawlDestroyed(game, data) {
       if (_.isObject(data.crawl)) {
         var crawlIndex = getIndexById(game.crawls, data.crawl.id);
 
@@ -69,7 +81,7 @@ module.exports = {
     }
   },
   gameLog: {
-    newLogMessage: function (gameLog, data) {
+    newLogMessage(gameLog, data) {
       gameLog.log.push(data);
     }
   }

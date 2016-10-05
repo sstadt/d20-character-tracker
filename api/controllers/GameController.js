@@ -50,7 +50,7 @@ module.exports = {
 				if (err) {
 					res.jsonError(err);
 				} else {
-					Game.subscribe(req.socket, game.id);
+					GameService.subscribe(req, game);
 					res.json(game);
 				}
 			});

@@ -9,13 +9,22 @@
 module.exports = {
 
   /*
-   * Events
+   * Die Types - pulled from BE
    * ----------------------------
    */
+  dieTypes: require('../../../config/taskDice.js').taskDice.dieTypes,
+
+   /*
+    * Events
+    * ----------------------------
+    */
   events: {
     prompt: {
       promptUser: 'VE_PROMPT_PROMPT_USER',
       valueSubmitted: 'VE_PROMPT_VALUE_SUBMITTED'
+    },
+    tabs: {
+      tabClicked: 'VE_TABS_TAB_CLICKED'
     },
     characterCreator: {
       changeTab: 'VE_CHARACTER_CREATOR_CHANGE_TAB',
@@ -32,7 +41,8 @@ module.exports = {
     game: {
       closeCrawl: 'VE_GAME_CLOSE_CRAWL_MODAL',
       closePlayers: 'VE_GAME_CLOSE_PLAYERS_MODAL',
-      closeSettings: 'VE_GAME_CLOSE_SETTINGS_MODAL'
+      closeSettings: 'VE_GAME_CLOSE_SETTINGS_MODAL',
+      crawlMusicEnded: 'VE_GAME_CRAWL_MUSIC_ENDED'
     }
   },
 

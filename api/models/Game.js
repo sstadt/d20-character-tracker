@@ -12,6 +12,10 @@ module.exports = {
       type: 'string',
       required: true
     },
+    online: {
+      type: 'array',
+      defaultsTo: []
+    },
     gameMaster: {
       model: 'user',
       required: true

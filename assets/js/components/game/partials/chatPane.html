@@ -24,13 +24,13 @@
   <div class="chat-entry">
     <tabs>
       <!-- chat -->
-      <tab heading="Chat">
+      <tab heading="Chat" :click-callback="scrollChatToBottom">
         <v-form :submit-callback="sendChatMessage" :ajax="true">
           <v-input type="text" label="Message" placeholder="message" :value.sync="chatMessage" :simple="true"></v-input>
         </v-form>
       </tab>
       <!-- dice pool -->
-      <tab heading="Dice Pool">
+      <tab heading="Dice Pool" :click-callback="scrollChatToBottom">
         <dice-pool
             :ability.sync="ability"
             :proficiency.sync="proficiency"

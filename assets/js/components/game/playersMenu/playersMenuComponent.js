@@ -34,34 +34,52 @@ module.exports = {
       console.log('uninvite player method', player.chatHandle);
     },
     approvePlayer: function (player) {
-      var self = this;
+      var self = this,
+        deferred = q.defer();
 
       gameService.approvePlayer(self.game, player)
         .then(function success() {
           self.gamePlayersAlert.close();
         }, function error(reason) {
           self.gamePlayersAlert.error(reason);
+        })
+        .done(function () {
+          deferred.resolve();
         });
+
+      return deferred.promise;
     },
     declinePlayer: function (player) {
-      var self = this;
+      var self = this,
+        deferred = q.defer();
 
       gameService.declinePlayer(self.game, player)
         .then(function () {
           self.gamePlayersAlert.close();
         }, function error(reason) {
           self.gamePlayersAlert.error(reason);
+        })
+        .done(function () {
+          deferred.resolve();
         });
+
+      return deferred.promise;
     },
     removePlayer: function (player) {
-      var self = this;
+      var self = this,
+        deferred = q.defer();
 
       gameService.removePlayer(self.game, player)
         .then(function success() {
           self.gamePlayersAlert.close();
         }, function error(reason) {
           self.gamePlayersAlert.error(reason);
+        })
+        .done(function () {
+          deferred.resolve();
         });
+
+      return deferred.promise;
     }
   }
 };

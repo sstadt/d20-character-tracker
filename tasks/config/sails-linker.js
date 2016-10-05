@@ -12,8 +12,6 @@
  *
  */
 
-var cacheBust = new Date().getTime();
-
 var pipeline = {
   css: [
     '.tmp/public/styles/style.css'
@@ -33,6 +31,8 @@ var prodPipeline = {
 };
 
 module.exports = function(grunt) {
+
+  var cacheBust = grunt.file.readJSON('build.json').build;
 
   grunt.config.set('sails-linker', {
 

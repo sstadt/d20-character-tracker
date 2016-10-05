@@ -4,31 +4,31 @@ a [Sails](http://sailsjs.org) application
 
 ### DevOps to do:
 
- - set up SSL for all apps w/nginx and let's encrypt
+ - look into node reloader during dev: https://github.com/sgress454/sails-hook-autoreload
+ - set up SSL for all apps w/nginx and let's encrypt https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04
  - make a kitchen sink page for css/js components
- - set up grunt-autoprefixer https://github.com/nDmitry/grunt-autoprefixer
- - Set up symlink script and store pre-commit hook in the repo: http://stackoverflow.com/questions/3462955/putting-git-hooks-into-repository/3464399#3464399
-
-### Dev to do:
-
- - sw crawl music is being downloaded multiple times on the game page
- - Cache bust production app javascript
- - set up TTL for tokens: https://www.npmjs.com/package/sails-hook-ttl
 
 ### Post Launch
 
+ - refactor disparate menus into a global menu component
+ - add coverage for socket handlers
+ - add coverage for services
  - game force points
  - player whispers
+ - parse inline simple dice rolls
  - add ability to conceal GM rolls in chat
  - add game sidebar dropdown or icon tabs to show different game options
  - add jukebox/soundboard to sidebar
- - Show player online indicator on game page
- - sockets...
- - ... on player join game
- - ... on player leave game http://stackoverflow.com/questions/21515268/logic-on-disconnect-sails-js-socket-io
  - abstract more heavy controller functionality to services
  - up/down keys to navigate to previously sent chat messages
  - GM clear game log in settingsMenu
+
+### Need more research
+
+ - waterline isn't behaving as expected when querying against dates
+ - ... need to figure out a TTL solution that will not infringe upon registration while expiring reset tokens after 24 hours
+ - set up grunt-autoprefixer http://grunt-tasks.com/autoprefixer/
+ - ... grunt peer dependency conflicts with multiple sails.js packages
 
 ### Setup
 

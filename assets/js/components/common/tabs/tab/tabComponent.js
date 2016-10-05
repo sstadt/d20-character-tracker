@@ -1,5 +1,15 @@
 
+var constants = require('../../../../config/constants.js');
+
 var tabTemplate = require('./tabTemplate.html');
+
+var events = {};
+
+events[constants.events.tabs.tabClicked] = function TabClicked() {
+  if (typeof this.clickCallback === 'function') {
+    this.clickCallback();
+  }
+};
 
 module.exports = {
   template: tabTemplate,
@@ -11,6 +21,9 @@ module.exports = {
     disabled: {
       type: Boolean,
       default: false
+    },
+    clickCallback: {
+      type: Function
     }
   },
   data: function () {
@@ -43,5 +56,6 @@ module.exports = {
         break;
       }
     }
-  }
+  },
+  events: events
 };
