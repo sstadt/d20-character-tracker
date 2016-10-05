@@ -115,9 +115,10 @@ module.exports = {
           .then(function resolve() {
             FlashService.success(req, userSuccesses.verificationSent);
             res.redirect('/login');
-          }, function reject() {
+          }, function reject(err) {
+            console.log(err); // TODO: this error needs dev attention
             FlashService.error(req, userErrors.cannotRegister);
-            res.redirect('/register');
+            res.redirect('/login');
           });
       });
     });
