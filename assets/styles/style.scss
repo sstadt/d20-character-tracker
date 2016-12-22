@@ -7,7 +7,7 @@
 
 // vendor
 
-// @import "foundation";
+// @import "foundation"; >>> do you even need this, bro ???
 @import "vue-material";
 
 // libs
@@ -19,6 +19,9 @@
 // app
 
 @import "settings";
+
+@import "transitions/fade";
+@import "transitions/zoom";
 
 // @import "document/fonts";
 @import "document/helpers";

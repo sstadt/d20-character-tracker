@@ -16,8 +16,8 @@ module.exports = {
     signup: require('./signup/signupComponent.js'),
     passwordReset: require('./passwordReset/passwordResetComponent')
   },
-  events: {
-    AUTHENTICATION_TAB_CHANGE(view) {
+  methods: {
+    setView(view) {
       this.view = view;
     }
   }

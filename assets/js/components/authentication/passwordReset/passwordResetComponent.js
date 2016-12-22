@@ -3,12 +3,12 @@ module.exports = {
   template: require('./passwordResetTemplate.html'),
   data: function () {
     return {
-      greeting: 'passwordReset component',
+      email: ''
     };
   },
   methods: {
-    sayHi: function () {
-      console.log('hi!');
+    setView(view) {
+      this.$emit('set-view', view);
     }
   }
 };

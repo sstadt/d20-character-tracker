@@ -1,4 +1,12 @@
 
+a {
+  cursor: pointer;
+
+  &.form-link {
+    line-height: 48px;
+  }
+}
+
 .uppercase {
   text-transform: uppercase;
 }

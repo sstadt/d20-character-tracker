@@ -1,5 +1,9 @@
 
 <div class="authentication-component">
-  <p>{{ view }}</p>
-  <component :is="currentView" :view.sync="view" transition="fade" transition-mode="out-in" keep-alive></component>
+  <component :is="currentView"
+    v-on:set-view="setView"
+    :view="view"
+    transition="fade"
+    transition-mode="out-in"
+    keep-alive></component>
 </div>
