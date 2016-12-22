@@ -1,4 +1,6 @@
 
 require('../lib/components');
 
-new Vue({ el: 'body' });
+new Vue({
+  el: '#app'
+});

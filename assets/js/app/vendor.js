@@ -32,8 +32,3 @@ Vue.filter('chatTimestamp', function (value) {
 var VueMaterial = require('vue-material');
 
 Vue.use(VueMaterial);
-// Vue.use(VueMaterial.mdCore); //Required to boot vue material
-// Vue.use(VueMaterial.mdButton);
-// Vue.use(VueMaterial.mdIcon);
-// Vue.use(VueMaterial.mdSidenav);
-// Vue.use(VueMaterial.mdToolbar);
