@@ -1,0 +1,23 @@
+
+<div class="row">
+  <div class="small-12 column">
+    <h1>Log In: {{ view }}</h1>
+    <form>
+      <md-input-container>
+        <label>Email Address</label>
+        <md-input type="email"></md-input>
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <md-input type="password"></md-input>
+      </md-input-container>
+      <div class="text-right">
+        <a v-on:click="setView('forgotPassword')">forgot password?</a>
+      </div>
+      <div class="float-right clearfix">
+        <md-button type="button" class="md-raised" v-on:click="setView('signup')">Sign Up</md-button>
+        <md-button type="submit" class="md-raised md-primary">Log In</md-button>
+      </div>
+    </form>
+  </div>
+</div>

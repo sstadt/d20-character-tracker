@@ -3,12 +3,22 @@ module.exports = {
   template: require('./authenticationTemplate.html'),
   data: function () {
     return {
-      greeting: 'authentication component',
+      view: 'login'
     };
   },
-  methods: {
-    sayHi: function () {
-      console.log('hi!');
+  computed: {
+    currentView() {
+      return this.view;
+    }
+  },
+  components: {
+    login: require('./login/loginComponent.js'),
+    signup: require('./signup/signupComponent.js'),
+    passwordReset: require('./passwordReset/passwordResetComponent')
+  },
+  events: {
+    AUTHENTICATION_TAB_CHANGE(view) {
+      this.view = view;
     }
   }
 };
