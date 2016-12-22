@@ -14,27 +14,24 @@ var bcrypt = require('bcrypt'),
 module.exports = {
 
   'new': function (req, res) {
-    res.view({
-      title: 'login',
-      script: 'public'
-    });
+    if (req.session.authenticated === true) {
+      res.redirect('/home');
+    } else {
+      res.view({ title: 'Welcome Back!' });
+    }
   },
 
   create: function (req, res) {
-    // TODO: cache email/password
-
     if (!req.param('email') || !req.param('password')) {
-      FlashService.error(req, sessionErrors.missingPassword);
-      res.redirect('/login');
+      res.jsonError(sessionErrors.missingPassword);
     } else {
       PasswordService.validatePassword(req.param('email'), req.param('password'))
         .then(function resolve(user) {
           req.session.authenticated = true;
           req.session.User = user.toJSON();
-          res.redirect('/home');
+          res.json({ redirect: '/home', });
         }, function reject(err) {
-          FlashService.error(req, err);
-          res.redirect('/login');
+          res.jsonError(err);
         });
     }
 
@@ -43,10 +40,10 @@ module.exports = {
   destroy: function (req, res) {
     User.findOne(req.session.User.id, function foundUser(err) {
       if (err) {
-        res.serverError(sessionErrors.logoutError);
+        res.jsonError(sessionErrors.logoutError);
       } else {
         req.session.destroy();
-        res.redirect('/login');
+        res.json({ redirect: '/', });
       }
     });
   }

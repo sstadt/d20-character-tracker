@@ -5,8 +5,7 @@ var vendor = {
   q: require('q'),
   Vue: require('vue'),
   moment: require('moment'),
-  io: require('../lib/io.js'),
-  config: require('../lib/config.js')
+  io: require('../lib/io.js')
 };
 
 // set all vendor includes to the global namespace

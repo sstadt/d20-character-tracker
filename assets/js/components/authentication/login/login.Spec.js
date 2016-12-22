@@ -18,18 +18,18 @@ describe('The login component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
-  // describe('methods', function () {
-  //   var componentInstance;
-  //
-  //   beforeEach(function () {
-  //     componentInstance = new Vue(component);
-  //   });
-  //
-  //   describe('#sayHi', function () {
-  //     it('should be a function', function () {
-  //       expect(typeof componentInstance.sayHi).toBe('function');
-  //     });
-  //   });
-  // });
+  describe('methods', function () {
+    var componentInstance;
+
+    beforeEach(function () {
+      componentInstance = new Vue(component);
+    });
+
+    describe('#login', function () {
+      it('should be a function', function () {
+        expect(typeof componentInstance.login).toBe('function');
+      });
+    });
+  });
 
 });

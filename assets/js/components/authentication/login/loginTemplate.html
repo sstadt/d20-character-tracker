@@ -2,14 +2,15 @@
 <div class="row">
   <div class="small-12 column">
     <h1>Log In</h1>
-    <form>
-      <md-input-container>
+    <form @submit.stop.prevent="login">
+      <md-input-container :class="{'md-input-invalid': emailError.length > 0}">
         <label>Email Address</label>
-        <md-input type="email" v-model="email"></md-input>
+        <md-input type="email" v-model="email" required></md-input>
+        <span class="md-error" v-show="emailError.length > 0">{{ emailError }}</span>
       </md-input-container>
-      <md-input-container>
+      <md-input-container md-has-password :class="{'md-input-invalid': passwordError.length > 0}">
         <label>Password</label>
-        <md-input type="password" v-model="password"></md-input>
+        <md-input type="password" v-model="password" required></md-input>
       </md-input-container>
       <div class="float-right clearfix">
         <md-button type="button" class="md-raised" v-on:click="setView('signup')">Sign Up</md-button>
