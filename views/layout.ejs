@@ -6,6 +6,10 @@
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/vue-material-components/0.3.4/vue-material-components.css">
+
     <!-- STYLES -->
     <link rel="stylesheet" href="/styles/style.css">
     <!-- STYLES END -->
@@ -22,12 +26,11 @@
     <script type="text/javascript" src="/js/vendor.js"></script>
     <!-- SCRIPT END -->
 
-    <% if (typeof script !== 'string') { script = 'public'; } %>
     <% if (sails.config.environment === 'production') { %>
-      <script type="text/javascript" src="/js/<%= script %>.min.js?v=<%= sails.config.globals.cacheVersion %>"></script>
+      <script type="text/javascript" src="/js/index.min.js?v=<%= sails.config.globals.cacheVersion %>"></script>
     <% } else { %>
       <script type="text/javascript">Vue.config.debug = true;</script>
-      <script type="text/javascript" src="/js/<%= script %>.js"></script>
+      <script type="text/javascript" src="/js/index.js"></script>
       <script src="//localhost:9090/livereload.js"></script>
     <% } %>
 

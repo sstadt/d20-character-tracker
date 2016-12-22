@@ -5,86 +5,21 @@
  * and injected into the layout template.
  */
 
-// baseline/utils
-@import "normalize";
-@import "foundation/functions";
+// vendor
 
-// libs
-@import "functions/conversion";
-@import "functions/math";
-@import "functions/svg";
-
-// settings
-@import "fonts";
-@import "settings";
-
-// mixins
-@import "mixins/corners";
-@import "mixins/glows";
-@import "mixins/prefix";
-@import "mixins/flex";
-@import "mixins/typography";
-
-// foundation init
-@import "foundation/settings";
 @import "foundation";
 
-// font awesome
-@import "fontAwesome/font-awesome";
+// libs
 
-// transitions
-@import "transitions/expand";
-@import "transitions/fade";
-@import "transitions/slide-up";
-@import "transitions/zoom";
+// @import "functions/conversion";
+// @import "functions/math";
+// @import "functions/svg";
 
-// global
-@import "global/document";
-@import "global/flex";
-@import "global/zindex";
-@import "global/typography";
+// app
 
-// ui
-@import "ui/icons";
-@import "ui/panel";
-@import "ui/controls";
-@import "ui/buttons";
-@import "ui/forms";
-@import "ui/scrollbar";
-@import "ui/title-bar";
-@import "ui/menus";
-@import "ui/zebra-list";
-@import "ui/game-screen";
-@import "ui/chat";
-@import "ui/rolls";
+@import "settings";
 
-// common components
-@import "../js/components/common/icon/_icon";
-@import "../js/components/common/alert/_alert";
-@import "../js/components/common/panel/_panel";
-@import "../js/components/common/prompt/_prompt";
-@import "../js/components/common/modal/_modal";
-@import "../js/components/common/loader/_loader";
-@import "../js/components/common/tabs/_tabs";
-@import "../js/components/common/vInput/_vInput";
-@import "../js/components/common/vCheckbox/_vCheckbox";
-
-// app components
-@import "../js/components/starWarsCrawl/_starWarsCrawl";
-
-@import "../js/components/gameBrowser/_gameBrowser";
-@import "../js/components/gameList/_gameList";
-
-@import "../js/components/dieCounter/_dieCounter";
-@import "../js/components/dicePool/_dicePool";
-
-@import "../js/components/game/_game";
-@import "../js/components/game/crawlMenu/_crawlMenu";
-@import "../js/components/game/playersMenu/_playersMenu";
-@import "../js/components/game/settingsMenu/_settingsMenu";
-
-@import "../js/components/characterCreator/_characterCreator";
-@import "../js/components/characterCreator/steps/personaEditor/_personaEditor";
-
-// views
-@import "views/splash";
+// @import "document/fonts";
+@import "document/helpers";
+@import "document/flex";
+@import "document/type";

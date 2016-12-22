@@ -1,27 +1,10 @@
 # FaD Game Table
 
-a [Sails](http://sailsjs.org) application
-
 ### DevOps to do:
 
  - look into node reloader during dev: https://github.com/sgress454/sails-hook-autoreload
  - set up SSL for all apps w/nginx and let's encrypt https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04
  - make a kitchen sink page for css/js components
-
-### Post Launch
-
- - refactor disparate menus into a global menu component
- - add coverage for socket handlers
- - add coverage for services
- - game force points
- - player whispers
- - parse inline simple dice rolls
- - add ability to conceal GM rolls in chat
- - add game sidebar dropdown or icon tabs to show different game options
- - add jukebox/soundboard to sidebar
- - abstract more heavy controller functionality to services
- - up/down keys to navigate to previously sent chat messages
- - GM clear game log in settingsMenu
 
 ### Need more research
 
@@ -76,7 +59,7 @@ The parent attribute is optional, and tells the generator where in the component
 #### Unit Testing
 
  - `grunt test` compiles vendor.js and runs unit tests
- - `grunt karma` runs unit tests without compiling vendor.js; quicker than `grunt test`, but will fail if vendor.js has not been compiled or common components have changed since the last time vendor.js was built
+ - `grunt karma` runs unit tests without compiling vendor.js; quicker than `grunt test`, but will fail if vendor.js has changed since the last lift
 
 ### Custom Policies
 

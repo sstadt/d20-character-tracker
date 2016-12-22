@@ -3,15 +3,20 @@
 var vendor = {
   _: require('lodash'),
   q: require('q'),
-  io: require('../config/io.js'),
   Vue: require('vue'),
-  moment: require('moment')
+  moment: require('moment'),
+  io: require('../lib/io.js'),
+  config: require('../lib/config.js')
 };
 
 // set all vendor includes to the global namespace
 for (var lib in vendor) {
   window[lib] = vendor[lib];
 }
+
+/**
+ * Filters
+ */
 
 Vue.filter('marked', require('marked'));
 
@@ -20,5 +25,15 @@ Vue.filter('chatTimestamp', function (value) {
   return date.isValid() ? date.format('MMM Do, YYYY - h:mm A') : 'Invalid Date';
 });
 
-// common Vue components
-require('../components/common/common.js');
+/**
+ * Vue Material Components
+ */
+
+var VueMaterial = require('vue-material');
+
+Vue.use(VueMaterial);
+// Vue.use(VueMaterial.mdCore); //Required to boot vue material
+// Vue.use(VueMaterial.mdButton);
+// Vue.use(VueMaterial.mdIcon);
+// Vue.use(VueMaterial.mdSidenav);
+// Vue.use(VueMaterial.mdToolbar);

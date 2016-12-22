@@ -11,6 +11,7 @@
     "browserify": "^13.0.0",
     "connect-mongo": "^0.4.2",
     "ejs": "~0.8.4",
+    "foundation-sites": "^6.3.0",
     "grunt": "0.4.2",
     "grunt-browserify": "^4.0.1",
     "grunt-contrib-clean": "~0.5.0",
@@ -39,7 +40,8 @@
     "sha1": "^1.1.0",
     "socket.io-client": "^1.4.5",
     "stringify": "^5.0.0",
-    "vue": "^1.0.17"
+    "vue": "^1.0.17",
+    "vue-material": "^0.5.1"
   },
   "scripts": {
     "start": "node app.js",

@@ -1,0 +1,30 @@
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.empire {
+  color: $empireRed;
+}
+
+.rebel {
+  color: $rebelOrange;
+}
+
+// .vertical-center.full-size-abs {
+//   .title + .subtitle {
+//     line-height: 0.8;
+//     margin-top: -($headerBottomMargin * 2);
+//     margin-bottom: $headerBottomMargin * 2;
+//   }
+// }
+//
+// a:not(.button) {
+//   color: $bodyFontColor;
+//   border-bottom: 1px dotted rgba($bodyFontColor, 0.5);
+//
+//   &:hover, &:focus {
+//     color: $bodyFontColor;
+//     border-bottom: 1px dotted $bodyFontColor;
+//   }
+// }
