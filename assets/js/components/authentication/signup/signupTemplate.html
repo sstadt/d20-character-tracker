@@ -2,18 +2,22 @@
 <div class="row">
   <div class="small-12 column">
     <h1>Sign Up</h1>
-    <form>
-      <md-input-container>
+    <alert ref:alert :can-close="true"></alert>
+    <form @submit.stop.prevent="signup">
+      <md-input-container :class="{'md-input-invalid': form.fields.email.hasErrors}">
         <label>Email Address</label>
-        <md-input type="email" v-model="email"></md-input>
+        <md-input type="email" v-model="form.fields.email.value"></md-input>
+        <span class="md-error" v-show="form.fields.email.hasErrors">{{ form.fields.email.errors[0] }}</span>
       </md-input-container>
-      <md-input-container>
+      <md-input-container :class="{'md-input-invalid': form.fields.password.hasErrors}">
         <label>Password</label>
-        <md-input type="password" v-model="password"></md-input>
+        <md-input type="password" v-model="form.fields.password.value"></md-input>
+        <span class="md-error" v-show="form.fields.password.hasErrors">{{ form.fields.password.errors[0] }}</span>
       </md-input-container>
-      <md-input-container>
+      <md-input-container :class="{'md-input-invalid': form.fields.confirm.hasErrors}">
         <label>Confirm Password</label>
-        <md-input type="password" v-model="confirm"></md-input>
+        <md-input type="password" v-model="form.fields.confirm.value"></md-input>
+        <span class="md-error" v-show="form.fields.confirm.hasErrors">{{ form.fields.confirm.errors[0] }}</span>
       </md-input-container>
       <div class="float-right clearfix">
         <md-button type="button" class="md-raised" v-on:click="setView('login')">Log In</md-button>

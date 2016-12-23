@@ -1,0 +1,49 @@
+
+.alert-box {
+  padding: $alert-box-padding;
+  background-color: $alert-bg-color;
+  color: white;
+  margin-bottom: 15px;
+
+  &.danger {
+    background-color: $alert-bg-color-danger;
+  }
+
+  &.warning {
+    background-color: $alert-bg-color-warning;
+  }
+
+  &.success {
+    background-color: $alert-bg-color-success;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  .close-button {
+    margin-left: 15px;
+    color: $alert-text-color;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      &:not(:last-child) {
+        padding-bottom: $alert-message-padding;
+      }
+    }
+  }
+}

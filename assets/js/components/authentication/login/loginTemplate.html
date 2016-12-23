@@ -11,6 +11,7 @@
       <md-input-container md-has-password :class="{'md-input-invalid': passwordError.length > 0}">
         <label>Password</label>
         <md-input type="password" v-model="password" required></md-input>
+        <span class="md-error" v-show="passwordError.length > 0">{{ passwordError }}</span>
       </md-input-container>
       <div class="float-right clearfix">
         <md-button type="button" class="md-raised" v-on:click="setView('signup')">Sign Up</md-button>

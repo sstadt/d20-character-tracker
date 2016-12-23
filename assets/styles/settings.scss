@@ -19,7 +19,6 @@ $crawlFontFamily: $fontFaceNewsCycle;
 // Neutral
 $white       : #ffffff;
 $ghost       : #FAFAFA;
-$snow        : #F9F9F9;
 $vapor       : #F6F6F6;
 $white-smoke : #F5F5F5;
 $silver      : #EFEFEF;
@@ -37,6 +36,9 @@ $oil         : #333333;
 $jet         : #222222;
 $black       : #000000;
 
+$snow        : #FFFAFA;
+$ghost-white : #FAFAFF;
+
 // // blue
 // $blueSlate   : #708096;
 // $stormySky   : #5E6C7F;
@@ -51,16 +53,35 @@ $black       : #000000;
 // /* Foundation Defaults End */
 //
 // /* star wars interface colors */
-// $mayaBlue    : #83a9da;
-// $springGreen : #50d991;
-// $maizeYellow : #e1df70;
-// $lustRed     : #fb2815;
-// $purple      : #A364EF;
+$mayaBlue     : #83a9da;
+$springGreen  : #50d991;
+$maizeYellow  : #e1df70;
+$lustRed      : #fb2815;
+$purple       : #A364EF;
 $rebel-orange : #f9731c;
 $empire-red   : #bf1616;
 // /* star wars interface colors end */
 
 /* Usage */
 
+$global-gutter: 30px;
+
+// Panel
+// ---------------------------
+
 $panel-bg-color: rgba($white, 0.8);
 $panel-radius: 4px;
+$panel-padding: $global-gutter;
+
+// Alert Box
+// ---------------------------
+
+$alert-box-padding: $global-gutter;
+$alert-message-padding: 20px;
+
+$alert-text-color: $white;
+
+$alert-bg-color: $mayaBlue;
+$alert-bg-color-success: $springGreen;
+$alert-bg-color-warning: $maizeYellow;
+$alert-bg-color-danger: $lustRed;
