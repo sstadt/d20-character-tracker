@@ -37,27 +37,30 @@ $oil         : #333333;
 $jet         : #222222;
 $black       : #000000;
 
-// blue
-$blueSlate   : #708096;
-$stormySky   : #5E6C7F;
-
-/* Foundation Defaults */
-$periwinkle : #008CBA; // primary
-$limestone  : #e7e7e7; // secondary
-$clearsky   : #a0d3e8; // info
-$vermillion : #f04124; // alert
-$grass      : #43AC6A; // success
-$amber      : #f08a24; // warning
-/* Foundation Defaults End */
-
-/* star wars interface colors */
-$mayaBlue    : #83a9da;
-$springGreen : #50d991;
-$maizeYellow : #e1df70;
-$lustRed     : #fb2815;
-$purple      : #A364EF;
-$rebelOrange : #f9731c;
-$empireRed   : #bf1616;
-/* star wars interface colors end */
+// // blue
+// $blueSlate   : #708096;
+// $stormySky   : #5E6C7F;
+//
+// /* Foundation Defaults */
+// $periwinkle : #008CBA; // primary
+// $limestone  : #e7e7e7; // secondary
+// $clearsky   : #a0d3e8; // info
+// $vermillion : #f04124; // alert
+// $grass      : #43AC6A; // success
+// $amber      : #f08a24; // warning
+// /* Foundation Defaults End */
+//
+// /* star wars interface colors */
+// $mayaBlue    : #83a9da;
+// $springGreen : #50d991;
+// $maizeYellow : #e1df70;
+// $lustRed     : #fb2815;
+// $purple      : #A364EF;
+$rebel-orange : #f9731c;
+$empire-red   : #bf1616;
+// /* star wars interface colors end */
 
 /* Usage */
+
+$panel-bg-color: rgba($white, 0.8);
+$panel-radius: 4px;

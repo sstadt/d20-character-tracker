@@ -24,9 +24,12 @@
 @import "transitions/zoom";
 
 // @import "document/fonts";
+@import "document/content";
 @import "document/helpers";
 @import "document/flex";
 @import "document/type";
+
+@import "components/panel";
 
 @import "../js/components/authentication/_authentication";
 @import "../js/components/authentication/login/_login";
