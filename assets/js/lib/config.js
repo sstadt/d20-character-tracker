@@ -52,7 +52,8 @@ module.exports = {
    */
   endpoints: {
     auth: {
-      login: '/session/create'
+      login: '/session/create',
+      logout: '/session/destroy'
     },
     dice: {
       roll: '/roll'

@@ -8,8 +8,7 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var bcrypt = require('bcrypt'),
-  sessionErrors = sails.config.notifications.SessionController.error;
+var sessionErrors = sails.config.notifications.SessionController.error;
 
 module.exports = {
 

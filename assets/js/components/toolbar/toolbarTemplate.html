@@ -1,0 +1,27 @@
+
+<div class="toolbar">
+  <md-dialog-alert :md-content="alert.content" ref="toolbarDialog"></md-dialog-alert>
+  <md-dialog-confirm :md-content="confirm.content" ref="toolbarConfirm" @close="confirmLogout"></md-dialog-confirm>
+
+  <md-toolbar>
+    <h2 class="md-title" style="flex: 1">Game Browser</h2>
+
+    <md-button class="md-icon-button" @click="toggleRightSidenav">
+      <md-icon>menu</md-icon>
+    </md-button>
+  </md-toolbar>
+
+  <md-sidenav class="md-right" ref="rightSidenav">
+    <md-toolbar>
+      <div class="md-toolbar-container">
+        <h3 class="md-title">Menu</h3>
+      </div>
+
+      <md-list>
+        <md-list-item v-on:click="logout">
+          <span>Log Out</span>
+        </md-list-item>
+      </md-list>
+    </md-toolbar>
+  </md-sidenav>
+</div>

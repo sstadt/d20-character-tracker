@@ -1,13 +1,13 @@
 
 module.exports = {
   template: require('./<%- name %>Template.html'),
-  data: function () {
+  data() {
     return {
       greeting: '<%- name %> component',
     };
   },
   methods: {
-    sayHi: function () {
+    sayHi() {
       console.log('hi!');
     }
   }
