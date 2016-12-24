@@ -43,5 +43,19 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+  verify: function (token) {
+    var deferred = q.defer();
+
+    io.socket.post(config.endpoints.auth.verify, { token }, function (response) {
+      if (response.err) {
+        deferred.reject(response.err);
+      } else {
+        deferred.resolve(response);
+      }
+    });
+
+    return deferred.promise;
   }
+
 };

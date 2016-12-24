@@ -3,4 +3,15 @@
 .authentication-component {
   width: 500px;
   max-width: 100%;
+  position: relative;
+
+  .md-spinner {
+    padding: 30px;
+    border-radius: $global-radius;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    background-color: $panel-bg-color;
+  }
 }

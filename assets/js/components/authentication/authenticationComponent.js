@@ -1,4 +1,6 @@
 
+var http = require('../../lib/util.http.js');
+
 module.exports = {
   template: require('./authenticationTemplate.html'),
   data: function () {

@@ -42,21 +42,27 @@ module.exports = {
   verify: function (req, res) {
     Token.findOne({ token: req.param('token') }, function (err, token) {
       if (err) {
-        FlashService.error(req, tokenErrors.notFound('registration'));
-        res.redirect('/login');
-      }
+        res.jsonError(tokenErrors.notFound('registration'));
+        // FlashService.error(req, tokenErrors.notFound('registration'));
+        // res.redirect('/login');
+      } else if (!token) {
+        res.jsonError(userErrors.cannotVerify);
+      } else {
+        User.update(token.user, { confirmed: true }, function (err) {
+          console.log(err);
+          if (err) {
+            res.jsonError(userErrors.cannotVerify);
+            // FlashService.error(req, userErrors.cannotVerify);
+            // res.redirect('/login');
+          }
 
-      User.update(token.user, { confirmed: true }, function (err) {
-        if (err) {
-          FlashService.error(req, userErrors.cannotVerify);
-          res.redirect('/login');
-        }
-
-        Token.destroy(token.id, function () {
-          FlashService.success(req, userSuccesses.verified);
-          res.redirect('/login');
+          Token.destroy(token.id, function () {
+            res.json({ message: userSuccesses.verified, redirect: '/home' });
+            // FlashService.success(req, userSuccesses.verified);
+            // res.redirect('/login');
+          });
         });
-      });
+      }
     });
   },
 

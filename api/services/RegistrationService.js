@@ -44,7 +44,7 @@ module.exports = {
 
       var pageData = {
         user: user,
-        link: domainPath + '/verify?token=' + token.token
+        link: domainPath + '/login?verify=' + token.token
       };
 
       sails.hooks.views.render('email/registration', pageData, function (err, html) {

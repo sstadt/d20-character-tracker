@@ -54,7 +54,8 @@ module.exports = {
     auth: {
       login: '/session/create',
       logout: '/session/destroy',
-      signup: '/user/create'
+      signup: '/user/create',
+      verify: '/user/verify'
     },
     dice: {
       roll: '/roll'

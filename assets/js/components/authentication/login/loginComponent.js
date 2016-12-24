@@ -1,6 +1,7 @@
 
 var authService = require('../../../services/authService.js');
 var FieldSet = require('../../../classes/FieldSet.js');
+var http = require('../../../lib/util.http.js');
 
 var loginValidation = {
   email: {
@@ -17,15 +18,43 @@ module.exports = {
   data: function () {
     return {
       loginForm: new FieldSet(loginValidation),
+      verifying: false
     };
   },
   created() {
-    var self = this;
-    self.loginForm.init(self, 'loginForm');
+    this.loginForm.init(this, 'loginForm');
   },
   methods: {
     setView(view) {
       this.$emit('set-view', view);
+    },
+    verify() {
+      var self = this,
+        token = http.getUrlParameter('verify'),
+        deferred = q.defer();
+
+      // check verification token
+      if (token) {
+        self.verifying = true;
+        console.log(self);
+        // self.$refs.alert.message('Verifying registration...');
+
+        authService.verify(token)
+          .then(function success(response) {
+            self.$refs.alert.success('Success! You may now log in');
+          }, function error(reason) {
+            // add resend option here
+            self.$refs.alert.alert(reason);
+          })
+          .done(function () {
+            self.verifying = false;
+            deferred.resolve();
+          });
+      } else {
+        deferred.resolve();
+      }
+
+      return deferred.promise;
     },
     login() {
       var self = this,
