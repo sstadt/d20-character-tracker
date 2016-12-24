@@ -2,28 +2,35 @@
 <div class="row">
   <div class="small-12 column">
     <h1>Sign Up</h1>
-    <alert ref:alert :can-close="true"></alert>
-    <form @submit.stop.prevent="signup">
-      <md-input-container :class="{'md-input-invalid': form.fields.email.hasErrors}">
-        <label>Email Address</label>
-        <md-input type="email" v-model="form.fields.email.value"></md-input>
-        <span class="md-error" v-show="form.fields.email.hasErrors">{{ form.fields.email.errors[0] }}</span>
-      </md-input-container>
-      <md-input-container :class="{'md-input-invalid': form.fields.password.hasErrors}">
-        <label>Password</label>
-        <md-input type="password" v-model="form.fields.password.value"></md-input>
-        <span class="md-error" v-show="form.fields.password.hasErrors">{{ form.fields.password.errors[0] }}</span>
-      </md-input-container>
-      <md-input-container :class="{'md-input-invalid': form.fields.confirm.hasErrors}">
-        <label>Confirm Password</label>
-        <md-input type="password" v-model="form.fields.confirm.value"></md-input>
-        <span class="md-error" v-show="form.fields.confirm.hasErrors">{{ form.fields.confirm.errors[0] }}</span>
-      </md-input-container>
-      <div class="float-right clearfix">
-        <md-button type="button" class="md-raised" v-on:click="setView('login')">Log In</md-button>
-        <md-button type="submit" class="md-raised md-primary">Sign Up</md-button>
-      </div>
-      <a class="form-link" v-on:click="setView('passwordReset')">forgot password?</a>
-    </form>
+    <alert ref="alert" :can-close="true"></alert>
+    <transition name="fade">
+      <form v-show="!success" @submit.stop.prevent="signup">
+        <md-input-container :class="{'md-input-invalid': signupForm.fields.email.hasErrors}">
+          <label>Email Address</label>
+          <md-input type="email" v-model="signupForm.fields.email.value"></md-input>
+          <span class="md-error" v-show="signupForm.fields.email.hasErrors">{{ signupForm.fields.email.errors[0] }}</span>
+        </md-input-container>
+        <md-input-container :class="{'md-input-invalid': signupForm.fields.handle.hasErrors}">
+          <label>Chat Handle</label>
+          <md-input type="text" v-model="signupForm.fields.handle.value"></md-input>
+          <span class="md-error" v-show="signupForm.fields.handle.hasErrors">{{ signupForm.fields.handle.errors[0] }}</span>
+        </md-input-container>
+        <md-input-container md-has-password :class="{'md-input-invalid': signupForm.fields.password.hasErrors}">
+          <label>Password</label>
+          <md-input type="password" v-model="signupForm.fields.password.value"></md-input>
+          <span class="md-error" v-show="signupForm.fields.password.hasErrors">{{ signupForm.fields.password.errors[0] }}</span>
+        </md-input-container>
+        <md-input-container md-has-password :class="{'md-input-invalid': signupForm.fields.confirmation.hasErrors}">
+          <label>Confirm Password</label>
+          <md-input type="password" v-model="signupForm.fields.confirmation.value"></md-input>
+          <span class="md-error" v-show="signupForm.fields.confirmation.hasErrors">{{ signupForm.fields.confirmation.errors[0] }}</span>
+        </md-input-container>
+        <div class="float-right clearfix">
+          <md-button type="button" class="md-raised" v-on:click="setView('login')">Log In</md-button>
+          <md-button type="submit" class="md-raised md-primary">Sign Up</md-button>
+        </div>
+        <a class="form-link" v-on:click="setView('passwordReset')">forgot password?</a>
+      </form>
+    </transition>
   </div>
 </div>

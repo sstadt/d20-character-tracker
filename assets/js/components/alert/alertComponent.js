@@ -16,23 +16,22 @@ module.exports = {
   methods: {
     close() {
       this.messages = [];
+      this.type = 'none';
     },
     addMessage(type, message) {
       if (this.type !== type) {
         this.type = type;
-        this.messages = [message];
+        this.messages = (_.isArray(message)) ? message : [message];
       } else {
-        this.messages.push(message);
+        if (_.isArray(message)) {
+          this.messages.concat(message);
+        } else {
+          this.messages.push(message);
+        }
       }
     },
     message(message) {
       this.addMessage('', message);
-    },
-    primary(message) {
-      this.addMessage('primary', message);
-    },
-    secondary(message) {
-      this.addMessage('secondary', message);
     },
     success(message) {
       this.addMessage('success', message);

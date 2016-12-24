@@ -72,29 +72,27 @@ module.exports = {
       User.create(userObj, function userCreated(err, user) {
         if (err) {
           var errorMsg = userErrors.cannotCreateUser;
-          if (err._e.code === 11000) {
-            errorMsg = (err._e.err.indexOf('chatHandle') > -1) ? userErrors.duplicateChatHandle : userErrors.duplicateEmail;
+
+          if (err.code === 'E_VALIDATION') {
+            if (err.message.indexOf('already exists')) {
+              errorMsg = (err.message.indexOf('chatHandle') > -1) ? userErrors.duplicateChatHandle : userErrors.duplicateEmail;
+            } else {
+              errorMsg = 'There are invalid fields';
+            }
           }
 
-          FlashService.warning(req, errorMsg);
-          res.redirect('/register');
+          res.jsonError(errorMsg);
         } else {
           RegistrationService.generateValidationEmail(user)
             .then(function resolve() {
-              FlashService.success(req, userSuccesses.verificationSent);
-              res.redirect('/login');
-            }, function reject() {
-              FlashService.error(req, userErrors.cannotRegister);
-              res.redirect('/register');
+              res.json({ redirect: '/home' });
+            }, function reject(err) {
+              res.jsonError(userErrors.cannotRegister);
             });
         }
       });
     } else {
-      _.each(PasswordService.getLastError(), function (error) {
-        FlashService.error(req, error);
-      });
-      FlashService.addVar(req, 'email', userObj.email);
-      res.redirect('/register');
+      res.jsonError(PasswordService.getLastError());
     }
   },
 

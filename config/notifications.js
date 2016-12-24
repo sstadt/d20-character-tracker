@@ -16,7 +16,7 @@ module.exports.notifications = {
       verified: 'Account verified, you may now log in!'
     },
     error: {
-      cannotCreateUser: 'We could not sign up up at this time, please try again later',
+      cannotCreateUser: 'We could not sign you up at this time, please try again later',
       cannotResetPassword: 'Unable to reset your password at this time',
       cannotRegister: 'Registration could not be completed at this time',
       notFound: 'Could not find a user with that email address',

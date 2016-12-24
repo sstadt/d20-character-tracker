@@ -6,7 +6,7 @@ function generateError(msg) {
 module.exports = {
   generate: generateError,
   parse: function (error) {
-    var message = (_.isString(error)) ? error : error.message || 'There was an error completing your request';
+    var message = (_.isString(error) || _.isArray(error)) ? error : error.message || 'There was an error completing your request';
 
     if (!_.isString(error) && !error.message) {
       console.log('--------------------------------------------');

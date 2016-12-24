@@ -1,6 +1,7 @@
 
 .alert-box {
-  padding: $alert-box-padding;
+  position: relative;
+  padding: $alert-box-padding ($alert-box-padding + 10) $alert-box-padding $alert-box-padding;
   background-color: $alert-bg-color;
   color: white;
   margin-bottom: 15px;
@@ -22,7 +23,6 @@
   }
 
   .close-button {
-    margin-left: 15px;
     color: $alert-text-color;
     font-weight: bold;
     float: right;
@@ -30,6 +30,11 @@
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: $alert-box-padding - 2;
+    right: $alert-box-padding;
   }
 
   ul {
