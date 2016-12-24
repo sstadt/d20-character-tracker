@@ -101,9 +101,9 @@ FieldSet.prototype.isValid = function () {
 };
 
 // probably won't work
-// FieldSet.prototype.addError = function (rule, error) {
-//   self.fields[rule].errors.push(error);
-//   self.fields[rule].hasErrors = true;
-// };
+FieldSet.prototype.addError = function (rule, error) {
+  this.fields[rule].errors.push(error);
+  this.fields[rule].hasErrors = true;
+};
 
 module.exports = FieldSet;

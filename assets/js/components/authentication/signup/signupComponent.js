@@ -30,8 +30,8 @@ module.exports = {
     };
   },
   created() {
-    var vm = this;
-    vm.signupForm.init(vm, 'signupForm');
+    var self = this;
+    self.signupForm.init(self, 'signupForm');
   },
   methods: {
     setView(view) {
@@ -50,6 +50,8 @@ module.exports = {
       if (self.signupForm.isValid()) {
         authService.signup(args)
           .then(function success(data) {
+            self.signupForm.fields.password.value = '';
+            self.signupForm.fields.confirmation.value = '';
             self.$refs.alert.success('Success! Check your email to activate your account.');
             self.success = true;
           }, function error(reason) {

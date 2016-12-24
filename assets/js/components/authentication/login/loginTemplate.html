@@ -3,15 +3,15 @@
   <div class="small-12 column">
     <h1>Log In</h1>
     <form @submit.stop.prevent="login">
-      <md-input-container :class="{'md-input-invalid': emailError.length > 0}">
+      <md-input-container :class="{'md-input-invalid': loginForm.fields.email.hasErrors}">
         <label>Email Address</label>
-        <md-input type="email" v-model="email" required></md-input>
-        <span class="md-error" v-show="emailError.length > 0">{{ emailError }}</span>
+        <md-input type="email" v-model="loginForm.fields.email.value"></md-input>
+        <span class="md-error" v-show="loginForm.fields.email.hasErrors">{{ loginForm.fields.email.errors[0] }}</span>
       </md-input-container>
-      <md-input-container md-has-password :class="{'md-input-invalid': passwordError.length > 0}">
+      <md-input-container md-has-password :class="{'md-input-invalid': loginForm.fields.password.hasErrors}">
         <label>Password</label>
-        <md-input type="password" v-model="password" required></md-input>
-        <span class="md-error" v-show="passwordError.length > 0">{{ passwordError }}</span>
+        <md-input type="password" v-model="loginForm.fields.password.value"></md-input>
+        <span class="md-error" v-show="loginForm.fields.password.hasErrors">{{ loginForm.fields.password.errors[0] }}</span>
       </md-input-container>
       <div class="float-right clearfix">
         <md-button type="button" class="md-raised" v-on:click="setView('signup')">Sign Up</md-button>
