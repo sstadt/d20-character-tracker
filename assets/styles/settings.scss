@@ -39,6 +39,23 @@ $black       : #000000;
 $snow        : #FFFAFA;
 $ghost-white : #FAFAFF;
 
+// red
+$crimson     : #760303;
+$scarlet     : #f20606;
+
+// blue
+$navyBlue    : #023857;
+$blurayBlue : #047abe;
+
+// yellow
+$burntSienna : #795403;
+$bumblebee   : #e9a105;
+
+// green
+$hunterGreen : #024f18;
+$ectoGreen   : #04be39;
+
+
 // // blue
 // $blueSlate   : #708096;
 // $stormySky   : #5E6C7F;
@@ -53,11 +70,11 @@ $ghost-white : #FAFAFF;
 // /* Foundation Defaults End */
 //
 // /* star wars interface colors */
-$mayaBlue     : #83a9da;
-$springGreen  : #50d991;
-$maizeYellow  : #e1df70;
-$lustRed      : #fb2815;
-$purple       : #A364EF;
+// $mayaBlue     : #83a9da;
+// $springGreen  : #50d991;
+// $maizeYellow  : #e1df70;
+// $lustRed      : #fb2815;
+// $purple       : #A364EF;
 $rebel-orange : #f9731c;
 $empire-red   : #bf1616;
 // /* star wars interface colors end */
@@ -65,23 +82,30 @@ $empire-red   : #bf1616;
 /* Usage */
 
 $global-gutter: 30px;
+$global-radius: 4px;
 
 // Panel
 // ---------------------------
 
 $panel-bg-color: rgba($white, 0.8);
-$panel-radius: 4px;
+$panel-radius: $global-radius;
 $panel-padding: $global-gutter;
 
 // Alert Box
 // ---------------------------
 
+$alert-box-radius: $global-radius;
 $alert-box-padding: 20px;
 $alert-message-padding: 2px;
 
 $alert-text-color: $white;
 
-$alert-bg-color: $mayaBlue;
-$alert-bg-color-success: $springGreen;
-$alert-bg-color-warning: $maizeYellow;
-$alert-bg-color-danger: $lustRed;
+$alert-bg-color: rgba($blurayBlue, 0.15);
+$alert-bg-color-success: rgba($ectoGreen, 0.15);
+$alert-bg-color-warning: rgba($bumblebee, 0.15);
+$alert-bg-color-alert: rgba($scarlet, 0.15);
+
+$alert-text-color: $navyBlue;
+$alert-text-color-success: $hunterGreen;
+$alert-text-color-warning: $burntSienna;
+$alert-text-color-alert: $crimson;

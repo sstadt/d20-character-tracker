@@ -3,18 +3,22 @@
   position: relative;
   padding: $alert-box-padding ($alert-box-padding + 10) $alert-box-padding $alert-box-padding;
   background-color: $alert-bg-color;
-  color: white;
+  color: $alert-text-color;
   margin-bottom: 15px;
+  border-radius: $alert-box-radius;
 
-  &.danger {
-    background-color: $alert-bg-color-danger;
+  &.alert {
+    color: $alert-text-color-alert;
+    background-color: $alert-bg-color-alert;
   }
 
   &.warning {
+    color: $alert-text-color-warning;
     background-color: $alert-bg-color-warning;
   }
 
   &.success {
+    color: $alert-text-color-success;
     background-color: $alert-bg-color-success;
   }
 
