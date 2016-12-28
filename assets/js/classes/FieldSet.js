@@ -100,6 +100,15 @@ FieldSet.prototype.isValid = function () {
   return !hasErrors;
 };
 
+FieldSet.prototype.clearErrors = function () {
+  for (var rule in this.rules) {
+    if (this.fields.hasOwnProperty(rule)) {
+      this.fields[rule].errors = [];
+      this.fields[rule].hasErrors = false;
+    }
+  }
+};
+
 // probably won't work
 FieldSet.prototype.addError = function (rule, error) {
   this.fields[rule].errors.push(error);

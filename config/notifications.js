@@ -12,7 +12,7 @@ module.exports.notifications = {
     success: {
       passwordReset: 'Your password was successfully reset!',
       passwordResetSent: 'Success! Check your email for instruction to reset your password',
-      verificationSent: 'Check the email address you registered with to verify your account',
+      verificationSent: 'Check your email to verify your account',
       verified: 'Account verified, you may now log in!'
     },
     error: {
@@ -24,7 +24,7 @@ module.exports.notifications = {
       duplicateEmail: 'That email address is already in use',
       duplicateChatHandle: 'That chat handle is already in use',
       notVerified: function (email) {
-        return 'You must verify your account before logging in. <a href="/resend?email=' + email + '">resend</a>';
+        return 'You must verify your account before logging in.';
       }
     }
   },

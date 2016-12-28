@@ -43,8 +43,6 @@ module.exports = {
     Token.findOne({ token: req.param('token') }, function (err, token) {
       if (err) {
         res.jsonError(tokenErrors.notFound('registration'));
-        // FlashService.error(req, tokenErrors.notFound('registration'));
-        // res.redirect('/login');
       } else if (!token) {
         res.jsonError(userErrors.cannotVerify);
       } else {
@@ -52,14 +50,10 @@ module.exports = {
           console.log(err);
           if (err) {
             res.jsonError(userErrors.cannotVerify);
-            // FlashService.error(req, userErrors.cannotVerify);
-            // res.redirect('/login');
           }
 
           Token.destroy(token.id, function () {
             res.json({ message: userSuccesses.verified, redirect: '/home' });
-            // FlashService.success(req, userSuccesses.verified);
-            // res.redirect('/login');
           });
         });
       }
@@ -105,26 +99,31 @@ module.exports = {
   resend: function (req, res) {
     User.findOne({ email: req.param('email') }, function (err, user) {
       if (err) {
-        FlashService.error(req, userErrors.notFound);
-        res.redirect('/register');
+        res.jsonError(userErrors.notFound);
+        // FlashService.error(req, userErrors.notFound);
+        // res.redirect('/register');
+      } else {
+        Token.destroy({ user: user.id }, function (err) {
+          if (err) {
+            res.jsonError(tokenErrors.cannotResendValidation(user.email));
+            // FlashService.error(req, tokenErrors.cannotResendValidation(user.email));
+            // res.redirect('/login');
+          } else {
+            RegistrationService.generateValidationEmail(user)
+              .then(function resolve() {
+                res.json({ success: true });
+                // FlashService.success(req, userSuccesses.verificationSent);
+                // res.redirect('/login');
+              }, function reject(err) {
+                console.log(err); // TODO: this error needs dev attention
+                res.jsonError(userErrors.cannotRegister);
+                // FlashService.error(req, userErrors.cannotRegister);
+                // res.redirect('/login');
+              });
+          }
+        });
       }
 
-      Token.destroy({ user: user.id }, function (err) {
-        if (err) {
-          FlashService.error(req, tokenErrors.cannotResendValidation(user.email));
-          res.redirect('/login');
-        }
-
-        RegistrationService.generateValidationEmail(user)
-          .then(function resolve() {
-            FlashService.success(req, userSuccesses.verificationSent);
-            res.redirect('/login');
-          }, function reject(err) {
-            console.log(err); // TODO: this error needs dev attention
-            FlashService.error(req, userErrors.cannotRegister);
-            res.redirect('/login');
-          });
-      });
     });
   },
 

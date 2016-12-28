@@ -9,8 +9,11 @@ module.exports = {
       email,
       password
     }, function (response) {
+      var showResend;
+
       if (response.err) {
-        deferred.reject(response.err);
+        response.showResend = response.err.indexOf('must verify') > -1;
+        deferred.reject(response);
       } else {
         deferred.resolve(response);
       }
@@ -52,6 +55,19 @@ module.exports = {
         deferred.reject(response.err);
       } else {
         deferred.resolve(response);
+      }
+    });
+
+    return deferred.promise;
+  },
+  resendValidation: function (email) {
+    var deferred = q.defer();
+
+    io.socket.post(config.endpoints.auth.resendVerification, { email }, function (response) {
+      if (response.err) {
+        deferred.reject(response.err);
+      } else {
+        deferred.resolve();
       }
     });
 

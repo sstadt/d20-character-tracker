@@ -18,7 +18,8 @@ module.exports = {
   data: function () {
     return {
       loginForm: new FieldSet(loginValidation),
-      verifying: false
+      loading: false,
+      showResend: false
     };
   },
   created() {
@@ -35,22 +36,53 @@ module.exports = {
 
       // check verification token
       if (token) {
-        self.verifying = true;
-        console.log(self);
-        // self.$refs.alert.message('Verifying registration...');
+        self.loading = true;
 
         authService.verify(token)
-          .then(function success(response) {
+          .then(function success(response, verified) {
             self.$refs.alert.success('Success! You may now log in');
           }, function error(reason) {
             // add resend option here
             self.$refs.alert.alert(reason);
           })
           .done(function () {
-            self.verifying = false;
+            self.loading = false;
             deferred.resolve();
           });
       } else {
+        deferred.resolve();
+      }
+
+      return deferred.promise;
+    },
+    resendVerification() {
+      var self = this,
+        email = self.loginForm.fields.email.value,
+        deferred = q.defer();
+
+      self.loginForm.clearErrors();
+
+      if (email !== '' && self.loginForm.fields.email.hasErrors === false) {
+        console.log('resending validation...');
+        self.loading = true;
+        authService.resendValidation(email)
+          .then(function success() {
+            console.log('success');
+            self.$refs.alert.success('Success! Check your email to verify your account.');
+          }, function error(reason) {
+            console.log('error');
+            console.log(reason);
+            self.showResend = true;
+            self.loginForm.addError('email', reason);
+          })
+          .done(function () {
+            self.loading = false;
+            deferred.resolve();
+          });
+      } else {
+        console.log('not resending validation');
+        self.showResend = true;
+        self.loginForm.addError('email', 'Please enter a valid email to resend your account validation.');
         deferred.resolve();
       }
 
@@ -61,18 +93,23 @@ module.exports = {
         deferred = q.defer();
 
       if (self.loginForm.isValid()) {
+        self.loading = true;
         authService.login(self.loginForm.fields.email.value, self.loginForm.fields.password.value)
           .then(function success(data) {
             self.loginForm.fields.password.value = '';
             window.location.href = data.redirect;
-          }, function error(reason) {
-            if (reason.indexOf('email') > -1 || reason.indexOf('Email') > -1) {
-              self.loginForm.addError('email', reason);
+          }, function error(response) {
+            console.log(response);
+            self.showResend = response.showResend;
+
+            if (response.err.indexOf('password') > -1 || response.err.indexOf('Password') > -1) {
+              self.loginForm.addError('password', response.err);
             } else {
-              self.loginForm.addError('password', reason);
+              self.loginForm.addError('email', response.err);
             }
           })
           .done(function () {
+            self.loading = false;
             deferred.resolve();
           });
       } else {

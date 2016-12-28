@@ -4,13 +4,13 @@
     <h1>Log In</h1>
     <alert ref="alert" :can-close="true" v-on:alert-loaded="verify()"></alert>
     <transition name="fade">
-      <md-spinner v-show="verifying" :md-size="150" md-indeterminate></md-spinner>
+      <md-spinner v-show="loading" :md-size="150" md-indeterminate></md-spinner>
     </transition>
     <form @submit.stop.prevent="login">
       <md-input-container :class="{'md-input-invalid': loginForm.fields.email.hasErrors}">
         <label>Email Address</label>
         <md-input type="email" v-model="loginForm.fields.email.value"></md-input>
-        <span class="md-error" v-show="loginForm.fields.email.hasErrors">{{ loginForm.fields.email.errors[0] }}</span>
+        <span class="md-error" v-show="loginForm.fields.email.hasErrors">{{ loginForm.fields.email.errors[0] }} <a v-show="showResend" v-on:click="resendVerification()">Resend Verification</a></span>
       </md-input-container>
       <md-input-container md-has-password :class="{'md-input-invalid': loginForm.fields.password.hasErrors}">
         <label>Password</label>
