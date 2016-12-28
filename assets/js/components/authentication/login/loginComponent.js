@@ -42,7 +42,6 @@ module.exports = {
           .then(function success(response, verified) {
             self.$refs.alert.success('Success! You may now log in');
           }, function error(reason) {
-            // add resend option here
             self.$refs.alert.alert(reason);
           })
           .done(function () {
@@ -63,15 +62,11 @@ module.exports = {
       self.loginForm.clearErrors();
 
       if (email !== '' && self.loginForm.fields.email.hasErrors === false) {
-        console.log('resending validation...');
         self.loading = true;
         authService.resendValidation(email)
           .then(function success() {
-            console.log('success');
             self.$refs.alert.success('Success! Check your email to verify your account.');
           }, function error(reason) {
-            console.log('error');
-            console.log(reason);
             self.showResend = true;
             self.loginForm.addError('email', reason);
           })
@@ -80,7 +75,6 @@ module.exports = {
             deferred.resolve();
           });
       } else {
-        console.log('not resending validation');
         self.showResend = true;
         self.loginForm.addError('email', 'Please enter a valid email to resend your account validation.');
         deferred.resolve();
@@ -99,7 +93,6 @@ module.exports = {
             self.loginForm.fields.password.value = '';
             window.location.href = data.redirect;
           }, function error(response) {
-            console.log(response);
             self.showResend = response.showResend;
 
             if (response.err.indexOf('password') > -1 || response.err.indexOf('Password') > -1) {
