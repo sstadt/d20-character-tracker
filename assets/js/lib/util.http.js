@@ -22,6 +22,17 @@ module.exports = {
     }
 
     return false;
+  },
+
+  /**
+   * setLocation
+   *
+   * Set the current URL
+   *
+   * @param string href The location to set
+   */
+  setLocation(href){
+    window.location.href = href;
   }
 
 };

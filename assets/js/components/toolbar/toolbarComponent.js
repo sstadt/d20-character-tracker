@@ -1,5 +1,6 @@
 
 var authService = require('../../services/authService.js');
+var http = require('../../lib/util.http.js');
 
 module.exports = {
   template: require('./toolbarTemplate.html'),
@@ -14,8 +15,8 @@ module.exports = {
     };
   },
   methods: {
-    toggleRightSidenav() {
-      this.$refs.rightSidenav.toggle();
+    toggleRightSideNav() {
+      this.$refs.rightSideNav.toggle();
     },
     logout() {
       this.$refs.toolbarConfirm.open();
@@ -27,16 +28,16 @@ module.exports = {
       if (type === 'ok') {
         authService.logout()
           .then(function success(data) {
-            window.location.href = data.redirect;
+            http.setLocation(data.redirect);
           }, function error(reason) {
-            self.alert.content = `Error: ${reason}`;
+            self.alert.content = reason;
             self.$refs.toolbarDialog.open();
           })
           .done(function () {
             deferred.resolve();
           });
       } else {
-        this.$refs.rightSidenav.toggle();
+        this.$refs.rightSideNav.toggle();
         deferred.resolve();
       }
 
