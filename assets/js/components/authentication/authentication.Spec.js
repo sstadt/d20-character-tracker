@@ -18,18 +18,44 @@ describe('The authentication component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
-  // describe('methods', function () {
-  //   var componentInstance;
-  //
-  //   beforeEach(function () {
-  //     componentInstance = new Vue(component);
-  //   });
-  //
-  //   describe('#sayHi', function () {
-  //     it('should be a function', function () {
-  //       expect(typeof componentInstance.sayHi).toBe('function');
-  //     });
-  //   });
-  // });
+  describe('data', function () {
+    var data;
+
+    beforeEach(function () {
+      data = component.data();
+    });
+
+    describe('view', function () {
+      it('should be a string', function () {
+        expect(data.view).toEqual(jasmine.any(String));
+      });
+
+      it('should default to login', function () {
+        expect(data.view).toEqual('login');
+      });
+    });
+  });
+
+  describe('methods', function () {
+    var componentInstance;
+
+    beforeEach(function () {
+      componentInstance = new Vue(component);
+    });
+
+    describe('#setView', function () {
+      beforeEach(function () {
+        componentInstance.setView('foo');
+      });
+
+      it('should be a function', function () {
+        expect(typeof componentInstance.setView).toBe('function');
+      });
+
+      it('should set the current view', function () {
+        expect(componentInstance.view).toEqual('foo');
+      });
+    });
+  });
 
 });
