@@ -1,3 +1,59 @@
+/**
+ * Class FieldSet
+ *
+ * Used to store values and validation information for a
+ * set of form fields.
+ *
+ * @param rules object The ruleset to initialize fields and check validation from
+ *
+ * var testRules = {
+ *   email: {
+ *     required: true,
+ *     pattern: 'email' // or regular expression for custom validation
+ *   },
+ *   password: {
+ *     required: true,
+ *     minlength: 5
+ *   }
+ * };
+ *
+ * Using the constructor with the above rules will return an object
+ * with two attributes:
+ *
+ * rules: a copy of the passed in rules object
+ * fields: the same set of attributes at the root of rules, with
+ *         associated value and error data for use in component
+ *         ViewModels
+ *
+ * The above ruleset will generate the following fields object:
+ *
+ * {
+ *   email: {
+ *     value: '',
+ *     errors: [],
+ *     hasErrors: false
+ *   },
+ *   password: {
+ *     value: '',
+ *     errors: [],
+ *     hasErrors: false
+ *   }
+ * }
+ *
+ * When adding a FieldSet to a component, call FieldSet.init() to
+ * initialize watchers that will keep validation synced with your
+ * component data.
+ *
+ * Doing this will update the errors array and hasErrors field for
+ * each field automatically when the value parameter is changes.
+ *
+ * This makes it easy to bind the value to an input via
+ * `FieldSet.fields.email.value`, track error state with
+ * `FieldSet.fields.email.hasErrors`, and to display one or all
+ * errors via `FieldsSet.fields.email.errors`.
+ *
+ */
+
 
 var validation = {
   email: {
@@ -52,6 +108,8 @@ FieldSet.prototype.validate = function (rule) {
   var errors = [],
     value = this.fields[rule].value,
     pattern,
+    regex,
+    message,
     maxlength,
     minlength,
     matchField;
@@ -68,9 +126,11 @@ FieldSet.prototype.validate = function (rule) {
   // regex validation
   if (this.rules[rule].pattern) {
     pattern = this.rules[rule].pattern;
+    regex = (validation[pattern]) ? validation[pattern].regex : pattern;
+    message = (validation[pattern]) ? validation[pattern].message : 'Please enter a valid value';
 
-    if (!validation[pattern].regex.test(value)) {
-      errors.push(validation[pattern].message);
+    if (!regex.test(value)) {
+      errors.push(message);
     }
   }
 

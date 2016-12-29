@@ -17,9 +17,9 @@ var testRules = {
   confirm: {
     matches: 'password'
   },
-  // custom: {
-  //   pattern: '/[0-9]*/'
-  // },
+  custom: {
+    pattern: /[0-9]*/
+  },
   cakeorpie: {
     default: 'pie'
   }
@@ -75,6 +75,10 @@ describe('The FieldSet class', function () {
           expect(fields[rule].hasErrors).toEqual(jasmine.any(Boolean));
           expect(fields[rule].hasOwnProperty('hasErrors')).toEqual(true);
         }
+      });
+
+      it('should initialize default values', function () {
+        expect(fields.cakeorpie.value).toEqual('pie');
       });
     });
 
