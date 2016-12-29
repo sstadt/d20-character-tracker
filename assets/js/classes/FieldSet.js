@@ -52,6 +52,8 @@ FieldSet.prototype.validate = function (rule) {
   var errors = [],
     value = this.fields[rule].value,
     pattern,
+    maxlength,
+    minlength,
     matchField;
 
   // console.log(`validating ${rule}`);
@@ -69,6 +71,24 @@ FieldSet.prototype.validate = function (rule) {
 
     if (!validation[pattern].regex.test(value)) {
       errors.push(validation[pattern].message);
+    }
+  }
+
+  // maxlength validation
+  if (this.rules[rule].maxlength && _.isInteger(this.rules[rule].maxlength)) {
+    maxlength = this.rules[rule].maxlength;
+
+    if (value.length > maxlength){
+      errors.push(`Cannot be longer than ${maxlength} characters`);
+    }
+  }
+
+  // minlength validation
+  if (this.rules[rule].minlength && _.isInteger(this.rules[rule].minlength)) {
+    minlength = this.rules[rule].minlength;
+
+    if (value.length < minlength){
+      errors.push(`Must be at least ${minlength} characters`);
     }
   }
 
