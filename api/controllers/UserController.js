@@ -100,25 +100,17 @@ module.exports = {
     User.findOne({ email: req.param('email') }, function (err, user) {
       if (err || !user) {
         res.jsonError(userErrors.notFound);
-        // FlashService.error(req, userErrors.notFound);
-        // res.redirect('/register');
       } else {
         Token.destroy({ user: user.id }, function (err) {
           if (err) {
             res.jsonError(tokenErrors.cannotResendValidation(user.email));
-            // FlashService.error(req, tokenErrors.cannotResendValidation(user.email));
-            // res.redirect('/login');
           } else {
             RegistrationService.generateValidationEmail(user)
               .then(function resolve() {
                 res.json({ success: true });
-                // FlashService.success(req, userSuccesses.verificationSent);
-                // res.redirect('/login');
               }, function reject(err) {
                 console.log(err); // TODO: this error needs dev attention
                 res.jsonError(userErrors.cannotRegister);
-                // FlashService.error(req, userErrors.cannotRegister);
-                // res.redirect('/login');
               });
           }
         });
@@ -146,63 +138,30 @@ module.exports = {
     var token = req.param('token') || '',
       password = req.param('password'),
       confirmation = req.param('confirm');
-      // view = {
-      //   token: token,
-      //   user: { email: '' },
-      //   title: 'reset password',
-      //   script: 'public'
-      // };
 
     RegistrationService.validateResetToken(token)
       .then(function resolve(user) {
-        var errors;
-
-        // view.user = user;
-
-        // a password was submitted for reset
-        // if (password || confirmation) {
-
-          // password is secure according to configured rules
-          if (PasswordService.isSecure(password, confirmation)) {
-            PasswordService.resetPassword(password, user)
-              .then(function resolve() {
-                req.session.authenticated = true;
-                req.session.User = user.toJSON();
-                res.json({
-                  success: true,
-                  message: userSuccesses.passwordReset
-                });
-                // FlashService.success(req, userSuccesses.passwordReset);
-                // res.redirect('/login');
-              }, function reject(err) {
-                res.jsonError(userErrors.cannotResetPassword);
-                // FlashService.error(req, userErrors.cannotResetPassword);
-                // FlashService.cycleFlash(req, res);
-                // res.view(view);
+        // password is secure according to configured rules
+        if (PasswordService.isSecure(password, confirmation)) {
+          PasswordService.resetPassword(password, user)
+            .then(function resolve() {
+              req.session.authenticated = true;
+              req.session.User = user.toJSON();
+              res.json({
+                success: true,
+                message: userSuccesses.passwordReset
               });
+            }, function reject(err) {
+              res.jsonError(userErrors.cannotResetPassword);
+            });
 
-          // password is not secure
-          } else {
-            errors = PasswordService.getLastError();
-            res.jsonError(errors);
-            // for (var i = 0, j = errors.length; i < j; i++) {
-            //   FlashService.error(req, errors[i]);
-            // }
-            // FlashService.cycleFlash(req, res);
-            //
-            // res.view(view);
-          }
-
-        // a password was not submitted for reset
-        // } else {
-        //   res.view(view);
-        // }
+        // password is not secure
+        } else {
+          res.jsonError(PasswordService.getLastError());
+        }
 
       }, function reject(err) {
         res.jsonError(err);
-        // FlashService.error(req, err);
-        // res.redirect('/recover');
-        // return;
       });
   },
 

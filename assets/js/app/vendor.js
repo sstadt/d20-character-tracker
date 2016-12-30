@@ -31,3 +31,8 @@ Vue.filter('chatTimestamp', function (value) {
 var VueMaterial = require('vue-material');
 
 Vue.use(VueMaterial);
+
+Vue.material.registerTheme('default', {
+  primary: 'blue-grey',
+  warn: 'red'
+});
