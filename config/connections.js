@@ -62,7 +62,7 @@ module.exports.connections = {
     port: 27017,
     user: '',
     password: '',
-    database: 'sails_fad_game_table'
+    database: 'sails_sw_game_table'
   },
 
   /***************************************************************************

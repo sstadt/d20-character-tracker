@@ -1,0 +1,34 @@
+
+$icon-size: 20px;
+
+.icon-image {
+  width: $icon-size;
+  height: $icon-size;
+  fill: $text-color;
+
+  &[class*="die-"] {
+    fill: $black; // TODO
+  }
+
+  &.dice-dark-side, &.dice-light-side, &.force-point {
+    fill: $white; // TODO
+  }
+
+  // &.rebel {
+  //   fill: $rebelOrange;
+  // }
+  //
+  // &.empire {
+  //   fill: $empireRed;
+  // }
+  //
+  // &.crawl {
+  //   fill: $crawlColor;
+  // }
+}
+
+h1, h1, h3, h4, h5, h6, p {
+  svg.icon-image {
+    vertical-align: sub;
+  }
+}

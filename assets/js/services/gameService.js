@@ -1,11 +1,11 @@
 
-var constants = require('../config/constants.js');
+var config = require('../lib/config.js');
 
 module.exports = {
   getMyGames: function () {
     var deferred = q.defer();
 
-    io.socket.get(constants.endpoints.game.playing, function (response) {
+    io.socket.get(config.endpoints.game.playing, function (response) {
       if (response.err) {
         console.error(response.err);
         deferred.reject('There was an error retrieving your games');
@@ -19,7 +19,7 @@ module.exports = {
   get: function (id) {
     var deferred = q.defer();
 
-    io.socket.get(constants.endpoints.game.get, {
+    io.socket.get(config.endpoints.game.get, {
       gameId: id
     }, function (response) {
       if (response.err) {
@@ -35,7 +35,7 @@ module.exports = {
   getLog: function (id) {
     var deferred = q.defer();
 
-    io.socket.get(constants.endpoints.game.getLog, {
+    io.socket.get(config.endpoints.game.getLog, {
       gameId: id
     }, function (response) {
       if (!response || response.err) {
@@ -51,7 +51,7 @@ module.exports = {
   search: function (filter) {
     var deferred = q.defer();
 
-    io.socket.get(constants.endpoints.game.search, {
+    io.socket.get(config.endpoints.game.search, {
       filter: filter
     }, function (response) {
       if (response.err) {
@@ -67,7 +67,7 @@ module.exports = {
   create: function (title) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.create, {
+    io.socket.post(config.endpoints.game.create, {
       title: title
     }, function (response) {
       if (response.err) {
@@ -83,7 +83,7 @@ module.exports = {
   updateConfig: function (id, config) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.updateConfig, {
+    io.socket.post(config.endpoints.game.updateConfig, {
       gameId: id,
       config: config
     }, function (response) {
@@ -100,7 +100,7 @@ module.exports = {
   addCrawl: function (crawl) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.addCrawl, {
+    io.socket.post(config.endpoints.game.addCrawl, {
       gameId: crawl.game,
       crawl: crawl
     }, function (response) {
@@ -117,7 +117,7 @@ module.exports = {
   updateCrawl: function (crawl) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.updateCrawl, {
+    io.socket.post(config.endpoints.game.updateCrawl, {
       gameId: crawl.game,
       crawl: crawl
     }, function (response) {
@@ -134,7 +134,7 @@ module.exports = {
   deleteCrawl: function (crawl) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.removeCrawl, {
+    io.socket.post(config.endpoints.game.removeCrawl, {
       gameId: crawl.game,
       crawl: crawl
     }, function (response) {
@@ -151,7 +151,7 @@ module.exports = {
   join: function (game) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.join, {
+    io.socket.post(config.endpoints.game.join, {
       game: game.id
     }, function (response) {
       if (response && response.err) {
@@ -167,7 +167,7 @@ module.exports = {
   approvePlayer: function (game, player) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.approvePlayer, {
+    io.socket.post(config.endpoints.game.approvePlayer, {
       gameId: game.id,
       player: player.id
     }, function (response) {
@@ -184,7 +184,7 @@ module.exports = {
   declinePlayer: function (game, player) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.declinePlayer, {
+    io.socket.post(config.endpoints.game.declinePlayer, {
       gameId: game.id,
       player: player.id
     }, function (response) {
@@ -201,7 +201,7 @@ module.exports = {
   removePlayer: function (game, player) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.removePlayer, {
+    io.socket.post(config.endpoints.game.removePlayer, {
       gameId: game.id,
       player: player.id
     }, function (response) {
@@ -218,7 +218,7 @@ module.exports = {
   sendMessage: function (game, message) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.sendMessage, {
+    io.socket.post(config.endpoints.game.sendMessage, {
       gameId: game.id,
       message: message
     }, function (response) {
@@ -235,7 +235,7 @@ module.exports = {
   sendRoll: function (game, description, dicePool) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.game.sendRoll, {
+    io.socket.post(config.endpoints.game.sendRoll, {
       gameId: game.id,
       dicePool: dicePool,
       description: description

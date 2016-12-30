@@ -1,5 +1,10 @@
 # FaD Game Table
 
+### Dev to do:
+
+ - stylize email templates
+ - switch off of gmail for back end emails
+
 ### DevOps to do:
 
  - look into node reloader during dev: https://github.com/sgress454/sails-hook-autoreload

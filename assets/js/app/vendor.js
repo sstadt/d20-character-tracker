@@ -33,6 +33,10 @@ var VueMaterial = require('vue-material');
 Vue.use(VueMaterial);
 
 Vue.material.registerTheme('default', {
-  primary: 'blue-grey',
+  primary: {
+    color: 'indigo',
+    hue: 900
+  },
+  accent: 'deep-orange',
   warn: 'red'
 });

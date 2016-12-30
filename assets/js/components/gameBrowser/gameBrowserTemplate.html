@@ -1,0 +1,37 @@
+
+<div class="game-browser">
+  <div class="panel">
+    <div slot="content">
+      <alert ref="gameBrowserAlert" :can-close="true"></alert>
+      <md-tabs md-right>
+        <md-tab md-label="My Games">
+          <div class="text-right">
+            <md-button class="md-raised md-primary" v-on:click="newGame()">New</md-button>
+          </div>
+          <game-list :games="myGames" v-on:game-list-error="gameListError"></game-list>
+        </md-tab>
+        <md-tab md-label="Find A Game">
+          <md-input-container>
+            <label>Search For Games</label>
+            <md-input type="text" v-model="filter"></md-input>
+            <md-icon>search</md-icon>
+          </md-input-container>
+          <game-list :games="filteredGames" v-on:game-list-error="gameListError"></game-list>
+        </md-tab>
+      </md-tabs>
+    </div>
+  </div>
+  <md-dialog ref="gameBrowserPrompt">
+    <md-dialog-content>
+      <md-input-container :class="{'md-input-invalid': gameBrowserPrompt.error !== ''}">
+        <label>New Game</label>
+        <md-input type="text" v-model="gameBrowserPrompt.value"></md-input>
+        <span class="md-error" v-show="gameBrowserPrompt.error !== ''">{{ gameBrowserPrompt.error }}</span>
+      </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button class="md-primary" @click="closeDialog('gameBrowserPrompt')">Cancel</md-button>
+      <md-button class="md-primary" @click="addNewGame()">Add Game</md-button>
+    </md-dialog-actions>
+  </md-dialog>
+</div>

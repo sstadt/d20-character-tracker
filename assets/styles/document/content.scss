@@ -6,3 +6,12 @@ body {
   background-repeat: no-repeat;
   overflow-x: hidden;
 }
+
+.gutter-top {
+  margin-top: $global-gutter;
+}
+
+.md-tabs .md-tab {
+  padding-left: 0;
+  padding-right: 0;
+}

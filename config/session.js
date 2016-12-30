@@ -70,7 +70,7 @@ module.exports.session = {
   adapter: 'mongo',
   host: 'localhost',
   port: 27017,
-  db: 'sails_fad_game_table_sessions',
+  db: 'sails_sw_game_table_sessions',
   collection: 'sessions',
 
   /***************************************************************************

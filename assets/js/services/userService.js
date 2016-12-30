@@ -1,5 +1,5 @@
 
-var constants = require('../config/constants.js');
+var config = require('../lib/config.js');
 
 var user,
   fetchingUser = false;
@@ -30,7 +30,7 @@ module.exports = {
     // data has not been requested yet, request it
     } else {
       fetchingUser = true;
-      io.socket.get(constants.endpoints.user.getSelf, function (data) {
+      io.socket.get(config.endpoints.user.getSelf, function (data) {
         if (data.err) {
           console.error(err);
           deferred.reject('there was an error retrieving your user data');
@@ -48,7 +48,7 @@ module.exports = {
   setChatHandle: function (newHandle) {
     var deferred = q.defer();
 
-    io.socket.post(constants.endpoints.user.setHandle, { handle: newHandle }, function (err) {
+    io.socket.post(config.endpoints.user.setHandle, { handle: newHandle }, function (err) {
       if (err) {
         console.error(err);
         deferred.reject('There was an error setting your chat handle');

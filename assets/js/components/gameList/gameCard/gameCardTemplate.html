@@ -1,0 +1,21 @@
+
+<div class="game-card">
+  <md-card md-with-hover>
+    <md-card-header>
+      <div class="md-title">{{ game.title }}</div>
+    </md-card-header>
+
+    <md-card-content>
+      <p class="playerList">
+        <span class="gameMaster"><icon name="empire"></icon> {{ game.gameMaster.chatHandle }}</span>
+        <span class="players" v-if="game.players.length > 0"><icon name="rebel"></icon> {{ joinedPlayerList }}</span>
+      </p>
+    </md-card-content>
+
+    <md-card-actions>
+      <md-button v-if="joinIsPending" disabled>Join Request Pending</md-button>
+      <md-button v-if="canJoinGame" v-on:click="joinGame(game)">Join</md-button>
+      <md-button v-if="canLaunchGame" class="md-accent" :href="launchGameLink">Launch</md-button>
+    </md-card-actions>
+  </md-card>
+</div>
