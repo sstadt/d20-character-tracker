@@ -91,11 +91,9 @@ module.exports = {
         self.searching = true;
         gameService.search(val)
           .then(function success(filteredGames) {
-            console.log(_.extend(filteredGames));
             self.filteredGames = _.extend(filteredGames);
             self.$refs.gameBrowserAlert.close();
           }, function (reason) {
-            console.log(reason);
             self.$refs.gameBrowserAlert.error(reason);
           })
           .done(function () {

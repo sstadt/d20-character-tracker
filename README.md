@@ -2,6 +2,7 @@
 
 ### Dev to do:
 
+ - add ajax spinner to all auth component async operations
  - stylize email templates
  - switch off of gmail for back end emails
 
