@@ -56,7 +56,9 @@ module.exports = {
       logout: '/session/destroy',
       signup: '/user/create',
       verify: '/user/verify',
-      resendVerification: '/user/resend'
+      resendVerification: '/user/resend',
+      resetPassword: '/resetpassword',
+      requestReset: '/requestreset'
     },
     dice: {
       roll: '/roll'

@@ -52,6 +52,8 @@
  * `FieldSet.fields.email.hasErrors`, and to display one or all
  * errors via `FieldsSet.fields.email.errors`.
  *
+ * ... match must be accompanied by a mismatchError attribute
+ *
  */
 
 
@@ -177,6 +179,8 @@ FieldSet.prototype.isValid = function () {
     }
   }
 
+  // console.log(`has errors: ${hasErrors}`);
+
   return !hasErrors;
 };
 
@@ -189,7 +193,6 @@ FieldSet.prototype.clearErrors = function () {
   }
 };
 
-// probably won't work
 FieldSet.prototype.addError = function (rule, error) {
   this.fields[rule].errors.push(error);
   this.fields[rule].hasErrors = true;

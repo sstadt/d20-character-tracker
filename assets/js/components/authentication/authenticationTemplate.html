@@ -4,6 +4,7 @@
     <component :is="currentView"
       v-on:set-view="setView"
       :view="view"
+      :token="resetToken"
       keep-alive>
     </component>
   </transition>

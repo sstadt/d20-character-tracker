@@ -72,6 +72,33 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+  requestReset: function (email) {
+    var deferred = q.defer();
+
+    io.socket.post(config.endpoints.auth.requestReset, { email }, function (response) {
+      console.log(response);
+      if (response.err) {
+        deferred.reject(response.err);
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
+  },
+  resetPassword: function (token, password, confirm) {
+    var deferred = q.defer();
+
+    io.socket.post(config.endpoints.auth.resetPassword, { token, password, confirm }, function (response) {
+      if (response.err) {
+        deferred.reject(response.err);
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
   }
 
 };

@@ -1,9 +1,14 @@
 
+var http = require('../../lib/util.http.js');
+
+var resetToken = http.getUrlParameter('reset') || '';
+
 module.exports = {
   template: require('./authenticationTemplate.html'),
   data: function () {
     return {
-      view: 'login'
+      resetToken,
+      view: (resetToken !== '') ? 'passwordReset' : 'login'
     };
   },
   computed: {

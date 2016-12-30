@@ -93,7 +93,7 @@ module.exports = {
 
       var pageData = {
         user: user,
-        link: domainPath + '/reset?token=' + token.token
+        link: domainPath + '/login?reset=' + token.token
       };
 
       sails.hooks.views.render('email/resetpassword', pageData, function (err, html) {
