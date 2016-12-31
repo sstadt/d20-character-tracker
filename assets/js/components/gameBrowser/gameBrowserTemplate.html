@@ -6,7 +6,7 @@
       <md-tabs md-right>
         <md-tab md-label="My Games">
           <div class="text-right">
-            <md-button class="md-raised md-primary" v-on:click="newGame()">New</md-button>
+            <md-button v-on:click="newGame()">New Game</md-button>
           </div>
           <game-list :games="myGames" v-on:game-list-error="gameListError"></game-list>
         </md-tab>

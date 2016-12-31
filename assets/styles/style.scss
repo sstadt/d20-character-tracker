@@ -33,9 +33,17 @@
 
 @import "components/panel";
 
+// js components
+
 @import "../js/components/alert/_alert";
 @import "../js/components/icon/_icon";
+
 @import "../js/components/authentication/_authentication";
 @import "../js/components/authentication/login/_login";
 @import "../js/components/authentication/passwordReset/_passwordReset";
 @import "../js/components/authentication/signup/_signup";
+
+@import "../js/components/gameBrowser/_gameBrowser";
+
+@import "../js/components/gameList/_gameList";
+@import "../js/components/gameList/gameCard/_gameCard";

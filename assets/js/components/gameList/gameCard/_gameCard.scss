@@ -1,9 +1,16 @@
 
-/* Colors
--------------------------------- */
+.game-card {
+  margin-top: 20px;
 
-/* Settings
--------------------------------- */
+  .gameMaster {
+    .icon-image {
+      fill: $game-master-color;
+    }
+  }
 
-/* Styling
--------------------------------- */
+  .players {
+    .icon-image {
+      fill: $player-color;
+    }
+  }
+}

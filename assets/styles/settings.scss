@@ -71,12 +71,16 @@ $ectoGreen   : #04be39;
 // /* star wars interface colors */
 // $mayaBlue     : #83a9da;
 // $springGreen  : #50d991;
-// $maizeYellow  : #e1df70;
+$maize-yellow  : #e1df70;
 // $lustRed      : #fb2815;
 // $purple       : #A364EF;
-$rebel-orange : #f9731c;
-$empire-red   : #bf1616;
+$rebel-orange  : #f9731c;
+$empire-red    : #bf1616;
 // /* star wars interface colors end */
+
+$crawl-color       : $maize-yellow;
+$game-master-color : $empire-red;
+$player-color      : $rebel-orange;
 
 /* Usage */
 
