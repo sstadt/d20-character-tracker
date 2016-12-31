@@ -1,119 +1,134 @@
 
 .game {
-  div[slot="content"] {
-    .section-header + .alert-box {
-      margin: rem-calc(10) 0;
-    }
-  }
+  position: fixed;
+  height: 100%;
+  width: 100%;
 
-  > .margin-wrap {
-    flex-shrink: 0;
-  }
-
-  .game-content {
-    display: flex;
-    flex: 1;
-
-    > .row {
-      display: flex;
-      flex: 1;
-
-      > .columns {
-        display: flex;
-        flex-flow: column;
-
-        &:first-child {
-          flex: 0;
-          padding-left: 0;
-
-          > * {
-            width: rem-calc(250);
-          }
-        }
-
-        &:last-child {
-          flex: 1;
-          padding-right: 0;
-        }
-      }
-    }
-
-    .crawl-pane {
-      flex: 0;
-
-      .subtitle {
-        i {
-          line-height: 1.4;
-          cursor: pointer;
-        }
-      }
-
-      &:not(.loading) {
-        margin-bottom: rem-calc(10);
-        padding-bottom: rem-calc(14);
-        border-bottom: $interfaceBorder;
-      }
-
-      .selected-crawl {
-        .synopsis {
-          @include multi-line-ellipsis($paragraphFontSize, $paragraphLineHeight, 2);
-        }
-      }
-    }
-
-    .players-pane {
-      flex: 1;
-      overflow-y: scroll;
-
-      .player {
-        padding: rem-calc(4) rem-calc(0);
-
-        p {
-          text-transform: uppercase;
-          margin: 0;
-          padding-left: rem-calc(16);
-          position: relative;
-
-          i {
-            position: absolute;
-            top: rem-calc(6);
-            left: 0;
-            font-size: rem-calc(11);
-            color: $successColor;
-          }
-        }
-      }
-    }
-
-    .chat-pane {
-      display: flex;
-      flex: 1;
-      flex-flow: column;
-
-      .chat-entry {
-        flex-shrink: 0;
-
-        .dice-pool {
-          .inline-list {
-            margin-bottom: 0;
-          }
-        }
-
-        .tab {
-          padding-top: rem-calc(10);
-        }
-
-        .input-wrap {
-          margin: 0;
-        }
-
-        .columns {
-          button {
-            width: 100%;
-            margin: 0;
-          }
-        }
-      }
-    }
+  .main-window {
+    position: absolute;
+    height: 85vh;
+    width: 400px;
+    top: 50%;
+    left: $global-gutter;
+    transform: translateY(-50%);
   }
 }
+
+// .game {
+//   div[slot="content"] {
+//     .section-header + .alert-box {
+//       margin: rem-calc(10) 0;
+//     }
+//   }
+//
+//   > .margin-wrap {
+//     flex-shrink: 0;
+//   }
+//
+//   .game-content {
+//     display: flex;
+//     flex: 1;
+//
+//     > .row {
+//       display: flex;
+//       flex: 1;
+//
+//       > .columns {
+//         display: flex;
+//         flex-flow: column;
+//
+//         &:first-child {
+//           flex: 0;
+//           padding-left: 0;
+//
+//           > * {
+//             width: rem-calc(250);
+//           }
+//         }
+//
+//         &:last-child {
+//           flex: 1;
+//           padding-right: 0;
+//         }
+//       }
+//     }
+//
+//     .crawl-pane {
+//       flex: 0;
+//
+//       .subtitle {
+//         i {
+//           line-height: 1.4;
+//           cursor: pointer;
+//         }
+//       }
+//
+//       &:not(.loading) {
+//         margin-bottom: rem-calc(10);
+//         padding-bottom: rem-calc(14);
+//         border-bottom: $interfaceBorder;
+//       }
+//
+//       .selected-crawl {
+//         .synopsis {
+//           @include multi-line-ellipsis($paragraphFontSize, $paragraphLineHeight, 2);
+//         }
+//       }
+//     }
+//
+//     .players-pane {
+//       flex: 1;
+//       overflow-y: scroll;
+//
+//       .player {
+//         padding: rem-calc(4) rem-calc(0);
+//
+//         p {
+//           text-transform: uppercase;
+//           margin: 0;
+//           padding-left: rem-calc(16);
+//           position: relative;
+//
+//           i {
+//             position: absolute;
+//             top: rem-calc(6);
+//             left: 0;
+//             font-size: rem-calc(11);
+//             color: $successColor;
+//           }
+//         }
+//       }
+//     }
+//
+//     .chat-pane {
+//       display: flex;
+//       flex: 1;
+//       flex-flow: column;
+//
+//       .chat-entry {
+//         flex-shrink: 0;
+//
+//         .dice-pool {
+//           .inline-list {
+//             margin-bottom: 0;
+//           }
+//         }
+//
+//         .tab {
+//           padding-top: rem-calc(10);
+//         }
+//
+//         .input-wrap {
+//           margin: 0;
+//         }
+//
+//         .columns {
+//           button {
+//             width: 100%;
+//             margin: 0;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

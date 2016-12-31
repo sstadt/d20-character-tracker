@@ -69,7 +69,7 @@ $ectoGreen   : #04be39;
 // /* Foundation Defaults End */
 //
 // /* star wars interface colors */
-// $mayaBlue     : #83a9da;
+$maya-blue     : #83a9da;
 // $springGreen  : #50d991;
 $maize-yellow  : #e1df70;
 // $lustRed      : #fb2815;
@@ -94,12 +94,16 @@ $text-color: rgba($black, .87);
 $player-status-offline: $smoke;
 $player-status-online: $ectoGreen;
 
+// Page Controls
+// ---------------------------
+$page-controls-color: $maya-blue;
+
 // Panel
 // ---------------------------
 
 $panel-bg-color: rgba($white, 0.8);
 $panel-radius: $global-radius;
-$panel-padding: $global-gutter;
+$panel-padding: $global-gutter / 2;
 
 // Alert Box
 // ---------------------------

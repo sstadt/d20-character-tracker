@@ -1,0 +1,11 @@
+
+.page-controls {
+  position: fixed;
+  top: $global-gutter / 2;
+  right: $global-gutter / 2;
+  z-index: 1;
+
+  svg {
+    fill: $page-controls-color;
+  }
+}
