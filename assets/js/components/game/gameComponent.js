@@ -46,9 +46,9 @@ module.exports = {
     };
   },
   components: {
-    crawlMenu: require('./crawlMenu/crawlMenu.js'),
-    playersMenu: require('./playersMenu/playersMenu.js'),
-    settingsMenu: require('./settingsMenu/settingsMenu.js')
+    crawlMenu: require('./crawlMenu/crawlMenuComponent.js'),
+    playersMenu: require('./playersMenu/playersMenuComponent.js'),
+    settingsMenu: require('./settingsMenu/settingsMenuComponent.js')
   },
   computed: {
     userIsGameMaster() {
@@ -133,14 +133,11 @@ module.exports = {
       });
   },
   methods: {
-    closeCrawlMenu() {
-      this.crawlModalOpen = false;
+    closeMenu(type) {
+      this.$refs[`${type}Dialog`].close();
     },
-    closePlayersMenu() {
-      this.playersModalOpen = false;
-    },
-    closeSettingsMenu() {
-      this.settingsModalOpen = false;
+    openMenu(type) {
+      this.$refs[`${type}Dialog`].open();
     },
     initCrawlOptions() {
       var self = this,

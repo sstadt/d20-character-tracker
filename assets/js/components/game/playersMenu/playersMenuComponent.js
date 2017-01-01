@@ -16,13 +16,9 @@ module.exports = {
   },
   data: function () {
     return {
-      gamePlayersAlert: {},
       searching: false,
       filteredPlayers: []
     };
-  },
-  partials: {
-    'player-details': require('./partials/playerDetails.html')
   },
   computed: {
     filterIcon: function () {
@@ -42,9 +38,9 @@ module.exports = {
 
       gameService.approvePlayer(self.game, player)
         .then(function success() {
-          self.gamePlayersAlert.close();
+          self.$refs.gamePlayersAlert.close();
         }, function error(reason) {
-          self.gamePlayersAlert.error(reason);
+          self.$refs.gamePlayersAlert.error(reason);
         })
         .done(function () {
           deferred.resolve();
@@ -58,9 +54,9 @@ module.exports = {
 
       gameService.declinePlayer(self.game, player)
         .then(function () {
-          self.gamePlayersAlert.close();
+          self.$refs.gamePlayersAlert.close();
         }, function error(reason) {
-          self.gamePlayersAlert.error(reason);
+          self.$refs.gamePlayersAlert.error(reason);
         })
         .done(function () {
           deferred.resolve();
@@ -74,9 +70,9 @@ module.exports = {
 
       gameService.removePlayer(self.game, player)
         .then(function success() {
-          self.gamePlayersAlert.close();
+          self.$refs.gamePlayersAlert.close();
         }, function error(reason) {
-          self.gamePlayersAlert.error(reason);
+          self.$refs.gamePlayersAlert.error(reason);
         })
         .done(function () {
           deferred.resolve();

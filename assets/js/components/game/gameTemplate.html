@@ -5,9 +5,9 @@
   </audio>
 
   <div class="page-controls">
-    <md-button id="openCrawlModal" class="md-icon-button" v-if="userIsGameMaster" v-on:click="crawlModalOpen = true"><icon name="crawl"></i></md-button>
-    <md-button id="openPlayersModal" class="md-icon-button" v-if="userIsGameMaster" v-on:click="playersModalOpen = true"><icon name="rebel"></i></md-button>
-    <md-button id="openSettingsModal" class="md-icon-button" v-if="userIsGameMaster" v-on:click="settingsModalOpen = true"><icon name="empire"></i></md-button>
+    <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('crawl')"><icon name="crawl"></icon></md-button>
+    <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('players')"><icon name="rebel"></icon></md-button>
+    <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('settings')"><icon name="empire"></icon></md-button>
     <md-button class="md-icon-button"><icon name="menu"></i></md-button>
   </div>
 
@@ -19,8 +19,8 @@
         <div class="crawl-pane" v-if="game.crawls">
           <h3>Crawls</h3>
           <md-input-container>
-            <label for="movie">Crawls</label>
-            <md-select name="movie" id="movie" v-model="movie">
+            <label for="selectedCrawl">Crawls</label>
+            <md-select name=selectedCrawl v-model="selectedCrawlId">
               <option></option>
               <option v-for="option in crawlOptions" :value="option.value">{{ option.label }}</option>
             </md-select>
@@ -57,33 +57,33 @@
     :image="activeCrawl.image">
   </star-wars-crawl>
 
-  <md-dialog md-open-from="#openCrawlModal" ref="crawlDialog" v-if="userIsGameMaster">
+  <md-dialog ref="crawlDialog" v-if="userIsGameMaster">
     <md-dialog-title>
-      <h3>{{ game.title }} Crawls</h3>
-      <p>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</p>
+      {{ game.title }} Crawls<br/>
+      <small>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</small>
     </md-dialog-title>
     <md-dialog-content>
-      <!-- <component is="crawlMenu" v-on:close="closeCrawlMenu"></component> -->
+      <!-- <component is="crawlMenu" :game="game" v-on:close="closeMenu('crawl')"></component> -->
     </md-dialog-content>
   </md-dialog>
 
-  <md-dialog md-open-from="#openPlayersModal" ref="playersDialog" v-if="userIsGameMaster">
+  <md-dialog ref="playersDialog" v-if="userIsGameMaster">
     <md-dialog-title>
-      <h3>{{ game.title }} Players</h3>
-      <p>Add, approve, or remove players from the game.</p>
+      {{ game.title }} Players<br/>
+      <small>Add, approve, or remove players from the game.</small>
     </md-dialog-title>
     <md-dialog-content>
-      <!-- <component is="playersMenu" v-on:close="closePlayersMenu"></component> -->
+      <component is="playersMenu" :game="game" v-on:close="closeMenu('players')"></component>
     </md-dialog-content>
   </md-dialog>
 
-  <md-dialog md-open-from="#openSettingsModal" ref="settingsDialog" v-if="userIsGameMaster">
+  <md-dialog ref="settingsDialog" v-if="userIsGameMaster">
     <md-dialog-title>
-      <h3>{{ game.title }} Settings</h3>
-      <p>Game specific settings and configuration.</p>
+      {{ game.title }} Settings<br/>
+      <small>Game specific settings and configuration.</small>
     </md-dialog-title>
     <md-dialog-content>
-      <component is="settingsMenu" v-on:close="closeSettingsMenu"></component>
+      <component is="settingsMenu" :game="game" v-on:close="closeMenu('settings')"></component>
     </md-dialog-content>
   </md-dialog>
 </div>

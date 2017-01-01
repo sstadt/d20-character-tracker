@@ -80,12 +80,12 @@ module.exports = {
 
     return deferred.promise;
   },
-  updateConfig: function (id, config) {
+  updateConfig: function (id, updatedConfig) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.updateConfig, {
       gameId: id,
-      config: config
+      config: updatedConfig
     }, function (response) {
       if (response && response.err) {
         console.error(response.err);

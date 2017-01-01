@@ -1,49 +1,82 @@
 
-<div class="players-menu">
-  <alert :alert.sync="gamePlayersAlert" :can-close="true"></alert>
+<div class="game-menu players">
+  <alert ref="gamePlayersAlert" :can-close="true"></alert>
 
-  <tabs>
-    <tab heading="Active">
-      <ul class="zebra-list">
-        <li v-for="player in game.players">
-          <partial name="player-details"></partial>
-          <div class="controls">
-            <button type="button" class="tiny" v-on:click="removePlayer(player)">Remove</button>
-          </div>
-        </li>
-      </ul>
-    </tab>
-    <!-- <tab heading="Invited">
-      <li v-for="player in game.invitedPlayers">
-        <partial name="player-details"></partial>
-        <div class="controls">
-          <button type="button" class="tiny" v-on:click="uninvitePlayer(player)">Cancel</button>
+  <md-tabs>
+    <md-tab md-label="Active">
+      <div class="row small-up-1 medium-up-2">
+        <div class="column" v-for="player in game.players">
+          <md-card md-with-hover>
+            <md-card-header>
+              <div class="md-title">{{ player.chatHandle }}</div>
+            </md-card-header>
+            <md-card-media>
+              <img src="//placehold.it/80x80" alt="People">
+            </md-card-media>
+            <md-card-actions>
+              <md-button v-on:click="removePlayer(player)">Remove</md-button>
+            </md-card-actions>
+          </md-card>
         </div>
-      </li>
-    </tab> -->
-    <tab heading="Applied">
-      <ul class="zebra-list">
-        <li v-for="player in game.requestingPlayers">
-          <partial name="player-details"></partial>
-          <div class="controls">
-            <button type="button" class="tiny" v-on:click="declinePlayer(player)">Decline</button>
-            <button type="button" class="tiny" v-on:click="approvePlayer(player)">Approve</button>
-          </div>
-        </li>
-      </ul>
-    </tab>
-    <!-- <tab heading="Find">
+      </div>
+    </md-tab>
+
+    <md-tab md-label="Invited">
+      <div class="row small-up-1 medium-up-2">
+        <div class="column" v-for="player in game.invitedPlayers">
+          <md-card md-with-hover>
+            <md-card-header>
+              <div class="md-title">{{ player.chatHandle }}</div>
+            </md-card-header>
+            <md-card-media>
+              <img src="//placehold.it/80x80" alt="People">
+            </md-card-media>
+            <md-card-actions>
+              <md-button v-on:click="uninvitePlayer(player)">Cancel</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </div>
+    </md-tab>
+
+    <md-tab md-label="Applied">
+      <div class="row small-up-1 medium-up-2">
+        <div class="column" v-for="player in game.requestingPlayers">
+          <md-card md-with-hover>
+            <md-card-header>
+              <div class="md-title">{{ player.chatHandle }}</div>
+            </md-card-header>
+            <md-card-media>
+              <img src="//placehold.it/80x80" alt="People">
+            </md-card-media>
+            <md-card-actions>
+              <md-button v-on:click="declinePlayer(player)">Decline</md-button>
+              <md-button v-on:click="approvePlayer(player)">Approve</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </div>
+    </md-tab>
+
+    <md-tab md-label="Find">
       <div class="controls">
         <v-input type="text" label="Find Players" :icon="filterIcon" :value.sync="filter"></v-input>
       </div>
-      <ul class="zebra-list">
-        <li v-for="player in filteredPlayers">
-          <partial name="player-details"></partial>
-          <div class="controls">
-            <button type="button" class="tiny" v-on:click="invitePlayer(player)">Invite</button>
-          </div>
-        </li>
-      </ul>
-    </tab> -->
-  </tabs>
+      <div class="row small-up-1 medium-up-2">
+        <div class="column" v-for="player in filteredPlayers">
+          <md-card md-with-hover>
+            <md-card-header>
+              <div class="md-title">{{ player.chatHandle }}</div>
+            </md-card-header>
+            <md-card-media>
+              <img src="//placehold.it/80x80" alt="People">
+            </md-card-media>
+            <md-card-actions>
+              <md-button v-on:click="invitePlayer(player)">Invite</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </div>
+    </md-tab>
+  </md-tabs>
 </div>

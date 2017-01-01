@@ -44,7 +44,7 @@ describe('The playersMenu component', function () {
     beforeEach(function () {
       componentInstance = new Vue(component);
 
-      componentInstance.gamePlayersAlert = {
+      componentInstance.$refs.gamePlayersAlert = {
         close: jasmine.createSpy(),
         error: jasmine.createSpy()
       };
@@ -63,7 +63,7 @@ describe('The playersMenu component', function () {
         });
 
         it('should close the game players alert', function () {
-          expect(componentInstance.gamePlayersAlert.close).toHaveBeenCalled();
+          expect(componentInstance.$refs.gamePlayersAlert.close).toHaveBeenCalled();
         });
       });
 
@@ -77,7 +77,7 @@ describe('The playersMenu component', function () {
         });
 
         it('should show an error message', function () {
-          expect(componentInstance.gamePlayersAlert.error).toHaveBeenCalledWith('foo');
+          expect(componentInstance.$refs.gamePlayersAlert.error).toHaveBeenCalledWith('foo');
         });
       });
     });
@@ -93,7 +93,7 @@ describe('The playersMenu component', function () {
         });
 
         it('should close the game players alert', function () {
-          expect(componentInstance.gamePlayersAlert.close).toHaveBeenCalled();
+          expect(componentInstance.$refs.gamePlayersAlert.close).toHaveBeenCalled();
         });
       });
 
@@ -107,7 +107,7 @@ describe('The playersMenu component', function () {
         });
 
         it('should show an error message', function () {
-          expect(componentInstance.gamePlayersAlert.error).toHaveBeenCalledWith('foo');
+          expect(componentInstance.$refs.gamePlayersAlert.error).toHaveBeenCalledWith('foo');
         });
       });
     });
@@ -123,7 +123,7 @@ describe('The playersMenu component', function () {
         });
 
         it('should close the game players alert', function () {
-          expect(componentInstance.gamePlayersAlert.close).toHaveBeenCalled();
+          expect(componentInstance.$refs.gamePlayersAlert.close).toHaveBeenCalled();
         });
       });
 
@@ -137,7 +137,7 @@ describe('The playersMenu component', function () {
         });
 
         it('should show an error message', function () {
-          expect(componentInstance.gamePlayersAlert.error).toHaveBeenCalledWith('foo');
+          expect(componentInstance.$refs.gamePlayersAlert.error).toHaveBeenCalledWith('foo');
         });
       });
     });

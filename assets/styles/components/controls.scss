@@ -1,4 +1,12 @@
 
+.controls {
+  text-align: right;
+
+  .md-dialog & {
+    margin-top: 20px;
+  }
+}
+
 .page-controls {
   position: fixed;
   top: $global-gutter / 2;

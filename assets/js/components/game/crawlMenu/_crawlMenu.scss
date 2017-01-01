@@ -1,17 +1,4 @@
 
-/* Colors
--------------------------------- */
-
-/* Settings
--------------------------------- */
-
-$crawlBodyFontSize: $paragraphFontSize;
-$crawlBodyLineHeight: $paragraphLineHeight;
-$crawlBodyLinesToShow: 2;
-
-/* Styling
--------------------------------- */
-
 .crawl-description {
   img {
     max-height: rem-calc(125);
@@ -19,9 +6,9 @@ $crawlBodyLinesToShow: 2;
     margin: 0 auto;
   }
 
-  .crawl-body {
-    @include multi-line-ellipsis($crawlBodyFontSize, $crawlBodyLineHeight, $crawlBodyLinesToShow);
-  }
+  // .crawl-body {
+  //   @include multi-line-ellipsis($crawlBodyFontSize, $crawlBodyLineHeight, $crawlBodyLinesToShow);
+  // }
 }
 
 .edit-crawl {
