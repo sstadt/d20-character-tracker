@@ -7,6 +7,10 @@ body {
   overflow-x: hidden;
 }
 
+.header-margin {
+  padding-top: 70px;
+}
+
 .gutter-top {
   margin-top: $global-gutter;
 }
@@ -18,6 +22,10 @@ body {
 
 .md-dialog-title small {
   font-size: 65%;
+}
+
+.md-list-item a {
+  display: flex;
 }
 
 .status-indicator {

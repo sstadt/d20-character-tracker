@@ -4,6 +4,12 @@ var http = require('../../lib/util.http.js');
 
 module.exports = {
   template: require('./toolbarTemplate.html'),
+  props: {
+    title: {
+      type: String,
+      defaultsTo: ''
+    }
+  },
   data() {
     return {
       alert: {

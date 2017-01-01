@@ -3,25 +3,23 @@
   <md-dialog-alert :md-content="alert.content" ref="toolbarDialog"></md-dialog-alert>
   <md-dialog-confirm :md-content="confirm.content" ref="toolbarConfirm" @close="confirmLogout"></md-dialog-confirm>
 
-  <md-toolbar>
-    <h2 class="md-title" style="flex: 1">Game Browser</h2>
+  <h2 class="md-title" style="flex: 1">{{ title }}</h2>
 
-    <md-button class="md-icon-button" @click="toggleRightSideNav">
-      <md-icon>menu</md-icon>
-    </md-button>
-  </md-toolbar>
+  <div class="page-controls">
+    <slot name="topbar"></slot>
+    <md-button class="md-icon-button" @click="toggleRightSideNav"><icon name="menu"></i></md-button>
+  </div>
 
   <md-sidenav class="md-right" ref="rightSideNav">
     <md-toolbar>
-      <div class="md-toolbar-container">
-        <h3 class="md-title">Menu</h3>
-      </div>
-
-      <md-list>
-        <md-list-item v-on:click="logout">
-          <span>Log Out</span>
-        </md-list-item>
-      </md-list>
+      <h3 class="md-title">Menu</h3>
     </md-toolbar>
+
+    <slot name="sidebar"></slot>
+
+    <md-list>
+      <md-list-item href="/home"><md-icon>search</md-icon> <span>Browse Games</span></md-list-item>
+      <md-list-item v-on:click="logout"><md-icon>power_settings_new</md-icon> <span>Log Out</span></md-list-item>
+    </md-list>
   </md-sidenav>
 </div>
