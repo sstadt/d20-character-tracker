@@ -83,6 +83,8 @@ $swCrawlExitDelay: $swCrawlPanDelay + $swCrawlPanDuration + 2;
     li {
       list-style: none;
       text-align: right;
+      display: inline-block;
+      margin-left: 10px;
 
       span {
         cursor: pointer;

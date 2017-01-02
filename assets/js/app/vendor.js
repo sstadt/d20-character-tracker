@@ -15,17 +15,6 @@ for (var lib in vendor) {
 }
 
 /**
- * Filters
- */
-
-// Vue.filter('marked', require('marked'));
-//
-// Vue.filter('chatTimestamp', function (value) {
-//   var date = moment(value);
-//   return date.isValid() ? date.format('MMM Do, YYYY - h:mm A') : 'Invalid Date';
-// });
-
-/**
  * Vue Material Components
  */
 

@@ -119,6 +119,12 @@ describe('The game component', function () {
 
     describe('#playCrawl', function () {
       beforeEach(function () {
+        componentInstance.$refs = {
+          crawl: {
+            play: jasmine.createSpy()
+          }
+        };
+
         componentInstance.playCrawl(mockCrawl);
       });
 
@@ -130,7 +136,7 @@ describe('The game component', function () {
       });
 
       it('should start the crawl', function () {
-        expect(componentInstance.activeCrawl.show).toEqual(true);
+        expect(componentInstance.$refs.crawl.play).toHaveBeenCalled();
       });
     });
 

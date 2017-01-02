@@ -3,6 +3,7 @@ require('../components/alert/alert.js');
 require('../components/toolbar/toolbar.js');
 require('../components/icon/icon.js');
 require('../components/authentication/authentication.js');
+require('../components/jukebox/jukebox.js');
 
 require('../components/starWarsCrawl/starWarsCrawl.js');
 require('../components/gameList/gameList.js');

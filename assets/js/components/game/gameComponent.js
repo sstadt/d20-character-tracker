@@ -28,7 +28,14 @@ module.exports = {
         crawl: '',
         image: '',
         show: false
-      }
+      },
+
+      playlist: [
+        {
+          name: 'crawl',
+          src: 'https://s3-us-west-2.amazonaws.com/scottstadtcom/fad/star_wars_crawl.mp3'
+        }
+      ]
 
       // chat data
       // chatMessage: '',
@@ -164,7 +171,18 @@ module.exports = {
       this.activeCrawl.subtitle = crawl.subtitle;
       this.activeCrawl.crawl = crawl.crawl;
       this.activeCrawl.image = crawl.imageUrl;
-      this.activeCrawl.show = true;
+      this.$refs.crawl.play();
+    },
+    playMusic(track) {
+      this.$refs.jukebox.playTrack(track);
+    },
+    stopMusic(track) {
+      this.$refs.jukebox.stopTrack(track);
+    },
+    trackFinished(track) {
+      if (track === 'crawl') {
+        this.$refs.crawl.endCrawl();
+      }
     },
     // sendChatMessage() {
     //   var self = this,

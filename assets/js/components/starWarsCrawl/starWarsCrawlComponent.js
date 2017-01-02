@@ -2,11 +2,11 @@
 module.exports = {
   template: require('./starWarsCrawlTemplate.html'),
   props: {
-    show: {
-      type: Boolean,
-      require: true,
-      twoWay: false
-    },
+    // show: {
+    //   type: Boolean,
+    //   require: true,
+    //   twoWay: false
+    // },
     title: {
       type: String,
       required: true
@@ -29,28 +29,24 @@ module.exports = {
       running: false,
       finished: false,
       timer: {},
-      player: {}
+      show: false
     };
   },
-  watch: {
-    show(val) {
-      var self = this;
-
-      if (val === true) {
-        setTimeout(function () {
-          self.startCrawl();
-        }, 800);
-      }
-    }
-  },
+  // watch: {
+  //   show(val) {
+  //     var self = this;
+  //
+  //     if (val === true) {
+  //       setTimeout(function () {
+  //         self.startCrawl();
+  //       }, 800);
+  //     }
+  //   }
+  // },
   computed: {
     compiledBody: function () {
       return marked(this.body, { sanitize: true });
     }
-  },
-  created() {
-    // assumes the root has a game component as the first child with a crawlMusic el where the audio player lives
-    this.player = this.$root.$refs.crawlMusic;
   },
   events: {
     'reset-crawl'() {
@@ -62,6 +58,15 @@ module.exports = {
     }
   },
   methods: {
+    play() {
+      var self = this;
+
+      self.show = true;
+
+      setTimeout(function () {
+        self.startCrawl();
+      }, 800);
+    },
     startCrawl(musicDelay) {
       var self = this;
 
@@ -70,7 +75,7 @@ module.exports = {
       self.running = true;
       self.finished = false;
       self.timer = setTimeout(function () {
-        self.player.play();
+        self.$emit('play-music', 'crawl');
       }, musicDelay);
     },
     endCrawl() {
@@ -86,8 +91,7 @@ module.exports = {
     },
     close() {
       clearTimeout(this.timer);
-      this.player.pause();
-      this.player.currentTime = 0;
+      this.$emit('stop-music', 'crawl');
       this.running = false;
       this.finished = false;
       this.show = false;

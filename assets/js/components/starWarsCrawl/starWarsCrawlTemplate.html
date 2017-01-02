@@ -1,31 +1,35 @@
 
-<div class="starwars-backdrop starwars-crawl-modal" v-show="show" transition="fade" v-bind:class="{'pan-down': running}">
-  <div class="backdrop" v-if="running">
-    <img class="center" :src="image" />
-  </div>
-
-  <article class="starwars">
-    <ul class="controls" v-show="finished" transition="fade">
-      <li><span v-on:click="replay()">Replay</span></li>
-      <li><span v-on:click="close()">Close</span></li>
-    </ul>
-
-    <div class="animation" v-if="running">
-      <section class="intro">A long time ago, in a galaxy far,<br> far away....</section>
-
-      <section class="titles">
-        <div>
-          <p class="title">{{ title }}</p>
-          <p class="subtitle" v-if="subtitle.length > 0">{{ subtitle }}</p>
-          <div class="crawl-body" v-html="compiledBody"></div>
-        </div>
-      </section>
-
-      <section class="logo">
-        <svg width="693.615px" height="419.375px">
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-star-wars"></use>
-        </svg>
-      </section>
+<transition name="fade">
+  <div class="starwars-backdrop starwars-crawl-modal" v-show="show" v-bind:class="{'pan-down': running}">
+    <div class="backdrop" v-if="running">
+      <img class="center" :src="image" />
     </div>
-  </article>
-</div>
+
+    <article class="starwars">
+      <transition name="fade">
+        <ul class="controls" v-show="finished">
+          <li><span v-on:click="replay()">Replay</span></li>
+          <li><span v-on:click="close()">Close</span></li>
+        </ul>
+      </transition>
+
+      <div class="animation" v-if="running">
+        <section class="intro">A long time ago, in a galaxy far,<br> far away....</section>
+
+        <section class="titles">
+          <div>
+            <p class="title">{{ title }}</p>
+            <p class="subtitle" v-if="subtitle.length > 0">{{ subtitle }}</p>
+            <div class="crawl-body" v-html="compiledBody"></div>
+          </div>
+        </section>
+
+        <section class="logo">
+          <svg width="693.615px" height="419.375px">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-star-wars"></use>
+          </svg>
+        </section>
+      </div>
+    </article>
+  </div>
+</transition>
