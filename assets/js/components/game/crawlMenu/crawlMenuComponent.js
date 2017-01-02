@@ -35,13 +35,6 @@ module.exports = {
       editCrawlForm: new FieldSet(crawlValidation),
       addingCrawl: false,
       saving: false,
-      demoCrawl: {
-        title: '',
-        subtitle: '',
-        crawl: '',
-        image: '',
-        show: false
-      },
       confirmDelete: {
         title: 'Delete Crawl',
         content: 'foo',
@@ -138,11 +131,8 @@ module.exports = {
       return deferred.promise;
     },
     playCrawl(crawl) {
-      this.demoCrawl.title = crawl.title;
-      this.demoCrawl.subtitle = crawl.subtitle;
-      this.demoCrawl.crawl = crawl.crawl;
-      this.demoCrawl.image = crawl.imageUrl;
-      this.show = true;
+      this.closeModal();
+      this.$emit('play-crawl', crawl);
     }
   }
 };

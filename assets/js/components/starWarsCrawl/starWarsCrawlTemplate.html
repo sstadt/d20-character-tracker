@@ -17,7 +17,7 @@
         <div>
           <p class="title">{{ title }}</p>
           <p class="subtitle" v-if="subtitle.length > 0">{{ subtitle }}</p>
-          <div class="crawl-body" v-html="body | marked"></div>
+          <div class="crawl-body" v-html="compiledBody"></div>
         </div>
       </section>
 

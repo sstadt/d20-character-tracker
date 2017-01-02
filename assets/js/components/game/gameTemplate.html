@@ -64,7 +64,7 @@
       <small>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</small>
     </md-dialog-title>
     <md-dialog-content>
-      <component is="crawlMenu" :game="game" v-on:close="closeMenu('crawl')"></component>
+      <component is="crawlMenu" :game="game" v-on:close="closeMenu('crawl')" v-on:play-crawl="playCrawl"></component>
     </md-dialog-content>
   </md-dialog>
 

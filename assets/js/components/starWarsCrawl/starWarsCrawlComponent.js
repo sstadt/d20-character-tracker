@@ -43,6 +43,11 @@ module.exports = {
       }
     }
   },
+  computed: {
+    compiledBody: function () {
+      return marked(this.body, { sanitize: true });
+    }
+  },
   created() {
     // assumes the root has a game component as the first child with a crawlMusic el where the audio player lives
     this.player = this.$root.$refs.crawlMusic;
