@@ -160,7 +160,6 @@ module.exports = {
       }
     },
     playCrawl(crawl) {
-      console.log(`playing crawl ${crawl.title}`);
       this.activeCrawl.title = crawl.title;
       this.activeCrawl.subtitle = crawl.subtitle;
       this.activeCrawl.crawl = crawl.crawl;
