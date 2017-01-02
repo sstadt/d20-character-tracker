@@ -33,8 +33,8 @@ module.exports = {
 		var crawl = req.param('crawl'),
 			gameId = req.param('gameId');
 
-		if (crawl && crawl.id) {
-			Crawl.destroy(crawl.id, function (err) {
+		if (crawl) {
+			Crawl.destroy(crawl, function (err) {
 				if (err) {
 					res.jsonError(err);
 				} else {

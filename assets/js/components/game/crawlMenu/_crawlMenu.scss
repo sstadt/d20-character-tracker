@@ -1,14 +1,29 @@
 
+$crawl-body-font-size: $paragraph-font-size;
+$crawl-body-line-height: $paragraph-line-height;
+$crawl-body-lines-to-show: 3;
+
 .crawl-description {
+  padding: 20px 0;
+  border-top: 1px solid $hr-color;
+
   img {
     max-height: rem-calc(125);
     display: block;
     margin: 0 auto;
   }
 
-  // .crawl-body {
-  //   @include multi-line-ellipsis($crawlBodyFontSize, $crawlBodyLineHeight, $crawlBodyLinesToShow);
-  // }
+  .title {
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    margin-top: 0;
+  }
+
+  .crawl-body {
+    @include multi-line-ellipsis($crawl-body-font-size, $crawl-body-line-height, $crawl-body-lines-to-show);
+  }
 }
 
 .edit-crawl {

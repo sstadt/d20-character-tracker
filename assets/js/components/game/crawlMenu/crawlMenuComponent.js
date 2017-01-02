@@ -2,6 +2,23 @@
 var Crawl = require('./crawl.class.js');
 
 var gameService = require('../../../services/gameService.js');
+var FieldSet = require('../../../classes/FieldSet.js');
+
+var crawlValidation = {
+  id: {},
+  game: {},
+  title: {
+    required: true
+  },
+  subtitle: {},
+  crawl: {
+    required: true
+  },
+  imageUrl: {
+    required: true,
+    pattern: 'url'
+  }
+};
 
 module.exports = {
   template: require('./crawlMenuTemplate.html'),
@@ -14,66 +31,80 @@ module.exports = {
   },
   data: function () {
     return {
-      gameCrawlsAlert: {},
-      activeCrawl: new Crawl(),
+      newCrawlForm: new FieldSet(crawlValidation),
+      editCrawlForm: new FieldSet(crawlValidation),
       addingCrawl: false,
       saving: false,
-      showDemoCrawl: false,
-      demoTitle: '',
-      demoSubtitle: '',
-      demoCrawl: '',
-      demoImage: ''
+      demoCrawl: {
+        title: '',
+        subtitle: '',
+        crawl: '',
+        image: '',
+        show: false
+      },
+      confirmDelete: {
+        title: 'Delete Crawl',
+        content: 'foo',
+        ok: 'Yes',
+        cancel: 'No',
+        crawlId: ''
+      }
     };
   },
-  partials: {
-    'crawl-input-form': require('./partials/crawlMenuForm.html')
-  },
   methods: {
-    closeModal: function () {
+    closeModal() {
       this.$emit('close');
     },
-    addCrawl: function () {
+    addCrawl() {
       var self = this,
-        newCrawl = _.extend(self.activeCrawl),
-        deferred = q.defer();
+        deferred = q.defer(),
+        newCrawl;
 
-      newCrawl.game = self.game.id;
-      self.saving = true;
+      if (self.newCrawlForm.isValid()) {
+        self.newCrawlForm.fields.game.value = self.game.id;
+        newCrawl = self.newCrawlForm.export();
+        self.saving = true;
 
-      gameService.addCrawl(newCrawl)
-        .then(function success() {
-          self.gameCrawlsAlert.close();
-          self.activeCrawl = new Crawl();
-          self.addingCrawl = false;
-        }, function error(reason) {
-          self.gameCrawlsAlert.error(reason);
-        })
-        .done(function () {
-          self.saving = false;
-          deferred.resolve();
-        });
+        gameService.addCrawl(newCrawl)
+          .then(function success() {
+            self.$refs.gameCrawlsAlert.close();
+            self.newCrawlForm.reset();
+            self.addingCrawl = false;
+          }, function error(reason) {
+            self.$refs.gameCrawlsAlert.error(reason);
+          })
+          .done(function () {
+            self.saving = false;
+            deferred.resolve();
+          });
+      } else {
+        deferred.resolve();
+      }
 
       return deferred.promise;
     },
-    editCrawl: function (crawl) {
+    editCrawl(crawl) {
+      this.editCrawlForm.fields.id.value = crawl.id;
+      this.editCrawlForm.fields.game.value = crawl.game;
+      this.editCrawlForm.fields.title.value = crawl.title;
+      this.editCrawlForm.fields.subtitle.value = crawl.subtitle;
+      this.editCrawlForm.fields.crawl.value = crawl.crawl;
+      this.editCrawlForm.fields.imageUrl.value = crawl.imageUrl;
       this.addingCrawl = false;
-      this.activeCrawl = _.extend(crawl);
     },
-    saveCrawl: function () {
+    saveCrawl() {
       var self = this,
-        crawlIndex = _.findIndex(self.crawls, function (crawl) {
-          return self.activeCrawl.id === crawl.id;
-        }),
-        deferred = q.defer();
+        deferred = q.defer(),
+        updatedCrawl = self.editCrawlForm.export();
 
       self.saving = true;
 
-      gameService.updateCrawl(self.activeCrawl)
+      gameService.updateCrawl(updatedCrawl)
         .then(function success() {
-          self.gameCrawlsAlert.close();
-          self.activeCrawl = new Crawl();
+          self.$refs.gameCrawlsAlert.close();
+          self.editCrawlForm.reset();
         }, function error(reason) {
-          self.gameCrawlsAlert.error(reason);
+          self.$refs.gameCrawlsAlert.error(reason);
         })
         .done(function () {
           self.saving = false;
@@ -82,36 +113,36 @@ module.exports = {
 
       return deferred.promise;
     },
-    cancelEdit: function () {
-      this.activeCrawl = new Crawl();
+    cancelEdit() {
+      this.editCrawlForm.reset();
     },
-    deleteCrawl: function (index) {
+    deleteCrawl(crawl) {
+      this.confirmDelete.content = `Are you sure you want to delete ${crawl.title}?`;
+      this.confirmDelete.crawlId = crawl.id;
+      this.$refs.confirmDeleteDialog.open();
+    },
+    confirmDeleteCrawl() {
       var self = this,
         deferred = q.defer();
 
-      self.$refs.gameCrawlsConfirm.ask({
-        question: 'Are you sure you want to delete ' + self.game.crawls[index].title + '?',
-        yes: function () {
-          gameService.deleteCrawl(self.game.crawls[index])
-            .then(function success() {
-              self.gameCrawlsAlert.close();
-            }, function error(reason) {
-              self.gameCrawlsAlert.error(reason);
-            })
-            .done(function () {
-              deferred.resolve();
-            });
-        }
-      });
+      gameService.deleteCrawl(self.game.id, self.confirmDelete.crawlId)
+        .then(function success() {
+          self.$refs.gameCrawlsAlert.close();
+        }, function error(reason) {
+          self.$refs.gameCrawlsAlert.error(reason);
+        })
+        .done(function () {
+          deferred.resolve();
+        });
 
       return deferred.promise;
     },
-    playCrawl: function (crawl) {
-      this.demoTitle = crawl.title;
-      this.demoSubtitle = crawl.subtitle;
-      this.demoCrawl = crawl.crawl;
-      this.demoImage = crawl.imageUrl;
-      this.showDemoCrawl = true;
+    playCrawl(crawl) {
+      this.demoCrawl.title = crawl.title;
+      this.demoCrawl.subtitle = crawl.subtitle;
+      this.demoCrawl.crawl = crawl.crawl;
+      this.demoCrawl.image = crawl.imageUrl;
+      this.show = true;
     }
   }
 };

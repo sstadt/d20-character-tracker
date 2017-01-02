@@ -193,6 +193,28 @@ FieldSet.prototype.clearErrors = function () {
   }
 };
 
+FieldSet.prototype.export = function () { // TODO: coverage
+  var vals = {};
+
+  for (var field in this.fields) {
+    if (this.fields.hasOwnProperty(field)) {
+      vals[field] = this.fields[field].value;
+    }
+  }
+
+  return vals;
+};
+
+FieldSet.prototype.reset = function () { // TODO: coverage
+  for (var field in this.fields) {
+    if (this.fields.hasOwnProperty(field)) {
+      this.fields[field].value = '';
+      this.fields[field].errors = [];
+      this.fields[field].hasErrors = false;
+    }
+  }
+};
+
 FieldSet.prototype.addError = function (rule, error) {
   this.fields[rule].errors.push(error);
   this.fields[rule].hasErrors = true;

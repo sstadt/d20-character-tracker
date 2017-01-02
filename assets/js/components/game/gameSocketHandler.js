@@ -17,7 +17,7 @@ module.exports = {
       var playerIndex = getIndexById(game.requestingPlayers, data.player.id);
 
       if (playerIndex > -1) {
-        game.requestingPlayers.$remove(game.requestingPlayers[playerIndex]);
+        game.requestingPlayers.splice(playerIndex, 1);
       }
 
       game.players.push(data.player);
@@ -26,14 +26,14 @@ module.exports = {
       var playerIndex = getIndexById(game.requestingPlayers, data.player.id);
 
       if (playerIndex > -1) {
-        game.requestingPlayers.$remove(game.requestingPlayers[playerIndex]);
+        game.requestingPlayers.splice(playerIndex, 1);
       }
     },
     playerRemoved(game, data, user) {
       var playerIndex = getIndexById(game.players, data.player.id);
 
       if (playerIndex > -1) {
-        game.players.$remove(game.players[playerIndex]);
+        game.players.splice(playerIndex, 1);
       }
 
       if (data.player.id === user.id) {
@@ -49,7 +49,7 @@ module.exports = {
       var index = game.online.indexOf(data.player);
 
       if (index > -1) {
-        game.online.$remove(game.online[index]);
+        game.online.splice(index, 1);
       }
     }
   },
@@ -66,17 +66,15 @@ module.exports = {
         var crawlIndex = getIndexById(game.crawls, data.crawl.id);
 
         if (crawlIndex > -1) {
-          game.crawls.$set(crawlIndex, _.extend(data.crawl));
+          game.crawls.splice(crawlIndex, 1, _.extend(data.crawl));
         }
       }
     },
     gameCrawlDestroyed(game, data) {
-      if (_.isObject(data.crawl)) {
-        var crawlIndex = getIndexById(game.crawls, data.crawl.id);
+      var crawlIndex = getIndexById(game.crawls, data.crawl);
 
-        if (crawlIndex > -1) {
-          game.crawls.$remove(game.crawls[crawlIndex]);
-        }
+      if (crawlIndex > -1) {
+        game.crawls.splice(crawlIndex, 1);
       }
     }
   },

@@ -131,12 +131,12 @@ module.exports = {
 
     return deferred.promise;
   },
-  deleteCrawl: function (crawl) {
+  deleteCrawl: function (game, crawlId) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.removeCrawl, {
-      gameId: crawl.game,
-      crawl: crawl
+      gameId: game,
+      crawl: crawlId
     }, function (response) {
       if (response && response.err) {
         console.error(response.err);

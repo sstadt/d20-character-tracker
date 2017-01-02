@@ -1,55 +1,105 @@
 
 <div class="crawl-menu">
-  <alert :alert.sync="gameCrawlsAlert" :can-close="true"></alert>
+  <md-dialog-confirm
+    :md-title="confirmDelete.title"
+    :md-content="confirmDelete.content"
+    :md-ok-text="confirmDelete.ok"
+    :md-cancel-text="confirmDelete.cancel"
+    @close="confirmDeleteCrawl"
+    ref="confirmDeleteDialog">
+  </md-dialog-confirm>
 
-  <div class="controls">
-    <button class="tiny" v-on:click="addingCrawl = true" :disabled="addingCrawl">New Crawl</button>
+  <star-wars-crawl
+    :show.sync="demoCrawl.show"
+    :title="demoCrawl.title"
+    :subtitle="demoCrawl.subtitle"
+    :body="demoCrawl.crawl"
+    :image="demoCrawl.image">
+  </star-wars-crawl>
+
+  <alert ref="gameCrawlsAlert" :can-close="true"></alert>
+
+  <div class="text-right">
+    <md-button v-on:click="addingCrawl = true" :disabled="addingCrawl">New Crawl</md-button>
   </div>
 
-  <div class="edit-crawl" v-show="addingCrawl" transition="slide-up">
-    <v-form :submit-callback="addCrawl" :ajax="true">
-      <partial name="crawl-input-form"></partial>
-      <div class="controls">
-        <button type="button" class="tiny" v-on:click="addingCrawl = false" :disabled="saving">Cancel</button>
-        <button type="submit" class="tiny" :disabled="saving">Save</button>
+  <transition name="slide-fade">
+    <form v-show="addingCrawl" @submit.stop.prevent="addCrawl">
+      <md-input-container :class="{'md-input-invalid': newCrawlForm.fields.title.hasErrors}">
+        <label>Title</label>
+        <md-input type="text" v-model="newCrawlForm.fields.title.value"></md-input>
+        <span class="md-error" v-show="newCrawlForm.fields.title.hasErrors">{{ newCrawlForm.fields.title.errors[0] }}</span>
+      </md-input-container>
+      <md-input-container :class="{'md-input-invalid': newCrawlForm.fields.subtitle.hasErrors}">
+        <label>Subtitle</label>
+        <md-input type="text" v-model="newCrawlForm.fields.subtitle.value"></md-input>
+        <span class="md-error" v-show="newCrawlForm.fields.subtitle.hasErrors">{{ newCrawlForm.fields.subtitle.errors[0] }}</span>
+      </md-input-container>
+      <md-input-container :class="{'md-input-invalid': newCrawlForm.fields.crawl.hasErrors}">
+        <label>Crawl</label>
+        <md-textarea type="text" v-model="newCrawlForm.fields.crawl.value"></md-textarea>
+        <span class="md-error" v-show="newCrawlForm.fields.crawl.hasErrors">{{ newCrawlForm.fields.crawl.errors[0] }}</span>
+      </md-input-container>
+      <md-input-container :class="{'md-input-invalid': newCrawlForm.fields.imageUrl.hasErrors}">
+        <label>Image URL</label>
+        <md-input type="text" v-model="newCrawlForm.fields.imageUrl.value"></md-input>
+        <span class="md-error" v-show="newCrawlForm.fields.imageUrl.hasErrors">{{ newCrawlForm.fields.imageUrl.errors[0] }}</span>
+      </md-input-container>
+      <div class="text-right">
+        <md-button v-on:click="addingCrawl = false" :disabled="saving">Cancel</md-button>
+        <md-button type="submit" :disabled="saving">Save</md-button>
       </div>
-    </v-form>
-  </div>
+    </form>
+  </transition>
 
   <div class="crawl-list">
-    <ul class="zebra-list">
-      <li class="crawl-description" v-for="crawl in game.crawls" transition="slide-up">
-        <div v-show="activeCrawl.id !== crawl.id" transition="slide-up">
+    <transition-group name="slide-fade">
+      <div class="crawl-description" v-for="crawl in game.crawls" :key="crawl.id">
+        <div v-show="editCrawlForm.fields.id.value !== crawl.id" key="description">
           <div class="row">
             <div class="small-12 medium-8 large-9 columns">
-              <h4 class="title">{{ crawl.title }}</h4>
-              <h6 class="subtitle">{{ crawl.subtitle }}</h6>
+              <h3 class="title">{{ crawl.title }}</h3>
+              <h5 class="subtitle">{{ crawl.subtitle }}</h5>
               <p class="crawl-body">{{ crawl.crawl }}</p>
             </div>
             <div class="small-12 medium-4 large-3 columns">
               <img :src="crawl.imageUrl" />
             </div>
           </div>
-          <div class="controls">
-            <button class="mini" v-on:click="playCrawl(crawl)"><i class="fa fa-play"></i></button>
-            <button class="mini" v-on:click="editCrawl(crawl)"><i class="fa fa-folder-open"></i></button>
-            <button class="mini" v-on:click="deleteCrawl($index)"><i class="fa fa-trash"></i></button>
+          <div class="text-right">
+            <md-button class="md-icon-button" v-on:click="playCrawl(crawl)"><md-icon>play_arrow</md-icon></md-button>
+            <md-button class="md-icon-button" v-on:click="editCrawl(crawl)"><md-icon>edit</md-icon></md-button>
+            <md-button class="md-icon-button" v-on:click="deleteCrawl(crawl)"><md-icon>delete</md-icon></md-button>
           </div>
         </div>
-        <div class="edit-crawl" v-show="activeCrawl.id === crawl.id" transition="slide-up">
-          <v-form :submit-callback="saveCrawl" :ajax="true">
-            <partial name="crawl-input-form"></partial>
-            <div class="controls">
-              <button type="button" class="tiny" v-on:click="cancelEdit()" :disabled="saving">Cancel</button>
-              <button type="submit" class="tiny" :disabled="saving">Save</button>
-            </div>
-          </v-form>
-        </div>
-      </li>
-    </ul>
+        <form v-show="editCrawlForm.fields.id.value === crawl.id" @submit.stop.prevent="saveCrawl" key="form">
+          <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.title.hasErrors}">
+            <label>Title</label>
+            <md-input type="text" v-model="editCrawlForm.fields.title.value"></md-input>
+            <span class="md-error" v-show="editCrawlForm.fields.title.hasErrors">{{ editCrawlForm.fields.title.errors[0] }}</span>
+          </md-input-container>
+          <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.subtitle.hasErrors}">
+            <label>Subtitle</label>
+            <md-input type="text" v-model="editCrawlForm.fields.subtitle.value"></md-input>
+            <span class="md-error" v-show="editCrawlForm.fields.subtitle.hasErrors">{{ editCrawlForm.fields.subtitle.errors[0] }}</span>
+          </md-input-container>
+          <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.crawl.hasErrors}">
+            <label>Crawl</label>
+            <md-textarea type="text" v-model="editCrawlForm.fields.crawl.value"></md-textarea>
+            <span class="md-error" v-show="editCrawlForm.fields.crawl.hasErrors">{{ editCrawlForm.fields.crawl.errors[0] }}</span>
+          </md-input-container>
+          <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.imageUrl.hasErrors}">
+            <label>Image URL</label>
+            <md-input type="text" v-model="editCrawlForm.fields.imageUrl.value"></md-input>
+            <span class="md-error" v-show="editCrawlForm.fields.imageUrl.hasErrors">{{ editCrawlForm.fields.imageUrl.errors[0] }}</span>
+          </md-input-container>
+          <div class="text-right">
+            <md-button v-on:click="cancelEdit()" :disabled="saving">Cancel</md-button>
+            <md-button type="submit" :disabled="saving">Save</md-button>
+          </div>
+        </form>
+      </div>
+    </transition-group>
   </div>
-
-  <confirm v-ref:game-crawls-confirm></confirm>
-  <star-wars-crawl :show.sync="showDemoCrawl" :title="demoTitle" :subtitle="demoSubtitle" :body="demoCrawl" :image="demoImage"></star-wars-crawl>
 
 </div>
