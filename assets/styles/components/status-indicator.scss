@@ -1,0 +1,13 @@
+
+.status-indicator {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: $player-status-offline;
+  border: 1px solid $white;
+
+  &.online {
+    background-color: $player-status-online;
+  }
+}

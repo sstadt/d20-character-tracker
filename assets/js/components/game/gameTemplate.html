@@ -10,40 +10,13 @@
     </span>
   </toolbar>
 
+  <party :game="game"></party>
+
   <div class="panel main-window">
     <div class="row">
       <div class="column">
         <h1 class="section-header">{{ game.title }}</h1>
         <alert ref="gameAlert" :can-close="true"></alert>
-        <div class="crawl-pane" v-if="game.crawls">
-          <h3>Crawls</h3>
-          <md-input-container>
-            <label for="selectedCrawl">Crawls</label>
-            <md-select name=selectedCrawl v-model="selectedCrawlId">
-              <option></option>
-              <option v-for="option in crawlOptions" :value="option.value">{{ option.label }}</option>
-            </md-select>
-          </md-input-container>
-          <div class="selected-crawl" v-if="selectedCrawl">
-            <h5 class="subtitle">
-              {{ selectedCrawl.subtitle }}
-              <i class="fa fa-play right" v-on:click="playCrawl(selectedCrawl)"></i>
-            </h5>
-            <p class="synopsis">{{ selectedCrawl.crawl }}</p>
-          </div>
-          <div class="selected-crawl" v-else>
-            <p>No active crawl</p>
-          </div>
-        </div>
-        <div class="players-pane" v-if="game.gameMaster && game.players">
-          <h3>Players</h3>
-          <div class="player gm">
-            <p><div :class="{ 'status-indicator': true, 'online': gameMasterIsOnline }"></div> {{ game.gameMaster.chatHandle }}</p>
-          </div>
-          <div class="player" v-for="player in game.players">
-            <p><div :class="{ 'status-indicator': true, 'online': player | playerIsOnline }"></div> {{ player.chatHandle }}<p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -60,8 +33,8 @@
 
   <md-dialog ref="crawlDialog" v-if="userIsGameMaster">
     <md-dialog-title>
-      {{ game.title }} Crawls<br/>
-      <small>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</small>
+      <p>{{ game.title }} Crawls</p>
+      <p class="subtitle"><small>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</small></p>
     </md-dialog-title>
     <md-dialog-content>
       <component is="crawlMenu" :game="game" v-on:close="closeMenu('crawl')" v-on:play-crawl="playCrawl"></component>
@@ -70,8 +43,8 @@
 
   <md-dialog ref="playersDialog" v-if="userIsGameMaster">
     <md-dialog-title>
-      {{ game.title }} Players<br/>
-      <small>Add, approve, or remove players from the game.</small>
+      <p>{{ game.title }} Players</p>
+      <p class="subtitle"><small>Add, approve, or remove players from the game.</small></p>
     </md-dialog-title>
     <md-dialog-content>
       <component is="playersMenu" :game="game" v-on:close="closeMenu('players')"></component>
@@ -80,8 +53,8 @@
 
   <md-dialog ref="settingsDialog" v-if="userIsGameMaster">
     <md-dialog-title>
-      {{ game.title }} Settings<br/>
-      <small>Game specific settings and configuration.</small>
+      <p>{{ game.title }} Settings</p>
+      <p class="subtitle"><small>Game specific settings and configuration.</small></p>
     </md-dialog-title>
     <md-dialog-content>
       <component is="settingsMenu" :game="game" v-on:close="closeMenu('settings')"></component>

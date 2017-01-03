@@ -1,4 +1,6 @@
 
+var gameService = require('../../../services/gameService.js');
+
 module.exports = {
   template: require('./gameCardTemplate.html'),
   props: {

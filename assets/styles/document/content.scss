@@ -20,22 +20,16 @@ body {
   padding-right: 0;
 }
 
-.md-dialog-title small {
-  font-size: 65%;
+.md-dialog-title {
+  .subtitle {
+    line-height: 1;
+  }
+
+  small {
+    font-size: 65%;
+  }
 }
 
 .md-list-item a {
   display: flex;
-}
-
-.status-indicator {
-  display: inline-block;
-  height: 8px;
-  width: 8px;
-  border-radius: 50%;
-  background-color: $player-status-offline;
-
-  &.online {
-    background-color: $player-status-online;
-  }
 }

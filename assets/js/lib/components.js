@@ -9,3 +9,4 @@ require('../components/starWarsCrawl/starWarsCrawl.js');
 require('../components/gameList/gameList.js');
 require('../components/gameBrowser/gameBrowser.js');
 require('../components/game/game.js');
+require('../components/party/party.js');

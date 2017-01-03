@@ -2,42 +2,45 @@
 var gameService = require('../../services/gameService.js');
 var userService = require('../../services/userService.js');
 
-function getGameIndex(list, id) {
-  return _.findIndex(list, function (game) {
-    return game.id === id;
+function getIndex(list, id) {
+  return _.findIndex(list, function (item) {
+    return item.id === id;
   });
 }
 
 var userSocketHandler = {
   playerJoinApproved: _.debounce(function (approvedGame) {
-    var filteredGamesIndex = getGameIndex(this.filteredGames, approvedGame.id);
+    var filteredGamesIndex = getIndex(this.filteredGames, approvedGame.id),
+      userIndex = getIndex(this.filteredGames[filteredGamesIndex].requestingPlayers, this.user.id);
 
     this.myGames.push(approvedGame);
 
     if (filteredGamesIndex > -1) {
-      this.filteredGames[filteredGamesIndex].requestingPlayers.$remove(this.user);
+      this.filteredGames[filteredGamesIndex].requestingPlayers.splice(userIndex, 1);
       this.filteredGames[filteredGamesIndex].players.push(this.user);
     }
   }, 200),
   playerJoinDeclined: function (declinedGame) {
-    var filteredGamesIndex = getGameIndex(this.filteredGames, declinedGame.id);
+    var filteredGamesIndex = getIndex(this.filteredGames, declinedGame.id),
+      userIndex = getIndex(this.filteredGames[filteredGamesIndex].requestingPlayers, this.user.id);
 
     if (filteredGamesIndex > -1) {
-      this.filteredGames[filteredGamesIndex].requestingPlayers.$remove(this.user);
+      this.filteredGames[filteredGamesIndex].requestingPlayers.splice(userIndex, 1);
     }
   },
   removedFromGame: function (removedGame) {
-    var filteredGamesIndex = getGameIndex(this.filteredGames, removedGame.id),
-      myGamesIndex = getGameIndex(this.myGames, removedGame.id);
+    var filteredGamesIndex = getIndex(this.filteredGames, removedGame.id),
+      myGamesIndex = getIndex(this.myGames, removedGame.id),
+      userIndex = getIndex(this.filteredGames[filteredGamesIndex].players, this.user.id);
 
     this.myGames.$remove(removedGame);
 
     if (filteredGamesIndex > -1) {
-      this.filteredGames[filteredGamesIndex].players.$remove(this.user);
+      this.filteredGames[filteredGamesIndex].players.splice(userIndex, 1);
     }
 
     if (myGamesIndex > -1) {
-      this.myGames.$remove(this.myGames[myGamesIndex]);
+      this.myGames.splice(myGamesIndex, 1);
     }
   }
 };
