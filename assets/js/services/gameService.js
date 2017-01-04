@@ -215,11 +215,11 @@ module.exports = {
 
     return deferred.promise;
   },
-  sendMessage: function (game, message) {
+  sendMessage: function (gameId, message) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.sendMessage, {
-      gameId: game.id,
+      gameId: gameId,
       message: message
     }, function (response) {
       if (response && response.err) {

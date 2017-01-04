@@ -44,16 +44,16 @@ $crimson     : #760303;
 $scarlet     : #f20606;
 
 // blue
-$navyBlue    : #023857;
-$blurayBlue : #047abe;
+$navy-blue    : #023857;
+$bluray-blue : #047abe;
 
 // yellow
-$burntSienna : #795403;
+$burnt-sienna : #795403;
 $bumblebee   : #e9a105;
 
 // green
-$hunterGreen : #024f18;
-$ectoGreen   : #04be39;
+$hunter-green : #024f18;
+$ecto-green   : #04be39;
 
 // // blue
 // $blueSlate   : #708096;
@@ -70,7 +70,7 @@ $ectoGreen   : #04be39;
 //
 // /* star wars interface colors */
 $maya-blue     : #83a9da;
-// $springGreen  : #50d991;
+$spring-green  : #50d991;
 $maize-yellow  : #e1df70;
 // $lustRed      : #fb2815;
 // $purple       : #A364EF;
@@ -98,7 +98,7 @@ $hr-color: $silver;
 // ---------------------------
 
 $player-status-offline: $smoke;
-$player-status-online: $ectoGreen;
+$player-status-online: $ecto-green;
 
 // Page Controls
 // ---------------------------
@@ -121,12 +121,23 @@ $alert-message-padding: 2px;
 
 $alert-text-color: $white;
 
-$alert-bg-color: rgba($blurayBlue, 0.15);
-$alert-bg-color-success: rgba($ectoGreen, 0.15);
+$alert-bg-color: rgba($bluray-blue, 0.15);
+$alert-bg-color-success: rgba($ecto-green, 0.15);
 $alert-bg-color-warning: rgba($bumblebee, 0.15);
 $alert-bg-color-alert: rgba($scarlet, 0.15);
 
-$alert-text-color: $navyBlue;
-$alert-text-color-success: $hunterGreen;
-$alert-text-color-warning: $burntSienna;
+$alert-text-color: $navy-blue;
+$alert-text-color-success: $hunter-green;
+$alert-text-color-warning: $burnt-sienna;
 $alert-text-color-alert: $crimson;
+
+// Chat
+// ---------------------------
+
+$chat-author-color: lighten($hunter-green, 5%);
+$chat-timestamp-color: $jumbo;
+
+// Scrollbar
+// ---------------------------
+
+$scroll-bar-color: $base;

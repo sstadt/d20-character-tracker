@@ -16,3 +16,18 @@
 .h-center {
   justify-content: center;
 }
+
+.flex-column {
+  display: flex;
+  flex: 1;
+  flex-flow: column;
+
+  .fill-height {
+    display: flex;
+    flex: 2;
+  }
+
+  .no-shrink {
+    flex: 0;
+  }
+}

@@ -11,6 +11,17 @@
     top: 70px;
     right: $global-gutter;
   }
+
+  .chat-container {
+    position: relative;
+
+    .md-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+    }
+  }
 }
 
 .game-menu {

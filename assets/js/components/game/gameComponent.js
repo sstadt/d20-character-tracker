@@ -1,4 +1,6 @@
 
+// TODO: Build out notifications component and pump alert messages there instead of an alert
+
 var userService = require('../../services/userService.js');
 var gameService = require('../../services/gameService.js');
 var socketHandler = require('./gameSocketHandler.js');
@@ -36,20 +38,6 @@ module.exports = {
           src: 'https://s3-us-west-2.amazonaws.com/scottstadtcom/fad/star_wars_crawl.mp3'
         }
       ]
-
-      // chat data
-      // chatMessage: '',
-      // isScrolledToBottom: true,
-
-      // dice pool
-      // rollDescription: '',
-      // ability: 0,
-      // proficiency: 0,
-      // difficulty: 0,
-      // challenge: 0,
-      // boost: 0,
-      // setback: 0,
-      // force: 0
     };
   },
   components: {
@@ -183,67 +171,6 @@ module.exports = {
       if (track === 'crawl') {
         this.$refs.crawl.endCrawl();
       }
-    },
-    // sendChatMessage() {
-    //   var self = this,
-    //     deferred = q.defer();
-    //
-    //   if (self.chatMessage.length > 0) {
-    //     gameService.sendMessage(self.game, self.chatMessage)
-    //       .then(function success() {
-    //         self.chatMessage = '';
-    //         self.gameAlert.close();
-    //       }, function error(reason) {
-    //         self.gameAlert.error(reason);
-    //       })
-    //       .done(function () {
-    //         deferred.resolve();
-    //       });
-    //   } else {
-    //     deferred.resolve();
-    //   }
-    //
-    //   return deferred.promise;
-    // },
-    // sendChatRoll() {
-    //   var self = this,
-    //     deferred = q.defer(),
-    //     dicePool = {
-    //       ability: self.ability,
-    //       proficiency: self.proficiency,
-    //       difficulty: self.difficulty,
-    //       challenge: self.challenge,
-    //       boost: self.boost,
-    //       setback: self.setback,
-    //       force: self.force
-    //     };
-    //
-    //   gameService.sendRoll(self.game, self.rollDescription, dicePool)
-    //     .then(function success() {
-    //       self.rollDescription = '';
-    //       self.gameAlert.close();
-    //     }, function error(reason) {
-    //       self.gameAlert.error(reason);
-    //     })
-    //     .done(function () {
-    //       deferred.resolve();
-    //     });
-    //
-    //   return deferred.promise;
-    // },
-    // scrollChatToBottom() {
-    //   var self = this;
-    //
-    //   Vue.nextTick(function () {
-    //     self.$els.chatLog.scrollTop = self.$els.chatLog.scrollHeight - self.$els.chatLog.offsetHeight;
-    //   });
-    // },
-    // userScrolling(event) {
-    //   this.isScrolledToBottom = this.$els.chatLog.offsetHeight + this.$els.chatLog.scrollTop === this.$els.chatLog.scrollHeight;
-    // },
-    crawlMusicEnded() {
-      // TODO set open to false; watch open in crawl component and reset state
-      // this.$broadcast(constants.events.game.crawlMusicEnded);
     }
   }
 };

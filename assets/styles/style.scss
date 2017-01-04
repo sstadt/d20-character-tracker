@@ -36,6 +36,7 @@
 @import "components/panel";
 @import "components/controls";
 @import "components/status-indicator";
+@import "components/scrollbar";
 
 // js components
 
@@ -61,3 +62,5 @@
 
 @import "../js/components/party/_party";
 @import "../js/components/party/player/_player";
+
+@import "../js/components/chat/_chat";

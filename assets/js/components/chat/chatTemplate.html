@@ -1,35 +1,34 @@
 
-<div class="chat-pane">
-  <div class="chat-log" v-el:chat-log v-on:scroll="userScrolling">
-    <ul class="zebra-list" v-if="gameLog.log">
-      <li v-for="item in gameLog.log">
+<div class="chat-pane flex-column">
+  <div class="chat-log fill-height">
+    <ul class="messages" ref="chatLog" v-on:scroll="userScrolling">
+      <li v-for="item in log">
         <div v-if="item.type === 'chat'" class="chat-message">
           <p class="message"><span class="message-author">{{ item.chatHandle }}:</span> {{ item.message }}</p>
           <p class="message-timestamp">{{ item.timestamp | chatTimestamp }}</p>
         </div>
         <div v-if="item.type === 'crawl'" class="crawl-message">
-          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has published a new crawl: <span class="chat-accent">{{ item.message.title }}</span></p>
+          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has sent a new crawl: <span class="chat-accent">{{ item.message.title }}</span></p>
           <p class="message-timestamp">{{ item.timestamp | chatTimestamp }}</p>
           <button type="button" v-on:click="playCrawl(item.message)"><i class="fa fa-play"></i></button>
         </div>
         <div v-if="item.type === 'roll'" class="roll-message">
-          <partial name="roll-message"></partial>
+          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> rolled some dice... TODO
+          <!-- <partial name="roll-message"></partial> -->
         </div>
       </li>
     </ul>
-    <ul v-else>
-      <loader></loader>
-    <ul>
   </div>
   <div class="chat-entry">
-    <tabs>
-      <!-- chat -->
+    <form @submit.stop.prevent="sendChatMessage">
+      <md-input-container>
+        <label>Chat</label>
+        <md-input v-model="chatMessage"></md-input>
+      </md-input-container>
+    </form>
+    <!-- <tabs>
       <tab heading="Chat" :click-callback="scrollChatToBottom">
-        <v-form :submit-callback="sendChatMessage" :ajax="true">
-          <v-input type="text" label="Message" placeholder="message" :value.sync="chatMessage" :simple="true"></v-input>
-        </v-form>
       </tab>
-      <!-- dice pool -->
       <tab heading="Dice Pool" :click-callback="scrollChatToBottom">
         <dice-pool
             :ability.sync="ability"
@@ -44,6 +43,6 @@
           <v-input type="text" label="Roll Description" placeholder="description" :value.sync="rollDescription" :simple="true"></v-input>
         </v-form>
       </tab>
-    </tabs>
+    </tabs> -->
   </div>
 </div>

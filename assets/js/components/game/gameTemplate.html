@@ -12,12 +12,13 @@
 
   <party :game="game"></party>
 
-  <div class="panel main-window">
-    <div class="row">
-      <div class="column">
-        <h1 class="section-header">{{ game.title }}</h1>
-        <alert ref="gameAlert" :can-close="true"></alert>
-      </div>
+  <div class="panel main-window flex-column">
+    <div class="chat-container fill-height">
+      <chat v-if="gameLog.log" :log="gameLog.log" :game="game.id"></chat>
+      <md-spinner v-else :md-size="150" :md-stroke="1" md-indeterminate></md-spinner>
+    </div>
+    <div class="dice-pool-container no-shrink">
+      <div style="background-color: pink; height: 70px;">
     </div>
   </div>
 
