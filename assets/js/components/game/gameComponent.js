@@ -23,7 +23,6 @@ module.exports = {
       gameLog: [],
 
       // crawl data
-      selectedCrawlId: '',
       activeCrawl: {
         title: '',
         subtitle: '',
@@ -48,31 +47,6 @@ module.exports = {
   computed: {
     userIsGameMaster() {
       return this.game.gameMaster && this.game.gameMaster.id === this.user.id;
-    },
-    crawlOptions() {
-      var self = this,
-        crawlOptions = [];
-
-      if (self.game && self.game.crawls) {
-        _.forEach(self.game.crawls, function (crawl) {
-          if (crawl.published) {
-            crawlOptions.push({
-              value: crawl.id,
-              label: crawl.title
-            });
-          }
-        });
-      }
-
-      return crawlOptions;
-    },
-    selectedCrawl() {
-      var self = this,
-        index = _.findIndex(self.game.crawls, function (crawl) {
-          return crawl.id === self.selectedCrawlId;
-        });
-
-      return index > -1 ? self.game.crawls[index] : null;
     },
     gameMasterIsOnline() {
       return this.game.online.indexOf(this.game.gameMaster.id) > -1;
@@ -134,26 +108,6 @@ module.exports = {
     },
     notifyError(message) {
       this.$refs.notifications.alert(message);
-    },
-    initCrawlOptions() {
-      var self = this,
-        crawlTimestamp = 0,
-        crawlId,
-        nextTimestamp;
-
-      if (self.game.crawls.length > 0) {
-        _.forEach(self.game.crawls, function (crawl) {
-          nextTimestamp = moment(crawl.createdAt).valueOf();
-          if (crawl.published && (!crawlId || nextTimestamp > crawlTimestamp)) {
-            crawlId = crawl.id;
-            crawlTimestamp = nextTimestamp;
-          }
-        });
-      }
-
-      if (crawlId) {
-        self.selectedCrawlId = crawlId;
-      }
     },
     playCrawl(crawl) {
       this.activeCrawl.title = crawl.title;
