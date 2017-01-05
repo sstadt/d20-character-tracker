@@ -232,13 +232,27 @@ module.exports = {
 
     return deferred.promise;
   },
-  sendRoll: function (game, description, dicePool) {
+  sendCrawl: function (gameId, crawlId) {
+    var deferred = q.defer();
+
+    io.socket.post(config.endpoints.game.sendCrawl, {
+      gameId, crawlId
+    }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('Could not send crawl at this time');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
+  },
+  sendRoll: function (gameId, dicePool, description) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.sendRoll, {
-      gameId: game.id,
-      dicePool: dicePool,
-      description: description
+      gameId, dicePool, description
     }, function (response) {
       if (response && response.err) {
         console.error(response.err);

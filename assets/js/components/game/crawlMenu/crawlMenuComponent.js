@@ -109,6 +109,27 @@ module.exports = {
     cancelEdit() {
       this.editCrawlForm.reset();
     },
+    sendCrawl(crawl) {
+      var self = this,
+        deferred = q.defer();
+
+      console.log('sending crawl...');
+      console.log(crawl);
+
+      gameService.sendCrawl(self.game.id, crawl.id)
+        .then(function success() {
+          console.log('send successful');
+          self.$emit('close');
+        }, function error(reason) {
+          console.error(reason);
+          self.$refs.gameCrawlsAlert.error(reason);
+        })
+        .done(function () {
+          deferred.resolve();
+        });
+
+      return deferred.promise;
+    },
     deleteCrawl(crawl) {
       this.confirmDelete.content = `Are you sure you want to delete ${crawl.title}?`;
       this.confirmDelete.crawlId = crawl.id;

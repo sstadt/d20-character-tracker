@@ -14,7 +14,7 @@
 
     <md-card-actions>
       <md-button v-if="joinIsPending" disabled>Join Request Pending</md-button>
-      <md-button v-if="canJoinGame" v-on:click="joinGame(game)">Join</md-button>
+      <md-button v-if="canJoinGame" @click="joinGame(game)">Join</md-button>
       <md-button v-if="canLaunchGame" class="md-accent" :href="launchGameLink">Launch</md-button>
     </md-card-actions>
   </md-card>

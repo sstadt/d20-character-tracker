@@ -33,6 +33,11 @@ module.exports = {
   created() {
     this.scrollChatToBottom();
   },
+  watch: {
+    log() {
+      this.scrollChatToBottom();
+    }
+  },
   methods: {
     sendChatMessage() {
       var self = this,
@@ -42,7 +47,7 @@ module.exports = {
         gameService.sendMessage(self.game, self.chatMessage)
           .then(function success() {
             self.chatMessage = '';
-            self.scrollChatToBottom();
+            // self.scrollChatToBottom();
             // self.gameAlert.close();
           }, function error(reason) {
             console.log(reason);
@@ -83,6 +88,9 @@ module.exports = {
         });
 
       return deferred.promise;
+    },
+    playCrawl(crawl) {
+      this.$emit('play-crawl', crawl);
     },
     scrollChatToBottom() {
       var self = this;

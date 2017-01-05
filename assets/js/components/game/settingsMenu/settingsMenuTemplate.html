@@ -10,8 +10,8 @@
     </div>
 
     <div class="controls">
-      <md-button v-on:click="closeModal()" :disabled="saving">Cancel</md-button>
-      <md-button v-on:click="updateConfig()" :disabled="saving">Save</md-button>
+      <md-button @click="closeModal()" :disabled="saving">Cancel</md-button>
+      <md-button @click="updateConfig()" :disabled="saving">Save</md-button>
     </div>
   </div>
 </div>

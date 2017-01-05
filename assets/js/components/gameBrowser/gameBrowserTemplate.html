@@ -6,9 +6,9 @@
       <md-tabs md-right>
         <md-tab md-label="My Games">
           <div class="text-right">
-            <md-button v-on:click="newGame()">New Game</md-button>
+            <md-button @click="newGame()">New Game</md-button>
           </div>
-          <game-list :games="myGames" v-on:game-list-error="gameListError"></game-list>
+          <game-list :games="myGames" @game-list-error="gameListError"></game-list>
         </md-tab>
         <md-tab md-label="Find A Game">
           <md-input-container>
@@ -16,7 +16,7 @@
             <md-input type="text" v-model="filter"></md-input>
             <md-icon>search</md-icon>
           </md-input-container>
-          <game-list :games="filteredGames" v-on:game-list-error="gameListError"></game-list>
+          <game-list :games="filteredGames" @game-list-error="gameListError"></game-list>
         </md-tab>
       </md-tabs>
     </div>

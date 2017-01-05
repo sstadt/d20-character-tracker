@@ -1,6 +1,6 @@
 
 <div class="game">
-  <jukebox :playlist="playlist" ref="jukebox" v-on:track-finished="trackFinished"></jukebox>
+  <jukebox :playlist="playlist" ref="jukebox" @track-finished="trackFinished"></jukebox>
 
   <toolbar>
     <span slot="topbar">
@@ -14,12 +14,13 @@
 
   <div class="panel main-window flex-column">
     <div class="chat-container fill-height">
-      <chat v-if="gameLog.log" :log="gameLog.log" :game="game.id"></chat>
+      <chat v-if="gameLog.log" :log="gameLog.log" :game="game.id" @play-crawl="playCrawl"></chat>
       <md-spinner v-else :md-size="150" :md-stroke="1" md-indeterminate></md-spinner>
     </div>
     <div class="dice-pool-container no-shrink">
       <div style="background-color: pink; height: 70px;">
     </div>
+    <div class="dice-controls" style="background-color: pink; height: 30px;"></div>
   </div>
 
   <star-wars-crawl
@@ -27,8 +28,8 @@
     :subtitle="activeCrawl.subtitle"
     :body="activeCrawl.crawl"
     :image="activeCrawl.image"
-    v-on:play-music="playMusic"
-    v-on:stop-music="stopMusic"
+    @play-music="playMusic"
+    @stop-music="stopMusic"
     ref="crawl">
   </star-wars-crawl>
 
@@ -38,7 +39,7 @@
       <p class="subtitle"><small>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</small></p>
     </md-dialog-title>
     <md-dialog-content>
-      <component is="crawlMenu" :game="game" v-on:close="closeMenu('crawl')" v-on:play-crawl="playCrawl"></component>
+      <component is="crawlMenu" :game="game" @close="closeMenu('crawl')" @play-crawl="playCrawl"></component>
     </md-dialog-content>
   </md-dialog>
 
@@ -48,7 +49,7 @@
       <p class="subtitle"><small>Add, approve, or remove players from the game.</small></p>
     </md-dialog-title>
     <md-dialog-content>
-      <component is="playersMenu" :game="game" v-on:close="closeMenu('players')"></component>
+      <component is="playersMenu" :game="game" @close="closeMenu('players')"></component>
     </md-dialog-content>
   </md-dialog>
 
@@ -58,7 +59,7 @@
       <p class="subtitle"><small>Game specific settings and configuration.</small></p>
     </md-dialog-title>
     <md-dialog-content>
-      <component is="settingsMenu" :game="game" v-on:close="closeMenu('settings')"></component>
+      <component is="settingsMenu" :game="game" @close="closeMenu('settings')"></component>
     </md-dialog-content>
   </md-dialog>
 </div>

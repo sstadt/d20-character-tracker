@@ -121,7 +121,6 @@ module.exports = {
         return gameService.getLog(self.gameId);
       }).then(function success(log) {
         self.gameLog = log;
-        // Vue.nextTick(self.scrollChatToBottom);
         self.$refs.gameAlert.close();
       }, function error(reason) {
         self.$refs.gameAlert.error(reason);

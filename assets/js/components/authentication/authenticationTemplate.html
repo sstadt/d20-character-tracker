@@ -2,7 +2,7 @@
 <div class="authentication-component panel">
   <transition name="fade" mode="out-in">
     <component :is="currentView"
-      v-on:set-view="setView"
+      @set-view="setView"
       :view="view"
       :token="resetToken"
       keep-alive>

@@ -25,10 +25,6 @@ module.exports = {
       required: true,
       url: true
     },
-    published: {
-      type: 'boolean',
-      defaultsTo: false
-    },
     game: {
       model: 'game'
     }

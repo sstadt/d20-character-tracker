@@ -83,6 +83,7 @@ module.exports.policies = {
     '*'          : false, // Game controller is responsible for creation/deletion
     'get'        : ['socketSessionAuth', 'gamePlayer'],
     'addMessage' : ['socketSessionAuth', 'gamePlayer'],
+    'addCrawl'   : ['socketSessionAuth', 'gameMaster'],
     'addRoll'    : ['socketSessionAuth', 'gamePlayer']
   },
 

@@ -119,6 +119,10 @@ module.exports.routes = {
     controller: 'gameLog',
     action: 'addMessage'
   },
+  '/game/sendCrawl': {
+    controller: 'gameLog',
+    action: 'addCrawl'
+  },
   '/game/sendRoll': {
     controller: 'gameLog',
     action: 'addRoll'

@@ -9,8 +9,11 @@
 
     li {
       list-style: none;
-      padding: 0;
-      margin-bottom: 8px;
+      padding: 0 10px 0 0;
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
     }
 
     p {
@@ -25,6 +28,25 @@
     .message-timestamp {
       color: $chat-timestamp-color;
       font-size: 75%;
+      line-height: 1;
+    }
+
+    .crawl-message {
+      position: relative;
+      padding: 10px;
+      border-radius: $global-radius;
+      background-color: $chat-crawl-message-bg-color;
+
+      p {
+        padding-left: 40px;
+      }
+
+      .md-icon-button {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
     }
   }
 }

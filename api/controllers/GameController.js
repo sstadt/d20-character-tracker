@@ -145,10 +145,6 @@ module.exports = {
 					data: { crawl: crawl }
 				});
 
-				if (crawl.published === true) {
-					GameLogService.addCrawlMessage(gameId, req.session.User.chatHandle, crawl);
-				}
-
 				res.json(crawl);
 			}
 		});

@@ -25,7 +25,7 @@ module.exports = {
 			.then(function success() {
 				res.send(200);
 			}, function error(err) {
-				res.json(err);
+				res.jsonError(err);
 			});
 	},
 
@@ -36,17 +36,36 @@ module.exports = {
 			dicePool = req.param('dicePool');
 
 		if (!_.isString(description)) {
-			res.json(ErrorService.generate('Invalid roll description'));
+			res.jsonError('Invalid roll description');
 		} else if (!DicePoolService.isValid(dicePool)) {
-			res.json(ErrorService.generate('Invalid dice pool'));
+			res.jsonError('Invalid dice pool');
 		} else {
 			GameLogService.addRollMessage(gameId, chatHandle, description, dicePool)
 				.then(function success() {
 					res.send(200);
 				}, function error(err) {
-					res.json(err);
+					res.jsonError(err);
 				});
 		}
 	},
+
+	addCrawl: function (req, res) {
+		var gameId = req.param('gameId'),
+			chatHandle = req.session.User.chatHandle,
+			crawlId = req.param('crawlId');
+
+		Crawl.findOne(crawlId, function (err, crawl) {
+			if (err || crawl === undefined) {
+				res.jsonError('Invalid Crawl');
+			} else {
+				GameLogService.addCrawlMessage(gameId, chatHandle, crawl)
+					.then(function success() {
+						res.send(200);
+					}, function error(err) {
+						res.jsonError(err);
+					});
+			}
+		});
+	}
 
 };

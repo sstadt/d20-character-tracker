@@ -19,7 +19,7 @@ function addLogMessage(gameId, type, chatHandle, message) {
   GameLog.findOne({ game: gameId }, function (err, log) {
     if (err) {
       deferred.reject(ErrorService.parse(err));
-    } else if (!log) {
+    } else if (log === undefined) {
       deferred.reject(ErrorService.generate('Game log not found'));
     } else {
       log.log.push(newMessage);
@@ -76,6 +76,7 @@ module.exports = {
         sendLogMessage(gameId, message);
         deferred.resolve();
       }, function error(err) {
+        sails.log(err);
         deferred.reject(err);
       });
 
@@ -90,6 +91,7 @@ module.exports = {
         sendLogMessage(gameId, message);
         deferred.resolve();
       }, function error(err) {
+        sails.log(err);
         deferred.reject(err);
       });
 

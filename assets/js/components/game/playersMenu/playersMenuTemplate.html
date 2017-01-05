@@ -14,7 +14,7 @@
               <img src="//placehold.it/80x80" alt="People">
             </md-card-media>
             <md-card-actions>
-              <md-button v-on:click="removePlayer(player)">Remove</md-button>
+              <md-button @click="removePlayer(player)">Remove</md-button>
             </md-card-actions>
           </md-card>
         </div>
@@ -32,7 +32,7 @@
               <img src="//placehold.it/80x80" alt="People">
             </md-card-media>
             <md-card-actions>
-              <md-button v-on:click="uninvitePlayer(player)">Cancel</md-button>
+              <md-button @click="uninvitePlayer(player)">Cancel</md-button>
             </md-card-actions>
           </md-card>
         </div>
@@ -50,8 +50,8 @@
               <img src="//placehold.it/80x80" alt="People">
             </md-card-media>
             <md-card-actions>
-              <md-button v-on:click="declinePlayer(player)">Decline</md-button>
-              <md-button v-on:click="approvePlayer(player)">Approve</md-button>
+              <md-button @click="declinePlayer(player)">Decline</md-button>
+              <md-button @click="approvePlayer(player)">Approve</md-button>
             </md-card-actions>
           </md-card>
         </div>
@@ -72,7 +72,7 @@
               <img src="//placehold.it/80x80" alt="People">
             </md-card-media>
             <md-card-actions>
-              <md-button v-on:click="invitePlayer(player)">Invite</md-button>
+              <md-button @click="invitePlayer(player)">Invite</md-button>
             </md-card-actions>
           </md-card>
         </div>

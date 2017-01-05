@@ -1,16 +1,19 @@
 
 <div class="chat-pane flex-column">
   <div class="chat-log fill-height">
-    <ul class="messages" ref="chatLog" v-on:scroll="userScrolling">
+    <ul class="messages" ref="chatLog" @scroll="userScrolling">
       <li v-for="item in log">
         <div v-if="item.type === 'chat'" class="chat-message">
+          <!-- <p class="message-timestamp">{{ item.timestamp | chatTimestamp }}</p> -->
           <p class="message"><span class="message-author">{{ item.chatHandle }}:</span> {{ item.message }}</p>
-          <p class="message-timestamp">{{ item.timestamp | chatTimestamp }}</p>
         </div>
         <div v-if="item.type === 'crawl'" class="crawl-message">
-          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has sent a new crawl: <span class="chat-accent">{{ item.message.title }}</span></p>
-          <p class="message-timestamp">{{ item.timestamp | chatTimestamp }}</p>
-          <button type="button" v-on:click="playCrawl(item.message)"><i class="fa fa-play"></i></button>
+          <!-- <p class="message-timestamp">{{ item.timestamp | chatTimestamp }}</p> -->
+          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has sent a new crawl<br/><span class="chat-accent">{{ item.message.title }}: {{ item.message.subtitle }}</span></p>
+          <md-button class="md-icon-button" @click="playCrawl(item.message)">
+            <md-icon>play_circle_filled</md-icon>
+            <md-tooltip md-delay="400" md-direction="bottom">Play Crawl</md-tooltip>
+          </md-button>
         </div>
         <div v-if="item.type === 'roll'" class="roll-message">
           <p class="message"><span class="message-author">{{ item.chatHandle }}</span> rolled some dice... TODO
