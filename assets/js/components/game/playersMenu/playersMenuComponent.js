@@ -1,5 +1,4 @@
 
-// TODO: close button
 // TODO: player invite
 // TODO: player uninvite
 
@@ -37,12 +36,8 @@ module.exports = {
         deferred = q.defer();
 
       gameService.approvePlayer(self.game, player)
-        .then(function success() {
-          self.$refs.gamePlayersAlert.close();
-        }, function error(reason) {
-          self.$refs.gamePlayersAlert.error(reason);
-        })
-        .done(function () {
+        .fail(function (reason) {
+          self.$emit('error', reason);
           deferred.resolve();
         });
 
@@ -53,12 +48,8 @@ module.exports = {
         deferred = q.defer();
 
       gameService.declinePlayer(self.game, player)
-        .then(function () {
-          self.$refs.gamePlayersAlert.close();
-        }, function error(reason) {
-          self.$refs.gamePlayersAlert.error(reason);
-        })
-        .done(function () {
+        .fail(function (reason) {
+          self.$emit('error', reason);
           deferred.resolve();
         });
 
@@ -69,12 +60,8 @@ module.exports = {
         deferred = q.defer();
 
       gameService.removePlayer(self.game, player)
-        .then(function success() {
-          self.$refs.gamePlayersAlert.close();
-        }, function error(reason) {
-          self.$refs.gamePlayersAlert.error(reason);
-        })
-        .done(function () {
+        .fail(function (reason) {
+          self.$emit('error', reason);
           deferred.resolve();
         });
 

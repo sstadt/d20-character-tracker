@@ -60,11 +60,10 @@ module.exports = {
 
         gameService.addCrawl(newCrawl)
           .then(function success() {
-            self.$refs.gameCrawlsAlert.close();
             self.newCrawlForm.reset();
             self.addingCrawl = false;
           }, function error(reason) {
-            self.$refs.gameCrawlsAlert.error(reason);
+            self.$emit('error', reason);
           })
           .done(function () {
             self.saving = false;
@@ -94,10 +93,9 @@ module.exports = {
 
       gameService.updateCrawl(updatedCrawl)
         .then(function success() {
-          self.$refs.gameCrawlsAlert.close();
           self.editCrawlForm.reset();
         }, function error(reason) {
-          self.$refs.gameCrawlsAlert.error(reason);
+          self.$emit('error', reason);
         })
         .done(function () {
           self.saving = false;
@@ -113,16 +111,11 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      console.log('sending crawl...');
-      console.log(crawl);
-
       gameService.sendCrawl(self.game.id, crawl.id)
         .then(function success() {
-          console.log('send successful');
           self.$emit('close');
         }, function error(reason) {
-          console.error(reason);
-          self.$refs.gameCrawlsAlert.error(reason);
+          self.$emit('error', reason);
         })
         .done(function () {
           deferred.resolve();
@@ -140,12 +133,8 @@ module.exports = {
         deferred = q.defer();
 
       gameService.deleteCrawl(self.game.id, self.confirmDelete.crawlId)
-        .then(function success() {
-          self.$refs.gameCrawlsAlert.close();
-        }, function error(reason) {
-          self.$refs.gameCrawlsAlert.error(reason);
-        })
-        .done(function () {
+        .fail(function (reason) {
+          self.$emit('error', reason);
           deferred.resolve();
         });
 

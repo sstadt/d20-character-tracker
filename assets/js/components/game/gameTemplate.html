@@ -10,7 +10,9 @@
     </span>
   </toolbar>
 
-  <party :game="game"></party>
+  <notification ref="notifications"></notification>
+
+  <party :game="game" @error="notifyError"></party>
 
   <div class="panel main-window flex-column">
     <div class="chat-container fill-height">
@@ -39,7 +41,13 @@
       <p class="subtitle"><small>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</small></p>
     </md-dialog-title>
     <md-dialog-content>
-      <component is="crawlMenu" :game="game" @close="closeMenu('crawl')" @play-crawl="playCrawl"></component>
+      <component
+        is="crawlMenu"
+        :game="game"
+        @close="closeMenu('crawl')"
+        @play-crawl="playCrawl"
+        @error="notifyError">
+      </component>
     </md-dialog-content>
   </md-dialog>
 
@@ -49,7 +57,12 @@
       <p class="subtitle"><small>Add, approve, or remove players from the game.</small></p>
     </md-dialog-title>
     <md-dialog-content>
-      <component is="playersMenu" :game="game" @close="closeMenu('players')"></component>
+      <component
+        is="playersMenu"
+        :game="game"
+        @close="closeMenu('players')"
+        @error="notifyError">
+      </component>
     </md-dialog-content>
   </md-dialog>
 
@@ -59,7 +72,12 @@
       <p class="subtitle"><small>Game specific settings and configuration.</small></p>
     </md-dialog-title>
     <md-dialog-content>
-      <component is="settingsMenu" :game="game" @close="closeMenu('settings')"></component>
+      <component
+        is="settingsMenu"
+        :game="game"
+        @close="closeMenu('settings')"
+        @error="notifyError">
+      </component>
     </md-dialog-content>
   </md-dialog>
 </div>

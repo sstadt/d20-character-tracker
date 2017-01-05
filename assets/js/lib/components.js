@@ -1,5 +1,6 @@
 
 require('../components/alert/alert.js');
+require('../components/notification/notification.js');
 require('../components/toolbar/toolbar.js');
 require('../components/icon/icon.js');
 require('../components/authentication/authentication.js');

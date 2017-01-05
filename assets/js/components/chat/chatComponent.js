@@ -47,11 +47,8 @@ module.exports = {
         gameService.sendMessage(self.game, self.chatMessage)
           .then(function success() {
             self.chatMessage = '';
-            // self.scrollChatToBottom();
-            // self.gameAlert.close();
           }, function error(reason) {
-            console.log(reason);
-            // self.gameAlert.error(reason);
+            self.$emit('error', reason);
           })
           .done(function () {
             deferred.resolve();
@@ -78,10 +75,8 @@ module.exports = {
       gameService.sendRoll(self.game, self.rollDescription, dicePool)
         .then(function success() {
           self.rollDescription = '';
-          // self.gameAlert.close();
         }, function error(reason) {
-          console.log(reason);
-          // self.gameAlert.error(reason);
+          self.$emit('error', reason);
         })
         .done(function () {
           deferred.resolve();

@@ -1,0 +1,12 @@
+
+<div class="notifications">
+  <transition-group name="slide-fade">
+    <div class="alert-box" v-for="message in messages" :key="message.index" :class="{
+        success: message.type === 'success',
+        warning: message.type === 'warning',
+        alert: message.type === 'alert'
+      }">
+      {{ message.message }}
+    </div>
+  </transition-group>
+</div>

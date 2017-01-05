@@ -118,18 +118,31 @@ $panel-padding: $global-gutter / 2;
 $alert-box-radius: $global-radius;
 $alert-box-padding: 20px;
 $alert-message-padding: 2px;
+$alert-transparency: 0.15;
 
 $alert-text-color: $white;
 
-$alert-bg-color: rgba($bluray-blue, 0.15);
-$alert-bg-color-success: rgba($ecto-green, 0.15);
-$alert-bg-color-warning: rgba($bumblebee, 0.15);
-$alert-bg-color-alert: rgba($scarlet, 0.15);
+$alert-bg-color: rgba($bluray-blue, $alert-transparency);
+$alert-bg-color-success: rgba($ecto-green, $alert-transparency);
+$alert-bg-color-warning: rgba($bumblebee, $alert-transparency);
+$alert-bg-color-alert: rgba($scarlet, $alert-transparency);
 
 $alert-text-color: $navy-blue;
 $alert-text-color-success: $hunter-green;
 $alert-text-color-warning: $burnt-sienna;
 $alert-text-color-alert: $crimson;
+
+// Notifications
+// ---------------------------
+
+$notifications-transparency: 0.6;
+
+$notifications-text-color: $white;
+
+$notifications-bg-color: rgba($bluray-blue, $notifications-transparency);
+$notifications-bg-color-success: rgba($ecto-green, $notifications-transparency);
+$notifications-bg-color-warning: rgba($bumblebee, $notifications-transparency);
+$notifications-bg-color-alert: rgba($scarlet, $notifications-transparency);
 
 // Chat
 // ---------------------------

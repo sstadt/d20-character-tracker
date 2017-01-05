@@ -121,9 +121,8 @@ module.exports = {
         return gameService.getLog(self.gameId);
       }).then(function success(log) {
         self.gameLog = log;
-        self.$refs.gameAlert.close();
       }, function error(reason) {
-        self.$refs.gameAlert.error(reason);
+        self.$refs.notifications.error(reason);
       });
   },
   methods: {
@@ -132,6 +131,9 @@ module.exports = {
     },
     openMenu(type) {
       this.$refs[`${type}Dialog`].open();
+    },
+    notifyError(message) {
+      this.$refs.notifications.alert(message);
     },
     initCrawlOptions() {
       var self = this,

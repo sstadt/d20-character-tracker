@@ -44,29 +44,11 @@ describe('The playersMenu component', function () {
     beforeEach(function () {
       componentInstance = new Vue(component);
 
-      componentInstance.$refs.gamePlayersAlert = {
-        close: jasmine.createSpy(),
-        error: jasmine.createSpy()
-      };
-
+      spyOn(componentInstance, '$emit');
       componentInstance.game = mockGame;
     });
 
     describe('#approvePlayer', function () {
-      describe('on success', function () {
-        beforeEach(function (done) {
-          spyOn(gameService, 'approvePlayer').and.callFake(function () {
-            return q.resolve();
-          });
-
-          componentInstance.approvePlayer().done(function () { done(); });
-        });
-
-        it('should close the game players alert', function () {
-          expect(componentInstance.$refs.gamePlayersAlert.close).toHaveBeenCalled();
-        });
-      });
-
       describe('on error', function () {
         beforeEach(function (done) {
           spyOn(gameService, 'approvePlayer').and.callFake(function () {
@@ -76,27 +58,13 @@ describe('The playersMenu component', function () {
           componentInstance.approvePlayer().done(function () { done(); });
         });
 
-        it('should show an error message', function () {
-          expect(componentInstance.$refs.gamePlayersAlert.error).toHaveBeenCalledWith('foo');
+        it('should emit an error message', function () {
+          expect(componentInstance.$emit).toHaveBeenCalledWith('error', 'foo');
         });
       });
     });
 
     describe('#declinePlayer', function () {
-      describe('on success', function () {
-        beforeEach(function (done) {
-          spyOn(gameService, 'declinePlayer').and.callFake(function () {
-            return q.resolve();
-          });
-
-          componentInstance.declinePlayer().done(function () { done(); });
-        });
-
-        it('should close the game players alert', function () {
-          expect(componentInstance.$refs.gamePlayersAlert.close).toHaveBeenCalled();
-        });
-      });
-
       describe('on error', function () {
         beforeEach(function (done) {
           spyOn(gameService, 'declinePlayer').and.callFake(function () {
@@ -107,26 +75,12 @@ describe('The playersMenu component', function () {
         });
 
         it('should show an error message', function () {
-          expect(componentInstance.$refs.gamePlayersAlert.error).toHaveBeenCalledWith('foo');
+          expect(componentInstance.$emit).toHaveBeenCalledWith('error', 'foo');
         });
       });
     });
 
     describe('#removePlayer', function () {
-      describe('on success', function () {
-        beforeEach(function (done) {
-          spyOn(gameService, 'removePlayer').and.callFake(function () {
-            return q.resolve();
-          });
-
-          componentInstance.removePlayer().done(function () { done(); });
-        });
-
-        it('should close the game players alert', function () {
-          expect(componentInstance.$refs.gamePlayersAlert.close).toHaveBeenCalled();
-        });
-      });
-
       describe('on error', function () {
         beforeEach(function (done) {
           spyOn(gameService, 'removePlayer').and.callFake(function () {
@@ -137,7 +91,7 @@ describe('The playersMenu component', function () {
         });
 
         it('should show an error message', function () {
-          expect(componentInstance.$refs.gamePlayersAlert.error).toHaveBeenCalledWith('foo');
+          expect(componentInstance.$emit).toHaveBeenCalledWith('error', 'foo');
         });
       });
     });

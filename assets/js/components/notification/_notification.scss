@@ -1,0 +1,27 @@
+
+.notifications {
+  position: fixed;
+  width: 220px;
+  bottom: $global-gutter;
+  left: $global-gutter;
+  z-index: 1;
+
+  .alert-box {
+    margin-top: 10px;
+    margin-bottom: 0;
+    background-color: $notifications-bg-color;
+    color: $notifications-text-color;
+
+    &.success {
+      background-color: $notifications-bg-color-success;
+    }
+
+    &.warning {
+      background-color: $notifications-bg-color-warning;
+    }
+
+    &.alert {
+      background-color: $notifications-bg-color-alert;
+    }
+  }
+}
