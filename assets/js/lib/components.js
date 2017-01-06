@@ -12,3 +12,5 @@ require('../components/gameBrowser/gameBrowser.js');
 require('../components/game/game.js');
 require('../components/party/party.js');
 require('../components/chat/chat.js');
+require('../components/dicePool/dicePool.js');
+require('../components/diceControls/diceControls.js');

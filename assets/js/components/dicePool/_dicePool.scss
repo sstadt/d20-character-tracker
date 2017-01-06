@@ -1,0 +1,23 @@
+
+.dice-pool {
+  height: 50px;
+  border-radius: $global-radius;
+  background-color: $dice-pool-bg-color;
+  position: relative;
+
+  .current-pool {
+    height: 100%;
+    width: 100%;
+    padding-right: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .md-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

@@ -88,7 +88,6 @@ module.exports = {
     gameService.get(self.gameId)
       .then(function success(game) {
         self.game = game;
-        self.initCrawlOptions();
       }, function error(reason) {
         return q.reject(reason);
       }).then(function () {

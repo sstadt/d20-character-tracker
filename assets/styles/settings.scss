@@ -105,6 +105,11 @@ $player-status-online: $ecto-green;
 
 $page-controls-color: $maya-blue;
 
+// Scrollbar
+// ---------------------------
+
+$scroll-bar-color: $base;
+
 // Panel
 // ---------------------------
 
@@ -152,7 +157,7 @@ $chat-timestamp-color: $jumbo;
 
 $chat-crawl-message-bg-color: $alert-bg-color;
 
-// Scrollbar
+// Dice Pool
 // ---------------------------
 
-$scroll-bar-color: $base;
+$dice-pool-bg-color: $alert-bg-color-success;

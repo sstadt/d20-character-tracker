@@ -1,0 +1,13 @@
+
+<div class="dice-pool">
+  <div class="current-pool">
+    <icon name="die-ability" v-for="n in ability"></icon>
+    <icon name="die-proficiency" v-for="n in proficiency"></icon>
+    <icon name="die-difficulty" v-for="n in difficulty"></icon>
+    <icon name="die-challenge" v-for="n in challenge"></icon>
+    <icon name="die-boost" v-for="n in boost"></icon>
+    <icon name="die-setback" v-for="n in setback"></icon>
+    <icon name="die-force" v-for="n in force"></icon>
+  </div>
+  <md-button class="md-icon-button" @click="roll()"><md-icon>send</md-icon></md-button>
+</div>
