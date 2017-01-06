@@ -52,7 +52,23 @@
  * `FieldSet.fields.email.hasErrors`, and to display one or all
  * errors via `FieldsSet.fields.email.errors`.
  *
- * ... match must be accompanied by a mismatchError attribute
+ * Possible validation rules:
+ *
+ * required: Boolean value indicating if the value must not be empty.
+ *           Defaults to false.
+ *
+ * pattern: A regular expression or pre-existing validation pattern.
+ *          See validation object below for list of pre-defined
+ *          patterns.
+ *
+ * matches: A string value that matches the attribute name of another
+ *          rule.
+ *
+ *          i.e. password: { ... }, confirm: { matches: 'password' }
+ *
+ * minlength: An integer; field must be at least this long.
+ *
+ * maxlength: An integer; field cannot be longer than this.
  *
  */
 
