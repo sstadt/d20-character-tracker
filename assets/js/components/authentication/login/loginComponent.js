@@ -39,7 +39,7 @@ module.exports = {
         self.loading = true;
 
         authService.verify(token)
-          .then(function success(response, verified) {
+          .then(function success() {
             self.$refs.alert.success('Success! You may now log in');
           }, function error(reason) {
             self.$refs.alert.alert(reason);
@@ -65,6 +65,7 @@ module.exports = {
         self.loading = true;
         authService.resendValidation(email)
           .then(function success() {
+            self.showResend = false;
             self.$refs.alert.success('Success! Check your email to verify your account.');
           }, function error(reason) {
             self.showResend = true;
@@ -91,7 +92,7 @@ module.exports = {
         authService.login(self.loginForm.fields.email.value, self.loginForm.fields.password.value)
           .then(function success(data) {
             self.loginForm.fields.password.value = '';
-            window.location.href = data.redirect;
+            http.setLocation(data.redirect);
           }, function error(response) {
             self.showResend = response.showResend;
 

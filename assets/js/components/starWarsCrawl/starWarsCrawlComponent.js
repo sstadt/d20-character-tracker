@@ -2,11 +2,6 @@
 module.exports = {
   template: require('./starWarsCrawlTemplate.html'),
   props: {
-    // show: {
-    //   type: Boolean,
-    //   require: true,
-    //   twoWay: false
-    // },
     title: {
       type: String,
       required: true
@@ -32,17 +27,6 @@ module.exports = {
       show: false
     };
   },
-  // watch: {
-  //   show(val) {
-  //     var self = this;
-  //
-  //     if (val === true) {
-  //       setTimeout(function () {
-  //         self.startCrawl();
-  //       }, 800);
-  //     }
-  //   }
-  // },
   computed: {
     compiledBody: function () {
       return marked(this.body, { sanitize: true });
