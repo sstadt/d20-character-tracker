@@ -4,14 +4,14 @@
     @dragover.prevent
     @dragenter.prevent="dragEnter"
     @dragleave.prevent="dragLeave"
-    @drop="addDie">
+    @drop="addDieByDrag">
     <span class="die-block" @click="decrement('ability')">
       <icon name="die-ability" v-for="n in dice.ability"></icon>
     </span>
     <span class="die-block" @click="decrement('proficiency')">
       <icon name="die-proficiency" v-for="n in dice.proficiency"></icon>
     </span>
-    <span class="die-block" @click="decrement('difficult')">
+    <span class="die-block" @click="decrement('difficulty')">
       <icon name="die-difficulty" v-for="n in dice.difficulty"></icon>
     </span>
     <span class="die-block" @click="decrement('challenge')">

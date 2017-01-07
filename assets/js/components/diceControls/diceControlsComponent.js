@@ -17,5 +17,10 @@ module.exports = {
   },
   components: {
     dieControl: require('./dieControl/dieControlComponent.js')
+  },
+  methods: {
+    dieClick(type) {
+      this.$emit('die-click', type);
+    }
   }
 };

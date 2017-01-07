@@ -20,8 +20,8 @@
       <md-spinner v-else :md-size="150" :md-stroke="1" md-indeterminate></md-spinner>
     </div>
     <div class="dice-pool-container no-shrink">
-      <dice-pool></dice-pool>
-      <dice-controls></dice-controls>
+      <dice-pool ref="dicePool"></dice-pool>
+      <dice-controls @die-click="addDieToPool"></dice-controls>
     </div>
   </div>
 

@@ -125,6 +125,9 @@ module.exports = {
       if (track === 'crawl') {
         this.$refs.crawl.endCrawl();
       }
+    },
+    addDieToPool(type) {
+      this.$refs.dicePool.addDie(type);
     }
   }
 };

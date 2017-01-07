@@ -19,13 +19,16 @@ module.exports = {
     roll() {
       console.log('roll dice');
     },
-    addDie(event) {
-      var die = event.dataTransfer.getData("text");
+    addDie(type) {
+      if (this.dice[type] !== undefined) {
+        this.dice[type]++;
+      }
+    },
+    addDieByDrag(event) {
+      var type = event.dataTransfer.getData("text");
 
       this.droppable = false;
-      if (this.dice[die] !== undefined) {
-        this.dice[die]++;
-      }
+      this.addDie(type);
     },
     dragEnter() {
       this.droppable = true;
