@@ -1,13 +1,13 @@
 
-var diceControlsComponent = require('./diceControlsComponent.js');
+var dieControlComponent = require('./dieControlComponent.js');
 
 Vue.config.silent = true;
 
-describe('The diceControls component', function () {
+describe('The dieControl component', function () {
   var component;
 
   beforeEach(function () {
-    component = _.clone(diceControlsComponent);
+    component = _.clone(dieControlComponent);
   });
 
   it('to be an object', function () {

@@ -1,0 +1,12 @@
+
+.die-control {
+  display: inline-block;
+  border-radius: 50%;
+  cursor: -webkit-grab;
+  cursor: grab;
+
+  .icon-image {
+    height: 30px;
+    width: 30px;
+  }
+}

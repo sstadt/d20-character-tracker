@@ -3,12 +3,19 @@ module.exports = {
   template: require('./diceControlsTemplate.html'),
   data() {
     return {
-      greeting: 'diceControls component',
+      dice: [
+        'ability',
+        'proficiency',
+        'difficulty',
+        'challenge',
+        'boost',
+        'setback',
+        'force',
+        'percent'
+      ]
     };
   },
-  methods: {
-    sayHi() {
-      console.log('hi!');
-    }
+  components: {
+    dieControl: require('./dieControl/dieControlComponent.js')
   }
 };

@@ -5,6 +5,10 @@
   background-color: $dice-pool-bg-color;
   position: relative;
 
+  &.droppable {
+    background-color: lighten($dice-pool-bg-color, 10%);
+  }
+
   .current-pool {
     height: 100%;
     width: 100%;
@@ -12,12 +16,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .die-block {
+      cursor: pointer;
+    }
   }
 
-  .md-button {
+  .roll-button {
     position: absolute;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+    padding: 0;
+
+    svg {
+      height: 35px;
+      width: 35px;
+    }
   }
 }
