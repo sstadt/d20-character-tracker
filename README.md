@@ -2,8 +2,10 @@
 
 ### Dev to do:
 
+ - logging off is crashing the app
  - add ajax spinner to all auth component async operations
  - stylize email templates
+ - spruce up the landing page
  - switch off of gmail for back end emails
 
 ### DevOps to do:

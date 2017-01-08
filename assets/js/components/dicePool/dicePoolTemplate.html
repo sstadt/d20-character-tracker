@@ -27,5 +27,6 @@
       <icon name="die-force" v-for="n in dice.force"></icon>
     </span>
   </div>
-  <md-button class="md-icon-button roll-button" @click="roll()"><icon name="dice"></icon></md-button>
+  <md-button class="md-icon-button roll-button" @click="roll()" v-if="!loading"><icon name="dice"></icon></md-button>
+  <md-spinner :md-size="30" md-indeterminate v-if="loading"></md-spinner>
 </div>

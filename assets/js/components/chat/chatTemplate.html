@@ -4,11 +4,9 @@
     <ul class="messages" ref="chatLog" @scroll="userScrolling">
       <li v-for="item in log">
         <div v-if="item.type === 'chat'" class="chat-message">
-          <!-- <p class="message-timestamp">{{ item.timestamp | chatTimestamp }}</p> -->
           <p class="message"><span class="message-author">{{ item.chatHandle }}:</span> {{ item.message }}</p>
         </div>
         <div v-if="item.type === 'crawl'" class="crawl-message">
-          <!-- <p class="message-timestamp">{{ item.timestamp | chatTimestamp }}</p> -->
           <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has sent a new crawl<br/><span class="chat-accent">{{ item.message.title }}: {{ item.message.subtitle }}</span></p>
           <md-button class="md-icon-button" @click="playCrawl(item.message)">
             <md-icon>play_circle_filled</md-icon>
@@ -16,8 +14,11 @@
           </md-button>
         </div>
         <div v-if="item.type === 'roll'" class="roll-message">
-          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> rolled some dice... TODO
-          <!-- <partial name="roll-message"></partial> -->
+          <component
+            is="chatRoll"
+            :message="item.message"
+            :chat-handle="item.chatHandle">
+          </component>
         </div>
       </li>
     </ul>
@@ -29,23 +30,5 @@
         <md-input v-model="chatMessage"></md-input>
       </md-input-container>
     </form>
-    <!-- <tabs>
-      <tab heading="Chat" :click-callback="scrollChatToBottom">
-      </tab>
-      <tab heading="Dice Pool" :click-callback="scrollChatToBottom">
-        <dice-pool
-            :ability.sync="ability"
-            :proficiency.sync="proficiency"
-            :difficulty.sync="difficulty"
-            :challenge.sync="challenge"
-            :boost.sync="boost"
-            :setback.sync="setback"
-            :force.sync="force">
-        </dice-pool>
-        <v-form :submit-callback="sendChatRoll" :ajax="true">
-          <v-input type="text" label="Roll Description" placeholder="description" :value.sync="rollDescription" :simple="true"></v-input>
-        </v-form>
-      </tab>
-    </tabs> -->
   </div>
 </div>

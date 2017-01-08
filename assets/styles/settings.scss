@@ -156,6 +156,9 @@ $chat-author-color: lighten($hunter-green, 5%);
 $chat-timestamp-color: $jumbo;
 
 $chat-crawl-message-bg-color: $alert-bg-color;
+$chat-roll-success-message-bg-color: $alert-bg-color-success;
+$chat-roll-failure-message-bg-color: $alert-bg-color-alert;
+$chat-roll-label-color: $monsoon;
 
 // Dice Pool
 // ---------------------------

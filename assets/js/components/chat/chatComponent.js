@@ -15,19 +15,8 @@ module.exports = {
   },
   data() {
     return {
-      // chat data
       chatMessage: '',
       isScrolledToBottom: true,
-
-      // dice pool
-      // rollDescription: '',
-      // ability: 0,
-      // proficiency: 0,
-      // difficulty: 0,
-      // challenge: 0,
-      // boost: 0,
-      // setback: 0,
-      // force: 0
     };
   },
   created() {
@@ -37,6 +26,9 @@ module.exports = {
     log() {
       this.scrollChatToBottom();
     }
+  },
+  components: {
+    chatRoll: require('./chatRoll/chatRollComponent.js')
   },
   methods: {
     sendChatMessage() {
@@ -56,31 +48,6 @@ module.exports = {
       } else {
         deferred.resolve();
       }
-
-      return deferred.promise;
-    },
-    sendChatRoll() {
-      var self = this,
-        deferred = q.defer(),
-        dicePool = {
-          ability: self.ability,
-          proficiency: self.proficiency,
-          difficulty: self.difficulty,
-          challenge: self.challenge,
-          boost: self.boost,
-          setback: self.setback,
-          force: self.force
-        };
-
-      gameService.sendRoll(self.game, self.rollDescription, dicePool)
-        .then(function success() {
-          self.rollDescription = '';
-        }, function error(reason) {
-          self.$emit('error', reason);
-        })
-        .done(function () {
-          deferred.resolve();
-        });
 
       return deferred.promise;
     },
