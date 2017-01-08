@@ -15,6 +15,13 @@ body {
   margin-top: $global-gutter;
 }
 
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
 .md-tabs .md-tab {
   padding-left: 0;
   padding-right: 0;
@@ -43,4 +50,8 @@ body {
     font-size: 64px;
     line-height: 64px;
   }
+}
+
+.md-tooltip {
+  height: auto;
 }

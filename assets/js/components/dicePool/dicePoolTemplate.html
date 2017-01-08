@@ -5,25 +5,25 @@
     @dragenter.prevent="dragEnter"
     @dragleave.prevent="dragLeave"
     @drop="addDieByDrag">
-    <span class="die-block" @click="decrement('ability')">
+    <span class="die-block" @click="removeDie('ability')">
       <icon name="die-ability" v-for="n in dice.ability"></icon>
     </span>
-    <span class="die-block" @click="decrement('proficiency')">
+    <span class="die-block" @click="removeDie('proficiency')">
       <icon name="die-proficiency" v-for="n in dice.proficiency"></icon>
     </span>
-    <span class="die-block" @click="decrement('difficulty')">
+    <span class="die-block" @click="removeDie('difficulty')">
       <icon name="die-difficulty" v-for="n in dice.difficulty"></icon>
     </span>
-    <span class="die-block" @click="decrement('challenge')">
+    <span class="die-block" @click="removeDie('challenge')">
       <icon name="die-challenge" v-for="n in dice.challenge"></icon>
     </span>
-    <span class="die-block" @click="decrement('boost')">
+    <span class="die-block" @click="removeDie('boost')">
       <icon name="die-boost" v-for="n in dice.boost"></icon>
     </span>
-    <span class="die-block" @click="decrement('setback')">
+    <span class="die-block" @click="removeDie('setback')">
       <icon name="die-setback" v-for="n in dice.setback"></icon>
     </span>
-    <span class="die-block" @click="decrement('force')">
+    <span class="die-block" @click="removeDie('force')">
       <icon name="die-force" v-for="n in dice.force"></icon>
     </span>
   </div>

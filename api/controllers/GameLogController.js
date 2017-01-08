@@ -35,7 +35,7 @@ module.exports = {
 			description = req.param('description'),
 			dicePool = req.param('dicePool');
 
-		if (!DicePoolService.isValid(dicePool)) {
+		if (!DicePoolService.isValidTaskRoll(dicePool) && !DicePoolService.isValidStandardRoll(dicePool)) {
 			res.jsonError('Invalid dice pool');
 		} else {
 			GameLogService.addRollMessage(gameId, chatHandle, description, dicePool)

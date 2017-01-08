@@ -1,6 +1,6 @@
 
 <div class="chat-pane flex-column">
-  <div class="chat-log fill-height">
+  <div class="chat-log fill-height" @dragover.prevent @drop="addRollByDrag">
     <ul class="messages" ref="chatLog" @scroll="userScrolling">
       <li v-for="item in log">
         <div v-if="item.type === 'chat'" class="chat-message">
@@ -15,7 +15,7 @@
         </div>
         <div v-if="item.type === 'roll'" class="roll-message">
           <component
-            is="chatRoll"
+            :is="rollType(item.message)"
             :message="item.message"
             :chat-handle="item.chatHandle">
           </component>

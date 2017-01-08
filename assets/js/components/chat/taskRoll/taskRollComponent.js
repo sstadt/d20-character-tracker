@@ -1,6 +1,6 @@
 
 module.exports = {
-  template: require('./chatRollTemplate.html'),
+  template: require('./taskRollTemplate.html'),
   props: {
     chatHandle: {
       type: String,
@@ -10,6 +10,21 @@ module.exports = {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {
+      // this is solely for the purpose of controlling
+      // die result ordering
+      dieTypes: [
+        'ability',
+        'proficiency',
+        'difficulty',
+        'challenge',
+        'boost',
+        'setback',
+        'force'
+      ]
+    };
   },
   computed: {
     rollDescription() {
@@ -32,5 +47,8 @@ module.exports = {
       var failures = this.message.overallResults.failure - this.message.overallResults.success;
       return Math.max(failures, 0);
     }
+  },
+  components: {
+    taskDieResult: require('./taskDieResult/taskDieResultComponent.js')
   }
 };

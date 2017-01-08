@@ -1,5 +1,5 @@
 
-var chatRollComponent = require('./chatRollComponent.js');
+var chatRollComponent = require('./taskRollComponent.js');
 
 Vue.config.silent = true;
 

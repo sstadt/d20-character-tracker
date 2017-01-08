@@ -2,10 +2,12 @@
 
 ### Dev to do:
 
+ - make non-success, non-failure dice rolls (i.e. pure force, or standard dice) the default blue color instead of the green success color
  - logging off is crashing the app
  - add ajax spinner to all auth component async operations
  - stylize email templates
  - spruce up the landing page
+ - add chat messages on user join
  - switch off of gmail for back end emails
 
 ### DevOps to do:

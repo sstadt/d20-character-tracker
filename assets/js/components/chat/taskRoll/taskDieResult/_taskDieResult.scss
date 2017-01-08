@@ -1,0 +1,76 @@
+
+$task-die-result-die-size: 60px;
+$task-die-result-die-margin: -($task-die-result-die-size * 0.1);
+$task-die-result-die-compact-margin: -($task-die-result-die-size * 0.2);
+
+$task-die-result-icon-size: $task-die-result-die-size * 0.3;
+$task-die-result-icon-size-small: $task-die-result-die-size * 0.2;
+
+$task-die-result-difficulty-icon-color: #d4afd1;
+
+.task-die-result {
+  position: relative;
+  display: inline-block;
+  padding: 10px 0;
+  width: $task-die-result-die-size;
+  margin-left: $task-die-result-die-margin;
+  margin-right: $task-die-result-die-margin;
+
+  span {
+    display: inline-block;
+  }
+
+  & > .icon-image {
+    height: $task-die-result-die-size;
+    width: $task-die-result-die-size;
+  }
+
+  &.compact {
+    margin-left: $task-die-result-die-compact-margin;
+    margin-right: $task-die-result-die-compact-margin;
+
+    &.two-icons .result-icons {
+      height: $task-die-result-die-size;
+      width: $task-die-result-die-size;
+
+      .icon-image {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        &:first-child {
+          margin-bottom: 1px;
+          bottom: 50%;
+        }
+
+        &:last-child {
+          top: 50%;
+          margin-top: 1px;
+        }
+      }
+    }
+  }
+
+  &.two-icons .result-icons .icon-image {
+    height: $task-die-result-icon-size-small;
+    width: $task-die-result-icon-size-small;
+  }
+
+  .result-icons {
+    z-index: 1;
+    display: inline-block;
+
+    .light-side-point {
+      stroke-width: 3px;
+    }
+
+    .icon-image {
+      height: $task-die-result-icon-size;
+      width: $task-die-result-icon-size;
+    }
+
+    &.light-icons .icon-image {
+      fill: $task-die-result-difficulty-icon-color;
+    }
+  }
+}

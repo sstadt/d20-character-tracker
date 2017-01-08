@@ -42,13 +42,14 @@ function RollResult(data, description) {
     });
   });
 
+  this.type = 'task';
   this.description = description;
   this.overallResults = _.clone(overallResults);
   this.results = _.clone(data);
 }
 
 module.exports = {
-  isValid: function (pool) {
+  isValidTaskRoll: function (pool) {
     var hasInvalidProp = false,
       hasPositiveDieQuantity = false;
 
@@ -70,7 +71,13 @@ module.exports = {
 
     return !hasInvalidProp && hasPositiveDieQuantity;
   },
+  isValidStandardRoll: function (pool) {
+    return pool.hasOwnProperty('sides');
+  },
   roll: function (description, pool) {
+    return this.isValidTaskRoll(pool) ? this.taskRoll(description, pool) : this.standardRoll(description, pool);
+  },
+  taskRoll: function (description, pool) {
     var dicePoolRolls = {};
 
     _.each(pool, function (num, type) {
@@ -80,5 +87,32 @@ module.exports = {
     });
 
     return new RollResult(dicePoolRolls, description);
+  },
+  standardRoll: function (description, pool) {
+    var results = [],
+      count = pool.count || 1,
+      mod = pool.mod || 0,
+      dice = count + 'd' + pool.sides,
+      total;
+
+    if (mod > 0) {
+      dice += '+' + mod;
+    }
+
+    for (var i = 0; i < count; i++) {
+      results.push(getDieRoll(pool.sides));
+    }
+
+    total = results.reduce(function (p, c) {
+      return p + c;
+    }) + mod;
+
+    return {
+      type: 'standard',
+      dice: dice,
+      description: description,
+      results: results,
+      total: total
+    };
   }
 };

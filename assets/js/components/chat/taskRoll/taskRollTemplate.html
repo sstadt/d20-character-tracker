@@ -1,8 +1,8 @@
 
 <div :class="{
-    'roll-results': true,
-    'failure': isFailure
-  }">
+  'task-roll-results': true,
+  'failure': isFailure
+}">
   <p class="message"><span class="message-author">{{ chatHandle }}</span> {{ rollDescription }}</p>
   <p class="successes text-right" v-if="successes > 0 || message.overallResults.advantage > 0">
     <em>success</em>
@@ -21,4 +21,15 @@
     <icon name="light-side-point" v-for="n in message.overallResults.light"></icon>
     <icon name="dark-side-point" v-for="n in message.overallResults.dark"></icon>
   </p>
+  <md-tooltip md-delay="400" md-direction="bottom">
+    <span v-for="type in dieTypes">
+      <component
+        is="taskDieResult"
+        v-if="message.results[type]"
+        v-for="result in message.results[type]"
+        :result="result"
+        :type="type">
+      </component>
+    </span>
+  </md-tooltip>
 </div>

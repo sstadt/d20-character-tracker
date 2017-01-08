@@ -1,0 +1,32 @@
+
+.task-roll-results {
+  padding: 10px;
+  border-radius: $global-radius;
+  background-color: $chat-roll-success-message-bg-color;
+
+  &.failure {
+    background-color: $chat-roll-failure-message-bg-color;
+  }
+
+  .successes, .failures, .force {
+    position: relative;
+    line-height: 26px;
+
+    .icon-image {
+      height: 26px;
+      width: 26px;
+    }
+
+    em {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      color: $chat-roll-label-color;
+    }
+  }
+
+  .die-result-container {
+    // margin-left: -20px;
+  }
+}

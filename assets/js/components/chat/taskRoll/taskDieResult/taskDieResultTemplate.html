@@ -1,0 +1,22 @@
+
+<span :class="{
+  'task-die-result': true,
+  'compact': isCompact,
+  'two-icons': hasTwoIcons
+}">
+  <icon :name="dieIcon"></icon>
+  <span :class="{
+    'result-icons': true,
+    'absolute-center': true,
+    'light-icons': type === 'difficulty'
+  }">
+    <icon name="success" v-for="n in result.success"></icon>
+    <icon name="advantage" v-for="n in result.advantage"></icon>
+    <icon name="triumph" v-for="n in result.triumph"></icon>
+    <icon name="failure" v-for="n in result.failure"></icon>
+    <icon name="threat" v-for="n in result.threat"></icon>
+    <icon name="despair" v-for="n in result.despair"></icon>
+    <icon name="dark-side-point" v-for="n in result.dark"></icon>
+    <icon name="light-side-point" v-for="n in result.light"></icon>
+  </span>
+</span>

@@ -65,7 +65,9 @@
 @import "../js/components/party/player/_player";
 
 @import "../js/components/chat/_chat";
-@import "../js/components/chat/chatRoll/_chatRoll";
+@import "../js/components/chat/taskRoll/_taskRoll";
+@import "../js/components/chat/taskRoll/taskDieResult/_taskDieResult";
+@import "../js/components/chat/standardRoll/_standardRoll";
 
 @import "../js/components/dicePool/_dicePool";
 @import "../js/components/diceControls/_diceControls";
