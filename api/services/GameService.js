@@ -166,7 +166,7 @@ module.exports = {
                   .exec(function (err, populatedGame) {
                     User.message(user.id, {
                       type: 'playerJoinApproved',
-                      game: populatedGame
+                      data: { game: populatedGame }
                     });
                   });
 
@@ -209,7 +209,7 @@ module.exports = {
 
     						User.message(user.id, {
     							type: 'playerJoinDeclined',
-    							game: game
+    							data: { game: game }
     						});
 
                 deferred.resolve();
@@ -251,7 +251,7 @@ module.exports = {
 
     						User.message(user.id, {
     							type: 'removedFromGame',
-    							game: game
+    							data: { game: game }
     						});
 
     						deferred.resolve();

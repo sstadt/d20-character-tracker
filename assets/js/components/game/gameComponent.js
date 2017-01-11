@@ -1,9 +1,12 @@
 
-// TODO: Build out notifications component and pump alert messages there instead of an alert
+var Pipe = require('../../classes/Pipe.js');
 
 var userService = require('../../services/userService.js');
 var gameService = require('../../services/gameService.js');
-var socketHandler = require('./gameSocketHandler.js');
+
+var util = require('../../lib/util.js');
+var http = require('../../lib/util.http.js');
+
 
 module.exports = {
   template: require('./gameTemplate.html'),
@@ -31,12 +34,10 @@ module.exports = {
         show: false
       },
 
-      playlist: [
-        {
-          name: 'crawl',
-          src: 'https://s3-us-west-2.amazonaws.com/scottstadtcom/fad/star_wars_crawl.mp3'
-        }
-      ]
+      playlist: [{
+        name: 'crawl',
+        src: 'https://s3-us-west-2.amazonaws.com/scottstadtcom/fad/star_wars_crawl.mp3'
+      }]
     };
   },
   components: {
@@ -60,24 +61,6 @@ module.exports = {
   created() {
     var self = this;
 
-    // listen for game updates
-    io.socket.on('game', function (message) {
-      if (socketHandler.isValidMessage(message, self.game.id)) {
-        if (socketHandler.player.hasOwnProperty(message.data.type)) {
-          socketHandler.player[message.data.type](self.game, message.data.data, self.user);
-        } else if (socketHandler.game.hasOwnProperty(message.data.type)) {
-          socketHandler.game[message.data.type](self.game, message.data.data);
-        } else if (socketHandler.gameLog.hasOwnProperty(message.data.type)) {
-          socketHandler.gameLog[message.data.type](self.gameLog, message.data.data);
-
-          // if this is a chat log message, adjust scrolling appropriately
-          if (message.data.type === 'newLogMessage' && self.isScrolledToBottom) {
-            Vue.nextTick(self.scrollChatToBottom);
-          }
-        }
-      }
-    });
-
     // get user data
     userService.getUserInfo()
       .then(function success(user) {
@@ -88,6 +71,7 @@ module.exports = {
     gameService.get(self.gameId)
       .then(function success(game) {
         self.game = game;
+        self.initGamePipe();
       }, function error(reason) {
         return q.reject(reason);
       }).then(function () {
@@ -128,6 +112,91 @@ module.exports = {
     },
     addDieToPool(type) {
       this.$refs.dicePool.addDie(type);
+    },
+    initGamePipe() {
+      var GamePipe = new Pipe('game');
+
+      GamePipe.on('playerRequestedJoin', this.playerRequestedJoin);
+      GamePipe.on('playerJoinApproved', this.playerJoinApproved);
+      GamePipe.on('playerJoinDeclined', this.playerJoinDeclined);
+      GamePipe.on('playerRemoved', this.playerRemoved);
+      GamePipe.on('playerOnline', this.playerOnline);
+      GamePipe.on('playerOffline', this.playerOffline);
+      GamePipe.on('gameCrawlAdded', this.gameCrawlAdded);
+      GamePipe.on('gameCrawlUpdated', this.gameCrawlUpdated);
+      GamePipe.on('gameCrawlDestroyed', this.gameCrawlDestroyed);
+      GamePipe.on('newLogMessage', this.newLogMessage);
+    },
+    playerRequestedJoin(data) {
+      this.game.requestingPlayers.push(data.player);
+    },
+    playerJoinApproved(data) {
+      var playerIndex = util.getIndexById(this.game.requestingPlayers, data.player.id);
+
+      if (playerIndex > -1) {
+        this.game.requestingPlayers.splice(playerIndex, 1);
+      }
+
+      this.game.players.push(data.player);
+    },
+    playerJoinDeclined(data) {
+      var playerIndex = util.getIndexById(this.game.requestingPlayers, data.player.id);
+
+      if (playerIndex > -1) {
+        this.game.requestingPlayers.splice(playerIndex, 1);
+      }
+    },
+    playerRemoved(data) {
+      var playerIndex = util.getIndexById(this.game.players, data.player.id);
+
+      if (playerIndex > -1) {
+        this.game.players.splice(playerIndex, 1);
+      }
+
+      if (data.player.id === this.user.id) {
+        if (confirm('ready to redirect?')) {
+          http.setLocation('/home');
+        }
+      }
+    },
+    playerOnline(data) {
+      if (this.game.online.indexOf(data.player) === -1) {
+        this.game.online.push(data.player);
+      }
+    },
+    playerOffline(data) {
+      var index = this.game.online.indexOf(data.player);
+
+      if (index > -1) {
+        this.game.online.splice(index, 1);
+      }
+    },
+    gameCrawlAdded(data) {
+      var crawl = data.crawl;
+
+      if (_.isObject(crawl)) {
+        this.game.crawls.push(crawl);
+      }
+    },
+    gameCrawlUpdated(data) {
+      if (_.isObject(data.crawl)) {
+        var crawlIndex = util.getIndexById(this.game.crawls, data.crawl.id);
+
+        if (crawlIndex > -1) {
+          this.game.crawls.splice(crawlIndex, 1, _.extend(data.crawl));
+        }
+      }
+    },
+    gameCrawlDestroyed(data) {
+      var crawlIndex = util.getIndexById(this.game.crawls, data.crawl);
+
+      if (crawlIndex > -1) {
+        this.game.crawls.splice(crawlIndex, 1);
+      }
+    },
+    newLogMessage(data) {
+      this.gameLog.log.push(data);
+      Vue.nextTick(self.scrollChatToBottom);
     }
   }
 };
