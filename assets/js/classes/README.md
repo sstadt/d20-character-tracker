@@ -9,10 +9,9 @@ set of form fields.
 
 ### Constructor Params
 
-rules
-> _Object_
-> _required_
-> The ruleset to initialize fields and check validation from
+Name | Type | Required | Description
+---- | ---- | -------- | -----------
+rules | Object | true | The ruleset to initialize fields and check validation from
 
 ```javascript
 var testRules = {
@@ -29,26 +28,13 @@ var testRules = {
 
 #### Possible validation rules
 
-required
-:_Boolean_
-:default: _false_
-:Value indicating if the value must not be empty.
-
-pattern
-:_String_
-:A regular expression or pre-existing validation pattern. See validation object below for list of pre-defined patterns.
-
-matches
-:_String_
-:A string value that matches the attribute name of another rule. i.e. `password: { ... }, confirm: { matches: 'password' }`
-
-minlength
-:_Integer_
-:Field must be at least this long.
-
-maxlength
-:_Integer_
-:Field cannot be longer than this.
+Name | Type | Required | Default | Description
+---- | ---- | -------- | ------- | -----------
+required | Boolean | false | false | Value indicating if the value must not be empty.
+pattern | String | false | undefined | A regular expression or pre-existing validation pattern. See validation object below for list of pre-defined patterns.
+matches | String | false | undefined | A string value that matches the attribute name of another rule. i.e. `password: { ... }, confirm: { matches: 'password' }`
+minlength | Integer | false | undefined | Field must be at least this long.
+maxlength | Integer | false | undefined | Field cannot be longer than this.
 
 ### Returns
 
@@ -86,15 +72,10 @@ Call this function in a component's created() method to initialize the FieldSet 
 
 ##### Params
 
-vm
-:_ViewModel_
-:_required_
-:The component ViewModel containing the FieldSet
-
-form
-:_String_
-:_required_
-:The FieldSet to initialize as observables
+Name | Type | Required | Description
+---- | ---- | -------- | -----------
+vm | ViewModel | true | The component ViewModel containing the FieldSet
+form | String | true | The FieldSet to initialize as observables
 
 ##### Example
 
@@ -117,9 +98,9 @@ Manually trigger validation for the provided field.
 
 ##### Params
 
-rule
-:_String_
-:The field to validate
+Name | Type | Required | Description
+---- | ---- | -------- | -----------
+rule | String | true | The field to validate
 
 ##### Example
 
@@ -182,15 +163,10 @@ Manually add an error to the given field.
 
 #### Params
 
-rule
-:_String_
-:_required_
-:The field to add the error to
-
-error
-:_String_
-:_required_
-:The error message to add
+Name | Type | Required | Description
+---- | ---- | -------- | -----------
+rule | String | true | The field to add the error to
+error | String | true | The error message to add
 
 ##### Example
 
@@ -218,10 +194,9 @@ In this example, a component would subscribe to the `playerRequestedJoin` type t
 
 ### Constructor Params
 
-model
-:_String_
-:_required_
-The model this pipe will receive updates for. If you wish to listen for updates on multiple models, create a new pipe for each model.
+Name | Type | Required | Description
+---- | ---- | -------- | -----------
+model | String | true | The model this pipe will receive updates for. If you wish to listen for updates on multiple models, create a new pipe for each model.
 
 ```javascript
 var GamePipe = new Pipe('game');
@@ -235,10 +210,9 @@ Register a callback function to be called on socket updates of a certain type. P
 
 ##### Params
 
-type
-:_String_
-:_required_
-The event type to register your callback function to
+Name | Type | Required | Description
+---- | ---- | -------- | -----------
+type | String | true | The event type to register your callback function to
 
 ##### Example
 
