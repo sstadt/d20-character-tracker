@@ -1,74 +1,9 @@
 /**
+ *
  * Class FieldSet
  *
  * Used to store values and validation information for a
  * set of form fields.
- *
- * @param rules object The ruleset to initialize fields and check validation from
- *
- * var testRules = {
- *   email: {
- *     required: true,
- *     pattern: 'email' // or regular expression for custom validation
- *   },
- *   password: {
- *     required: true,
- *     minlength: 5
- *   }
- * };
- *
- * Using the constructor with the above rules will return an object
- * with two attributes:
- *
- * rules: a copy of the passed in rules object
- * fields: the same set of attributes at the root of rules, with
- *         associated value and error data for use in component
- *         ViewModels
- *
- * The above ruleset will generate the following fields object:
- *
- * {
- *   email: {
- *     value: '',
- *     errors: [],
- *     hasErrors: false
- *   },
- *   password: {
- *     value: '',
- *     errors: [],
- *     hasErrors: false
- *   }
- * }
- *
- * When adding a FieldSet to a component, call FieldSet.init() to
- * initialize watchers that will keep validation synced with your
- * component data.
- *
- * Doing this will update the errors array and hasErrors field for
- * each field automatically when the value parameter is changes.
- *
- * This makes it easy to bind the value to an input via
- * `FieldSet.fields.email.value`, track error state with
- * `FieldSet.fields.email.hasErrors`, and to display one or all
- * errors via `FieldsSet.fields.email.errors`.
- *
- * Possible validation rules:
- *
- * required: Boolean value indicating if the value must not be empty.
- *           Defaults to false.
- *
- * pattern: A regular expression or pre-existing validation pattern.
- *          See validation object below for list of pre-defined
- *          patterns.
- *
- * matches: A string value that matches the attribute name of another
- *          rule.
- *
- *          i.e. password: { ... }, confirm: { matches: 'password' }
- *
- * minlength: An integer; field must be at least this long.
- *
- * maxlength: An integer; field cannot be longer than this.
  *
  */
 
