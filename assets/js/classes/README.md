@@ -33,12 +33,12 @@ var myForm = new FieldSet(rules);
 Rule | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 required | Boolean | false | false | Value indicating if the value must not be empty.
-pattern | String | false | undefined | A regular expression or pre-existing validation pattern. See validation object below for list of pre-defined patterns.
+pattern | String | false | undefined | A regular expression or pre-existing validation pattern. See validation object below for list of pre-defined patterns. When passing a regular expression, you may include a `message` attribute on the same rule to override the default error message.
 matches | String | false | undefined | A string value that matches the attribute name of another rule. i.e. `password: { ... }, confirm: { matches: 'password' }`
 minlength | Integer | false | undefined | Field must be at least this long.
 maxlength | Integer | false | undefined | Field cannot be longer than this.
 
-### Returns
+The current preset pattern list includes: `email`, `url`, and `number`.
 
 Using the constructor with the above rules will return the following object:
 
