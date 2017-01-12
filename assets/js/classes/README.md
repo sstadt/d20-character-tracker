@@ -66,7 +66,7 @@ Where ... is the list of prototype methods listed below.
 
 ### Methods
 
-#### init
+#### Function init()
 
 Call this function in a component's created() method to initialize the FieldSet properties as observables. This allows the children of `FieldSet.fields` to be used with VueMaterial inputs to display errors and validate forms
 
@@ -92,7 +92,7 @@ var component = {
 };
 ```
 
-#### validate
+#### Function validate()
 
 Manually trigger validation for the provided field.
 
@@ -108,7 +108,7 @@ rule | String | true | The field to validate
 this.myForm.validate('email');
 ```
 
-#### isValid
+#### Function isValid()
 
 Trigger validation on all fields. Returns true if valid, false if not.
 
@@ -120,7 +120,7 @@ if (this.myForm.isValid()) {
 }
 ```
 
-#### clearErrors
+#### Function clearErrors()
 
 Reset all validation on the form. Sets hasErrors to false and errors to an empty array.
 
@@ -130,7 +130,7 @@ Reset all validation on the form. Sets hasErrors to false and errors to an empty
 this.myForm.clearErrors();
 ```
 
-#### export
+#### Function export()
 
 Returns an object with key/value pairs for all current field values.
 
@@ -147,7 +147,7 @@ var vals = this.myForm.export();
 */
 ```
 
-#### reset
+#### Function reset()
 
 Clears all errors as well as resetting all field values.
 
@@ -157,7 +157,7 @@ Clears all errors as well as resetting all field values.
 this.myForm.reset();
 ```
 
-### addError
+### Function addError()
 
 Manually add an error to the given field.
 
@@ -204,7 +204,7 @@ var GamePipe = new Pipe('game');
 
 ### Methods
 
-#### on
+#### Function on()
 
 Register a callback function to be called on socket updates of a certain type. Passes the data parameter of the socket message to the callback function.
 
