@@ -9,8 +9,8 @@ set of form fields.
 
 ### Constructor Params
 
-Name | Type | Required | Description
----- | ---- | -------- | -----------
+Param | Type | Required | Description
+----- | ---- | -------- | -----------
 rules | Object | true | The ruleset to initialize fields and check validation from
 
 ```javascript
@@ -26,9 +26,9 @@ var testRules = {
 };
 ```
 
-#### Possible validation rules
+### Possible validation rules
 
-Name | Type | Required | Default | Description
+Rule | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 required | Boolean | false | false | Value indicating if the value must not be empty.
 pattern | String | false | undefined | A regular expression or pre-existing validation pattern. See validation object below for list of pre-defined patterns.
@@ -66,18 +66,14 @@ Where ... is the list of prototype methods listed below.
 
 ### Methods
 
-#### Function init()
+#### Function init(vm, form)
 
-Call this function in a component's created() method to initialize the FieldSet properties as observables. This allows the children of `FieldSet.fields` to be used with VueMaterial inputs to display errors and validate forms
+Call this function in a component's created() method to initialize the FieldSet properties as observables. This allows the children of `FieldSet.fields` to be used with VueMaterial inputs to display errors and validate forms.
 
-##### Params
-
-Name | Type | Required | Description
----- | ---- | -------- | -----------
+Param | Type | Required | Description
+----- | ---- | -------- | -----------
 vm | ViewModel | true | The component ViewModel containing the FieldSet
 form | String | true | The FieldSet to initialize as observables
-
-##### Example
 
 ```javascript
 var component = {
@@ -92,17 +88,13 @@ var component = {
 };
 ```
 
-#### Function validate()
+#### Function validate(rule)
 
 Manually trigger validation for the provided field.
 
-##### Params
-
-Name | Type | Required | Description
----- | ---- | -------- | -----------
+Param | Type | Required | Description
+----- | ---- | -------- | -----------
 rule | String | true | The field to validate
-
-##### Example
 
 ```javascript
 this.myForm.validate('email');
@@ -111,8 +103,6 @@ this.myForm.validate('email');
 #### Function isValid()
 
 Trigger validation on all fields. Returns true if valid, false if not.
-
-##### Example
 
 ```javascript
 if (this.myForm.isValid()) {
@@ -124,8 +114,6 @@ if (this.myForm.isValid()) {
 
 Reset all validation on the form. Sets hasErrors to false and errors to an empty array.
 
-##### Example
-
 ```javascript
 this.myForm.clearErrors();
 ```
@@ -133,8 +121,6 @@ this.myForm.clearErrors();
 #### Function export()
 
 Returns an object with key/value pairs for all current field values.
-
-##### Example
 
 ```javascript
 var vals = this.myForm.export();
@@ -151,24 +137,18 @@ var vals = this.myForm.export();
 
 Clears all errors as well as resetting all field values.
 
-##### Example
-
 ```javascript
 this.myForm.reset();
 ```
 
-### Function addError()
+### Function addError(rule, error)
 
 Manually add an error to the given field.
 
-#### Params
-
-Name | Type | Required | Description
----- | ---- | -------- | -----------
+Param | Type | Required | Description
+----- | ---- | -------- | -----------
 rule | String | true | The field to add the error to
 error | String | true | The error message to add
-
-##### Example
 
 ```javascript
 this.myForm.addError('email', 'That email address is already in use');
@@ -204,17 +184,13 @@ var GamePipe = new Pipe('game');
 
 ### Methods
 
-#### Function on()
+#### Function on(type)
 
 Register a callback function to be called on socket updates of a certain type. Passes the data parameter of the socket message to the callback function.
 
-##### Params
-
-Name | Type | Required | Description
----- | ---- | -------- | -----------
+Param | Type | Required | Description
+----- | ---- | -------- | -----------
 type | String | true | The event type to register your callback function to
-
-##### Example
 
 ```javascript
 GamePipe.on('playerRequestedJoin', this.handleJoinRequest);
