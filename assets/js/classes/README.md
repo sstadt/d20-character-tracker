@@ -66,7 +66,7 @@ Where ... is the list of prototype methods listed below.
 
 ### Methods
 
-#### Function init(vm, form)
+#### FieldSet.init(vm, form)
 
 Call this function in a component's created() method to initialize the FieldSet properties as observables. This allows the children of `FieldSet.fields` to be used with VueMaterial inputs to display errors and validate forms.
 
@@ -88,7 +88,7 @@ var component = {
 };
 ```
 
-#### Function validate(rule)
+#### FieldSet.validate(rule)
 
 Manually trigger validation for the provided field.
 
@@ -100,7 +100,7 @@ rule | String | true | The field to validate
 this.myForm.validate('email');
 ```
 
-#### Function isValid()
+#### FieldSet.isValid()
 
 Trigger validation on all fields. Returns true if valid, false if not.
 
@@ -110,7 +110,7 @@ if (this.myForm.isValid()) {
 }
 ```
 
-#### Function clearErrors()
+#### FieldSet.clearErrors()
 
 Reset all validation on the form. Sets hasErrors to false and errors to an empty array.
 
@@ -118,7 +118,7 @@ Reset all validation on the form. Sets hasErrors to false and errors to an empty
 this.myForm.clearErrors();
 ```
 
-#### Function export()
+#### FieldSet.export()
 
 Returns an object with key/value pairs for all current field values.
 
@@ -133,7 +133,7 @@ var vals = this.myForm.export();
 */
 ```
 
-#### Function reset()
+#### FieldSet.reset()
 
 Clears all errors as well as resetting all field values.
 
@@ -141,7 +141,7 @@ Clears all errors as well as resetting all field values.
 this.myForm.reset();
 ```
 
-### Function addError(rule, error)
+### FieldSet.addError(rule, error)
 
 Manually add an error to the given field.
 
@@ -184,7 +184,7 @@ var GamePipe = new Pipe('game');
 
 ### Methods
 
-#### Function on(type)
+#### Pipe.on(type)
 
 Register a callback function to be called on socket updates of a certain type. Passes the data parameter of the socket message to the callback function.
 
