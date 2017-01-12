@@ -10,9 +10,9 @@ set of form fields.
 ### Constructor Params
 
 rules
-:   _Object_
-: _required_
-: The ruleset to initialize fields and check validation from
+> _Object_
+> _required_
+> The ruleset to initialize fields and check validation from
 
 ```javascript
 var testRules = {
