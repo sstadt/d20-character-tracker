@@ -2,7 +2,7 @@
 # JavaScript Classes
 
 
-## Class FieldSet
+## FieldSet
 
 Used to store values and validation information for a
 set of form fields.
@@ -24,9 +24,11 @@ var testRules = {
     minlength: 5
   }
 };
+
+var myForm = new FieldSet(rules);
 ```
 
-### Possible validation rules
+#### Possible validation rules
 
 Rule | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
@@ -155,7 +157,7 @@ this.myForm.addError('email', 'That email address is already in use');
 ```
 
 
-## Class Pipe
+## Pipe
 
 The Pipe class acts as the single pipe through which sails.js socket updates flow. This allows the ViewModels to make application updates to the component tree without cluttering `created()` with unnecessary or complex sets of calls to `io.socket.on`.
 
