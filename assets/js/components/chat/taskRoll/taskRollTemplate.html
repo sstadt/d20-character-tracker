@@ -4,13 +4,13 @@
   'failure': isFailure
 }">
   <p class="message"><span class="message-author">{{ chatHandle }}</span> {{ rollDescription }}</p>
-  <p class="successes text-right" v-if="successes > 0 || message.overallResults.advantage > 0">
+  <p class="successes text-right" v-if="showSuccessIcons">
     <em>success</em>
     <icon name="success" v-for="n in numSuccessIcons"></icon>
     <icon name="advantage" v-for="n in message.overallResults.advantage"></icon>
     <icon name="triumph" v-for="n in message.overallResults.triumph"></icon>
   </p>
-  <p class="failures text-right" v-if="failures > 0 || message.overallResults.threat > 0">
+  <p class="failures text-right" v-if="showFailIcons">
     <em>failure</em>
     <icon name="failure" v-for="n in numFailureIcons"></icon>
     <icon name="threat" v-for="n in message.overallResults.threat"></icon>

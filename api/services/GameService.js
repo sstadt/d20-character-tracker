@@ -66,8 +66,6 @@ module.exports = {
   unsubscribe: function (session, gameId) {
     var deferred = q.defer();
 
-    sails.log(session);
-
     Game.findOne(gameId, function (err, game) {
       if (err) {
         sails.error(err);

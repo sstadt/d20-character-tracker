@@ -2,7 +2,6 @@
 
 ### Dev to do:
 
- - game player policy should redirect to /home
  - socket updates for player modal are causing reflow issues
  - make non-success, non-failure dice rolls (i.e. pure force, or standard dice) the default blue color instead of the green success color
  - when a roll has no success/failure results, don't show that block
@@ -12,16 +11,6 @@
  - spruce up the landing page
  - add chat messages on user join
  - switch off of gmail for back end emails
-
-##### logging off is crashing the app
-
-When logging off from the game, res.session.User is unset, causing GameService to throw an error on line 71:
-
-```javascript
-game.online.splice(game.online.indexOf(session.User.id), 1);
-```
-
-Need to find a way to unsubscribe the user for offline updates or pass in userId (with session.Uer.Id as a default ???) to get around this.
 
 ### DevOps to do:
 

@@ -46,6 +46,12 @@ module.exports = {
     numFailureIcons() {
       var failures = this.message.overallResults.failure - this.message.overallResults.success;
       return Math.max(failures, 0);
+    },
+    showSuccessIcons() {
+      return this.numSuccessIcons > 0 || this.message.overallResults.advantage > 0;
+    },
+    showFailIcons() {
+      return this.numFailureIcons > 0 || this.message.overallResults.threat > 0;
     }
   },
   components: {
