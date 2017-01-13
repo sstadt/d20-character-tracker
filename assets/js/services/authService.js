@@ -21,10 +21,10 @@ module.exports = {
 
     return deferred.promise;
   },
-  logout: function () {
+  logout: function (game = '') {
     var deferred = q.defer();
 
-    io.socket.post(config.endpoints.auth.logout, function (response) {
+    io.socket.post(config.endpoints.auth.logout, { game }, function (response) {
       if (response.err) {
         deferred.reject(response.err);
       } else {

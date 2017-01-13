@@ -20,8 +20,8 @@ function Pipe(model) {
       return;
     }
 
-    if (this.handlers[message.data.type]) {
-      this.handlers[message.data.type](message.data.data);
+    if (self.handlers[message.data.type]) {
+      self.handlers[message.data.type](message.data.data);
     }
   });
 }

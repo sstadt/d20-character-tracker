@@ -126,10 +126,10 @@ module.exports.sockets = {
     var referer = socket.handshake.headers.referer,
       gameId;
 
-    if (/\/play\//.test(referer)) {
+    if (/\/play\//.test(referer) && session.User) {
       gameId = referer.substring(referer.lastIndexOf('/') + 1);
       if (gameId.length > 0) {
-        GameService.unsubscribe(session, socket, gameId);
+        GameService.unsubscribe(session, gameId);
       }
     }
 

@@ -1,6 +1,6 @@
 
 <div class="game">
-  <toolbar>
+  <toolbar :game="gameId">
     <span slot="topbar">
       <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('crawl')"><icon name="crawl"></icon></md-button>
       <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('players')"><icon name="rebel"></icon></md-button>

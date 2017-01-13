@@ -37,13 +37,20 @@ module.exports = {
   },
 
   destroy: function (req, res) {
-    User.findOne(req.session.User.id, function foundUser(err) {
-      if (err) {
-        res.jsonError(sessionErrors.logoutError);
-      } else {
-        req.session.destroy();
-        res.json({ redirect: '/', });
-      }
-    });
+    var game = req.param('game');
+
+    GameService.unsubscribe(req.session, game)
+      .then(function success() {
+        User.findOne(req.session.User.id, function foundUser(err) {
+          if (err) {
+            res.jsonError(sessionErrors.logoutError);
+          } else {
+            req.session.destroy();
+            res.json({ redirect: '/', });
+          }
+        });
+      }, function error(err) {
+        res.jsonError(err);
+      });
   }
 };

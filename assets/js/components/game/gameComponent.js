@@ -7,7 +7,6 @@ var gameService = require('../../services/gameService.js');
 var util = require('../../lib/util.js');
 var http = require('../../lib/util.http.js');
 
-
 module.exports = {
   template: require('./gameTemplate.html'),
   props: {

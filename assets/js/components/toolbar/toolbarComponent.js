@@ -8,6 +8,10 @@ module.exports = {
     title: {
       type: String,
       defaultsTo: ''
+    },
+    game: {
+      type: String,
+      defaultsTo: ''
     }
   },
   data() {
@@ -32,7 +36,7 @@ module.exports = {
         deferred = q.defer();
 
       if (type === 'ok') {
-        authService.logout()
+        authService.logout(this.game)
           .then(function success(data) {
             http.setLocation(data.redirect);
           }, function error(reason) {
