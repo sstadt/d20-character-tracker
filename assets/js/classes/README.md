@@ -25,7 +25,13 @@ var testRules = {
   }
 };
 
-var myForm = new FieldSet(rules);
+var component = {
+  data() {
+    return {
+      myForm: new FieldSet(rules)
+    };
+  }
+};
 ```
 
 #### Possible validation rules
@@ -33,12 +39,10 @@ var myForm = new FieldSet(rules);
 Rule | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
 required | Boolean | false | false | Value indicating if the value must not be empty.
-pattern | String | false | undefined | A regular expression or pre-existing validation pattern. See validation object below for list of pre-defined patterns. When passing a regular expression, you may include a `message` attribute on the same rule to override the default error message.
+pattern | String | false | undefined | A regular expression or pre-existing validation pattern. When passing a regular expression, you may include a `message` attribute on the same rule to override the default error message. The current preset pattern list includes: `email`, `url`, and `number`.
 matches | String | false | undefined | A string value that matches the attribute name of another rule. i.e. `password: { ... }, confirm: { matches: 'password' }`
 minlength | Integer | false | undefined | Field must be at least this long.
 maxlength | Integer | false | undefined | Field cannot be longer than this.
-
-The current preset pattern list includes: `email`, `url`, and `number`.
 
 Using the constructor with the above rules will return the following object:
 
@@ -64,7 +68,15 @@ Using the constructor with the above rules will return the following object:
 }
 ```
 
-Where ... is the list of prototype methods listed below.
+Where ... is the list of prototype methods listed below. This allows you to easily use the provided error attributes for triggering inline input error messages:
+
+```html
+<md-input-container :class="{'md-input-invalid': myForm.fields.email.hasErrors}">
+  <label>Email Address</label>
+  <md-input type="email" v-model="myForm.fields.email.value"></md-input>
+  <span class="md-error" v-show="myForm.fields.email.hasErrors">{{ myForm.fields.email.errors[0] }}</span>
+</md-input-container>
+```
 
 ### Methods
 
