@@ -1,7 +1,4 @@
 
-// TODO: player invite
-// TODO: player uninvite
-
 var gameService = require('../../../services/gameService.js');
 
 module.exports = {
@@ -25,12 +22,6 @@ module.exports = {
     }
   },
   methods: {
-    invitePlayer: function (player) {
-      console.log('invite player method', player.chatHandle);
-    },
-    uninvitePlayer: function (player) {
-      console.log('uninvite player method', player.chatHandle);
-    },
     approvePlayer: function (player) {
       var self = this,
         deferred = q.defer();

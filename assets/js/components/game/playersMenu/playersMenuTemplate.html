@@ -2,81 +2,44 @@
 <div class="game-menu players">
   <alert ref="gamePlayersAlert" :can-close="true"></alert>
 
-  <md-tabs>
-    <md-tab md-label="Active">
-      <div class="row small-up-1 medium-up-2">
-        <div class="column" v-for="player in game.players">
-          <md-card md-with-hover>
+  <div class="row small-up-1 medium-up-2" v-for="player in game.players">
+    <div class="column">
+      <md-card md-with-hover>
+        <md-card-media-cover md-text-scrim>
+          <md-card-media md-ratio="16:9">
+            <img src="//placehold.it/640x640" :alt="player.chatHandle">
+          </md-card-media>
+          <md-card-area>
             <md-card-header>
               <div class="md-title">{{ player.chatHandle }}</div>
+              <div class="md-subhead">Active Player</div>
             </md-card-header>
-            <md-card-media>
-              <img src="//placehold.it/80x80" alt="People">
-            </md-card-media>
             <md-card-actions>
               <md-button @click="removePlayer(player)">Remove</md-button>
             </md-card-actions>
-          </md-card>
-        </div>
-      </div>
-    </md-tab>
+          </md-card-area>
+        </md-card-media-cover>
+      </md-card>
+    </div>
 
-    <!-- <md-tab md-label="Invited">
-      <div class="row small-up-1 medium-up-2">
-        <div class="column" v-for="player in game.invitedPlayers">
-          <md-card md-with-hover>
+    <div class="column" v-for="player in game.requestingPlayers">
+      <md-card md-with-hover>
+        <md-card-media-cover md-text-scrim>
+          <md-card-media md-ratio="16:9">
+            <img src="//placehold.it/640x640" :alt="player.chatHandle">
+          </md-card-media>
+          <md-card-area>
             <md-card-header>
               <div class="md-title">{{ player.chatHandle }}</div>
+              <div class="md-subhead">Applied</div>
             </md-card-header>
-            <md-card-media>
-              <img src="//placehold.it/80x80" alt="People">
-            </md-card-media>
-            <md-card-actions>
-              <md-button @click="uninvitePlayer(player)">Cancel</md-button>
-            </md-card-actions>
-          </md-card>
-        </div>
-      </div>
-    </md-tab> -->
-
-    <md-tab md-label="Applied">
-      <div class="row small-up-1 medium-up-2">
-        <div class="column" v-for="player in game.requestingPlayers">
-          <md-card md-with-hover>
-            <md-card-header>
-              <div class="md-title">{{ player.chatHandle }}</div>
-            </md-card-header>
-            <md-card-media>
-              <img src="//placehold.it/80x80" alt="People">
-            </md-card-media>
             <md-card-actions>
               <md-button @click="declinePlayer(player)">Decline</md-button>
               <md-button @click="approvePlayer(player)">Approve</md-button>
             </md-card-actions>
-          </md-card>
-        </div>
-      </div>
-    </md-tab>
-
-    <!-- <md-tab md-label="Find">
-      <div class="controls">
-        <v-input type="text" label="Find Players" :icon="filterIcon" :value.sync="filter"></v-input>
-      </div>
-      <div class="row small-up-1 medium-up-2">
-        <div class="column" v-for="player in filteredPlayers">
-          <md-card md-with-hover>
-            <md-card-header>
-              <div class="md-title">{{ player.chatHandle }}</div>
-            </md-card-header>
-            <md-card-media>
-              <img src="//placehold.it/80x80" alt="People">
-            </md-card-media>
-            <md-card-actions>
-              <md-button @click="invitePlayer(player)">Invite</md-button>
-            </md-card-actions>
-          </md-card>
-        </div>
-      </div>
-    </md-tab> -->
-  </md-tabs>
+          </md-card-area>
+        </md-card-media-cover>
+      </md-card>
+    </div>
+  </div>
 </div>
