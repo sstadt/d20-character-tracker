@@ -48,7 +48,7 @@ Using the constructor with the above rules will return the following object:
 
 ```javascript
 {
-  rule: {
+  rules: {
     email: { required: true, pattern: 'email' },
     password: { required: true, minlength: 5 }
   },
