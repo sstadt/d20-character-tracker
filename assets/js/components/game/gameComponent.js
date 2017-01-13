@@ -159,15 +159,32 @@ module.exports = {
       }
     },
     playerOnline(data) {
+      var playerIndex = util.getIndexById(this.game.players, data.player);
+
+      if (playerIndex > -1) {
+        this.gameLog.log.push({
+          type: 'status',
+          message: `${this.game.players[playerIndex].chatHandle} has joined the game.`
+        });
+      }
+
       if (this.game.online.indexOf(data.player) === -1) {
         this.game.online.push(data.player);
       }
     },
     playerOffline(data) {
-      var index = this.game.online.indexOf(data.player);
+      var onlineIndex = this.game.online.indexOf(data.player),
+        playerIndex = util.getIndexById(this.game.players, data.player);
 
-      if (index > -1) {
-        this.game.online.splice(index, 1);
+      if (playerIndex > -1) {
+        this.gameLog.log.push({
+          type: 'status',
+          message: `${this.game.players[playerIndex].chatHandle} has left the game.`
+        });
+      }
+
+      if (onlineIndex > -1) {
+        this.game.online.splice(onlineIndex, 1);
       }
     },
     gameCrawlAdded(data) {

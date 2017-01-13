@@ -3,13 +3,9 @@
 ### Dev to do:
 
  - socket updates for player modal are causing reflow issues
- - make non-success, non-failure dice rolls (i.e. pure force, or standard dice) the default blue color instead of the green success color
- - when a roll has no success/failure results, don't show that block
- - show a generic roll message when there are no icons to show for dice rolls
  - add ajax spinner to all auth component async operations
  - stylize email templates
  - spruce up the landing page
- - add chat messages on user join
  - switch off of gmail for back end emails
 
 ### DevOps to do:

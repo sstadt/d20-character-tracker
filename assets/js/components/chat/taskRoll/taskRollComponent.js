@@ -33,6 +33,9 @@ module.exports = {
     isFailure() {
       return this.successes <= this.failures && this.failures > 0;
     },
+    isSuccess() {
+      return this.failures <= this.successes && this.successes > 0;
+    },
     successes() {
       return this.message.overallResults.success + this.message.overallResults.triumph;
     },

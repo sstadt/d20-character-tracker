@@ -1,7 +1,8 @@
 
 <div :class="{
   'task-roll-results': true,
-  'failure': isFailure
+  'failure': isFailure,
+  'success': isSuccess
 }">
   <p class="message"><span class="message-author">{{ chatHandle }}</span> {{ rollDescription }}</p>
   <p class="successes text-right" v-if="showSuccessIcons">
