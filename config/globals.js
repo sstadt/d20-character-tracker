@@ -12,7 +12,7 @@ module.exports.globals = {
 
   baseurl: {
     development: 'localhost:1337',
-    production: 'fad.scottstadt.com'
+    production: 'sw.scottstadt.com'
   },
 
   site: {
