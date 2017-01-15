@@ -12,13 +12,6 @@ var nodemailer = require("nodemailer");
 var transporterSettings = {
   production: {
     host: 'localhost',
-    auth: {
-      user: 'noreply',
-      pass: sails.config.email.noreply.password
-    },
-    tls:{
-      rejectUnauthorized: false
-    }
   },
   development: {
     service: "Gmail",
