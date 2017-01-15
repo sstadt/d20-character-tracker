@@ -12,6 +12,9 @@ var nodemailer = require("nodemailer");
 var transporterSettings = {
   production: {
     host: 'localhost',
+    tls:{
+      rejectUnauthorized: false
+    }
   },
   development: {
     service: "Gmail",
