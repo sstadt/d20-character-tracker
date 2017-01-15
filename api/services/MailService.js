@@ -15,6 +15,9 @@ var transporterSettings = {
     auth: {
       user: 'noreply',
       pass: sails.config.email.noreply.password
+    },
+    tls:{
+      rejectUnauthorized: false
     }
   },
   development: {
