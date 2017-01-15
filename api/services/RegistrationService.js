@@ -17,7 +17,6 @@
 var sha1 = require('sha1'),
   Q = require('q'),
   protocol = 'http://',
-  domain = sails.config.globals.baseurl[sails.config.environment],
   domainPath = protocol + sails.config.globals.baseurl[sails.config.environment],
   tokenErrors = sails.config.notifications.Token.error;
 
@@ -53,12 +52,11 @@ module.exports = {
         }
 
         var to = user.email,
-          from = sails.config.email.noreply.address,
-          password = sails.config.email.noreply.password,
-          subject = 'Registration Request from ' + domain;
+          subject = 'Registration Request';
 
-        MailService.send(to, from, password, subject, html, function (err) {
+        MailService.send(to, subject, html, function (err) {
           if (err) {
+            sails.error(err);
             deferred.reject(err);
           }
 
@@ -102,11 +100,9 @@ module.exports = {
         }
 
         var to = user.email,
-          from = sails.config.email.noreply.address,
-          password = sails.config.email.noreply.password,
-          subject = 'Password Reset Request from ' + domain;
+          subject = 'Password Reset Request';
 
-        MailService.send(to, from, password, subject, html, function (err) {
+        MailService.send(to, subject, html, function (err) {
           if (err) {
             return deferred.reject(err);
           }
