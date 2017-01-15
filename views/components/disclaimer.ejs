@@ -1,0 +1,18 @@
+
+<md-button md-theme="starwars" class="md-icon-button md-accent" id="open_disclaimer" @click="openDialog('disclaimer')">
+  <md-icon>info_outline</md-icon>
+</md-button>
+
+<md-dialog md-open-from="#open_disclaimer" md-close-to="#open_disclaimer" ref="disclaimer">
+  <md-dialog-title>Disclaimer</md-dialog-title>
+
+  <md-dialog-content>
+    <p>This website is in no way affiliated with Fantasy Flight Games or Lucasfilm Ltd, and is not intended to represent either company.</p>
+    <p>This website is unaffiliated with any third party website it may link to through administrative or user-generated links.</p>
+    <p>This website is intended solely for the purpose of entertainment, and continuing skill development on behalf of it's builders and administrators. This website is not responsible for any liability incurred through usage of the site.</p>
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-primary" id="close_disclaimer" @click="closeDialog('disclaimer')">Ok</md-button>
+  </md-dialog-actions>
+</md-dialog>

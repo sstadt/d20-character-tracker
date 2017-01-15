@@ -8,16 +8,6 @@
 module.exports = {
 
   sandbox: function (req, res) {
-    res.view({
-      title: sails.config.globals.pageTitle.sandbox,
-      script: 'sandbox'
-    });
-  },
-
-  components: function (req, res) {
-    res.view({
-      title: sails.config.globals.pageTitle.components,
-      script: 'components'
-    });
+    res.view({ title: sails.config.globals.pageTitle.sandbox });
   }
 };

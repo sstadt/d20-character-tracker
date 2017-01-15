@@ -159,10 +159,6 @@ module.exports.routes = {
     controller: 'dev',
     action: 'sandbox'
   },
-  '/dev/components': {
-    controller: 'dev',
-    action: 'components'
-  },
 
   /***************************************************************************
   *                                                                          *

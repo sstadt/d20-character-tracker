@@ -14,12 +14,6 @@ var userErrors = sails.config.notifications.User.error,
 
 module.exports = {
 
-  splash: function (req, res) {
-    res.view({
-      title: sails.config.globals.pageTitle.splash
-    });
-  },
-
   'new': function (req, res) {
     res.view({
       title: sails.config.globals.pageTitle.register,

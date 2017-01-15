@@ -39,3 +39,8 @@ Vue.material.registerTheme('default', {
   accent: 'deep-orange',
   warn: 'red'
 });
+
+Vue.material.registerTheme('starwars', {
+  primary: 'light-blue',
+  accent: 'yellow'
+});
