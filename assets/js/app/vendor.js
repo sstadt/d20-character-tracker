@@ -44,3 +44,9 @@ Vue.material.registerTheme('starwars', {
   primary: 'light-blue',
   accent: 'yellow'
 });
+
+Vue.material.registerTheme('tabs', {
+  primary: 'white',
+  accent: 'deep-orange',
+  warn: 'red'
+});

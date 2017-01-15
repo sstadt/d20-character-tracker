@@ -22,11 +22,6 @@ body {
   transform: translateX(-50%) translateY(-50%);
 }
 
-.md-tabs .md-tab {
-  padding-left: 0;
-  padding-right: 0;
-}
-
 .md-dialog-title {
   .subtitle {
     line-height: 1;
@@ -58,4 +53,8 @@ body {
 
 .md-dialog p {
   margin-bottom: 1rem;
+}
+
+.md-theme-tabs.md-tabs > .md-tabs-navigation.md-whiteframe {
+  background-color: transparent;
 }
