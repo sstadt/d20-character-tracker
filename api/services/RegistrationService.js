@@ -56,7 +56,8 @@ module.exports = {
 
         MailService.send(to, subject, html, function (err) {
           if (err) {
-            sails.error(err);
+            sails.log('Mail error:');
+            sails.log(err);
             deferred.reject(err);
           }
 
