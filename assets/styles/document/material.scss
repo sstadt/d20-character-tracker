@@ -1,0 +1,37 @@
+
+.md-dialog-title {
+  .subtitle {
+    line-height: 1;
+  }
+
+  small {
+    font-size: 65%;
+  }
+}
+
+.md-list-item a {
+  display: flex;
+}
+
+.md-avatar-icon.md-large {
+  .md-icon {
+    width: 64px;
+    min-width: 64px;
+    height: 64px;
+    min-height: 64px;
+    font-size: 64px;
+    line-height: 64px;
+  }
+}
+
+.md-tooltip {
+  height: auto;
+}
+
+.md-dialog p {
+  margin-bottom: 1rem;
+}
+
+.md-theme-tabs.md-tabs > .md-tabs-navigation.md-whiteframe {
+  background-color: transparent;
+}
