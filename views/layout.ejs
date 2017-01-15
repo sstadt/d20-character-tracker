@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
 
-    <!-- STYLES -->
-    <link rel="stylesheet" href="/styles/style.css">
-    <!-- STYLES END -->
+    <% if (sails.config.environment === 'production') { %>
+      <link rel="stylesheet" href="/styles/style.min.css?v=<%= sails.config.globals.cacheVersion %>">
+    <% } else { %>
+      <link rel="stylesheet" href="/styles/style.css">
+    <% } %>
 
     <%- partial('components/images') %>
 
@@ -24,7 +26,7 @@
     </div>
 
     <!-- SCRIPT -->
-    <script type="text/javascript" src="/js/vendor.js"></script>
+    <script type="text/javascript" src="/js/vendor.min.js?v=1884"></script>
     <!-- SCRIPT END -->
 
     <% if (sails.config.environment === 'production') { %>

@@ -13,9 +13,7 @@
  */
 
 var pipeline = {
-  css: [
-    '.tmp/public/styles/style.css'
-  ],
+  css: [],
   js: [
     '.tmp/public/js/vendor.js'
   ]
