@@ -25,7 +25,8 @@ var transporterSettings = {
   }
 };
 
-var transporter = nodemailer.createTransport(_.extend(transporterSettings[sails.config.environment]));
+// var transporter = nodemailer.createTransport(_.extend(transporterSettings[sails.config.environment]));
+var transporter = nodemailer.createTransport(_.extend(transporterSettings.development));
 
 module.exports = {
 
