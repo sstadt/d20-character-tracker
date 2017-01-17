@@ -160,9 +160,11 @@ module.exports = {
   },
 
   show: function (req, res) {
+    var user = req.param('user');
+
     res.view({
-      title: 'profile',
-      script: 'public'
+      title: (user === null) ? 'Profile' : 'My Profile',
+      user: user
     });
   },
 

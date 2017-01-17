@@ -1,5 +1,7 @@
 
 var authService = require('../../services/authService.js');
+var userService = require('../../services/userService.js');
+
 var http = require('../../lib/util.http.js');
 
 module.exports = {
@@ -21,8 +23,17 @@ module.exports = {
       },
       confirm: {
         content: 'Are you sure you want to log out?'
-      }
+      },
+      user: {}
     };
+  },
+  created() {
+    var self = this;
+
+    userService.getUserInfo()
+      .then(function success(user) {
+        self.user = user;
+      });
   },
   methods: {
     toggleRightSideNav() {

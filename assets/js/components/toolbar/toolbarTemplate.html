@@ -18,6 +18,7 @@
     <slot name="sidebar"></slot>
 
     <md-list>
+      <md-list-item v-if="user.id" href="/profile"><md-icon>person</md-icon> <span>My Profile</span></md-list-item>
       <md-list-item href="/home"><md-icon>search</md-icon> <span>Browse Games</span></md-list-item>
       <md-list-item @click="logout"><md-icon>power_settings_new</md-icon> <span>Log Out</span></md-list-item>
     </md-list>

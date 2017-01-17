@@ -51,6 +51,10 @@ module.exports.routes = {
   /*
     User
    */
+  '/profile/:user': {
+    controller: 'user',
+    action: 'show'
+  },
   '/register': {
     controller: 'user',
     action: 'new'
