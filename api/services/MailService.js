@@ -24,7 +24,7 @@ var mailgunOptions = {
 };
 var mailgun = (!_.isUndefined(mailgunOptions.apiKey)) ? require('mailgun-js')(mailgunOptions) : undefined;
 
-var from = (sails.config.environment === 'production') ? 'postmaster@' + domain : sails.config.email.noreply.address;
+var from = (sails.config.environment === 'production') ? 'postmaster@' + mailgunOptions.domain : sails.config.email.noreply.address;
 
 module.exports = {
 
