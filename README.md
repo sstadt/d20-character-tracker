@@ -4,11 +4,9 @@
 
  - add ajax spinner to all auth component async operations
  - stylize email templates
- - spruce up the landing page
 
 ### DevOps to do:
 
- - switch to on-server email instead of gmail
  - look into node reloader during dev: https://github.com/sgress454/sails-hook-autoreload
 
 ### Need more research
@@ -16,7 +14,6 @@
  - waterline isn't behaving as expected when querying against dates
  - ... need to figure out a TTL solution that will not infringe upon registration while expiring reset tokens after 24 hours
  - set up grunt-autoprefixer http://grunt-tasks.com/autoprefixer/
- - ... grunt peer dependency conflicts with multiple sails.js packages
 
 ### Setup
 
@@ -25,27 +22,29 @@ Copy the following to config/local.js and fill in values:
 ```javascript
 module.exports = {
   email: {
-    noreply: {
-      address: 'gmail email address',
-      password: 'gmail app password'
-    }
+    gmail: {
+      address: 'your gmail testing address',
+      password: 'app password for gmail testing address'
+    },
+    mailGunKey: 'mailgun API key' // production only
   },
 
-  hash: 'unique hash',
+  hash: 'unique hash', // https://www.grc.com/passwords.htm
 
-  fadApi: {
-    url: 'http://localhost:1338/',
-    key: 'your api key here'
+  swApi: {
+    url: 'http://localhost:1338/', //address/port API is being run on
+    key: 'key from API interface'
   },
 };
 ```
 
-run the following from the console
+Install and start `mongod`: https://docs.mongodb.com/manual/installation/
 
+In a separate terminal, run the following commands:
 
 ```bash
 npm install -g sails
-cd /path/to/repo
+cd /path/to/project
 npm install && sails lift
 ```
 
@@ -59,7 +58,7 @@ grunt component --name=myComponent --parent=common
 
 This command will create a new Vue.js component in /assets/js/components/common with all the necessary files for a component to work, including a testing spec scaffold.
 
-The parent attribute is optional, and tells the generator where in the components folder to place the new component.
+The parent attribute is optional, and tells the generator where in the components folder to place the new component. For example, the above command will place the `myComponent` folder inside `components/common`.
 
 #### Unit Testing
 

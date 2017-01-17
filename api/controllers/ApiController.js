@@ -6,8 +6,8 @@
  */
 
 var request = require('request'),
-  apiUrl = sails.config.fadApi.url,
-  apiKey = sails.config.fadApi.key;
+  apiUrl = sails.config.swApi.url,
+  apiKey = sails.config.swApi.key;
 
 module.exports = {
 	index: function (req, res) {

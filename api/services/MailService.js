@@ -12,8 +12,8 @@ var nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
-    user: sails.config.email.noreply.address,
-    pass: sails.config.email.noreply.password
+    user: sails.config.email.gmail.address,
+    pass: sails.config.email.gmail.password
   }
 });
 
@@ -24,7 +24,7 @@ var mailgunOptions = {
 };
 var mailgun = (!_.isUndefined(mailgunOptions.apiKey)) ? require('mailgun-js')(mailgunOptions) : undefined;
 
-var from = (sails.config.environment === 'production') ? 'postmaster@' + mailgunOptions.domain : sails.config.email.noreply.address;
+var from = (sails.config.environment === 'production') ? 'postmaster@' + mailgunOptions.domain : sails.config.email.gmail.address;
 
 module.exports = {
 
