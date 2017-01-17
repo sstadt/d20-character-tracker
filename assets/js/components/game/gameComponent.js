@@ -162,10 +162,7 @@ module.exports = {
       var playerIndex = util.getIndexById(this.game.players, data.player);
 
       if (playerIndex > -1) {
-        this.gameLog.log.push({
-          type: 'status',
-          message: `${this.game.players[playerIndex].chatHandle} has joined the game.`
-        });
+        this.$refs.notifications.info(`${this.game.players[playerIndex].chatHandle} has joined the game.`);
       }
 
       if (this.game.online.indexOf(data.player) === -1) {
@@ -177,10 +174,7 @@ module.exports = {
         playerIndex = util.getIndexById(this.game.players, data.player);
 
       if (playerIndex > -1) {
-        this.gameLog.log.push({
-          type: 'status',
-          message: `${this.game.players[playerIndex].chatHandle} has left the game.`
-        });
+        this.$refs.notifications.info(`${this.game.players[playerIndex].chatHandle} has left the game.`);
       }
 
       if (onlineIndex > -1) {

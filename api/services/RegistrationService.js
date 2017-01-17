@@ -49,6 +49,7 @@ module.exports = {
       sails.hooks.views.render('email/registration', pageData, function (err, html) {
         if (err) {
           deferred.reject(err);
+          return;
         }
 
         var to = user.email,
@@ -56,12 +57,11 @@ module.exports = {
 
         MailService.send(to, subject, html, function (err) {
           if (err) {
-            sails.log('Mail error:');
-            sails.log(err);
             deferred.reject(err);
+          } else {
+            deferred.resolve();
           }
 
-          deferred.resolve();
         });
 
       });
