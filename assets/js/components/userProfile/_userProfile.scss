@@ -1,0 +1,37 @@
+
+$user-profile-offset: 120px;
+$user-profile-header-size: 32px;
+$user-profile-header-margin: 15px;
+$user-profile-views-offset: $user-profile-offset - (($user-profile-header-size + $user-profile-header-margin) * 2 + $user-profile-header-margin);
+
+.user-profile {
+  .md-list.md-theme-default {
+    background-color: transparent;
+  }
+
+  .toolbar {
+    z-index: -1;
+  }
+
+  .panel {
+    margin-top: $user-profile-offset;
+
+    h1 {
+      font-size: rem-calc($user-profile-header-size);
+      line-height: rem-calc($user-profile-header-size);
+      margin: $user-profile-header-margin 0;
+    }
+
+    .profile-picture {
+      border-radius: $global-radius;
+    }
+
+    .content {
+      margin-top: -$user-profile-offset;
+    }
+
+    .views {
+      padding-top: $user-profile-views-offset;
+    }
+  }
+}

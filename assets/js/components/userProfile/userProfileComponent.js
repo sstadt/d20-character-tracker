@@ -11,7 +11,8 @@ module.exports = {
   },
   data() {
     return {
-      user: {}
+      user: {},
+      currentView: 'profile'
     };
   },
   created() {
@@ -23,9 +24,19 @@ module.exports = {
         self.user = user;
       });
   },
+  components: {
+    profile: require('./profile/profileComponent.js'),
+    games: require('./games/gamesComponent.js'),
+    characters: require('./characters/charactersComponent.js')
+  },
   computed: {
     userName() {
       return (this.user.id) ? this.user.chatHandle : '';
+    }
+  },
+  methods: {
+    setView(view) {
+      this.currentView = view;
     }
   }
 };

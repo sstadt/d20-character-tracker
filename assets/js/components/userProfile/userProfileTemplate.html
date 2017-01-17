@@ -1,12 +1,30 @@
 
 <div class="user-profile">
-  <toolbar :title="userName"></toolbar>
+  <toolbar></toolbar>
 
   <div class="row header-margin">
   	<div class="small-12 columns">
 
       <div class="panel" v-if="user.id">
-        <h1>{{ user.email }}</h1>
+        <div class="row content">
+          <div class="small-12 medium-4 column">
+            <img class="profile-picture" src="/images/avatar_ph.png" />
+            <md-list>
+              <md-list-item @click="setView('profile')"><span>Profile</span></md-list-item>
+              <md-list-item @click="setView('games')"><span>Games</span></md-list-item>
+              <md-list-item @click="setView('characters')"><span>Characters</span></md-list-item>
+            </md-list>
+          </div>
+          <div class="small-12 medium-8 column">
+            <h1 class="maya-blue">{{ user.chatHandle }}</h1>
+            <h2 class="maya-blue">{{ user.email }}</h2>
+            <div class="views">
+              <transition name="fade" mode="out-in">
+                <component :is="currentView" keep-alive></component>
+              </transition>
+            </div>
+          </div>
+        </div>
       </div>
 
   	</div>
