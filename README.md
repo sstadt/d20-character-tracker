@@ -10,8 +10,6 @@
 
  - switch to on-server email instead of gmail
  - look into node reloader during dev: https://github.com/sgress454/sails-hook-autoreload
- - set up SSL for all apps w/nginx and let's encrypt https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04
- - make a kitchen sink page for css/js components
 
 ### Need more research
 

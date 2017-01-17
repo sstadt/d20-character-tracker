@@ -7,26 +7,24 @@
  * Functions related to sending mail
  */
 
+ // gmail in dev
 var nodemailer = require("nodemailer");
-
-var transporterSettings = {
-  production: {
-    host: 'localhost',
-    tls:{
-      rejectUnauthorized: false
-    }
-  },
-  development: {
-    service: "Gmail",
-    auth: {
-      user: sails.config.email.noreply.address,
-      pass: sails.config.email.noreply.password
-    }
+var transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: sails.config.email.noreply.address,
+    pass: sails.config.email.noreply.password
   }
-};
+});
 
-// var transporter = nodemailer.createTransport(_.extend(transporterSettings[sails.config.environment]));
-var transporter = nodemailer.createTransport(_.extend(transporterSettings.development));
+// mailgun in prod
+var mailgunOptions = {
+  apiKey: sails.config.email.mailGunKey,
+  domain: sails.config.globals.baseurl.production
+};
+var mailgun = (!_.isUndefined(mailgunOptions.apiKey)) ? require('mailgun-js')(mailgunOptions) : undefined;
+
+var from = (sails.config.environment === 'production') ? 'postmaster@' + domain : sails.config.email.noreply.address;
 
 module.exports = {
 
@@ -40,17 +38,19 @@ module.exports = {
    */
   send: function (to, subj, msg, callback) {
 
-    // setup e-mail data with unicode symbols
-    var options = {
-      to: to, // list of receivers
-      subject: sails.config.globals.site.title + ' ' + subj, // Subject line
-      text: msg, // plaintext body
-      html: msg // html body
+    var messageOptions = {
+      from: sails.config.globals.site.title + '<' + from + '>', // sender
+      to: to,                                                   // recipient
+      subject: sails.config.globals.site.title + ' ' + subj,    // Subject line
+      text: msg,                                                // plaintext body
+      html: msg                                                 // html body
     };
 
-    // send mail with defined transport object
-    // @todo: this doesn't return anything to the function, will have to log errors or something
-    transporter.sendMail(options, callback);
+    if (sails.config.environment === 'production') {
+      mailgun.messages().send(messageOptions, callback);
+    } else {
+      transporter.sendMail(messageOptions, callback);
+    }
   }
 
 };
