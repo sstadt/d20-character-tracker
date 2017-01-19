@@ -187,5 +187,21 @@ module.exports = {
         return user.toJSON();
       }));
     });
+  },
+
+  uploadPhoto: function (req, res) {
+    console.log('hitting upload photo endpoint');
+    req.file('file').upload(function (err, file) {
+      if (err) {
+        res.jsonError('Unable to upload file.');
+      } else {
+        S3Service.upload(file[0], 'profile_pictures')
+          .then(function success(url) {
+            res.json({ url: url });
+          }, function error(err) {
+            res.jsonError(err);
+          });
+      }
+    });
   }
 };

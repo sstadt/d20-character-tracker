@@ -12,7 +12,8 @@ module.exports = {
   data() {
     return {
       user: {},
-      currentView: 'profile'
+      currentView: 'games',
+      dropzone: {}
     };
   },
   created() {
@@ -22,6 +23,7 @@ module.exports = {
     userService.getUserInfo()
       .then(function success(user) {
         self.user = user;
+        Vue.nextTick(self.initPhotoUpload);
       });
   },
   components: {
@@ -37,6 +39,18 @@ module.exports = {
   methods: {
     setView(view) {
       this.currentView = view;
+    },
+    updateUserPhoto() {
+      console.log('drop received');
+      console.log(event.dataTransfer);
+    },
+    initPhotoUpload() {
+      this.dropzone = new Dropzone(this.$refs.profilePictureUpload, {
+        url: '/user/uploadPhoto',
+        init() {
+          console.log('dropzone initialized');
+        }
+      });
     }
   }
 };

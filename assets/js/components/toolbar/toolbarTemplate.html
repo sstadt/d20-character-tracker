@@ -3,7 +3,7 @@
   <md-dialog-alert :md-content="alert.content" ref="toolbarDialog"></md-dialog-alert>
   <md-dialog-confirm :md-content="confirm.content" ref="toolbarConfirm" @close="confirmLogout"></md-dialog-confirm>
 
-  <h2 class="md-title" style="flex: 1">{{ title }}</h2>
+  <p class="page-title">{{ title }}</p>
 
   <div class="page-controls">
     <slot name="topbar"></slot>

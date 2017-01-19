@@ -1,12 +1,16 @@
 
 .toolbar {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-
-  .md-title {
+  .page-title {
+    position: fixed;
+    top: 0;
+    left: $global-gutter / 2;
+    display: inline-block;
+    line-height: $header-margin;
     color: $page-controls-color;
     padding-left: $global-gutter / 2;
+    font-size: rem-calc(24);
+    margin: 0;
+    padding: 0;
   }
 
   .page-controls {

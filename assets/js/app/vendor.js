@@ -6,13 +6,16 @@ var vendor = {
   Vue: require('vue'),
   moment: require('moment'),
   marked: require('marked'),
-  io: require('../lib/io.js')
+  io: require('../lib/io.js'),
+  Dropzone: require('dropzone')
 };
 
 // set all vendor includes to the global namespace
 for (var lib in vendor) {
   window[lib] = vendor[lib];
 }
+
+Dropzone.autoDiscover = false;
 
 /**
  * Vue Filters

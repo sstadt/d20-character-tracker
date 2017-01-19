@@ -9,10 +9,6 @@ $user-profile-views-offset: $user-profile-offset - (($user-profile-header-size +
     background-color: transparent;
   }
 
-  .toolbar {
-    z-index: -1;
-  }
-
   .panel {
     margin-top: $user-profile-offset;
 
@@ -23,6 +19,7 @@ $user-profile-views-offset: $user-profile-offset - (($user-profile-header-size +
     }
 
     .profile-picture {
+      display: block;
       border-radius: $global-radius;
     }
 

@@ -5,14 +5,16 @@
   <div class="row header-margin">
   	<div class="small-12 columns">
 
-      <div class="panel" v-if="user.id">
+      <div class="panel">
         <div class="row content">
           <div class="small-12 medium-4 column">
-            <img class="profile-picture" src="/images/avatar_ph.png" />
+            <div ref="profilePictureUpload">
+              <img class="profile-picture" src="/images/avatar_ph.png" />
+            </div>
             <md-list>
-              <md-list-item @click="setView('profile')"><span>Profile</span></md-list-item>
               <md-list-item @click="setView('games')"><span>Games</span></md-list-item>
               <md-list-item @click="setView('characters')"><span>Characters</span></md-list-item>
+              <md-list-item @click="setView('profile')"><span>Settings</span></md-list-item>
             </md-list>
           </div>
           <div class="small-12 medium-8 column">

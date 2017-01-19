@@ -36,13 +36,14 @@ module.exports.policies = {
   },
 
   UserController: {
-    '*'         : ['flash', true],
-    'create'    : true,
-    'show'      : 'sessionAuth',
-    'search'    : false,
-    'self'      : 'sessionAuth',
-    'setHandle' : 'sessionAuth',
-    'destroy'   : false
+    '*'           : ['flash', true],
+    'create'      : true,
+    'show'        : 'sessionAuth',
+    'search'      : false,
+    'self'        : 'sessionAuth',
+    'setHandle'   : 'sessionAuth',
+    'destroy'     : false,
+    'uploadPhoto' : 'sessionAuth'
   },
 
   DevController: {
