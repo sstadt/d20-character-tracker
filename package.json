@@ -44,7 +44,7 @@
     "socket.io-client": "^1.4.5",
     "stringify": "^5.0.0",
     "vue": "^2.1.6",
-    "vue-material": "^0.5.1"
+    "vue-material": "^0.6.3"
   },
   "scripts": {
     "start": "node app.js",

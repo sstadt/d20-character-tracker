@@ -19,8 +19,20 @@ $user-profile-views-offset: $user-profile-offset - (($user-profile-header-size +
     }
 
     .profile-picture {
-      display: block;
-      border-radius: $global-radius;
+      position: relative;
+
+      img {
+        display: block;
+        border-radius: $global-radius;
+      }
+
+      .md-progress {
+        position: absolute;
+        width: 90%;
+        margin-bottom: 0;
+        left: 5%;
+        bottom: 5%;
+      }
     }
 
     .content {

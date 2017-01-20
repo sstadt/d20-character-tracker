@@ -1,5 +1,6 @@
 
-var AWS = require('aws-sdk'),
+var q = require('q'),
+  AWS = require('aws-sdk'),
   fs = require('fs'),
   bucket = 'gametable',
   s3;
@@ -39,6 +40,7 @@ module.exports = {
           ContentType: file.type
         }, function (err) {
           if (err) {
+            sails.log(err);
             deferred.reject(err);
           } else {
             fs.unlink(file.fd);

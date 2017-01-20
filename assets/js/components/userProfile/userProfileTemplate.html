@@ -2,14 +2,17 @@
 <div class="user-profile">
   <toolbar></toolbar>
 
+  <notification ref="notifications"></notification>
+
   <div class="row header-margin">
   	<div class="small-12 columns">
 
       <div class="panel">
         <div class="row content">
           <div class="small-12 medium-4 column">
-            <div ref="profilePictureUpload">
-              <img class="profile-picture" src="/images/avatar_ph.png" />
+            <div class="profile-picture" ref="profilePictureUpload">
+              <img :src="userAvatar" />
+              <md-progress class="md-accent" :md-progress="uploadProgress" v-show="uploadInProgress"></md-progress>
             </div>
             <md-list>
               <md-list-item @click="setView('games')"><span>Games</span></md-list-item>

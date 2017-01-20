@@ -21,6 +21,10 @@ module.exports = {
     });
   },
 
+  show: function (req, res) {
+    res.view({ title: 'My Profile' });
+  },
+
   setHandle: function (req, res) {
     req.session.User.chatHandle = req.param('handle');
 
@@ -159,15 +163,6 @@ module.exports = {
       });
   },
 
-  show: function (req, res) {
-    var user = req.param('user');
-
-    res.view({
-      title: (user === null) ? 'Profile' : 'My Profile',
-      user: user
-    });
-  },
-
   self: function (req, res) {
     // TODO: check to see if the user is already subscribed
     User.subscribe(req.socket, req.session.User.id);
@@ -190,14 +185,18 @@ module.exports = {
   },
 
   uploadPhoto: function (req, res) {
-    console.log('hitting upload photo endpoint');
+    // console.log('hitting upload photo endpoint');
+    // res.send(200);
     req.file('file').upload(function (err, file) {
       if (err) {
         res.jsonError('Unable to upload file.');
       } else {
         S3Service.upload(file[0], 'profile_pictures')
           .then(function success(url) {
-            res.json({ url: url });
+            return UserService.updateAvatar(req.session.User.id, url);
+          })
+          .then(function success() {
+            res.send(200);
           }, function error(err) {
             res.jsonError(err);
           });

@@ -13,7 +13,8 @@ module.exports = {
     return {
       user: {},
       currentView: 'games',
-      dropzone: {}
+      dropzone: {},
+      uploadProgress: 0
     };
   },
   created() {
@@ -34,21 +35,40 @@ module.exports = {
   computed: {
     userName() {
       return (this.user.id) ? this.user.chatHandle : '';
+    },
+    userAvatar() {
+      return (this.user.config && this.user.config.avatar) ? this.user.config.avatar : '/images/avatar_ph.jpg';
+    },
+    uploadInProgress() {
+      return this.uploadProgress > 0 && this.uploadProgress < 100;
     }
   },
   methods: {
     setView(view) {
       this.currentView = view;
     },
-    updateUserPhoto() {
-      console.log('drop received');
-      console.log(event.dataTransfer);
-    },
     initPhotoUpload() {
+      var self = this;
+
       this.dropzone = new Dropzone(this.$refs.profilePictureUpload, {
         url: '/user/uploadPhoto',
-        init() {
-          console.log('dropzone initialized');
+        acceptedFiles: 'image/*',
+        addedfile() {
+          self.uploadProgress = 0;
+        },
+        thumbnail() {},
+        uploadprogress(file, progress) {
+          self.uploadProgress = progress;
+          console.log(progress);
+        },
+        success(file, response) {
+          self.uploadProgress = 0;
+          console.log(response);
+        },
+        error(msg) {
+          self.uploadProgress = 0;
+          console.log(msg);
+          self.$refs.notifications.alert(msg);
         }
       });
     }

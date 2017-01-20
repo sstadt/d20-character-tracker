@@ -51,7 +51,7 @@ module.exports.routes = {
   /*
     User
    */
-  '/profile/:user': {
+  '/profile': {
     controller: 'user',
     action: 'show'
   },
@@ -62,10 +62,6 @@ module.exports.routes = {
   '/verify': {
     controller: 'user',
     action: 'verify'
-  },
-  '/profile': {
-    controller: 'user',
-    action: 'show'
   },
   '/self': {
     controller: 'user',
