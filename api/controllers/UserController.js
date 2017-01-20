@@ -10,7 +10,8 @@
 
 var userErrors = sails.config.notifications.User.error,
   userSuccesses = sails.config.notifications.User.success,
-  tokenErrors = sails.config.notifications.Token.error;
+  tokenErrors = sails.config.notifications.Token.error,
+  q = require('q');
 
 module.exports = {
 
@@ -185,15 +186,23 @@ module.exports = {
   },
 
   uploadPhoto: function (req, res) {
-    // console.log('hitting upload photo endpoint');
-    // res.send(200);
     req.file('file').upload(function (err, file) {
+      var filename = req.session.User.id + file[0].filename,
+        oldAvatar = req.session.User.config.avatar,
+        oldFilename = /profile_pictures\/.+$/.exec(oldAvatar)[0];
+
+      // namespace the image to the user
+      file[0].filename = filename;
+
       if (err) {
         res.jsonError('Unable to upload file.');
       } else {
         S3Service.upload(file[0], 'profile_pictures')
           .then(function success(url) {
-            return UserService.updateAvatar(req.session.User.id, url);
+            return UserService.updateAvatar(req, url);
+          })
+          .then(function success() {
+            return (oldFilename !== 'profile_pictures/' + filename) ? S3Service.remove(oldFilename) : q.resolve();
           })
           .then(function success() {
             res.send(200);

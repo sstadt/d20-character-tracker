@@ -20,10 +20,10 @@ module.exports = {
     });
   },
 
-  updateAvatar: function (userId, url) {
+  updateAvatar: function (req, url) {
     var deferred = q.defer();
 
-    User.findOne(userId)
+    User.findOne(req.session.User.id)
       .populate('gameMaster')
       .populate('player')
       .exec(function (err, user) {
@@ -32,9 +32,10 @@ module.exports = {
         } else if (!user) {
           deferred.reject('User not found');
         } else {
+          req.session.User.config.avatar = url;
           user.config.avatar = url;
 
-          User.update(user, function (err) {
+          user.save(user, function (err) {
             if (err) {
               deferred.reject(err);
             } else {
@@ -46,7 +47,7 @@ module.exports = {
               _.forEach(user.player, function (game) {
                 Game.message(game.id, {
                   type: 'playerConfigUpdated',
-                  data: { config: user.config }
+                  data: { user: user.id, config: user.config }
                 });
               });
 

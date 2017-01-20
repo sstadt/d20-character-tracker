@@ -1,14 +1,10 @@
 
+var Pipe = require('../../classes/Pipe.js');
+
 var userService = require('../../services/userService.js');
 
 module.exports = {
   template: require('./userProfileTemplate.html'),
-  props: {
-    userId: {
-      type: String,
-      defaultsTo: ''
-    }
-  },
   data() {
     return {
       user: {},
@@ -25,6 +21,7 @@ module.exports = {
       .then(function success(user) {
         self.user = user;
         Vue.nextTick(self.initPhotoUpload);
+        self.initUserPipe();
       });
   },
   components: {
@@ -40,7 +37,7 @@ module.exports = {
       return (this.user.config && this.user.config.avatar) ? this.user.config.avatar : '/images/avatar_ph.jpg';
     },
     uploadInProgress() {
-      return this.uploadProgress > 0 && this.uploadProgress < 100;
+      return this.uploadProgress !== 0;
     }
   },
   methods: {
@@ -59,18 +56,26 @@ module.exports = {
         thumbnail() {},
         uploadprogress(file, progress) {
           self.uploadProgress = progress;
-          console.log(progress);
         },
         success(file, response) {
           self.uploadProgress = 0;
-          console.log(response);
         },
         error(msg) {
+          console.error(msg);
           self.uploadProgress = 0;
-          console.log(msg);
-          self.$refs.notifications.alert(msg);
+          self.$refs.notifications.alert('There was an error uploading your image');
         }
       });
+    },
+    initUserPipe() {
+      var UserPipe = new Pipe('user');
+
+      UserPipe.on('playerConfigUpdated', this.playerConfigUpdated);
+    },
+    playerConfigUpdated(data) {
+      if (data.config) {
+        this.user.config = data.config;
+      }
     }
   }
 };
