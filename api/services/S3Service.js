@@ -40,6 +40,8 @@ module.exports = {
           ContentType: file.type
         }, function (err) {
           if (err) {
+            console.log('---------- upload error ----------');
+            console.log(err);
             deferred.reject(err.message);
           } else {
             fs.unlink(file.fd);

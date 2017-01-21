@@ -12,7 +12,10 @@
           <div class="small-12 medium-4 column">
             <div class="profile-picture" ref="profilePictureUpload">
               <img :src="userAvatar" />
-              <md-progress class="md-accent" :md-progress="uploadProgress" v-show="uploadInProgress"></md-progress>
+              <transition-group name="fade">
+                <md-spinner key="spinner" class="md-accent" :md-size="150" v-show="loadingUser" md-indeterminate></md-spinner>
+                <md-progress key="progress" class="md-accent" :md-progress="uploadProgress" v-show="uploadInProgress"></md-progress>
+              </transition-group>
             </div>
             <md-list>
               <md-list-item @click="setView('games')"><span>Games</span></md-list-item>
@@ -25,7 +28,7 @@
             <h2 class="maya-blue">{{ user.email }}</h2>
             <div class="views">
               <transition name="fade" mode="out-in">
-                <component :is="currentView" keep-alive></component>
+                <component :is="currentView" :games="myGames" @error="error" keep-alive></component>
               </transition>
             </div>
           </div>

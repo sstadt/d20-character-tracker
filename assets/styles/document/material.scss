@@ -32,6 +32,26 @@
   margin-bottom: 1rem;
 }
 
-.md-theme-tabs.md-tabs > .md-tabs-navigation.md-whiteframe {
-  background-color: transparent;
+div.md-theme-default.md-tabs > .md-tabs-navigation.md-whiteframe {
+  background-color: $tabs-background-color;
+
+  .md-tab-header {
+    color: $tabs-header-color;
+
+    &.md-active {
+      color: $tabs-header-color-active;
+    }
+  }
+}
+
+.md-input-container {
+  .md-icon {
+    position: absolute;
+    right: 0;
+    top: 16px;
+
+    &:after {
+      background: none !important; // VueMaterial fix
+    }
+  }
 }

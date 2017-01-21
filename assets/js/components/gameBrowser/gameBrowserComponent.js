@@ -6,6 +6,8 @@ var userService = require('../../services/userService.js');
 
 var util = require('../../lib/util.js');
 
+// TODO: switch alert messages over to a notification
+
 module.exports = {
   template: require('./gameBrowserTemplate.html'),
   data() {

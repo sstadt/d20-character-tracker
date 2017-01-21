@@ -26,6 +26,13 @@ $user-profile-views-offset: $user-profile-offset - (($user-profile-header-size +
         border-radius: $global-radius;
       }
 
+      .md-spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+
       .md-progress {
         position: absolute;
         width: 90%;

@@ -187,12 +187,14 @@ module.exports = {
 
   uploadPhoto: function (req, res) {
     req.file('file').upload(function (err, file) {
-      var filename = req.session.User.id + file[0].filename,
+      var fileName = req.session.User.id + file[0].filename,
+        filePath = 'profile_pictures/' + fileName,
         oldAvatar = req.session.User.config.avatar,
-        oldFilename = /profile_pictures\/.+$/.exec(oldAvatar)[0];
+        fileSearch = /profile_pictures\/.+$/.exec(oldAvatar),
+        oldFilePath = _.isArray(fileSearch) ? fileSearch[0] : false;
 
       // namespace the image to the user
-      file[0].filename = filename;
+      file[0].filename = fileName;
 
       if (err) {
         res.jsonError('Unable to upload file.');
@@ -202,7 +204,11 @@ module.exports = {
             return UserService.updateAvatar(req, url);
           })
           .then(function success() {
-            return (oldFilename !== 'profile_pictures/' + filename) ? S3Service.remove(oldFilename) : q.resolve();
+            if (oldFilePath !== false && oldFilePath !== filePath) {
+              return S3Service.remove(oldFilePath);
+            } else {
+              return q.resolve();
+            }
           })
           .then(function success() {
             res.send(200);

@@ -1,17 +1,17 @@
 
 $icon-size: 20px;
 
-.icon-image {
+svg.icon-image:not(.md-image) { // fuck you VueMaterial for styling all svg:not(.md-image)
   width: $icon-size;
   height: $icon-size;
   fill: $text-color;
 
   &[class*="die-"] {
-    fill: $black; // TODO
+    fill: $black; // TODO settings vars you slacker....
   }
 
   &.dice-dark-side, &.dice-light-side, &.force-point {
-    fill: $white; // TODO
+    fill: $white; // TODO settings vars you slacker....
   }
 
   // &.rebel {

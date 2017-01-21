@@ -1,14 +1,15 @@
 
 module.exports = {
   template: require('./gamesTemplate.html'),
-  data() {
-    return {
-      greeting: 'games component',
-    };
+  props: {
+    games: {
+      type: Array,
+      required: true
+    }
   },
   methods: {
-    sayHi() {
-      console.log('hi!');
+    gameListError(err) {
+      this.$emit('error', err);
     }
   }
 };
