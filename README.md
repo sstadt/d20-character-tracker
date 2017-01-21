@@ -4,8 +4,7 @@
 
 #### priority
 
- - player game socket updates not working on user profile
- - Vue canvas is throwing errors on player avatar rendering
+ - Vue canvas is throwing errors on player avatar rendering - playersMenu
 
 #### as able...
 

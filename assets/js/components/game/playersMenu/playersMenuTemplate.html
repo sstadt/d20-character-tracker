@@ -5,40 +5,34 @@
   <div class="row small-up-1 medium-up-2">
     <div class="column" v-for="player in game.players">
       <md-card md-with-hover>
-        <md-card-media-cover md-text-scrim>
-          <md-card-media md-ratio="16:9">
-            <img src="//placehold.it/640x640" :alt="player.chatHandle">
-          </md-card-media>
-          <md-card-area>
-            <md-card-header>
-              <div class="md-title">{{ player.chatHandle }}</div>
-              <div class="md-subhead">Active Player</div>
-            </md-card-header>
-            <md-card-actions>
-              <md-button @click="removePlayer(player)">Remove</md-button>
-            </md-card-actions>
-          </md-card-area>
-        </md-card-media-cover>
+        <md-card-header>
+          <div class="md-title">{{ player.chatHandle }}</div>
+          <div class="md-subhead">Active Player</div>
+        </md-card-header>
+        <md-card-media md-ratio="16:9">
+          <img :src="player.config.avatar" :alt="player.chatHandle" v-if="player.config.avatar">
+          <img src="/images/avatar_ph.jpg" :alt="player.chatHandle" v-else>
+        </md-card-media>
+        <md-card-actions>
+          <md-button @click="removePlayer(player)">Remove</md-button>
+        </md-card-actions>
       </md-card>
     </div>
 
     <div class="column" v-for="player in game.requestingPlayers">
       <md-card md-with-hover>
-        <md-card-media-cover md-text-scrim>
-          <md-card-media md-ratio="16:9">
-            <img src="//placehold.it/640x640" :alt="player.chatHandle">
-          </md-card-media>
-          <md-card-area>
-            <md-card-header>
-              <div class="md-title">{{ player.chatHandle }}</div>
-              <div class="md-subhead">Applied</div>
-            </md-card-header>
-            <md-card-actions>
-              <md-button @click="declinePlayer(player)">Decline</md-button>
-              <md-button @click="approvePlayer(player)">Approve</md-button>
-            </md-card-actions>
-          </md-card-area>
-        </md-card-media-cover>
+        <md-card-header>
+          <div class="md-title">{{ player.chatHandle }}</div>
+          <div class="md-subhead">Applied</div>
+        </md-card-header>
+        <md-card-media md-ratio="16:9">
+          <img :src="player.config.avatar" :alt="player.chatHandle" v-if="player.config.avatar">
+          <img src="/images/avatar_ph.jpg" :alt="player.chatHandle" v-else>
+        </md-card-media>
+        <md-card-actions>
+          <md-button @click="declinePlayer(player)">Decline</md-button>
+          <md-button @click="approvePlayer(player)">Approve</md-button>
+        </md-card-actions>
       </md-card>
     </div>
   </div>
