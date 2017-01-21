@@ -1,6 +1,8 @@
 
 var Pipe = require('../../classes/Pipe.js');
 
+var util = require('../../lib/util.js');
+
 var gameService = require('../../services/gameService.js');
 var userService = require('../../services/userService.js');
 
