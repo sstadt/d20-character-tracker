@@ -20,7 +20,7 @@ $task-die-result-difficulty-icon-color: #d4afd1;
     display: inline-block;
   }
 
-  & > .icon-image {
+  & > svg.icon-image {
     height: $task-die-result-die-size;
     width: $task-die-result-die-size;
   }

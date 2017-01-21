@@ -2,8 +2,8 @@
 <div class="game-menu players">
   <alert ref="gamePlayersAlert" :can-close="true"></alert>
 
-  <div class="row small-up-1 medium-up-2" v-for="player in game.players">
-    <div class="column">
+  <div class="row small-up-1 medium-up-2">
+    <div class="column" v-for="player in game.players">
       <md-card md-with-hover>
         <md-card-media-cover md-text-scrim>
           <md-card-media md-ratio="16:9">

@@ -125,6 +125,7 @@ module.exports = {
       GamePipe.on('gameCrawlUpdated', this.gameCrawlUpdated);
       GamePipe.on('gameCrawlDestroyed', this.gameCrawlDestroyed);
       GamePipe.on('newLogMessage', this.newLogMessage);
+      GamePipe.on('playerConfigUpdated', this.playerConfigUpdated);
     },
     playerRequestedJoin(data) {
       this.game.requestingPlayers.push(data.player);
@@ -207,6 +208,15 @@ module.exports = {
     newLogMessage(data) {
       this.gameLog.log.push(data);
       Vue.nextTick(self.scrollChatToBottom);
+    },
+    playerConfigUpdated(data) {
+      console.log(util.debug(data));
+      var playerIndex = util.getIndexById(this.game.players, data.user);
+
+      console.log(playerIndex);
+      if (playerIndex > -1 && !_.isUndefined(data.config)) {
+        this.game.players[playerIndex].config = data.config;
+      }
     }
   }
 };

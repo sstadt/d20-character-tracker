@@ -21,7 +21,8 @@ module.exports = {
   },
 
   updateAvatar: function (req, url) {
-    var deferred = q.defer();
+    var deferred = q.defer(),
+      games;
 
     User.findOne(req.session.User.id)
       .populate('gameMaster')
@@ -34,6 +35,7 @@ module.exports = {
         } else {
           req.session.User.config.avatar = url;
           user.config.avatar = url;
+          games = user.player;
 
           user.save(user, function (err) {
             if (err) {
@@ -44,7 +46,7 @@ module.exports = {
                 data: { config: user.config }
               });
 
-              _.forEach(user.player, function (game) {
+              _.forEach(games, function (game) {
                 Game.message(game.id, {
                   type: 'playerConfigUpdated',
                   data: { user: user.id, config: user.config }

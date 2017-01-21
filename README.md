@@ -2,9 +2,14 @@
 
 ### Dev to do:
 
+ - player game socket updates not working on user profile
+ - move players in gamePlayers to a child component and compute user avatar
  - add ajax spinner to all auth component async operations
  - stylize email templates
  - move Vue themes and filters to js/lib in their own files
+ - add a method to the ErrorService that parses s3 error messages
+ - closing the browser does not send an offline event in the game
+ - Vue canvas is throwing errors on player avatar rendering
 
 ### DevOps to do:
 

@@ -1,4 +1,6 @@
 
+$material-icon-large-size: 78px;
+
 .md-dialog-title {
   .subtitle {
     line-height: 1;
@@ -15,12 +17,12 @@
 
 .md-avatar-icon.md-large {
   .md-icon {
-    width: 64px;
-    min-width: 64px;
-    height: 64px;
-    min-height: 64px;
-    font-size: 64px;
-    line-height: 64px;
+    width: $material-icon-large-size;
+    min-width: $material-icon-large-size;
+    height: $material-icon-large-size;
+    min-height: $material-icon-large-size;
+    font-size: $material-icon-large-size;
+    line-height: $material-icon-large-size;
   }
 }
 

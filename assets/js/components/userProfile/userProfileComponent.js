@@ -90,7 +90,6 @@ module.exports = {
 
       UserPipe.on('playerConfigUpdated', this.playerConfigUpdated);
       UserPipe.on('playerJoinApproved', this.playerJoinApproved);
-      UserPipe.on('playerJoinDeclined', this.playerJoinDeclined);
       UserPipe.on('removedFromGame', this.removedFromGame);
     },
     playerConfigUpdated(data) {
@@ -99,32 +98,10 @@ module.exports = {
       }
     },
     playerJoinApproved(data) {
-      var filteredGamesIndex = util.getIndexById(this.filteredGames, data.game.id),
-        userIndex = util.getIndexById(this.filteredGames[filteredGamesIndex].requestingPlayers, this.user.id);
-
       this.myGames.push(data.game);
-
-      if (filteredGamesIndex > -1) {
-        this.filteredGames[filteredGamesIndex].requestingPlayers.splice(userIndex, 1);
-        this.filteredGames[filteredGamesIndex].players.push(this.user);
-      }
-    },
-    playerJoinDeclined(data) {
-      var filteredGamesIndex = util.getIndexById(this.filteredGames, data.game.id),
-        userIndex = util.getIndexById(this.filteredGames[filteredGamesIndex].requestingPlayers, this.user.id);
-
-      if (filteredGamesIndex > -1) {
-        this.filteredGames[filteredGamesIndex].requestingPlayers.splice(userIndex, 1);
-      }
     },
     removedFromGame(data) {
-      var filteredGamesIndex = util.getIndexById(this.filteredGames, data.game.id),
-        myGamesIndex = util.getIndexById(this.myGames, data.game.id),
-        userIndex = util.getIndexById(this.filteredGames[filteredGamesIndex].players, this.user.id);
-
-      if (filteredGamesIndex > -1) {
-        this.filteredGames[filteredGamesIndex].players.splice(userIndex, 1);
-      }
+      var myGamesIndex = util.getIndexById(this.myGames, data.game.id);
 
       if (myGamesIndex > -1) {
         this.myGames.splice(myGamesIndex, 1);

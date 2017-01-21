@@ -1,5 +1,12 @@
 
 <div class="player">
-  <md-avatar class="md-avatar-icon md-large"><md-icon>account_circle</md-icon></md-avatar>
+  <md-avatar class="md-large" v-if="player.config && player.config.avatar">
+    <img :src="player.config.avatar" />
+    <md-tooltip md-direction="right">{{ player.chatHandle }}</md-tooltip>
+  </md-avatar>
+  <md-avatar class="md-avatar-icon md-large" v-else>
+    <md-icon>account_circle</md-icon>
+    <md-tooltip md-direction="right">{{ player.chatHandle }}</md-tooltip>
+  </md-avatar>
   <div :class="{ 'status-indicator': true, 'online': playerIsOnline }"></div>
 </div>
