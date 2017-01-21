@@ -2,10 +2,6 @@
 
 ### Dev to do:
 
-#### priority
-
- - Vue canvas is throwing errors on player avatar rendering - playersMenu
-
 #### as able...
 
  - add ajax spinner to all auth component async operations
