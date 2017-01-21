@@ -1,0 +1,22 @@
+
+$destiny-token-block-width: 60px;
+
+.destiny-tokens {
+  margin-top: 10px;
+  display: inline-block;
+
+  .light-side-tokens, .dark-side-tokens {
+    position: relative;
+    display: inline-block;
+    width: $destiny-token-block-width;
+    height: 30px;
+    cursor: pointer;
+
+    svg.icon-image {
+      position: absolute;
+      top: 5px;
+      left: 17.5px;
+      transition: all 0.3s ease;
+    }
+  }
+}

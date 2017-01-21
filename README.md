@@ -2,8 +2,6 @@
 
 ### Dev to do:
 
-#### as able...
-
  - add ajax spinner to all auth component async operations
  - stylize email templates
  - move Vue themes and filters to js/lib in their own files
@@ -18,7 +16,7 @@
 
  - waterline isn't behaving as expected when querying against dates
  - ... need to figure out a TTL solution that will not infringe upon registration while expiring reset tokens after 24 hours
- - set up grunt-autoprefixer http://grunt-tasks.com/autoprefixer/
+ - set up grunt-autoprefixer
 
 ### Setup
 

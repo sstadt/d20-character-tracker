@@ -15,3 +15,4 @@ require('../components/party/party.js');
 require('../components/chat/chat.js');
 require('../components/dicePool/dicePool.js');
 require('../components/diceControls/diceControls.js');
+require('../components/destinyTokens/destinyTokens.js');

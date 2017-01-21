@@ -22,6 +22,7 @@
     <div class="dice-pool-container no-shrink">
       <dice-pool ref="dicePool" :game="game.id" @error="notifyError"></dice-pool>
       <dice-controls @die-click="addDieToPool"></dice-controls>
+      <destiny-tokens :is-game-master="userIsGameMaster"></destiny-tokens>
     </div>
   </div>
 
