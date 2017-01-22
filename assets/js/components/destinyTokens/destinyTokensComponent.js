@@ -5,29 +5,17 @@ module.exports = {
     isGameMaster: {
       type: Boolean,
       defaultsTo: false
+    },
+    light: {
+      type: Number,
+      required: true
+    },
+    dark: {
+      type: Number,
+      required: true
     }
-  },
-  data() {
-    return {
-      light: 5,
-      dark: 7,
-      iconSpacing: 6
-    };
   },
   components: {
     token: require('./token/tokenComponent.js')
-  },
-  methods: {
-    useToken(type) {
-      if (type === 'dark' && this.dark > 0) {
-        this.dark--;
-        this.light++;
-      }
-
-      if (type === 'light' && this.light > 0) {
-        this.light--;
-        this.dark++;
-      }
-    }
   }
 };

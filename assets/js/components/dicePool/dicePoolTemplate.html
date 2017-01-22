@@ -4,7 +4,13 @@
     @dragover.prevent
     @dragenter.prevent="dragEnter"
     @dragleave.prevent="dragLeave"
-    @drop="addDieByDrag">
+    @drop="dropHandler">
+    <div class="tokens">
+      <transition-group name="fade">
+        <icon key="light" v-show="lightToken" name="light-destiny-token"></icon>
+        <icon key="dark" v-show="darkToken" name="dark-destiny-token"></icon>
+      </transition-group>
+    </div>
     <span class="die-block" @click="removeDie('ability')">
       <icon name="die-ability" v-for="n in dice.ability"></icon>
     </span>

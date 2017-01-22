@@ -1,2 +1,4 @@
 
-<icon :name="icon" :style="{ transform: tokenTransform }"></icon>
+<div class="destiny-token" draggable="true" @dragstart="dragStart($event)" :style="{ transform: tokenTransform }">
+  <icon :name="icon"></icon>
+</div>

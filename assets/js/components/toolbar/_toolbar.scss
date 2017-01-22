@@ -23,4 +23,8 @@
       fill: $page-controls-color;
     }
   }
+
+  .md-menu-backdrop {
+    z-index: -1;
+  }
 }

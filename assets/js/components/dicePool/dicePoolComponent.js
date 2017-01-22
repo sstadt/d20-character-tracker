@@ -22,7 +22,9 @@ module.exports = {
         boost: 0,
         setback: 0,
         force: 0
-      }
+      },
+      lightToken: false,
+      darkToken: false
     };
   },
   methods: {
@@ -36,7 +38,9 @@ module.exports = {
           challenge: self.dice.challenge,
           boost: self.dice.boost,
           setback: self.dice.setback,
-          force: self.dice.force
+          force: self.dice.force,
+          lightToken: self.lightToken,
+          darkToken: self.darkToken
         };
 
       if (self.hasDice()) {
@@ -77,22 +81,52 @@ module.exports = {
       this.dice.boost = 0;
       this.dice.setback = 0;
       this.dice.force = 0;
+      this.hasLightToken = false;
+      this.hasDarkToken = false;
       this.rollDescription = '';
     },
+    dropHandler(event) {
+      var dropData = event.dataTransfer.getData("text");
+
+      this.droppable = false;
+
+      if (!_.isUndefined(this.dice[dropData])) {
+        this.addDie(dropData);
+      }
+
+      if (dropData === 'light-token' || dropData === 'dark-token') {
+        this.addToken(dropData.split('-')[0]);
+      }
+    },
+    addToken(type) {
+      if (!_.isUndefined(this[`${type}Token`]) && this[`${type}Token`] === false) {
+        if (type === 'light' && this.dice.ability > 0) {
+          this.dice.ability--;
+          this.dice.proficiency++;
+          this.lightToken = true;
+        } else if (type === 'dark' && this.dice.difficulty > 0) {
+          this.dice.difficulty--;
+          this.dice.challenge++;
+          this.darkToken = true;
+        }
+      }
+    },
     addDie(type) {
-      if (this.dice[type] !== undefined) {
+      if (!_.isUndefined(this.dice[type])) {
         this.dice[type]++;
       }
     },
-    addDieByDrag(event) {
-      var type = event.dataTransfer.getData("text");
-
-      this.droppable = false;
-      this.addDie(type);
-    },
     removeDie(type) {
-      if (this.dice[type] !== undefined) {
+      if (!_.isUndefined(this.dice[type])) {
         this.dice[type]--;
+
+        if (this.dice.proficiency < 1 && this.lightToken === true) {
+          this.lightToken = false;
+        }
+
+        if (this.dice.challenge < 1 && this.darkToken === true) {
+          this.darkToken = false;
+        }
       }
     },
     dragEnter() {

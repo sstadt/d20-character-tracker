@@ -16,7 +16,7 @@ module.exports = {
     dieClick() {
       this.$emit('die-click');
     },
-    dragStart(event, type) {
+    dragStart(event) {
       event.dataTransfer.setData("text/plain", this.die);
     }
   }

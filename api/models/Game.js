@@ -16,6 +16,14 @@ module.exports = {
       type: 'array',
       defaultsTo: []
     },
+    lightTokens: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+    darkTokens: {
+      type: 'integer',
+      defaultsTo: 0
+    },
     gameMaster: {
       model: 'user',
       required: true

@@ -50,6 +50,12 @@ module.exports = {
     },
     gameMasterIsOnline() {
       return this.game.online.indexOf(this.game.gameMaster.id) > -1;
+    },
+    lightTokens() {
+      return !_.isUndefined(this.game.lightTokens) ? this.game.lightTokens : 0;
+    },
+    darkTokens() {
+      return !_.isUndefined(this.game.darkTokens) ? this.game.darkTokens : 0;
     }
   },
   filters: {

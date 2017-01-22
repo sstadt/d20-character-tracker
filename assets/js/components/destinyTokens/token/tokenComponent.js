@@ -32,5 +32,10 @@ module.exports = {
 
       return `translateX(${offsetX}px) translateY(${offsetY}px)`;
     }
+  },
+  methods: {
+    dragStart(event) {
+      event.dataTransfer.setData("text/plain", `${this.type}-token`);
+    }
   }
 };

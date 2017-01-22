@@ -5,6 +5,13 @@
       <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('crawl')"><icon name="crawl"></icon></md-button>
       <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('players')"><icon name="rebel"></icon></md-button>
       <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('settings')"><icon name="empire"></icon></md-button>
+
+      <md-menu v-if="userIsGameMaster" md-direction="bottom left" :md-align-trigger="true" md-size="4">
+        <md-button class="md-icon-button" md-menu-trigger><icon name="dl44"></icon></md-button>
+        <md-menu-content>
+          <md-menu-item>Roll Destiny Tokens</md-menu-item>
+        </md-menu-content>
+      </md-menu>
     </span>
   </toolbar>
 
@@ -22,7 +29,7 @@
     <div class="dice-pool-container no-shrink">
       <dice-pool ref="dicePool" :game="game.id" @error="notifyError"></dice-pool>
       <dice-controls @die-click="addDieToPool"></dice-controls>
-      <destiny-tokens :is-game-master="userIsGameMaster"></destiny-tokens>
+      <destiny-tokens :is-game-master="userIsGameMaster" :light="lightTokens" :dark="darkTokens"></destiny-tokens>
     </div>
   </div>
 
