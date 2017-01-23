@@ -175,44 +175,43 @@ describe('The login component', function () {
         });
       });
 
-      // TODO: why is componentInstance data coming back as undefined for these tests???
-      // describe('on password error', function () {
-      //   beforeEach(function (done) {
-      //     spyOn(authService, 'login').and.callFake(function () {
-      //       return q.reject({ err: 'Password error', showReset: false });
-      //     });
-      //
-      //     componentInstance.login().done(function () { done(); });
-      //   });
-      //
-      //   it('should set showResend', function () {
-      //     expect(componentInstance.showResend).toEqual(false);
-      //   });
-      //
-      //   it('should add the error to the password field', function () {
-      //     expect(componentInstance.loginForm.password.hasErrors).toEqual(true);
-      //     expect(componentInstance.loginForm.password.error).toEqual(['Password error']);
-      //   });
-      // });
-      //
-      // describe('on non-password error', function () {
-      //   beforeEach(function (done) {
-      //     spyOn(authService, 'login').and.callFake(function () {
-      //       return q.reject({ err: 'Other error', showReset: true });
-      //     });
-      //
-      //     componentInstance.login().done(function () { done(); });
-      //   });
-      //
-      //   it('should set showResend', function () {
-      //     expect(componentInstance.showResend).toEqual(true);
-      //   });
-      //
-      //   it('should add the error to the email field', function () {
-      //     expect(componentInstance.loginForm.password.hasErrors).toEqual(true);
-      //     expect(componentInstance.loginForm.password.error).toEqual(['Other error']);
-      //   });
-      // });
+      describe('on password error', function () {
+        beforeEach(function (done) {
+          spyOn(authService, 'login').and.callFake(function () {
+            return q.reject({ err: 'Password error', showResend: false });
+          });
+
+          componentInstance.login().done(function () { done(); });
+        });
+
+        it('should set showResend', function () {
+          expect(componentInstance.showResend).toEqual(false);
+        });
+
+        it('should add the error to the password field', function () {
+          expect(componentInstance.loginForm.fields.password.hasErrors).toEqual(true);
+          expect(componentInstance.loginForm.fields.password.errors).toEqual(['Password error']);
+        });
+      });
+
+      describe('on non-password error', function () {
+        beforeEach(function (done) {
+          spyOn(authService, 'login').and.callFake(function () {
+            return q.reject({ err: 'Other error', showResend: true });
+          });
+
+          componentInstance.login().done(function () { done(); });
+        });
+
+        it('should set showResend', function () {
+          expect(componentInstance.showResend).toEqual(true);
+        });
+
+        it('should add the error to the email field', function () {
+          expect(componentInstance.loginForm.fields.email.hasErrors).toEqual(true);
+          expect(componentInstance.loginForm.fields.email.errors).toEqual(['Other error']);
+        });
+      });
     });
   });
 
