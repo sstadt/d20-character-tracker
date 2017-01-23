@@ -89,7 +89,7 @@ module.exports = {
     addLogMessage(gameId, 'roll', chatHandle, DicePoolService.roll(description, pool))
       .then(function success(message) {
         sendLogMessage(gameId, message);
-        deferred.resolve();
+        deferred.resolve(message);
       }, function error(err) {
         sails.log(err);
         deferred.reject(err);

@@ -275,6 +275,48 @@ module.exports = {
 		});
 
     return deferred.promise;
+  },
+
+  updateDestinyPool: function (gameId, light, dark) {
+    var deferred = q.defer();
+
+    Game.update(gameId, { lightTokens: light, darkTokens: dark }, function (err) {
+      if (err) {
+        deferred.reject(err);
+      } else {
+        // dispatch update about the tokens being updated
+        Game.message(gameId, {
+          type: 'destinyPoolUpdated',
+          data: {
+            light: light,
+            dark: dark
+          }
+        });
+
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
+  },
+
+  rollDestinyPool: function (gameId, chatHandle, numPlayers) {
+    var deferred = q.defer(),
+      description = 'has rolled the destiny pool',
+      dicePool = { force: numPlayers };
+
+		if (!DicePoolService.isValidTaskRoll(dicePool)) {
+			deferred.reject('Invalid dice pool');
+		} else {
+			GameLogService.addRollMessage(gameId, chatHandle, description, dicePool)
+				.then(function success(rollMessage) {
+					deferred.resolve(rollMessage);
+				}, function error(err) {
+					deferred.reject(err);
+				});
+		}
+
+    return deferred.promise;
   }
 
 };

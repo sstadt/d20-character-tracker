@@ -118,6 +118,18 @@ module.exports = {
     addDieToPool(type) {
       this.$refs.dicePool.addDie(type);
     },
+    rollDestinyPool() {
+      var deferred = q.defer(),
+        self = this;
+
+      gameService.rollDestinyPool(self.game.id, self.game.players.length)
+        .fail(function (reason) {
+          self.$refs.notifications.alert(reason);
+          deferred.resolve();
+        });
+
+      return deferred.promise;
+    },
     initGamePipe() {
       var GamePipe = new Pipe('game');
 
@@ -132,6 +144,7 @@ module.exports = {
       GamePipe.on('gameCrawlDestroyed', this.gameCrawlDestroyed);
       GamePipe.on('newLogMessage', this.newLogMessage);
       GamePipe.on('playerConfigUpdated', this.playerConfigUpdated);
+      GamePipe.on('destinyPoolUpdated', this.destinyPoolUpdated);
     },
     playerRequestedJoin(data) {
       this.game.requestingPlayers.push(data.player);
@@ -216,13 +229,15 @@ module.exports = {
       Vue.nextTick(self.scrollChatToBottom);
     },
     playerConfigUpdated(data) {
-      console.log(util.debug(data));
       var playerIndex = util.getIndexById(this.game.players, data.user);
 
-      console.log(playerIndex);
       if (playerIndex > -1 && !_.isUndefined(data.config)) {
         this.game.players[playerIndex].config = data.config;
       }
+    },
+    destinyPoolUpdated(data) {
+      this.game.lightTokens = data.light || 0;
+      this.game.darkTokens = data.dark || 0;
     }
   }
 };

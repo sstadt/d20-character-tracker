@@ -65,19 +65,20 @@ module.exports.policies = {
   },
 
   GameController: {
-    '*'             : false,
-    'browser'       : ['sessionAuth'],
-    'show'          : ['sessionAuth',       'gamePlayer'],
-    'get'           : ['socketSessionAuth', 'gamePlayer'],
-    'playing'       : ['socketSessionAuth'],
-    'search'        : ['socketSessionAuth'],
-    'create'        : ['socketSessionAuth'],
-    'updateConfig'  : ['socketSessionAuth', 'gameMaster'],
-    'addCrawl'      : ['socketSessionAuth', 'gameMaster'],
-    'join'          : ['socketSessionAuth'],
-    'approvePlayer' : ['socketSessionAuth', 'gameMaster'],
-    'declinePlayer' : ['socketSessionAuth', 'gameMaster'],
-    'removePlayer'  : ['socketSessionAuth', 'gameMaster']
+    '*'              : false,
+    'browser'        : ['sessionAuth'],
+    'show'           : ['sessionAuth',       'gamePlayer'],
+    'get'            : ['socketSessionAuth', 'gamePlayer'],
+    'playing'        : ['socketSessionAuth'],
+    'search'         : ['socketSessionAuth'],
+    'create'         : ['socketSessionAuth'],
+    'updateConfig'   : ['socketSessionAuth', 'gameMaster'],
+    'addCrawl'       : ['socketSessionAuth', 'gameMaster'],
+    'join'           : ['socketSessionAuth'],
+    'approvePlayer'  : ['socketSessionAuth', 'gameMaster'],
+    'declinePlayer'  : ['socketSessionAuth', 'gameMaster'],
+    'removePlayer'   : ['socketSessionAuth', 'gameMaster'],
+    'rollDestinyPool': ['socketSessionAuth', 'gameMaster']
   },
 
   GameLogController: {

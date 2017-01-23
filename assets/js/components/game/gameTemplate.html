@@ -1,5 +1,6 @@
 
 <div class="game">
+  <!-- menu -->
   <toolbar :game="gameId">
     <span slot="topbar">
       <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('crawl')"><icon name="crawl"></icon></md-button>
@@ -9,18 +10,22 @@
       <md-menu v-if="userIsGameMaster" md-direction="bottom left" :md-align-trigger="true" md-size="4">
         <md-button class="md-icon-button" md-menu-trigger><icon name="dl44"></icon></md-button>
         <md-menu-content>
-          <md-menu-item>Roll Destiny Tokens</md-menu-item>
+          <md-menu-item @click="rollDestinyPool">Roll Destiny Tokens</md-menu-item>
         </md-menu-content>
       </md-menu>
     </span>
   </toolbar>
 
+  <!-- music player -->
   <jukebox :playlist="playlist" ref="jukebox" @track-finished="trackFinished"></jukebox>
 
+  <!-- notifications -->
   <notification ref="notifications"></notification>
 
+  <!-- party -->
   <party :game="game" @error="notifyError"></party>
 
+  <!-- chat window and dice controls -->
   <div class="panel main-window flex-column">
     <div class="chat-container fill-height">
       <chat v-if="gameLog.log" :log="gameLog.log" :game="game.id" @play-crawl="playCrawl"></chat>
@@ -33,6 +38,7 @@
     </div>
   </div>
 
+  <!-- crawl -->
   <star-wars-crawl
     :title="activeCrawl.title"
     :subtitle="activeCrawl.subtitle"
@@ -43,6 +49,7 @@
     ref="crawl">
   </star-wars-crawl>
 
+  <!-- crawl menu -->
   <md-dialog ref="crawlDialog" v-if="userIsGameMaster">
     <md-dialog-title>
       <p>{{ game.title }} Crawls</p>
@@ -59,6 +66,7 @@
     </md-dialog-content>
   </md-dialog>
 
+  <!-- players menu -->
   <md-dialog ref="playersDialog" v-if="userIsGameMaster">
     <md-dialog-title>
       <p>{{ game.title }} Players</p>
@@ -74,6 +82,7 @@
     </md-dialog-content>
   </md-dialog>
 
+  <!-- game settings menu -->
   <md-dialog ref="settingsDialog" v-if="userIsGameMaster">
     <md-dialog-title>
       <p>{{ game.title }} Settings</p>

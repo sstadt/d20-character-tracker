@@ -55,7 +55,8 @@ module.exports = {
       removePlayer: '/game/removePlayer',
       sendMessage: '/game/sendMessage',
       sendCrawl: '/game/sendCrawl',
-      sendRoll: '/game/sendRoll'
+      sendRoll: '/game/sendRoll',
+      rollDestinyPool: '/game/rollDestinyPool'
     }
   }
 

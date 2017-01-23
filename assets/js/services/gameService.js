@@ -2,7 +2,7 @@
 var config = require('../lib/config.js');
 
 module.exports = {
-  getMyGames: function () {
+  getMyGames() {
     var deferred = q.defer();
 
     io.socket.get(config.endpoints.game.playing, function (response) {
@@ -16,7 +16,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  get: function (id) {
+  get(id) {
     var deferred = q.defer();
 
     io.socket.get(config.endpoints.game.get, {
@@ -32,7 +32,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  getLog: function (id) {
+  getLog(id) {
     var deferred = q.defer();
 
     io.socket.get(config.endpoints.game.getLog, {
@@ -48,7 +48,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  search: function (filter) {
+  search(filter) {
     var deferred = q.defer();
 
     io.socket.get(config.endpoints.game.search, {
@@ -64,7 +64,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  create: function (title) {
+  create(title) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.create, {
@@ -80,7 +80,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  updateConfig: function (id, updatedConfig) {
+  updateConfig(id, updatedConfig) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.updateConfig, {
@@ -97,7 +97,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  addCrawl: function (crawl) {
+  addCrawl(crawl) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.addCrawl, {
@@ -114,7 +114,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  updateCrawl: function (crawl) {
+  updateCrawl(crawl) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.updateCrawl, {
@@ -131,7 +131,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  deleteCrawl: function (game, crawlId) {
+  deleteCrawl(game, crawlId) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.removeCrawl, {
@@ -148,7 +148,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  join: function (game) {
+  join(game) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.join, {
@@ -164,7 +164,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  approvePlayer: function (game, player) {
+  approvePlayer(game, player) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.approvePlayer, {
@@ -181,7 +181,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  declinePlayer: function (game, player) {
+  declinePlayer(game, player) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.declinePlayer, {
@@ -198,7 +198,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  removePlayer: function (game, player) {
+  removePlayer(game, player) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.removePlayer, {
@@ -215,7 +215,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  sendMessage: function (gameId, message) {
+  sendMessage(gameId, message) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.sendMessage, {
@@ -232,7 +232,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  sendCrawl: function (gameId, crawlId) {
+  sendCrawl(gameId, crawlId) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.sendCrawl, {
@@ -248,7 +248,7 @@ module.exports = {
 
     return deferred.promise;
   },
-  sendRoll: function (gameId, dicePool, description) {
+  sendRoll(gameId, dicePool, description) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.sendRoll, {
@@ -257,6 +257,22 @@ module.exports = {
       if (response && response.err) {
         console.error(response.err);
         deferred.reject('Could not send dice roll at this time');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
+  },
+  rollDestinyPool(gameId, numPlayers) {
+    var deferred = q.defer();
+
+    io.socket.post(config.endpoints.game.rollDestinyPool, {
+      gameId, numPlayers
+    }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('Could not roll destiny pool at this time');
       } else {
         deferred.resolve();
       }
