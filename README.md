@@ -2,6 +2,12 @@
 
 ### Dev to do:
 
+#### priority
+
+ - minifying vendor.js is throwing an element height error with the new VueMaterial
+
+#### as able
+
  - add ajax spinner to all auth component async operations
  - stylize email templates
  - move Vue themes and filters to js/lib in their own files
