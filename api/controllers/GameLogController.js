@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var q = require('q');
+
 module.exports = {
 
 	get: function (req, res) {
@@ -33,12 +35,22 @@ module.exports = {
 		var gameId = req.param('gameId'),
 			chatHandle = req.session.User.chatHandle,
 			description = req.param('description'),
-			dicePool = req.param('dicePool');
+			dicePool = req.param('dicePool'),
+			tokens = req.param('tokens');
 
 		if (!DicePoolService.isValidTaskRoll(dicePool) && !DicePoolService.isValidStandardRoll(dicePool)) {
 			res.jsonError('Invalid dice pool');
 		} else {
 			GameLogService.addRollMessage(gameId, chatHandle, description, dicePool)
+				.then(function success() {
+					if (tokens && tokens.light === true && tokens.dark === false) {
+						return GameService.comsumeDestinyToken(gameId, 'light');
+					} else if (tokens && tokens.dark === true && tokens.light === false) {
+						return GameService.comsumeDestinyToken(gameId, 'dark');
+					} else {
+						return q.resolve();
+					}
+				})
 				.then(function success() {
 					res.send(200);
 				}, function error(err) {

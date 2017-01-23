@@ -248,11 +248,11 @@ module.exports = {
 
     return deferred.promise;
   },
-  sendRoll(gameId, dicePool, description) {
+  sendRoll(gameId, dicePool, description, tokens) {
     var deferred = q.defer();
 
     io.socket.post(config.endpoints.game.sendRoll, {
-      gameId, dicePool, description
+      gameId, dicePool, description, tokens
     }, function (response) {
       if (response && response.err) {
         console.error(response.err);

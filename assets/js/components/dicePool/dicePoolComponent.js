@@ -38,14 +38,16 @@ module.exports = {
           challenge: self.dice.challenge,
           boost: self.dice.boost,
           setback: self.dice.setback,
-          force: self.dice.force,
-          lightToken: self.lightToken,
-          darkToken: self.darkToken
+          force: self.dice.force
+        },
+        tokens = {
+          light: self.lightToken,
+          dark: self.darkToken
         };
 
       if (self.hasDice()) {
         self.loading = true;
-        gameService.sendRoll(self.game, dicePool, self.rollDescription)
+        gameService.sendRoll(self.game, dicePool, self.rollDescription, tokens)
           .then(function success() {
             self.resetDicePool();
           }, function error(reason) {
@@ -81,8 +83,8 @@ module.exports = {
       this.dice.boost = 0;
       this.dice.setback = 0;
       this.dice.force = 0;
-      this.hasLightToken = false;
-      this.hasDarkToken = false;
+      this.lightToken = false;
+      this.darkToken = false;
       this.rollDescription = '';
     },
     dropHandler(event) {
@@ -108,6 +110,23 @@ module.exports = {
           this.dice.difficulty--;
           this.dice.challenge++;
           this.darkToken = true;
+        }
+      }
+    },
+    removeToken(type) {
+      if (type === 'light') {
+        this.lightToken = false;
+
+        if (this.dice.proficiency > 0) {
+          this.dice.proficiency--;
+          this.dice.ability++;
+        }
+      } else if (type === 'dark') {
+        this.darkToken = false;
+
+        if (this.dice.challenge > 0) {
+          this.dice.challenge--;
+          this.dice.difficulty++;
         }
       }
     },

@@ -284,7 +284,6 @@ module.exports = {
       if (err) {
         deferred.reject(err);
       } else {
-        // dispatch update about the tokens being updated
         Game.message(gameId, {
           type: 'destinyPoolUpdated',
           data: {
@@ -315,6 +314,53 @@ module.exports = {
 					deferred.reject(err);
 				});
 		}
+
+    return deferred.promise;
+  },
+
+  comsumeDestinyToken: function (gameId, type) {
+    var deferred = q.defer(),
+      updated = false;
+
+    if (type !== 'light' && type !== 'dark') {
+      deferred.reject('Invalid token type');
+    } else {
+      Game.findOne(gameId, function (err, game) {
+        if (err || _.isUndefined(game)) {
+          deferred.reject(err || 'Invalid game');
+        } else {
+          if (type === 'light' && game.lightTokens > 0) {
+            game.lightTokens--;
+            game.darkTokens++;
+            updated = true;
+          } else if (type === 'dark' && game.darkTokens > 0) {
+            game.darkTokens--;
+            game.lightTokens++;
+            updated = true;
+          }
+
+          if (updated) {
+            game.save(function (err) {
+              if (err) {
+                deferred.reject(err);
+              } else {
+                Game.message(gameId, {
+                  type: 'destinyPoolUpdated',
+                  data: {
+                    light: game.lightTokens,
+                    dark: game.darkTokens
+                  }
+                });
+
+                deferred.resolve();
+              }
+            });
+          } else {
+            deferred.resolve();
+          }
+        }
+      });
+    }
 
     return deferred.promise;
   }
