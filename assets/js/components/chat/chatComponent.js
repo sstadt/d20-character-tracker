@@ -36,14 +36,27 @@ module.exports = {
     rollType(message) {
       return `${message.type}Roll`;
     },
-    addRollByDrag() {
+    dragHandler() {
       var type = event.dataTransfer.getData("text");
 
       if (_.includes(config.dieTypes, type)) {
         this.rollTaskDie(type);
       } else if (type === 'percent') {
         this.rollStandardDie(100);
+      } else if (type === 'light-token' || type === 'dark-token') {
+        this.useDestinyToken(type.split('-')[0]);
       }
+    },
+    useDestinyToken(type) {
+      var deferred = q.defer(),
+        self = this;
+
+      gameService.useDestinyToken(self.game, type)
+        .fail(function (reason) {
+          self.$emit('error', reason);
+        });
+
+      return deferred.promise;
     },
     rollStandardDie(sides) {
       var self = this,

@@ -56,7 +56,8 @@ module.exports = {
       sendMessage: '/game/sendMessage',
       sendCrawl: '/game/sendCrawl',
       sendRoll: '/game/sendRoll',
-      rollDestinyPool: '/game/rollDestinyPool'
+      rollDestinyPool: '/game/rollDestinyPool',
+      useDestinyToken: '/game/useDestinyToken'
     }
   }
 

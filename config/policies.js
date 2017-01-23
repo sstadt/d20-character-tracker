@@ -65,28 +65,29 @@ module.exports.policies = {
   },
 
   GameController: {
-    '*'              : false,
-    'browser'        : ['sessionAuth'],
-    'show'           : ['sessionAuth',       'gamePlayer'],
-    'get'            : ['socketSessionAuth', 'gamePlayer'],
-    'playing'        : ['socketSessionAuth'],
-    'search'         : ['socketSessionAuth'],
-    'create'         : ['socketSessionAuth'],
-    'updateConfig'   : ['socketSessionAuth', 'gameMaster'],
-    'addCrawl'       : ['socketSessionAuth', 'gameMaster'],
-    'join'           : ['socketSessionAuth'],
-    'approvePlayer'  : ['socketSessionAuth', 'gameMaster'],
-    'declinePlayer'  : ['socketSessionAuth', 'gameMaster'],
-    'removePlayer'   : ['socketSessionAuth', 'gameMaster'],
-    'rollDestinyPool': ['socketSessionAuth', 'gameMaster']
+    '*'               : false,
+    'browser'         : ['sessionAuth'],
+    'show'            : ['sessionAuth',       'gamePlayer'],
+    'get'             : ['socketSessionAuth', 'gamePlayer'],
+    'playing'         : ['socketSessionAuth'],
+    'search'          : ['socketSessionAuth'],
+    'create'          : ['socketSessionAuth'],
+    'updateConfig'    : ['socketSessionAuth', 'gameMaster'],
+    'addCrawl'        : ['socketSessionAuth', 'gameMaster'],
+    'join'            : ['socketSessionAuth'],
+    'approvePlayer'   : ['socketSessionAuth', 'gameMaster'],
+    'declinePlayer'   : ['socketSessionAuth', 'gameMaster'],
+    'removePlayer'    : ['socketSessionAuth', 'gameMaster'],
+    'rollDestinyPool' : ['socketSessionAuth', 'gameMaster']
   },
 
   GameLogController: {
-    '*'          : false, // Game controller is responsible for creation/deletion
-    'get'        : ['socketSessionAuth', 'gamePlayer'],
-    'addMessage' : ['socketSessionAuth', 'gamePlayer'],
-    'addCrawl'   : ['socketSessionAuth', 'gameMaster'],
-    'addRoll'    : ['socketSessionAuth', 'gamePlayer']
+    '*'               : false, // Game controller is responsible for creation/deletion
+    'get'             : ['socketSessionAuth', 'gamePlayer'],
+    'addMessage'      : ['socketSessionAuth', 'gamePlayer'],
+    'addCrawl'        : ['socketSessionAuth', 'gameMaster'],
+    'addRoll'         : ['socketSessionAuth', 'gamePlayer'],
+    'useDestinyToken' : ['socketSessionAuth', 'gamePlayer']
   },
 
   CrawlController: {

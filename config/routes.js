@@ -127,6 +127,10 @@ module.exports.routes = {
     controller: 'gameLog',
     action: 'addRoll'
   },
+  '/game/useDestinyToken': {
+    controller: 'gameLog',
+    action: 'useDestinyToken'
+  },
 
   /*
     Dice Roller

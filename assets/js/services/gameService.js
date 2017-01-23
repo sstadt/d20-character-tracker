@@ -279,5 +279,21 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+  useDestinyToken(gameId, type) {
+    var deferred = q.defer();
+
+    io.socket.post(config.endpoints.game.useDestinyToken, {
+      gameId, type
+    }, function (response) {
+      if (response && response.err) {
+        console.error(response.err);
+        deferred.reject('Could not use destiny token at this time');
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
   }
 };

@@ -76,6 +76,26 @@ module.exports = {
 					});
 			}
 		});
+	},
+
+	useDestinyToken: function (req, res) {
+		var gameId = req.param('gameId'),
+			chatHandle = req.session.User.chatHandle,
+			type = req.param('type');
+
+		if (type !== 'light' && type !== 'dark') {
+			res.jsonError('Invalid token type');
+		} else {
+			GameService.comsumeDestinyToken(gameId, type)
+				.then(function success() {
+					return GameLogService.addStatusMessage(gameId, chatHandle, 'has used a ' + type + ' side token.');
+				})
+				.then(function success() {
+					res.send(200);
+				}, function error(err) {
+					res.jsonError(err);
+				});
+		}
 	}
 
 };

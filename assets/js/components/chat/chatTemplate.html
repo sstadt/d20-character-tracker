@@ -1,13 +1,13 @@
 
 <div class="chat-pane flex-column">
-  <div class="chat-log fill-height" @dragover.prevent @drop="addRollByDrag">
+  <div class="chat-log fill-height" @dragover.prevent @drop="dragHandler">
     <ul class="messages" ref="chatLog" @scroll="userScrolling">
       <li v-for="item in log">
         <div v-if="item.type === 'chat'" class="chat-message">
           <p class="message"><span class="message-author">{{ item.chatHandle }}:</span> {{ item.message }}</p>
         </div>
         <div v-if="item.type === 'status'">
-          <p class="message">{{ item.message }}</p>
+          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> {{ item.message }}</p>
         </div>
         <div v-if="item.type === 'crawl'" class="crawl-message">
           <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has sent a new crawl<br/><span class="chat-accent">{{ item.message.title }}: {{ item.message.subtitle }}</span></p>

@@ -83,6 +83,21 @@ module.exports = {
     return deferred.promise;
   },
 
+  addStatusMessage: function (gameId, chatHandle, chatMessage) {
+    var deferred = q.defer();
+
+    addLogMessage(gameId, 'status', chatHandle, chatMessage)
+      .then(function success(message) {
+        sendLogMessage(gameId, message);
+        deferred.resolve();
+      }, function error(err) {
+        sails.log(err);
+        deferred.reject(err);
+      });
+
+    return deferred.promise;
+  },
+
   addRollMessage: function (gameId, chatHandle, description, pool) {
     var deferred = q.defer();
 
