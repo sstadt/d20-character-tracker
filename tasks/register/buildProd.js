@@ -2,8 +2,10 @@ module.exports = function (grunt) {
   grunt.registerTask('buildProd', [
     'clean:dev',
     'sass:dev',
-    'browserify:vendor',
+    'browserify:vendorProd',
     'browserify:dev',
+    'envify:prod',
+    'clean:vendorProd',
     'uglify:prod',
     'cssmin',
     // 'sails-linker:prodJs',

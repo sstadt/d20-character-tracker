@@ -12,7 +12,8 @@
 module.exports = function (grunt) {
 
   grunt.config.set('clean', {
-    dev: ['.tmp/public/**']
+    dev: ['.tmp/public/**'],
+    vendorProd: ['.tmp/public/js/vendor-build.js']
   });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
