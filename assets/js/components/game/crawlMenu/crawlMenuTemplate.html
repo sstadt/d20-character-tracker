@@ -27,7 +27,7 @@
       </md-input-container>
       <md-input-container :class="{'md-input-invalid': newCrawlForm.fields.crawl.hasErrors}">
         <label>Crawl</label>
-        <md-textarea type="text" v-model="newCrawlForm.fields.crawl.value"></md-textarea>
+        <md-textarea v-model="newCrawlForm.fields.crawl.value"></md-textarea>
         <span class="md-error" v-show="newCrawlForm.fields.crawl.hasErrors">{{ newCrawlForm.fields.crawl.errors[0] }}</span>
       </md-input-container>
       <md-input-container :class="{'md-input-invalid': newCrawlForm.fields.imageUrl.hasErrors}">
@@ -45,62 +45,64 @@
   <div class="crawl-list">
     <transition-group name="slide-fade">
       <div class="crawl-description" v-for="crawl in game.crawls" :key="crawl.id">
-        <div v-show="editCrawlForm.fields.id.value !== crawl.id" key="description">
-          <div class="row">
-            <div class="small-12 medium-8 large-9 columns">
-              <h3 class="title">{{ crawl.title }}</h3>
-              <h5 class="subtitle">{{ crawl.subtitle }}</h5>
-              <p class="crawl-body">{{ crawl.crawl }}</p>
+        <transition-group name="slide-fade" mode="out-in">
+          <div v-show="editCrawlForm.fields.id.value !== crawl.id" key="description">
+            <div class="row">
+              <div class="small-12 medium-8 large-9 columns">
+                <h3 class="title">{{ crawl.title }}</h3>
+                <h5 class="subtitle">{{ crawl.subtitle }}</h5>
+                <p class="crawl-body">{{ crawl.crawl }}</p>
+              </div>
+              <div class="small-12 medium-4 large-3 columns">
+                <img :src="crawl.imageUrl" />
+              </div>
             </div>
-            <div class="small-12 medium-4 large-3 columns">
-              <img :src="crawl.imageUrl" />
+            <div class="text-right">
+              <md-button class="md-icon-button" @click="sendCrawl(crawl)">
+                <md-icon>chat_bubble</md-icon>
+                <md-tooltip md-delay="400" md-direction="bottom">Send to Chat</md-tooltip>
+              </md-button>
+              <md-button class="md-icon-button" @click="playCrawl(crawl)">
+                <md-icon>play_circle_filled</md-icon>
+                <md-tooltip md-delay="400" md-direction="bottom">Preview</md-tooltip>
+              </md-button>
+              <md-button class="md-icon-button" @click="editCrawl(crawl)">
+                <md-icon>edit</md-icon>
+                <md-tooltip md-delay="400" md-direction="bottom">Edit</md-tooltip>
+              </md-button>
+              <md-button class="md-icon-button" @click="deleteCrawl(crawl)">
+                <md-icon>delete</md-icon>
+                <md-tooltip md-delay="400" md-direction="bottom">Delete</md-tooltip>
+              </md-button>
             </div>
           </div>
-          <div class="text-right">
-            <md-button class="md-icon-button" @click="sendCrawl(crawl)">
-              <md-icon>chat_bubble</md-icon>
-              <md-tooltip md-delay="400" md-direction="bottom">Send to Chat</md-tooltip>
-            </md-button>
-            <md-button class="md-icon-button" @click="playCrawl(crawl)">
-              <md-icon>play_circle_filled</md-icon>
-              <md-tooltip md-delay="400" md-direction="bottom">Preview</md-tooltip>
-            </md-button>
-            <md-button class="md-icon-button" @click="editCrawl(crawl)">
-              <md-icon>edit</md-icon>
-              <md-tooltip md-delay="400" md-direction="bottom">Edit</md-tooltip>
-            </md-button>
-            <md-button class="md-icon-button" @click="deleteCrawl(crawl)">
-              <md-icon>delete</md-icon>
-              <md-tooltip md-delay="400" md-direction="bottom">Delete</md-tooltip>
-            </md-button>
-          </div>
-        </div>
-        <form v-show="editCrawlForm.fields.id.value === crawl.id" @submit.stop.prevent="saveCrawl" key="form">
-          <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.title.hasErrors}">
-            <label>Title</label>
-            <md-input type="text" v-model="editCrawlForm.fields.title.value"></md-input>
-            <span class="md-error" v-show="editCrawlForm.fields.title.hasErrors">{{ editCrawlForm.fields.title.errors[0] }}</span>
-          </md-input-container>
-          <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.subtitle.hasErrors}">
-            <label>Subtitle</label>
-            <md-input type="text" v-model="editCrawlForm.fields.subtitle.value"></md-input>
-            <span class="md-error" v-show="editCrawlForm.fields.subtitle.hasErrors">{{ editCrawlForm.fields.subtitle.errors[0] }}</span>
-          </md-input-container>
-          <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.crawl.hasErrors}">
-            <label>Crawl</label>
-            <md-textarea type="text" v-model="editCrawlForm.fields.crawl.value"></md-textarea>
-            <span class="md-error" v-show="editCrawlForm.fields.crawl.hasErrors">{{ editCrawlForm.fields.crawl.errors[0] }}</span>
-          </md-input-container>
-          <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.imageUrl.hasErrors}">
-            <label>Image URL</label>
-            <md-input type="text" v-model="editCrawlForm.fields.imageUrl.value"></md-input>
-            <span class="md-error" v-show="editCrawlForm.fields.imageUrl.hasErrors">{{ editCrawlForm.fields.imageUrl.errors[0] }}</span>
-          </md-input-container>
-          <div class="text-right">
-            <md-button @click="cancelEdit()" :disabled="saving">Cancel</md-button>
-            <md-button type="submit" :disabled="saving">Save</md-button>
-          </div>
-        </form>
+          <form v-show="editCrawlForm.fields.id.value === crawl.id" @submit.stop.prevent="saveCrawl" key="form">
+            <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.title.hasErrors}">
+              <label>Title</label>
+              <md-input type="text" v-model="editCrawlForm.fields.title.value"></md-input>
+              <span class="md-error" v-show="editCrawlForm.fields.title.hasErrors">{{ editCrawlForm.fields.title.errors[0] }}</span>
+            </md-input-container>
+            <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.subtitle.hasErrors}">
+              <label>Subtitle</label>
+              <md-input type="text" v-model="editCrawlForm.fields.subtitle.value"></md-input>
+              <span class="md-error" v-show="editCrawlForm.fields.subtitle.hasErrors">{{ editCrawlForm.fields.subtitle.errors[0] }}</span>
+            </md-input-container>
+            <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.crawl.hasErrors}">
+              <label>Crawl</label>
+              <md-textarea v-model="editCrawlForm.fields.crawl.value"></md-textarea>
+              <span class="md-error" v-show="editCrawlForm.fields.crawl.hasErrors">{{ editCrawlForm.fields.crawl.errors[0] }}</span>
+            </md-input-container>
+            <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.imageUrl.hasErrors}">
+              <label>Image URL</label>
+              <md-input type="text" v-model="editCrawlForm.fields.imageUrl.value"></md-input>
+              <span class="md-error" v-show="editCrawlForm.fields.imageUrl.hasErrors">{{ editCrawlForm.fields.imageUrl.errors[0] }}</span>
+            </md-input-container>
+            <div class="text-right">
+              <md-button @click="cancelEdit()" :disabled="saving">Cancel</md-button>
+              <md-button type="submit" :disabled="saving">Save</md-button>
+            </div>
+          </form>
+        </transition-group>
       </div>
     </transition-group>
   </div>

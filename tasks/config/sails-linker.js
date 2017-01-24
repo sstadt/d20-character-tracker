@@ -15,7 +15,7 @@
 var pipeline = {
   css: [],
   js: [
-    // '.tmp/public/js/vendor.js'
+    '.tmp/public/js/vendor.js'
   ]
 };
 

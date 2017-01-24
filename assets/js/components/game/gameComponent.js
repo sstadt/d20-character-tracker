@@ -49,7 +49,7 @@ module.exports = {
       return this.game.gameMaster && this.game.gameMaster.id === this.user.id;
     },
     gameMasterIsOnline() {
-      return this.game.online.indexOf(this.game.gameMaster.id) > -1;
+      return this.game.online && this.game.online.indexOf(this.game.gameMaster.id) > -1;
     },
     lightTokens() {
       return !_.isUndefined(this.game.lightTokens) ? this.game.lightTokens : 0;

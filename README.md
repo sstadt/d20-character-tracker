@@ -4,7 +4,8 @@
 
 #### priority
 
- - minifying vendor.js is throwing an element height error with the new VueMaterial
+ - crawl dialog delete confirmation is open when the crawl menu opens
+ - set the prod var in build to turn off Vue development mode
 
 #### as able
 

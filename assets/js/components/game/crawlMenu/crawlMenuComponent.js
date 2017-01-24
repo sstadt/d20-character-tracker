@@ -35,6 +35,7 @@ module.exports = {
       editCrawlForm: new FieldSet(crawlValidation),
       addingCrawl: false,
       saving: false,
+      deleting: false,
       confirmDelete: {
         title: 'Delete Crawl',
         content: 'foo',
