@@ -5,8 +5,8 @@ module.exports = function (grunt) {
     'sass:dev',
     'browserify:vendor',
     'browserify:dev',
-    'sails-linker:devJs',
-    'sails-linker:devCss',
+    // 'sails-linker:devJs',
+    // 'sails-linker:devCss',
     'copy:dev',
     'json-replace:cache'
   ]);

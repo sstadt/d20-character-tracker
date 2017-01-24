@@ -4,7 +4,6 @@
 
 #### priority
 
- - crawl dialog delete confirmation is open when the crawl menu opens
  - set the prod var in build to turn off Vue development mode
 
 #### as able

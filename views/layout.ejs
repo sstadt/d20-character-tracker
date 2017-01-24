@@ -27,13 +27,11 @@
       <%- body %>
     </div>
 
-    <!-- SCRIPT -->
-    <script type="text/javascript" src="/js/vendor.min.js?v=2437"></script>
-    <!-- SCRIPT END -->
-
     <% if (sails.config.environment === 'production') { %>
+      <script type="text/javascript" src="/js/vendor.min.js?v=<%= sails.config.globals.cacheVersion %>"></script>
       <script type="text/javascript" src="/js/index.min.js?v=<%= sails.config.globals.cacheVersion %>"></script>
     <% } else { %>
+      <script type="text/javascript" src="/js/vendor.js"></script>
       <script type="text/javascript">Vue.config.debug = true;</script>
       <script type="text/javascript" src="/js/index.js"></script>
       <script src="//localhost:9090/livereload.js"></script>

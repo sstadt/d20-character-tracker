@@ -50,14 +50,13 @@
   </star-wars-crawl>
 
   <!-- crawl menu -->
-  <md-dialog ref="crawlDialog">
+  <md-dialog ref="crawlDialog" v-if="userIsGameMaster">
     <md-dialog-title>
       <p>{{ game.title }} Crawls</p>
       <p class="subtitle"><small>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</small></p>
     </md-dialog-title>
     <md-dialog-content>
       <component
-        v-if="userIsGameMaster"
         is="crawlMenu"
         :game="game"
         @close="closeMenu('crawl')"
@@ -68,14 +67,13 @@
   </md-dialog>
 
   <!-- players menu -->
-  <md-dialog ref="playersDialog">
+  <md-dialog ref="playersDialog" v-if="userIsGameMaster">
     <md-dialog-title>
       <p>{{ game.title }} Players</p>
       <p class="subtitle"><small>Add, approve, or remove players from the game.</small></p>
     </md-dialog-title>
     <md-dialog-content>
       <component
-        v-if="userIsGameMaster"
         is="playersMenu"
         :game="game"
         @close="closeMenu('players')"
@@ -85,14 +83,13 @@
   </md-dialog>
 
   <!-- game settings menu -->
-  <md-dialog ref="settingsDialog">
+  <md-dialog ref="settingsDialog" v-if="userIsGameMaster">
     <md-dialog-title>
       <p>{{ game.title }} Settings</p>
       <p class="subtitle"><small>Game specific settings and configuration.</small></p>
     </md-dialog-title>
     <md-dialog-content>
       <component
-        v-if="userIsGameMaster"
         is="settingsMenu"
         :game="game"
         @close="closeMenu('settings')"

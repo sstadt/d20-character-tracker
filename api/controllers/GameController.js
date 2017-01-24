@@ -217,18 +217,22 @@ module.exports = {
 			chatHandle = req.session.User.chatHandle,
 			numPlayers = req.param('numPlayers');
 
-		GameService.rollDestinyPool(gameId, chatHandle, numPlayers)
-			.then(function success(rollMessage) {
-				var lightTokens = rollMessage.message.overallResults.light,
+		if (numPlayers > 0) {
+			GameService.rollDestinyPool(gameId, chatHandle, numPlayers)
+				.then(function success(rollMessage) {
+					var lightTokens = rollMessage.message.overallResults.light,
 					darkTokens = rollMessage.message.overallResults.dark;
 
-				return GameService.updateDestinyPool(gameId, lightTokens, darkTokens);
-			})
-			.then(function success() {
-				res.send(200);
-			}, function (err) {
-				res.jsonError(err);
-			});
+					return GameService.updateDestinyPool(gameId, lightTokens, darkTokens);
+				})
+				.then(function success() {
+					res.send(200);
+				}, function (err) {
+					res.jsonError(err);
+				});
+		} else {
+			res.jsonError('Cannot roll destiny pool without players.');
+		}
 	}
 
 };

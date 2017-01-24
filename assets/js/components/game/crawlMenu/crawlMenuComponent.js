@@ -38,7 +38,7 @@ module.exports = {
       deleting: false,
       confirmDelete: {
         title: 'Delete Crawl',
-        content: 'foo',
+        content: 'No crawl selected',
         ok: 'Yes',
         cancel: 'No',
         crawlId: ''
@@ -129,15 +129,19 @@ module.exports = {
       this.confirmDelete.crawlId = crawl.id;
       this.$refs.confirmDeleteDialog.open();
     },
-    confirmDeleteCrawl() {
+    confirmDeleteCrawl(result) {
       var self = this,
         deferred = q.defer();
 
-      gameService.deleteCrawl(self.game.id, self.confirmDelete.crawlId)
+      if (result === 'ok') {
+        gameService.deleteCrawl(self.game.id, self.confirmDelete.crawlId)
         .fail(function (reason) {
           self.$emit('error', reason);
           deferred.resolve();
         });
+      } else {
+        deferred.resolve();
+      }
 
       return deferred.promise;
     },

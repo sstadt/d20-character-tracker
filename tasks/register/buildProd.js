@@ -6,8 +6,8 @@ module.exports = function (grunt) {
     'browserify:dev',
     'uglify:prod',
     'cssmin',
-    'sails-linker:prodJs',
-    'sails-linker:prodCss',
+    // 'sails-linker:prodJs',
+    // 'sails-linker:prodCss',
     'copy:dev'
   ]);
 };
