@@ -2,10 +2,6 @@
 
 ### Dev to do:
 
-#### priority
-
- - set the prod var in build to turn off Vue development mode
-
 #### as able
 
  - add ajax spinner to all auth component async operations
