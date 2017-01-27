@@ -2,28 +2,30 @@
 <div class="chat-pane flex-column">
   <div class="chat-log fill-height" @dragover.prevent @drop="dragHandler">
     <ul class="messages" ref="chatLog" @scroll="userScrolling">
-      <li v-for="item in log">
-        <div v-if="item.type === 'chat'" class="chat-message">
-          <p class="message"><span class="message-author">{{ item.chatHandle }}:</span> {{ item.message }}</p>
-        </div>
-        <div v-if="item.type === 'status'">
-          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> {{ item.message }}</p>
-        </div>
-        <div v-if="item.type === 'crawl'" class="crawl-message">
-          <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has sent a new crawl<br/><span class="chat-accent">{{ item.message.title }}: {{ item.message.subtitle }}</span></p>
-          <md-button class="md-icon-button" @click="playCrawl(item.message)">
-            <md-icon>play_circle_filled</md-icon>
-            <md-tooltip md-delay="400" md-direction="bottom">Play Crawl</md-tooltip>
-          </md-button>
-        </div>
-        <div v-if="item.type === 'roll'" class="roll-message">
-          <component
-            :is="rollType(item.message)"
-            :message="item.message"
-            :chat-handle="item.chatHandle">
-          </component>
-        </div>
-      </li>
+      <transition-group name="slide-fade">
+        <li v-for="(item, index) in log" :key="index">
+          <div v-if="item.type === 'chat'" class="chat-message">
+            <p class="message"><span class="message-author">{{ item.chatHandle }}:</span> {{ item.message }}</p>
+          </div>
+          <div v-if="item.type === 'status'">
+            <p class="message"><span class="message-author">{{ item.chatHandle }}</span> {{ item.message }}</p>
+          </div>
+          <div v-if="item.type === 'crawl'" class="crawl-message">
+            <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has sent a new crawl<br/><span class="chat-accent">{{ item.message.title }}: {{ item.message.subtitle }}</span></p>
+            <md-button class="md-icon-button" @click="playCrawl(item.message)">
+              <md-icon>play_circle_filled</md-icon>
+              <md-tooltip md-delay="400" md-direction="bottom">Play Crawl</md-tooltip>
+            </md-button>
+          </div>
+          <div v-if="item.type === 'roll'" class="roll-message">
+            <component
+              :is="rollType(item.message)"
+              :message="item.message"
+              :chat-handle="item.chatHandle">
+            </component>
+          </div>
+        </li>
+      </transition-group>
     </ul>
   </div>
   <div class="chat-entry">

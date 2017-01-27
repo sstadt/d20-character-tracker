@@ -3,10 +3,13 @@
   <!-- menu -->
   <toolbar :game="gameId">
     <span slot="topbar">
-      <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('crawl')"><icon name="crawl"></icon></md-button>
-      <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('players')"><icon name="rebel"></icon></md-button>
-      <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('settings')"><icon name="empire"></icon></md-button>
+      <!-- player menu items -->
+      <md-button class="md-icon-button"><icon name="map"></icon></md-button>
 
+      <!-- GM menu items -->
+      <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('crawl')"><icon name="crawl"></icon></md-button>
+      <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('players')"><icon name="users"></icon></md-button>
+      <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('settings')"><icon name="empire"></icon></md-button>
       <md-menu v-if="userIsGameMaster" md-direction="bottom left" :md-align-trigger="true" md-size="4">
         <md-button class="md-icon-button" md-menu-trigger><icon name="dl44"></icon></md-button>
         <md-menu-content>
