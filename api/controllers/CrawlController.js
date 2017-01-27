@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var crawlErrors = sails.config.notifications.Game.crawl.error;
+
 module.exports = {
 	update: function (req, res) {
 		var crawl = req.param('crawl'),
@@ -43,7 +45,7 @@ module.exports = {
 				}
 			});
 		} else {
-			res.json(ErrorService.generate('Invalid Crawl'));
+			res.json(crawlErrors.invalidCrawl);
 		}
 	}
 };

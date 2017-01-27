@@ -5,7 +5,9 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var q = require('q');
+var q = require('q'),
+  gameErrors = sails.config.notifications.Game.general.error,
+  diceErrors = sails.config.notifications.Game.dice.error;
 
 module.exports = {
 
@@ -74,7 +76,7 @@ module.exports = {
 				var combinedGames = myGames.concat(games);
 				res.json(combinedGames);
 			}, function error(err) {
-				res.json(err);
+				res.jsonError(err);
 			});
 	},
 
@@ -157,7 +159,7 @@ module.exports = {
 				if (err) {
 					res.jsonError(err);
 				} else if (!game) {
-					res.json(ErrorService.generate('Game not found'));
+					res.json(gameErrors.gameNotFound);
 				} else {
 					game.requestingPlayers.add(req.session.User.id);
 					game.save(function (err) {
@@ -184,7 +186,7 @@ module.exports = {
 			.then(function success() {
 				res.send(200);
 			}, function error(err) {
-				res.json(err);
+				res.jsonError(err);
 			});
 	},
 
@@ -196,7 +198,7 @@ module.exports = {
 			.then(function success() {
 				res.send(200);
 			}, function error(err) {
-				res.json(err);
+				res.jsonError(err);
 			});
 	},
 
@@ -208,7 +210,7 @@ module.exports = {
 			.then(function success() {
 				res.send(200);
 			}, function error(err) {
-				res.json(err);
+				res.jsonError(err);
 			});
 	},
 
@@ -231,7 +233,7 @@ module.exports = {
 					res.jsonError(err);
 				});
 		} else {
-			res.jsonError('Cannot roll destiny pool without players.');
+			res.jsonError(diceErrors.noPlayersForDestinyPool);
 		}
 	}
 

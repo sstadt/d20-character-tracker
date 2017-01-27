@@ -2,7 +2,9 @@
  * Utility service for Game model
  */
 
-var q = require('q');
+var q = require('q'),
+  gameErrors = sails.config.notifications.Game.general.error,
+  diceErrors = sails.config.notifications.Game.dice.error;
 
 module.exports = {
 
@@ -120,9 +122,9 @@ module.exports = {
       .populate('player')
       .exec(function (err, user) {
         if (err) {
-          deferred.reject(ErrorService.parse(err));
+          deferred.reject(err);
         } else if (!user) {
-          deferred.reject(ErrorService.generate('Player not found'));
+          deferred.reject(gameErrors.playerNotFound);
         } else {
           gameIds = _.extend(user.player).map(function (game) {
             return game.id;
@@ -133,7 +135,7 @@ module.exports = {
             .populate('players')
             .exec(function (err, games) {
               if (err) {
-                deferred.reject(ErrorService.parse(err));
+                deferred.reject(err);
               } else {
                 deferred.resolve(games);
               }
@@ -149,21 +151,21 @@ module.exports = {
 
     Game.findOne(gameId, function (err, game) {
       if (err) {
-        deferred.reject(ErrorService.parse(err));
+        deferred.reject(err);
       } else if (!game) {
-        deferred.reject(ErrorService.generate('Game not found'));
+        deferred.reject(gameErrors.gameNotFound);
       } else {
         UserService.fetchPublicUser(userId, function (err, user) {
           if (err) {
-            deferred.reject(ErrorService.parse(err));
+            deferred.reject(err);
           } else if (!user) {
-            deferred.reject(ErrorService.generate('Player not found'));
+            deferred.reject(gameErrors.playerNotFound);
           } else {
             game.requestingPlayers.remove(user.id);
             game.players.add(user.id);
             game.save(function (err) {
               if (err) {
-                deferred.reject(ErrorService.parse(err));
+                deferred.reject(err);
               } else {
                 Game.message(game.id, {
                   type: 'playerJoinApproved',
@@ -198,15 +200,15 @@ module.exports = {
 
     Game.findOne(gameId, function (err, game) {
       if (err) {
-        deferred.reject(ErrorService.parse(err));
+        deferred.reject(err);
       } else if (!game) {
-        deferred.reject(ErrorService.generate('Game not found'));
+        deferred.reject(gameErrors.gameNotFound);
       } else {
         UserService.fetchPublicUser(playerId, function (err, user) {
           if (err) {
-            deferred.reject(ErrorService.parse(err));
+            deferred.reject(err);
           } else if (!user) {
-            deferred.reject('Player not found');
+            deferred.reject(gameErrors.playerNotFound);
           } else {
             game.requestingPlayers.remove(user.id);
             game.save(function (err) {
@@ -240,20 +242,20 @@ module.exports = {
 
 		Game.findOne(gameId, function (err, game) {
 			if (err) {
-				deferred.reject(ErrorService.parse(err));
+				deferred.reject(err);
       } else if (!game) {
-        deferred.reject(ErrorService.generate('Game not found'));
+        deferred.reject(gameErrors.gameNotFound);
 			} else {
         UserService.fetchPublicUser(playerId, function (err, user) {
           if (err) {
-            deferred.reject(ErrorService.parse(err));
+            deferred.reject(err);
           } else if (!user) {
-            deferred.reject(ErrorService.generate('Player not found'));
+            deferred.reject(gameErrors.playerNotFound);
           } else {
             game.players.remove(user.id);
     				game.save(function (err) {
     					if (err) {
-    						deferred.reject(ErrorService.parse(err));
+    						deferred.reject(err);
     					} else {
     						Game.message(game.id, {
     							type: 'playerRemoved',
@@ -305,7 +307,7 @@ module.exports = {
       dicePool = { force: numPlayers };
 
 		if (!DicePoolService.isValidTaskRoll(dicePool)) {
-			deferred.reject('Invalid dice pool');
+			deferred.reject(diceErrors.invalidPool);
 		} else {
 			GameLogService.addRollMessage(gameId, chatHandle, description, dicePool)
 				.then(function success(rollMessage) {
@@ -323,11 +325,11 @@ module.exports = {
       updated = false;
 
     if (type !== 'light' && type !== 'dark') {
-      deferred.reject('Invalid token type');
+      deferred.reject(diceErrors.invalidDestinyToken);
     } else {
       Game.findOne(gameId, function (err, game) {
         if (err || _.isUndefined(game)) {
-          deferred.reject(err || 'Invalid game');
+          deferred.reject(err || gameErrors.gameNotFound);
         } else {
           if (type === 'light' && game.lightTokens > 0) {
             game.lightTokens--;

@@ -1,5 +1,6 @@
 
-var q = require('q');
+var q = require('q'),
+  gameErrors = sails.config.notifications.Game.general.error;
 
 function LogMessage(data) {
   this.type = data.type;
@@ -18,14 +19,14 @@ function addLogMessage(gameId, type, chatHandle, message) {
 
   GameLog.findOne({ game: gameId }, function (err, log) {
     if (err) {
-      deferred.reject(ErrorService.parse(err));
+      deferred.reject(err);
     } else if (log === undefined) {
-      deferred.reject(ErrorService.generate('Game log not found'));
+      deferred.reject(gameErrors.logNotFound);
     } else {
       log.log.push(newMessage);
       log.save(function (err) {
         if (err) {
-          deferred.reject(ErrorService.parse(err));
+          deferred.reject(err);
         } else {
           deferred.resolve(newMessage);
         }

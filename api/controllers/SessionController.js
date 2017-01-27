@@ -8,7 +8,7 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var sessionErrors = sails.config.notifications.SessionController.error;
+var sessionErrors = sails.config.notifications.Session.error;
 
 module.exports = {
 

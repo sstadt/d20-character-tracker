@@ -8,7 +8,8 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var userErrors = sails.config.notifications.User.error,
+var generalErrors = sails.config.notifications.General.error,
+  userErrors = sails.config.notifications.User.error,
   userSuccesses = sails.config.notifications.User.success,
   tokenErrors = sails.config.notifications.Token.error,
   q = require('q');
@@ -41,7 +42,7 @@ module.exports = {
   verify: function (req, res) {
     Token.findOne({ token: req.param('token') }, function (err, token) {
       if (err) {
-        res.jsonError(tokenErrors.notFound('registration'));
+        res.jsonError(tokenErrors.notFound);
       } else if (!token) {
         res.jsonError(userErrors.cannotVerify);
       } else {
@@ -102,7 +103,7 @@ module.exports = {
       } else {
         Token.destroy({ user: user.id }, function (err) {
           if (err) {
-            res.jsonError(tokenErrors.cannotResendValidation(user.email));
+            res.jsonError(tokenErrors.cannotResendValidation);
           } else {
             RegistrationService.generateValidationEmail(user)
               .then(function resolve() {
@@ -197,7 +198,7 @@ module.exports = {
       file[0].filename = fileName;
 
       if (err) {
-        res.jsonError('Unable to upload file.');
+        res.jsonError(generalErrors.cannotUploadFile);
       } else {
         S3Service.upload(file[0], 'profile_pictures')
           .then(function success(url) {

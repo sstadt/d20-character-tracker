@@ -1,3 +1,6 @@
+
+var sessionErrors = sails.config.notifications.Session.error;
+
 module.exports = function(req, res, next) {
 
   // User is allowed, proceed to the next policy,
@@ -8,5 +11,5 @@ module.exports = function(req, res, next) {
 
   // User is not allowed
   // (default res.forbidden() behavior can be overridden in `config/403.js`)
-  return res.jsonError(ErrorService.generate('You must be logged in to perform this action'));
+  return res.jsonError(sessionErrors.mustBeLoggedIn);
 };

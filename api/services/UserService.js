@@ -1,5 +1,6 @@
 
-var q = require('q');
+var q = require('q'),
+  userErrors = sails.config.notifications.User.error;
 
 module.exports = {
 
@@ -31,7 +32,7 @@ module.exports = {
         if (err) {
           deferred.reject(err);
         } else if (!user) {
-          deferred.reject('User not found');
+          deferred.reject(userErrors.notFound);
         } else {
           req.session.User.config.avatar = url;
           user.config.avatar = url;

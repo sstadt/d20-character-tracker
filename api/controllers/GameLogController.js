@@ -5,7 +5,9 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var q = require('q');
+var q = require('q'),
+  diceErrors = sails.config.notifications.Game.dice.error,
+  crawlErrors = sails.config.notifications.Game.crawl.error;
 
 module.exports = {
 
@@ -39,7 +41,7 @@ module.exports = {
 			tokens = req.param('tokens');
 
 		if (!DicePoolService.isValidTaskRoll(dicePool) && !DicePoolService.isValidStandardRoll(dicePool)) {
-			res.jsonError('Invalid dice pool');
+			res.jsonError(diceErrors.invalidPool);
 		} else {
 			GameLogService.addRollMessage(gameId, chatHandle, description, dicePool)
 				.then(function success() {
@@ -66,7 +68,7 @@ module.exports = {
 
 		Crawl.findOne(crawlId, function (err, crawl) {
 			if (err || crawl === undefined) {
-				res.jsonError('Invalid Crawl');
+				res.jsonError(crawlErrors.invalidCrawl);
 			} else {
 				GameLogService.addCrawlMessage(gameId, chatHandle, crawl)
 					.then(function success() {
@@ -84,7 +86,7 @@ module.exports = {
 			type = req.param('type');
 
 		if (type !== 'light' && type !== 'dark') {
-			res.jsonError('Invalid token type');
+			res.jsonError(diceErrors.invalidDestinyToken);
 		} else {
 			GameService.comsumeDestinyToken(gameId, type)
 				.then(function success() {

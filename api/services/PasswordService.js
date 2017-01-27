@@ -11,13 +11,13 @@ var Q = require('q'),
     special: sails.config.passwords.special
   },
   userErrors = sails.config.notifications.User.error,
-  passwordServiceErrors = sails.config.notifications.PasswordService,
+  passwordServiceErrors = sails.config.notifications.Password,
   lastError = [];
 
 /**
  * Determine if a password meets configured
  * complexity requirements.
- * 
+ *
  * @param  {string} password The password to check requirements agains
  * @return {array}           Array of security error strings
  */
@@ -59,7 +59,7 @@ module.exports = {
    *
    *  WARNING: Invoking this function will
    *           clear the current errors.
-   * 
+   *
    * @return {array} The array of error messages currently stored in PasswordService
    */
   getLastError: function () {
@@ -73,7 +73,7 @@ module.exports = {
   /**
    * Determines if a password meets the configured security
    * requirements for complexity.
-   * 
+   *
    * @param  {string}  password     The submitted password
    * @param  {string}  confirmation The re-typed submitted password
    * @return {Boolean}              True if secure, false if not
@@ -87,23 +87,23 @@ module.exports = {
     lastError = (complexityErrors.length > 0) ? complexityErrors : [];
 
     if (!longEnough) {
-      lastError.push(passwordServiceErrors.security.error.notMinLength(settings.minLength));
+      lastError.push(passwordServiceErrors.security.error.notMinLength);
     }
 
     if (!shortEnough) {
-      lastError.push(passwordServiceErrors.security.error.notMaxLength(settings.maxLength));
+      lastError.push(passwordServiceErrors.security.error.notMaxLength);
     }
 
     if (!matches) {
       lastError.push(passwordServiceErrors.security.error.misMatch);
     }
 
-    return matches && complexityErrors.length === 0 && longEnough && shortEnough; 
+    return matches && complexityErrors.length === 0 && longEnough && shortEnough;
   },
 
   /**
    * Reset a user's password
-   * 
+   *
    * @param  {string}  password The new password
    * @param  {User}    user     The user to update
    * @return {promise}          Error on fail
@@ -135,7 +135,7 @@ module.exports = {
    *
    * Centralized here to remain consistent when writing
    * user passwords for later verification on login.
-   * 
+   *
    * @param  {string} password The password to hash
    * @return {string}          The hashed password
    */
@@ -155,7 +155,7 @@ module.exports = {
 
   /**
    * Validate a user's password
-   * 
+   *
    * @param  {string}   email    The email address for the given user
    * @param  {string}   password The provided password to authenticate against the user's account
    * @return {deferred}          Promise object resolves with error message on fail, user object on success
@@ -169,7 +169,7 @@ module.exports = {
       } else if (!user) {
         deferred.reject(userErrors.notFound);
       } else if (user.confirmed !== true) {
-        deferred.reject(userErrors.notVerified(email));
+        deferred.reject(userErrors.notVerified);
       } else {
         bcrypt.compare(password, user.encryptedPassword, function (err, valid) {
           if (err) {
@@ -187,4 +187,3 @@ module.exports = {
   }
 
 };
-

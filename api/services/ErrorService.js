@@ -1,20 +1,33 @@
 
-function generateError(msg) {
-  return { err: msg };
+function generateError(message, code) {
+  if (_.isUndefined(message)) {
+    message = 'There was an error completing your request';
+  }
+
+  if (_.isUndefined(code)) {
+    code = 9999;
+  }
+
+  return { code: code, err: message };
 }
 
 module.exports = {
-  generate: generateError,
   parse: function (error) {
-    var message = (_.isString(error) || _.isArray(error)) ? error : error.message || 'There was an error completing your request';
+    var errorMessage;
 
-    if (!_.isString(error) && !error.message) {
+    if (error.message && error.code) {
+      errorMessage = generateError(error.message, error.code);
+    } else if (_.isString(error)) {
+      errorMessage = generateError(error);
+    } else {
+      errorMessage = generateError();
+
       console.log('--------------------------------------------');
       console.log('Unknown Error Format:');
       console.log(error);
       console.log('--------------------------------------------');
     }
 
-    return generateError(message);
+    return errorMessage;
   }
 };

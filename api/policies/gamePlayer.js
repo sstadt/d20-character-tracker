@@ -6,6 +6,9 @@
  * @docs        :: http://sailsjs.org/#!documentation/policies
  *
  */
+
+var gameErrors = sails.config.notifications.Game.general.error;
+
 module.exports = function (req, res, next) {
   var gameId = req.param('gameId');
 
@@ -14,9 +17,9 @@ module.exports = function (req, res, next) {
     .populate('players')
     .exec(function (err, game) {
       if (err) {
-        res.jsonError('Error retrieving game');
+        res.jsonError(gameErrors.errorFindingGame);
       } else if (!game) {
-        res.json(ErrorService.generate('Game not found'));
+        res.jsonError(gameErrors.gameNotFound);
       } else {
         var playerIndex = _.findIndex(game.players, function (player) {
           return player.id === req.session.User.id;
@@ -25,7 +28,7 @@ module.exports = function (req, res, next) {
         if (game.gameMaster.id === req.session.User.id || playerIndex > -1) {
           next();
         } else {
-          res.json(ErrorService.generate('You do not have permission to access this game'));
+          res.jsonError(gameErrors.accessDenied);
         }
       }
     });

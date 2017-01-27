@@ -50,20 +50,6 @@ module.exports.policies = {
     '*' : 'dev'
   },
 
-  // TODO remove this and associated controller/model once functionality is integrated into game
-  RollController: {
-    '*'       : 'socketSessionAuth',
-    'index'   : 'dev',
-    'destroy' : false,
-    'update'  : false
-  },
-
-  ChannelController: {
-    '*'     : false,
-    'join'  : 'socketSessionAuth',
-    'leave' : 'socketSessionAuth'
-  },
-
   GameController: {
     '*'               : false,
     'browser'         : ['sessionAuth'],
