@@ -28,13 +28,6 @@ module.exports = {
       resetPassword: '/resetpassword',
       requestReset: '/requestreset'
     },
-    dice: {
-      roll: '/roll'
-    },
-    channel: {
-      join: '/channel/join',
-      leave: '/channel/leave'
-    },
     user: {
       getSelf: '/self',
       setHandle: '/user/setHandle'
