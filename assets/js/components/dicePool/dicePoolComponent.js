@@ -1,12 +1,16 @@
 
-var gameService = require('../../services/gameService.js');
+var config = require('../../lib/config.js');
+
+var Service = require('../../classes/Service.js');
+
+var gameService;
 
 module.exports = {
   template: require('./dicePoolTemplate.html'),
   props: {
     game: {
       type: String,
-      defaultsTo: ''
+      required: true
     }
   },
   data() {
@@ -26,6 +30,16 @@ module.exports = {
       lightToken: false,
       darkToken: false
     };
+  },
+  created() {
+    var self = this;
+
+    gameService = new Service({
+      schema: config.endpoints.game,
+      staticData: {
+        gameId: self.game
+      }
+    });
   },
   methods: {
     roll() {
@@ -47,11 +61,11 @@ module.exports = {
 
       if (self.hasDice()) {
         self.loading = true;
-        gameService.sendRoll(self.game, dicePool, self.rollDescription, tokens)
+        gameService.sendRoll({ dicePool, description: self.rollDescription, tokens })
           .then(function success() {
             self.resetDicePool();
           }, function error(reason) {
-            self.$emit('error', reason);
+            self.$emit('error', reason.err);
           })
           .done(function () {
             self.loading = false;

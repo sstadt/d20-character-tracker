@@ -35,7 +35,7 @@
       <md-spinner v-else :md-size="150" :md-stroke="1" md-indeterminate></md-spinner>
     </div>
     <div class="dice-pool-container no-shrink">
-      <dice-pool ref="dicePool" :game="game.id" @error="notifyError"></dice-pool>
+      <dice-pool v-if="game.id" ref="dicePool" :game="game.id" @error="notifyError"></dice-pool>
       <dice-controls @die-click="addDieToPool"></dice-controls>
       <destiny-tokens :is-game-master="userIsGameMaster" :light="lightTokens" :dark="darkTokens"></destiny-tokens>
     </div>

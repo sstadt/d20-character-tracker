@@ -33,7 +33,7 @@ module.exports = {
       setHandle: '/user/setHandle'
     },
     game: {
-      get: '/game/get',
+      getGame: '/game/get',
       getLog: '/game/getLog',
       search: '/game/search',
       playing: '/game/playing',

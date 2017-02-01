@@ -1,13 +1,13 @@
 
+var util = require('../../lib/util.js');
+var http = require('../../lib/util.http.js');
+var config = require('../../lib/config.js');
+
 var Pipe = require('../../classes/Pipe.js');
 var Service = require('../../classes/Service.js');
 
 var userService = require('../../services/userService.js');
-var gameService = require('../../services/gameService.js');
-
-var util = require('../../lib/util.js');
-var http = require('../../lib/util.http.js');
-var config = require('../../lib/config.js');
+var gameService;
 
 module.exports = {
   template: require('./gameTemplate.html'),
@@ -68,14 +68,12 @@ module.exports = {
   created() {
     var self = this;
 
-    var testService = new Service({
+    gameService = new Service({
       schema: config.endpoints.game,
       staticData: {
         gameId: self.gameId
-      },
-      debug: true
+      }
     });
-    console.log(testService);
 
     // get user data
     userService.getUserInfo()
@@ -84,14 +82,12 @@ module.exports = {
       });
 
     // get game data
-    testService.get()
+    gameService.getGame()
       .then(function success(game) {
         self.game = game;
         self.initGamePipe();
-      }, function error(reason) {
-        return q.reject(reason);
       }).then(function () {
-        return gameService.getLog(self.gameId);
+        return gameService.getLog();
       }).then(function success(log) {
         self.gameLog = log;
       }, function error(reason) {

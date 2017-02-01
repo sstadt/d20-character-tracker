@@ -1,6 +1,9 @@
 
-var gameService = require('../../services/gameService.js');
 var config = require('../../lib/config.js');
+
+var Service = require('../../classes/Service.js');
+
+var gameService;
 
 module.exports = {
   template: require('./chatTemplate.html'),
@@ -21,7 +24,17 @@ module.exports = {
     };
   },
   created() {
-    this.scrollChatToBottom();
+    var self = this;
+
+    self.scrollChatToBottom();
+
+    gameService = new Service({
+      schema: config.endpoints.game,
+      staticData: {
+        gameId: self.game
+      },
+      debug: true
+    });
   },
   watch: {
     log() {
@@ -51,9 +64,9 @@ module.exports = {
       var deferred = q.defer(),
         self = this;
 
-      gameService.useDestinyToken(self.game, type)
+      gameService.useDestinyToken({ type })
         .fail(function (reason) {
-          self.$emit('error', reason);
+          self.$emit('error', reason.err);
         });
 
       return deferred.promise;
@@ -63,9 +76,9 @@ module.exports = {
         deferred = q.defer(),
         dicePool = { sides };
 
-      gameService.sendRoll(self.game, dicePool, 'rolled a die')
+      gameService.sendRoll({ dicePool, description: 'rolled a die' })
         .fail(function (reason) {
-          self.$emit('error', reason);
+          self.$emit('error', reason.err);
         })
         .done(function () {
           deferred.resolve();
@@ -80,9 +93,9 @@ module.exports = {
 
       dicePool[type] = 1;
 
-      gameService.sendRoll(self.game, dicePool, 'rolled a task die')
+      gameService.sendRoll({ dicePool, description: 'rolled a task die' })
         .fail(function (reason) {
-          self.$emit('error', reason);
+          self.$emit('error', reason.err);
         })
         .done(function () {
           deferred.resolve();
@@ -95,11 +108,11 @@ module.exports = {
         deferred = q.defer();
 
       if (self.chatMessage.length > 0) {
-        gameService.sendMessage(self.game, self.chatMessage)
+        gameService.sendMessage({ message: self.chatMessage })
           .then(function success() {
             self.chatMessage = '';
           }, function error(reason) {
-            self.$emit('error', reason);
+            self.$emit('error', reason.err);
           })
           .done(function () {
             deferred.resolve();
