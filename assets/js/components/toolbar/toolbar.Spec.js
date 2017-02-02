@@ -1,7 +1,7 @@
 
-var toolbarComponent = require('./toolbarComponent.js');
-var authService = require('../../services/authService.js');
 var http = require('../../lib/util.http.js');
+
+var toolbarComponent = require('./toolbarComponent.js');
 
 Vue.config.silent = true;
 
@@ -104,7 +104,7 @@ describe('The toolbar component', function () {
         describe('and the request is successful', function () {
           beforeEach(function (done) {
             spyOn(http, 'setLocation');
-            spyOn(authService, 'logout').and.callFake(function () {
+            spyOn(componentInstance.authService, 'logout').and.callFake(function () {
               return q.resolve({ redirect: '/foo' });
             });
 
@@ -118,8 +118,8 @@ describe('The toolbar component', function () {
 
         describe('and the request is not successful', function () {
           beforeEach(function (done) {
-            spyOn(authService, 'logout').and.callFake(function () {
-              return q.reject('foo');
+            spyOn(componentInstance.authService, 'logout').and.callFake(function () {
+              return q.reject({ err: 'foo' });
             });
 
             componentInstance.confirmLogout('ok').done(function () { done(); });

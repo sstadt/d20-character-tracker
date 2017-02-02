@@ -68,32 +68,31 @@ module.exports = {
   unsubscribe: function (session, gameId) {
     var deferred = q.defer();
 
-    Game.findOne(gameId, function (err, game) {
-      if (err) {
-        sails.error(err);
-        deferred.reject(err);
-      } else if (game === undefined) {
-        // there is no game to unsubscribe from,
-        // but there was also no error
-        deferred.resolve();
-      } else {
-        game.online.splice(game.online.indexOf(session.User.id), 1);
-        game.save(function (err) {
-          if (err) {
-            sails.error(err);
-            deferred.reject(err);
-          } else {
-            Game.message(game.id, {
-              type: 'playerOffline',
-              game: game.id,
-              data: { player: session.User.id }
-            });
+    if (!gameId) {
+      deferred.resolve();
+    } else {
+      Game.findOne(gameId, function (err, game) {
+        if (err) {
+          deferred.reject(err);
+        } else {
+          game.online.splice(game.online.indexOf(session.User.id), 1);
+          game.save(function (err) {
+            if (err) {
+              sails.error(err);
+              deferred.reject(err);
+            } else {
+              Game.message(game.id, {
+                type: 'playerOffline',
+                game: game.id,
+                data: { player: session.User.id }
+              });
 
-            deferred.resolve();
-          }
-        });
-      }
-    });
+              deferred.resolve();
+            }
+          });
+        }
+      });
+    }
 
     return deferred.promise;
   },

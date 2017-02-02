@@ -1,8 +1,10 @@
 
-var authService = require('../../services/authService.js');
-var userService = require('../../services/userService.js');
-
 var http = require('../../lib/util.http.js');
+var config = require('../../lib/config.js');
+
+var Service = require('../../classes/Service.js');
+
+var userService = require('../../services/userService.js');
 
 module.exports = {
   template: require('./toolbarTemplate.html'),
@@ -24,7 +26,8 @@ module.exports = {
       confirm: {
         content: 'Are you sure you want to log out?'
       },
-      user: {}
+      user: {},
+      authService: new Service({ schema: config.endpoints.auth })
     };
   },
   created() {
@@ -47,11 +50,12 @@ module.exports = {
         deferred = q.defer();
 
       if (type === 'ok') {
-        authService.logout(this.game)
+        self.authService.logout({ game: self.game })
           .then(function success(data) {
+            console.log(data);
             http.setLocation(data.redirect);
           }, function error(reason) {
-            self.alert.content = reason;
+            self.alert.content = reason.err;
             self.$refs.toolbarDialog.open();
           })
           .done(function () {

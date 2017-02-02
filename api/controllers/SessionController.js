@@ -46,7 +46,7 @@ module.exports = {
             res.jsonError(sessionErrors.logoutError);
           } else {
             req.session.destroy();
-            res.json({ redirect: '/', });
+            res.json({ redirect: '/' });
           }
         });
       }, function error(err) {

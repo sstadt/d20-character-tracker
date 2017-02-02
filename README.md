@@ -4,6 +4,7 @@
 
 #### as able
 
+ - update 404 and 500 pages to use the new components
  - switch game browser alerts of to the notifications component
  - add ajax spinner to all auth component async operations
  - stylize email templates
