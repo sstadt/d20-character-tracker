@@ -2,7 +2,6 @@
 var testData = require('../_testData.js');
 
 var playersMenuComponent = require('./playersMenuComponent.js');
-// var gameService = require('../../../services/gameService.js');
 
 Vue.config.silent = true;
 
@@ -38,59 +37,59 @@ describe('The playersMenu component', function () {
     var componentInstance;
 
     beforeEach(function () {
+      component.propsData = { game: mockGame };
       componentInstance = new Vue(component);
 
       spyOn(componentInstance, '$emit');
-      componentInstance.game = mockGame;
     });
 
-    // describe('#approvePlayer', function () {
-    //   describe('on error', function () {
-    //     beforeEach(function (done) {
-    //       spyOn(gameService, 'approvePlayer').and.callFake(function () {
-    //         return q.reject({ err: 'foo' });
-    //       });
-    //
-    //       componentInstance.approvePlayer().done(function () { done(); });
-    //     });
-    //
-    //     it('should emit an error message', function () {
-    //       expect(componentInstance.$emit).toHaveBeenCalledWith('error', 'foo');
-    //     });
-    //   });
-    // });
-    //
-    // describe('#declinePlayer', function () {
-    //   describe('on error', function () {
-    //     beforeEach(function (done) {
-    //       spyOn(gameService, 'declinePlayer').and.callFake(function () {
-    //         return q.reject({ err: 'foo' });
-    //       });
-    //
-    //       componentInstance.declinePlayer().done(function () { done(); });
-    //     });
-    //
-    //     it('should show an error message', function () {
-    //       expect(componentInstance.$emit).toHaveBeenCalledWith('error', 'foo');
-    //     });
-    //   });
-    // });
-    //
-    // describe('#removePlayer', function () {
-    //   describe('on error', function () {
-    //     beforeEach(function (done) {
-    //       spyOn(gameService, 'removePlayer').and.callFake(function () {
-    //         return q.reject({ err: 'foo' });
-    //       });
-    //
-    //       componentInstance.removePlayer().done(function () { done(); });
-    //     });
-    //
-    //     it('should show an error message', function () {
-    //       expect(componentInstance.$emit).toHaveBeenCalledWith('error', 'foo');
-    //     });
-    //   });
-    // });
+    describe('#approvePlayer', function () {
+      describe('on error', function () {
+        beforeEach(function (done) {
+          spyOn(componentInstance.gameService, 'approvePlayer').and.callFake(function () {
+            return q.reject({ err: 'foo' });
+          });
+
+          componentInstance.approvePlayer(testData.user1).done(function () { done(); });
+        });
+
+        it('should emit an error message', function () {
+          expect(componentInstance.$emit).toHaveBeenCalledWith('error', 'foo');
+        });
+      });
+    });
+
+    describe('#declinePlayer', function () {
+      describe('on error', function () {
+        beforeEach(function (done) {
+          spyOn(componentInstance.gameService, 'declinePlayer').and.callFake(function () {
+            return q.reject({ err: 'foo' });
+          });
+
+          componentInstance.declinePlayer(testData.user1).done(function () { done(); });
+        });
+
+        it('should show an error message', function () {
+          expect(componentInstance.$emit).toHaveBeenCalledWith('error', 'foo');
+        });
+      });
+    });
+
+    describe('#removePlayer', function () {
+      describe('on error', function () {
+        beforeEach(function (done) {
+          spyOn(componentInstance.gameService, 'removePlayer').and.callFake(function () {
+            return q.reject({ err: 'foo' });
+          });
+
+          componentInstance.removePlayer(testData.user2).done(function () { done(); });
+        });
+
+        it('should show an error message', function () {
+          expect(componentInstance.$emit).toHaveBeenCalledWith('error', 'foo');
+        });
+      });
+    });
   });
 
 });

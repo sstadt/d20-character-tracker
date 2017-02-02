@@ -3,8 +3,6 @@ var config = require('../../../lib/config.js');
 
 var Service = require('../../../classes/Service.js');
 
-var gameService;
-
 module.exports = {
   template: require('./playersMenuTemplate.html'),
   props: {
@@ -16,13 +14,14 @@ module.exports = {
   data: function () {
     return {
       searching: false,
-      filteredPlayers: []
+      filteredPlayers: [],
+      gameService: undefined
     };
   },
   created() {
     var self = this;
 
-    gameService = new Service({
+    self.gameService = new Service({
       schema: config.endpoints.game,
       staticData: {
         gameId: self.game.id
@@ -40,7 +39,7 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      gameService.approvePlayer({ player: player.id })
+      self.gameService.approvePlayer({ player: player.id })
         .fail(function (reason) {
           self.$emit('error', reason.err);
         })
@@ -52,7 +51,7 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      gameService.declinePlayer({ player: player.id })
+      self.gameService.declinePlayer({ player: player.id })
         .fail(function (reason) {
           self.$emit('error', reason.err);
         })
@@ -64,7 +63,7 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      gameService.removePlayer({ player: player.id })
+      self.gameService.removePlayer({ player: player.id })
         .fail(function (reason) {
           self.$emit('error', reason.err);
         })
