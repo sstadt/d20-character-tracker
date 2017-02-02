@@ -1,5 +1,7 @@
 
-var gameService = require('../../../services/gameService.js');
+var config = require('../../../lib/config.js');
+
+var Service = require('../../../classes/Service.js');
 
 module.exports = {
   template: require('./settingsMenuTemplate.html'),
@@ -12,8 +14,19 @@ module.exports = {
   },
   data: function () {
     return {
-      saving: false
+      saving: false,
+      gameService: undefined
     };
+  },
+  created() {
+    var self = this;
+
+    self.gameService = new Service({
+      schema: config.endpoints.game,
+      staticData: {
+        gameId: self.game.id
+      }
+    });
   },
   methods: {
     closeModal: function () {
@@ -25,12 +38,12 @@ module.exports = {
 
       self.saving = true;
 
-      gameService.updateConfig(self.game.id, self.game.config)
+      self.gameService.updateConfig(self.game.id, self.game.config)
         .then(function success() {
           self.$refs.gameSettingsAlert.close();
           self.$emit('close');
         }, function error(reason) {
-          self.$refs.gameSettingsAlert.error(reason);
+          self.$refs.gameSettingsAlert.error(reason.err);
         })
         .done(function () {
           self.saving = false;

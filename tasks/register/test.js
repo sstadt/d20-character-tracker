@@ -1,6 +1,8 @@
 module.exports = function (grunt) {
   grunt.registerTask('test', [
-    'browserify:vendor',
+    'browserify:vendorProd',
+    'envify:prod',
+    'clean:vendorProd',
     'karma'
   ]);
 };

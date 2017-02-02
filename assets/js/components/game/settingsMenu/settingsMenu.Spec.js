@@ -2,7 +2,6 @@
 var testData = require('../_testData.js');
 
 var settingsMenuComponent = require('./settingsMenuComponent.js');
-var gameService = require('../../../services/gameService.js');
 
 Vue.config.silent = true;
 
@@ -42,6 +41,7 @@ describe('The settingsMenu component', function () {
     var componentInstance;
 
     beforeEach(function () {
+      component.propsData = { game: mockGame };
       componentInstance = new Vue(component);
 
       componentInstance.$refs = {
@@ -65,7 +65,7 @@ describe('The settingsMenu component', function () {
     describe('#updateConfig', function () {
       describe('on success', function () {
         beforeEach(function (done) {
-          spyOn(gameService, 'updateConfig').and.callFake(function () {
+          spyOn(componentInstance.gameService, 'updateConfig').and.callFake(function () {
             return q.resolve();
           });
 
@@ -83,8 +83,8 @@ describe('The settingsMenu component', function () {
 
       describe('on error', function () {
         beforeEach(function (done) {
-          spyOn(gameService, 'updateConfig').and.callFake(function () {
-            return q.reject('foo');
+          spyOn(componentInstance.gameService, 'updateConfig').and.callFake(function () {
+            return q.reject({ err: 'foo' });
           });
 
           componentInstance.updateConfig().done(function () { done(); });
