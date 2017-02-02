@@ -1,13 +1,16 @@
 
-var gameService = require('../../../services/gameService.js');
+var config = require('../../../lib/config.js');
+
+var Service = require('../../../classes/Service.js');
+
+var gameService;
 
 module.exports = {
   template: require('./playersMenuTemplate.html'),
   props: {
     game: {
       type: Object,
-      required: true,
-      twoWay: true
+      required: true
     }
   },
   data: function () {
@@ -15,6 +18,17 @@ module.exports = {
       searching: false,
       filteredPlayers: []
     };
+  },
+  created() {
+    var self = this;
+
+    gameService = new Service({
+      schema: config.endpoints.game,
+      staticData: {
+        gameId: self.game.id
+      },
+      debug: true
+    });
   },
   computed: {
     filterIcon: function () {
@@ -26,11 +40,11 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      gameService.approvePlayer(self.game, player)
+      gameService.approvePlayer({ player: player.id })
         .fail(function (reason) {
-          self.$emit('error', reason);
-          deferred.resolve();
-        });
+          self.$emit('error', reason.err);
+        })
+        .done(() => deferred.resolve());
 
       return deferred.promise;
     },
@@ -38,11 +52,11 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      gameService.declinePlayer(self.game, player)
+      gameService.declinePlayer({ player: player.id })
         .fail(function (reason) {
-          self.$emit('error', reason);
-          deferred.resolve();
-        });
+          self.$emit('error', reason.err);
+        })
+        .done(() => deferred.resolve());
 
       return deferred.promise;
     },
@@ -50,11 +64,11 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      gameService.removePlayer(self.game, player)
+      gameService.removePlayer({ player: player.id })
         .fail(function (reason) {
-          self.$emit('error', reason);
-          deferred.resolve();
-        });
+          self.$emit('error', reason.err);
+        })
+        .done(() => deferred.resolve());
 
       return deferred.promise;
     }

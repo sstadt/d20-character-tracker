@@ -56,8 +56,7 @@ module.exports = {
       schema: config.endpoints.game,
       staticData: {
         gameId: self.game.id
-      },
-      debug: true
+      }
     });
   },
   methods: {

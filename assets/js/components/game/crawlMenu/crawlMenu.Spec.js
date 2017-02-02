@@ -3,7 +3,6 @@ var testData = require('../_testData.js');
 
 var Crawl = require('./crawl.class.js');
 var crawlMenuComponent = require('./crawlMenuComponent.js');
-var gameService = require('../../../services/gameService.js');
 
 Vue.config.silent = true;
 
