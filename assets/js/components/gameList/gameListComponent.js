@@ -1,6 +1,5 @@
 
 var userService = require('../../services/userService.js');
-var gameService = require('../../services/gameService.js');
 
 module.exports = {
   template: require('./gameListTemplate.html'),

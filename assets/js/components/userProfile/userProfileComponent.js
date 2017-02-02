@@ -1,7 +1,9 @@
 
 var Pipe = require('../../classes/Pipe.js');
+var Service = require('../../classes/Service.js');
 
 var util = require('../../lib/util.js');
+var config = require('../../lib/config.js');
 
 var gameService = require('../../services/gameService.js');
 var userService = require('../../services/userService.js');
@@ -14,11 +16,16 @@ module.exports = {
       currentView: 'games',
       dropzone: {},
       uploadProgress: 0,
-      myGames: []
+      myGames: [],
+      gameService: undefined
     };
   },
   created() {
     var self = this;
+
+    self.gameService = new Service({
+      schema: config.endpoints.game
+    });
 
     // get user data
     userService.getUserInfo()
@@ -29,7 +36,7 @@ module.exports = {
       });
 
     // get user games
-    gameService.getMyGames()
+    self.gameService.getMyGames()
       .then(function success(myGames) {
         self.myGames = myGames;
       }, function error(reason) {
