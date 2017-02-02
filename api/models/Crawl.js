@@ -25,7 +25,7 @@ module.exports = {
       required: true,
       url: true
     },
-    game: {
+    gameId: {
       model: 'game'
     }
   }

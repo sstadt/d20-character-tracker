@@ -1,12 +1,16 @@
 
 var Crawl = require('./crawl.class.js');
 
-var gameService = require('../../../services/gameService.js');
+var config = require('../../../lib/config.js');
+
+var Service = require('../../../classes/Service.js');
 var FieldSet = require('../../../classes/FieldSet.js');
+
+var gameService;
 
 var crawlValidation = {
   id: {},
-  game: {},
+  gameId: {},
   title: {
     required: true
   },
@@ -45,6 +49,17 @@ module.exports = {
       }
     };
   },
+  created() {
+    var self = this;
+
+    gameService = new Service({
+      schema: config.endpoints.game,
+      staticData: {
+        gameId: self.game.id
+      },
+      debug: true
+    });
+  },
   methods: {
     closeModal() {
       this.$emit('close');
@@ -55,16 +70,16 @@ module.exports = {
         newCrawl;
 
       if (self.newCrawlForm.isValid()) {
-        self.newCrawlForm.fields.game.value = self.game.id;
+        self.newCrawlForm.fields.gameId.value = self.game.id;
         newCrawl = self.newCrawlForm.export();
         self.saving = true;
 
-        gameService.addCrawl(newCrawl)
+        gameService.addCrawl({ crawl: newCrawl })
           .then(function success() {
             self.newCrawlForm.reset();
             self.addingCrawl = false;
           }, function error(reason) {
-            self.$emit('error', reason);
+            self.$emit('error', reason.err);
           })
           .done(function () {
             self.saving = false;
@@ -78,7 +93,7 @@ module.exports = {
     },
     editCrawl(crawl) {
       this.editCrawlForm.fields.id.value = crawl.id;
-      this.editCrawlForm.fields.game.value = crawl.game;
+      this.editCrawlForm.fields.gameId.value = crawl.gameId;
       this.editCrawlForm.fields.title.value = crawl.title;
       this.editCrawlForm.fields.subtitle.value = crawl.subtitle;
       this.editCrawlForm.fields.crawl.value = crawl.crawl;
@@ -92,11 +107,11 @@ module.exports = {
 
       self.saving = true;
 
-      gameService.updateCrawl(updatedCrawl)
+      gameService.updateCrawl({ crawl: updatedCrawl })
         .then(function success() {
           self.editCrawlForm.reset();
         }, function error(reason) {
-          self.$emit('error', reason);
+          self.$emit('error', reason.err);
         })
         .done(function () {
           self.saving = false;
@@ -112,11 +127,11 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      gameService.sendCrawl(self.game.id, crawl.id)
+      gameService.sendCrawl({ crawlId: crawl.id })
         .then(function success() {
           self.$emit('close');
         }, function error(reason) {
-          self.$emit('error', reason);
+          self.$emit('error', reason.err);
         })
         .done(function () {
           deferred.resolve();
@@ -134,11 +149,11 @@ module.exports = {
         deferred = q.defer();
 
       if (result === 'ok') {
-        gameService.deleteCrawl(self.game.id, self.confirmDelete.crawlId)
-        .fail(function (reason) {
-          self.$emit('error', reason);
-          deferred.resolve();
-        });
+        gameService.deleteCrawl({ crawlId: self.confirmDelete.crawlId })
+          .fail(function (reason) {
+            self.$emit('error', reason.err);
+            deferred.resolve();
+          });
       } else {
         deferred.resolve();
       }

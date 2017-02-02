@@ -45,7 +45,7 @@ module.exports = {
     },
     crawls: {
       collection: 'crawl',
-      via: 'game'
+      via: 'gameId'
     },
     config: {
       type: 'json',

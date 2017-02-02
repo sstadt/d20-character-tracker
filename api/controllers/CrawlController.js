@@ -9,17 +9,15 @@ var crawlErrors = sails.config.notifications.Game.crawl.error;
 
 module.exports = {
 	update: function (req, res) {
-		var crawl = req.param('crawl'),
-			gameId = req.param('gameId');
+		var crawl = req.param('crawl');
 
-		Crawl.update(crawl.id, crawl, function (err, updatedCrawl) {
+		Crawl.update(crawl.id, crawl, function (err) {
 			if (err) {
 				res.jsonError(err);
 			} else {
-				Game.message(gameId, {
+				Game.message(crawl.gameId, {
 					type: 'gameCrawlUpdated',
-					game: gameId,
-					data: { crawl: updatedCrawl[0] }
+					data: { crawl: crawl }
 				});
 
 				res.send(200);
@@ -28,7 +26,7 @@ module.exports = {
 	},
 
 	destroy: function (req, res) {
-		var crawl = req.param('crawl'),
+		var crawl = req.param('crawlId'),
 			gameId = req.param('gameId');
 
 		if (crawl) {
@@ -38,7 +36,6 @@ module.exports = {
 				} else {
 					Game.message(gameId, {
 						type: 'gameCrawlDestroyed',
-						game: gameId,
 						data: { crawl: crawl }
 					});
 					res.send(200);

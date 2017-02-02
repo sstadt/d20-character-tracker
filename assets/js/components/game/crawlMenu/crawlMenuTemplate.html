@@ -43,10 +43,10 @@
   </transition>
 
   <div class="crawl-list">
-    <transition-group name="slide-fade">
+    <!-- <transition-group name="slide-fade"> -->
       <div class="crawl-description" v-for="crawl in game.crawls" :key="crawl.id">
         <transition-group name="slide-fade" mode="out-in">
-          <div v-show="editCrawlForm.fields.id.value !== crawl.id" key="description">
+          <div v-show="editCrawlForm.fields.id.value !== crawl.id" :key="crawl.id + 'description'">
             <div class="row">
               <div class="small-12 medium-8 large-9 columns">
                 <h3 class="title">{{ crawl.title }}</h3>
@@ -76,7 +76,7 @@
               </md-button>
             </div>
           </div>
-          <form v-show="editCrawlForm.fields.id.value === crawl.id" @submit.stop.prevent="saveCrawl" key="form">
+          <form v-show="editCrawlForm.fields.id.value === crawl.id" @submit.stop.prevent="saveCrawl" :key="crawl.id + 'form'">
             <md-input-container :class="{'md-input-invalid': editCrawlForm.fields.title.hasErrors}">
               <label>Title</label>
               <md-input type="text" v-model="editCrawlForm.fields.title.value"></md-input>
@@ -104,7 +104,7 @@
           </form>
         </transition-group>
       </div>
-    </transition-group>
+    <!-- </transition-group> -->
   </div>
 
 </div>
