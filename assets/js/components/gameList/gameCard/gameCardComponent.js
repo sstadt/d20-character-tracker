@@ -1,5 +1,7 @@
 
-var gameService = require('../../../services/gameService.js');
+var config = require('../../../lib/config.js');
+
+var Service = require('../../../classes/Service.js');
 
 module.exports = {
   template: require('./gameCardTemplate.html'),
@@ -12,6 +14,21 @@ module.exports = {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {
+      gameService: undefined
+    };
+  },
+  created() {
+    var self = this;
+
+    self.gameService = new Service({
+      schema: config.endpoints.game,
+      staticData: {
+        gameId: self.game.id
+      }
+    });
   },
   computed: {
     launchGameLink() {
@@ -57,7 +74,7 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      gameService.join(game)
+      self.gameService.join({ game: game.id })
         .then(function success() {
           game.requestingPlayers.push(self.user);
         }, function error(reason) {

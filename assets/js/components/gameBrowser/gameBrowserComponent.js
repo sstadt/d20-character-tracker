@@ -40,6 +40,7 @@ module.exports = {
 
     self.gameService.getMyGames()
       .then(function success(myGames) {
+        console.log(myGames);
         self.myGames = myGames;
         self.$refs.gameBrowserAlert.close();
       }, function error(reason) {

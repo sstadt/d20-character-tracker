@@ -38,7 +38,7 @@ module.exports = {
 
       self.saving = true;
 
-      self.gameService.updateConfig(self.game.id, self.game.config)
+      self.gameService.updateConfig({ config: self.game.config })
         .then(function success() {
           self.$refs.gameSettingsAlert.close();
           self.$emit('close');
