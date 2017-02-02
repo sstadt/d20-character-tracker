@@ -4,6 +4,7 @@
 
 #### as able
 
+ - switch game browser alerts of to the notifications component
  - add ajax spinner to all auth component async operations
  - stylize email templates
  - move Vue themes and filters to js/lib in their own files

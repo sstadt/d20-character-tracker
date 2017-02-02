@@ -1,10 +1,11 @@
 
-var Pipe = require('../../classes/Pipe.js');
-
-var gameService = require('../../services/gameService.js');
-var userService = require('../../services/userService.js');
-
+var config = require('../../lib/config.js');
 var util = require('../../lib/util.js');
+
+var Pipe = require('../../classes/Pipe.js');
+var Service = require('../../classes/Service.js');
+
+var userService = require('../../services/userService.js');
 
 // TODO: switch alert messages over to a notification
 
@@ -20,11 +21,16 @@ module.exports = {
       gameBrowserPrompt: {
         value: '',
         error: ''
-      }
+      },
+      gameService: undefined
     };
   },
   created() {
     var self = this;
+
+    self.gameService = new Service({
+      schema: config.endpoints.game
+    });
 
     userService.getUserInfo()
       .then(function success(user) {
@@ -32,12 +38,12 @@ module.exports = {
         self.initUserPipe();
       });
 
-    gameService.getMyGames()
+    self.gameService.getMyGames()
       .then(function success(myGames) {
         self.myGames = myGames;
         self.$refs.gameBrowserAlert.close();
       }, function error(reason) {
-        self.$refs.gameBrowserAlert.error(reason);
+        self.$refs.gameBrowserAlert.error(reason.err);
       });
   },
   watch: {
@@ -46,12 +52,12 @@ module.exports = {
 
       if (val.length > 2) {
         self.searching = true;
-        gameService.search(val)
+        self.gameService.search({ filter: val })
           .then(function success(filteredGames) {
             self.filteredGames = _.extend(filteredGames);
             self.$refs.gameBrowserAlert.close();
           }, function (reason) {
-            self.$refs.gameBrowserAlert.error(reason);
+            self.$refs.gameBrowserAlert.error(reason.err);
           })
           .done(function () {
             self.searching = false;
@@ -70,10 +76,10 @@ module.exports = {
     },
     addNewGame() {
       var self = this,
-        name = self.gameBrowserPrompt.value;
+        title = self.gameBrowserPrompt.value;
 
       if (name !== '') {
-        gameService.create(name)
+        self.gameService.create({ title })
           .then(function success(game) {
             self.myGames.push(game);
             self.$refs.gameBrowserPrompt.close();

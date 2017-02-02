@@ -36,7 +36,7 @@ module.exports = {
       getGame: '/game/get',
       getLog: '/game/getLog',
       search: '/game/search',
-      playing: '/game/playing',
+      getMyGames: '/game/playing',
       create: '/game/create',
       updateConfig: '/game/updateConfig',
       addCrawl: '/game/addCrawl',

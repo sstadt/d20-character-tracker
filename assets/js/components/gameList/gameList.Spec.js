@@ -1,6 +1,5 @@
 
 var gameListComponent = require('./gameListComponent.js');
-var gameService = require('../../services/gameService');
 
 Vue.config.silent = true;
 
