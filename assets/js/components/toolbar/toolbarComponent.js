@@ -52,7 +52,6 @@ module.exports = {
       if (type === 'ok') {
         self.authService.logout({ game: self.game })
           .then(function success(data) {
-            console.log(data);
             http.setLocation(data.redirect);
           }, function error(reason) {
             self.alert.content = reason.err;

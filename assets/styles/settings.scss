@@ -45,7 +45,7 @@ $scarlet     : #f20606;
 
 // blue
 $navy-blue    : #023857;
-$bluray-blue : #047abe;
+$bluray-blue  : #047abe;
 
 // yellow
 $burnt-sienna : #795403;
@@ -95,6 +95,12 @@ $paragraph-line-height: 20;
 $hr-color: $silver;
 
 $header-margin: 70px;
+
+// Links
+// ---------------------------
+$link-color: lighten($navy-blue, 10%);
+$link-color-hover: $navy-blue;
+
 
 // Player Status
 // ---------------------------

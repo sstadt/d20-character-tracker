@@ -1,6 +1,14 @@
 
 $material-icon-large-size: 78px;
 
+.md-theme-default a:not(.md-button, .foo) {
+  color: $link-color;
+
+  &:hover {
+    color: $link-color-hover;
+  }
+}
+
 .md-dialog-title {
   .subtitle {
     line-height: 1;
