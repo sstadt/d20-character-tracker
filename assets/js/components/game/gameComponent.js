@@ -7,7 +7,6 @@ var Pipe = require('../../classes/Pipe.js');
 var Service = require('../../classes/Service.js');
 
 var userService = require('../../services/userService.js');
-var gameService;
 
 module.exports = {
   template: require('./gameTemplate.html'),
@@ -38,7 +37,8 @@ module.exports = {
       playlist: [{
         name: 'crawl',
         src: 'https://s3-us-west-2.amazonaws.com/scottstadtcom/fad/star_wars_crawl.mp3'
-      }]
+      }],
+      gameService: undefined
     };
   },
   components: {
@@ -68,7 +68,7 @@ module.exports = {
   created() {
     var self = this;
 
-    gameService = new Service({
+    self.gameService = new Service({
       schema: config.endpoints.game,
       staticData: {
         gameId: self.gameId
@@ -82,12 +82,12 @@ module.exports = {
       });
 
     // get game data
-    gameService.getGame()
+    self.gameService.getGame()
       .then(function success(game) {
         self.game = game;
         self.initGamePipe();
       }).then(function () {
-        return gameService.getLog();
+        return self.gameService.getLog();
       }).then(function success(log) {
         self.gameLog = log;
       }, function error(reason) {
@@ -129,7 +129,7 @@ module.exports = {
       var deferred = q.defer(),
         self = this;
 
-      gameService.rollDestinyPool(self.game.id, self.game.players.length)
+      self.gameService.rollDestinyPool(self.game.id, self.game.players.length)
         .fail(function (reason) {
           self.$refs.notifications.alert(reason);
           deferred.resolve();

@@ -3,8 +3,6 @@ var config = require('../../lib/config.js');
 
 var Service = require('../../classes/Service.js');
 
-var gameService;
-
 module.exports = {
   template: require('./dicePoolTemplate.html'),
   props: {
@@ -28,13 +26,14 @@ module.exports = {
         force: 0
       },
       lightToken: false,
-      darkToken: false
+      darkToken: false,
+      gameService: undefined
     };
   },
   created() {
     var self = this;
 
-    gameService = new Service({
+    this.gameService = new Service({
       schema: config.endpoints.game,
       staticData: {
         gameId: self.game
@@ -61,7 +60,7 @@ module.exports = {
 
       if (self.hasDice()) {
         self.loading = true;
-        gameService.sendRoll({ dicePool, description: self.rollDescription, tokens })
+        self.gameService.sendRoll({ dicePool, description: self.rollDescription, tokens })
           .then(function success() {
             self.resetDicePool();
           }, function error(reason) {

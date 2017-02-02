@@ -3,8 +3,6 @@ var config = require('../../lib/config.js');
 
 var Service = require('../../classes/Service.js');
 
-var gameService;
-
 module.exports = {
   template: require('./chatTemplate.html'),
   props: {
@@ -20,7 +18,8 @@ module.exports = {
   data() {
     return {
       chatMessage: '',
-      isScrolledToBottom: true
+      isScrolledToBottom: true,
+      gameService: undefined
     };
   },
   created() {
@@ -28,7 +27,7 @@ module.exports = {
 
     self.scrollChatToBottom();
 
-    gameService = new Service({
+    self.gameService = new Service({
       schema: config.endpoints.game,
       staticData: {
         gameId: self.game
@@ -64,7 +63,7 @@ module.exports = {
       var deferred = q.defer(),
         self = this;
 
-      gameService.useDestinyToken({ type })
+      self.gameService.useDestinyToken({ type })
         .fail(function (reason) {
           self.$emit('error', reason.err);
         });
@@ -76,7 +75,7 @@ module.exports = {
         deferred = q.defer(),
         dicePool = { sides };
 
-      gameService.sendRoll({ dicePool, description: 'rolled a die' })
+      self.gameService.sendRoll({ dicePool, description: 'rolled a die' })
         .fail(function (reason) {
           self.$emit('error', reason.err);
         })
@@ -93,7 +92,7 @@ module.exports = {
 
       dicePool[type] = 1;
 
-      gameService.sendRoll({ dicePool, description: 'rolled a task die' })
+      self.gameService.sendRoll({ dicePool, description: 'rolled a task die' })
         .fail(function (reason) {
           self.$emit('error', reason.err);
         })
@@ -108,7 +107,7 @@ module.exports = {
         deferred = q.defer();
 
       if (self.chatMessage.length > 0) {
-        gameService.sendMessage({ message: self.chatMessage })
+        self.gameService.sendMessage({ message: self.chatMessage })
           .then(function success() {
             self.chatMessage = '';
           }, function error(reason) {

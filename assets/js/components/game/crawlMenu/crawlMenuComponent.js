@@ -6,8 +6,6 @@ var config = require('../../../lib/config.js');
 var Service = require('../../../classes/Service.js');
 var FieldSet = require('../../../classes/FieldSet.js');
 
-var gameService;
-
 var crawlValidation = {
   id: {},
   gameId: {},
@@ -46,13 +44,14 @@ module.exports = {
         ok: 'Yes',
         cancel: 'No',
         crawlId: ''
-      }
+      },
+      gameService: undefined
     };
   },
   created() {
     var self = this;
 
-    gameService = new Service({
+    self.gameService = new Service({
       schema: config.endpoints.game,
       staticData: {
         gameId: self.game.id
@@ -73,7 +72,7 @@ module.exports = {
         newCrawl = self.newCrawlForm.export();
         self.saving = true;
 
-        gameService.addCrawl({ crawl: newCrawl })
+        self.gameService.addCrawl({ crawl: newCrawl })
           .then(function success() {
             self.newCrawlForm.reset();
             self.addingCrawl = false;
@@ -106,7 +105,7 @@ module.exports = {
 
       self.saving = true;
 
-      gameService.updateCrawl({ crawl: updatedCrawl })
+      self.gameService.updateCrawl({ crawl: updatedCrawl })
         .then(function success() {
           self.editCrawlForm.reset();
         }, function error(reason) {
@@ -126,7 +125,7 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      gameService.sendCrawl({ crawlId: crawl.id })
+      self.gameService.sendCrawl({ crawlId: crawl.id })
         .then(function success() {
           self.$emit('close');
         }, function error(reason) {
@@ -148,7 +147,7 @@ module.exports = {
         deferred = q.defer();
 
       if (result === 'ok') {
-        gameService.deleteCrawl({ crawlId: self.confirmDelete.crawlId })
+        self.gameService.deleteCrawl({ crawlId: self.confirmDelete.crawlId })
           .fail(function (reason) {
             self.$emit('error', reason.err);
             deferred.resolve();
