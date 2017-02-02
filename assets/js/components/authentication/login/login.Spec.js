@@ -52,7 +52,7 @@ describe('The login component', function () {
 
       describe('on success', function () {
         beforeEach(function (done) {
-          spyOn(authService, 'verify').and.callFake(function () {
+          spyOn(componentInstance.authService, 'verify').and.callFake(function () {
             return q.resolve();
           });
 
@@ -66,8 +66,8 @@ describe('The login component', function () {
 
       describe('on error', function () {
         beforeEach(function (done) {
-          spyOn(authService, 'verify').and.callFake(function () {
-            return q.reject('foo');
+          spyOn(componentInstance.authService, 'verify').and.callFake(function () {
+            return q.reject({ err: 'foo' });
           });
 
           componentInstance.verify().done(function () { done(); });
@@ -88,7 +88,7 @@ describe('The login component', function () {
 
         describe('on success', function () {
           beforeEach(function (done) {
-            spyOn(authService, 'resendValidation').and.callFake(function () {
+            spyOn(componentInstance.authService, 'resendValidation').and.callFake(function () {
               return q.resolve();
             });
 
@@ -106,8 +106,8 @@ describe('The login component', function () {
 
         describe('on error', function () {
           beforeEach(function (done) {
-            spyOn(authService, 'resendValidation').and.callFake(function () {
-              return q.reject('foo');
+            spyOn(componentInstance.authService, 'resendValidation').and.callFake(function () {
+              return q.reject({ err: 'foo'});
             });
 
             componentInstance.resendVerification().done(function () { done(); });
@@ -159,7 +159,7 @@ describe('The login component', function () {
       describe('on success', function () {
         beforeEach(function (done) {
           spyOn(http, 'setLocation');
-          spyOn(authService, 'login').and.callFake(function () {
+          spyOn(componentInstance.authService, 'login').and.callFake(function () {
             return q.resolve({ redirect: '/foo' });
           });
 
@@ -177,39 +177,43 @@ describe('The login component', function () {
 
       describe('on password error', function () {
         beforeEach(function (done) {
-          spyOn(authService, 'login').and.callFake(function () {
-            return q.reject({ err: 'Password error', showResend: false });
+          spyOn(componentInstance.authService, 'login').and.callFake(function () {
+            return q.reject({ err: 'Password error' });
           });
 
           componentInstance.login().done(function () { done(); });
         });
 
-        it('should set showResend', function () {
-          expect(componentInstance.showResend).toEqual(false);
-        });
-
         it('should add the error to the password field', function () {
-          expect(componentInstance.loginForm.fields.password.hasErrors).toEqual(true);
           expect(componentInstance.loginForm.fields.password.errors).toEqual(['Password error']);
         });
       });
 
       describe('on non-password error', function () {
         beforeEach(function (done) {
-          spyOn(authService, 'login').and.callFake(function () {
-            return q.reject({ err: 'Other error', showResend: true });
+          spyOn(componentInstance.authService, 'login').and.callFake(function () {
+            return q.reject({ err: 'Other error' });
           });
 
           componentInstance.login().done(function () { done(); });
         });
 
-        it('should set showResend', function () {
-          expect(componentInstance.showResend).toEqual(true);
+        it('should add the error to the email field', function () {
+          expect(componentInstance.loginForm.fields.email.errors).toEqual(['Other error']);
+        });
+      });
+
+      describe('on not yet validated account', function () {
+        beforeEach(function (done) {
+          spyOn(componentInstance.authService, 'login').and.callFake(function () {
+            return q.reject({ code: 516, err: 'Other error' });
+          });
+
+          componentInstance.login().done(function () { done(); });
         });
 
-        it('should add the error to the email field', function () {
-          expect(componentInstance.loginForm.fields.email.hasErrors).toEqual(true);
-          expect(componentInstance.loginForm.fields.email.errors).toEqual(['Other error']);
+        it('should set showResend to true', function () {
+          expect(componentInstance.showResend).toEqual(true);
         });
       });
     });

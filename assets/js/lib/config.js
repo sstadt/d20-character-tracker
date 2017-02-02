@@ -24,7 +24,7 @@ module.exports = {
       logout: '/session/destroy',
       signup: '/user/create',
       verify: '/user/verify',
-      resendVerification: '/user/resend',
+      resendValidation: '/user/resend',
       resetPassword: '/resetpassword',
       requestReset: '/requestreset'
     },
