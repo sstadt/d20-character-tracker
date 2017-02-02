@@ -1,8 +1,9 @@
 
-var authService = require('../../../services/authService.js');
+var http = require('../../../lib/util.http.js');
+var config = require('../../../lib/config.js');
 
 var FieldSet = require('../../../classes/FieldSet.js');
-var http = require('../../../lib/util.http.js');
+var Service = require('../../../classes/Service.js');
 
 var requestRules = {
   email: {
@@ -33,7 +34,8 @@ module.exports = {
   data: function () {
     return {
       requestForm: new FieldSet(requestRules),
-      resetForm: new FieldSet(resetRules)
+      resetForm: new FieldSet(resetRules),
+      authService: new Service({ schema: config.endpoints.auth })
     };
   },
   created() {
@@ -50,11 +52,11 @@ module.exports = {
         deferred = q.defer();
 
       if (self.requestForm.isValid()) {
-        authService.requestReset(self.requestForm.fields.email.value)
+        self.authService.requestReset({ email: self.requestForm.fields.email.value })
           .then(function success() {
             self.$refs.resetAlert.success('Please check your email to finish resetting your password');
           }, function error(reason) {
-            self.$refs.resetAlert.error(reason);
+            self.$refs.resetAlert.error(reason.err);
           })
           .done(function () {
             deferred.resolve();
@@ -67,16 +69,17 @@ module.exports = {
     },
     submitReset() {
       var self = this,
+        token = self.token,
         password = self.resetForm.fields.password.value,
         confirm = self.resetForm.fields.confirm.value,
         deferred = q.defer();
 
       if (self.resetForm.isValid()) {
-        authService.resetPassword(self.token, password, confirm)
+        self.authService.resetPassword({ token, password, confirm })
           .then(function success() {
             self.$refs.resetDialog.open();
           }, function error(reason) {
-            self.$refs.resetAlert.error(reason);
+            self.$refs.resetAlert.error(reason.err);
           })
           .done(function () {
             deferred.resolve();

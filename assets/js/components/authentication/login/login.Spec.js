@@ -1,6 +1,5 @@
 
 var loginComponent = require('./loginComponent.js');
-var authService = require('../../../services/authService.js');
 var http = require('../../../lib/util.http.js');
 
 Vue.config.silent = true;

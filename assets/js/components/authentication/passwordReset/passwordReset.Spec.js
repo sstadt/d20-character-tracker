@@ -1,7 +1,7 @@
 
-var passwordResetComponent = require('./passwordResetComponent.js');
-var authService = require('../../../services/authService.js');
 var http = require('../../../lib/util.http.js');
+
+var passwordResetComponent = require('./passwordResetComponent.js');
 
 Vue.config.silent = true;
 
@@ -55,7 +55,7 @@ describe('The passwordReset component', function () {
 
       describe('on success', function () {
         beforeEach(function (done) {
-          spyOn(authService, 'requestReset').and.callFake(function () {
+          spyOn(componentInstance.authService, 'requestReset').and.callFake(function () {
             return q.resolve();
           });
 
@@ -69,8 +69,8 @@ describe('The passwordReset component', function () {
 
       describe('on success', function () {
         beforeEach(function (done) {
-          spyOn(authService, 'requestReset').and.callFake(function () {
-            return q.reject('foo');
+          spyOn(componentInstance.authService, 'requestReset').and.callFake(function () {
+            return q.reject({ err: 'foo' });
           });
 
           componentInstance.requestReset().done(function () { done(); });
@@ -90,7 +90,7 @@ describe('The passwordReset component', function () {
 
       describe('on success', function () {
         beforeEach(function (done) {
-          spyOn(authService, 'resetPassword').and.callFake(function () {
+          spyOn(componentInstance.authService, 'resetPassword').and.callFake(function () {
             return q.resolve();
           });
 
@@ -104,8 +104,8 @@ describe('The passwordReset component', function () {
 
       describe('on success', function () {
         beforeEach(function (done) {
-          spyOn(authService, 'resetPassword').and.callFake(function () {
-            return q.reject('foo');
+          spyOn(componentInstance.authService, 'resetPassword').and.callFake(function () {
+            return q.reject({ err: 'foo' });
           });
 
           componentInstance.submitReset().done(function () { done(); });
