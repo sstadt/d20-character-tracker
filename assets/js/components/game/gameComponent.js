@@ -129,7 +129,7 @@ module.exports = {
       var deferred = q.defer(),
         self = this;
 
-      self.gameService.rollDestinyPool(self.game.id, self.game.players.length)
+      self.gameService.rollDestinyPool({ numPlayers: self.game.players.length })
         .fail(function (reason) {
           self.$refs.notifications.alert(reason);
           deferred.resolve();

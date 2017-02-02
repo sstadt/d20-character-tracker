@@ -31,8 +31,7 @@ module.exports = {
       schema: config.endpoints.game,
       staticData: {
         gameId: self.game
-      },
-      debug: true
+      }
     });
   },
   watch: {
