@@ -1,6 +1,8 @@
 
-var authService = require('../../../services/authService.js');
+var config = require('../../../lib/config.js');
+
 var FieldSet = require('../../../classes/FieldSet.js');
+var Service = require('../../../classes/Service.js');
 
 var signupValidation = {
   email: {
@@ -26,7 +28,8 @@ module.exports = {
   data: function () {
     return {
       signupForm: new FieldSet(signupValidation),
-      success: false
+      success: false,
+      authService: new Service({ schema: config.endpoints.auth })
     };
   },
   created() {
@@ -40,7 +43,7 @@ module.exports = {
     signup() {
       var self = this,
         deferred = q.defer(),
-        args = {
+        newUser = {
           email: self.signupForm.fields.email.value,
           password: self.signupForm.fields.password.value,
           confirmation: self.signupForm.fields.confirmation.value,
@@ -48,14 +51,14 @@ module.exports = {
         };
 
       if (self.signupForm.isValid()) {
-        authService.signup(args)
+        self.authService.signup(newUser)
           .then(function success(data) {
             self.signupForm.fields.password.value = '';
             self.signupForm.fields.confirmation.value = '';
             self.$refs.alert.success('Success! Check your email to activate your account.');
             self.success = true;
           }, function error(reason) {
-            self.$refs.alert.alert(reason);
+            self.$refs.alert.alert(reason.err);
           })
           .done(function () {
             deferred.resolve();
