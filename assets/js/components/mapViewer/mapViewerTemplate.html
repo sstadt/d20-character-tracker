@@ -1,8 +1,11 @@
 
 <div class="map-viewer">
-  <img :src="activeMap" :style="{ 'margin-left': left + 'px', 'margin-top': top + 'px' }" />
+  <img :src="activeMap" :style="{
+    'margin-left': left + 'px',
+    'margin-top': top + 'px',
+    'transform': mapScale
+  }" />
   <div class="zoom-controls">
-    <slider></slider>
-    <!-- <slider :position="mapZoom"></slider> -->
+    <input type="range" v-model="mapZoom" />
   </div>
 </div>
