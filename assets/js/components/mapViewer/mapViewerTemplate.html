@@ -1,10 +1,16 @@
 
 <div class="map-viewer">
-  <img :src="activeMap" :style="{
-    'margin-left': left + 'px',
-    'margin-top': top + 'px',
-    'transform': mapScale
-  }" />
+  <img
+    @dragstart="startDragging($event)"
+    @drag="dragHandler($event)"
+    @dragend="stopDragging($event)"
+    :src="activeMap"
+    :style="{
+      'margin-left': left + 'px',
+      'margin-top': top + 'px',
+      'transform': mapScale
+    }"
+    :class="{ 'dragging': dragging }" />
   <div class="zoom-controls">
     <input type="range" v-model="mapZoom" />
   </div>

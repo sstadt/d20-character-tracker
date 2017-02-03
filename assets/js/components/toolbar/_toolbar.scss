@@ -16,8 +16,10 @@
   .page-controls {
     position: fixed;
     top: $global-gutter / 2;
-    right: $global-gutter / 2;
+    right: $global-gutter;
     z-index: 1;
+    border-radius: $global-radius;
+    background-color: $panel-bg-color-dark;
 
     svg {
       fill: $page-controls-color;

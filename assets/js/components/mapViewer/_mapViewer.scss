@@ -14,14 +14,29 @@ $map-viewer-top-z-index: 5000;
     position: absolute;
     top: 50%;
     left: 50%;
+
+    &.dragging {
+      cursor: move;
+      cursor: grabbing;
+      cursor: -moz-grabbing;
+      cursor: -webkit-grabbing;
+    }
   }
 
   .zoom-controls {
     width: 400px;
     position: absolute;
-    bottom: 5px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: $map-viewer-top-z-index;
+    border-top-left-radius: $global-radius;
+    border-top-right-radius: $global-radius;
+    padding: 5px 12px;
+    background-color: $panel-bg-color-dark;
+
+    input[type="range"] {
+      width: 100%;
+    }
   }
 }
