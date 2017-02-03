@@ -1,0 +1,28 @@
+
+$map-viewer-top-z-index: 5000;
+
+.map-viewer {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  img {
+    max-width: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+  }
+
+  .zoom-controls {
+    width: 400px;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: $map-viewer-top-z-index;
+  }
+}
