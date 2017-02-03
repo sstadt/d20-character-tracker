@@ -1,17 +1,18 @@
 
 <div class="map-viewer">
-  <img
+  <div :class="{ 'dragging': dragging, 'map-wrapper': true }"
     @dragstart="startDragging($event)"
     @drag="dragHandler($event)"
     @dragend="stopDragging($event)"
-    :src="activeMap"
     :style="{
       'margin-left': left + 'px',
       'margin-top': top + 'px',
       'transform': mapScale
-    }"
-    :class="{ 'dragging': dragging }" />
+    }">
+    <img :src="activeMap" />
+  </div>
   <div class="zoom-controls">
+    <md-button class="md-icon-button" @click="centerMap"><icon name="target"></i></md-button>
     <input type="range" v-model="mapZoom" />
   </div>
 </div>

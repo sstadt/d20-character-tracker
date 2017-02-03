@@ -9,22 +9,27 @@ $map-viewer-top-z-index: 5000;
   height: 100%;
   width: 100%;
 
-  img {
-    max-width: none;
+  .map-wrapper {
+    display: inline-block;
     position: absolute;
     top: 50%;
     left: 50%;
 
     &.dragging {
       cursor: move;
-      cursor: grabbing;
-      cursor: -moz-grabbing;
-      cursor: -webkit-grabbing;
+      // cursor: grabbing;
+      // cursor: -moz-grabbing;
+      // cursor: -webkit-grabbing;
+    }
+
+    img {
+      max-width: none;
     }
   }
 
   .zoom-controls {
     width: 400px;
+    display: flex;
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -32,11 +37,27 @@ $map-viewer-top-z-index: 5000;
     z-index: $map-viewer-top-z-index;
     border-top-left-radius: $global-radius;
     border-top-right-radius: $global-radius;
-    padding: 5px 12px;
+    padding: 5px 12px 0;
     background-color: $panel-bg-color-dark;
 
     input[type="range"] {
-      width: 100%;
+      flex: 1;
+    }
+
+    button {
+      margin: 0;
+      padding: 0;
+      height: 20px;
+      width: 20px;
+      min-width: 20px;
+
+      & + input {
+        margin-left: 10px;
+      }
+    }
+
+    svg {
+      fill: $page-controls-color;
     }
   }
 }

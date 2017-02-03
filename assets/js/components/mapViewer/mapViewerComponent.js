@@ -45,6 +45,12 @@ module.exports = {
       this.dragging = false;
 
       this.updatePosition(offsetX, offsetY);
+    },
+    centerMap() {
+      this.left = 0;
+      this.top = 0;
+      this.lastLeft = 0;
+      this.lastTop = 0;
     }
   }
 };
