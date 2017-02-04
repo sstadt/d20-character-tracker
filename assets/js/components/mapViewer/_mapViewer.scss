@@ -12,6 +12,7 @@ $map-viewer-top-z-index: 5000;
   .map-wrapper {
     display: inline-block;
     position: absolute;
+    overflow: hidden;
     top: 50%;
     left: 50%;
 
@@ -28,6 +29,7 @@ $map-viewer-top-z-index: 5000;
 
     .grid-overlay {
       position: absolute;
+      pointer-events: none;
       top: 50%;
       left: 50%;
       height: 500%;
@@ -59,7 +61,7 @@ $map-viewer-top-z-index: 5000;
           transparent 77%,
           transparent
         );
-      background-size:50px 50px;
+      background-size: 50px 50px;
     }
   }
 
@@ -78,6 +80,10 @@ $map-viewer-top-z-index: 5000;
 
     input[type="range"] {
       flex: 1;
+
+      & + button {
+        margin-left: 10px;
+      }
     }
 
     button {

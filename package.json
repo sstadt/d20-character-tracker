@@ -1,8 +1,8 @@
 {
-  "name": "fad-character-tracker",
+  "name": "sw-game-table",
   "private": true,
   "version": "0.0.0",
-  "description": "A sails.js application.",
+  "description": "A game table application for FFG Star Wars RPG games.",
   "keywords": [],
   "dependencies": {
     "aws-sdk": "^2.7.24",
