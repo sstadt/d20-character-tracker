@@ -4,15 +4,22 @@
     @dragstart="startDragging($event)"
     @drag="dragHandler($event)"
     @dragend="stopDragging($event)"
+    @mousewheel="scrollHandler($event)"
     :style="{
       'margin-left': left + 'px',
       'margin-top': top + 'px',
       'transform': mapScale
     }">
-    <img :src="activeMap" />
+    <img :src="map.image" />
+    <transition name="fade">
+      <div v-show="showGrid" class="grid-overlay"></div>
+    </transition>
   </div>
-  <div class="zoom-controls">
-    <md-button class="md-icon-button" @click="centerMap"><icon name="target"></i></md-button>
-    <input type="range" v-model="mapZoom" />
+  <transition name="fade">
+    <div v-show="map.image != ''" class="zoom-controls">
+      <md-button class="md-icon-button" @click="toggleGrid"><icon name="grid"></i></md-button>
+      <md-button class="md-icon-button" @click="centerMap"><icon name="target"></i></md-button>
+      <input type="range" v-model="mapZoom" />
+    </div>
   </div>
 </div>
