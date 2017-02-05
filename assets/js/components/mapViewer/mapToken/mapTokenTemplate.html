@@ -1,0 +1,13 @@
+
+<div draggable="true" class="map-token"
+  @dragstart.stop="startDragging($event)"
+  @drag.stop.prevent="dragHandler($event)"
+  @dragend.stop="stopDragging($event)"
+  :style="{
+    'transform': 'scale(' + gridSize + ')', 
+    'top': top,
+    'left': left,
+    'border': healthBorder,
+    'background-image': backgroundImage
+  }">
+</div>

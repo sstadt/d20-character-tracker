@@ -1,25 +1,30 @@
 
 <div class="map-viewer">
   <div draggable="true" :class="{ 'dragging': dragging, 'map-wrapper': true }"
-    @dragstart="startDragging($event)"
-    @drag.prevent="dragHandler($event)"
-    @dragend="stopDragging($event)"
+    @dragstart.stop="startDragging($event)"
+    @drag.stop.prevent="dragHandler($event)"
+    @dragend.stop="stopDragging($event)"
     @mousewheel="scrollHandler($event)"
     :style="{
       'margin-left': mapLeft + 'px',
       'margin-top': mapTop + 'px',
-      'transform': mapScale
+      'transform': mapTransform
     }">
     <img class="map" :src="map.image" @dragstart="disableGhost($event)" />
-    <transition name="fade">
-      <div v-show="showGrid" class="grid-overlay" :style="{ 'background-size': gridSize, 'background-position': gridPosition }"></div>
-    </transition>
+    <transition-group name="fade">
+      <component is="mapToken" v-for="token in map.tokens"
+        :token="token"
+        :grid-size="map.baseGrid"
+        :map-scale="mapScale"
+        :key="token.id">
+      </component>
+    </transition-group>
   </div>
   <transition name="fade">
     <div v-show="map.image && map.image != ''" class="zoom-controls">
       <md-button class="md-icon-button" @click="centerMap"><icon name="target"></i></md-button>
       <input type="range" v-model="mapZoom" />
-      <md-button v-if="showGmTools" class="md-icon-button" @click="toggleGrid"><icon name="grid"></i></md-button>
+      <md-button v-if="showGmTools" class="md-icon-button" @click="toggleGrid"><icon :name="tokenIcon"></i></md-button>
     </div>
   </div>
 </div>

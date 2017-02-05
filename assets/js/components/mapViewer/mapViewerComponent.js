@@ -20,20 +20,22 @@ module.exports = {
       mapZoom: 20, // 100% start
       lastMouseLeft: 0,
       lastMouseTop: 0,
-      showGrid: false,
+      resizingGrid: false,
       dragging: false
     };
   },
   computed: {
     mapScale() {
-      var factor = ((this.mapZoom / 100) * 490 + 10) / 100;
-      return `translateX(-50%) translateY(-50%) scale(${factor}, ${factor})`;
+      return ((this.mapZoom / 100) * 490 + 10) / 100;
     },
-    gridSize() {
-      return `${this.map.baseGrid}px ${this.map.baseGrid}px`;
+    mapTransform() {
+      return `translateX(-50%) translateY(-50%) scale(${this.mapScale}, ${this.mapScale})`;
     },
     gridPosition() {
       return `${this.gridLeft}px ${this.gridTop}px`;
+    },
+    tokenIcon() {
+      return this.resizingGrid ? 'resize' : 'grid';
     }
   },
   watch: {
@@ -42,6 +44,9 @@ module.exports = {
         this.setMapPositioning();
       }
     }
+  },
+  components: {
+    mapToken: require('./mapToken/mapTokenComponent.js')
   },
   created() {
     this.setMapPositioning();
@@ -93,24 +98,15 @@ module.exports = {
       this.lastMouseLeft = event.clientX;
       this.lastMouseTop = event.clientY;
       this.dragging = true;
-
-      console.log('start dragging');
     },
     dragHandler(event) {
       var offsetX = event.clientX - this.lastMouseLeft,
         offsetY = event.clientY - this.lastMouseTop;
 
-      console.log('dragging');
-
       if (this.dragging) {
-        if (this.showGrid) {
-          this.updateGridPosition(offsetX, offsetY);
-        } else {
-          this.updateMapPosition(offsetX, offsetY);
-        }
+        this.updateMapPosition(offsetX, offsetY);
+        this.saveMapPositioning();
       }
-
-      this.saveMapPositioning();
 
       this.lastMouseLeft = event.clientX;
       this.lastMouseTop = event.clientY;
@@ -119,28 +115,17 @@ module.exports = {
       var offsetX = event.clientX - this.lastMouseLeft,
         offsetY = event.clientY - this.lastMouseTop;
 
-      console.log('stop dragging');
-
       this.dragging = false;
-
-      if (this.showGrid) {
-        this.updateGridPosition(offsetX, offsetY);
-      } else {
-        this.updateMapPosition(offsetX, offsetY);
-      }
+      this.updateMapPosition(offsetX, offsetY);
     },
     updateMapPosition(x, y) {
       if (x !== 0 && Math.abs(x) < 100) this.mapLeft += x;
       if (y !== 0 && Math.abs(y) < 100) this.mapTop += y;
     },
-    updateGridPosition(x, y) {
-      if (x !== 0 && Math.abs(x) < 100) this.gridLeft += x;
-      if (y !== 0 && Math.abs(y) < 100) this.gridTop += y;
-    },
     scrollHandler(event) {
       var delta = event.deltaY / 8;
 
-      if (this.showGrid) {
+      if (this.resizingGrid) {
         this.scrollGrid(delta);
       } else {
         this.scrollMap(delta);
@@ -149,11 +134,7 @@ module.exports = {
       this.saveMapPositioning();
     },
     scrollGrid(delta) {
-      if (delta > 0) {
-        this.map.baseGrid = Math.min(this.map.baseGrid + delta, 200);
-      } else {
-        this.map.baseGrid = Math.max(this.map.baseGrid + delta, 10);
-      }
+      this.map.baseGrid += (delta / 100);
     },
     scrollMap(delta) {
       if (delta > 0) {
@@ -169,12 +150,11 @@ module.exports = {
       this.lastMouseTop = 0;
     },
     toggleGrid() {
-      this.showGrid = !this.showGrid;
+      // TODO publish update when saving grid scale
+      this.resizingGrid = !this.resizingGrid;
     },
     disableGhost(event) {
       var dragImg = document.createElement("img");
-
-      console.log('disabling drag ghost');
 
       dragImg.src = 'https://s3.amazonaws.com/ssdcgametable/site_structure/transparent-pixel.png';
       event.dataTransfer.setDragImage(dragImg, 0, 0);

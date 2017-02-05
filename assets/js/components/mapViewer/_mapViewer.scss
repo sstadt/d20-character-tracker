@@ -24,44 +24,7 @@ $map-viewer-top-z-index: 5000;
     }
 
     img.map {
-      max-width: none;
-    }
-
-    .grid-overlay {
-      position: absolute;
-      pointer-events: none;
-      top: 50%;
-      left: 50%;
-      height: 500%;
-      width: 500%;
-      transform: translateX(-50%) translateY(-50%);
-      background-color: transparent;
-      background-image:
-        linear-gradient(
-          0deg,
-          transparent 24%,
-          $maya-blue 25%,
-          $maya-blue 26%,
-          transparent 27%,
-          transparent 74%,
-          $maya-blue 75%,
-          $maya-blue 76%,
-          transparent 77%,
-          transparent
-        ),
-        linear-gradient(
-          90deg,
-          transparent 24%,
-          $maya-blue 25%,
-          $maya-blue 26%,
-          transparent 27%,
-          transparent 74%,
-          $maya-blue 75%,
-          $maya-blue 76%,
-          transparent 77%,
-          transparent
-        );
-      background-size: 50px 50px;
+      max-width: none
     }
   }
 
