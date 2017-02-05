@@ -4,7 +4,13 @@
   <toolbar :game="gameId">
     <span slot="topbar">
       <!-- player menu items -->
-      <md-button class="md-icon-button"><icon name="map"></icon></md-button>
+      <md-menu v-if="userIsGameMaster" md-direction="bottom left" :md-align-trigger="true" md-size="4">
+        <md-button class="md-icon-button" md-menu-trigger><icon name="map"></icon></md-button>
+        <md-menu-content>
+          <md-menu-item v-for="map in maps" @click="setActiveMap(map.id)">{{ map.name }}</md-menu-item>
+          <md-menu-item @click="clearActiveMap">Hide Map</md-menu-item>
+        </md-menu-content>
+      </md-menu>
 
       <!-- GM menu items -->
       <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('crawl')"><icon name="crawl"></icon></md-button>
@@ -23,7 +29,7 @@
   <jukebox :playlist="playlist" ref="jukebox" @track-finished="trackFinished"></jukebox>
 
   <!-- map viewer -->
-  <map-viewer :show-gm-tools="userIsGameMaster"></map-viewer>
+  <map-viewer :map="displayMap" :show-gm-tools="userIsGameMaster"></map-viewer>
 
   <!-- notifications -->
   <notification ref="notifications"></notification>

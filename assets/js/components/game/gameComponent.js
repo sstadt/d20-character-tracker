@@ -25,6 +25,21 @@ module.exports = {
       game: {},
       gameLog: [],
 
+      maps: [{
+        id: 1,
+        name: 'Galaxy',
+        image: 'https://s3.amazonaws.com/ssdcgametable/site_structure/sw_galaxymap.jpg',
+        baseGrid: 50,
+        tokens: []
+      }, {
+        id: 2,
+        name: 'Dungeon',
+        image: 'https://s-media-cache-ak0.pinimg.com/736x/78/3b/1d/783b1d5e2d22c3afcecaf0d3721e35c4.jpg',
+        baseGrid: 50,
+        tokens: []
+      }],
+      activeMap: 1,
+
       // crawl data
       activeCrawl: {
         title: '',
@@ -58,6 +73,14 @@ module.exports = {
     },
     darkTokens() {
       return !_.isUndefined(this.game.darkTokens) ? this.game.darkTokens : 0;
+    },
+    displayMap() {
+      var self = this,
+        map = _.find(self.maps, function (map) {
+          return map.id === self.activeMap;
+        });
+
+      return (!_.isUndefined(map)) ? map : {};
     }
   },
   filters: {
@@ -136,6 +159,12 @@ module.exports = {
         });
 
       return deferred.promise;
+    },
+    setActiveMap(id) {
+      this.activeMap = id;
+    },
+    clearActiveMap() {
+      this.activeMap = 0;
     },
     initGamePipe() {
       var GamePipe = new Pipe('game');

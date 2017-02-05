@@ -1,8 +1,8 @@
 
 <div class="map-viewer">
-  <div :class="{ 'dragging': dragging, 'map-wrapper': true }"
+  <div draggable="true" :class="{ 'dragging': dragging, 'map-wrapper': true }"
     @dragstart="startDragging($event)"
-    @drag="dragHandler($event)"
+    @drag.prevent="dragHandler($event)"
     @dragend="stopDragging($event)"
     @mousewheel="scrollHandler($event)"
     :style="{
@@ -10,13 +10,13 @@
       'margin-top': mapTop + 'px',
       'transform': mapScale
     }">
-    <img :src="map.image" />
+    <img class="map" :src="map.image" @dragstart="disableGhost($event)" />
     <transition name="fade">
       <div v-show="showGrid" class="grid-overlay" :style="{ 'background-size': gridSize, 'background-position': gridPosition }"></div>
     </transition>
   </div>
   <transition name="fade">
-    <div v-show="map.image != ''" class="zoom-controls">
+    <div v-show="map.image && map.image != ''" class="zoom-controls">
       <md-button class="md-icon-button" @click="centerMap"><icon name="target"></i></md-button>
       <input type="range" v-model="mapZoom" />
       <md-button v-if="showGmTools" class="md-icon-button" @click="toggleGrid"><icon name="grid"></i></md-button>

@@ -5,16 +5,14 @@ module.exports = {
     showGmTools: {
       type: Boolean,
       defaultsTo: false
+    },
+    map: {
+      type: Object,
+      required: true
     }
   },
   data() {
     return {
-      map: {
-        id: 1,
-        image: 'https://s3.amazonaws.com/ssdcgametable/site_structure/sw_galaxymap.jpg',
-        baseGrid: 50,
-        tokens: []
-      },
       mapLeft: 0,
       mapTop: 0,
       gridLeft: 0,
@@ -36,6 +34,13 @@ module.exports = {
     },
     gridPosition() {
       return `${this.gridLeft}px ${this.gridTop}px`;
+    }
+  },
+  watch: {
+    map(oldMap, newMap) {
+      if (oldMap.id !== newMap.id) {
+        this.setMapPositioning();
+      }
     }
   },
   created() {
@@ -84,15 +89,20 @@ module.exports = {
       }
     }, 400),
     startDragging(event) {
+      this.disableGhost(event);
       this.lastMouseLeft = event.clientX;
       this.lastMouseTop = event.clientY;
       this.dragging = true;
+
+      console.log('start dragging');
     },
     dragHandler(event) {
       var offsetX = event.clientX - this.lastMouseLeft,
         offsetY = event.clientY - this.lastMouseTop;
 
-      if (this.dragging && Math.abs(offsetX) < 100) {
+      console.log('dragging');
+
+      if (this.dragging) {
         if (this.showGrid) {
           this.updateGridPosition(offsetX, offsetY);
         } else {
@@ -109,23 +119,23 @@ module.exports = {
       var offsetX = event.clientX - this.lastMouseLeft,
         offsetY = event.clientY - this.lastMouseTop;
 
+      console.log('stop dragging');
+
       this.dragging = false;
 
-      if (Math.abs(offsetX) < 100) {
-        if (this.showGrid) {
-          this.updateGridPosition(offsetX, offsetY);
-        } else {
-          this.updateMapPosition(offsetX, offsetY);
-        }
+      if (this.showGrid) {
+        this.updateGridPosition(offsetX, offsetY);
+      } else {
+        this.updateMapPosition(offsetX, offsetY);
       }
     },
     updateMapPosition(x, y) {
-      if (x !== 0) this.mapLeft += x;
-      if (y !== 0) this.mapTop += y;
+      if (x !== 0 && Math.abs(x) < 100) this.mapLeft += x;
+      if (y !== 0 && Math.abs(y) < 100) this.mapTop += y;
     },
     updateGridPosition(x, y) {
-      if (x !== 0) this.gridLeft += x;
-      if (y !== 0) this.gridTop += y;
+      if (x !== 0 && Math.abs(x) < 100) this.gridLeft += x;
+      if (y !== 0 && Math.abs(y) < 100) this.gridTop += y;
     },
     scrollHandler(event) {
       var delta = event.deltaY / 8;
@@ -160,6 +170,14 @@ module.exports = {
     },
     toggleGrid() {
       this.showGrid = !this.showGrid;
+    },
+    disableGhost(event) {
+      var dragImg = document.createElement("img");
+
+      console.log('disabling drag ghost');
+
+      dragImg.src = 'https://s3.amazonaws.com/ssdcgametable/site_structure/transparent-pixel.png';
+      event.dataTransfer.setDragImage(dragImg, 0, 0);
     }
   }
 };
