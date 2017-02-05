@@ -26,13 +26,13 @@ module.exports = {
       gameLog: [],
 
       maps: [{
-        id: 1,
+        id: '1',
         name: 'Galaxy',
         image: 'https://s3.amazonaws.com/ssdcgametable/site_structure/sw_galaxymap.jpg',
         baseGrid: 1,
         tokens: []
       }, {
-        id: 2,
+        id: '2',
         name: 'Dungeon',
         image: 'https://s-media-cache-ak0.pinimg.com/736x/78/3b/1d/783b1d5e2d22c3afcecaf0d3721e35c4.jpg',
         baseGrid: 1,
@@ -62,7 +62,7 @@ module.exports = {
           y: 0
         }]
       }],
-      activeMap: 2,
+      activeMap: '2',
 
       // crawl data
       activeCrawl: {

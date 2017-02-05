@@ -4,7 +4,10 @@
   @drag.stop.prevent="dragHandler($event)"
   @dragend.stop="stopDragging($event)"
   :style="{
-    'transform': 'scale(' + gridSize + ')', 
+    'transform': 'scale(' + gridSize + ')',
+    'z-index': (dragging) ? '2' : '1',
+    'height': tokenSize + 'px',
+    'width': tokenSize + 'px',
     'top': top,
     'left': left,
     'border': healthBorder,

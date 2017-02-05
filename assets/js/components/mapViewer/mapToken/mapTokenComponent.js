@@ -2,6 +2,14 @@
 module.exports = {
   template: require('./mapTokenTemplate.html'),
   props: {
+    game: {
+      type: String,
+      required: true
+    },
+    map: {
+      type: String,
+      required: true
+    },
     token: {
       type: Object,
       required: true
@@ -17,20 +25,19 @@ module.exports = {
   },
   data() {
     return {
+      tokenSize: 50,
       xPos: 0,
       yPos: 0,
       lastMouseLeft: 0,
       lastMouseTop: 0,
-      dragging: false
+      dragging: false,
+      canvasWidth: 0,
+      canvasHeight: 0
     };
   },
   computed: {
     backgroundImage() {
       return (this.token.image && this.token.image !== '') ? `url(${this.token.image})` : 'none';
-    },
-    tokenSize() {
-      var size = this.gridSize * 0.5;
-      return `${size}px`;
     },
     left() {
       return `${this.xPos}px`;
@@ -63,6 +70,10 @@ module.exports = {
       this.disableGhost(event);
       this.lastMouseLeft = event.clientX;
       this.lastMouseTop = event.clientY;
+
+      this.canvasWidth = event.target.parentNode.parentNode.offsetWidth;
+      this.canvasHeight = event.target.parentNode.parentNode.offsetHeight;
+
       this.dragging = true;
     },
     dragHandler(event) {
@@ -81,11 +92,22 @@ module.exports = {
       this.dragging = false;
 
       this.updateTokenPosition(offsetX, offsetY);
+      this.validatePosition();
       // TODO publish token position update
     },
     updateTokenPosition(x, y) {
       if (x !== 0 && Math.abs(x) < 100) this.xPos += (x / this.mapScale);
       if (y !== 0 && Math.abs(y) < 100) this.yPos += (y / this.mapScale);
+    },
+    validatePosition() {
+      var currentSize = this.tokenSize * this.gridSize,
+        maxX = this.canvasWidth - currentSize,
+        maxY = this.canvasHeight - currentSize;
+
+      if (this.xPos < 0) this.xPos = 0;
+      if (this.yPos < 0) this.yPos = 0;
+      if (this.xPos > maxX) this.xPos = maxX;
+      if (this.yPos > maxY) this.yPos = maxY;
     },
     disableGhost(event) {
       var dragImg = document.createElement("img");

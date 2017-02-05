@@ -13,6 +13,8 @@
     <img class="map" :src="map.image" @dragstart="disableGhost($event)" />
     <transition-group name="fade">
       <component is="mapToken" v-for="token in map.tokens"
+        :game="game"
+        :map="map.id"
         :token="token"
         :grid-size="map.baseGrid"
         :map-scale="mapScale"

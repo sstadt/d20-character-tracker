@@ -2,6 +2,10 @@
 module.exports = {
   template: require('./mapViewerTemplate.html'),
   props: {
+    game: {
+      type: String,
+      required: true
+    },
     showGmTools: {
       type: Boolean,
       defaultsTo: false
@@ -134,13 +138,13 @@ module.exports = {
       this.saveMapPositioning();
     },
     scrollGrid(delta) {
-      this.map.baseGrid += (delta / 100);
+      this.map.baseGrid -= (delta / 100);
     },
     scrollMap(delta) {
       if (delta > 0) {
-        this.mapZoom = Math.min(this.mapZoom + delta, 100);
+        this.mapZoom = Math.max(this.mapZoom - delta, 0);
       } else {
-        this.mapZoom = Math.max(this.mapZoom + delta, 0);
+        this.mapZoom = Math.min(this.mapZoom - delta, 100);
       }
     },
     centerMap() {
