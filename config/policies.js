@@ -31,19 +31,19 @@ module.exports.policies = {
   '/': true,
 
   SessionController: {
-    '*'       : ['flash', true],
-    'destroy' : 'sessionAuth'
+    '*'       : true,
+    'destroy' : 'socketSessionAuth'
   },
 
   UserController: {
     '*'           : ['flash', true],
+    'search'      : false,
+    'destroy'     : false,
     'create'      : true,
     'show'        : 'sessionAuth',
-    'search'      : false,
-    'self'        : 'sessionAuth',
-    'setHandle'   : 'sessionAuth',
-    'destroy'     : false,
-    'uploadPhoto' : 'sessionAuth'
+    'self'        : 'socketSessionAuth',
+    'setHandle'   : 'socketSessionAuth',
+    'uploadPhoto' : 'socketSessionAuth'
   },
 
   DevController: {
@@ -54,24 +54,28 @@ module.exports.policies = {
     '*'               : false,
     'browser'         : ['sessionAuth'],
     'show'            : ['sessionAuth',       'gamePlayer'],
-    'get'             : ['socketSessionAuth', 'gamePlayer'],
+
     'playing'         : ['socketSessionAuth'],
     'search'          : ['socketSessionAuth'],
     'create'          : ['socketSessionAuth'],
+    'join'            : ['socketSessionAuth'],
+
     'updateConfig'    : ['socketSessionAuth', 'gameMaster'],
     'addCrawl'        : ['socketSessionAuth', 'gameMaster'],
-    'join'            : ['socketSessionAuth'],
     'approvePlayer'   : ['socketSessionAuth', 'gameMaster'],
     'declinePlayer'   : ['socketSessionAuth', 'gameMaster'],
     'removePlayer'    : ['socketSessionAuth', 'gameMaster'],
-    'rollDestinyPool' : ['socketSessionAuth', 'gameMaster']
+    'rollDestinyPool' : ['socketSessionAuth', 'gameMaster'],
+
+    'get'             : ['socketSessionAuth', 'gamePlayer']
   },
 
   GameLogController: {
     '*'               : false, // Game controller is responsible for creation/deletion
+    'addCrawl'        : ['socketSessionAuth', 'gameMaster'],
+
     'get'             : ['socketSessionAuth', 'gamePlayer'],
     'addMessage'      : ['socketSessionAuth', 'gamePlayer'],
-    'addCrawl'        : ['socketSessionAuth', 'gameMaster'],
     'addRoll'         : ['socketSessionAuth', 'gamePlayer'],
     'useDestinyToken' : ['socketSessionAuth', 'gamePlayer']
   },
@@ -80,6 +84,19 @@ module.exports.policies = {
     '*'       : false,
     'update'  : ['socketSessionAuth', 'gameMaster'],
     'destroy' : ['socketSessionAuth', 'gameMaster']
+  },
+
+  MapController: {
+    '*'           : false,
+    'create'      : ['socketSessionAuth', 'gameMaster'],
+    'update'      : ['socketSessionAuth', 'gameMaster'],
+    'destroy'     : ['socketSessionAuth', 'gameMaster'],
+
+    'get'         : ['socketSessionAuth', 'gamePlayer'],
+    'addToken'    : ['socketSessionAuth', 'gamePlayer'],
+    'moveToken'   : ['socketSessionAuth', 'gamePlayer'], // TODO need a policy specific to token ownership
+    'removeToken' : ['socketSessionAuth', 'gamePlayer']  // TODO need a policy specific to token ownership
+
   },
 
   ApiController: {

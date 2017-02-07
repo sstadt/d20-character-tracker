@@ -12,6 +12,7 @@
  - move Vue themes and filters to js/lib in their own files
  - add a method to the ErrorService that parses s3 error messages
  - closing the browser does not send an offline event in the game
+ - refactor database errors to attach some extra debug identifier and refactor all database errors to use it
 
 ### DevOps to do:
 

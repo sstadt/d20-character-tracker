@@ -22,6 +22,10 @@ module.exports.notifications = {
   // 100
   General: {
     error: {
+      databaseError: {
+        code: 105,
+        message: 'Database Error'
+      },
       cannotUploadFile: {
         code: 110,
         message: 'Unable to upload file.'
@@ -206,8 +210,48 @@ module.exports.notifications = {
     crawl: {
       error: {
         invalidCrawl: {
-          code: 650,
+          code: 640,
           message: 'Invalid Crawl'
+        }
+      }
+    },
+    map: {
+      error: {
+        notFound: {
+          code: 650,
+          message: 'Map not found'
+        },
+        listNotFound: {
+          code: 651,
+          message: 'Maps not found'
+        },
+        cannotCreate: {
+          code: 652,
+          message: 'Error creating map'
+        },
+        cannotUpdate: {
+          code: 653,
+          message: 'Error updating map'
+        },
+        cannotDelete: {
+          code: 654,
+          message: 'Error deleting map'
+        },
+        tokenExists: {
+          code: 655,
+          message: 'Token is already on the map'
+        },
+        cannotAddToken: {
+          code: 656,
+          message: 'Error adding token to map'
+        },
+        cannotRemoveToken: {
+          code: 657,
+          message: 'Error removing token'
+        },
+        cannotMoveToken: {
+          code: 658,
+          message: 'Error moving token'
         }
       }
     }

@@ -151,6 +151,11 @@ module.exports = {
     notifyError(message) {
       this.$refs.notifications.alert(message);
     },
+
+    /*
+      Jukebox
+      --------------------------------
+     */
     playCrawl(crawl) {
       this.activeCrawl.title = crawl.title;
       this.activeCrawl.subtitle = crawl.subtitle;
@@ -169,6 +174,11 @@ module.exports = {
         this.$refs.crawl.endCrawl();
       }
     },
+
+    /*
+      Dice Rolls
+      --------------------------------
+     */
     addDieToPool(type) {
       this.$refs.dicePool.addDie(type);
     },
@@ -184,12 +194,22 @@ module.exports = {
 
       return deferred.promise;
     },
+
+    /*
+      Maps
+      --------------------------------
+     */
     setActiveMap(id) {
       this.activeMap = id;
     },
     clearActiveMap() {
       this.activeMap = 0;
     },
+
+    /*
+      Socket Updates
+      --------------------------------
+     */
     initGamePipe() {
       var GamePipe = new Pipe('game');
 
@@ -261,6 +281,13 @@ module.exports = {
         this.game.online.splice(onlineIndex, 1);
       }
     },
+    playerConfigUpdated(data) {
+      var playerIndex = util.getIndexById(this.game.players, data.user);
+
+      if (playerIndex > -1 && !_.isUndefined(data.config)) {
+        this.game.players[playerIndex].config = data.config;
+      }
+    },
     gameCrawlAdded(data) {
       var crawl = data.crawl;
 
@@ -286,18 +313,11 @@ module.exports = {
     },
     newLogMessage(data) {
       this.gameLog.log.push(data);
-      Vue.nextTick(self.scrollChatToBottom);
-    },
-    playerConfigUpdated(data) {
-      var playerIndex = util.getIndexById(this.game.players, data.user);
-
-      if (playerIndex > -1 && !_.isUndefined(data.config)) {
-        this.game.players[playerIndex].config = data.config;
-      }
     },
     destinyPoolUpdated(data) {
       this.game.lightTokens = data.light || 0;
       this.game.darkTokens = data.dark || 0;
     }
+
   }
 };
