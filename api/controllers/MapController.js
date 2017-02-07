@@ -131,10 +131,10 @@ module.exports = {
 							res.jsonError(mapErrors.cannotRemoveToken);
 						} else {
 							Game.message(gameId, {
-								type: 'mapTokenAdded',
+								type: 'mapTokenRemoved',
 								data: {
 									mapId: mapId,
-									token: mapToken
+									tokenId: tokenId
 								}
 							});
 							res.send(200);
