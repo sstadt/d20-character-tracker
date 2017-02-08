@@ -1,11 +1,12 @@
 
 var http = require('../../lib/util.http.js');
 
-var resetToken = http.getUrlParameter('reset') || '';
 
 module.exports = {
   template: require('./authenticationTemplate.html'),
   data: function () {
+    var resetToken = http.getUrlParameter('reset') || '';
+
     return {
       resetToken,
       view: (resetToken !== '') ? 'passwordReset' : 'login'

@@ -1,4 +1,6 @@
 
+var http = require('../../lib/util.http.js');
+
 var authenticationComponent = require('./authenticationComponent.js');
 
 Vue.config.silent = true;
@@ -22,7 +24,14 @@ describe('The authentication component', function () {
     var data;
 
     beforeEach(function () {
+      spyOn(http, 'getUrlParameter').and.returnValue(false);
       data = component.data();
+    });
+
+    describe('resetToken', function () {
+      it('should be a string', function () {
+        expect(data.resetToken).toEqual(jasmine.any(String));
+      });
     });
 
     describe('view', function () {
@@ -32,6 +41,24 @@ describe('The authentication component', function () {
 
       it('should default to login', function () {
         expect(data.view).toEqual('login');
+      });
+    });
+  });
+
+  describe('computed', function () {
+    var componentInstance;
+
+    beforeEach(function () {
+      componentInstance = new Vue(component);
+    });
+
+    describe('#currentView', function () {
+      beforeEach(function () {
+        componentInstance.setView('foo');
+      });
+
+      it('should be equal to the current view', function () {
+        expect(componentInstance.currentView).toEqual(componentInstance.view);
       });
     });
   });
