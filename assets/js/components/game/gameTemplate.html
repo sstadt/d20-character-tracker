@@ -29,7 +29,7 @@
   <jukebox :playlist="playlist" ref="jukebox" @track-finished="trackFinished"></jukebox>
 
   <!-- map viewer -->
-  <map-viewer v-if="game.id" :map="displayMap" :show-gm-tools="userIsGameMaster" :game="this.game.id"></map-viewer>
+  <map-viewer v-if="game.id" :map="displayMap" :show-gm-tools="userIsGameMaster" :game="this.game.id" @error="notifyError"></map-viewer>
 
   <!-- notifications -->
   <notification ref="notifications"></notification>

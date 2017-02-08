@@ -24,11 +24,11 @@ $map-viewer-top-z-index: 5000;
     }
 
     img.map {
-      max-width: none
+      max-width: none;
     }
   }
 
-  .zoom-controls {
+  .map-controls {
     width: 400px;
     display: flex;
     position: absolute;

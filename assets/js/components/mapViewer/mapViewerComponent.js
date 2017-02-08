@@ -1,4 +1,10 @@
 
+var config = require('../../lib/config.js');
+
+var Service = require('../../classes/Service.js');
+
+var userService = require('../../services/userService.js');
+
 module.exports = {
   template: require('./mapViewerTemplate.html'),
   props: {
@@ -17,6 +23,7 @@ module.exports = {
   },
   data() {
     return {
+      user: {},
       mapLeft: 0,
       mapTop: 0,
       gridLeft: 0,
@@ -25,7 +32,8 @@ module.exports = {
       lastMouseLeft: 0,
       lastMouseTop: 0,
       resizingGrid: false,
-      dragging: false
+      dragging: false,
+      gameService: undefined
     };
   },
   computed: {
@@ -53,9 +61,27 @@ module.exports = {
     mapToken: require('./mapToken/mapTokenComponent.js')
   },
   created() {
-    this.setMapPositioning();
+    var self = this;
+
+    self.setMapPositioning();
+
+    // get user data
+    userService.getUserInfo()
+      .then(function success(user) {
+        self.user = user;
+      });
+
+    self.gameService = new Service({
+      schema: config.endpoints.game,
+      staticData: {
+        gameId: self.game
+      }
+    });
   },
   methods: {
+    emitError(msg) {
+      this.$emit('error', msg);
+    },
     getLocalMaps() {
       var localMaps;
 
@@ -156,6 +182,28 @@ module.exports = {
     toggleGrid() {
       // TODO publish update when saving grid scale
       this.resizingGrid = !this.resizingGrid;
+    },
+    addMyToken() {
+      var self = this,
+        deferred = q.defer(),
+        mapId = self.map.id,
+        token = {
+          id: self.user.id,
+          type: 'player',
+          image: self.user.config.avatar,
+          x: 0, // TODO need to calculate the best place based on other tokens
+          y: 0  // TODO need to calculate the best place based on other tokens
+        };
+
+      self.gameService.addMapToken({ mapId, token })
+        .fail(function (reason) {
+          self.$emit('error', reason.err);
+        })
+        .done(function () {
+          deferred.resolve();
+        });
+
+      return deferred.promise;
     },
     disableGhost(event) {
       var dragImg = document.createElement("img");

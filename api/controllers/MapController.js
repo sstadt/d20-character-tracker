@@ -113,7 +113,6 @@ module.exports = {
 			mapId = req.param('mapId'),
 			tokenId = req.param('tokenId');
 
-
 		Map.findOne(mapId, function (err, map) {
 			if (err) {
 				res.jsonError(mapErrors.notFound);
@@ -149,9 +148,43 @@ module.exports = {
 	},
 	moveToken: function (req, res) {
 		var gameId = req.param('gameId'),
-			mapId = req.param('mapId');
+			mapId = req.param('mapId'),
+			x = req.param('x'),
+			y = req.param('y');
 
-		// TODO
+		Map.findOne(mapId, function (err, map) {
+			if (err) {
+				res.jsonError(mapErrors.notFound);
+			} else if (_.isUndefined(token.id)) {
+				res.jsonError(mapErrors.invalidToken);
+			} else {
+				var tokenIndex = _.findIndex(map.tokens, function (token) {
+					return token.id === mapToken.id;
+				});
+
+				if (_.isNumber(x) && _.isNumber(y)) {
+					map.tokens[tokenIndex].x = x;
+					map.tokens[tokenIndex].y = y;
+					map.save(function (err, newMap) {
+						if (err) {
+							res.jsonError(mapErrors.cannotMoveToken);
+						} else {
+							Game.message(gameId, {
+								type: 'mapTokenMoved',
+								data: {
+									mapId: mapId,
+									token: map.tokens[tokenIndex]
+								}
+							});
+							res.send(200);
+						}
+
+					});
+				} else {
+					res.jsonError(mapErrors.invalidCoordinates);
+				}
+			}
+		});
 	}
 
 };

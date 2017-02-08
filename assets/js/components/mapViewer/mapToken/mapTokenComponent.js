@@ -1,4 +1,8 @@
 
+var config = require('../../../lib/config.js');
+
+var Service = require('../../../classes/Service.js');
+
 module.exports = {
   template: require('./mapTokenTemplate.html'),
   props: {
@@ -32,7 +36,8 @@ module.exports = {
       lastMouseTop: 0,
       dragging: false,
       canvasWidth: 0,
-      canvasHeight: 0
+      canvasHeight: 0,
+      gameService: undefined
     };
   },
   computed: {
@@ -59,7 +64,17 @@ module.exports = {
     }
   },
   created() {
-    this.updatePosition();
+    var self = this;
+
+    self.updatePosition();
+
+    self.gameService = new Service({
+      schema: config.endpoints.game,
+      staticData: {
+        gameId: self.game,
+        mapId: self.map
+      }
+    });
   },
   methods: {
     updatePosition() {
@@ -86,14 +101,25 @@ module.exports = {
       this.lastMouseTop = event.clientY;
     },
     stopDragging(event) {
-      var offsetX = event.clientX - this.lastMouseLeft,
-        offsetY = event.clientY - this.lastMouseTop;
+      var self = this,
+        deferred = q.defer(),
+        offsetX = event.clientX - self.lastMouseLeft,
+        offsetY = event.clientY - self.lastMouseTop;
 
-      this.dragging = false;
+      self.dragging = false;
 
-      this.updateTokenPosition(offsetX, offsetY);
-      this.validatePosition();
-      // TODO publish token position update
+      self.updateTokenPosition(offsetX, offsetY);
+      self.validatePosition();
+
+      self.gameService.moveMapToken({ x: self.xPos, y: self.yPos })
+        .fail(function (reason) {
+          this.$emit('error', reason.err);
+        })
+        .done(function () {
+          deferred.resolve();
+        });
+
+      return deferred.promise;
     },
     updateTokenPosition(x, y) {
       if (x !== 0 && Math.abs(x) < 100) this.xPos += (x / this.mapScale);

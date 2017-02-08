@@ -50,7 +50,14 @@ module.exports = {
       sendCrawl: '/game/sendCrawl',
       sendRoll: '/game/sendRoll',
       rollDestinyPool: '/game/rollDestinyPool',
-      useDestinyToken: '/game/useDestinyToken'
+      useDestinyToken: '/game/useDestinyToken',
+      getMaps: '/map/get',
+      createMap: '/map/create',
+      updateMap: '/map/update',
+      deeleteMap: '/map/destroy',
+      addMapToken: '/map/addToken',
+      deleteMapToken: '/map/removeToken',
+      moveMapToken: '/map/moveToken',
     }
   }
 

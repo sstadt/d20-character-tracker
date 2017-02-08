@@ -252,6 +252,10 @@ module.exports.notifications = {
         cannotMoveToken: {
           code: 658,
           message: 'Error moving token'
+        },
+        invalidCoordinates: {
+          code: 659,
+          message: 'Error moving token'
         }
       }
     }

@@ -18,12 +18,19 @@
         :token="token"
         :grid-size="map.baseGrid"
         :map-scale="mapScale"
-        :key="token.id">
+        :key="token.id"
+        @error="emitError">
       </component>
     </transition-group>
   </div>
   <transition name="fade">
-    <div v-show="map.image && map.image != ''" class="zoom-controls">
+    <div v-show="map.image && map.image != ''" class="map-controls">
+      <md-menu v-if="userIsGameMaster" md-direction="top left" :md-align-trigger="true" md-size="4">
+        <md-button class="md-icon-button" md-menu-trigger><icon name="caret-up"></icon></md-button>
+        <md-menu-content>
+          <md-menu-item @click="addMyToken">Add My Token</md-menu-item>
+        </md-menu-content>
+      </md-menu>
       <md-button class="md-icon-button" @click="centerMap"><icon name="target"></i></md-button>
       <input type="range" v-model="mapZoom" />
       <md-button v-if="showGmTools" class="md-icon-button" @click="toggleGrid"><icon :name="tokenIcon"></i></md-button>
