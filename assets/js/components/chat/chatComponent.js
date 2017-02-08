@@ -47,7 +47,7 @@ module.exports = {
     rollType(message) {
       return `${message.type}Roll`;
     },
-    dragHandler() {
+    dropHandler(event) {
       var type = event.dataTransfer.getData("text");
 
       if (_.includes(config.dieTypes, type)) {
@@ -65,6 +65,9 @@ module.exports = {
       self.gameService.useDestinyToken({ type })
         .fail(function (reason) {
           self.$emit('error', reason.err);
+        })
+        .done(function () {
+          deferred.resolve();
         });
 
       return deferred.promise;
@@ -125,15 +128,21 @@ module.exports = {
       this.$emit('play-crawl', crawl);
     },
     scrollChatToBottom() {
-      var self = this;
+      var self = this,
+        deferred = q.defer();
 
       if (this.isScrolledToBottom) {
         Vue.nextTick(function () {
           self.$refs.chatLog.scrollTop = self.$refs.chatLog.scrollHeight - self.$refs.chatLog.offsetHeight;
+          deferred.resolve();
         });
+      } else {
+        deferred.resolve();
       }
+
+      return deferred.promise;
     },
-    userScrolling(event) {
+    userScrolling() {
       var scrollPos = this.$refs.chatLog.offsetHeight + this.$refs.chatLog.scrollTop;
       this.isScrolledToBottom = Math.abs(this.$refs.chatLog.scrollHeight - scrollPos) <= 10;
     }

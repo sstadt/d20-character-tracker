@@ -1,6 +1,6 @@
 
 <div class="chat-pane flex-column">
-  <div class="chat-log fill-height" @dragover.prevent @drop="dragHandler">
+  <div class="chat-log fill-height" @dragover.prevent @drop="dropHandler($event)">
     <ul class="messages" ref="chatLog" @scroll="userScrolling">
       <transition-group name="slide-fade">
         <li v-for="(item, index) in log" :key="index">
