@@ -5,7 +5,7 @@
 #### as able
 
  - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging
- - update 404 and 500 pages to use the new components
+ - redesign error pages to me more interactive and informative
  - switch game browser alerts off to the notifications component
  - add ajax spinner to all auth component async operations
  - stylize email templates
