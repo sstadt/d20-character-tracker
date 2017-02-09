@@ -18,18 +18,70 @@ describe('The dieControl component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
-  // describe('methods', function () {
-  //   var componentInstance;
-  //
-  //   beforeEach(function () {
-  //     componentInstance = new Vue(component);
-  //   });
-  //
-  //   describe('#sayHi', function () {
-  //     it('should be a function', function () {
-  //       expect(typeof componentInstance.sayHi).toBe('function');
-  //     });
-  //   });
-  // });
+  describe('props', function () {
+    it('should be an object', function () {
+      expect(component.props).toEqual(jasmine.any(Object));
+    });
+
+    describe('die', function () {
+      it('should be a string', function () {
+        expect(component.props.die.type).toEqual(String);
+      });
+
+      it('should be required', function () {
+        expect(component.props.die.required).toEqual(true);
+      });
+    });
+  });
+
+  describe('computed', function () {
+    var componentInstance, isolatedComponent;
+
+    beforeEach(function () {
+      isolatedComponent = _.clone(component);
+      isolatedComponent.propsData = { die: 'foo' };
+      componentInstance = new Vue(isolatedComponent);
+    });
+
+    describe('icon', function () {
+      it('should prepend die- to the die property', function () {
+        expect(componentInstance.icon).toEqual('die-foo');
+      });
+    });
+  });
+
+  describe('methods', function () {
+    var componentInstance, isolatedComponent;
+
+    beforeEach(function () {
+      isolatedComponent = _.clone(component);
+      isolatedComponent.propsData = { die: 'foo' };
+      componentInstance = new Vue(isolatedComponent);
+    });
+
+    describe('#dieClick', function () {
+      beforeEach(function () {
+        spyOn(componentInstance, '$emit');
+        componentInstance.dieClick();
+      });
+
+      it('should emit a die click event', function () {
+        expect(componentInstance.$emit).toHaveBeenCalledWith('die-click');
+      });
+    });
+
+    describe('#dragStart', function () {
+      var dragEvent;
+
+      beforeEach(function () {
+        dragEvent = { dataTransfer: { setData: jasmine.createSpy() } };
+        componentInstance.dragStart(dragEvent);
+      });
+
+      it('should set data on the dataTransfer object', function () {
+        expect(dragEvent.dataTransfer.setData).toHaveBeenCalledWith('text/plain', 'foo');
+      });
+    });
+  });
 
 });

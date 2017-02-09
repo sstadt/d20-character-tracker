@@ -18,18 +18,29 @@ describe('The diceControls component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
-  // describe('methods', function () {
-  //   var componentInstance;
-  //
-  //   beforeEach(function () {
-  //     componentInstance = new Vue(component);
-  //   });
-  //
-  //   describe('#sayHi', function () {
-  //     it('should be a function', function () {
-  //       expect(typeof componentInstance.sayHi).toBe('function');
-  //     });
-  //   });
-  // });
+  describe('components', function () {
+    it('should have a dieControl component', function () {
+      expect(component.components.dieControl).toEqual(jasmine.any(Object));
+    });
+  });
+
+  describe('methods', function () {
+    var componentInstance;
+
+    beforeEach(function () {
+      componentInstance = new Vue(component);
+    });
+
+    describe('#dieClick', function () {
+      beforeEach(function () {
+        spyOn(componentInstance, '$emit');
+        componentInstance.dieClick('ability');
+      });
+
+      it('should emit a die-click event with the provided type', function () {
+        expect(componentInstance.$emit).toHaveBeenCalledWith('die-click', 'ability');
+      });
+    });
+  });
 
 });
