@@ -18,18 +18,46 @@ describe('The destinyTokens component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
-  // describe('methods', function () {
-  //   var componentInstance;
-  //
-  //   beforeEach(function () {
-  //     componentInstance = new Vue(component);
-  //   });
-  //
-  //   describe('#sayHi', function () {
-  //     it('should be a function', function () {
-  //       expect(typeof componentInstance.sayHi).toBe('function');
-  //     });
-  //   });
-  // });
+  describe('props', function () {
+    it('should be an object', function () {
+      expect(component.props).toEqual(jasmine.any(Object));
+    });
+
+    describe('isGameMaster', function () {
+      it('should be a boolean', function () {
+        expect(component.props.isGameMaster.type).toEqual(Boolean);
+      });
+
+      it('should default to false', function () {
+        expect(component.props.isGameMaster.defaultsTo).toEqual(false);
+      });
+    });
+
+    describe('light', function () {
+      it('should be a number', function () {
+        expect(component.props.light.type).toEqual(Number);
+      });
+
+      it('should be required', function () {
+        expect(component.props.light.required).toEqual(true);
+      });
+    });
+
+    describe('dark', function () {
+      it('should be a number', function () {
+        expect(component.props.dark.type).toEqual(Number);
+      });
+
+      it('should be required', function () {
+        expect(component.props.dark.required).toEqual(true);
+      });
+    });
+  });
+
+  describe('components', function () {
+    it('should have a token component', function () {
+      expect(component.components.token).toEqual(jasmine.any(Object));
+    });
+  });
 
 });

@@ -24,7 +24,6 @@ describe('The authentication component', function () {
     var data;
 
     beforeEach(function () {
-      spyOn(http, 'getUrlParameter').and.returnValue(false);
       data = component.data();
     });
 
@@ -35,13 +34,49 @@ describe('The authentication component', function () {
     });
 
     describe('view', function () {
-      it('should be a string', function () {
-        expect(data.view).toEqual(jasmine.any(String));
+      describe('when there is not a token present', function () {
+        beforeEach(function () {
+          spyOn(http, 'getUrlParameter').and.returnValue(false);
+          data = component.data();
+        });
+
+        it('should be a string', function () {
+          expect(data.view).toEqual(jasmine.any(String));
+        });
+
+        it('should default to login', function () {
+          expect(data.view).toEqual('login');
+        });
       });
 
-      it('should default to login', function () {
-        expect(data.view).toEqual('login');
+      describe('when there is a token present', function () {
+        beforeEach(function () {
+          spyOn(http, 'getUrlParameter').and.returnValue('foo');
+          data = component.data();
+        });
+
+        it('should be a string', function () {
+          expect(data.view).toEqual(jasmine.any(String));
+        });
+
+        it('should be set to passwordReset if a token is present', function () {
+          expect(data.view).toEqual('passwordReset');
+        });
       });
+    });
+  });
+
+  describe('components', function () {
+    it('should have a login component', function () {
+      expect(component.components.login).toEqual(jasmine.any(Object));
+    });
+
+    it('should have a signup component', function () {
+      expect(component.components.signup).toEqual(jasmine.any(Object));
+    });
+
+    it('should have a passwordReset component', function () {
+      expect(component.components.passwordReset).toEqual(jasmine.any(Object));
     });
   });
 

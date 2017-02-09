@@ -18,18 +18,30 @@ describe('The taskDieResult component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
-  // describe('methods', function () {
-  //   var componentInstance;
-  //
-  //   beforeEach(function () {
-  //     componentInstance = new Vue(component);
-  //   });
-  //
-  //   describe('#sayHi', function () {
-  //     it('should be a function', function () {
-  //       expect(typeof componentInstance.sayHi).toBe('function');
-  //     });
-  //   });
-  // });
+  describe('props', function () {
+    it('should be an object', function () {
+      expect(component.props).toEqual(jasmine.any(Object));
+    });
+
+    describe('type', function () {
+      it('should be a string', function () {
+        expect(component.props.type.type).toEqual(String);
+      });
+
+      it('should be required', function () {
+        expect(component.props.type.required).toEqual(true);
+      });
+    });
+
+    describe('result', function () {
+      it('should be an object', function () {
+        expect(component.props.result.type).toEqual(Object);
+      });
+
+      it('should be required', function () {
+        expect(component.props.result.required).toEqual(true);
+      });
+    });
+  });
 
 });

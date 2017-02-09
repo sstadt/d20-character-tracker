@@ -20,6 +20,22 @@ describe('The passwordReset component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
+  describe('props', function () {
+    it('should be an object', function () {
+      expect(component.props).toEqual(jasmine.any(Object));
+    });
+
+    describe('token', function () {
+      it('should be a string', function () {
+        expect(component.props.token.type).toEqual(String);
+      });
+
+      it('should default to an empty string', function () {
+        expect(component.props.token.defaultsTo).toEqual('');
+      });
+    });
+  });
+
   describe('methods', function () {
     var componentInstance;
 

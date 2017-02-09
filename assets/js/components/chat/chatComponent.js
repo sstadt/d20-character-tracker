@@ -131,7 +131,7 @@ module.exports = {
       var self = this,
         deferred = q.defer();
 
-      if (this.isScrolledToBottom) {
+      if (self.isScrolledToBottom) {
         Vue.nextTick(function () {
           self.$refs.chatLog.scrollTop = self.$refs.chatLog.scrollHeight - self.$refs.chatLog.offsetHeight;
           deferred.resolve();

@@ -18,18 +18,36 @@ describe('The chatRoll component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
-  // describe('methods', function () {
-  //   var componentInstance;
-  //
-  //   beforeEach(function () {
-  //     componentInstance = new Vue(component);
-  //   });
-  //
-  //   describe('#sayHi', function () {
-  //     it('should be a function', function () {
-  //       expect(typeof componentInstance.sayHi).toBe('function');
-  //     });
-  //   });
-  // });
+  describe('props', function () {
+    it('should be an object', function () {
+      expect(component.props).toEqual(jasmine.any(Object));
+    });
+
+    describe('chatHandle', function () {
+      it('should be a string', function () {
+        expect(component.props.chatHandle.type).toEqual(String);
+      });
+
+      it('should be required', function () {
+        expect(component.props.chatHandle.required).toEqual(true);
+      });
+    });
+
+    describe('message', function () {
+      it('should be an object', function () {
+        expect(component.props.message.type).toEqual(Object);
+      });
+
+      it('should be required', function () {
+        expect(component.props.message.required).toEqual(true);
+      });
+    });
+  });
+
+  describe('components', function () {
+    it('should have a taskDieResult component', function () {
+      expect(component.components.taskDieResult).toEqual(jasmine.any(Object));
+    });
+  });
 
 });

@@ -18,6 +18,42 @@ describe('The chat component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
+  describe('props', function () {
+    it('should be an object', function () {
+      expect(component.props).toEqual(jasmine.any(Object));
+    });
+
+    describe('game', function () {
+      it('should be a string', function () {
+        expect(component.props.game.type).toEqual(String);
+      });
+
+      it('should be required', function () {
+        expect(component.props.game.required).toEqual(true);
+      });
+    });
+
+    describe('log', function () {
+      it('should be an array', function () {
+        expect(component.props.log.type).toEqual(Array);
+      });
+
+      it('should be required', function () {
+        expect(component.props.log.required).toEqual(true);
+      });
+    });
+  });
+
+  describe('components', function () {
+    it('should have a taskRoll component', function () {
+      expect(component.components.taskRoll).toEqual(jasmine.any(Object));
+    });
+
+    it('should have a standardRoll component', function () {
+      expect(component.components.standardRoll).toEqual(jasmine.any(Object));
+    });
+  });
+
   describe('methods', function () {
     var componentInstance;
 
@@ -203,30 +239,31 @@ describe('The chat component', function () {
 
     describe('#scrollChatToBottom', function () {
       beforeEach(function () {
-        componentInstance.$refs.chatLog.scrollTop = 0;
         componentInstance.$refs.chatLog.scrollHeight = 10;
-        componentInstance.$refs.chatLog.offsetHeight = 8;
-      });
-
-      describe('when chat is scrolled to bottom', function () {
-        beforeEach(function (done) {
-          componentInstance.isScrolledToBottom = true;
-          componentInstance.scrollChatToBottom().done(function () { done(); });
-        });
-
-        it('should set the scrollTop of the chat log to the difference of it\'s scroll height and offset height', function () {
-          expect(componentInstance.$refs.chatLog.scrollTop).toEqual(2);
-        });
+        componentInstance.$refs.chatLog.offsetHeight = 7;
       });
 
       describe('when chat is not scrolled to bottom', function () {
         beforeEach(function (done) {
           componentInstance.isScrolledToBottom = false;
+          componentInstance.$refs.chatLog.scrollTop = 0;
+          componentInstance.scrollChatToBottom().done(function () { done(); });
+        });
+
+        it('should not set the scrollTop of the chat log to the difference of it\'s scroll height and offset height', function () {
+          expect(componentInstance.$refs.chatLog.scrollTop).toEqual(0);
+        });
+      });
+
+      describe('when chat is scrolled to bottom', function () {
+        beforeEach(function (done) {
+          componentInstance.isScrolledToBottom = true;
+          componentInstance.$refs.chatLog.scrollTop = 0;
           componentInstance.scrollChatToBottom().done(function () { done(); });
         });
 
         it('should set the scrollTop of the chat log to the difference of it\'s scroll height and offset height', function () {
-          expect(componentInstance.$refs.chatLog.scrollTop).not.toEqual(2);
+          expect(componentInstance.$refs.chatLog.scrollTop).toEqual(3);
         });
       });
     });

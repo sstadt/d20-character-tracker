@@ -35,7 +35,7 @@ module.exports = {
   },
   methods: {
     dragStart(event) {
-      event.dataTransfer.setData("text/plain", `${this.type}-token`);
+      event.dataTransfer.setData('text/plain', `${this.type}-token`);
     }
   }
 };
