@@ -22,23 +22,17 @@
 
 -->
 
-<div class="vertical-center full-size-abs">
-  <div class="row">
-    <div class="small-12 medium-6 large-4 medium-centered columns">
-      <panel>
-        <div slot="content">
-          <h1 class="title">404: Not Found</h1>
-          <h3 class="subtitle"><small>This is not the page you are looking for...</small></h3>
-          <ul class="no-bullet">
-            <% if (session.authenticated) { %>
-              <li><a href="/home">My Games</a></li>
-            <% } else { %>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/register">Sign Up</a></li>
-            <% } %>
-          </ul>
-        </div>
-      </panel>
+<div class="v-center h-center full-size-abs">
+  <div class="error-page panel">
+    <h1 class="title">404: Not Found</h1>
+    <h3 class="subtitle"><small>This is not the page you are looking for...</small></h3>
+    <div class="text-center">
+      <% if (session.authenticated) { %>
+        <md-button href="/home" class="md-accent">Home</md-button>
+      <% } else { %>
+        <md-button href="/login" class="md-accent">Login</md-button>
+        <md-button href="/register" class="md-accent">Register</md-button>
+      <% } %>
     </div>
   </div>
 </div>
