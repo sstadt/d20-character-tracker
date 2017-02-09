@@ -4,15 +4,24 @@
 
 #### as able
 
- - handle draggable cursor better for dice pool, destiny tokens, and maps
+ - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging
  - update 404 and 500 pages to use the new components
- - switch game browser alerts of to the notifications component
+ - switch game browser alerts off to the notifications component
  - add ajax spinner to all auth component async operations
  - stylize email templates
  - move Vue themes and filters to js/lib in their own files
  - add a method to the ErrorService that parses s3 error messages
  - closing the browser does not send an offline event in the game
- - refactor database errors to attach some extra debug identifier and refactor all database errors to use it
+
+#### testing todos
+
+ - game
+ - gameBrowser
+ - gameList
+ - mapViewer
+ - starWarsCrawl
+ - classes/Pipe
+ - classes/Service
 
 ### DevOps to do:
 
