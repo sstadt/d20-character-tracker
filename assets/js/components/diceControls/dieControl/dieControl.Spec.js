@@ -74,7 +74,7 @@ describe('The dieControl component', function () {
       var dragEvent;
 
       beforeEach(function () {
-        dragEvent = { dataTransfer: { setData: jasmine.createSpy() } };
+        dragEvent = { dataTransfer: { setData: jasmine.createSpy('dataTransfer.setData') } };
         componentInstance.dragStart(dragEvent);
       });
 
