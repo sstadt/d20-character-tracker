@@ -18,18 +18,30 @@ describe('The player component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
-  // describe('methods', function () {
-  //   var componentInstance;
-  //
-  //   beforeEach(function () {
-  //     componentInstance = new Vue(component);
-  //   });
-  //
-  //   describe('#sayHi', function () {
-  //     it('should be a function', function () {
-  //       expect(typeof componentInstance.sayHi).toBe('function');
-  //     });
-  //   });
-  // });
+  describe('props', function () {
+    it('should be an object', function () {
+      expect(component.props).toEqual(jasmine.any(Object));
+    });
+
+    describe('player', function () {
+      it('should be a object', function () {
+        expect(component.props.player.type).toEqual(Object);
+      });
+
+      it('should be required', function () {
+        expect(component.props.player.required).toEqual(true);
+      });
+    });
+
+    describe('online', function () {
+      it('should be a object', function () {
+        expect(component.props.online.type).toEqual(Array);
+      });
+
+      it('should default to an empty array', function () {
+        expect(component.props.online.defaultsTo).toEqual([]);
+      });
+    });
+  });
 
 });

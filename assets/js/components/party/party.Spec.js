@@ -18,18 +18,26 @@ describe('The party component', function () {
     expect(component.template).toEqual(jasmine.any(String));
   });
 
-  // describe('methods', function () {
-  //   var componentInstance;
-  //
-  //   beforeEach(function () {
-  //     componentInstance = new Vue(component);
-  //   });
-  //
-  //   describe('#sayHi', function () {
-  //     it('should be a function', function () {
-  //       expect(typeof componentInstance.sayHi).toBe('function');
-  //     });
-  //   });
-  // });
+  describe('props', function () {
+    it('should be an object', function () {
+      expect(component.props).toEqual(jasmine.any(Object));
+    });
+
+    describe('game', function () {
+      it('should be a object', function () {
+        expect(component.props.game.type).toEqual(Object);
+      });
+
+      it('should be required', function () {
+        expect(component.props.game.required).toEqual(true);
+      });
+    });
+  });
+
+  describe('components', function () {
+    it('should have a player component', function () {
+      expect(component.components.player).toEqual(jasmine.any(Object));
+    });
+  });
 
 });
