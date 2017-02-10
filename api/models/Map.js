@@ -24,6 +24,10 @@ module.exports = {
       type: 'number',
       defaultsTo: 1
     },
+    shared: {
+      type: 'boolean',
+      defaultsTo: false
+    },
     tokens: {
       type: 'array',
       defaultsTo: []

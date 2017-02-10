@@ -1,0 +1,44 @@
+
+<div class="map-menu">
+  <transition-group name="slide-fade" mode="out-in">
+    <section key="map-list" v-show="view === 'list'">
+      <div class="text-right">
+        <md-button @click="setView('new')">New Map</md-button>
+      </div>
+      <!-- <md-button @click="setView('edit')">Edit Map</md-button> -->
+    </section>
+    <section key="add-map" v-show="view === 'new'">
+      <h3>New Map</h3>
+
+      <form @submit.stop.prevent="addMap">
+        <div class="row">
+          <div class="small-12 medium-4 column">
+            <img :src="newMapImage" />
+          </div>
+          <div class="small-12 medium-8 column">
+            <md-input-container :class="{'md-input-invalid': newMapForm.fields.name.hasErrors}">
+              <label>Name</label>
+              <md-input type="text" v-model="newMapForm.fields.name.value"></md-input>
+              <span class="md-error" v-show="newMapForm.fields.name.hasErrors">{{ newMapForm.fields.name.errors[0] }}</span>
+            </md-input-container>
+            <md-input-container :class="{'md-input-invalid': newMapForm.fields.imageUrl.hasErrors}">
+              <label>Image URL</label>
+              <md-input type="text" v-model="newMapForm.fields.imageUrl.value"></md-input>
+              <span class="md-error" v-show="newMapForm.fields.imageUrl.hasErrors">{{ newMapForm.fields.imageUrl.errors[0] }}</span>
+            </md-input-container>
+            <div class="text-right">
+              <md-button @click="setView('list')" :disabled="saving">Cancel</md-button>
+              <md-button type="submit" :disabled="saving">Save Map</md-button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+    <section key="update-map" v-show="view === 'edit'">
+      <h3>Edit Map</h3>
+
+      <md-button @click="setView('list')">Map List</md-button>
+      <md-button @click="setView('new')">Edit Map</md-button>
+    </section>
+  </transition-group>
+</div>

@@ -4,6 +4,8 @@
 
 #### as able
 
+ - set up a preview for crawls in the crawl list and the crawl editor
+ - refactor crawl menu to behave like the map editor
  - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging
  - redesign error pages to me more interactive and informative
  - switch game browser alerts off to the notifications component

@@ -6,6 +6,7 @@
       <!-- player menu items -->
       <md-menu v-if="userIsGameMaster" md-direction="bottom left" :md-align-trigger="true" md-size="4">
         <md-button class="md-icon-button" md-menu-trigger><icon name="map"></icon></md-button>
+        <md-tooltip md-direction="top">Maps</md-tooltip>
         <md-menu-content>
           <md-menu-item v-for="map in maps" @click="setActiveMap(map.id)">{{ map.name }}</md-menu-item>
           <md-menu-item @click="clearActiveMap">Hide Map</md-menu-item>
@@ -13,13 +14,21 @@
       </md-menu>
 
       <!-- GM menu items -->
-      <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('crawl')"><icon name="crawl"></icon></md-button>
-      <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('players')"><icon name="users"></icon></md-button>
-      <md-button class="md-icon-button" v-if="userIsGameMaster" @click="openMenu('settings')"><icon name="empire"></icon></md-button>
       <md-menu v-if="userIsGameMaster" md-direction="bottom left" :md-align-trigger="true" md-size="4">
         <md-button class="md-icon-button" md-menu-trigger><icon name="dl44"></icon></md-button>
+        <md-tooltip md-direction="top">Actions</md-tooltip>
         <md-menu-content>
           <md-menu-item @click="rollDestinyPool">Roll Destiny Tokens</md-menu-item>
+        </md-menu-content>
+      </md-menu>
+      <md-menu v-if="userIsGameMaster" md-direction="bottom left" :md-align-trigger="true" md-size="4">
+        <md-button class="md-icon-button" md-menu-trigger><icon name="empire"></icon></md-button>
+        <md-tooltip md-direction="top">Manage Game</md-tooltip>
+        <md-menu-content>
+          <md-menu-item @click="openMenu('maps')">Maps</md-menu-item>
+          <md-menu-item @click="openMenu('crawls')">Crawls</md-menu-item>
+          <md-menu-item @click="openMenu('players')">Players</md-menu-item>
+          <md-menu-item @click="openMenu('settings')">Settings</md-menu-item>
         </md-menu-content>
       </md-menu>
     </span>
@@ -62,7 +71,23 @@
   </star-wars-crawl>
 
   <!-- crawl menu -->
-  <md-dialog ref="crawlDialog" v-if="userIsGameMaster">
+  <md-dialog class="game-menu" ref="mapsDialog" v-if="userIsGameMaster">
+    <md-dialog-title>
+      <p>{{ game.title }} Maps</p>
+      <p class="subtitle"><small>Add, remove, and share game maps.</small></p>
+    </md-dialog-title>
+    <md-dialog-content>
+      <component
+        is="mapMenu"
+        :game="game"
+        @close="closeMenu('maps')"
+        @error="notifyError">
+      </component>
+    </md-dialog-content>
+  </md-dialog>
+
+  <!-- crawl menu -->
+  <md-dialog class="game-menu" ref="crawlsDialog" v-if="userIsGameMaster">
     <md-dialog-title>
       <p>{{ game.title }} Crawls</p>
       <p class="subtitle"><small>Customizable introductory Star Wars crawl animations. Can be sent to the game's chat window or shared with players.</small></p>
@@ -71,7 +96,7 @@
       <component
         is="crawlMenu"
         :game="game"
-        @close="closeMenu('crawl')"
+        @close="closeMenu('crawls')"
         @play-crawl="playCrawl"
         @error="notifyError">
       </component>
@@ -79,7 +104,7 @@
   </md-dialog>
 
   <!-- players menu -->
-  <md-dialog ref="playersDialog" v-if="userIsGameMaster">
+  <md-dialog class="game-menu" ref="playersDialog" v-if="userIsGameMaster">
     <md-dialog-title>
       <p>{{ game.title }} Players</p>
       <p class="subtitle"><small>Add, approve, or remove players from the game.</small></p>
@@ -95,7 +120,7 @@
   </md-dialog>
 
   <!-- game settings menu -->
-  <md-dialog ref="settingsDialog" v-if="userIsGameMaster">
+  <md-dialog class="game-menu" ref="settingsDialog" v-if="userIsGameMaster">
     <md-dialog-title>
       <p>{{ game.title }} Settings</p>
       <p class="subtitle"><small>Game specific settings and configuration.</small></p>

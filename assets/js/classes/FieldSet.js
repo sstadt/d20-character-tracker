@@ -17,6 +17,10 @@ var validation = {
     regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
     message: 'Please enter a valid URL'
   },
+  imgurl: {
+    regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*).[jpg|jpeg|png|gif]/,
+    message: 'Please enter a valid image URL'
+  },
   number: {
     regex: /[-.0-9]+/,
     message: 'Please enter a valid number'
@@ -116,6 +120,13 @@ FieldSet.prototype.validate = function (rule) {
 
   this.fields[rule].errors = errors;
   this.fields[rule].hasErrors = this.fields[rule].errors.length > 0;
+
+  return !this.fields[rule].hasErrors;
+};
+
+//TODO test this
+FieldSet.prototype.fieldIsValid = function (field) {
+  return (this.fields[field]) ? this.fields[field].hasErrors : undefined;
 };
 
 FieldSet.prototype.isValid = function () {

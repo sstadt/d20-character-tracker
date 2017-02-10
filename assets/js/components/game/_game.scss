@@ -29,5 +29,8 @@
 }
 
 .game-menu {
-  min-width: 600px;
+  .md-dialog {
+    width: 80%;
+    max-width: 1280px;
+  }
 }

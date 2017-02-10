@@ -30,12 +30,14 @@ module.exports = {
       //   name: 'Galaxy',
       //   image: 'https://s3.amazonaws.com/ssdcgametable/site_structure/sw_galaxymap.jpg',
       //   baseGrid: 1,
+      //   shared: false,
       //   tokens: []
       // }, {
       //   id: '2',
       //   name: 'Dungeon',
       //   image: 'https://s-media-cache-ak0.pinimg.com/736x/78/3b/1d/783b1d5e2d22c3afcecaf0d3721e35c4.jpg',
       //   baseGrid: 1,
+      //   shared: true,
       //   tokens: [{
       //     type: 'player',
       //     id: '1',
@@ -82,6 +84,7 @@ module.exports = {
     };
   },
   components: {
+    mapMenu: require('./mapMenu/mapMenuComponent.js'),
     crawlMenu: require('./crawlMenu/crawlMenuComponent.js'),
     playersMenu: require('./playersMenu/playersMenuComponent.js'),
     settingsMenu: require('./settingsMenu/settingsMenuComponent.js')

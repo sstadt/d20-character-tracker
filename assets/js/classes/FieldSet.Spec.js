@@ -109,10 +109,16 @@ describe('The FieldSet class', function () {
     });
 
     describe('#validate', function () {
-      it('should not have an error when checking a required fields with a value',function () {
+      it('should return true if the field is valid', function () {
         formCopy.fields.username.value = 'bob';
-        formCopy.validate('username');
-        expect(formCopy.fields.username.hasErrors).toEqual(false);
+        expect(formCopy.validate('username')).toEqual(true);
+      });
+
+      it('should return false if the field is invalid', function () {});
+
+      it('should not have an error when checking a required fields with a value',function () {
+        formCopy.fields.username.value = '';
+        expect(formCopy.validate('username')).toEqual(false);
       });
 
       it('should have an error when checking a required fields with no value',function () {
