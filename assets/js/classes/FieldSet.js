@@ -124,11 +124,6 @@ FieldSet.prototype.validate = function (rule) {
   return !this.fields[rule].hasErrors;
 };
 
-//TODO test this
-FieldSet.prototype.fieldIsValid = function (field) {
-  return (this.fields[field]) ? this.fields[field].hasErrors : undefined;
-};
-
 FieldSet.prototype.isValid = function () {
   var hasErrors = false;
 

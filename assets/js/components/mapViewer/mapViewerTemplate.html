@@ -10,7 +10,7 @@
       'margin-top': mapTop + 'px',
       'transform': mapTransform
     }">
-    <img class="map" :src="map.image" @dragstart="disableGhost($event)" />
+    <img class="map" :src="map.imageUrl" @dragstart="disableGhost($event)" />
     <transition-group name="fade">
       <component is="mapToken" v-for="token in map.tokens"
         :game="game"
@@ -24,7 +24,7 @@
     </transition-group>
   </div>
   <transition name="fade">
-    <div v-show="map.image && map.image != ''" class="map-controls">
+    <div v-show="map.imageUrl && map.imageUrl != ''" class="map-controls">
       <md-menu v-if="showGmTools" md-direction="top left" :md-align-trigger="true" md-size="4">
         <md-button class="md-icon-button" md-menu-trigger><icon name="caret-up"></icon></md-button>
         <md-menu-content>

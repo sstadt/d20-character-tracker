@@ -134,13 +134,15 @@ module.exports = {
 
     // get game data
     self.gameService.getGame()
-      .then(function success(game) {
+      .then(function (game) {
         self.game = game;
-        self.initGamePipe();
-      }).then(function () {
         return self.gameService.getLog();
       }).then(function success(log) {
         self.gameLog = log;
+        return self.gameService.getMaps();
+      }).then(function success(maps) {
+        self.maps = maps;
+        self.initGamePipe();
       }, function error(reason) {
         self.$refs.notifications.error(reason);
       });
@@ -229,6 +231,7 @@ module.exports = {
       GamePipe.on('newLogMessage', this.newLogMessage);
       GamePipe.on('playerConfigUpdated', this.playerConfigUpdated);
       GamePipe.on('destinyPoolUpdated', this.destinyPoolUpdated);
+      GamePipe.on('mapAdded', this.mapAdded);
     },
     playerRequestedJoin(data) {
       this.game.requestingPlayers.push(data.player);
@@ -321,6 +324,9 @@ module.exports = {
     destinyPoolUpdated(data) {
       this.game.lightTokens = data.light || 0;
       this.game.darkTokens = data.dark || 0;
+    },
+    mapAdded(data) {
+      this.maps.push(data.map);
     }
 
   }

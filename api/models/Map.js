@@ -16,7 +16,7 @@ module.exports = {
       type: 'string',
       required: true
     },
-    image: {
+    imageUrl: {
       type: 'string',
       required: true
     },
@@ -32,6 +32,16 @@ module.exports = {
       type: 'array',
       defaultsTo: []
     }
+  },
+
+  beforeValidate: function (map, done) {
+    map.baseGrid = parseFloat(map.baseGrid);
+    done();
+  },
+
+  afterValidate: function (map, done) {
+    map.baseGrid = String(map.baseGrid);
+    done();
   }
 };
 

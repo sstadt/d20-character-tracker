@@ -11,8 +11,7 @@ var mapValidation = {
   imageUrl: {
     required: true,
     pattern: 'imgurl'
-  },
-  shared: {}
+  }
 };
 
 module.exports = {
@@ -27,22 +26,61 @@ module.exports = {
   data() {
     return {
       view: 'list',
+      saving: false,
       newMapForm: new FieldSet(mapValidation),
-      editMapForm: new FieldSet(mapValidation)
+      editMapForm: new FieldSet(mapValidation),
+      gameService: undefined
     };
   },
   computed: {
     newMapImage() {
-      // TODO need a default image for maps
-      return (this.newMapForm.fields.imageUrl.hasErrors) ? '' : this.newMapForm.fields.imageUrl.value;
+      var defaultImage = 'https://s3.amazonaws.com/ssdcgametable/site_structure/map_ph.jpg',
+        newImage = this.newMapForm.fields.imageUrl.value;
+
+      return (this.newMapForm.fields.imageUrl.hasErrors || newImage === '') ? defaultImage : this.newMapForm.fields.imageUrl.value;
     },
+  },
+  created() {
+    var self = this;
+
+    self.gameService = new Service({
+      schema: config.endpoints.game,
+      staticData: {
+        gameId: self.game.id
+      }
+    });
   },
   methods: {
     setView(view) {
       this.view = view;
     },
     addMap() {
-      console.log('add map');
+      var self = this,
+        deferred = q.defer(),
+        newMap;
+
+      if (self.newMapForm.isValid()) {
+        newMap = self.newMapForm.export();
+        self.saving = true;
+
+        console.log(newMap);
+
+        self.gameService.createMap({ map: newMap })
+          .then(function success() {
+            self.setView('list');
+            self.newMapForm.reset();
+          }, function error(reason) {
+            self.$emit('error', reason.err);
+          })
+          .done(function () {
+            self.saving = false;
+            deferred.resolve();
+          });
+      } else {
+        deferred.resolve();
+      }
+
+      return deferred.promise;
     }
   }
 };

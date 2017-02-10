@@ -15,26 +15,29 @@ module.exports = {
 
 		Map.find({ game: gameId }, function (err, maps) {
 			if (err) {
-				req.jsonError(mapErrors.listNotFound);
+				res.jsonError(mapErrors.listNotFound);
 			} else {
 				var mapList = _.isArray(maps) ? maps : [];
-				req.json(maps);
+				res.json(mapList);
 			}
 		});
 	},
 	create: function (req, res) {
-		var map = req.param('map'),
+		var newMap = req.param('map'),
 			gameId = req.param('gameId');
 
-		Map.create(map, function (err, map) {
+		newMap.game = gameId;
+
+		Map.create(newMap, function (err, map) {
 			if (err) {
-				req.jsonError(mapErrors.cannotCreate);
+				console.log(err);
+				res.jsonError(mapErrors.cannotCreate);
 			} else {
 				Game.message(gameId, {
 					type: 'mapAdded',
 					data: { map: map }
 				});
-				req.send(200);
+				res.send(200);
 			}
 		});
 	},
@@ -50,7 +53,7 @@ module.exports = {
 					type: 'mapUpdated',
 					data: { map: updatedMap }
 				});
-				req.send(200);
+				res.send(200);
 			}
 		});
 	},
@@ -60,13 +63,13 @@ module.exports = {
 
 		Map.destroy(map, function (err) {
 			if (err) {
-				req.jsonError(mapErrors.cannotDelete);
+				res.jsonError(mapErrors.cannotDelete);
 			} else {
 				Game.message(gameId, {
 					type: 'mapRemoved',
 					data: { map: map }
 				});
-				req.send(200);
+				res.send(200);
 			}
 		});
 	},
