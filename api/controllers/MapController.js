@@ -51,7 +51,7 @@ module.exports = {
 			} else {
 				Game.message(gameId, {
 					type: 'mapUpdated',
-					data: { map: updatedMap }
+					data: { map: updatedMap[0] }
 				});
 				res.send(200);
 			}

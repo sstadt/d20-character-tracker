@@ -341,7 +341,7 @@ module.exports = {
       if (_.isObject(data.map)) {
         var mapIndex = util.getIndexById(this.maps, data.map.id);
 
-        if (mapIndex > 1) {
+        if (mapIndex > -1) {
           this.maps.splice(mapIndex, 1, _.extend(data.map));
         }
       }

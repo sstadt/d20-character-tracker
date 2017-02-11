@@ -21,7 +21,7 @@ module.exports = {
       required: true
     },
     baseGrid: {
-      type: 'number',
+      type: 'float',
       defaultsTo: 1
     },
     shared: {
@@ -34,15 +34,15 @@ module.exports = {
     }
   },
 
-  beforeValidate: function (map, done) {
-    map.baseGrid = parseFloat(map.baseGrid);
-    done();
-  },
-
-  afterValidate: function (map, done) {
-    map.baseGrid = String(map.baseGrid);
-    done();
-  }
+  // beforeValidate: function (map, done) {
+  //   map.baseGrid = parseFloat(map.baseGrid);
+  //   done();
+  // },
+  //
+  // afterValidate: function (map, done) {
+  //   map.baseGrid = String(map.baseGrid);
+  //   done();
+  // }
 };
 
 //   {

@@ -4,7 +4,9 @@ var config = require('../../../lib/config.js');
 var Service = require('../../../classes/Service.js');
 var FieldSet = require('../../../classes/FieldSet.js');
 
-var mapValidation = {
+const DEFAULT_MAP_IMAGE = 'https://s3.amazonaws.com/ssdcgametable/site_structure/map_ph.jpg';
+
+var newMapValidation = {
   name: {
     required: true
   },
@@ -13,6 +15,10 @@ var mapValidation = {
     pattern: 'imgurl'
   }
 };
+
+var editMapValidation = _.extend(newMapValidation);
+
+editMapValidation.id = {};
 
 module.exports = {
   template: require('./mapMenuTemplate.html'),
@@ -30,8 +36,8 @@ module.exports = {
     return {
       view: 'list',
       saving: false,
-      newMapForm: new FieldSet(mapValidation),
-      editMapForm: new FieldSet(mapValidation),
+      newMapForm: new FieldSet(newMapValidation),
+      editMapForm: new FieldSet(editMapValidation),
       gameService: undefined,
       confirmDelete: {
         title: 'Delete Map',
@@ -44,11 +50,15 @@ module.exports = {
   },
   computed: {
     newMapImage() {
-      var defaultImage = 'https://s3.amazonaws.com/ssdcgametable/site_structure/map_ph.jpg',
-        newImage = this.newMapForm.fields.imageUrl.value;
+      var newImage = this.newMapForm.fields.imageUrl.value;
 
-      return (this.newMapForm.fields.imageUrl.hasErrors || newImage === '') ? defaultImage : this.newMapForm.fields.imageUrl.value;
+      return (this.newMapForm.fields.imageUrl.hasErrors || newImage === '') ? DEFAULT_MAP_IMAGE : this.newMapForm.fields.imageUrl.value;
     },
+    editMapImage() {
+      var editImage = this.editMapForm.fields.imageUrl.value;
+
+      return (this.editMapForm.fields.imageUrl.hasErrors || editImage === '') ? DEFAULT_MAP_IMAGE : this.editMapForm.fields.imageUrl.value;
+    }
   },
   created() {
     var self = this;
@@ -109,6 +119,35 @@ module.exports = {
 
       return deferred.promise;
     }, 500),
+    editMap(map) {
+      this.editMapForm.fields.id.value = map.id;
+      this.editMapForm.fields.name.value = map.name;
+      this.editMapForm.fields.imageUrl.value = map.imageUrl;
+      this.setView('edit');
+    },
+    saveMap() {
+      var self = this,
+        deferred = q.defer();
+
+      if (self.editMapForm.isValid()) {
+        self.saving = true;
+        self.gameService.updateMap({ map: self.editMapForm.export() })
+          .then(function success() {
+            self.setView('list');
+            self.editMapForm.reset();
+          }, function error(reason) {
+            self.$emit('error', reason.err);
+          })
+          .done(function () {
+            self.saving = false;
+            deferred.resolve();
+          });
+      } else {
+        deferred.resolve();
+      }
+
+      return deferred.promise;
+    },
     confirmDeleteMap() {
       var self = this,
         deferred = q.defer();
