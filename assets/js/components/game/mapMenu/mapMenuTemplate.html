@@ -1,13 +1,42 @@
 
 <div class="map-menu">
-  <transition-group name="slide-fade" mode="out-in">
-    <section key="map-list" v-show="view === 'list'">
-      <div class="text-right">
+  <md-dialog-confirm
+    :md-title="confirmDelete.title"
+    :md-content="confirmDelete.content"
+    :md-ok-text="confirmDelete.ok"
+    :md-cancel-text="confirmDelete.cancel"
+    @close="confirmDeleteMap"
+    ref="confirmDeleteDialog">
+  </md-dialog-confirm>
+
+  <transition name="slide-fade" mode="out-in">
+
+    <!-- list view -->
+    <section v-if="view === 'list'">
+      <div class="controls">
         <md-button @click="setView('new')">New Map</md-button>
       </div>
-      <!-- <md-button @click="setView('edit')">Edit Map</md-button> -->
+      <div class="row small-up-1 medium-up-2 large-up-3 map-list">
+        <div v-for="map in maps" class="column column-block">
+          <md-card>
+            <md-card-media md-ratio="16:9">
+              <img :src="map.imageUrl" alt="Map Preview">
+            </md-card-media>
+            <md-card-header>
+              <div class="md-title">{{ map.name }}</div>
+            </md-card-header>
+            <md-card-actions>
+              <md-switch v-model="map.shared" @change="setShared(map)" class="md-primary">Shared</md-switch>
+              <md-button>Edit</md-button>
+              <md-button @click="deleteMap(map)">Delete</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </div>
     </section>
-    <section key="add-map" v-show="view === 'new'">
+
+    <!-- new map view -->
+    <section v-else-if="view === 'new'">
       <h3>New Map</h3>
 
       <form @submit.stop.prevent="addMap">
@@ -34,11 +63,14 @@
         </div>
       </form>
     </section>
-    <section key="update-map" v-show="view === 'edit'">
+
+    <!-- edit map view -->
+    <section v-else-if="view === 'edit'">
       <h3>Edit Map</h3>
 
       <md-button @click="setView('list')">Map List</md-button>
       <md-button @click="setView('new')">Edit Map</md-button>
     </section>
-  </transition-group>
+
+  </transition>
 </div>

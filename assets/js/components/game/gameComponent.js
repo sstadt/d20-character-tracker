@@ -232,6 +232,8 @@ module.exports = {
       GamePipe.on('playerConfigUpdated', this.playerConfigUpdated);
       GamePipe.on('destinyPoolUpdated', this.destinyPoolUpdated);
       GamePipe.on('mapAdded', this.mapAdded);
+      GamePipe.on('mapRemoved', this.mapRemoved);
+      GamePipe.on('mapUpdated', this.mapUpdated);
     },
     playerRequestedJoin(data) {
       this.game.requestingPlayers.push(data.player);
@@ -327,6 +329,22 @@ module.exports = {
     },
     mapAdded(data) {
       this.maps.push(data.map);
+    },
+    mapRemoved(data) {
+      var mapIndex = util.getIndexById(this.maps, data.map);
+
+      if (mapIndex > -1) {
+        this.maps.splice(mapIndex, 1);
+      }
+    },
+    mapUpdated(data) {
+      if (_.isObject(data.map)) {
+        var mapIndex = util.getIndexById(this.maps, data.map.id);
+
+        if (mapIndex > 1) {
+          this.maps.splice(mapIndex, 1, _.extend(data.map));
+        }
+      }
     }
 
   }

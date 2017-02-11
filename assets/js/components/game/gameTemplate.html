@@ -4,11 +4,11 @@
   <toolbar :game="gameId">
     <span slot="topbar">
       <!-- player menu items -->
-      <md-menu v-if="userIsGameMaster" md-direction="bottom left" :md-align-trigger="true" md-size="4">
+      <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
         <md-button class="md-icon-button" md-menu-trigger><icon name="map"></icon></md-button>
         <md-tooltip md-direction="top">Maps</md-tooltip>
         <md-menu-content>
-          <md-menu-item v-for="map in maps" @click="setActiveMap(map.id)">{{ map.name }}</md-menu-item>
+          <md-menu-item v-for="map in maps" v-if="userIsGameMaster || map.shared" @click="setActiveMap(map.id)">{{ map.name }}</md-menu-item>
           <md-menu-item @click="clearActiveMap">Hide Map</md-menu-item>
         </md-menu-content>
       </md-menu>
@@ -78,8 +78,10 @@
     </md-dialog-title>
     <md-dialog-content>
       <component
+        v-if="game.id"
         is="mapMenu"
-        :game="game"
+        :game="game.id"
+        :maps="maps"
         @close="closeMenu('maps')"
         @error="notifyError">
       </component>

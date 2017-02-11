@@ -43,9 +43,9 @@ module.exports = {
 	},
 	update: function (req, res) {
 		var map = req.param('map'),
-			game = req.param('gameId');
+			gameId = req.param('gameId');
 
-		Map.update(map, function (err, updatedMap) {
+		Map.update(map.id, map, function (err, updatedMap) {
 			if (err) {
 				res.jsonError(mapErrors.cannotUpdate);
 			} else {
@@ -59,7 +59,7 @@ module.exports = {
 	},
 	destroy: function (req, res) {
 		var map = req.param('mapId'),
-			game = req.param('gameId');
+			gameId = req.param('gameId');
 
 		Map.destroy(map, function (err) {
 			if (err) {

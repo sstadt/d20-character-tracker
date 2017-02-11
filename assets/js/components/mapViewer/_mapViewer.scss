@@ -49,6 +49,12 @@ $map-viewer-top-z-index: 5000;
       }
     }
 
+    .md-menu {
+      & + button {
+        margin-left: 10px;
+      }
+    }
+
     button {
       margin: 0;
       padding: 0;
@@ -56,7 +62,7 @@ $map-viewer-top-z-index: 5000;
       width: 20px;
       min-width: 20px;
 
-      & + input, & + button {
+      & + input, & + button, & + .md-menu {
         margin-left: 10px;
       }
     }
