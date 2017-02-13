@@ -1,5 +1,5 @@
 
-<div draggable="true" class="map-token"
+<div draggable="true" :class="{ 'map-token': true, 'dragging': dragging }"
   @dragstart.stop="startDragging($event)"
   @drag.stop.prevent="dragHandler($event)"
   @dragend.stop="stopDragging($event)"

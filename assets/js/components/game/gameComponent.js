@@ -234,6 +234,9 @@ module.exports = {
       GamePipe.on('mapAdded', this.mapAdded);
       GamePipe.on('mapRemoved', this.mapRemoved);
       GamePipe.on('mapUpdated', this.mapUpdated);
+      GamePipe.on('mapTokenAdded', this.mapTokenAdded);
+      GamePipe.on('mapTokenRemoved', this.mapTokenRemoved);
+      GamePipe.on('mapTokenMoved', this.mapTokenMoved);
     },
     playerRequestedJoin(data) {
       this.game.requestingPlayers.push(data.player);
@@ -344,6 +347,30 @@ module.exports = {
         if (mapIndex > -1) {
           this.maps.splice(mapIndex, 1, _.extend(data.map));
         }
+      }
+    },
+    mapTokenAdded(data) {
+      var mapIndex = util.getIndexById(this.maps, data.mapId);
+
+      if (mapIndex > -1) {
+        this.maps[mapIndex].tokens.push(data.token);
+      }
+    },
+    mapTokenRemoved(data) {
+      var mapIndex = util.getIndexById(this.maps, data.mapId),
+        tokenIndex = (mapIndex === -1) ? -1 : util.getIndexById(this.maps[mapIndex].tokens, data.tokenId);
+
+      if (tokenIndex > -1) {
+        this.maps[mapIndex].tokens.splice(tokenIndex, 1);
+      }
+    },
+    mapTokenMoved(data) {
+      var mapIndex = util.getIndexById(this.maps, data.mapId),
+        tokenIndex = (mapIndex === -1) ? -1 : util.getIndexById(this.maps[mapIndex].tokens, data.token.id);
+
+      if (tokenIndex > -1) {
+        this.maps[mapIndex].tokens[tokenIndex].x = data.token.x;
+        this.maps[mapIndex].tokens[tokenIndex].y = data.token.y;
       }
     }
 

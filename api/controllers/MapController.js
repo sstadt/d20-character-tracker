@@ -81,7 +81,7 @@ module.exports = {
 		Map.findOne(mapId, function (err, map) {
 			if (err) {
 				res.jsonError(mapErrors.notFound);
-			} else if (_.isUndefined(token.id)) {
+			} else if (_.isUndefined(mapToken.id)) {
 				res.jsonError(mapErrors.invalidToken);
 			} else {
 				var oldToken = _.find(map.tokens, function (token) {
@@ -119,11 +119,11 @@ module.exports = {
 		Map.findOne(mapId, function (err, map) {
 			if (err) {
 				res.jsonError(mapErrors.notFound);
-			} else if (_.isUndefined(token.id)) {
+			} else if (_.isUndefined(tokenId)) {
 				res.jsonError(mapErrors.invalidToken);
 			} else {
 				var tokenIndex = _.findIndex(map.tokens, function (token) {
-					return token.id === mapToken.id;
+					return tokenId === token.id;
 				});
 
 				if (tokenIndex > -1) {
@@ -152,20 +152,23 @@ module.exports = {
 	moveToken: function (req, res) {
 		var gameId = req.param('gameId'),
 			mapId = req.param('mapId'),
+			tokenId = req.param('tokenId'),
 			x = req.param('x'),
 			y = req.param('y');
 
 		Map.findOne(mapId, function (err, map) {
 			if (err) {
 				res.jsonError(mapErrors.notFound);
-			} else if (_.isUndefined(token.id)) {
+			} else if (_.isUndefined(tokenId)) {
 				res.jsonError(mapErrors.invalidToken);
 			} else {
 				var tokenIndex = _.findIndex(map.tokens, function (token) {
-					return token.id === mapToken.id;
+					return tokenId === token.id;
 				});
 
-				if (_.isNumber(x) && _.isNumber(y)) {
+				if (tokenIndex === -1) {
+					res.jsonError(mapErrors.invalidToken);
+				} else if (_.isNumber(x) && _.isNumber(y)) {
 					map.tokens[tokenIndex].x = x;
 					map.tokens[tokenIndex].y = y;
 					map.save(function (err, newMap) {

@@ -42,7 +42,7 @@ module.exports = {
   },
   computed: {
     backgroundImage() {
-      return (this.token.image && this.token.image !== '') ? `url(${this.token.image})` : 'none';
+      return (this.token.image && this.token.image !== '') ? `url(${this.token.image})` : 'url(/images/avatar_ph.jpg)';
     },
     left() {
       return `${this.xPos}px`;
@@ -54,13 +54,6 @@ module.exports = {
       var color = (this.token.type === 'player') ? 'green' : 'orange';
 
       return `2px solid ${color}`;
-    }
-  },
-  watch: {
-    token(newToken, oldToken) {
-      if (!_.eq(newToken, oldtoken)) {
-        this.updatePosition();
-      }
     }
   },
   created() {
@@ -75,6 +68,8 @@ module.exports = {
         mapId: self.map
       }
     });
+
+    self.$watch('token', () => self.updatePosition(), { deep: true });
   },
   methods: {
     updatePosition() {
@@ -111,7 +106,7 @@ module.exports = {
       self.updateTokenPosition(offsetX, offsetY);
       self.validatePosition();
 
-      self.gameService.moveMapToken({ x: self.xPos, y: self.yPos })
+      self.gameService.moveMapToken({tokenId: self.token.id, x: self.xPos, y: self.yPos })
         .fail(function (reason) {
           this.$emit('error', reason.err);
         })

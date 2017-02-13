@@ -56,6 +56,7 @@ module.exports = {
       updateMap: '/map/update',
       deleteMap: '/map/destroy',
       addMapToken: '/map/addToken',
+      removeMapToken: '/map/removeToken',
       deleteMapToken: '/map/removeToken',
       moveMapToken: '/map/moveToken',
     }

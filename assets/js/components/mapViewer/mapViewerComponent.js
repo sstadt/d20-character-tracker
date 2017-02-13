@@ -1,5 +1,6 @@
 
 var config = require('../../lib/config.js');
+var util = require('../../lib/util.js');
 
 var Service = require('../../classes/Service.js');
 
@@ -26,13 +27,12 @@ module.exports = {
       user: {},
       mapLeft: 0,
       mapTop: 0,
-      gridLeft: 0,
-      gridTop: 0,
       mapZoom: 20, // 100% start
       lastMouseLeft: 0,
       lastMouseTop: 0,
-      resizingGrid: false,
       dragging: false,
+      savingGrid: false,
+      resizingGrid: false,
       gameService: undefined
     };
   },
@@ -43,11 +43,11 @@ module.exports = {
     mapTransform() {
       return `translateX(-50%) translateY(-50%) scale(${this.mapScale}, ${this.mapScale})`;
     },
-    gridPosition() {
-      return `${this.gridLeft}px ${this.gridTop}px`;
-    },
     tokenIcon() {
       return this.resizingGrid ? 'resize' : 'grid';
+    },
+    playerHasToken() {
+      return util.getIndexById(this.map.tokens, this.user.id) > -1;
     }
   },
   watch: {
@@ -105,8 +105,6 @@ module.exports = {
 
         this.mapLeft = localMaps[this.map.id].mapLeft || 0;
         this.mapTop = localMaps[this.map.id].mapTop || 0;
-        this.gridLeft = localMaps[this.map.id].gridLeft || 0;
-        this.gridTop = localMaps[this.map.id].gridTop || 0;
         this.mapZoom = localMaps[this.map.id].mapZoom || 20; // 100% start
       }
     },
@@ -116,8 +114,6 @@ module.exports = {
 
         localMaps[this.map.id].mapLeft = this.mapLeft;
         localMaps[this.map.id].mapTop = this.mapTop;
-        localMaps[this.map.id].gridLeft = this.gridLeft;
-        localMaps[this.map.id].gridTop = this.gridTop;
         localMaps[this.map.id].mapZoom = this.mapZoom;
 
         localStorage.maps = JSON.stringify(localMaps);
@@ -180,8 +176,26 @@ module.exports = {
       this.lastMouseTop = 0;
     },
     toggleGrid() {
-      // TODO publish update when saving grid scale
-      this.resizingGrid = !this.resizingGrid;
+      var self = this,
+        deferred = q.defer();
+
+      if (self.resizingGrid === true) {
+        self.savingGrid = true;
+        self.gameService.updateMap({ map: { id: self.map.id, baseGrid: self.map.baseGrid } })
+          .fail(function (reason) {
+            self.$emit('error', reason.err);
+          })
+          .done(function () {
+            self.savingGrid = false;
+            self.resizingGrid = false;
+            deferred.resolve();
+          });
+      } else {
+        self.resizingGrid = true;
+        deferred.resolve();
+      }
+
+      return deferred.promise;
     },
     addMyToken() {
       var self = this,
@@ -196,6 +210,20 @@ module.exports = {
         };
 
       self.gameService.addMapToken({ mapId, token })
+        .fail(function (reason) {
+          self.$emit('error', reason.err);
+        })
+        .done(function () {
+          deferred.resolve();
+        });
+
+      return deferred.promise;
+    },
+    removeMyToken() {
+      var self = this,
+        deferred = q.defer();
+
+      self.gameService.removeMapToken({ mapId: self.map.id, tokenId: self.user.id })
         .fail(function (reason) {
           self.$emit('error', reason.err);
         })
