@@ -247,11 +247,11 @@ module.exports.notifications = {
         },
         cannotRemoveToken: {
           code: 657,
-          message: 'Error removing token'
+          message: 'You are not allowed to remove this token'
         },
         cannotMoveToken: {
           code: 658,
-          message: 'Error moving token'
+          message: 'You are not allowed to move this token'
         },
         invalidCoordinates: {
           code: 659,

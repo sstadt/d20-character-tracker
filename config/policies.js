@@ -94,8 +94,8 @@ module.exports.policies = {
 
     'get'         : ['socketSessionAuth', 'gamePlayer'],
     'addToken'    : ['socketSessionAuth', 'gamePlayer'],
-    'moveToken'   : ['socketSessionAuth', 'gamePlayer'], // TODO need a policy specific to token ownership
-    'removeToken' : ['socketSessionAuth', 'gamePlayer']  // TODO need a policy specific to token ownership
+    'moveToken'   : ['socketSessionAuth', 'moveMapToken'],
+    'removeToken' : ['socketSessionAuth', 'removeMapToken']
 
   },
 

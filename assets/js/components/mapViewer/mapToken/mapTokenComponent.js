@@ -108,7 +108,8 @@ module.exports = {
 
       self.gameService.moveMapToken({tokenId: self.token.id, x: self.xPos, y: self.yPos })
         .fail(function (reason) {
-          this.$emit('error', reason.err);
+          self.$emit('error', reason.err);
+          self.updatePosition();
         })
         .done(function () {
           deferred.resolve();

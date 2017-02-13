@@ -6,7 +6,7 @@
       <!-- player menu items -->
       <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
         <md-button class="md-icon-button" md-menu-trigger><icon name="map"></icon></md-button>
-        <md-tooltip md-direction="top">Maps</md-tooltip>
+        <md-tooltip md-direction="bottom">Maps</md-tooltip>
         <md-menu-content>
           <md-menu-item v-for="map in maps" v-if="userIsGameMaster || map.shared" @click="setActiveMap(map.id)">{{ map.name }}</md-menu-item>
           <md-menu-item @click="clearActiveMap">Hide Map</md-menu-item>
@@ -16,14 +16,14 @@
       <!-- GM menu items -->
       <md-menu v-if="userIsGameMaster" md-direction="bottom left" :md-align-trigger="true" md-size="4">
         <md-button class="md-icon-button" md-menu-trigger><icon name="dl44"></icon></md-button>
-        <md-tooltip md-direction="top">Actions</md-tooltip>
+        <md-tooltip md-direction="bottom">Actions</md-tooltip>
         <md-menu-content>
           <md-menu-item @click="rollDestinyPool">Roll Destiny Tokens</md-menu-item>
         </md-menu-content>
       </md-menu>
       <md-menu v-if="userIsGameMaster" md-direction="bottom left" :md-align-trigger="true" md-size="4">
         <md-button class="md-icon-button" md-menu-trigger><icon name="empire"></icon></md-button>
-        <md-tooltip md-direction="top">Manage Game</md-tooltip>
+        <md-tooltip md-direction="bottom">Manage Game</md-tooltip>
         <md-menu-content>
           <md-menu-item @click="openMenu('maps')">Maps</md-menu-item>
           <md-menu-item @click="openMenu('crawls')">Crawls</md-menu-item>
