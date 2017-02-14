@@ -4,16 +4,7 @@
 
 #### as able
 
- - set up a preview for crawls in the crawl list and the crawl editor
- - refactor crawl menu to behave like the map editor
  - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging
- - redesign error pages to me more interactive and informative
- - switch game browser alerts off to the notifications component
- - add ajax spinner to all auth component async operations
- - stylize email templates
- - move Vue themes and filters to js/lib in their own files
- - add a method to the ErrorService that parses s3 error messages
- - closing the browser does not send an offline event in the game
 
 #### testing todos
 
