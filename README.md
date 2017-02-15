@@ -5,6 +5,7 @@
 #### as able
 
  - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging
+ - set up csrf with all socket calls
 
 #### testing todos
 
