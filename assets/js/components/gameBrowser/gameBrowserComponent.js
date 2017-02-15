@@ -41,9 +41,8 @@ module.exports = {
     self.gameService.getMyGames()
       .then(function success(myGames) {
         self.myGames = myGames;
-        self.$refs.gameBrowserAlert.close();
       }, function error(reason) {
-        self.$refs.gameBrowserAlert.error(reason.err);
+        self.$refs.notifications.error(reason.err);
       });
   },
   watch: {
@@ -55,9 +54,8 @@ module.exports = {
         self.gameService.search({ filter: val })
           .then(function success(filteredGames) {
             self.filteredGames = _.extend(filteredGames);
-            self.$refs.gameBrowserAlert.close();
           }, function (reason) {
-            self.$refs.gameBrowserAlert.error(reason.err);
+            self.$refs.notifications.error(reason.err);
           })
           .done(function () {
             self.searching = false;
@@ -82,16 +80,15 @@ module.exports = {
         self.gameService.create({ title })
           .then(function success(game) {
             self.myGames.push(game);
-            self.$refs.gameBrowserPrompt.close();
           }, function (reason) {
-            self.gameBrowserPrompt.error = reason;
+            self.$refs.notifications.error(reason.err);
           });
       } else {
         self.gameBrowserPrompt.error = 'Game name cannot be empty';
       }
     },
-    gameListError(error) {
-      self.$refs.gameBrowserAlert.error(error);
+    gameListError(message) {
+      self.$refs.notifications.error(message);
     },
     initUserPipe() {
       var UserPipe = new Pipe('user');
