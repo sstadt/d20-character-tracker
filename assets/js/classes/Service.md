@@ -82,7 +82,7 @@ var service = new Service({
 });
 ```
 
-### Send a request with only staticData
+Send a request with only staticData
 
 ```javascript
 service.myEndpoint() // { foo: 'bar' }
@@ -93,7 +93,7 @@ service.myEndpoint() // { foo: 'bar' }
   });
 ```
 
-### Send a request with additional data
+Send a request with additional data
 
 ```javascript
 service.myEndpoint({ bar: 'baz' }) // { foo: 'bar', bar: 'baz' }
@@ -104,7 +104,7 @@ service.myEndpoint({ bar: 'baz' }) // { foo: 'bar', bar: 'baz' }
   });
 ```
 
-### Send a request with overridden default
+Send a request with overridden default
 
 ```javascript
 service.myEndpoint({ foo: 'baz' }) // { foo: 'baz' }
