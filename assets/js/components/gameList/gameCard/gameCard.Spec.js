@@ -31,8 +31,6 @@ describe('The gameCard component', function () {
         }
       };
       componentInstance = new Vue(component);
-
-      // componentInstance.user = { id: 'player5' };
     });
 
     describe('#hasRequestedJoin', function () {

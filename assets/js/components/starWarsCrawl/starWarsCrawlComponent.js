@@ -42,19 +42,17 @@ module.exports = {
     }
   },
   methods: {
-    play() {
+    play(crawlDelay = 800) {
       var self = this;
 
       self.show = true;
 
       setTimeout(function () {
         self.startCrawl();
-      }, 800);
+      }, crawlDelay);
     },
-    startCrawl(musicDelay) {
+    startCrawl(musicDelay = 8900) {
       var self = this;
-
-      musicDelay = musicDelay || 8900;
 
       self.running = true;
       self.finished = false;
