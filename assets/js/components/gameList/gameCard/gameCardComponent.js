@@ -70,11 +70,11 @@ module.exports = {
 
       return self.game.gameMaster.id === self.user.id || playerIndex > -1;
     },
-    joinGame(game) {
+    joinGame() {
       var self = this,
         deferred = q.defer();
 
-      self.gameService.join({ game: game.id })
+      self.gameService.join({ game: self.game.id })
         .fail(function error(reason) {
           self.$emit('error', reason.err);
         })

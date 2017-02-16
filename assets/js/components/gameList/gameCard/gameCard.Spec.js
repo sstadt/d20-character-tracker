@@ -69,7 +69,11 @@ describe('The gameCard component', function () {
             return q.reject({ err: 'foo' });
           });
 
-          componentInstance.joinGame({ id: 'game1' }).done(() => done());
+          componentInstance.joinGame().done(() => done());
+        });
+
+        it('should pass the game id to the gameService.join function', function () {
+          expect(componentInstance.gameService.join).toHaveBeenCalledWith({ game: 1 });
         });
 
         it('should dispatch an event to the parent', function () {
