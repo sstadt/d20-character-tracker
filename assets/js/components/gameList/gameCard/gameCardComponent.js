@@ -75,10 +75,8 @@ module.exports = {
         deferred = q.defer();
 
       self.gameService.join({ game: game.id })
-        .then(function success() {
-          game.requestingPlayers.push(self.user);
-        }, function error(reason) {
-          self.$emit('game-list-error', reason);
+        .fail(function error(reason) {
+          self.$emit('error', reason.err);
         })
         .done(function () {
           deferred.resolve();

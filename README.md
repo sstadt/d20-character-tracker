@@ -11,11 +11,8 @@
 
  - game
  - gameBrowser
- - gameList
  - mapViewer
  - starWarsCrawl
- - classes/Pipe
- - classes/Service
 
 ### DevOps to do:
 
