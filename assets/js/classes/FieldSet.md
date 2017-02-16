@@ -1,13 +1,10 @@
 
-# JavaScript Classes
-
-
-## FieldSet
+# FieldSet
 
 Used to store values and validation information for a
 set of form fields.
 
-### Constructor Params
+## Constructor Params
 
 Param | Type | Required | Description
 ----- | ---- | -------- | -----------
@@ -34,7 +31,7 @@ var component = {
 };
 ```
 
-#### Possible validation rules
+### Possible validation rules
 
 Rule | Type | Required | Default | Description
 ---- | ---- | -------- | ------- | -----------
@@ -78,9 +75,9 @@ Where ... is the list of prototype methods listed below. This allows you to easi
 </md-input-container>
 ```
 
-### Methods
+## Methods
 
-#### FieldSet.init(vm, form)
+### FieldSet.init(vm, form)
 
 Call this function in a component's created() method to initialize the FieldSet properties as observables. This allows the children of `FieldSet.fields` to be used with VueMaterial inputs to display errors and validate forms.
 
@@ -102,7 +99,7 @@ var component = {
 };
 ```
 
-#### FieldSet.validate(rule)
+### FieldSet.validate(rule)
 
 Manually trigger validation for the provided field.
 
@@ -114,7 +111,7 @@ rule | String | true | The field to validate
 this.myForm.validate('email');
 ```
 
-#### FieldSet.isValid()
+### FieldSet.isValid()
 
 Trigger validation on all fields. Returns true if valid, false if not.
 
@@ -124,7 +121,7 @@ if (this.myForm.isValid()) {
 }
 ```
 
-#### FieldSet.clearErrors()
+### FieldSet.clearErrors()
 
 Reset all validation on the form. Sets hasErrors to false and errors to an empty array.
 
@@ -132,7 +129,7 @@ Reset all validation on the form. Sets hasErrors to false and errors to an empty
 this.myForm.clearErrors();
 ```
 
-#### FieldSet.export()
+### FieldSet.export()
 
 Returns an object with key/value pairs for all current field values.
 
@@ -147,7 +144,7 @@ var vals = this.myForm.export();
 */
 ```
 
-#### FieldSet.reset()
+### FieldSet.reset()
 
 Clears all errors as well as resetting all field values.
 
@@ -155,7 +152,7 @@ Clears all errors as well as resetting all field values.
 this.myForm.reset();
 ```
 
-### FieldSet.addError(rule, error)
+## FieldSet.addError(rule, error)
 
 Manually add an error to the given field.
 
@@ -167,47 +164,3 @@ error | String | true | The error message to add
 ```javascript
 this.myForm.addError('email', 'That email address is already in use');
 ```
-
-
-## Pipe
-
-The Pipe class acts as the single pipe through which sails.js socket updates flow. This allows the ViewModels to make application updates to the component tree without cluttering `created()` with unnecessary or complex sets of calls to `io.socket.on`.
-
-In order for the Pipe to work properly all socket messages are expected to include a type with the data payload. This type is what a component will subscribe to for updates.
-
-An example of a message sent from the sails.js back end:
-
-```javascript
-Game.message(game.id, {
-  type: 'playerRequestedJoin',
-  data: { player: req.session.User }
-});
-```
-
-In this example, a component would subscribe to the `playerRequestedJoin` type to receive updates.
-
-### Constructor Params
-
-Name | Type | Required | Description
----- | ---- | -------- | -----------
-model | String | true | The model this pipe will receive updates for. If you wish to listen for updates on multiple models, create a new pipe for each model.
-
-```javascript
-var GamePipe = new Pipe('game');
-```
-
-### Methods
-
-#### Pipe.on(type)
-
-Register a callback function to be called on socket updates of a certain type. Passes the data parameter of the socket message to the callback function.
-
-Param | Type | Required | Description
------ | ---- | -------- | -----------
-type | String | true | The event type to register your callback function to
-
-```javascript
-GamePipe.on('playerRequestedJoin', this.handleJoinRequest);
-```
-
-If your callback function depends on data being present which is loaded asynchronously, it is best to register your callback once the data has been loaded as you _may_ receive socket updates before your data is loaded.

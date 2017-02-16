@@ -81,7 +81,7 @@ function postRequest(endpoint, data, debug) {
 
 function makeApiCall(endpoint, data, debug = false) {
   if (debug === true) debugMsg(data);
-  return _.isNull(data) ? getRequest(endpoint, debug) : postRequest(endpoint, data, debug);
+  return _.isUndefined(data) ? getRequest(endpoint, debug) : postRequest(endpoint, data, debug);
 }
 
 function Service(options) {
