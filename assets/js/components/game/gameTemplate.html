@@ -25,6 +25,7 @@
         <md-button class="md-icon-button" md-menu-trigger><icon name="empire"></icon></md-button>
         <md-tooltip md-direction="bottom">Manage Game</md-tooltip>
         <md-menu-content>
+          <md-menu-item @click="openMenu('npcs')">NPCs</md-menu-item>
           <md-menu-item @click="openMenu('maps')">Maps</md-menu-item>
           <md-menu-item @click="openMenu('crawls')">Crawls</md-menu-item>
           <md-menu-item @click="openMenu('players')">Players</md-menu-item>
@@ -69,6 +70,23 @@
     @stop-music="stopMusic"
     ref="crawl">
   </star-wars-crawl>
+
+  <!-- npc menu -->
+  <md-dialog class="game-menu" ref="npcsDialog" v-if="userIsGameMaster">
+    <md-dialog-title>
+      <p>{{ game.title }} NPCs</p>
+      <p class="subtitle"><small>Add, remove, and edit NPCs.</small></p>
+    </md-dialog-title>
+    <md-dialog-content>
+      <component
+        v-if="game.id"
+        is="npcMenu"
+        :game="game.id"
+        @close="closeMenu('npcs')"
+        @error="notifyError">
+      </component>
+    </md-dialog-content>
+  </md-dialog>
 
   <!-- map menu -->
   <md-dialog class="game-menu" ref="mapsDialog" v-if="userIsGameMaster">

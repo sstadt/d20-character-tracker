@@ -21,6 +21,10 @@ var validation = {
     regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*).[jpg|jpeg|png|gif]/,
     message: 'Please enter a valid image URL'
   },
+  integer: {
+    regex: /[0-9]+/,
+    message: 'Please enter a positive whole number'
+  },
   number: {
     regex: /[-.0-9]+/,
     message: 'Please enter a valid number'
@@ -165,7 +169,7 @@ FieldSet.prototype.export = function () { // TODO: coverage
 FieldSet.prototype.reset = function () { // TODO: coverage
   for (var field in this.fields) {
     if (this.fields.hasOwnProperty(field)) {
-      this.fields[field].value = '';
+      this.fields[field].value = this.rules[rule].default || '';
       this.fields[field].errors = [];
       this.fields[field].hasErrors = false;
     }

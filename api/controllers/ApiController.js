@@ -15,7 +15,7 @@ module.exports = {
 
     request(endpoint, function (err, response) {
       if (err) {
-        res.serverError(err);
+        res.jsonError(err);
       }
 
       res.json(JSON.parse(response.body));
@@ -33,4 +33,3 @@ module.exports = {
     });
   }
 };
-

@@ -1,0 +1,141 @@
+
+<div class="npc-menu">
+  <transition name="slide-fade" mode="out-in">
+
+    <section v-if="view === 'new'">
+      <h3>New NPC</h3>
+      <form @submit.stop.prevent="addMap">
+        <div class="row">
+          <div class="small-12 medium-4 column">
+            <img :src="newNpcImage" />
+          </div>
+          <div class="small-12 medium-8 column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.name.hasErrors}">
+              <label>Name</label>
+              <md-input type="text" v-model="newNpcForm.fields.name.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.name.hasErrors">{{ newNpcForm.fields.name.errors[0] }}</span>
+            </md-input-container>
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.imageUrl.hasErrors}">
+              <label>Image URL</label>
+              <md-input type="text" v-model="newNpcForm.fields.imageUrl.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.imageUrl.hasErrors">{{ newNpcForm.fields.imageUrl.errors[0] }}</span>
+            </md-input-container>
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.type.hasErrors}">
+              <label>Type</label>
+              <md-select v-model="newNpcForm.fields.type.value">
+                <md-option value="minion">Minion</md-option>
+                <md-option value="rival">Rival</md-option>
+                <md-option value="nemesis">Nemesis</md-option>
+              </md-select>
+              <span class="md-error" v-show="newNpcForm.fields.type.hasErrors">{{ newNpcForm.fields.type.errors[0] }}</span>
+            </md-input-container>
+          </div>
+        </div>
+
+        <h4>Statistics</h4>
+        <div class="row small-up-6">
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.brawn.hasErrors}">
+              <label>Brawn</label>
+              <md-input type="number" v-model="newNpcForm.fields.brawn.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.brawn.hasErrors">{{ newNpcForm.fields.brawn.errors[0] }}</span>
+            </md-input-container>
+          </div>
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.agility.hasErrors}">
+              <label>Agility</label>
+              <md-input type="number" v-model="newNpcForm.fields.agility.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.agility.hasErrors">{{ newNpcForm.fields.agility.errors[0] }}</span>
+            </md-input-container>
+          </div>
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.intellect.hasErrors}">
+              <label>Intellect</label>
+              <md-input type="number" v-model="newNpcForm.fields.intellect.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.intellect.hasErrors">{{ newNpcForm.fields.intellect.errors[0] }}</span>
+            </md-input-container>
+          </div>
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.cunning.hasErrors}">
+              <label>Cunning</label>
+              <md-input type="number" v-model="newNpcForm.fields.cunning.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.cunning.hasErrors">{{ newNpcForm.fields.cunning.errors[0] }}</span>
+            </md-input-container>
+          </div>
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.willpower.hasErrors}">
+              <label>Willpower</label>
+              <md-input type="number" v-model="newNpcForm.fields.willpower.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.willpower.hasErrors">{{ newNpcForm.fields.willpower.errors[0] }}</span>
+            </md-input-container>
+          </div>
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.presence.hasErrors}">
+              <label>Presence</label>
+              <md-input type="number" v-model="newNpcForm.fields.presence.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.presence.hasErrors">{{ newNpcForm.fields.presence.errors[0] }}</span>
+            </md-input-container>
+          </div>
+        </div>
+
+        <h4>Combat</h4>
+        <div class="row small-up-5">
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.soak.hasErrors}">
+              <label>Soak</label>
+              <md-input type="number" v-model="newNpcForm.fields.soak.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.soak.hasErrors">{{ newNpcForm.fields.soak.errors[0] }}</span>
+            </md-input-container>
+          </div>
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.woundThreshold.hasErrors}">
+              <label>Wound Threshold</label>
+              <md-input type="number" v-model="newNpcForm.fields.woundThreshold.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.woundThreshold.hasErrors">{{ newNpcForm.fields.woundThreshold.errors[0] }}</span>
+            </md-input-container>
+          </div>
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.strainThreshold.hasErrors}">
+              <label>Strain Threshold</label>
+              <md-input type="number" v-model="newNpcForm.fields.strainThreshold.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.strainThreshold.hasErrors">{{ newNpcForm.fields.strainThreshold.errors[0] }}</span>
+            </md-input-container>
+          </div>
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.defenseMelee.hasErrors}">
+              <label>Defense (M)</label>
+              <md-input type="number" v-model="newNpcForm.fields.defenseMelee.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.defenseMelee.hasErrors">{{ newNpcForm.fields.defenseMelee.errors[0] }}</span>
+            </md-input-container>
+          </div>
+          <div class="column">
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.defenseRanged.hasErrors}">
+              <label>Defense (R)</label>
+              <md-input type="number" v-model="newNpcForm.fields.defenseRanged.value"></md-input>
+              <span class="md-error" v-show="newNpcForm.fields.defenseRanged.hasErrors">{{ newNpcForm.fields.defenseRanged.errors[0] }}</span>
+            </md-input-container>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <md-button @click="setView('list')" :disabled="saving">Cancel</md-button>
+          <md-button type="submit" :disabled="saving">Add NPC</md-button>
+        </div>
+      </form>
+    </section>
+
+    <section v-else-if="view === 'edit'">
+      <p>edit</p>
+      <md-button @click="setView('list')">Cancel</md-button>
+      <md-button>Save</md-button>
+    </section>
+
+    <section v-else>
+      <div class="controls">
+        <md-button @click="setView('new')">New NPC</md-button>
+      </div>
+      <p>TODO: NPC List</p>
+    </section>
+
+  </transition>
+</div>

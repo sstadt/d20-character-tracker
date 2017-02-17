@@ -46,6 +46,7 @@ module.exports = {
     };
   },
   components: {
+    npcMenu: require('./npcMenu/npcMenuComponent.js'),
     mapMenu: require('./mapMenu/mapMenuComponent.js'),
     crawlMenu: require('./crawlMenu/crawlMenuComponent.js'),
     playersMenu: require('./playersMenu/playersMenuComponent.js'),
