@@ -15,6 +15,12 @@ module.exports = {
   dieTypes: require('../../../config/taskDice.js').taskDice.dieTypes,
 
   /*
+   * Skills - pulled from BE
+   * ----------------------------
+   */
+  skills: require('../../../config/tempGameData.js').gameData.skills,
+
+  /*
    * Endpoints
    * ----------------------------
    */

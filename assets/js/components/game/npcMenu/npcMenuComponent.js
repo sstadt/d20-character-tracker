@@ -6,6 +6,12 @@ var FieldSet = require('../../../classes/FieldSet.js');
 
 const DEFAULT_NPC_IMAGE = '/images/avatar_ph.jpg';
 
+var skillList = config.skills.map(function (skill) {
+  skill.rank = 0;
+  skill.career = false;
+  return skill;
+});
+
 var npcValidation = {
   game:            {},
   name:            { required: true },
@@ -22,7 +28,7 @@ var npcValidation = {
   strainThreshold: { pattern: 'integer', default: "0" },
   defenseMelee:    { pattern: 'integer', default: "0" },
   defenseRanged:   { pattern: 'integer', default: "0" },
-  skills:          { default: [] },
+  skills:          { default: skillList },
   talents:         { default: [] },
   abilities:       { default: [] },
   equipment:       { default: [] }
@@ -39,6 +45,7 @@ module.exports = {
   data() {
     return {
       view: 'list',
+      skillList: config.skills,
       newNpcForm: new FieldSet(npcValidation),
       saving: false
     };
@@ -50,9 +57,26 @@ module.exports = {
       return (this.newNpcForm.fields.imageUrl.hasErrors || newImage === '') ? DEFAULT_NPC_IMAGE : this.newNpcForm.fields.imageUrl.value;
     },
   },
+  components: {
+    skillEditor: require('./skillEditor/skillEditorComponent.js')
+  },
   methods: {
     setView(view) {
       this.view = view;
+    },
+    incrementSkill(skills, name) {
+      var index = _.findIndex(skills, function (skill) {
+        return skill.name === name;
+      });
+
+      if (skills[index].rank < 5) skills[index].rank++;
+    },
+    decrementSkill(skills, name) {
+      var index = _.findIndex(skills, function (skill) {
+        return skill.name === name;
+      });
+
+      if (skills[index].rank > 0) skills[index].rank--;
     }
   }
 };
