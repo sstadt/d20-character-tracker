@@ -4,7 +4,7 @@
 
     <section v-if="view === 'new'">
       <h3>New NPC</h3>
-      <form @submit.stop.prevent="addMap">
+      <form @submit.stop.prevent="addNpc">
         <div class="row">
           <div class="small-12 medium-4 column">
             <img :src="newNpcImage" />

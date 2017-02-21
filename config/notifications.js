@@ -258,6 +258,30 @@ module.exports.notifications = {
           message: 'Error moving token'
         }
       }
+    },
+    npc: {
+      error: {
+        notFound: {
+          code: 750,
+          message: 'NPC not found'
+        },
+        listNotFound: {
+          code: 751,
+          message: 'NPCs not found'
+        },
+        cannotCreate: {
+          code: 752,
+          message: 'Error creating NPC'
+        },
+        cannotUpdate: {
+          code: 753,
+          message: 'Error updating NPC'
+        },
+        cannotDelete: {
+          code: 754,
+          message: 'Error deleting NPC'
+        }
+      }
     }
   }
 

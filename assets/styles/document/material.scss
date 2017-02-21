@@ -65,3 +65,10 @@ div.md-theme-default.md-tabs > .md-tabs-navigation.md-whiteframe {
     }
   }
 }
+
+.md-dialog-content {
+  .row {
+    margin-left: -($global-gutter / 2);
+    margin-right: -($global-gutter / 2);
+  }
+}
