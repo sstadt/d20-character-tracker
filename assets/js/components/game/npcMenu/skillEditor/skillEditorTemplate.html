@@ -1,5 +1,5 @@
 
-<md-list-item>
+<md-list-item :class="{ 'skill-editor': true, 'combat': skill.combat }">
   <span class="skill-value-large">{{ skill.rank }}</span>
   <div class="md-list-text-container">
     <span>{{ skill.name }}</span>

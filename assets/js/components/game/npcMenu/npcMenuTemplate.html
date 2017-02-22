@@ -121,27 +121,26 @@
         <div class="row">
           <div class="column small-6">
             <md-list>
-              <!-- <md-list-item v-for="(skill, index) in newNpcForm.fields.skills.value" v-if="index < newNpcForm.fields.skills.value.length / 2"> -->
               <component
                 is="skillEditor"
                 v-for="(skill, index) in newNpcForm.fields.skills.value"
+                v-if="index < newNpcForm.fields.skills.value.length / 2"
                 :skill="skill"
                 @increment="incrementNewNpcSkill"
                 @decrement="decrementNewNpcSkill">
               </component>
-              <!-- <md-list-item v-for="(skill, index) in newNpcForm.fields.skills.value">
-                <span class="skill-value-large">{{ skill.rank }}</span>
-                <div class="md-list-text-container">
-                  <span>{{ skill.name }}</span>
-                  <span>{{ skill.ability }}</span>
-                </div>
-                <md-button class="md-icon-button md-list-action" @click="decrementSkill(newNpcForm.fields.skills.value, skill.name)">
-                  <md-icon>remove</md-icon>
-                </md-button>
-                <md-button class="md-icon-button md-list-action" @click="incrementSkill(newNpcForm.fields.skills.value, skill.name)">
-                  <md-icon>add</md-icon>
-                </md-button>
-              </md-list-item> -->
+            </md-list>
+          </div>
+          <div class="column small-6">
+            <md-list>
+              <component
+                is="skillEditor"
+                v-for="(skill, index) in newNpcForm.fields.skills.value"
+                v-if="index > newNpcForm.fields.skills.value.length / 2"
+                :skill="skill"
+                @increment="incrementNewNpcSkill"
+                @decrement="decrementNewNpcSkill">
+              </component>
             </md-list>
           </div>
         </div>

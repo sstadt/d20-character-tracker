@@ -25,11 +25,27 @@ describe('The skillEditor component', function () {
       componentInstance = new Vue(component);
     });
 
-    // describe('#sayHi', function () {
-    //   it('should be a function', function () {
-    //     expect(typeof componentInstance.sayHi).toBe('function');
-    //   });
-    // });
+    describe('#increment', function () {
+      beforeEach(function () {
+        spyOn(componentInstance, '$emit');
+        componentInstance.increment('foo');
+      });
+
+      it('should emit an increment event with the name of the passe sin skill', function () {
+        expect(componentInstance.$emit).toHaveBeenCalledWith('increment', 'foo');
+      });
+    });
+
+    describe('#decrement', function () {
+      beforeEach(function () {
+        spyOn(componentInstance, '$emit');
+        componentInstance.decrement('foo');
+      });
+
+      it('should emit a decrement event with the name of the passe sin skill', function () {
+        expect(componentInstance.$emit).toHaveBeenCalledWith('decrement', 'foo');
+      });
+    });
   });
 
 });

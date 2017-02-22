@@ -64,19 +64,23 @@ module.exports = {
     setView(view) {
       this.view = view;
     },
-    incrementSkill(skills, name) {
-      var index = _.findIndex(skills, function (skill) {
+    incrementNewNpcSkill(name) {
+      var index = _.findIndex(this.newNpcForm.fields.skills.value, function (skill) {
         return skill.name === name;
       });
 
-      if (skills[index].rank < 5) skills[index].rank++;
+      if (index > -1 && this.newNpcForm.fields.skills.value[index].rank < 5) {
+        this.newNpcForm.fields.skills.value[index].rank++;
+      }
     },
-    decrementSkill(skills, name) {
-      var index = _.findIndex(skills, function (skill) {
+    decrementNewNpcSkill(name) {
+      var index = _.findIndex(this.newNpcForm.fields.skills.value, function (skill) {
         return skill.name === name;
       });
 
-      if (skills[index].rank > 0) skills[index].rank--;
+      if (index > -1 && this.newNpcForm.fields.skills.value[index].rank > 0) {
+        this.newNpcForm.fields.skills.value[index].rank--;
+      }
     }
   }
 };
