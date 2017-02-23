@@ -5,12 +5,14 @@
  * and injected into the layout template.
  */
 
-// vendor
+// Vendor
+// ----------------
 
 @import "foundation";
 @import "vue-material";
 
-// libs
+// Libs
+// ----------------
 
 // @import "functions/conversion";
 // @import "functions/math";
@@ -18,7 +20,8 @@
 
 @import "mixins/typography";
 
-// app
+// App
+// ----------------
 
 @import "settings";
 
@@ -41,7 +44,10 @@
 @import "views/splash";
 @import "views/errorPage";
 
-// js components
+// JS Components
+// ----------------
+
+// general
 
 @import "../js/components/alert/_alert";
 @import "../js/components/notification/_notification";
@@ -54,10 +60,11 @@
 @import "../js/components/authentication/passwordReset/_passwordReset";
 @import "../js/components/authentication/signup/_signup";
 
+// game
+
 @import "../js/components/game/_game";
 @import "../js/components/game/mapMenu/_mapMenu";
 @import "../js/components/game/npcMenu/_npcMenu";
-@import "../js/components/game/npcMenu/skillEditor/_skillEditor";
 @import "../js/components/game/crawlMenu/_crawlMenu";
 @import "../js/components/game/playersMenu/_playersMenu";
 @import "../js/components/game/settingsMenu/_settingsMenu";
@@ -84,4 +91,10 @@
 
 @import "../js/components/destinyTokens/_destinyTokens";
 
+// user
+
 @import "../js/components/userProfile/_userProfile";
+
+// character/NPC
+
+@import "../js/components/skillEditor/_skillEditor";

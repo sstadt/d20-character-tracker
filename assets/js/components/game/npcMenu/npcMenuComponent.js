@@ -57,9 +57,6 @@ module.exports = {
       return (this.newNpcForm.fields.imageUrl.hasErrors || newImage === '') ? DEFAULT_NPC_IMAGE : this.newNpcForm.fields.imageUrl.value;
     },
   },
-  components: {
-    skillEditor: require('./skillEditor/skillEditorComponent.js')
-  },
   methods: {
     setView(view) {
       this.view = view;

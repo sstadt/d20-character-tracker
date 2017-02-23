@@ -121,26 +121,24 @@
         <div class="row">
           <div class="column small-6">
             <md-list>
-              <component
-                is="skillEditor"
+              <skill-editor
                 v-for="(skill, index) in newNpcForm.fields.skills.value"
                 v-if="index < newNpcForm.fields.skills.value.length / 2"
                 :skill="skill"
                 @increment="incrementNewNpcSkill"
                 @decrement="decrementNewNpcSkill">
-              </component>
+              </skill-editor>
             </md-list>
           </div>
           <div class="column small-6">
             <md-list>
-              <component
-                is="skillEditor"
+              <skill-editor
                 v-for="(skill, index) in newNpcForm.fields.skills.value"
-                v-if="index > newNpcForm.fields.skills.value.length / 2"
+                v-if="index >= newNpcForm.fields.skills.value.length / 2"
                 :skill="skill"
                 @increment="incrementNewNpcSkill"
                 @decrement="decrementNewNpcSkill">
-              </component>
+              </skill-editor>
             </md-list>
           </div>
         </div>
