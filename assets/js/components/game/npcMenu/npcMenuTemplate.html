@@ -29,10 +29,15 @@
               </md-select>
               <span class="md-error" v-show="newNpcForm.fields.type.hasErrors">{{ newNpcForm.fields.type.errors[0] }}</span>
             </md-input-container>
+            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.description.hasErrors}">
+              <label>Description</label>
+              <md-textarea v-model="newNpcForm.fields.description.value"></md-textarea>
+              <span class="md-error" v-show="newNpcForm.fields.description.hasErrors">{{ newNpcForm.fields.description.errors[0] }}</span>
+            </md-input-container>
           </div>
         </div>
 
-        <h4>Statistics</h4>
+        <h4 class="section-header">Statistics</h4>
         <div class="row small-up-6">
           <div class="column">
             <md-input-container :class="{'md-input-invalid': newNpcForm.fields.brawn.hasErrors}">
@@ -78,7 +83,7 @@
           </div>
         </div>
 
-        <h4>Combat</h4>
+        <h4 class="section-header">Combat</h4>
         <div class="row small-up-5">
           <div class="column">
             <md-input-container :class="{'md-input-invalid': newNpcForm.fields.soak.hasErrors}">
@@ -117,7 +122,7 @@
           </div>
         </div>
 
-        <h4>Skills</h4>
+        <h4 class="section-header">Skills</h4>
         <div class="row">
           <div class="column small-6">
             <md-list>
@@ -143,6 +148,48 @@
           </div>
         </div>
 
+        <h4 class="clearfix section-header">
+          Talents and Abilities
+          <md-button class="float-right md-icon-button" @click="addTalent"><md-icon>add</md-icon></md-button>
+        </h4>
+        <div class="row">
+          <div class="small-12 column">
+            <transition name="fade" mode="out-in">
+              <section v-if="newNpcForm.fields.talents.value.length === 0">
+                <div class="alert-box"><p>No Talents have been added to this NPC</p></div>
+              </section>
+              <section v-else>
+                <transition-group name="slide-fade">
+                  <div class="row" v-for="(talent, index) in newNpcForm.fields.talents.value" :key="index">
+                    <div class="small-3 column">
+                      <md-input-container>
+                        <label>Name</label>
+                        <md-input type="text" v-model="talent.name"></md-input>
+                      </md-input-container>
+                    </div>
+                    <div class="small-2 column">
+                      <md-input-container>
+                        <label>Book &amp; Page</label>
+                        <md-input type="text" v-model="talent.book"></md-input>
+                      </md-input-container>
+                    </div>
+                    <div class="small-7 column">
+                      <md-input-container>
+                        <label>Description</label>
+                        <md-textarea type="text" v-model="talent.description"></md-textarea>
+                      </md-input-container>
+                    </div>
+                  </div>
+                </transition-group>
+              </section>
+            </transition>
+          </div>
+        </div>
+
+        <h4 class="section-header">Force Powers</h4>
+
+        <h4 class="section-header">Equipment</h4>
+
         <div class="text-right">
           <md-button @click="setView('list')" :disabled="saving">Cancel</md-button>
           <md-button type="submit" :disabled="saving">Add NPC</md-button>
@@ -160,7 +207,7 @@
       <div class="controls">
         <md-button @click="setView('new')">New NPC</md-button>
       </div>
-      <p>TODO: NPC List</p>
+      <p>TODO (once NPCs are saving): NPC List</p>
     </section>
 
   </transition>

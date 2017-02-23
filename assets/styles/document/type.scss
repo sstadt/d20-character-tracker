@@ -38,3 +38,17 @@ a {
 .text-left {
   text-align: left;
 }
+
+.section-header {
+  border-bottom: 1px solid $hr-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+
+  .md-icon-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}
