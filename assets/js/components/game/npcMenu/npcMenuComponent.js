@@ -4,6 +4,8 @@ var config = require('../../../lib/config.js');
 var Service = require('../../../classes/Service.js');
 var FieldSet = require('../../../classes/FieldSet.js');
 var Talent = require('../../../classes/characters/Talent.js');
+var ForcePower = require('../../../classes/characters/ForcePower.js');
+var Equipment = require('../../../classes/characters/Equipment.js');
 
 const DEFAULT_NPC_IMAGE = '/images/avatar_ph.jpg';
 
@@ -48,15 +50,15 @@ module.exports = {
     return {
       view: 'list',
       skillList: config.skills,
-      newNpcForm: new FieldSet(npcValidation),
+      npcForm: new FieldSet(npcValidation),
       saving: false
     };
   },
   computed: {
     newNpcImage() {
-      var newImage = this.newNpcForm.fields.imageUrl.value;
+      var newImage = this.npcForm.fields.imageUrl.value;
 
-      return (this.newNpcForm.fields.imageUrl.hasErrors || newImage === '') ? DEFAULT_NPC_IMAGE : this.newNpcForm.fields.imageUrl.value;
+      return (this.npcForm.fields.imageUrl.hasErrors || newImage === '') ? DEFAULT_NPC_IMAGE : this.npcForm.fields.imageUrl.value;
     }
   },
   methods: {
@@ -64,25 +66,46 @@ module.exports = {
       this.view = view;
     },
     incrementNewNpcSkill(name) {
-      var index = _.findIndex(this.newNpcForm.fields.skills.value, function (skill) {
+      var index = _.findIndex(this.npcForm.fields.skills.value, function (skill) {
         return skill.name === name;
       });
 
-      if (index > -1 && this.newNpcForm.fields.skills.value[index].rank < 5) {
-        this.newNpcForm.fields.skills.value[index].rank++;
+      if (index > -1 && this.npcForm.fields.skills.value[index].rank < 5) {
+        this.npcForm.fields.skills.value[index].rank++;
       }
     },
     decrementNewNpcSkill(name) {
-      var index = _.findIndex(this.newNpcForm.fields.skills.value, function (skill) {
+      var index = _.findIndex(this.npcForm.fields.skills.value, function (skill) {
         return skill.name === name;
       });
 
-      if (index > -1 && this.newNpcForm.fields.skills.value[index].rank > 0) {
-        this.newNpcForm.fields.skills.value[index].rank--;
+      if (index > -1 && this.npcForm.fields.skills.value[index].rank > 0) {
+        this.npcForm.fields.skills.value[index].rank--;
       }
     },
     addTalent() {
-      this.newNpcForm.fields.talents.value.push(new Talent());
+      this.npcForm.fields.talents.value.push(new Talent());
+    },
+    removeTalent(index) {
+      this.npcForm.fields.talents.value.splice(index, 1);
+    },
+    addForcePower() {
+      this.npcForm.fields.powers.value.push(new ForcePower());
+    },
+    removeForcePower(index) {
+      this.npcForm.fields.powers.value.splice(index, 1);
+    },
+    addForcePowerUpgrade(index) {
+      this.npcForm.fields.powers.value[index].addUpgrade();
+    },
+    removeForcePowerUpgrade(powerIndex, upgradeIndex) {
+      this.npcForm.fields.powers.value[powerIndex].upgrades.splice(upgradeIndex, 1);
+    },
+    addEquipment() {
+      this.npcForm.fields.equipment.value.push(new Equipment());
+    },
+    removeEquipment(index) {
+      this.npcForm.fields.equipment.value.splice(index, 1);
     }
   }
 };

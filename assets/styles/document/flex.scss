@@ -18,11 +18,14 @@
 }
 
 .flex-column {
+  flex-flow: column;
+}
+
+.flex-column, .flex-row {
   display: flex;
   flex: 1;
-  flex-flow: column;
 
-  .fill-height {
+  .fill-height, .fill-width {
     display: flex;
     flex: 2;
   }

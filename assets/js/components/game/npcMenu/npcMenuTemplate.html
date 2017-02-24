@@ -1,6 +1,6 @@
 
 <div class="npc-menu">
-  <transition name="slide-fade" mode="out-in">
+  <transition name="slide-fade" mode="out-in" appear>
 
     <section v-if="view === 'new'">
       <h3>New NPC</h3>
@@ -10,125 +10,125 @@
             <img :src="newNpcImage" />
           </div>
           <div class="small-12 medium-8 column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.name.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.name.hasErrors}">
               <label>Name</label>
-              <md-input type="text" v-model="newNpcForm.fields.name.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.name.hasErrors">{{ newNpcForm.fields.name.errors[0] }}</span>
+              <md-input type="text" v-model="npcForm.fields.name.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.name.hasErrors">{{ npcForm.fields.name.errors[0] }}</span>
             </md-input-container>
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.imageUrl.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.imageUrl.hasErrors}">
               <label>Image URL</label>
-              <md-input type="text" v-model="newNpcForm.fields.imageUrl.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.imageUrl.hasErrors">{{ newNpcForm.fields.imageUrl.errors[0] }}</span>
+              <md-input type="text" v-model="npcForm.fields.imageUrl.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.imageUrl.hasErrors">{{ npcForm.fields.imageUrl.errors[0] }}</span>
             </md-input-container>
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.type.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.type.hasErrors}">
               <label>Type</label>
-              <md-select v-model="newNpcForm.fields.type.value">
+              <md-select v-model="npcForm.fields.type.value">
                 <md-option value="minion">Minion</md-option>
                 <md-option value="rival">Rival</md-option>
                 <md-option value="nemesis">Nemesis</md-option>
               </md-select>
-              <span class="md-error" v-show="newNpcForm.fields.type.hasErrors">{{ newNpcForm.fields.type.errors[0] }}</span>
+              <span class="md-error" v-show="npcForm.fields.type.hasErrors">{{ npcForm.fields.type.errors[0] }}</span>
             </md-input-container>
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.description.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.description.hasErrors}">
               <label>Description</label>
-              <md-textarea v-model="newNpcForm.fields.description.value"></md-textarea>
-              <span class="md-error" v-show="newNpcForm.fields.description.hasErrors">{{ newNpcForm.fields.description.errors[0] }}</span>
+              <md-textarea v-model="npcForm.fields.description.value"></md-textarea>
+              <span class="md-error" v-show="npcForm.fields.description.hasErrors">{{ npcForm.fields.description.errors[0] }}</span>
             </md-input-container>
           </div>
         </div>
 
-        <h4 class="section-header">Statistics</h4>
+        <h4 class="button-header">Statistics</h4>
         <div class="row small-up-6">
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.brawn.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.brawn.hasErrors}">
               <label>Brawn</label>
-              <md-input type="number" v-model="newNpcForm.fields.brawn.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.brawn.hasErrors">{{ newNpcForm.fields.brawn.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.brawn.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.brawn.hasErrors">{{ npcForm.fields.brawn.errors[0] }}</span>
             </md-input-container>
           </div>
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.agility.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.agility.hasErrors}">
               <label>Agility</label>
-              <md-input type="number" v-model="newNpcForm.fields.agility.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.agility.hasErrors">{{ newNpcForm.fields.agility.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.agility.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.agility.hasErrors">{{ npcForm.fields.agility.errors[0] }}</span>
             </md-input-container>
           </div>
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.intellect.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.intellect.hasErrors}">
               <label>Intellect</label>
-              <md-input type="number" v-model="newNpcForm.fields.intellect.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.intellect.hasErrors">{{ newNpcForm.fields.intellect.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.intellect.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.intellect.hasErrors">{{ npcForm.fields.intellect.errors[0] }}</span>
             </md-input-container>
           </div>
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.cunning.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.cunning.hasErrors}">
               <label>Cunning</label>
-              <md-input type="number" v-model="newNpcForm.fields.cunning.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.cunning.hasErrors">{{ newNpcForm.fields.cunning.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.cunning.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.cunning.hasErrors">{{ npcForm.fields.cunning.errors[0] }}</span>
             </md-input-container>
           </div>
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.willpower.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.willpower.hasErrors}">
               <label>Willpower</label>
-              <md-input type="number" v-model="newNpcForm.fields.willpower.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.willpower.hasErrors">{{ newNpcForm.fields.willpower.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.willpower.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.willpower.hasErrors">{{ npcForm.fields.willpower.errors[0] }}</span>
             </md-input-container>
           </div>
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.presence.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.presence.hasErrors}">
               <label>Presence</label>
-              <md-input type="number" v-model="newNpcForm.fields.presence.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.presence.hasErrors">{{ newNpcForm.fields.presence.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.presence.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.presence.hasErrors">{{ npcForm.fields.presence.errors[0] }}</span>
             </md-input-container>
           </div>
         </div>
 
-        <h4 class="section-header">Combat</h4>
+        <h4 class="button-header">Combat</h4>
         <div class="row small-up-5">
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.soak.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.soak.hasErrors}">
               <label>Soak</label>
-              <md-input type="number" v-model="newNpcForm.fields.soak.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.soak.hasErrors">{{ newNpcForm.fields.soak.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.soak.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.soak.hasErrors">{{ npcForm.fields.soak.errors[0] }}</span>
             </md-input-container>
           </div>
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.woundThreshold.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.woundThreshold.hasErrors}">
               <label>Wound Threshold</label>
-              <md-input type="number" v-model="newNpcForm.fields.woundThreshold.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.woundThreshold.hasErrors">{{ newNpcForm.fields.woundThreshold.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.woundThreshold.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.woundThreshold.hasErrors">{{ npcForm.fields.woundThreshold.errors[0] }}</span>
             </md-input-container>
           </div>
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.strainThreshold.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.strainThreshold.hasErrors}">
               <label>Strain Threshold</label>
-              <md-input type="number" v-model="newNpcForm.fields.strainThreshold.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.strainThreshold.hasErrors">{{ newNpcForm.fields.strainThreshold.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.strainThreshold.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.strainThreshold.hasErrors">{{ npcForm.fields.strainThreshold.errors[0] }}</span>
             </md-input-container>
           </div>
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.defenseMelee.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.defenseMelee.hasErrors}">
               <label>Defense (M)</label>
-              <md-input type="number" v-model="newNpcForm.fields.defenseMelee.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.defenseMelee.hasErrors">{{ newNpcForm.fields.defenseMelee.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.defenseMelee.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.defenseMelee.hasErrors">{{ npcForm.fields.defenseMelee.errors[0] }}</span>
             </md-input-container>
           </div>
           <div class="column">
-            <md-input-container :class="{'md-input-invalid': newNpcForm.fields.defenseRanged.hasErrors}">
+            <md-input-container :class="{'md-input-invalid': npcForm.fields.defenseRanged.hasErrors}">
               <label>Defense (R)</label>
-              <md-input type="number" v-model="newNpcForm.fields.defenseRanged.value"></md-input>
-              <span class="md-error" v-show="newNpcForm.fields.defenseRanged.hasErrors">{{ newNpcForm.fields.defenseRanged.errors[0] }}</span>
+              <md-input type="number" v-model="npcForm.fields.defenseRanged.value"></md-input>
+              <span class="md-error" v-show="npcForm.fields.defenseRanged.hasErrors">{{ npcForm.fields.defenseRanged.errors[0] }}</span>
             </md-input-container>
           </div>
         </div>
 
-        <h4 class="section-header">Skills</h4>
+        <h4 class="button-header">Skills</h4>
         <div class="row">
           <div class="column small-6">
             <md-list>
               <skill-editor
-                v-for="(skill, index) in newNpcForm.fields.skills.value"
-                v-if="index < newNpcForm.fields.skills.value.length / 2"
+                v-for="(skill, index) in npcForm.fields.skills.value"
+                v-if="index < npcForm.fields.skills.value.length / 2"
                 :skill="skill"
                 @increment="incrementNewNpcSkill"
                 @decrement="decrementNewNpcSkill">
@@ -138,8 +138,8 @@
           <div class="column small-6">
             <md-list>
               <skill-editor
-                v-for="(skill, index) in newNpcForm.fields.skills.value"
-                v-if="index >= newNpcForm.fields.skills.value.length / 2"
+                v-for="(skill, index) in npcForm.fields.skills.value"
+                v-if="index >= npcForm.fields.skills.value.length / 2"
                 :skill="skill"
                 @increment="incrementNewNpcSkill"
                 @decrement="decrementNewNpcSkill">
@@ -148,36 +148,37 @@
           </div>
         </div>
 
-        <h4 class="clearfix section-header">
+        <h4 class="button-header">
           Talents and Abilities
-          <md-button class="float-right md-icon-button" @click="addTalent"><md-icon>add</md-icon></md-button>
+          <md-button class="float-right md-icon-button" @click="addTalent">
+            <md-icon>add</md-icon>
+            <md-tooltip md-direction="left">Add Talent</md-button>
+          </md-button>
         </h4>
         <div class="row">
           <div class="small-12 column">
-            <transition name="fade" mode="out-in">
-              <section v-if="newNpcForm.fields.talents.value.length === 0">
+            <transition name="fade" mode="out-in" appear>
+              <section v-if="npcForm.fields.talents.value.length === 0">
                 <div class="alert-box"><p>No Talents have been added to this NPC</p></div>
               </section>
               <section v-else>
-                <transition-group name="slide-fade">
-                  <div class="row" v-for="(talent, index) in newNpcForm.fields.talents.value" :key="index">
+                <transition-group name="slide-fade" appear>
+                  <div class="row" v-for="(talent, index) in npcForm.fields.talents.value" :key="index">
                     <div class="small-3 column">
                       <md-input-container>
                         <label>Name</label>
                         <md-input type="text" v-model="talent.name"></md-input>
                       </md-input-container>
                     </div>
-                    <div class="small-2 column">
-                      <md-input-container>
-                        <label>Book &amp; Page</label>
-                        <md-input type="text" v-model="talent.book"></md-input>
-                      </md-input-container>
-                    </div>
-                    <div class="small-7 column">
-                      <md-input-container>
+                    <div class="small-9 column flex-row">
+                      <md-input-container class="fill-width">
                         <label>Description</label>
                         <md-textarea type="text" v-model="talent.description"></md-textarea>
                       </md-input-container>
+                      <md-button class="md-icon-button" @click="removeTalent(index)">
+                        <md-icon>clear</md-icon>
+                        <md-tooltip md-direction="right">Remove Talent</md-tooltip>
+                      </md-button>
                     </div>
                   </div>
                 </transition-group>
@@ -186,9 +187,108 @@
           </div>
         </div>
 
-        <h4 class="section-header">Force Powers</h4>
+        <h4 class="button-header">
+          Force Powers
+          <md-button class="float-right md-icon-button" @click="addForcePower">
+            <md-icon>add</md-icon>
+            <md-tooltip md-direction="left">Add Force Power</md-button>
+          </md-button>
+        </h4>
+        <div class="row">
+          <div class="small-12 column">
+            <transition name="fade" mode="out-in" appear>
+              <section v-if="npcForm.fields.powers.value.length === 0">
+                <div class="alert-box"><p>No Force Powers have been added to this NPC</p></div>
+              </section>
+              <section v-else>
+                <transition-group name="slide-fade" appear>
+                  <div class="row" v-for="(power, index) in npcForm.fields.powers.value" :key="index">
+                    <div class="small-12 column">
+                      <div class="row">
+                        <div class="small-3 column">
+                          <md-input-container>
+                            <label>Power</label>
+                            <md-input type="text" v-model="power.name"></md-input>
+                          </md-input-container>
+                        </div>
+                        <div class="small-9 column flex-row">
+                          <md-input-container class="fill-width">
+                            <label>Description</label>
+                            <md-textarea type="text" v-model="power.description"></md-textarea>
+                          </md-input-container>
+                          <md-button class="md-icon-button" @click="removeForcePower(index)">
+                            <md-icon>clear</md-icon>
+                            <md-tooltip md-direction="right">Remove Power</md-tooltip>
+                          </md-button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="small-1 column"></div>
+                        <div class="small-11 column">
+                          <transition-group name="slide-fade" appear>
+                            <div class="row" key="label">
+                              <div class="small-12 column">
+                                <p class="button-header">
+                                  Upgrades
+                                  <md-button class="md-icon-button" @click="addForcePowerUpgrade(index)">
+                                    <md-icon>add</md-icon>
+                                    <md-tooltip md-direction="left">Add Upgrade</md-button>
+                                  </md-button>
+                                </p>
+                              </div>
+                            </div>
+                            <div class="row" v-for="(upgrade, uIndex) in power.upgrades" :key="uIndex">
+                              <div class="small-3 column">
+                                <md-input-container>
+                                  <label>Effect</label>
+                                  <md-input type="text" v-model="upgrade.name"></md-input>
+                                </md-input-container>
+                              </div>
+                              <div class="small-9 column flex-row">
+                                <md-input-container class="fill-width">
+                                  <label>Description</label>
+                                  <md-textarea type="text" v-model="upgrade.description"></md-textarea>
+                                </md-input-container>
+                                <md-button class="md-icon-button" @click="removeForcePowerUpgrade(index, uIndex)">
+                                  <md-icon>clear</md-icon>
+                                  <md-tooltip md-direction="right">Remove Upgrade</md-tooltip>
+                                </md-button>
+                              </div>
+                            </div>
+                          </transition-group>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </transition-group>
+              </section>
+            </transition>
+          </div>
+        </div>
 
-        <h4 class="section-header">Equipment</h4>
+        <h4 class="button-header">
+          Equipment
+          <md-button class="float-right md-icon-button" @click="addEquipment">
+            <md-icon>add</md-icon>
+            <md-tooltip md-direction="left">Add Equipment</md-button>
+          </md-button>
+        </h4>
+        <div class="row">
+          <div class="small-12 column">
+            <transition name="fade" mode="out-in" appear>
+              <section v-if="npcForm.fields.equipment.value.length === 0">
+                <div class="alert-box"><p>No Equipment has been added to this NPC</p></div>
+              </section>
+              <section v-else>
+                <transition-group name="slide-fade" appear>
+                  <div class="row" v-for="(talent, index) in npcForm.fields.equipment.value" :key="index">
+                    equipment form goes here
+                  </div>
+                </transition-group>
+              </section>
+            </transition>
+          </div>
+        </div>
 
         <div class="text-right">
           <md-button @click="setView('list')" :disabled="saving">Cancel</md-button>

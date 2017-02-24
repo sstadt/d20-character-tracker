@@ -1,9 +1,9 @@
 
 
 function Upgrade() {
-  this.name = '';
-  this.xpCost = 0;
   this.effect = '';
+  this.xpCost = 0;
+  this.description = '';
 }
 
 function ForcePower() {
