@@ -1,5 +1,6 @@
 
 var config = require('../../../lib/config.js');
+var util = require('../../../lib/util.js');
 
 var Service = require('../../../classes/Service.js');
 var FieldSet = require('../../../classes/FieldSet.js');
@@ -85,8 +86,10 @@ module.exports = {
     },
     addTalent() {
       this.npcForm.fields.talents.value.push(new Talent());
+      // console.log(util.debug(this.npcForm.fields.talents.value));
     },
-    removeTalent(index) {
+    removeTalent(talentId) {
+      var index = util.getIndexById(this.npcForm.fields.talents.value, talentId);
       this.npcForm.fields.talents.value.splice(index, 1);
     },
     addForcePower() {

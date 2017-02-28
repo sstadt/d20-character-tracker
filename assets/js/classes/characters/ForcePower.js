@@ -1,12 +1,15 @@
 
+var util = require('../../lib/util.js');
 
 function Upgrade() {
+  this.id = util.guid();
   this.effect = '';
   this.xpCost = 0;
   this.description = '';
 }
 
 function ForcePower() {
+  this.id = util.guid();
   this.name = '';
   this.xpCost = 0;
   this.description = '';

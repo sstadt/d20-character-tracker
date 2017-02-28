@@ -148,44 +148,39 @@
           </div>
         </div>
 
-        <h4 class="button-header">
-          Talents and Abilities
-          <md-button class="float-right md-icon-button" @click="addTalent">
-            <md-icon>add</md-icon>
-            <md-tooltip md-direction="left">Add Talent</md-button>
-          </md-button>
-        </h4>
-        <div class="row">
-          <div class="small-12 column">
-            <transition name="fade" mode="out-in" appear>
-              <section v-if="npcForm.fields.talents.value.length === 0">
-                <div class="alert-box"><p>No Talents have been added to this NPC</p></div>
-              </section>
-              <section v-else>
-                <transition-group name="slide-fade" appear>
-                  <div class="row" v-for="(talent, index) in npcForm.fields.talents.value" :key="index">
-                    <div class="small-3 column">
-                      <md-input-container>
-                        <label>Name</label>
-                        <md-input type="text" v-model="talent.name"></md-input>
-                      </md-input-container>
-                    </div>
-                    <div class="small-9 column flex-row">
-                      <md-input-container class="fill-width">
-                        <label>Description</label>
-                        <md-textarea type="text" v-model="talent.description"></md-textarea>
-                      </md-input-container>
-                      <md-button class="md-icon-button" @click="removeTalent(index)">
-                        <md-icon>clear</md-icon>
-                        <md-tooltip md-direction="right">Remove Talent</md-tooltip>
-                      </md-button>
-                    </div>
-                  </div>
-                </transition-group>
-              </section>
-            </transition>
-          </div>
-        </div>
+        <md-table-card>
+          <md-toolbar>
+            <h1 class="md-title">Talents &amp; Abilities</h1>
+            <md-button class="float-right md-icon-button" @click="addTalent">
+              <md-icon>add</md-icon>
+              <md-tooltip md-direction="left">Add Talent</md-button>
+            </md-button>
+          </md-toolbar>
+          <md-table>
+            <md-table-header>
+              <md-table-row>
+                <md-table-head width="300px">Name</md-table-head>
+                <md-table-head>Description</md-table-head>
+                <md-table-head width="36px"></md-table-head>
+              </md-table-row>
+            </md-table-header>
+            <md-table-body>
+              <md-table-row v-for="(talent, index) in npcForm.fields.talents.value" :key="talent.id">
+                <md-table-cell>
+                  <content-editable v-model="talent.name" v-focus></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <content-editable contenteditable="true" v-model="talent.description"></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <md-button class="md-icon-button" @click="removeTalent(talent.id)">
+                    <md-icon>delete</md-icon>
+                  </md-button>
+                </md-table-cell>
+              </md-table-row>
+            </md-table-body>
+          </md-table>
+        </md-table-card>
 
         <h4 class="button-header">
           Force Powers

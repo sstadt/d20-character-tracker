@@ -1,4 +1,6 @@
 
+var sha1 = require('sha1');
+var moment = require('moment');
 
 module.exports = {
 
@@ -67,5 +69,19 @@ module.exports = {
       x: xPos,
       y: yPos
     };
+  },
+
+  /**
+   * guid
+   *
+   * Generate a GUID
+   *
+   * @return string The unique (but not compliant) GUID
+   */
+  guid() {
+    var timestamp = moment.unix(),
+      randomNum = Math.random() * (100000 - 1) + 1;
+
+    return sha1(`${timestamp}${randomNum}`);
   }
 };

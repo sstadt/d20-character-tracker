@@ -173,12 +173,14 @@ $chat-roll-label-color: $monsoon;
 
 // Tabs
 // ---------------------------
+
 $tabs-background-color: transparent;
 $tabs-header-color: rgba(0, 0, 0, .57);
 $tabs-header-color-active: rgba(0, 0, 0, .87);
 
 // Dice Controls
 // ---------------------------
+
 $dice-controls-icon-size: 30px;
 
 // Dice Pool
@@ -190,3 +192,9 @@ $dice-pool-bg-color: $alert-bg-color-success;
 // ---------------------------
 
 $character-skill-combat-bg: rgba(153, 153, 153, 0.1);
+
+// Editable Content
+// ---------------------------
+
+$contenteditable-highlight: $alert-bg-color-warning;
+$contenteditable-padding: 8px;

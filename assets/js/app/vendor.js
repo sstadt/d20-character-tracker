@@ -18,9 +18,7 @@ for (var lib in vendor) {
 Dropzone.autoDiscover = false;
 
 /**
- * Vue Material Components
+ * Vue Extensions
  */
 
-var VueMaterial = require('vue-material');
-
-Vue.use(VueMaterial);
+Vue.use(require('vue-material'));

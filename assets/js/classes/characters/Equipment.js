@@ -1,5 +1,8 @@
 
+var util = require('../../lib/util.js');
+
 function Equipment() {
+  this.id = util.guid();
   this.name = '';
   this.skill = '';
   this.encumbrance = 0;

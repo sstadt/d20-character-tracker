@@ -6,3 +6,18 @@ body {
   background-repeat: no-repeat;
   overflow-x: hidden;
 }
+
+[contenteditable="true"] {
+  padding: $contenteditable-padding;
+  width: 100%;
+
+  &:focus {
+    outline: 0;
+    background-color: $contenteditable-highlight;
+  }
+
+  .md-table-cell-container & {
+    margin-left: -$contenteditable-padding;
+    margin-right: -$contenteditable-padding;
+  }
+}
