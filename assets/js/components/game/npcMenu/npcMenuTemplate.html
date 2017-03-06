@@ -157,7 +157,7 @@
             </md-button>
           </md-toolbar>
           <md-table>
-            <md-table-header>
+            <md-table-header v-if="npcForm.fields.talents.value.length > 0">
               <md-table-row>
                 <md-table-head width="300px">Name</md-table-head>
                 <md-table-head>Description</md-table-head>
@@ -165,12 +165,12 @@
               </md-table-row>
             </md-table-header>
             <md-table-body>
-              <md-table-row v-for="(talent, index) in npcForm.fields.talents.value" :key="talent.id">
+              <md-table-row v-for="talent in npcForm.fields.talents.value" :key="talent.id">
                 <md-table-cell>
                   <content-editable v-model="talent.name" v-focus></content-editable>
                 </md-table-cell>
                 <md-table-cell>
-                  <content-editable contenteditable="true" v-model="talent.description"></content-editable>
+                  <content-editable v-model="talent.description"></content-editable>
                 </md-table-cell>
                 <md-table-cell>
                   <md-button class="md-icon-button" @click="removeTalent(talent.id)">
@@ -182,7 +182,62 @@
           </md-table>
         </md-table-card>
 
-        <h4 class="button-header">
+        <md-table-card>
+          <md-toolbar>
+            <h1 class="md-title">Force Powers</h1>
+            <md-button class="float-right md-icon-button" @click="addForcePower">
+              <md-icon>add</md-icon>
+              <md-tooltip md-direction="left">Add Force Power</md-button>
+            </md-button>
+          </md-toolbar>
+          <md-table>
+            <md-table-header v-if="npcForm.fields.powers.value.length > 0">
+              <md-table-row>
+                <md-table-head width="300px">Name</md-table-head>
+                <md-table-head>Description</md-table-head>
+                <md-table-head width="36px"></md-table-head>
+              </md-table-row>
+            </md-table-header>
+            <md-table-body v-for="power in npcForm.fields.powers.value" :key="power.id">
+              <md-table-row>
+                <md-table-cell>
+                  <content-editable v-model="power.name" v-focus></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <content-editable v-model="power.description"></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <md-button class="md-icon-button" @click="removeForcePower(power.id)">
+                    <md-icon>delete</md-icon>
+                  </md-button>
+                </md-table-cell>
+              </md-table-row>
+              <md-table-row v-for="upgrade in power.upgrades" :key="upgrade.id" class="upgrade-row">
+                <md-table-cell>
+                  <content-editable v-model="upgrade.name" v-focus></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <content-editable v-model="upgrade.description"></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <md-button class="md-icon-button" @click="removeForcePowerUpgrade(power.id, upgrade.id)">
+                    <md-icon>delete</md-icon>
+                  </md-button>
+                </md-table-cell>
+              </md-table-row>
+              <md-table-row>
+                <md-table-cell colspan="3">
+                  <md-button class="md-icon-button" @click="addForcePowerUpgrade(power.id)">
+                    <icon name="upgrade"></icon>
+                    <md-tooltip md-direction="left">Add Upgrade</md-button>
+                  </md-button>
+                </md-table-cell>
+              </md-table-row>
+            </md-table-body>
+          </md-table>
+        </md-table-card>
+
+        <!-- <h4 class="button-header">
           Force Powers
           <md-button class="float-right md-icon-button" @click="addForcePower">
             <md-icon>add</md-icon>
@@ -259,7 +314,7 @@
               </section>
             </transition>
           </div>
-        </div>
+        </div> -->
 
         <h4 class="button-header">
           Equipment

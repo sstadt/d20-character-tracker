@@ -1,7 +1,7 @@
 {
   "name": "sw-game-table",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1",
   "description": "A game table application for FFG Star Wars RPG games.",
   "keywords": [],
   "dependencies": {

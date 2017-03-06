@@ -86,7 +86,6 @@ module.exports = {
     },
     addTalent() {
       this.npcForm.fields.talents.value.push(new Talent());
-      // console.log(util.debug(this.npcForm.fields.talents.value));
     },
     removeTalent(talentId) {
       var index = util.getIndexById(this.npcForm.fields.talents.value, talentId);
@@ -95,13 +94,22 @@ module.exports = {
     addForcePower() {
       this.npcForm.fields.powers.value.push(new ForcePower());
     },
-    removeForcePower(index) {
+    removeForcePower(powerId) {
+      var index = util.getIndexById(this.npcForm.fields.powers.value, powerId);
+      console.log(`power ID: ${powerId}`);
+      console.log(`power index: ${index}`);
+      console.log(util.debug(this.npcForm.fields.powers.value));
       this.npcForm.fields.powers.value.splice(index, 1);
+      console.log(util.debug(this.npcForm.fields.powers.value));
     },
-    addForcePowerUpgrade(index) {
+    addForcePowerUpgrade(powerId) {
+      var index = util.getIndexById(this.npcForm.fields.powers.value, powerId);
       this.npcForm.fields.powers.value[index].addUpgrade();
     },
-    removeForcePowerUpgrade(powerIndex, upgradeIndex) {
+    removeForcePowerUpgrade(powerId, upgradeId) {
+      var powerIndex = util.getIndexById(this.npcForm.fields.powers.value, powerId),
+        upgradeIndex = util.getIndexById(this.npcForm.fields.powers.value[powerIndex].upgrades, upgradeId);
+
       this.npcForm.fields.powers.value[powerIndex].upgrades.splice(upgradeIndex, 1);
     },
     addEquipment() {
