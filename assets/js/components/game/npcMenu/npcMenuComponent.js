@@ -51,15 +51,31 @@ module.exports = {
     return {
       view: 'list',
       skillList: config.skills,
+      rangeBands: config.rangeBands,
       npcForm: new FieldSet(npcValidation),
       saving: false
     };
   },
   computed: {
-    newNpcImage() {
+    npcFormImage() {
       var newImage = this.npcForm.fields.imageUrl.value;
 
       return (this.npcForm.fields.imageUrl.hasErrors || newImage === '') ? DEFAULT_NPC_IMAGE : this.npcForm.fields.imageUrl.value;
+    },
+    npcFormWeapons() {
+      return _.filter(this.npcForm.fields.equipment.value, function (equipment) {
+        return equipment.type === 'weapon';
+      });
+    },
+    npcFormArmor() {
+      return _.filter(this.npcForm.fields.equipment.value, function (equipment) {
+        return equipment.type === 'armor';
+      });
+    },
+    npcFormGear() {
+      return _.filter(this.npcForm.fields.equipment.value, function (equipment) {
+        return equipment.type === 'gear';
+      });
     }
   },
   methods: {
@@ -96,11 +112,7 @@ module.exports = {
     },
     removeForcePower(powerId) {
       var index = util.getIndexById(this.npcForm.fields.powers.value, powerId);
-      console.log(`power ID: ${powerId}`);
-      console.log(`power index: ${index}`);
-      console.log(util.debug(this.npcForm.fields.powers.value));
       this.npcForm.fields.powers.value.splice(index, 1);
-      console.log(util.debug(this.npcForm.fields.powers.value));
     },
     addForcePowerUpgrade(powerId) {
       var index = util.getIndexById(this.npcForm.fields.powers.value, powerId);
@@ -112,10 +124,11 @@ module.exports = {
 
       this.npcForm.fields.powers.value[powerIndex].upgrades.splice(upgradeIndex, 1);
     },
-    addEquipment() {
-      this.npcForm.fields.equipment.value.push(new Equipment());
+    addEquipment(type) {
+      this.npcForm.fields.equipment.value.push(new Equipment({ type }));
     },
-    removeEquipment(index) {
+    removeEquipment(equipmentId) {
+      var index = util.getIndexById(this.npcForm.fields.equipment.value, equipmentId);
       this.npcForm.fields.equipment.value.splice(index, 1);
     }
   }

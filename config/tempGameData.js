@@ -2,6 +2,12 @@
 
 
 module.exports.gameData = {
+  rangeBands: [
+    'short',
+    'medium',
+    'long',
+    'extreme'
+  ],
   skills: [{
     name: 'Astrogation',
     ability: 'intellect',

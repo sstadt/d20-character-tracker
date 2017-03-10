@@ -7,7 +7,7 @@
       <form @submit.stop.prevent="addNpc">
         <div class="row">
           <div class="small-12 medium-4 column">
-            <img :src="newNpcImage" />
+            <img :src="npcFormImage" />
           </div>
           <div class="small-12 medium-8 column">
             <md-input-container :class="{'md-input-invalid': npcForm.fields.name.hasErrors}">
@@ -190,23 +190,25 @@
               <md-tooltip md-direction="left">Add Force Power</md-button>
             </md-button>
           </md-toolbar>
-          <md-table>
-            <md-table-header v-if="npcForm.fields.powers.value.length > 0">
+          <md-table v-if="npcForm.fields.powers.value.length > 0">
+            <md-table-header>
               <md-table-row>
                 <md-table-head width="300px">Name</md-table-head>
                 <md-table-head>Description</md-table-head>
                 <md-table-head width="36px"></md-table-head>
               </md-table-row>
             </md-table-header>
-            <md-table-body v-for="power in npcForm.fields.powers.value" :key="power.id">
+          </md-table>
+          <md-table v-for="power in npcForm.fields.powers.value" :key="power.id">
+            <md-table-body>
               <md-table-row>
-                <md-table-cell>
+                <md-table-cell width="300px">
                   <content-editable v-model="power.name" v-focus></content-editable>
                 </md-table-cell>
                 <md-table-cell>
                   <content-editable v-model="power.description"></content-editable>
                 </md-table-cell>
-                <md-table-cell>
+                <md-table-cell width="36px">
                   <md-button class="md-icon-button" @click="removeForcePower(power.id)">
                     <md-icon>delete</md-icon>
                   </md-button>
@@ -237,108 +239,58 @@
           </md-table>
         </md-table-card>
 
-        <!-- <h4 class="button-header">
-          Force Powers
-          <md-button class="float-right md-icon-button" @click="addForcePower">
-            <md-icon>add</md-icon>
-            <md-tooltip md-direction="left">Add Force Power</md-button>
-          </md-button>
-        </h4>
-        <div class="row">
-          <div class="small-12 column">
-            <transition name="fade" mode="out-in" appear>
-              <section v-if="npcForm.fields.powers.value.length === 0">
-                <div class="alert-box"><p>No Force Powers have been added to this NPC</p></div>
-              </section>
-              <section v-else>
-                <transition-group name="slide-fade" appear>
-                  <div class="row" v-for="(power, index) in npcForm.fields.powers.value" :key="index">
-                    <div class="small-12 column">
-                      <div class="row">
-                        <div class="small-3 column">
-                          <md-input-container>
-                            <label>Power</label>
-                            <md-input type="text" v-model="power.name"></md-input>
-                          </md-input-container>
-                        </div>
-                        <div class="small-9 column flex-row">
-                          <md-input-container class="fill-width">
-                            <label>Description</label>
-                            <md-textarea type="text" v-model="power.description"></md-textarea>
-                          </md-input-container>
-                          <md-button class="md-icon-button" @click="removeForcePower(index)">
-                            <md-icon>clear</md-icon>
-                            <md-tooltip md-direction="right">Remove Power</md-tooltip>
-                          </md-button>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="small-1 column"></div>
-                        <div class="small-11 column">
-                          <transition-group name="slide-fade" appear>
-                            <div class="row" key="label">
-                              <div class="small-12 column">
-                                <p class="button-header">
-                                  Upgrades
-                                  <md-button class="md-icon-button" @click="addForcePowerUpgrade(index)">
-                                    <md-icon>add</md-icon>
-                                    <md-tooltip md-direction="left">Add Upgrade</md-button>
-                                  </md-button>
-                                </p>
-                              </div>
-                            </div>
-                            <div class="row" v-for="(upgrade, uIndex) in power.upgrades" :key="uIndex">
-                              <div class="small-3 column">
-                                <md-input-container>
-                                  <label>Effect</label>
-                                  <md-input type="text" v-model="upgrade.name"></md-input>
-                                </md-input-container>
-                              </div>
-                              <div class="small-9 column flex-row">
-                                <md-input-container class="fill-width">
-                                  <label>Description</label>
-                                  <md-textarea type="text" v-model="upgrade.description"></md-textarea>
-                                </md-input-container>
-                                <md-button class="md-icon-button" @click="removeForcePowerUpgrade(index, uIndex)">
-                                  <md-icon>clear</md-icon>
-                                  <md-tooltip md-direction="right">Remove Upgrade</md-tooltip>
-                                </md-button>
-                              </div>
-                            </div>
-                          </transition-group>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </transition-group>
-              </section>
-            </transition>
-          </div>
-        </div> -->
-
-        <h4 class="button-header">
-          Equipment
-          <md-button class="float-right md-icon-button" @click="addEquipment">
-            <md-icon>add</md-icon>
-            <md-tooltip md-direction="left">Add Equipment</md-button>
-          </md-button>
-        </h4>
-        <div class="row">
-          <div class="small-12 column">
-            <transition name="fade" mode="out-in" appear>
-              <section v-if="npcForm.fields.equipment.value.length === 0">
-                <div class="alert-box"><p>No Equipment has been added to this NPC</p></div>
-              </section>
-              <section v-else>
-                <transition-group name="slide-fade" appear>
-                  <div class="row" v-for="(talent, index) in npcForm.fields.equipment.value" :key="index">
-                    equipment form goes here
-                  </div>
-                </transition-group>
-              </section>
-            </transition>
-          </div>
-        </div>
+        <md-table-card>
+          <md-toolbar>
+            <h1 class="md-title">Equipment</h1>
+            <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+              <md-button class="md-icon-button" md-menu-trigger><md-icon>add</md-icon></md-button>
+              <md-menu-content>
+                <md-menu-item @click="addEquipment('weapon')">Weapon</md-menu-item>
+                <md-menu-item @click="addEquipment('armor')">Armor</md-menu-item>
+                <md-menu-item @click="addEquipment('gear')">Gear</md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </md-toolbar>
+          <md-table>
+            <md-table-header v-if="npcFormWeapons.length > 0">
+              <md-table-row>
+                <md-table-head width="300px">Name</md-table-head>
+                <md-table-head>Skill</md-table-head>
+                <md-table-head>Damage</md-table-head>
+                <md-table-head>Crit</md-table-head>
+                <md-table-head>Range</md-table-head>
+                <md-table-head width="36px"></md-table-head>
+              </md-table-row>
+            </md-table-header>
+            <md-table-body>
+              <md-table-row v-for="weapon in npcFormWeapons" :key="weapon.id">
+                <md-table-cell>
+                  <content-editable v-model="weapon.name" v-focus></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <content-editable v-model="weapon.skill"></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <content-editable v-model="weapon.damage"></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <content-editable v-model="weapon.crit"></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <content-editable v-model="weapon.range"></content-editable>
+                  <md-select v-model="weapon.range">
+                    <md-option v-for="range in rangeBands" :value="range">{{ range }}</md-option>
+                  </md-select>
+                </md-table-cell>
+                <md-table-cell>
+                  <md-button class="md-icon-button" @click="removeEquipment(weapon.id)">
+                    <md-icon>delete</md-icon>
+                  </md-button>
+                </md-table-cell>
+              </md-table-row>
+            </md-table-body>
+          </md-table>
+        </md-table-card>
 
         <div class="text-right">
           <md-button @click="setView('list')" :disabled="saving">Cancel</md-button>

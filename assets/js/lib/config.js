@@ -6,6 +6,8 @@
  *
  */
 
+var tempGameData = require('../../../config/tempGameData.js');
+
 module.exports = {
 
   /*
@@ -18,7 +20,13 @@ module.exports = {
    * Skills - pulled from BE
    * ----------------------------
    */
-  skills: require('../../../config/tempGameData.js').gameData.skills,
+  skills: tempGameData.gameData.skills,
+
+  /*
+   * Range Bands - pulled from BE
+   * ----------------------------
+   */
+  rangeBands: tempGameData.gameData.rangeBands,
 
   /*
    * Endpoints

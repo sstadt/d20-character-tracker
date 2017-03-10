@@ -1,18 +1,29 @@
 
 var util = require('../../lib/util.js');
 
-function Equipment() {
+function Equipment(options = {}) {
   this.id = util.guid();
+  this.type = options.type || 'gear';
   this.name = '';
-  this.skill = '';
   this.encumbrance = 0;
   this.price = 0;
-  this.damage = 0; // weapon only
-  this.crit = 0; // weapon only
-  this.range = ''; // weapon only
-  this.defense = 0; // armor only
-  this.soak = 0; // armor only
-  this.hardPoints = 0; // weapon/armor only
+
+  switch (options.type) {
+    case 'weapon':
+      this.skill = '';
+      this.damage = 0;
+      this.crit = 0;
+      this.range = '';
+      this.hardPoints = 0;
+      break;
+
+    case 'armor':
+      this.defense = 0;
+      this.soak = 0;
+      this.hardPoints = 0;
+      break;
+  }
+
 }
 
 module.exports = Equipment;

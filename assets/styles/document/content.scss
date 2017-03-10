@@ -10,10 +10,16 @@ body {
 [contenteditable="true"] {
   padding: $contenteditable-padding;
   width: 100%;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+
+  &:hover, &:focus {
+    background-color: $contenteditable-highlight;
+  }
 
   &:focus {
     outline: 0;
-    background-color: $contenteditable-highlight;
+    border: 1px solid darken($contenteditable-highlight, 5%);
   }
 
   .md-table-cell-container & {
