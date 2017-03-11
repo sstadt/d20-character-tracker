@@ -3,6 +3,7 @@
 
 module.exports.gameData = {
   rangeBands: [
+    'engaged',
     'short',
     'medium',
     'long',
@@ -107,6 +108,11 @@ module.exports.gameData = {
   }, {
     name: 'Melee',
     ability: 'brawn',
+    combat: true
+  }, {
+    name: 'Lightsaber',
+    ability: 'brawn',
+    altAbility: ['brawn', 'agility', 'intellect', 'cunning', 'willpower', 'presence'],
     combat: true
   }, {
     name: 'Ranged: Light',

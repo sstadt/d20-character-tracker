@@ -13,13 +13,13 @@ body {
   border-radius: 2px;
   transition: all 0.3s ease;
 
-  &:hover, &:focus {
-    background-color: $contenteditable-highlight;
+  &:hover {
+    background-color: $contenteditable-bg;
   }
 
   &:focus {
     outline: 0;
-    border: 1px solid darken($contenteditable-highlight, 5%);
+    background-color: $contenteditable-bg-focus;
   }
 
   .md-table-cell-container & {

@@ -76,3 +76,14 @@ div.md-theme-default.md-tabs > .md-tabs-navigation.md-whiteframe {
     margin-right: -($global-gutter / 2);
   }
 }
+
+.md-table .md-table-cell .md-table-cell-container {
+  @media #{$medium-only} {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  @media #{$small-only} {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

@@ -52,6 +52,7 @@ module.exports = {
       view: 'list',
       skillList: config.skills,
       rangeBands: config.rangeBands,
+      combatSkills: _.filter(config.skills, function (skill) { return skill.combat === true; }),
       npcForm: new FieldSet(npcValidation),
       saving: false
     };

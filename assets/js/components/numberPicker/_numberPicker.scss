@@ -1,0 +1,23 @@
+
+.number-picker {
+  .number-picker-label {
+    margin-right: 4px;
+    min-width: 40px;
+    line-height: 34px;
+    font-size: rem-calc(30);
+  }
+
+  .number-picker-controls {
+    width: 17px;
+    height: 34px;
+
+    .md-button {
+      margin: 0;
+      padding: 0;
+      width: 17px;
+      min-width: 17px;
+      height: 17px;
+      min-height: 17px;
+    }
+  }
+}

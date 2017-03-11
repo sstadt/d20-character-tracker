@@ -241,24 +241,21 @@
 
         <md-table-card>
           <md-toolbar>
-            <h1 class="md-title">Equipment</h1>
-            <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
-              <md-button class="md-icon-button" md-menu-trigger><md-icon>add</md-icon></md-button>
-              <md-menu-content>
-                <md-menu-item @click="addEquipment('weapon')">Weapon</md-menu-item>
-                <md-menu-item @click="addEquipment('armor')">Armor</md-menu-item>
-                <md-menu-item @click="addEquipment('gear')">Gear</md-menu-item>
-              </md-menu-content>
-            </md-menu>
+            <h1 class="md-title">Weapons</h1>
+            <md-button class="md-icon-button" @click="addEquipment('weapon')">
+              <md-icon>add</md-icon>
+              <md-tooltip md-direction="left">Add Weapon</md-button>
+            </md-button>
           </md-toolbar>
           <md-table>
             <md-table-header v-if="npcFormWeapons.length > 0">
               <md-table-row>
                 <md-table-head width="300px">Name</md-table-head>
                 <md-table-head>Skill</md-table-head>
-                <md-table-head>Damage</md-table-head>
-                <md-table-head>Crit</md-table-head>
+                <md-table-head width="60px">Damage</md-table-head>
+                <md-table-head width="60px">Crit</md-table-head>
                 <md-table-head>Range</md-table-head>
+                <md-table-head width="60px">Encumbrance</md-table-head>
                 <md-table-head width="36px"></md-table-head>
               </md-table-row>
             </md-table-header>
@@ -268,22 +265,102 @@
                   <content-editable v-model="weapon.name" v-focus></content-editable>
                 </md-table-cell>
                 <md-table-cell>
-                  <content-editable v-model="weapon.skill"></content-editable>
+                  <md-select v-model="weapon.skill">
+                    <md-option v-for="skill in combatSkills" :value="skill.name">{{ skill.name }}</md-option>
+                  </md-select>
                 </md-table-cell>
                 <md-table-cell>
-                  <content-editable v-model="weapon.damage"></content-editable>
+                  <number-picker v-model="weapon.damage"></number-picker>
                 </md-table-cell>
                 <md-table-cell>
-                  <content-editable v-model="weapon.crit"></content-editable>
+                  <number-picker v-model="weapon.crit"></number-picker>
                 </md-table-cell>
                 <md-table-cell>
-                  <content-editable v-model="weapon.range"></content-editable>
                   <md-select v-model="weapon.range">
                     <md-option v-for="range in rangeBands" :value="range">{{ range }}</md-option>
                   </md-select>
                 </md-table-cell>
                 <md-table-cell>
+                  <number-picker v-model="weapon.encumbrance"></number-picker>
+                </md-table-cell>
+                <md-table-cell>
                   <md-button class="md-icon-button" @click="removeEquipment(weapon.id)">
+                    <md-icon>delete</md-icon>
+                  </md-button>
+                </md-table-cell>
+              </md-table-row>
+            </md-table-body>
+          </md-table>
+        </md-table-card>
+        
+        <md-table-card>
+          <md-toolbar>
+            <h1 class="md-title">Armor</h1>
+            <md-button class="md-icon-button" @click="addEquipment('armor')">
+              <md-icon>add</md-icon>
+              <md-tooltip md-direction="left">Add Armor</md-button>
+            </md-button>
+          </md-toolbar>
+          <md-table>
+            <md-table-header v-if="npcFormArmor.length > 0">
+              <md-table-row>
+                <md-table-head>Name</md-table-head>
+                <md-table-head width="60px">Defense</md-table-head>
+                <md-table-head width="60px">Soak</md-table-head>
+                <md-table-head width="60px">Encumbrance</md-table-head>
+                <md-table-head width="36px"></md-table-head>
+              </md-table-row>
+            </md-table-header>
+            <md-table-body>
+              <md-table-row v-for="armor in npcFormArmor" :key="armor.id">
+                <md-table-cell>
+                  <content-editable v-model="armor.name" v-focus></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <number-picker v-model="armor.defense"></number-picker>
+                </md-table-cell>
+                <md-table-cell>
+                  <number-picker v-model="armor.soak"></number-picker>
+                </md-table-cell>
+                <md-table-cell>
+                  <number-picker v-model="armor.encumbrance"></number-picker>
+                </md-table-cell>
+                <md-table-cell>
+                  <md-button class="md-icon-button" @click="removeEquipment(armor.id)">
+                    <md-icon>delete</md-icon>
+                  </md-button>
+                </md-table-cell>
+              </md-table-row>
+            </md-table-body>
+          </md-table>
+        </md-table-card>
+
+        <md-table-card>
+          <md-toolbar>
+            <h1 class="md-title">Gear</h1>
+            <md-button class="md-icon-button" @click="addEquipment('gear')">
+              <md-icon>add</md-icon>
+              <md-tooltip md-direction="left">Add Gear</md-button>
+            </md-button>
+          </md-toolbar>
+          <md-table>
+            <md-table-header v-if="npcFormGear.length > 0">
+              <md-table-row>
+                <md-table-head>Name</md-table-head>
+                <md-table-head width="60px">Encumbrance</md-table-head>
+                <md-table-head width="36px"></md-table-head>
+              </md-table-row>
+            </md-table-header>
+            <md-table-body>
+              <md-table-row v-for="gear in npcFormGear" :key="gear.id">
+                <md-table-cell>
+                  <content-editable v-model="gear.name" v-focus></content-editable>
+                </md-table-cell>
+                <md-table-cell>
+                  <number-picker v-model="gear.encumbrance"></number-picker>
+                </md-table-cell>
+                <md-table-cell>
+                  <md-button class="md-icon-button" @click="removeEquipment(gear.id)">
                     <md-icon>delete</md-icon>
                   </md-button>
                 </md-table-cell>
