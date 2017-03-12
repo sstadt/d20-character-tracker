@@ -7,6 +7,14 @@ body {
   overflow-x: hidden;
 }
 
+.pad-top {
+  margin-top: 1rem;
+}
+
+.pad-bottom {
+  margin-bottom: 1rem;
+}
+
 [contenteditable="true"] {
   padding: $contenteditable-padding;
   width: 100%;

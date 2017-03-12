@@ -37,114 +37,61 @@
           </div>
         </div>
 
-        <h4 class="button-header">Statistics</h4>
-        <div class="row small-up-6">
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.brawn.hasErrors}">
-              <label>Brawn</label>
-              <md-input type="number" v-model="npcForm.fields.brawn.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.brawn.hasErrors">{{ npcForm.fields.brawn.errors[0] }}</span>
-            </md-input-container>
-          </div>
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.agility.hasErrors}">
-              <label>Agility</label>
-              <md-input type="number" v-model="npcForm.fields.agility.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.agility.hasErrors">{{ npcForm.fields.agility.errors[0] }}</span>
-            </md-input-container>
-          </div>
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.intellect.hasErrors}">
-              <label>Intellect</label>
-              <md-input type="number" v-model="npcForm.fields.intellect.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.intellect.hasErrors">{{ npcForm.fields.intellect.errors[0] }}</span>
-            </md-input-container>
-          </div>
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.cunning.hasErrors}">
-              <label>Cunning</label>
-              <md-input type="number" v-model="npcForm.fields.cunning.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.cunning.hasErrors">{{ npcForm.fields.cunning.errors[0] }}</span>
-            </md-input-container>
-          </div>
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.willpower.hasErrors}">
-              <label>Willpower</label>
-              <md-input type="number" v-model="npcForm.fields.willpower.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.willpower.hasErrors">{{ npcForm.fields.willpower.errors[0] }}</span>
-            </md-input-container>
-          </div>
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.presence.hasErrors}">
-              <label>Presence</label>
-              <md-input type="number" v-model="npcForm.fields.presence.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.presence.hasErrors">{{ npcForm.fields.presence.errors[0] }}</span>
-            </md-input-container>
-          </div>
-        </div>
-
-        <h4 class="button-header">Combat</h4>
-        <div class="row small-up-5">
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.soak.hasErrors}">
-              <label>Soak</label>
-              <md-input type="number" v-model="npcForm.fields.soak.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.soak.hasErrors">{{ npcForm.fields.soak.errors[0] }}</span>
-            </md-input-container>
-          </div>
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.woundThreshold.hasErrors}">
-              <label>Wound Threshold</label>
-              <md-input type="number" v-model="npcForm.fields.woundThreshold.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.woundThreshold.hasErrors">{{ npcForm.fields.woundThreshold.errors[0] }}</span>
-            </md-input-container>
-          </div>
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.strainThreshold.hasErrors}">
-              <label>Strain Threshold</label>
-              <md-input type="number" v-model="npcForm.fields.strainThreshold.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.strainThreshold.hasErrors">{{ npcForm.fields.strainThreshold.errors[0] }}</span>
-            </md-input-container>
-          </div>
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.defenseMelee.hasErrors}">
-              <label>Defense (M)</label>
-              <md-input type="number" v-model="npcForm.fields.defenseMelee.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.defenseMelee.hasErrors">{{ npcForm.fields.defenseMelee.errors[0] }}</span>
-            </md-input-container>
-          </div>
-          <div class="column">
-            <md-input-container :class="{'md-input-invalid': npcForm.fields.defenseRanged.hasErrors}">
-              <label>Defense (R)</label>
-              <md-input type="number" v-model="npcForm.fields.defenseRanged.value"></md-input>
-              <span class="md-error" v-show="npcForm.fields.defenseRanged.hasErrors">{{ npcForm.fields.defenseRanged.errors[0] }}</span>
-            </md-input-container>
-          </div>
-        </div>
-
-        <h4 class="button-header">Skills</h4>
         <div class="row">
-          <div class="column small-6">
-            <md-list>
-              <skill-editor
-                v-for="(skill, index) in npcForm.fields.skills.value"
-                v-if="index < npcForm.fields.skills.value.length / 2"
-                :skill="skill"
-                @increment="incrementNewNpcSkill"
-                @decrement="decrementNewNpcSkill">
-              </skill-editor>
-            </md-list>
+          <div class="small-6 column">
+            <h3>Statistics</h3>
+            <div class="row small-up-2">
+              <div class="column">
+                <number-picker v-model="npcForm.fields.brawn.value" label="Brawn"></number-picker>
+              </div>
+              <div class="column">
+                <number-picker v-model="npcForm.fields.agility.value" label="Agility"></number-picker>
+              </div>
+              <div class="column">
+                <number-picker v-model="npcForm.fields.intellect.value" label="Intellect"></number-picker>
+              </div>
+              <div class="column">
+                <number-picker v-model="npcForm.fields.cunning.value" label="Cunning"></number-picker>
+              </div>
+              <div class="column">
+                <number-picker v-model="npcForm.fields.willpower.value" label="Willpower"></number-picker>
+              </div>
+              <div class="column">
+                <number-picker v-model="npcForm.fields.presence.value" label="Presence"></number-picker>
+              </div>
+            </div>
           </div>
-          <div class="column small-6">
-            <md-list>
-              <skill-editor
-                v-for="(skill, index) in npcForm.fields.skills.value"
-                v-if="index >= npcForm.fields.skills.value.length / 2"
-                :skill="skill"
-                @increment="incrementNewNpcSkill"
-                @decrement="decrementNewNpcSkill">
-              </skill-editor>
-            </md-list>
+          <div class="small-6 column">
+            <h3>Combat</h3>
+            <div class="row small-up-2">
+              <div class="column">
+                <number-picker v-model="npcForm.fields.woundThreshold.value" label="Wound Threshold"></number-picker>
+              </div>
+              <div class="column">
+                <number-picker v-model="npcForm.fields.strainThreshold.value" label="Strain Threshold"></number-picker>
+              </div>
+              <div class="column">
+                <number-picker v-model="npcForm.fields.defenseMelee.value" label="Melee Defense"></number-picker>
+              </div>
+              <div class="column">
+                <number-picker v-model="npcForm.fields.defenseRanged.value" label="Range Defense"></number-picker>
+              </div>
+              <div class="column">
+                <number-picker v-model="npcForm.fields.soak.value" label="Soak"></number-picker>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Skills</h3>
+        <div class="row small-up-3 pad-bottom">
+          <div class="column" v-for="(skill, index) in npcForm.fields.skills.value">
+            <number-picker
+              v-model="skill.rank"
+              :label="skill.name"
+              :subtitle="skill.ability"
+              :icon="skill.combat ? 'dl44' : ''">
+            </number-picker>
           </div>
         </div>
 
@@ -292,7 +239,7 @@
             </md-table-body>
           </md-table>
         </md-table-card>
-        
+
         <md-table-card>
           <md-toolbar>
             <h1 class="md-title">Armor</h1>
@@ -369,7 +316,7 @@
           </md-table>
         </md-table-card>
 
-        <div class="text-right">
+        <div class="text-right pad-top">
           <md-button @click="setView('list')" :disabled="saving">Cancel</md-button>
           <md-button type="submit" :disabled="saving">Add NPC</md-button>
         </div>

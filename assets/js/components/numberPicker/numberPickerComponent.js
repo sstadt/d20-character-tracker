@@ -1,7 +1,7 @@
 
 module.exports = {
   template: require('./numberPickerTemplate.html'),
-  props: ['value'],
+  props: ['value', 'label', 'subtitle', 'icon'],
   data() {
     var val = parseInt(this.value, 10);
 
@@ -10,6 +10,7 @@ module.exports = {
     };
   },
   created() {
+    console.log(this.highlight);
     this.$emit('input', this.innerValue);
   },
   watch: {

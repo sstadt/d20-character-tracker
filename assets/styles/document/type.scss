@@ -50,3 +50,9 @@ a {
     bottom: 0;
   }
 }
+
+.flex-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
