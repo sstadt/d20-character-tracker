@@ -2,9 +2,10 @@
 <div class="npc-menu">
   <transition name="slide-fade" mode="out-in" appear>
 
-    <section v-if="view === 'new'">
-      <h3>New NPC</h3>
-      <form @submit.stop.prevent="addNpc">
+    <section v-if="view === 'form'">
+      <h3 v-if="npcForm.fields.name.id !== ''">New NPC</h3>
+      <h3 v-else>Edit NPC</h3>
+      <form @submit.stop.prevent="submitNpc">
         <div class="row">
           <div class="small-12 medium-4 column">
             <img :src="npcFormImage" />
@@ -344,15 +345,15 @@
       </form>
     </section>
 
-    <section v-else-if="view === 'edit'">
-      <p>edit</p>
-      <md-button @click="setView('list')">Cancel</md-button>
-      <md-button>Save</md-button>
+    <section v-else-if="view === 'show'">
+      <p>show</p>
+      <md-button @click="setView('form')">Edit NPC</md-button>
+      <md-button @click="setView('list')">NPC List</md-button>
     </section>
 
     <section v-else>
       <div class="controls">
-        <md-button @click="setView('new')">New NPC</md-button>
+        <md-button @click="newNpc()">New NPC</md-button>
       </div>
       <p>TODO (once NPCs are saving): NPC List</p>
     </section>

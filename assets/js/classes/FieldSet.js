@@ -169,7 +169,7 @@ FieldSet.prototype.export = function () { // TODO: coverage
 FieldSet.prototype.reset = function () { // TODO: coverage
   for (var field in this.fields) {
     if (this.fields.hasOwnProperty(field)) {
-      this.fields[field].value = this.rules[rule].default || '';
+      this.fields[field].value = this.rules[field].default || '';
       this.fields[field].errors = [];
       this.fields[field].hasErrors = false;
     }

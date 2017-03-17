@@ -10,7 +10,6 @@ module.exports = {
     };
   },
   created() {
-    console.log(this.highlight);
     this.$emit('input', this.innerValue);
   },
   watch: {

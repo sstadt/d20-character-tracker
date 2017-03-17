@@ -17,6 +17,7 @@ var skillList = config.skills.map(function (skill) {
 });
 
 var npcValidation = {
+  id:              {},
   game:            {},
   name:            { required: true },
   type:            { required: true },
@@ -83,6 +84,10 @@ module.exports = {
     setView(view) {
       this.view = view;
     },
+    newNpc() {
+      this.npcForm.reset();
+      this.setView('form');
+    },
     incrementNewNpcSkill(name) {
       var index = _.findIndex(this.npcForm.fields.skills.value, function (skill) {
         return skill.name === name;
@@ -131,6 +136,19 @@ module.exports = {
     removeEquipment(equipmentId) {
       var index = util.getIndexById(this.npcForm.fields.equipment.value, equipmentId);
       this.npcForm.fields.equipment.value.splice(index, 1);
+    },
+    submitNpc() {
+      if (this.npcForm.fields.id !== '') {
+        this.addNpc();
+      } else {
+        this.saveNpc();
+      }
+    },
+    addNpc() {
+      console.log('add NPC');
+    },
+    saveNpc() {
+      console.log('save NPC');
     }
   }
 };
