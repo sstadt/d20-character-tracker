@@ -21,6 +21,13 @@
   flex-flow: column;
 }
 
+.flex-row {
+  svg.icon-image + .md-input-container,
+  .md-input-container + svg.icon-image {
+    margin-left: 10px;
+  }
+}
+
 .flex-column, .flex-row {
   display: flex;
   flex: 1;

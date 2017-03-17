@@ -22,7 +22,6 @@ require('../components/toolbar/toolbar.js');
 require('../components/icon/icon.js');
 require('../components/authentication/authentication.js');
 require('../components/jukebox/jukebox.js');
-require('../components/contentEditable/contentEditable.js');
 require('../components/numberPicker/numberPicker.js');
 
 // user components

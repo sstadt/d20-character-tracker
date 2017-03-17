@@ -114,10 +114,14 @@
             <md-table-body>
               <md-table-row v-for="talent in npcForm.fields.talents.value" :key="talent.id">
                 <md-table-cell>
-                  <content-editable v-model="talent.name" v-focus></content-editable>
+                  <md-input-container>
+                    <md-input v-model="talent.name"></md-input>
+                  </md-input-container>
                 </md-table-cell>
                 <md-table-cell>
-                  <content-editable v-model="talent.description"></content-editable>
+                  <md-input-container>
+                    <md-textarea v-model="talent.description"></md-textarea>
+                  </md-input-container>
                 </md-table-cell>
                 <md-table-cell>
                   <md-button class="md-icon-button" @click="removeTalent(talent.id)">
@@ -150,10 +154,14 @@
             <md-table-body>
               <md-table-row>
                 <md-table-cell width="300px">
-                  <content-editable v-model="power.name" v-focus></content-editable>
+                  <md-input-container>
+                    <md-input v-model="power.name"></md-input>
+                  </md-input-container>
                 </md-table-cell>
                 <md-table-cell>
-                  <content-editable v-model="power.description"></content-editable>
+                  <md-input-container>
+                    <md-textarea v-model="power.description"></md-textarea>
+                  </md-input-container>
                 </md-table-cell>
                 <md-table-cell width="36px">
                   <md-button class="md-icon-button" @click="removeForcePower(power.id)">
@@ -163,10 +171,17 @@
               </md-table-row>
               <md-table-row v-for="upgrade in power.upgrades" :key="upgrade.id" class="upgrade-row">
                 <md-table-cell>
-                  <content-editable v-model="upgrade.name" v-focus></content-editable>
+                  <div class="flex-row">
+                    <icon name="upgrade"></icon>
+                    <md-input-container class="fill-width">
+                      <md-input v-model="upgrade.name"></md-input>
+                    </md-input-container>
+                  </div>
                 </md-table-cell>
                 <md-table-cell>
-                  <content-editable v-model="upgrade.description"></content-editable>
+                  <md-input-container>
+                    <md-textarea v-model="upgrade.description"></md-textarea>
+                  </md-input-container>
                 </md-table-cell>
                 <md-table-cell>
                   <md-button class="md-icon-button" @click="removeForcePowerUpgrade(power.id, upgrade.id)">
@@ -177,7 +192,7 @@
               <md-table-row>
                 <md-table-cell colspan="3">
                   <md-button class="md-icon-button" @click="addForcePowerUpgrade(power.id)">
-                    <icon name="upgrade"></icon>
+                    <icon name="add-upgrade"></icon>
                     <md-tooltip md-direction="left">Add Upgrade</md-button>
                   </md-button>
                 </md-table-cell>
@@ -209,7 +224,9 @@
             <md-table-body>
               <md-table-row v-for="weapon in npcFormWeapons" :key="weapon.id">
                 <md-table-cell>
-                  <content-editable v-model="weapon.name" v-focus></content-editable>
+                  <md-input-container>
+                    <md-input v-model="weapon.name"></md-input>
+                  </md-input-container>
                 </md-table-cell>
                 <md-table-cell>
                   <md-select v-model="weapon.skill">
@@ -261,7 +278,9 @@
             <md-table-body>
               <md-table-row v-for="armor in npcFormArmor" :key="armor.id">
                 <md-table-cell>
-                  <content-editable v-model="armor.name" v-focus></content-editable>
+                  <md-input-container>
+                    <md-input v-model="armor.name"></md-input>
+                  </md-input-container>
                 </md-table-cell>
                 <md-table-cell>
                   <number-picker v-model="armor.defense"></number-picker>
@@ -301,7 +320,9 @@
             <md-table-body>
               <md-table-row v-for="gear in npcFormGear" :key="gear.id">
                 <md-table-cell>
-                  <content-editable v-model="gear.name" v-focus></content-editable>
+                  <md-input-container>
+                    <md-input v-model="gear.name"></md-input>
+                  </md-input-container>
                 </md-table-cell>
                 <md-table-cell>
                   <number-picker v-model="gear.encumbrance"></number-picker>
