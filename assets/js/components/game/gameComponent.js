@@ -29,6 +29,9 @@ module.exports = {
       maps: [],
       activeMap: 0,
 
+      // npc data
+      npcs: [],
+
       // crawl data
       activeCrawl: {
         title: '',
@@ -102,12 +105,17 @@ module.exports = {
         return self.gameService.getLog();
       }).then(function success(log) {
         self.gameLog = log;
+        return self.gameService.getNpcs();
+      }).then(function success(npcs) {
+        self.npcs = npcs;
         return self.gameService.getMaps();
       }).then(function success(maps) {
         self.maps = maps;
-        self.initGamePipe();
       }, function error(reason) {
         self.$refs.notifications.error(reason);
+      })
+      .done(function () {
+        self.initGamePipe();
       });
   },
   methods: {
@@ -200,6 +208,7 @@ module.exports = {
       GamePipe.on('mapTokenAdded', this.mapTokenAdded);
       GamePipe.on('mapTokenRemoved', this.mapTokenRemoved);
       GamePipe.on('mapTokenMoved', this.mapTokenMoved);
+      GamePipe.on('npcAdded', this.npcAdded);
     },
     playerRequestedJoin(data) {
       this.game.requestingPlayers.push(data.player);
@@ -335,6 +344,9 @@ module.exports = {
         this.maps[mapIndex].tokens[tokenIndex].x = data.token.x;
         this.maps[mapIndex].tokens[tokenIndex].y = data.token.y;
       }
+    },
+    npcAdded(data) {
+      this.npcs.push(data.npc);
     }
 
   }

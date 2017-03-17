@@ -17,7 +17,7 @@ var skillList = config.skills.map(function (skill) {
 });
 
 var npcValidation = {
-  id:              {},
+  id:              { default: '' },
   game:            {},
   name:            { required: true },
   type:            { required: true },
@@ -46,6 +46,10 @@ module.exports = {
     game: {
       type: String,
       required: true
+    },
+    npcs: {
+      type: Array,
+      required: true
     }
   },
   data() {
@@ -55,7 +59,8 @@ module.exports = {
       rangeBands: config.rangeBands,
       combatSkills: _.filter(config.skills, function (skill) { return skill.combat === true; }),
       npcForm: new FieldSet(npcValidation),
-      saving: false
+      saving: false,
+      gameService: null
     };
   },
   computed: {
@@ -79,6 +84,16 @@ module.exports = {
         return equipment.type === 'gear';
       });
     }
+  },
+  created() {
+    var self = this;
+
+    self.gameService = new Service({
+      schema: config.endpoints.game,
+      staticData: {
+        gameId: self.game
+      }
+    });
   },
   methods: {
     setView(view) {
@@ -138,14 +153,38 @@ module.exports = {
       this.npcForm.fields.equipment.value.splice(index, 1);
     },
     submitNpc() {
-      if (this.npcForm.fields.id !== '') {
-        this.addNpc();
-      } else {
+      if (this.npcForm.fields.id.value !== '') {
         this.saveNpc();
+      } else {
+        this.addNpc();
       }
     },
     addNpc() {
-      console.log('add NPC');
+      var self = this,
+        deferred = q.defer(),
+        npc;
+
+      if (self.npcForm.isValid()) {
+        npc = self.npcForm.export();
+
+        delete npc.id;
+        npc.game = self.game;
+
+        self.gameService.createNpc({ npc })
+          .then(function success() {
+            self.setView('list');
+            self.npcForm.reset();
+          }, function error(reason) {
+            self.$emit('error', reason.err);
+          })
+          .done(function () {
+            deferred.resolve();
+          });
+      } else {
+        deferred.resolve();
+      }
+
+      return deferred.promise;
     },
     saveNpc() {
       console.log('save NPC');

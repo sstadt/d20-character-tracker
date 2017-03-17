@@ -73,6 +73,10 @@ module.exports = {
       removeMapToken: '/map/removeToken',
       deleteMapToken: '/map/removeToken',
       moveMapToken: '/map/moveToken',
+      getNpcs: '/npc/get',
+      createNpc: '/npc/create',
+      updateNpc: '/npc/update',
+      deleteNpc: '/npc/destroy',
     }
   }
 

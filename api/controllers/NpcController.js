@@ -30,6 +30,7 @@ module.exports = {
 
 		Npc.create(newNpc, function (err, npc) {
 			if (err) {
+				console.log(err);
 				res.jsonError(npcErrors.cannotCreate);
 			} else {
 				Game.message(gameId, {

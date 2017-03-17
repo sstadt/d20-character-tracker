@@ -82,6 +82,7 @@
         v-if="game.id"
         is="npcMenu"
         :game="game.id"
+        :npcs="npcs"
         @close="closeMenu('npcs')"
         @error="notifyError">
       </component>
