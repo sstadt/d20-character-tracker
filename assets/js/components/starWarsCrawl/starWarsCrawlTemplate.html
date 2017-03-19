@@ -8,8 +8,8 @@
     <article class="starwars">
       <transition name="fade">
         <ul class="controls" v-show="finished">
-          <li><span @click="replay()">Replay</span></li>
-          <li><span @click="close()">Close</span></li>
+          <li><span @click.native="replay()">Replay</span></li>
+          <li><span @click.native="close()">Close</span></li>
         </ul>
       </transition>
 

@@ -5,10 +5,10 @@
     <span>{{ skill.name }}</span>
     <span>{{ skill.ability }}</span>
   </div>
-  <md-button class="md-icon-button md-list-action" @click="decrement(skill.name)">
+  <md-button class="md-icon-button md-list-action" @click.native="decrement(skill.name)">
     <md-icon>remove</md-icon>
   </md-button>
-  <md-button class="md-icon-button md-list-action" @click="increment(skill.name)">
+  <md-button class="md-icon-button md-list-action" @click.native="increment(skill.name)">
     <md-icon>add</md-icon>
   </md-button>
 </md-list-item>

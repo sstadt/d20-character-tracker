@@ -7,7 +7,7 @@
 
   <div class="page-controls">
     <slot name="topbar"></slot>
-    <md-button class="md-icon-button" @click="toggleRightSideNav"><icon name="menu"></i></md-button>
+    <md-button class="md-icon-button" @click.native="toggleRightSideNav"><icon name="menu"></i></md-button>
   </div>
 
   <md-sidenav class="md-right" ref="rightSideNav">
@@ -20,7 +20,7 @@
     <md-list>
       <md-list-item v-if="user.id" href="/profile"><md-icon>person</md-icon> <span>My Profile</span></md-list-item>
       <md-list-item href="/home"><md-icon>search</md-icon> <span>Browse Games</span></md-list-item>
-      <md-list-item @click="logout"><md-icon>power_settings_new</md-icon> <span>Log Out</span></md-list-item>
+      <md-list-item @selected="logout"><md-icon>power_settings_new</md-icon> <span>Log Out</span></md-list-item>
     </md-list>
   </md-sidenav>
 </div>

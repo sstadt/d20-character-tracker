@@ -27,6 +27,7 @@ module.exports = {
 			gameId = req.param('gameId');
 
 		newNpc.owner = req.session.User.id;
+		newNpc.game = gameId;
 
 		Npc.create(newNpc, function (err, npc) {
 			if (err) {
@@ -46,13 +47,13 @@ module.exports = {
 		var updatedNpc = req.param('npc'),
 			gameId = req.param('gameId');
 
-		Npc.update(npc.id, npc, function (err, npc) {
+		Npc.update(updatedNpc.id, updatedNpc, function (err, npc) {
 			if (err) {
 				res.jsonError(npcErrors.cannotUpdate);
 			} else {
 				Game.message(gameId, {
 					type: 'npcUpdated',
-					data: { npc: npc }
+					data: { npc: npc[0] }
 				});
 				res.send(200);
 			}
@@ -69,7 +70,7 @@ module.exports = {
 			} else {
 				Game.message(gameId, {
 					type: 'npcRemoved',
-					data: { npcId: npcId }
+					data: { npc: npcId }
 				});
 				res.send(200);
 			}

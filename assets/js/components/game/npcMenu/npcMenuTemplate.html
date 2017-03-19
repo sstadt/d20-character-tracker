@@ -2,9 +2,9 @@
 <div class="npc-menu">
   <transition name="slide-fade" mode="out-in" appear>
 
+    <!-- add/edit NPC -->
     <section v-if="view === 'form'">
-      <h3 v-if="npcForm.fields.name.id !== ''">New NPC</h3>
-      <h3 v-else>Edit NPC</h3>
+      <h3>{{ npcFormHeader }}</h3>
       <form @submit.stop.prevent="submitNpc">
         <div class="row">
           <div class="small-12 medium-4 column">
@@ -99,7 +99,7 @@
         <md-table-card>
           <md-toolbar>
             <h1 class="md-title">Talents &amp; Abilities</h1>
-            <md-button class="float-right md-icon-button" @click="addTalent">
+            <md-button class="float-right md-icon-button" @click.native="addTalent">
               <md-icon>add</md-icon>
               <md-tooltip md-direction="left">Add Talent</md-button>
             </md-button>
@@ -125,7 +125,7 @@
                   </md-input-container>
                 </md-table-cell>
                 <md-table-cell>
-                  <md-button class="md-icon-button" @click="removeTalent(talent.id)">
+                  <md-button class="md-icon-button" @click.native="removeTalent(talent.id)">
                     <md-icon>delete</md-icon>
                   </md-button>
                 </md-table-cell>
@@ -137,7 +137,7 @@
         <md-table-card>
           <md-toolbar>
             <h1 class="md-title">Force Powers</h1>
-            <md-button class="float-right md-icon-button" @click="addForcePower">
+            <md-button class="float-right md-icon-button" @click.native="addForcePower">
               <md-icon>add</md-icon>
               <md-tooltip md-direction="left">Add Force Power</md-button>
             </md-button>
@@ -165,7 +165,7 @@
                   </md-input-container>
                 </md-table-cell>
                 <md-table-cell width="36px">
-                  <md-button class="md-icon-button" @click="removeForcePower(power.id)">
+                  <md-button class="md-icon-button" @click.native="removeForcePower(power.id)">
                     <md-icon>delete</md-icon>
                   </md-button>
                 </md-table-cell>
@@ -185,14 +185,14 @@
                   </md-input-container>
                 </md-table-cell>
                 <md-table-cell>
-                  <md-button class="md-icon-button" @click="removeForcePowerUpgrade(power.id, upgrade.id)">
+                  <md-button class="md-icon-button" @click.native="removeForcePowerUpgrade(power.id, upgrade.id)">
                     <md-icon>delete</md-icon>
                   </md-button>
                 </md-table-cell>
               </md-table-row>
               <md-table-row>
                 <md-table-cell colspan="3">
-                  <md-button class="md-icon-button" @click="addForcePowerUpgrade(power.id)">
+                  <md-button class="md-icon-button" @click.native="addForcePowerUpgrade(power.id)">
                     <icon name="add-upgrade"></icon>
                     <md-tooltip md-direction="left">Add Upgrade</md-button>
                   </md-button>
@@ -205,7 +205,7 @@
         <md-table-card>
           <md-toolbar>
             <h1 class="md-title">Weapons</h1>
-            <md-button class="md-icon-button" @click="addEquipment('weapon')">
+            <md-button class="md-icon-button" @click.native="addEquipment('weapon')">
               <md-icon>add</md-icon>
               <md-tooltip md-direction="left">Add Weapon</md-button>
             </md-button>
@@ -249,7 +249,7 @@
                   <number-picker v-model="weapon.encumbrance"></number-picker>
                 </md-table-cell>
                 <md-table-cell>
-                  <md-button class="md-icon-button" @click="removeEquipment(weapon.id)">
+                  <md-button class="md-icon-button" @click.native="removeEquipment(weapon.id)">
                     <md-icon>delete</md-icon>
                   </md-button>
                 </md-table-cell>
@@ -261,7 +261,7 @@
         <md-table-card>
           <md-toolbar>
             <h1 class="md-title">Armor</h1>
-            <md-button class="md-icon-button" @click="addEquipment('armor')">
+            <md-button class="md-icon-button" @click.native="addEquipment('armor')">
               <md-icon>add</md-icon>
               <md-tooltip md-direction="left">Add Armor</md-button>
             </md-button>
@@ -293,7 +293,7 @@
                   <number-picker v-model="armor.encumbrance"></number-picker>
                 </md-table-cell>
                 <md-table-cell>
-                  <md-button class="md-icon-button" @click="removeEquipment(armor.id)">
+                  <md-button class="md-icon-button" @click.native="removeEquipment(armor.id)">
                     <md-icon>delete</md-icon>
                   </md-button>
                 </md-table-cell>
@@ -305,7 +305,7 @@
         <md-table-card>
           <md-toolbar>
             <h1 class="md-title">Gear</h1>
-            <md-button class="md-icon-button" @click="addEquipment('gear')">
+            <md-button class="md-icon-button" @click.native="addEquipment('gear')">
               <md-icon>add</md-icon>
               <md-tooltip md-direction="left">Add Gear</md-button>
             </md-button>
@@ -329,7 +329,7 @@
                   <number-picker v-model="gear.encumbrance"></number-picker>
                 </md-table-cell>
                 <md-table-cell>
-                  <md-button class="md-icon-button" @click="removeEquipment(gear.id)">
+                  <md-button class="md-icon-button" @click.native="removeEquipment(gear.id)">
                     <md-icon>delete</md-icon>
                   </md-button>
                 </md-table-cell>
@@ -339,23 +339,41 @@
         </md-table-card>
 
         <div class="text-right pad-top">
-          <md-button @click="setView('list')" :disabled="saving">Cancel</md-button>
-          <md-button type="submit" :disabled="saving">Add NPC</md-button>
+          <md-button @click.native="setView('list')" :disabled="saving">Cancel</md-button>
+          <md-button type="submit" :disabled="saving">{{ npcFormSubmitLabel }}</md-button>
         </div>
       </form>
     </section>
 
+    <!-- Show NPC -->
     <section v-else-if="view === 'show'">
       <p>show</p>
-      <md-button @click="setView('form')">Edit NPC</md-button>
-      <md-button @click="setView('list')">NPC List</md-button>
+      <md-button @click.native="setView('form')">Edit</md-button>
+      <md-button @click.native="setView('list')">NPC List</md-button>
     </section>
 
+    <!-- NPC List -->
     <section v-else>
       <div class="controls">
-        <md-button @click="newNpc()">New NPC</md-button>
+        <md-button @click.native="newNpc">New NPC</md-button>
       </div>
-      <p>TODO (once NPCs are saving): NPC List</p>
+      <div class="row small-up-1 medium-up-2 large-up-3 npc-list">
+        <div v-for="npc in npcs" class="column column-block" :key="npc.id">
+          <md-card>
+            <md-card-media md-ratio="16:9">
+              <img :src="npc.imageUrl" alt="Map Preview">
+            </md-card-media>
+            <md-card-header>
+              <div class="md-title">{{ npc.name }}</div>
+            </md-card-header>
+            <md-card-actions>
+              <md-switch v-model="npc.shared" @change="favoriteNpc(npc.id)" class="md-primary">Favorite</md-switch>
+              <md-button @click.native="editNpc(npc)">Edit</md-button>
+              <confirm-button @submit="deleteNpc(npc.id)"></confirm-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </div>
     </section>
 
   </transition>

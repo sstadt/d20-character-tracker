@@ -7,36 +7,36 @@
     @drop="dropHandler">
     <div class="tokens">
       <transition-group name="fade">
-        <div key="light" v-show="lightToken" @click="removeToken('light')">
+        <div key="light" v-show="lightToken" @click.native="removeToken('light')">
           <icon name="light-destiny-token"></icon>
         </div>
-        <div key="dark" v-show="darkToken" @click="removeToken('dark')">
+        <div key="dark" v-show="darkToken" @click.native="removeToken('dark')">
           <icon name="dark-destiny-token"></icon>
         </div>
       </transition-group>
     </div>
-    <span class="die-block" @click="removeDie('ability')">
+    <span class="die-block" @click.native="removeDie('ability')">
       <icon name="die-ability" v-for="n in dice.ability"></icon>
     </span>
-    <span class="die-block" @click="removeDie('proficiency')">
+    <span class="die-block" @click.native="removeDie('proficiency')">
       <icon name="die-proficiency" v-for="n in dice.proficiency"></icon>
     </span>
-    <span class="die-block" @click="removeDie('difficulty')">
+    <span class="die-block" @click.native="removeDie('difficulty')">
       <icon name="die-difficulty" v-for="n in dice.difficulty"></icon>
     </span>
-    <span class="die-block" @click="removeDie('challenge')">
+    <span class="die-block" @click.native="removeDie('challenge')">
       <icon name="die-challenge" v-for="n in dice.challenge"></icon>
     </span>
-    <span class="die-block" @click="removeDie('boost')">
+    <span class="die-block" @click.native="removeDie('boost')">
       <icon name="die-boost" v-for="n in dice.boost"></icon>
     </span>
-    <span class="die-block" @click="removeDie('setback')">
+    <span class="die-block" @click.native="removeDie('setback')">
       <icon name="die-setback" v-for="n in dice.setback"></icon>
     </span>
-    <span class="die-block" @click="removeDie('force')">
+    <span class="die-block" @click.native="removeDie('force')">
       <icon name="die-force" v-for="n in dice.force"></icon>
     </span>
   </div>
-  <md-button class="md-icon-button roll-button" @click="roll()" v-if="!loading"><icon name="dice"></icon></md-button>
+  <md-button class="md-icon-button roll-button" @click.native="roll()" v-if="!loading"><icon name="dice"></icon></md-button>
   <md-spinner :md-size="30" md-indeterminate v-if="loading"></md-spinner>
 </div>

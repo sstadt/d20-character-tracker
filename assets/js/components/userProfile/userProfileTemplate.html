@@ -18,9 +18,9 @@
               </transition-group>
             </div>
             <md-list>
-              <md-list-item @click="setView('games')"><span>Games</span></md-list-item>
-              <md-list-item @click="setView('characters')"><span>Characters</span></md-list-item>
-              <md-list-item @click="setView('profile')"><span>Settings</span></md-list-item>
+              <md-list-item @click.native="setView('games')"><span>Games</span></md-list-item>
+              <md-list-item @click.native="setView('characters')"><span>Characters</span></md-list-item>
+              <md-list-item @click.native="setView('profile')"><span>Settings</span></md-list-item>
             </md-list>
           </div>
           <div class="small-12 medium-8 column">

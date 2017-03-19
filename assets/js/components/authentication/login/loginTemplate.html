@@ -10,7 +10,7 @@
       <md-input-container :class="{'md-input-invalid': loginForm.fields.email.hasErrors}">
         <label>Email Address</label>
         <md-input type="email" v-model="loginForm.fields.email.value"></md-input>
-        <span class="md-error" v-show="loginForm.fields.email.hasErrors">{{ loginForm.fields.email.errors[0] }} <a v-show="showResend" @click="resendVerification()">Resend Verification</a></span>
+        <span class="md-error" v-show="loginForm.fields.email.hasErrors">{{ loginForm.fields.email.errors[0] }} <a v-show="showResend" @click.native="resendVerification()">Resend Verification</a></span>
       </md-input-container>
       <md-input-container md-has-password :class="{'md-input-invalid': loginForm.fields.password.hasErrors}">
         <label>Password</label>
@@ -18,10 +18,10 @@
         <span class="md-error" v-show="loginForm.fields.password.hasErrors">{{ loginForm.fields.password.errors[0] }}</span>
       </md-input-container>
       <div class="float-right clearfix">
-        <md-button type="button" class="md-raised" @click="setView('signup')">Sign Up</md-button>
+        <md-button type="button" class="md-raised" @click.native="setView('signup')">Sign Up</md-button>
         <md-button type="submit" class="md-raised md-primary">Log In</md-button>
       </div>
-      <a class="form-link" @click="setView('passwordReset')">forgot password?</a>
+      <a class="form-link" @click.native="setView('passwordReset')">forgot password?</a>
     </form>
   </div>
 </div>

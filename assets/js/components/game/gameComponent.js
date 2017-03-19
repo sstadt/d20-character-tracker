@@ -209,6 +209,8 @@ module.exports = {
       GamePipe.on('mapTokenRemoved', this.mapTokenRemoved);
       GamePipe.on('mapTokenMoved', this.mapTokenMoved);
       GamePipe.on('npcAdded', this.npcAdded);
+      GamePipe.on('npcUpdated', this.npcUpdated);
+      GamePipe.on('npcRemoved', this.npcRemoved);
     },
     playerRequestedJoin(data) {
       this.game.requestingPlayers.push(data.player);
@@ -347,6 +349,22 @@ module.exports = {
     },
     npcAdded(data) {
       this.npcs.push(data.npc);
+    },
+    npcUpdated(data) {
+      if (_.isObject(data.npc)) {
+        var npcIndex = util.getIndexById(this.npcs, data.npc.id);
+
+        if (npcIndex > -1) {
+          this.npcs.splice(npcIndex, 1, _.extend(data.npc));
+        }
+      }
+    },
+    npcRemoved(data) {
+      var npcIndex = util.getIndexById(this.npcs, data.npc);
+
+      if (npcIndex > -1) {
+        this.npcs.splice(npcIndex, 1);
+      }
     }
 
   }

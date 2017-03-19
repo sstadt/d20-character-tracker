@@ -1,5 +1,5 @@
 
-<md-button md-theme="starwars" class="md-icon-button md-accent" id="open_disclaimer" @click="openDialog('disclaimer')">
+<md-button md-theme="starwars" class="md-icon-button md-accent" id="open_disclaimer" @click.native="openDialog('disclaimer')">
   <md-icon>info_outline</md-icon>
 </md-button>
 
@@ -13,6 +13,6 @@
   </md-dialog-content>
 
   <md-dialog-actions>
-    <md-button class="md-primary" id="close_disclaimer" @click="closeDialog('disclaimer')">Ok</md-button>
+    <md-button class="md-primary" id="close_disclaimer" @click.native="closeDialog('disclaimer')">Ok</md-button>
   </md-dialog-actions>
 </md-dialog>

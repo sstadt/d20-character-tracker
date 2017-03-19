@@ -14,7 +14,7 @@
           <img src="/images/avatar_ph.jpg" :alt="player.chatHandle" v-else>
         </md-card-media>
         <md-card-actions>
-          <md-button @click="removePlayer(player)">Remove</md-button>
+          <md-button @click.native="removePlayer(player)">Remove</md-button>
         </md-card-actions>
       </md-card>
     </div>
@@ -30,8 +30,8 @@
           <img src="/images/avatar_ph.jpg" :alt="player.chatHandle" v-else>
         </md-card-media>
         <md-card-actions>
-          <md-button @click="declinePlayer(player)">Decline</md-button>
-          <md-button @click="approvePlayer(player)">Approve</md-button>
+          <md-button @click.native="declinePlayer(player)">Decline</md-button>
+          <md-button @click.native="approvePlayer(player)">Approve</md-button>
         </md-card-actions>
       </md-card>
     </div>

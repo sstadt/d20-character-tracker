@@ -64,6 +64,9 @@ module.exports = {
     };
   },
   computed: {
+    npcFormHeader() {
+      return (this.npcForm.fields.id.value.length > 0) ? 'Edit NPC' : 'New NPC';
+    },
     npcFormImage() {
       var newImage = this.npcForm.fields.imageUrl.value;
 
@@ -83,6 +86,9 @@ module.exports = {
       return _.filter(this.npcForm.fields.equipment.value, function (equipment) {
         return equipment.type === 'gear';
       });
+    },
+    npcFormSubmitLabel() {
+      return (this.npcForm.fields.id.value.length > 0) ? 'Save NPC' : 'Add NPC';
     }
   },
   created() {
@@ -98,28 +104,6 @@ module.exports = {
   methods: {
     setView(view) {
       this.view = view;
-    },
-    newNpc() {
-      this.npcForm.reset();
-      this.setView('form');
-    },
-    incrementNewNpcSkill(name) {
-      var index = _.findIndex(this.npcForm.fields.skills.value, function (skill) {
-        return skill.name === name;
-      });
-
-      if (index > -1 && this.npcForm.fields.skills.value[index].rank < 5) {
-        this.npcForm.fields.skills.value[index].rank++;
-      }
-    },
-    decrementNewNpcSkill(name) {
-      var index = _.findIndex(this.npcForm.fields.skills.value, function (skill) {
-        return skill.name === name;
-      });
-
-      if (index > -1 && this.npcForm.fields.skills.value[index].rank > 0) {
-        this.npcForm.fields.skills.value[index].rank--;
-      }
     },
     addTalent() {
       this.npcForm.fields.talents.value.push(new Talent());
@@ -159,6 +143,10 @@ module.exports = {
         this.addNpc();
       }
     },
+    newNpc() {
+      this.npcForm.reset();
+      this.setView('form');
+    },
     addNpc() {
       var self = this,
         deferred = q.defer(),
@@ -168,7 +156,6 @@ module.exports = {
         npc = self.npcForm.export();
 
         delete npc.id;
-        npc.game = self.game;
 
         self.gameService.createNpc({ npc })
           .then(function success() {
@@ -186,8 +173,55 @@ module.exports = {
 
       return deferred.promise;
     },
+    editNpc(npc) {
+      this.npcForm.import(npc);
+      this.setView('form');
+    },
     saveNpc() {
-      console.log('save NPC');
+      var self = this,
+        deferred = q.defer(),
+        npc;
+
+      if (self.npcForm.isValid()) {
+        npc = self.npcForm.export();
+
+        self.gameService.updateNpc({ npc })
+          .then(function success() {
+            self.setView('list');
+            self.npcForm.reset();
+          }, function error(reason) {
+            self.$emit('error', reason.err);
+          })
+          .done(function () {
+            deferred.resolve();
+          });
+      } else {
+        deferred.resolve();
+      }
+
+      return deferred.promise;
+    },
+    deleteNpc(npcId) {
+      var self = this,
+        deferred = q.defer();
+
+      self.gameService.deleteNpc({ npcId })
+        .then(function success() {
+          self.setView('list');
+          self.npcForm.reset();
+        }, function error(reason) {
+          self.$emit('error', reason.err);
+        })
+        .done(function () {
+          deferred.resolve();
+        });
+
+      return deferred.promise;
+    },
+    favoriteNpc(npcId) {
+      console.log(`favorite NPC with ID: ${npcId}`);
+      // set the npc to localstorage in an array,
+      // use that to populat the quick token add menu for encounters
     }
   }
 };

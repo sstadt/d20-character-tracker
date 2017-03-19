@@ -6,7 +6,7 @@
       <md-tabs md-right>
         <md-tab md-label="My Games">
           <div class="text-right">
-            <md-button @click="newGame()">New Game</md-button>
+            <md-button @click.native="newGame()">New Game</md-button>
           </div>
           <game-list :games="myGames" @game-list-error="gameListError"></game-list>
         </md-tab>
@@ -30,8 +30,8 @@
       </md-input-container>
     </md-dialog-content>
     <md-dialog-actions>
-      <md-button class="md-primary" @click="closeDialog('gameBrowserPrompt')">Cancel</md-button>
-      <md-button class="md-primary" @click="addNewGame()">Add Game</md-button>
+      <md-button class="md-primary" @click.native="closeDialog('gameBrowserPrompt')">Cancel</md-button>
+      <md-button class="md-primary" @click.native="addNewGame()">Add Game</md-button>
     </md-dialog-actions>
   </md-dialog>
 </div>

@@ -10,8 +10,8 @@
     </div>
 
     <div class="controls">
-      <md-button @click="closeModal()" :disabled="saving">Cancel</md-button>
-      <md-button @click="updateConfig()" :disabled="saving">Save</md-button>
+      <md-button @click.native="closeModal()" :disabled="saving">Cancel</md-button>
+      <md-button @click.native="updateConfig()" :disabled="saving">Save</md-button>
     </div>
   </div>
 </div>

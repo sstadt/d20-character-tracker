@@ -23,6 +23,7 @@ require('../components/icon/icon.js');
 require('../components/authentication/authentication.js');
 require('../components/jukebox/jukebox.js');
 require('../components/numberPicker/numberPicker.js');
+require('../components/confirmButton/confirmButton.js');
 
 // user components
 require('../components/userProfile/userProfile.js');

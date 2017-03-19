@@ -166,6 +166,14 @@ FieldSet.prototype.export = function () { // TODO: coverage
   return vals;
 };
 
+FieldSet.prototype.import = function (instance) { // TODO: coverage
+  for (var field in this.fields) {
+    if (this.fields.hasOwnProperty(field) && instance.hasOwnProperty(field)) {
+      this.fields[field].value = instance[field];
+    }
+  }
+};
+
 FieldSet.prototype.reset = function () { // TODO: coverage
   for (var field in this.fields) {
     if (this.fields.hasOwnProperty(field)) {

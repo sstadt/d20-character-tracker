@@ -12,7 +12,7 @@
           </div>
           <div v-if="item.type === 'crawl'" class="crawl-message">
             <p class="message"><span class="message-author">{{ item.chatHandle }}</span> has sent a new crawl<br/><span class="chat-accent">{{ item.message.title }}: {{ item.message.subtitle }}</span></p>
-            <md-button class="md-icon-button" @click="playCrawl(item.message)">
+            <md-button class="md-icon-button" @click.native="playCrawl(item.message)">
               <md-icon>play_circle_filled</md-icon>
               <md-tooltip md-delay="400" md-direction="bottom">Play Crawl</md-tooltip>
             </md-button>

@@ -3,8 +3,8 @@
   <icon v-if="icon && icon.length > 0" :name="icon"></icon>
   <span :class="{ 'number-picker-count': true, 'fill-width': label === undefined }">{{ innerValue }}</span>
   <div class="number-picker-controls">
-    <md-button class="md-icon-button" @click="increment"><md-icon>keyboard_arrow_up</md-icon></md-button>
-    <md-button class="md-icon-button" @click="decrement"><md-icon>keyboard_arrow_down</md-icon></md-button>
+    <md-button class="md-icon-button" @click.native="increment"><md-icon>keyboard_arrow_up</md-icon></md-button>
+    <md-button class="md-icon-button" @click.native="decrement"><md-icon>keyboard_arrow_down</md-icon></md-button>
   </div>
   <div v-if="label" class="fill-width number-picker-label flex-column">
     <span>{{ label }}</span>

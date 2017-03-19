@@ -14,7 +14,7 @@
     <!-- list view -->
     <section v-if="view === 'list'">
       <div class="controls">
-        <md-button @click="setView('new')">New Map</md-button>
+        <md-button @click.native="setView('new')">New Map</md-button>
       </div>
       <div class="row small-up-1 medium-up-2 large-up-3 map-list">
         <div v-for="map in maps" class="column column-block" :key="map.id">
@@ -27,8 +27,8 @@
             </md-card-header>
             <md-card-actions>
               <md-switch v-model="map.shared" @change="setShared(map)" class="md-primary">Shared</md-switch>
-              <md-button @click="editMap(map)">Edit</md-button>
-              <md-button @click="deleteMap(map)">Delete</md-button>
+              <md-button @click.native="editMap(map)">Edit</md-button>
+              <md-button @click.native="deleteMap(map)">Delete</md-button>
             </md-card-actions>
           </md-card>
         </div>
@@ -55,7 +55,7 @@
               <span class="md-error" v-show="newMapForm.fields.imageUrl.hasErrors">{{ newMapForm.fields.imageUrl.errors[0] }}</span>
             </md-input-container>
             <div class="text-right">
-              <md-button @click="setView('list')" :disabled="saving">Cancel</md-button>
+              <md-button @click.native="setView('list')" :disabled="saving">Cancel</md-button>
               <md-button type="submit" :disabled="saving">Save Map</md-button>
             </div>
           </div>
@@ -83,7 +83,7 @@
               <span class="md-error" v-show="editMapForm.fields.imageUrl.hasErrors">{{ editMapForm.fields.imageUrl.errors[0] }}</span>
             </md-input-container>
             <div class="text-right">
-              <md-button @click="setView('list')" :disabled="saving">Cancel</md-button>
+              <md-button @click.native="setView('list')" :disabled="saving">Cancel</md-button>
               <md-button type="submit" :disabled="saving">Save Map</md-button>
             </div>
           </div>
