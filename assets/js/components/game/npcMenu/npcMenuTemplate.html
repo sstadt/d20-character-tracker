@@ -346,11 +346,11 @@
     </section>
 
     <!-- Show NPC -->
-    <section v-else-if="view === 'show'">
+    <!-- <section v-else-if="view === 'show'">
       <p>show</p>
       <md-button @click.native="setView('form')">Edit</md-button>
       <md-button @click.native="setView('list')">NPC List</md-button>
-    </section>
+    </section> -->
 
     <!-- NPC List -->
     <section v-else>
@@ -367,9 +367,19 @@
               <div class="md-title">{{ npc.name }}</div>
             </md-card-header>
             <md-card-actions>
-              <md-switch v-model="npc.shared" @change="favoriteNpc(npc.id)" class="md-primary">Favorite</md-switch>
-              <md-button @click.native="editNpc(npc)">Edit</md-button>
-              <confirm-button @submit="deleteNpc(npc.id)"></confirm-button>
+              <md-switch v-model="npc.favorite" @change="favoriteNpc(npc.id)" class="md-primary">Favorite</md-switch>
+              <md-button>
+                <icon name="add-target"></icon>
+                <md-tooltip md-direction="bottom">Add to current encounter</md-button>
+              </md-button>
+              <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+                <md-button class="md-icon-button" md-menu-trigger><icon name="user"></icon></md-button>
+                <md-menu-content>
+                  <md-menu-item @selected="editNpc(npc)">Edit</md-menu-item>
+                  <!-- TODO confirm menu item component -->
+                  <md-menu-item @selected="deleteNpc(npc.id)">Delete</md-menu-item>
+                </md-menu-content>
+              </md-menu>
             </md-card-actions>
           </md-card>
         </div>

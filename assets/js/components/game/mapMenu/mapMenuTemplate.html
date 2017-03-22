@@ -28,7 +28,7 @@
             <md-card-actions>
               <md-switch v-model="map.shared" @change="setShared(map)" class="md-primary">Shared</md-switch>
               <md-button @click.native="editMap(map)">Edit</md-button>
-              <md-button @click.native="deleteMap(map)">Delete</md-button>
+              <confirm-button @submit="deleteMap(map)">Delete</confirm-button>
             </md-card-actions>
           </md-card>
         </div>
