@@ -100,8 +100,6 @@ module.exports = {
   created() {
     var self = this;
 
-    // self.favorites = storageService.getLocal(config.localStorageKeys.npcFavorites, { defaultsTo: [] });
-
     self.gameService = new Service({
       schema: config.endpoints.game,
       staticData: {
