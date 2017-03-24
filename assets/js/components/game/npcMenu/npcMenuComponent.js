@@ -60,7 +60,8 @@ module.exports = {
       combatSkills: _.filter(config.skills, function (skill) { return skill.combat === true; }),
       npcForm: new FieldSet(npcValidation),
       saving: false,
-      gameService: null
+      gameService: null,
+      favorites: []
     };
   },
   computed: {
@@ -93,6 +94,13 @@ module.exports = {
   },
   created() {
     var self = this;
+
+    try {
+      self.favorites = JSON.parse(localStorage.npcFavorites);
+    } catch(e) {
+      console.error('Invalid browser NPC favorite cache, resetting NPC favorite settings.');
+      self.updateLocalFavorites();
+    }
 
     self.gameService = new Service({
       schema: config.endpoints.game,
@@ -218,10 +226,19 @@ module.exports = {
 
       return deferred.promise;
     },
+    updateLocalFavorites() {
+      if (localStorage) localStorage.npcFavorites = JSON.stringify(self.favorites);
+    },
     favoriteNpc(npcId) {
-      console.log(`favorite NPC with ID: ${npcId}`);
-      // set the npc to localstorage in an array,
-      // use that to populat the quick token add menu for encounters
+      var favoriteIndex = self.favorite.indexOf(npcId);
+
+      if (favoriteIndex === -1) {
+        self.favorites.push(npcId);
+      } else {
+        self.favorites.splice(npcId, 1);
+      }
+
+      self.updateLocalFavorites();
     }
   }
 };
