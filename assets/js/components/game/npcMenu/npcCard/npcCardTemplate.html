@@ -1,0 +1,24 @@
+
+<md-card>
+  <md-card-media md-ratio="16:9">
+    <img :src="npc.imageUrl" alt="Map Preview">
+  </md-card-media>
+  <md-card-header>
+    <div class="md-title">{{ npc.name }}</div>
+  </md-card-header>
+  <md-card-actions>
+    <md-switch v-model="favorite" @change="setFavorite(npc.id)" class="md-primary">Favorite</md-switch>
+    <md-button class="md-icon-button">
+      <icon name="add-target"></icon>
+      <md-tooltip md-direction="bottom">Add to current encounter</md-button>
+    </md-button>
+    <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+      <md-button class="md-icon-button" md-menu-trigger><icon name="user"></icon></md-button>
+      <md-menu-content>
+        <md-menu-item @selected="editNpc">Edit</md-menu-item>
+        <!-- TODO confirm menu item component -->
+        <md-menu-item @selected="deleteNpc">Delete</md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </md-card-actions>
+</md-card>

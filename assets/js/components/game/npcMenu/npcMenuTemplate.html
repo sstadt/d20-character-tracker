@@ -359,29 +359,14 @@
       </div>
       <div class="row small-up-1 medium-up-2 large-up-3 npc-list">
         <div v-for="npc in npcs" class="column column-block" :key="npc.id">
-          <md-card>
-            <md-card-media md-ratio="16:9">
-              <img :src="npc.imageUrl" alt="Map Preview">
-            </md-card-media>
-            <md-card-header>
-              <div class="md-title">{{ npc.name }}</div>
-            </md-card-header>
-            <md-card-actions>
-              <md-switch v-model="npc.favorite" @change="favoriteNpc(npc.id)" class="md-primary">Favorite</md-switch>
-              <md-button class="md-icon-button">
-                <icon name="add-target"></icon>
-                <md-tooltip md-direction="bottom">Add to current encounter</md-button>
-              </md-button>
-              <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
-                <md-button class="md-icon-button" md-menu-trigger><icon name="user"></icon></md-button>
-                <md-menu-content>
-                  <md-menu-item @selected="editNpc(npc)">Edit</md-menu-item>
-                  <!-- TODO confirm menu item component -->
-                  <md-menu-item @selected="deleteNpc(npc.id)">Delete</md-menu-item>
-                </md-menu-content>
-              </md-menu>
-            </md-card-actions>
-          </md-card>
+          <component
+            is="npcCard"
+            :npc="npc"
+            :isFavorite="favorites.indexOf(npc.id) > -1"
+            @favorite="favoriteNpc(npc.id, $event)"
+            @edit="editNpc(npc)"
+            @delete="deleteNpc(npc.id)">
+          </component>
         </div>
       </div>
     </section>

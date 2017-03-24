@@ -1,9 +1,5 @@
 
 
-if (_.isUndefined(localStorage) || _.isUndefined(sessionStorage)) {
-  console.error('You are in incognito mode, some interface settings may not be saved between sessions');
-}
-
 // themes
 require('../themes/default.js');
 require('../themes/starwars.js');

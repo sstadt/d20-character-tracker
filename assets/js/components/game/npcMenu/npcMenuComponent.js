@@ -8,6 +8,8 @@ var Talent = require('../../../classes/characters/Talent.js');
 var ForcePower = require('../../../classes/characters/ForcePower.js');
 var Equipment = require('../../../classes/characters/Equipment.js');
 
+var storageService = require('../../../services/storageService.js');
+
 const DEFAULT_NPC_IMAGE = '/images/avatar_ph.jpg';
 
 var skillList = config.skills.map(function (skill) {
@@ -61,7 +63,7 @@ module.exports = {
       npcForm: new FieldSet(npcValidation),
       saving: false,
       gameService: null,
-      favorites: []
+      favorites: storageService.getLocal(config.localStorageKeys.npcFavorites, { defaultsTo: [] })
     };
   },
   computed: {
@@ -92,15 +94,13 @@ module.exports = {
       return (this.npcForm.fields.id.value.length > 0) ? 'Save NPC' : 'Add NPC';
     }
   },
+  components: {
+    npcCard: require('./npcCard/npcCardComponent.js')
+  },
   created() {
     var self = this;
 
-    try {
-      self.favorites = JSON.parse(localStorage.npcFavorites);
-    } catch(e) {
-      console.error('Invalid browser NPC favorite cache, resetting NPC favorite settings.');
-      self.updateLocalFavorites();
-    }
+    // self.favorites = storageService.getLocal(config.localStorageKeys.npcFavorites, { defaultsTo: [] });
 
     self.gameService = new Service({
       schema: config.endpoints.game,
@@ -227,18 +227,18 @@ module.exports = {
       return deferred.promise;
     },
     updateLocalFavorites() {
-      if (localStorage) localStorage.npcFavorites = JSON.stringify(self.favorites);
+      storageService.setLocal(config.localStorageKeys.npcFavorites, this.favorites);
     },
-    favoriteNpc(npcId) {
-      var favoriteIndex = self.favorite.indexOf(npcId);
+    favoriteNpc(npcId, isFavorite) {
+      var favoriteIndex = this.favorites.indexOf(npcId);
 
-      if (favoriteIndex === -1) {
-        self.favorites.push(npcId);
-      } else {
-        self.favorites.splice(npcId, 1);
+      if (isFavorite && favoriteIndex === -1) {
+        this.favorites.push(npcId);
+        this.updateLocalFavorites();
+      } else if (!isFavorite && favoriteIndex > -1) {
+        this.favorites.splice(favoriteIndex, 1);
+        this.updateLocalFavorites();
       }
-
-      self.updateLocalFavorites();
     }
   }
 };

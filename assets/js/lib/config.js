@@ -78,6 +78,15 @@ module.exports = {
       updateNpc: '/npc/update',
       deleteNpc: '/npc/destroy',
     }
+  },
+
+  /*
+   * localStorage Keys
+   * ----------------------------
+   */
+  localStorageKeys: {
+    npcFavorites: 'NPC_FAVORITES',
+    mapSettings: 'MAP_SETTINGS'
   }
 
 };
