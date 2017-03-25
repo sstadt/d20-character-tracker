@@ -9,5 +9,9 @@ module.exports = {
 
   sandbox: function (req, res) {
     res.view({ title: sails.config.globals.pageTitle.sandbox });
+  },
+
+  icons: function (req, res) {
+    res.view({ title: sails.config.globals.pageTitle.icons });
   }
 };

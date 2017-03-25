@@ -3,4 +3,8 @@
   background-color: $panel-bg-color;
   border-radius: $panel-radius;
   padding: $panel-padding;
+
+  &.content {
+    padding: $panel-padding * 2;
+  }
 }

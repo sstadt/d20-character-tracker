@@ -151,6 +151,10 @@ module.exports.routes = {
     controller: 'dev',
     action: 'sandbox'
   },
+  '/dev/icons': {
+    controller: 'dev',
+    action: 'icons'
+  },
 
   /***************************************************************************
   *                                                                          *

@@ -24,7 +24,7 @@ module.exports.globals = {
     splash: 'Home',
     register: 'Registration',
     sandbox: 'Sandbox',
-    components: 'Components and Style Guide'
+    icons: 'Custom Icons'
   },
 
   cacheVersion: require('../build.json').build,

@@ -1,0 +1,31 @@
+
+.dev-icon-list {
+  .dev-icon-wrapper {
+    @extend .gutter-bottom;
+    padding-bottom: 100%;
+    background-color: $dev-bg-highlight;
+    position: relative;
+    border-radius: $global-radius;
+
+    .dev-icon {
+      display: flex;
+      flex-flow: column;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      align-items: center;
+      justify-content: center;
+
+      svg.icon-image:not(.md-image) {
+        height: 50px;
+        width: 50px;
+      }
+
+      p {
+        margin: 8px 0 0;
+      }
+    }
+  }
+}

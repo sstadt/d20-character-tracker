@@ -1,7 +1,7 @@
 
 Vue.material.registerTheme('default', {
   primary: {
-    color: 'indigo',
+    color: 'light-blue',
     hue: 900
   },
   accent: 'deep-orange',

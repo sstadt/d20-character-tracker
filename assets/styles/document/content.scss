@@ -4,6 +4,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   overflow-x: hidden;
 }
 
@@ -15,23 +16,6 @@ body {
   margin-bottom: 1rem;
 }
 
-[contenteditable="true"] {
-  padding: $contenteditable-padding;
-  width: 100%;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: $contenteditable-bg;
-  }
-
-  &:focus {
-    outline: 0;
-    background-color: $contenteditable-bg-focus;
-  }
-
-  .md-table-cell-container & {
-    margin-left: -$contenteditable-padding;
-    margin-right: -$contenteditable-padding;
-  }
+.gutter-bottom {
+  margin-bottom: $global-gutter;
 }

@@ -232,9 +232,7 @@ $dice-pool-bg-color: $alert-bg-color-success;
 
 $character-skill-combat-bg: rgba(153, 153, 153, 0.1);
 
-// Editable Content
+// Dev
 // ---------------------------
 
-$contenteditable-bg: rgba(black, 0.05);
-$contenteditable-bg-focus: rgba(black, 0.12);
-$contenteditable-padding: 8px;
+$dev-bg-highlight: darken($smoke, 4%);
