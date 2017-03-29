@@ -1,13 +1,13 @@
 
-var confirmButtonComponent = require('./confirmButtonComponent.js');
+var confirmMenuItemComponent = require('./confirmMenuItemComponent.js');
 
 Vue.config.silent = true;
 
-describe('The confirmButton component', function () {
+describe('The confirmMenuItem component', function () {
   var component;
 
   beforeEach(function () {
-    component = _.clone(confirmButtonComponent);
+    component = _.clone(confirmMenuItemComponent);
   });
 
   it('to be an object', function () {

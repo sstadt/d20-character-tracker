@@ -16,8 +16,7 @@
       <md-button class="md-icon-button" md-menu-trigger><icon name="user"></icon></md-button>
       <md-menu-content>
         <md-menu-item @selected="editNpc">Edit</md-menu-item>
-        <!-- TODO confirm menu item component -->
-        <md-menu-item @selected="deleteNpc">Delete</md-menu-item>
+        <confirm-menu-item @submit="deleteNpc"></confirm-menu-item>
       </md-menu-content>
     </md-menu>
   </md-card-actions>

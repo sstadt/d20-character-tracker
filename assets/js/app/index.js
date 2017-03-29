@@ -20,6 +20,7 @@ require('../components/authentication/authentication.js');
 require('../components/jukebox/jukebox.js');
 require('../components/numberPicker/numberPicker.js');
 require('../components/confirmButton/confirmButton.js');
+require('../components/confirmMenuItem/confirmMenuItem.js');
 
 // user components
 require('../components/userProfile/userProfile.js');
@@ -37,7 +38,7 @@ require('../components/diceControls/diceControls.js');
 require('../components/destinyTokens/destinyTokens.js');
 
 // character/NPC components
-require('../components/skillEditor/skillEditor.js');
+require('../components/skillEditor/skillEditor.js'); // TODO: deprecate?
 
 new Vue({
   el: '#app',

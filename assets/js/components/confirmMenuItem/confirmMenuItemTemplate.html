@@ -1,0 +1,7 @@
+
+<span>
+  <li class="md-list-item md-menu-item" v-if="!confirmed" @click="confirm">
+    <div class="md-list-item-container md-button"><slot>Delete</slot></div>
+  </li>
+  <md-menu-item v-else class="md-accent" @selected="submit">Confirm?</md-menu-item>
+</span>
