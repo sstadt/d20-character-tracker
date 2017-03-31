@@ -1,0 +1,14 @@
+
+<div class="combat-avatar">
+  <div class="status-block" :style="{ 'height': avatarPx, 'width': avatarPx }">
+    <div class="portrait" :style="{ 'background-image': avatarSrc }"></div>
+    <div class="status-wrapper">
+      <div class="health-wrapper">
+        <div class="health-bar" :style="{ 'transform': healthRotation }"></div>
+      </div>
+      <div :class="{ 'strain-wrapper': true, 'hide': totalStrain === 0 }">
+        <div class="strain-bar" :style="{ 'transform': strainRotation }"></div>
+      </div>
+    </div>
+  </div>
+</div>

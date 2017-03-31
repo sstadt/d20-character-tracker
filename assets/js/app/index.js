@@ -38,7 +38,8 @@ require('../components/diceControls/diceControls.js');
 require('../components/destinyTokens/destinyTokens.js');
 
 // character/NPC components
-require('../components/skillEditor/skillEditor.js'); // TODO: deprecate?
+require('../components/combatAvatar/combatAvatar.js');
+require('../components/encounter/encounter.js');
 
 new Vue({
   el: '#app',

@@ -52,7 +52,7 @@ module.exports = {
       return (this.user.id) ? this.user.chatHandle : '';
     },
     userAvatar() {
-      return (this.user.config && this.user.config.avatar) ? this.user.config.avatar : '/images/avatar_ph.jpg';
+      return (this.user.config && this.user.config.avatar) ? this.user.config.avatar : config.defaultAvatar;
     },
     uploadInProgress() {
       return this.uploadProgress !== 0;

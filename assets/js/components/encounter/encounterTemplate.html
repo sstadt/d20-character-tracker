@@ -1,1 +1,15 @@
-<p>{{ greeting }}</p>
+
+<div class="encounter">
+  <div class="combatant-list" :style="{ 'max-width': encounterWidthPx }">
+    <combat-avatar
+      v-for="npc in combatants"
+      :name="npc.name"
+      :image="npc.imageUrl"
+      :total-health="npc.woundThreshold"
+      :current-health="npc.currentWounds"
+      :total-strain="npc.strainThreshold"
+      :current-strain="npc.currentStrain"
+      :size="avatarSize">
+    </combat-avatar>
+  </div>
+</div>

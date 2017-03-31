@@ -1,0 +1,52 @@
+
+$status-bar-width: 0.5rem;
+
+.combat-avatar {
+  padding: 10px;
+  display: inline-block;
+
+  .status-block {
+    padding: 4px;
+    position: relative;
+
+    .portrait {
+      background-color: black;
+      background-position: center;
+      background-size: cover;
+      border-radius: 50%;
+      height: 100%;
+    }
+
+    .status-wrapper, .health-wrapper, .health-bar, .strain-wrapper, .strain-bar {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .status-wrapper {
+      z-index: -1;
+
+      .health-bar, .strain-bar {
+        border-radius: 50%;
+      }
+
+      .health-wrapper, .health-bar {
+        clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+      }
+
+      .health-bar {
+        background-color: red;
+      }
+
+      .strain-wrapper, .strain-bar {
+        clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+      }
+
+      .strain-bar {
+        background-color: yellow;
+      }
+    }
+  }
+}

@@ -87,6 +87,13 @@ module.exports = {
   localStorageKeys: {
     npcFavorites: 'NPC_FAVORITES',
     mapSettings: 'MAP_SETTINGS'
-  }
+  },
+
+  /*
+   * Misc
+   * ----------------------------
+   */
+
+  defaultAvatar: '/images/avatar_ph.jpg',
 
 };

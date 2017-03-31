@@ -35,9 +35,6 @@
     </span>
   </toolbar>
 
-  <!-- music player -->
-  <jukebox :playlist="playlist" ref="jukebox" @track-finished="trackFinished"></jukebox>
-
   <!-- map viewer -->
   <map-viewer v-if="game.id" :map="displayMap" :show-gm-tools="userIsGameMaster" :game="this.game.id" @error="notifyError"></map-viewer>
 
@@ -46,6 +43,9 @@
 
   <!-- party -->
   <party :game="game" @error="notifyError"></party>
+
+  <!-- encounter -->
+  <encounter v-if="game.id" :game="game.id" @error="notifyError"></encounter>
 
   <!-- chat window and dice controls -->
   <div class="panel main-window flex-column">
@@ -70,6 +70,9 @@
     @stop-music="stopMusic"
     ref="crawl">
   </star-wars-crawl>
+
+  <!-- music player -->
+  <jukebox :playlist="playlist" ref="jukebox" @track-finished="trackFinished"></jukebox>
 
   <!-- npc menu -->
   <md-dialog class="game-menu" ref="npcsDialog" v-if="userIsGameMaster">
