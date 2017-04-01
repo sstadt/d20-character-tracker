@@ -31,14 +31,22 @@ module.exports = {
     },
     image: {
       type: String,
-      defaultsTo: config.defaultAvatar
+      default: config.defaultAvatar
     },
     size: {
-      type: String,
+      type: Number,
       default: 84
     }
   },
+  data() {
+    return {
+      hovering: false
+    };
+  },
   computed: {
+    menuSize() {
+      return Math.round(this.size * 0.7);
+    },
     avatarPx() {
       return `${this.size}px`;
     },
@@ -61,8 +69,11 @@ module.exports = {
     }
   },
   methods: {
-    sayHi() {
-      console.log('hi!');
+    enter() {
+      this.hovering = true;
+    },
+    leave() {
+      this.hovering = false;
     }
   }
 };

@@ -21,6 +21,8 @@ require('../components/jukebox/jukebox.js');
 require('../components/numberPicker/numberPicker.js');
 require('../components/confirmButton/confirmButton.js');
 require('../components/confirmMenuItem/confirmMenuItem.js');
+require('../components/radialMenu/radialMenu.js');
+require('../components/radialMenuItem/radialMenuItem.js');
 
 // user components
 require('../components/userProfile/userProfile.js');

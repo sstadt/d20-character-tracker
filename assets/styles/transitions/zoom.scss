@@ -1,14 +1,14 @@
-.zoom-in-transition, .zoom-out-transition {
+.zoom-in-enter-active, .zoom-out-enter-active {
   transition: all .3s ease;
 }
 
-.zoom-in-enter, .zoom-in-leave {
+.zoom-in-enter, .zoom-in-leave-active {
   opacity: 0;
-  -webkit-transform: scale(0.7);
-  transform: scale(0.7);
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
 }
 
-.zoom-out-enter, .zoom-out-leave {
+.zoom-out-enter, .zoom-out-leave-active {
   opacity: 0;
   -webkit-transform: scale(1.3);
   transform: scale(1.3);

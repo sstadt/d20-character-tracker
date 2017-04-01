@@ -1,5 +1,5 @@
 
-<div class="combat-avatar">
+<div class="combat-avatar" @mouseenter="enter" @mouseleave="leave">
   <div class="status-block" :style="{ 'height': avatarPx, 'width': avatarPx }">
     <div class="portrait" :style="{ 'background-image': avatarSrc }"></div>
     <div class="status-wrapper">
@@ -11,4 +11,17 @@
       </div>
     </div>
   </div>
+  <transition name="zoom-in">
+    <radial-menu v-show="hovering" :size="menuSize">
+      <radial-menu-item :radius="menuSize" :position="90">
+        <md-button class="md-icon-button"><icon name="dl44"></icon></md-button>
+      </radial-menu-item>
+      <radial-menu-item :radius="menuSize" :position="0">
+        <md-button class="md-icon-button"><icon name="dl44"></icon></md-button>
+      </radial-menu-item>
+      <radial-menu-item :radius="menuSize" :position="180">
+        <md-button class="md-icon-button"><icon name="dl44"></icon></md-button>
+      </radial-menu-item>
+    </radial-menu>
+  </transition>
 </div>
