@@ -90,6 +90,18 @@ module.exports = {
   },
 
   /*
+  * UI Colors
+  * ----------------------------
+  */
+  colors: {
+    healthFull: '#0c962d',
+    healthWarning: '#ffe81f',
+    healthDanger: '#f9731c',
+    healthCritical: '#bf1616',
+    strain: '#f9731c'
+  },
+
+  /*
    * Misc
    * ----------------------------
    */

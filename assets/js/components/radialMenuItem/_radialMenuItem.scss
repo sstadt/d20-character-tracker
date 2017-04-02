@@ -1,4 +1,6 @@
 
+$radial-menu-button-size: 20px;
+
 .radial-menu-item {
   position: absolute;
   top: 50%;
@@ -7,14 +9,16 @@
 
   svg.icon-image {
     fill: $page-controls-color;
+    height: $radial-menu-button-size;
+    width: $radial-menu-button-size;
   }
 
   .md-button {
     margin: 0;
     padding: 0;
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    min-height: 22px;
+    width: $radial-menu-button-size;
+    height: $radial-menu-button-size;
+    min-width: $radial-menu-button-size;
+    min-height: $radial-menu-button-size + 2;
   }
 }

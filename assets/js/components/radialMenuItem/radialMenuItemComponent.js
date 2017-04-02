@@ -17,12 +17,15 @@ module.exports = {
     degrees() {
       return Math.max(0, Math.min(360, Math.round(this.position)));
     },
+    radians() {
+      return mathUtil.degreesToRadians(this.degrees);
+    },
     marginTop() {
-      var top = -(this.radius * Math.cos(mathUtil.degreesToRadians(this.degrees)));
+      var top = -(this.radius * Math.cos(this.radians));
       return `${top}px`;
     },
     marginLeft() {
-      var left = this.radius * Math.sin(mathUtil.degreesToRadians(this.degrees));
+      var left = this.radius * Math.sin(this.radians);
       return `${left}px`;
     }
   },

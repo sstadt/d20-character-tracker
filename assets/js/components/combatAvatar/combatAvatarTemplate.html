@@ -4,23 +4,37 @@
     <div class="portrait" :style="{ 'background-image': avatarSrc }"></div>
     <div class="status-wrapper">
       <div class="health-wrapper">
-        <div class="health-bar" :style="{ 'transform': healthRotation }"></div>
+        <div class="health-bar" :style="{ 'transform': healthRotation, 'background-color': healthColor }"></div>
       </div>
       <div :class="{ 'strain-wrapper': true, 'hide': totalStrain === 0 }">
-        <div class="strain-bar" :style="{ 'transform': strainRotation }"></div>
+        <div class="strain-bar" :style="{ 'transform': strainRotation, 'background-color': strainColor }"></div>
       </div>
     </div>
   </div>
   <transition name="zoom-in">
     <radial-menu v-show="hovering" :size="menuSize">
-      <radial-menu-item :radius="menuSize" :position="90">
-        <md-button class="md-icon-button"><icon name="dl44"></icon></md-button>
+      <radial-menu-item :radius="menuSize" :position="330">
+        <md-button class="md-icon-button"><icon name="lightsaber"></icon></md-button>
       </radial-menu-item>
       <radial-menu-item :radius="menuSize" :position="0">
         <md-button class="md-icon-button"><icon name="dl44"></icon></md-button>
       </radial-menu-item>
-      <radial-menu-item :radius="menuSize" :position="180">
-        <md-button class="md-icon-button"><icon name="dl44"></icon></md-button>
+      <radial-menu-item :radius="menuSize" :position="30">
+        <md-button class="md-icon-button"><icon name="user"></icon></md-button>
+      </radial-menu-item>
+      <!-- strain -->
+      <radial-menu-item v-if="totalStrain > 0" :radius="menuSize" :position="100">
+        <md-button class="md-icon-button"><icon name="chevron-up"></icon></md-button>
+      </radial-menu-item>
+      <radial-menu-item v-if="totalStrain > 0" :radius="menuSize" :position="130">
+        <md-button class="md-icon-button"><icon name="chevron-down"></icon></md-button>
+      </radial-menu-item>
+      <!-- wounds -->
+      <radial-menu-item :radius="menuSize" :position="260">
+        <md-button class="md-icon-button"><icon name="chevron-up"></icon></md-button>
+      </radial-menu-item>
+      <radial-menu-item :radius="menuSize" :position="230">
+        <md-button class="md-icon-button"><icon name="chevron-down"></icon></md-button>
       </radial-menu-item>
     </radial-menu>
   </transition>

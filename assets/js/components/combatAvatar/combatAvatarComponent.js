@@ -40,12 +40,13 @@ module.exports = {
   },
   data() {
     return {
-      hovering: false
+      hovering: false,
+      strainColor: config.colors.strain
     };
   },
   computed: {
     menuSize() {
-      return Math.round(this.size * 0.7);
+      return Math.round(this.size * 0.75);
     },
     avatarPx() {
       return `${this.size}px`;
@@ -62,6 +63,21 @@ module.exports = {
     healthRotation() {
       var rotation = getRotation(this.healthPercent);
       return `rotate(-${rotation}deg)`;
+    },
+    healthColor() {
+      var color = 'green';
+
+      if (this.healthPercent <= 0.1) {
+        color = config.colors.healthFull;
+      } else if (this.healthPercent <= 0.5) {
+        color = config.colors.healthWarning;
+      } else if (this.healthPercent <= 0.75) {
+        color = config.colors.healthDanger;
+      } else {
+        color = config.colors.healthCritical;
+      }
+
+      return color;
     },
     strainRotation() {
       var rotation = getRotation(this.strainPercent);

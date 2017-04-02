@@ -2,7 +2,7 @@
 $status-bar-width: 0.5rem;
 
 .combat-avatar {
-  padding: 10px;
+  padding: 20px;
   display: inline-block;
   position: relative;
 
@@ -37,16 +37,8 @@ $status-bar-width: 0.5rem;
         clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
       }
 
-      .health-bar {
-        background-color: red;
-      }
-
       .strain-wrapper, .strain-bar {
         clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
-      }
-
-      .strain-bar {
-        background-color: yellow;
       }
     }
   }

@@ -21,9 +21,9 @@ module.exports = {
         name: 'Darth Vader',
         imageUrl: 'http://www.globalo.com/content/uploads/2015/12/darth-vader.jpg',
         woundThreshold: 20,
-        currentWounds: 3,
+        currentWounds: 1,
         strainThreshold: 15,
-        currentStrain: 8
+        currentStrain: 0
       }, {
         name: 'Elite Stormtrooper',
         imageUrl: 'https://www.sideshowtoy.com/photo_71803_thumb.jpg',
@@ -56,7 +56,7 @@ module.exports = {
   },
   computed: {
     encounterWidthPx() {
-      var width = (this.avatarSize + 20) * this.perRow;
+      var width = (this.avatarSize + 40) * this.perRow;
       return `${width}px`;
     }
   },
