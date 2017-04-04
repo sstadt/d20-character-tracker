@@ -90,7 +90,7 @@ module.exports = {
   },
 
   /*
-  * UI Colors
+  * UI Colors (programmatic colors)
   * ----------------------------
   */
   colors: {
@@ -98,7 +98,7 @@ module.exports = {
     healthWarning: '#ffe81f',
     healthDanger: '#f9731c',
     healthCritical: '#bf1616',
-    strain: '#f9731c'
+    strain: '#2196f3'
   },
 
   /*

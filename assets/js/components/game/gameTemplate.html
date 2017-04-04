@@ -45,7 +45,7 @@
   <party :game="game" @error="notifyError"></party>
 
   <!-- encounter -->
-  <encounter v-if="game.id" :game="game.id" @error="notifyError"></encounter>
+  <encounter v-if="game.id" :game="game.id" :is-gm="userIsGameMaster" @error="notifyError"></encounter>
 
   <!-- chat window and dice controls -->
   <div class="panel main-window flex-column">

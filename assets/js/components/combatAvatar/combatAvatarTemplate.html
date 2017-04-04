@@ -12,7 +12,7 @@
     </div>
   </div>
   <transition name="zoom-in">
-    <radial-menu v-show="hovering" :size="menuSize">
+    <radial-menu v-if="showAdmin" v-show="hovering" :size="menuSize">
       <radial-menu-item :radius="menuSize" :position="330">
         <md-button class="md-icon-button"><icon name="lightsaber"></icon></md-button>
       </radial-menu-item>

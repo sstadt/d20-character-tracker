@@ -36,6 +36,10 @@ module.exports = {
     size: {
       type: Number,
       default: 84
+    },
+    showAdmin: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

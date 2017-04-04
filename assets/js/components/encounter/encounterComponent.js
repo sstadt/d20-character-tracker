@@ -13,6 +13,10 @@ module.exports = {
     avatarSize: {
       type: Number,
       default: 60
+    },
+    isGm: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
