@@ -19,9 +19,6 @@
  - starWarsCrawl
  - encounter
  - combatAvatar
- - numberPicker
- - radialMenu
- - radialMenuItem
 
 ### DevOps to do:
 

@@ -25,11 +25,30 @@ describe('The numberPicker component', function () {
       componentInstance = new Vue(component);
     });
 
-    // describe('#sayHi', function () {
-    //   it('should be a function', function () {
-    //     expect(typeof componentInstance.sayHi).toBe('function');
-    //   });
-    // });
+    describe('#increment', function () {
+      beforeEach(function () {
+        componentInstance.innerValue = 5;
+        componentInstance.increment();
+      });
+
+      it('should increment the value', function () {
+        expect(componentInstance.innerValue).toEqual(6);
+      });
+    });
+
+    describe('#decrement', function () {
+      it('should decrement the value', function () {
+        componentInstance.innerValue = 5;
+        componentInstance.decrement();
+        expect(componentInstance.innerValue).toEqual(4);
+      });
+
+      it('should not decrement if the value would drop below 0', function () {
+        componentInstance.innerValue = 0;
+        componentInstance.decrement();
+        expect(componentInstance.innerValue).toEqual(0);
+      });
+    });
   });
 
 });

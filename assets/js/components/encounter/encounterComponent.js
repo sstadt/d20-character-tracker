@@ -63,10 +63,5 @@ module.exports = {
       var width = (this.avatarSize + 40) * this.perRow;
       return `${width}px`;
     }
-  },
-  methods: {
-    sayHi() {
-      console.log('hi!');
-    }
   }
 };

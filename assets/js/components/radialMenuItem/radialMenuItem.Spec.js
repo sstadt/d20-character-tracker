@@ -25,11 +25,16 @@ describe('The radialMenuItem component', function () {
       componentInstance = new Vue(component);
     });
 
-    // describe('#sayHi', function () {
-    //   it('should be a function', function () {
-    //     expect(typeof componentInstance.sayHi).toBe('function');
-    //   });
-    // });
+    describe('#select', function () {
+      beforeEach(function () {
+        spyOn(componentInstance, '$emit');
+        componentInstance.select();
+      });
+
+      it('should emit a selected event', function () {
+        expect(componentInstance.$emit).toHaveBeenCalled();
+      });
+    });
   });
 
 });
