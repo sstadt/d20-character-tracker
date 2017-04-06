@@ -17,8 +17,6 @@
  - gameBrowser
  - mapViewer
  - starWarsCrawl
- - encounter
- - combatAvatar
 
 ### DevOps to do:
 
