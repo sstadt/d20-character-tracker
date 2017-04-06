@@ -12,10 +12,16 @@
 
 #### testing todos
 
+ - userProfile
  - game
  - gameBrowser
  - mapViewer
  - starWarsCrawl
+ - encounter
+ - combatAvatar
+ - numberPicker
+ - radialMenu
+ - radialMenuItem
 
 ### DevOps to do:
 

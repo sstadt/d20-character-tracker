@@ -5,6 +5,7 @@ var util = require('../../lib/util.js');
 var Service = require('../../classes/Service.js');
 
 var userService = require('../../services/userService.js');
+var storageService = require('../../services/storageService.js');
 
 module.exports = {
   template: require('./mapViewerTemplate.html'),
@@ -83,40 +84,30 @@ module.exports = {
       this.$emit('error', msg);
     },
     getLocalMaps() {
-      var localMaps;
-
-      try {
-        localMaps = JSON.parse(localStorage.maps);
-      } catch(e) {
-        console.error('Invalid browser map cache, resetting map settings.');
-        localMaps = {};
-        if (localStorage) localStorage.maps = JSON.stringify(localMaps);
-      }
-
-      if (!localMaps[this.map.id]) {
-        localMaps[this.map.id] = {};
-      }
-
-      return localMaps;
+      return storageService.getLocal(config.localStorageKeys.mapSettings, { defaultsTo: {} });
     },
     setMapPositioning() {
       if (!_.isUndefined(localStorage) && localStorage.maps) {
         let localMaps = this.getLocalMaps();
 
-        this.mapLeft = localMaps[this.map.id].mapLeft || 0;
-        this.mapTop = localMaps[this.map.id].mapTop || 0;
-        this.mapZoom = localMaps[this.map.id].mapZoom || 20; // 100% start
+        if (!_.isUndefined(localMaps[this.map.id])) {
+          this.mapLeft = localMaps[this.map.id].mapLeft || 0;
+          this.mapTop = localMaps[this.map.id].mapTop || 0;
+          this.mapZoom = localMaps[this.map.id].mapZoom || 20; // 100% start
+        }
       }
     },
     saveMapPositioning: _.debounce(function () {
       if (!_.isUndefined(localStorage)) {
         var localMaps = this.getLocalMaps();
 
+        if (_.isUndefined(localMaps[this.map.id])) localMaps[this.map.id] = {};
+
         localMaps[this.map.id].mapLeft = this.mapLeft;
         localMaps[this.map.id].mapTop = this.mapTop;
         localMaps[this.map.id].mapZoom = this.mapZoom;
 
-        localStorage.maps = JSON.stringify(localMaps);
+        localStorage.maps = storageService.setLocal(config.localStorageKeys.mapSettings, localMaps);
       }
     }, 400),
     startDragging(event) {

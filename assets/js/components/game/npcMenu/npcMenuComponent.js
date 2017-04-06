@@ -63,7 +63,7 @@ module.exports = {
       npcForm: new FieldSet(npcValidation),
       saving: false,
       gameService: null,
-      favorites: storageService.getLocal(config.localStorageKeys.npcFavorites, { defaultsTo: [] })
+      favorites: storageService.getLocal(config.localStorageKeys.npcFavorites, { defaultsTo: [], onUpdate: this.favoritesUpdated })
     };
   },
   computed: {
@@ -237,6 +237,9 @@ module.exports = {
         this.favorites.splice(favoriteIndex, 1);
         this.updateLocalFavorites();
       }
+    },
+    favoritesUpdated(updatedFavorites) {
+      this.favorites = updatedFavorites;
     }
   }
 };
