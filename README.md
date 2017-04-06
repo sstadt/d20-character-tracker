@@ -1,5 +1,7 @@
 # FaD Game Table
 
+Documentation can be found on deveo.com: https://app.deveo.com/scott-stadt/projects/star_wars_game_table/repositories/sw-game-table-wiki/tree/master
+
 ### Dev to do:
 
 #### as able
