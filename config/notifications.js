@@ -282,6 +282,30 @@ module.exports.notifications = {
           message: 'Error deleting NPC'
         }
       }
+    },
+    encounter: {
+      error: {
+        notFound: {
+          code: 760,
+          message: 'Encounter not found'
+        },
+        listNotFound: {
+          code: 761,
+          message: 'Encounters not found'
+        },
+        cannotCreate: {
+          code: 762,
+          message: 'Error creating Encounter'
+        },
+        cannotUpdate: {
+          code: 763,
+          message: 'Error updating Encounter'
+        },
+        cannotDelete: {
+          code: 764,
+          message: 'Error deleting Encounter'
+        }
+      }
     }
   }
 

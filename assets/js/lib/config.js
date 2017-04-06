@@ -77,6 +77,8 @@ module.exports = {
       createNpc: '/npc/create',
       updateNpc: '/npc/update',
       deleteNpc: '/npc/destroy',
+      getEncounter: '/game/getEncounter',
+      updateEncounter: '/game/updateEncounter'
     }
   },
 

@@ -96,7 +96,12 @@ module.exports.policies = {
     'addToken'    : ['socketSessionAuth', 'gamePlayer'],
     'moveToken'   : ['socketSessionAuth', 'moveMapToken'],
     'removeToken' : ['socketSessionAuth', 'removeMapToken']
+  },
 
+  EncounterController: {
+    '*'      : false,
+    'get'    : ['socketSessionAuth', 'gamePlayer'],
+    'update' : ['socketSessionAuth', 'gameMaster']
   },
 
   ApiController: {
