@@ -38,21 +38,3 @@ a {
 .text-left {
   text-align: left;
 }
-
-.button-header {
-  position: relative;
-  line-height: 40px;
-  border-bottom: 1px solid $hr-color;
-
-  .md-icon-button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
-}
-
-.flex-ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
