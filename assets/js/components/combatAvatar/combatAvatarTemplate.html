@@ -14,27 +14,48 @@
   <transition name="zoom-in">
     <radial-menu v-if="showAdmin" v-show="hovering" :size="menuSize">
       <radial-menu-item :radius="menuSize" :position="330">
-        <md-button class="md-icon-button"><icon name="lightsaber"></icon></md-button>
+        <md-button class="md-icon-button">
+          <icon name="lightsabers"></icon>
+          <md-tooltip md-delay="400" md-direction="top">Melee Attack</md-tooltip>
+        </md-button>
       </radial-menu-item>
       <radial-menu-item :radius="menuSize" :position="0">
-        <md-button class="md-icon-button"><icon name="dl44"></icon></md-button>
+        <md-button class="md-icon-button">
+          <icon name="dl44"></icon>
+          <md-tooltip md-delay="400" md-direction="top">Range Attack</md-tooltip>
+        </md-button>
       </radial-menu-item>
       <radial-menu-item :radius="menuSize" :position="30">
-        <md-button class="md-icon-button"><icon name="user"></icon></md-button>
+        <md-button class="md-icon-button">
+          <icon name="npc"></icon>
+          <md-tooltip md-delay="400" md-direction="top">Menu</md-tooltip>
+        </md-button>
       </radial-menu-item>
       <!-- strain -->
       <radial-menu-item v-if="totalStrain > 0" :radius="menuSize" :position="100">
-        <md-button class="md-icon-button"><icon name="chevron-up"></icon></md-button>
+        <md-button class="md-icon-button">
+          <icon name="chevron-up"></icon>
+          <md-tooltip md-delay="400" md-direction="right">Strain Up</md-tooltip>
+        </md-button>
       </radial-menu-item>
       <radial-menu-item v-if="totalStrain > 0" :radius="menuSize" :position="130">
-        <md-button class="md-icon-button"><icon name="chevron-down"></icon></md-button>
+        <md-button class="md-icon-button">
+          <icon name="chevron-down"></icon>
+          <md-tooltip md-delay="400" md-direction="right">Strain Down</md-tooltip>
+        </md-button>
       </radial-menu-item>
       <!-- wounds -->
       <radial-menu-item :radius="menuSize" :position="260">
-        <md-button class="md-icon-button"><icon name="chevron-up"></icon></md-button>
+        <md-button class="md-icon-button">
+          <icon name="chevron-up"></icon>
+          <md-tooltip md-delay="400" md-direction="left">Wounds Up</md-tooltip>
+        </md-button>
       </radial-menu-item>
       <radial-menu-item :radius="menuSize" :position="230">
-        <md-button class="md-icon-button"><icon name="chevron-down"></icon></md-button>
+        <md-button class="md-icon-button">
+          <icon name="chevron-down"></icon>
+          <md-tooltip md-delay="400" md-direction="left">Wounds Down</md-tooltip>
+        </md-button>
       </radial-menu-item>
     </radial-menu>
   </transition>

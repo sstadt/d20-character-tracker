@@ -1,4 +1,6 @@
 
+var util = require('../lib/util.js');
+
 /**
  * EncounterToken Options Object
  *
@@ -10,9 +12,10 @@
  * totalWounds and totalStrain are derived from the passed in NPC template
  */
 
-function EncounterToken(options, npc) {
-  this.name = options.name;
-  this.imageUrl = options.imageurl;
+function EncounterToken(npc, options = {}) {
+  this.id = util.guid();
+  this.name = npc.name;
+  this.imageUrl = npc.imageUrl;
   this.woundThreshold = npc.woundThreshold;
   this.currentWounds = options.currentWounds || 0;
 

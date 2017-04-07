@@ -1,5 +1,10 @@
 
-<div class="encounter">
+<div class="encounter" @mouseenter="enter" @mouseleave="leave">
+  <md-dialog-confirm
+    md-content="Are you sure you want to clear the encounter?"
+    ref="clearEncounterConfirm"
+    @close="confirmClear">
+  </md-dialog-confirm>
   <div class="combatant-list" :style="{ 'max-width': encounterWidthPx }">
     <combat-avatar
       v-for="npc in combatants"
@@ -13,4 +18,20 @@
       :show-admin="isGm">
     </combat-avatar>
   </div>
+  <transition name="slide-fade-up">
+    <div v-if="isGm" v-show="showMenu" class="encounter-controls">
+      <md-menu md-direction="top right" :md-align-trigger="true" md-size="4">
+        <md-button class="md-icon-button" md-menu-trigger><icon name="add-npc"></icon></md-button>
+        <md-tooltip md-delay="400" md-direction="top">Add NPC</md-tooltip>
+        <md-menu-content>
+          <md-menu-item v-for="npc in npcs" @selected="addCombatant(npc)">{{ npc.name }}</md-menu-item>
+          <md-menu-item v-if="npcs.length === 0">No Favorites Added</md-menu-item>
+        </md-menu-content>
+      </md-menu>
+      <md-button v-if="combatants.length > 0" class="md-icon-button" @click.native="clearCombatants">
+        <icon name="clear-npc"></icon>
+        <md-tooltip md-delay="400" md-direction="top">Clear Encounter</md-tooltip>
+      </md-button>
+    </div>
+  </transition>
 </div>

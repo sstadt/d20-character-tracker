@@ -4,4 +4,20 @@
   position: fixed;
   left: 20px;
   bottom: 20px;
+  min-width: 40px;
+
+  .encounter-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: -39px;
+
+    .md-icon-button {
+      margin: 0;
+    }
+
+    svg.icon-image:not(.md-image) {
+      fill: $page-controls-color;
+    }
+  }
 }

@@ -1,4 +1,6 @@
-.zoom-in-enter-active, .zoom-out-enter-active {
+
+.zoom-in-enter-active, .zoom-out-enter-active,
+.zoom-in-leave-active, .zoom-out-leave-active {
   transition: all .3s ease;
 }
 
