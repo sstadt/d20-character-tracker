@@ -5,74 +5,56 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var encounterErrors = sails.config.notifications.Game.encounter.error;
-
 module.exports = {
 
   get: function (req, res) {
-    var encounterId = req.param('encounterId'),
-      gameId = req.param('gameId'),
-      name = req.param('name') || 'default'; // TODO: eventually this will be used for saved encounters
+    var gameId = req.param('gameId');
 
-    Encounter.findOne({
-      id: encounterId,
-      game: gameId,
-      name: name
-    }, function (err, encounter) {
-      if (err) {
-        res.jsonError(encounterErrors.notFound);
-      } else if (encounter) {
-        res.json({ encounter: encounter });
-      } else {
-        Encounter.create({ name: 'default' }, function (err, newEncounter) {
-          if (err) {
-            res.jsonError(encounterErrors.cannotCreate);
-          } else {
-            res.json({ encounter: newEncounter });
-          }
-        });
-      }
-    });
+    EncounterService.getDefault(gameId)
+      .then(function success(encounter) {
+        res.json(encounter);
+      }, function error(reason) {
+        res.jsonError(reason);
+      });
   },
 
-  update: function (req, res) {
-    var encounter = req.param('encounter'),
-      gameId = req.param('gameId'),
-      encounterId = encounter.id;
+  addCombatant: function (req, res) {
+    var gameId = req.param('gameId'),
+      encounterId = req.param('encounterId'),
+      combatant = req.param('combatant');
 
-    encounter.game = gameId;
-
-    Encounter.update(encounterId, encounter, function (err, updatedEncounter) {
-      if (err) {
-        res.jsonError(encounterErrors.cannotUpdate);
-      } else {
-        Game.message(gameId, {
-          type: 'encounterUpdated',
-          data: { encounter: updatedEncounter }
-        });
-
+    EncounterService.addCombatant(gameId, encounterId, combatant)
+      .then(function success() {
         res.send(200);
-      }
-    });
+      }, function error(reason) {
+        res.jsonError(reason);
+      });
   },
 
-  // TODO: this is disabled until saved encounters is implemented
-  // destroy: function (req, res) {
-  //   var encounterId = req.param('encounterId'),
-  //     gameId = req.param('gameId');
-  //
-  //   Encounter.destroy(encounterId, function (err) {
-  //     if (err) {
-  //       res.jsonError(encounterErrors.cannotDelete);
-  //     } else {
-  //       Game.message(gameId, {
-  //         type: 'encounterRemoved',
-  //         data: { encounter: encounterId }
-  //       });
-  //
-  //       res.send(200);
-  //     }
-  //   });
-  // }
+  removeCombatant: function (req, res) {
+    var gameId = req.param('gameId'),
+      encounterId = req.param('encounterId'),
+      combatantId = req.param('combatantId');
+
+    EncounterService.removeCombatant(gameId, encounterId, combatantId)
+      .then(function success() {
+        res.send(200);
+      }, function error(reason) {
+        res.jsonError(reason);
+      });
+  },
+
+  updateCombatant: function (req, res) {
+    var gameId = req.param('gameId'),
+      encounterId = req.param('encounterId'),
+      combatant = req.param('combatant');
+
+    EncounterService.updateCombatant(gameId, encounterId, combatant)
+      .then(function success() {
+        res.send(200);
+      }, function error(reason) {
+        res.jsonError(reason);
+      });
+  },
 
 };

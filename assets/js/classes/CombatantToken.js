@@ -2,7 +2,7 @@
 var util = require('../lib/util.js');
 
 /**
- * EncounterToken Options Object
+ * CombatantToken Options Object
  *
  * name (string): the name of the entity
  * imageUrl (string): image to use for token avatar
@@ -12,7 +12,7 @@ var util = require('../lib/util.js');
  * totalWounds and totalStrain are derived from the passed in NPC template
  */
 
-function EncounterToken(npc, options = {}) {
+function CombatantToken(npc, options = {}) {
   this.id = util.guid();
   this.name = npc.name;
   this.imageUrl = npc.imageUrl;
@@ -27,4 +27,4 @@ function EncounterToken(npc, options = {}) {
   this.template = _.extend(npc);
 }
 
-module.exports = EncounterToken;
+module.exports = CombatantToken;

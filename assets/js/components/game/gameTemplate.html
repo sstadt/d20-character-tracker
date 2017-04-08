@@ -36,7 +36,13 @@
   </toolbar>
 
   <!-- map viewer -->
-  <map-viewer v-if="game.id" :map="displayMap" :show-gm-tools="userIsGameMaster" :game="this.game.id" @error="notifyError"></map-viewer>
+  <map-viewer
+    v-if="game.id"
+    :game="this.game.id"
+    :map="displayMap" 
+    :show-gm-tools="userIsGameMaster"
+    @error="notifyError">
+  </map-viewer>
 
   <!-- notifications -->
   <notification ref="notifications"></notification>
@@ -45,7 +51,14 @@
   <party :game="game" @error="notifyError"></party>
 
   <!-- encounter -->
-  <encounter v-if="game.id" :game="game.id" :npcs="npcs" :is-gm="userIsGameMaster" @error="notifyError"></encounter>
+  <encounter
+    v-if="encounter.id"
+    :game="game.id"
+    :npcs="npcs"
+    :encounter="encounter"
+    :is-gm="userIsGameMaster"
+    @error="notifyError">
+  </encounter>
 
   <!-- chat window and dice controls -->
   <div class="panel main-window flex-column">

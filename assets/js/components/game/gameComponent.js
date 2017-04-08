@@ -31,6 +31,7 @@ module.exports = {
 
       // npc data
       npcs: [],
+      encounter: {},
 
       // crawl data
       activeCrawl: {
@@ -108,11 +109,14 @@ module.exports = {
         return self.gameService.getNpcs();
       }).then(function success(npcs) {
         self.npcs = npcs;
+        return self.gameService.getEncounter();
+      }).then(function success(encounter) {
+        self.encounter = encounter;
         return self.gameService.getMaps();
       }).then(function success(maps) {
         self.maps = maps;
       }, function error(reason) {
-        self.$refs.notifications.error(reason);
+        self.$refs.notifications.alert(reason.err);
       })
       .done(function () {
         self.initGamePipe();

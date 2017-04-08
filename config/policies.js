@@ -99,9 +99,11 @@ module.exports.policies = {
   },
 
   EncounterController: {
-    '*'      : false,
-    'get'    : ['socketSessionAuth', 'gamePlayer'],
-    'update' : ['socketSessionAuth', 'gameMaster']
+    '*'               : false,
+    'get'             : ['socketSessionAuth', 'gamePlayer'],
+    'addCombatant'    : ['socketSessionAuth', 'gameMaster'],
+    'removeCombatant' : ['socketSessionAuth', 'gameMaster'],
+    'updatecombatant' : ['socketSessionAuth', 'gameMaster']
   },
 
   ApiController: {
