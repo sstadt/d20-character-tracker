@@ -57,4 +57,16 @@ module.exports = {
       });
   },
 
+  clearEncounter: function (req, res) {
+    var gameId = req.param('gameId'),
+      encounterId = req.param('encounterId');
+
+    EncounterService.clearEncounter(gameId, encounterId)
+      .then(function success() {
+        res.send(200);
+      }, function error(reason) {
+        res.jsonError(reason);
+      });
+  }
+
 };

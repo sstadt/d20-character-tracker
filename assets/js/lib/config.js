@@ -78,7 +78,7 @@ module.exports = {
       updateNpc: '/npc/update',
       deleteNpc: '/npc/destroy',
       getEncounter: '/game/getEncounter',
-      updateEncounter: '/game/updateEncounter',
+      clearEncounter: '/game/clearEncounter',
       addCombatant: '/game/addEncounterCombatant',
       removeCombatant: '/game/removeEncounterCombatant',
       updateCombatant: '/game/updateEncounterCombatant'

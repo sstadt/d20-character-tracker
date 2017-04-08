@@ -103,7 +103,8 @@ module.exports.policies = {
     'get'             : ['socketSessionAuth', 'gamePlayer'],
     'addCombatant'    : ['socketSessionAuth', 'gameMaster'],
     'removeCombatant' : ['socketSessionAuth', 'gameMaster'],
-    'updatecombatant' : ['socketSessionAuth', 'gameMaster']
+    'updatecombatant' : ['socketSessionAuth', 'gameMaster'],
+    'clearEncounter'  : ['socketSessionAuth', 'gameMaster']
   },
 
   ApiController: {

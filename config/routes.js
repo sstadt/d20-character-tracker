@@ -145,6 +145,10 @@ module.exports.routes = {
     controller: 'encounter',
     action: 'updateCombatant'
   },
+  '/game/clearEncounter': {
+    controller: 'encounter',
+    action: 'clearEncounter'
+  },
 
   /*
     FaD API

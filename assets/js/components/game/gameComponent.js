@@ -215,6 +215,10 @@ module.exports = {
       GamePipe.on('npcAdded', this.npcAdded);
       GamePipe.on('npcUpdated', this.npcUpdated);
       GamePipe.on('npcRemoved', this.npcRemoved);
+      GamePipe.on('clearEncounter', this.clearEncounter);
+      GamePipe.on('combatantAdded', this.combatantAdded);
+      GamePipe.on('combatantUpdated', this.combatantUpdated);
+      GamePipe.on('combatantRemoved', this.combatantRemoved);
     },
     playerRequestedJoin(data) {
       this.game.requestingPlayers.push(data.player);
@@ -368,6 +372,26 @@ module.exports = {
 
       if (npcIndex > -1) {
         this.npcs.splice(npcIndex, 1);
+      }
+    },
+    clearEncounter(data) {
+      this.encounter.npcs = [];
+    },
+    combatantAdded(data) {
+      this.encounter.npcs.push(data.combatant);
+    },
+    combatantUpdated(data) {
+      var combatantIndex = util.getIndexById(this.encounter.npcs, data.combatant.id);
+
+      if (combatantIndex > -1) {
+        this.encounter.npcs.splice(combatantIndex, 1, _.extend(data.combatant));
+      }
+    },
+    combatantRemoved(data) {
+      var combatantIndex = util.getIndexById(this.encounter.npcs, data.combatantId);
+
+      if (combatantIndex > -1) {
+        this.encounter.npcs.splice(combatantIndex, 1);
       }
     }
 

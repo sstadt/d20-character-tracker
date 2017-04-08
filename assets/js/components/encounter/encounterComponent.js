@@ -62,16 +62,8 @@ module.exports = {
     });
   },
   watch: {
-    encounter(a, b) {
-      // TODO: iterate over npcs and update any differences
-      console.log('>>> combatants changed <<<');
-      console.log('... a ...');
-      console.log(a);
-      console.log('... a ...');
-      console.log('... b ...');
-      console.log(b);
-      console.log('... b ...');
-      console.log('>>> combatants changed <<<');
+    'encounter.npcs'(newCombatants) {
+      this.combatants = newCombatants;
     }
   },
   methods: {
@@ -101,21 +93,20 @@ module.exports = {
       this.$refs.clearEncounterConfirm.open();
     },
     confirmClear(type) {
-      // TODO: set up a route for generic encounter updates
-      // var self = this,
-      //   encounterId = self.encounter.id,
-      //   deferred = q.defer();
-      //
-      // if (type === 'ok') {
-      //   self.gameService.clearEncounter({ encounterId })
-      //     .fail(function (reason) {
-      //       self.$emit('error', reason.err);
-      //     }).done(() => deferred.resolve());
-      // } else {
-      //   deferred.resolve();
-      // }
-      //
-      // return deferred.promise;
+      var self = this,
+        encounterId = self.encounter.id,
+        deferred = q.defer();
+
+      if (type === 'ok') {
+        self.gameService.clearEncounter({ encounterId })
+          .fail(function (reason) {
+            self.$emit('error', reason.err);
+          }).done(() => deferred.resolve());
+      } else {
+        deferred.resolve();
+      }
+
+      return deferred.promise;
     }
   }
 };

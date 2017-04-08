@@ -127,6 +127,34 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+
+  clearEncounter: function (gameId, encounterId) {
+    var deferred = q.defer();
+
+    Encounter.findOne({ id: encounterId, game: gameId }, function (err, encounter) {
+      if (err) {
+        deferred.reject(encounterErrors.notFound);
+      } else if (!encounter) {
+        deferred.reject(encounterErrors.notFound);
+      } else {
+        encounter.npcs = [];
+        encounter.save(function (err) {
+          if (err) {
+            deferred.reject(encounterErrors.cannotUpdate);
+          } else {
+            Game.message(gameId, {
+              type: 'clearEncounter',
+              data: { encounterId: encounterId }
+            });
+
+            deferred.resolve();
+          }
+        });
+      }
+    });
+
+    return deferred.promise;
   }
 
 };
