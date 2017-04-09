@@ -13,6 +13,10 @@ module.exports = {
       type: String,
       required: true
     },
+    map: {
+      type: Object,
+      default: {}
+    },
     encounter: {
       type: Object,
       required: true
@@ -107,6 +111,9 @@ module.exports = {
       }
 
       return deferred.promise;
+    },
+    addMapTokens() {
+      
     }
   }
 };

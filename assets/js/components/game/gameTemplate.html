@@ -39,7 +39,7 @@
   <map-viewer
     v-if="game.id"
     :game="this.game.id"
-    :map="displayMap" 
+    :map="displayMap"
     :show-gm-tools="userIsGameMaster"
     @error="notifyError">
   </map-viewer>
@@ -53,6 +53,7 @@
   <!-- encounter -->
   <encounter
     v-if="encounter.id"
+    :map="displayMap"
     :game="game.id"
     :npcs="npcs"
     :encounter="encounter"

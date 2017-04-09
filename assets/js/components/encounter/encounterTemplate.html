@@ -32,6 +32,10 @@
           <icon name="clear-npc"></icon>
           <md-tooltip md-delay="400" md-direction="top">Clear Encounter</md-tooltip>
         </md-button>
+        <md-button v-if="combatants.length > 0 && map.id" class="md-icon-button" @click.native="addMapTokens" key="tokens">
+          <icon name="add-to-map"></icon>
+          <md-tooltip md-delay="400" md-direction="top">Add Map Tokens</md-tooltip>
+        </md-button>
       </transition-group>
     </div>
 </div>

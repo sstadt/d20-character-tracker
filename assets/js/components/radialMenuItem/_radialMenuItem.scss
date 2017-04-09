@@ -1,5 +1,7 @@
 
 $radial-menu-button-size: 20px;
+$radial-menu-button-padding: 8px;
+$radial-menu-button-combined-size: $radial-menu-button-size + ($radial-menu-button-padding * 2);
 
 .radial-menu-item {
   position: absolute;
@@ -15,10 +17,17 @@ $radial-menu-button-size: 20px;
 
   .md-button {
     margin: 0;
-    padding: 0;
-    width: $radial-menu-button-size;
-    height: $radial-menu-button-size;
-    min-width: $radial-menu-button-size;
-    min-height: $radial-menu-button-size + 2;
+    padding: $radial-menu-button-padding;
+    width: $radial-menu-button-combined-size;
+    height: $radial-menu-button-combined-size;
+    min-width: $radial-menu-button-combined-size;
+    min-height: $radial-menu-button-combined-size * 1.13;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, $panel-bg-color-dark 55%, rgba(0,0,0,0) 70%);
+    transition: all 0.3s ease;
+
+    &.md-button.md-icon-button:not([disabled]):hover { // wtf is up with the crazy specific styling VueMaterial ???
+      background: radial-gradient(ellipse at center, $panel-bg-color-dark 55%, rgba(0,0,0,0) 80%);
+    }
   }
 }

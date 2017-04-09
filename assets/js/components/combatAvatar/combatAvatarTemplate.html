@@ -13,7 +13,7 @@
   </div>
   <transition name="zoom-in">
     <radial-menu v-if="showAdmin" v-show="hovering" :size="menuSize">
-      <radial-menu-item :radius="menuSize" :position="330">
+      <radial-menu-item :radius="menuSize" :position="325">
         <md-button class="md-icon-button">
           <icon name="lightsabers"></icon>
           <md-tooltip md-delay="400" md-direction="top">Melee Attack</md-tooltip>
@@ -25,7 +25,7 @@
           <md-tooltip md-delay="400" md-direction="top">Range Attack</md-tooltip>
         </md-button>
       </radial-menu-item>
-      <radial-menu-item :radius="menuSize" :position="30">
+      <radial-menu-item :radius="menuSize" :position="35">
         <md-button class="md-icon-button">
           <icon name="npc"></icon>
           <md-tooltip md-delay="400" md-direction="top">Menu</md-tooltip>
@@ -38,7 +38,7 @@
           <md-tooltip md-delay="400" md-direction="right">Strain Up</md-tooltip>
         </md-button>
       </radial-menu-item>
-      <radial-menu-item v-if="totalStrain > 0" :radius="menuSize" :position="130">
+      <radial-menu-item v-if="totalStrain > 0" :radius="menuSize" :position="135">
         <md-button class="md-icon-button">
           <icon name="chevron-down"></icon>
           <md-tooltip md-delay="400" md-direction="right">Strain Down</md-tooltip>
@@ -51,7 +51,7 @@
           <md-tooltip md-delay="400" md-direction="left">Wounds Up</md-tooltip>
         </md-button>
       </radial-menu-item>
-      <radial-menu-item :radius="menuSize" :position="230">
+      <radial-menu-item :radius="menuSize" :position="225">
         <md-button class="md-icon-button">
           <icon name="chevron-down"></icon>
           <md-tooltip md-delay="400" md-direction="left">Wounds Down</md-tooltip>

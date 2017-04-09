@@ -50,7 +50,7 @@ module.exports = {
   },
   computed: {
     menuSize() {
-      return Math.round(this.size * 0.75);
+      return Math.round(this.size * 0.8);
     },
     avatarPx() {
       return `${this.size}px`;
