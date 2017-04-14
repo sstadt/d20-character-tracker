@@ -14,47 +14,53 @@
   <transition name="zoom-in">
     <radial-menu v-if="showAdmin" v-show="hovering" :size="menuSize">
       <radial-menu-item :radius="menuSize" :position="325">
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button overlay-button">
           <icon name="lightsabers"></icon>
           <md-tooltip md-delay="400" md-direction="top">Melee Attack</md-tooltip>
         </md-button>
       </radial-menu-item>
       <radial-menu-item :radius="menuSize" :position="0">
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button overlay-button">
           <icon name="dl44"></icon>
           <md-tooltip md-delay="400" md-direction="top">Range Attack</md-tooltip>
         </md-button>
       </radial-menu-item>
       <radial-menu-item :radius="menuSize" :position="35">
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button overlay-button">
           <icon name="npc"></icon>
           <md-tooltip md-delay="400" md-direction="top">Menu</md-tooltip>
         </md-button>
       </radial-menu-item>
       <!-- strain -->
-      <radial-menu-item v-if="totalStrain > 0" :radius="menuSize" :position="100">
-        <md-button class="md-icon-button">
+      <radial-menu-item v-if="totalStrain > 0 && currentStrain > 0" :radius="menuSize" :position="75">
+        <md-button class="md-icon-button overlay-button" @click.native="heal('strain')">
           <icon name="chevron-up"></icon>
-          <md-tooltip md-delay="400" md-direction="right">Strain Up</md-tooltip>
+          <md-tooltip md-delay="400" md-direction="right">Heal Strain</md-tooltip>
         </md-button>
       </radial-menu-item>
-      <radial-menu-item v-if="totalStrain > 0" :radius="menuSize" :position="135">
-        <md-button class="md-icon-button">
+      <radial-menu-item v-if="totalStrain > 0" :radius="menuSize" :position="105">
+        <span class="maya-blue">{{ totalStrain - currentStrain }}</span>
+      </radial-menu-item>
+      <radial-menu-item v-if="totalStrain > 0 && currentStrain < totalStrain" :radius="menuSize" :position="135">
+        <md-button class="md-icon-button overlay-button" @click.native="damage('strain')">
           <icon name="chevron-down"></icon>
-          <md-tooltip md-delay="400" md-direction="right">Strain Down</md-tooltip>
+          <md-tooltip md-delay="400" md-direction="right">Damage Strain</md-tooltip>
         </md-button>
       </radial-menu-item>
       <!-- wounds -->
-      <radial-menu-item :radius="menuSize" :position="260">
-        <md-button class="md-icon-button">
+      <radial-menu-item v-if="currentHealth > 0" :radius="menuSize" :position="285">
+        <md-button class="md-icon-button overlay-button" @click.native="heal('wounds')">
           <icon name="chevron-up"></icon>
-          <md-tooltip md-delay="400" md-direction="left">Wounds Up</md-tooltip>
+          <md-tooltip md-delay="400" md-direction="left">Heal Wounds</md-tooltip>
         </md-button>
       </radial-menu-item>
-      <radial-menu-item :radius="menuSize" :position="225">
-        <md-button class="md-icon-button">
+      <radial-menu-item :radius="menuSize" :position="255">
+        <span class="maya-blue">{{ totalHealth - currentHealth }}</span>
+      </radial-menu-item>
+      <radial-menu-item v-if="currentHealth < totalHealth" :radius="menuSize" :position="225">
+        <md-button class="md-icon-button overlay-button" @click.native="damage('wounds')">
           <icon name="chevron-down"></icon>
-          <md-tooltip md-delay="400" md-direction="left">Wounds Down</md-tooltip>
+          <md-tooltip md-delay="400" md-direction="left">Damage Wounds</md-tooltip>
         </md-button>
       </radial-menu-item>
     </radial-menu>

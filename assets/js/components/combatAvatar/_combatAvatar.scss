@@ -44,6 +44,7 @@
 
       .health-bar, .strain-bar {
         border-radius: 50%;
+        transition: all 0.3s ease;
       }
 
       .health-wrapper, .health-bar {

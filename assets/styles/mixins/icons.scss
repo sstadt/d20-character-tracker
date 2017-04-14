@@ -1,0 +1,26 @@
+
+
+@mixin icon-color($color) {
+  .md-icon {
+    color: $color;
+  }
+
+  svg.icon-image:not(.md-image) {
+    fill: $color;
+  }
+}
+
+@mixin icon-size($size) {
+  .md-icon {
+    font-size: rem-calc($size);
+    height: $size;
+    width: $size;
+    min-height: $size;
+    min-width: $size;
+  }
+
+  svg.icon-image:not(.md-image) {
+    height: $size;
+    width: $size;
+  }
+}

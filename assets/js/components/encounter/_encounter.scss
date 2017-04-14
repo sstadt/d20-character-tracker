@@ -6,6 +6,36 @@
   bottom: 40px;
   min-width: 40px;
 
+  .combatant {
+    position: relative;
+    display: inline-block;
+    height: 100px;
+
+    .save-button {
+      z-index: 1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      min-height: 40px;
+      min-width: 40px;
+      height: 40px;
+      width: 40px;
+      margin: 0;
+      padding: 10px;
+      @include icon-size(30px);
+      @include icon-color($page-controls-color);
+      border-radius: 50%;
+      background-color: $panel-bg-color-dark;
+      border: 1px solid rgba($page-controls-color, 0.2);
+
+      &:hover {
+        background-color: $panel-bg-color-dark;
+        border: 1px solid $page-controls-color;
+      }
+    }
+  }
+
   .encounter-controls {
     position: absolute;
     bottom: 0;
@@ -17,10 +47,7 @@
 
     .md-icon-button {
       margin: 0;
-    }
-
-    svg.icon-image:not(.md-image) {
-      fill: $page-controls-color;
+      @include icon-color($page-controls-color);
     }
   }
 }

@@ -94,6 +94,12 @@ module.exports = {
     },
     leave() {
       this.hovering = false;
+    },
+    heal(type) {
+      this.$emit('heal', type);
+    },
+    damage(type) {
+      this.$emit('damage', type);
     }
   }
 };

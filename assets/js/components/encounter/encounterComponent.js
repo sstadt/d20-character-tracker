@@ -6,6 +6,8 @@ var storageService = require('../../services/storageService.js');
 var CombatantToken = require('../../classes/CombatantToken.js');
 var Service = require('../../classes/Service.js');
 
+var util = require('../../lib/util.js');
+
 module.exports = {
   template: require('./encounterTemplate.html'),
   props: {
@@ -113,7 +115,42 @@ module.exports = {
       return deferred.promise;
     },
     addMapTokens() {
-      
+
+    },
+    healCombatant(type, id) {
+      var self = this,
+        index = util.getIndexById(self.combatants, id);
+
+      if (type === 'strain') {
+        if (self.combatants[index].currentStrain > 0) {
+          self.combatants[index].currentStrain--;
+          self.combatants[index].changed = true;
+        }
+      } else {
+        if (self.combatants[index].currentWounds > 0) {
+          self.combatants[index].currentWounds--;
+          self.combatants[index].changed = true;
+        }
+      }
+    },
+    damageCombatant(type, id) {
+      var self = this,
+        index = util.getIndexById(self.combatants, id);
+
+      if (type === 'strain') {
+        if (self.combatants[index].strainThreshold > self.combatants[index].currentStrain) {
+          self.combatants[index].currentStrain++;
+          self.combatants[index].changed = true;
+        }
+      } else {
+        if (self.combatants[index].woundThreshold > self.combatants[index].currentWounds) {
+          self.combatants[index].currentWounds++;
+          self.combatants[index].changed = true;
+        }
+      }
+    },
+    saveCombatant(id) {
+      console.log(id);
     }
   }
 };

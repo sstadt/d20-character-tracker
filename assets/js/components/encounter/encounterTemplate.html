@@ -6,17 +6,25 @@
     @close="confirmClear">
   </md-dialog-confirm>
   <div class="combatant-list" :style="{ 'max-width': encounterWidthPx }">
-    <combat-avatar
-      v-for="npc in combatants"
-      :name="npc.name"
-      :image="npc.imageUrl"
-      :total-health="npc.woundThreshold"
-      :current-health="npc.currentWounds"
-      :total-strain="npc.strainThreshold"
-      :current-strain="npc.currentStrain"
-      :size="avatarSize"
-      :show-admin="isGm">
-    </combat-avatar>
+    <div class="combatant" v-for="npc in combatants">
+      <transition name="zoom-in">
+        <md-button v-if="npc.changed" class="md-icon-button save-button overlay-button" @click.native="saveCombatant(npc.id)">
+          <md-icon>done</md-icon>
+        </md-button>
+      </transition>
+      <combat-avatar
+        :name="npc.name"
+        :image="npc.imageUrl"
+        :total-health="npc.woundThreshold"
+        :current-health="npc.currentWounds"
+        :total-strain="npc.strainThreshold"
+        :current-strain="npc.currentStrain"
+        :size="avatarSize"
+        :show-admin="isGm"
+        @heal="healCombatant($event, npc.id)"
+        @damage="damageCombatant($event, npc.id)">
+      </combat-avatar>
+    </div>
   </div>
     <div v-if="isGm"class="encounter-controls">
       <transition-group name="slide-fade-up">
