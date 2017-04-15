@@ -74,42 +74,16 @@ module.exports = {
 		});
 	},
 	addToken: function (req, res) {
-		var mapToken = req.param('token'),
+		var mapTokens = req.param('tokens'),
 			mapId = req.param('mapId'),
 			gameId = req.param('gameId');
 
-		Map.findOne(mapId, function (err, map) {
-			if (err) {
-				res.jsonError(mapErrors.notFound);
-			} else if (_.isUndefined(mapToken.id)) {
-				res.jsonError(mapErrors.invalidToken);
-			} else {
-				var oldToken = _.find(map.tokens, function (token) {
-					return token.id === mapToken.id;
-				});
-
-				if (_.isUndefined(oldToken)) {
-					map.tokens.push(mapToken);
-					map.save(function (err, newMap) {
-						if (err) {
-							res.jsonError(mapErrors.cannotAddToken);
-						} else {
-							Game.message(gameId, {
-								type: 'mapTokenAdded',
-								data: {
-									mapId: mapId,
-									token: mapToken
-								}
-							});
-							res.send(200);
-						}
-
-					});
-				} else {
-					res.jsonError(mapErrors.tokenExists);
-				}
-			}
-		});
+		MapService.addTokens(gameId, mapId, mapTokens)
+			.then(function success() {
+				res.send(200);
+			}, function error(reason) {
+				res.jsonError(reason);
+			});
 	},
 	removeToken: function (req, res) {
 		var gameId = req.param('gameId'),

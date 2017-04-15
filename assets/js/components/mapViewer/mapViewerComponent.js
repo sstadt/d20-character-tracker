@@ -3,6 +3,7 @@ var config = require('../../lib/config.js');
 var util = require('../../lib/util.js');
 
 var Service = require('../../classes/Service.js');
+var MapToken = require('../../classes/MapToken.js');
 
 var userService = require('../../services/userService.js');
 var storageService = require('../../services/storageService.js');
@@ -192,15 +193,15 @@ module.exports = {
       var self = this,
         deferred = q.defer(),
         mapId = self.map.id,
-        token = {
+        tokens = [new MapToken({
           id: self.user.id,
           type: 'player',
           image: self.user.config.avatar,
           x: 0, // TODO need to calculate the best place based on other tokens
           y: 0  // TODO need to calculate the best place based on other tokens
-        };
+        })];
 
-      self.gameService.addMapToken({ mapId, token })
+      self.gameService.addMapToken({ mapId, tokens })
         .fail(function (reason) {
           self.$emit('error', reason.err);
         })
@@ -221,6 +222,27 @@ module.exports = {
         .done(function () {
           deferred.resolve();
         });
+
+      return deferred.promise;
+    },
+    addCombatants(combatants) {
+      var self = this,
+        deferred = q.defer(),
+        tokens = combatants.map(function (npc) {
+          return new MapToken({
+            id: npc.id,
+            type: 'npc',
+            image: npc.imageUrl,
+            x: 0, // TODO need to calculate the best place based on other tokens
+            y: 0  // TODO need to calculate the best place based on other tokens
+          });
+        });
+
+      self.gameService.addMapToken({ mapId: self.map.id, tokens })
+        .fail(function (reason) {
+          self.$emit('error', reason.err);
+        })
+        .done(() => deferred.resolve());
 
       return deferred.promise;
     },

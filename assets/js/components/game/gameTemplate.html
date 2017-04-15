@@ -38,6 +38,7 @@
   <!-- map viewer -->
   <map-viewer
     v-if="game.id"
+    ref="mapViewer"
     :game="this.game.id"
     :map="displayMap"
     :show-gm-tools="userIsGameMaster"
@@ -58,6 +59,7 @@
     :npcs="npcs"
     :encounter="encounter"
     :is-gm="userIsGameMaster"
+    @add-map-tokens="addCombatantsToMap"
     @error="notifyError">
   </encounter>
 

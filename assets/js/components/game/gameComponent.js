@@ -186,6 +186,9 @@ module.exports = {
     clearActiveMap() {
       this.activeMap = 0;
     },
+    addCombatantsToMap(combatants) {
+      this.$refs.mapViewer.addCombatants(combatants);
+    },
 
     /*
       Socket Updates
@@ -335,7 +338,7 @@ module.exports = {
       var mapIndex = util.getIndexById(this.maps, data.mapId);
 
       if (mapIndex > -1) {
-        this.maps[mapIndex].tokens.push(data.token);
+        this.maps[mapIndex].tokens = this.maps[mapIndex].tokens.concat(data.tokens);
       }
     },
     mapTokenRemoved(data) {

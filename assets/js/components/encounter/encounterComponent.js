@@ -115,7 +115,7 @@ module.exports = {
       return deferred.promise;
     },
     addMapTokens() {
-
+      this.$emit('add-map-tokens', this.combatants);
     },
     healCombatant(type, id) {
       var self = this,
