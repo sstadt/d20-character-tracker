@@ -304,7 +304,11 @@ module.exports.notifications = {
         cannotDelete: {
           code: 764,
           message: 'Error deleting Encounter'
-        }
+        },
+        combatantNotFound: {
+          code: 765,
+          message: 'Combatant not found'
+        },
       }
     }
   }

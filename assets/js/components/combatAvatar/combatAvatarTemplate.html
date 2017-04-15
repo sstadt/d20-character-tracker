@@ -39,7 +39,7 @@
         </md-button>
       </radial-menu-item>
       <radial-menu-item v-if="totalStrain > 0" :radius="menuSize" :position="105">
-        <span class="maya-blue">{{ totalStrain - currentStrain }}</span>
+        <span class="maya-blue text-shadow">{{ totalStrain - currentStrain }}</span>
       </radial-menu-item>
       <radial-menu-item v-if="totalStrain > 0 && currentStrain < totalStrain" :radius="menuSize" :position="135">
         <md-button class="md-icon-button overlay-button" @click.native="damage('strain')">
@@ -55,7 +55,7 @@
         </md-button>
       </radial-menu-item>
       <radial-menu-item :radius="menuSize" :position="255">
-        <span class="maya-blue">{{ totalHealth - currentHealth }}</span>
+        <span class="maya-blue text-shadow">{{ totalHealth - currentHealth }}</span>
       </radial-menu-item>
       <radial-menu-item v-if="currentHealth < totalHealth" :radius="menuSize" :position="225">
         <md-button class="md-icon-button overlay-button" @click.native="damage('wounds')">

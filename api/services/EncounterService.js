@@ -104,25 +104,30 @@ module.exports = {
       } else if (!encounter) {
         deferred.reject(encounterErrors.notFound);
       } else {
-        combatantIndex = _.findIndex(function (entity) {
+        combatantIndex = _.findIndex(encounter.npcs, function (entity) {
           return combatant && entity.id === combatant.id;
         });
-        if (combatantIndex > -1) encounter.npcs[combatantIndex] = combatant;
-        encounter.save(function (err) {
-          if (err) {
-            deferred.reject(encounterErrors.cannotUpdate);
-          } else {
-            Game.message(gameId, {
-              type: 'combatantUpdated',
-              data: {
-                encounterId: encounterId,
-                combatant: combatant
-              }
-            });
 
-            deferred.resolve();
-          }
-        });
+        if (combatantIndex === -1) {
+          deferred.reject(encounterErrors.combatantNotFound);
+        } else {
+          encounter.npcs[combatantIndex] = combatant;
+          encounter.save(function (err) {
+            if (err) {
+              deferred.reject(encounterErrors.cannotUpdate);
+            } else {
+              Game.message(gameId, {
+                type: 'combatantUpdated',
+                data: {
+                  encounterId: encounterId,
+                  combatant: combatant
+                }
+              });
+
+              deferred.resolve();
+            }
+          });
+        }
       }
     });
 

@@ -149,8 +149,22 @@ module.exports = {
         }
       }
     },
-    saveCombatant(id) {
-      console.log(id);
+    saveCombatant(combatantId) {
+      var self = this,
+        deferred = q.defer(),
+        encounterId = self.encounter.id,
+        index = util.getIndexById(self.combatants, combatantId),
+        combatant = _.extend(self.combatants[index]);
+
+      delete combatant.changed;
+
+      self.gameService.updateCombatant({ encounterId, combatant })
+        .fail(function (reason) {
+          self.$emit('error', reason.err);
+        })
+        .done(() => deferred.resolve());
+
+      return deferred.promise;
     }
   }
 };

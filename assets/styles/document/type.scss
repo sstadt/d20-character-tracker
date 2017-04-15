@@ -38,3 +38,16 @@ a {
 .text-left {
   text-align: left;
 }
+
+.text-outline {
+  -webkit-text-stroke: 1px #000;
+}
+
+.text-shadow {
+  text-shadow:
+    0 0 3px #000,
+    -2px -2px 2px #000,
+    2px -2px 2px #000,
+    -2px 2px 2px #000,
+    2px 2px 2px #000;
+}
