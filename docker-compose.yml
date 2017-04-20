@@ -1,0 +1,19 @@
+version: "2"
+services:
+  sails:
+    build: .
+    ports:
+      - "1337:80"
+    links:
+      - mongo
+    tty: true
+    volumes:
+      - .:/server
+    environment:
+      - NODE_ENV=development
+  mongo:
+    image: mongo
+    volumes:
+      - /data/db:/data/db
+    ports:
+      - "27017:27017"

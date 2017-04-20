@@ -10,7 +10,7 @@ function tokenExists(tokens, tokenId) {
 }
 
 module.exports = {
-  addTokens(gameId, mapId, tokens) {
+  addTokens: function (gameId, mapId, tokens) {
     var deferred = q.defer();
 
 		Map.findOne(mapId, function (err, map) {

@@ -1,7 +1,7 @@
 
 
 var Q = require('q'),
-  bcrypt = require('bcrypt'),
+  bcrypt = require('bcrypt-nodejs'),
   settings = {
     minLength: sails.config.passwords.minLength,
     maxLength: sails.config.passwords.maxLength,
