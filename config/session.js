@@ -68,7 +68,8 @@ module.exports.session = {
   ***************************************************************************/
 
   adapter: 'mongo',
-  host: 'localhost',
+  // host: 'localhost',
+  host: (process.env.NODE_ENV === 'production') ? 'localhost' : '172.18.0.2',
   port: 27017,
   db: 'sails_sw_game_table_sessions',
   collection: 'sessions',

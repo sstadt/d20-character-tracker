@@ -2,19 +2,20 @@ version: "2"
 services:
   sails:
     build: .
+    command: npm start
     ports:
-      - "1337:1337"
+      - "localhost:1337:1337"
     links:
       - mongo
     tty: true
     volumes:
       - .:/server
-      - /npm
+      - /server/node_modules
     environment:
       - NODE_ENV=development
   mongo:
-    image: mongo
+    image: mongo:2.6.6
     volumes:
       - /data/db:/data/db
     ports:
-      - "27017:27017"
+      - "localhost:27017:27017"

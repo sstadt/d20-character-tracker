@@ -23,7 +23,8 @@ module.exports.models = {
   * connections (see `config/connections.js`)                                *
   *                                                                          *
   ***************************************************************************/
-  connection: 'mongodb',
+  // connection: 'mongodb',
+  connection: (process.env.NODE_ENV === 'production') ? 'mongodb' : 'mongodb_docker',
 
   /***************************************************************************
   *                                                                          *

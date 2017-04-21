@@ -64,6 +64,14 @@ module.exports.connections = {
     password: '',
     database: 'sails_sw_game_table'
   },
+  mongodb_docker: {
+    adapter: 'sails-mongo',
+    host: '172.18.0.2',
+    port: 27017,
+    user: '',
+    password: '',
+    database: 'sails_sw_game_table'
+  },
 
   /***************************************************************************
   *                                                                          *
