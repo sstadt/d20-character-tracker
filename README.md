@@ -19,7 +19,9 @@ Code documentation can be found on deveo.com: https://app.deveo.com/scott-stadt/
 
 ### DevOps to do:
 
- - look into node reloader during dev: https://github.com/sgress454/sails-hook-autoreload
+ - watch node process and restart app on api code change
+ - separate app.js loading from asset compilation
+ - auto generate local.js file if not present with a grunt-template task
 
 ### Need more research
 
