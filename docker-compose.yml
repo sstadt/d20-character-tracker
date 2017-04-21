@@ -3,12 +3,13 @@ services:
   sails:
     build: .
     ports:
-      - "1337:80"
+      - "1337:1337"
     links:
       - mongo
     tty: true
     volumes:
       - .:/server
+      - /npm
     environment:
       - NODE_ENV=development
   mongo:
