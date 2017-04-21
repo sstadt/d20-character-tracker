@@ -2,7 +2,7 @@ version: "2"
 services:
   sails:
     build: .
-    command: npm start
+    command: forever -wc 'node --harmony' app.js
     ports:
       - "1337:1337"
     links:

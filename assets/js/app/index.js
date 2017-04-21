@@ -1,5 +1,4 @@
 
-
 // themes
 require('../themes/default.js');
 require('../themes/starwars.js');

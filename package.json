@@ -48,7 +48,7 @@
     "vue-material": "^0.7.1"
   },
   "scripts": {
-    "start": "sails lift",
+    "start": "node app.js",
     "debug": "node debug app.js"
   },
   "main": "app.js",

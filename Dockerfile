@@ -4,7 +4,7 @@ FROM node:4
 MAINTAINER Scott Stadt <scott.stadt@gmail.com>
 
 # install dependencies
-RUN npm install -g sails grunt pm2 npm-check-updates
+RUN npm install -g sails grunt forever npm-check-updates
 
 # Define working directory
 WORKDIR /server
