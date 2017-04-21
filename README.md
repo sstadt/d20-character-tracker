@@ -19,9 +19,7 @@ Code documentation can be found on deveo.com: https://app.deveo.com/scott-stadt/
 
 ### DevOps to do:
 
- - watch node process and restart app on api code change
- - separate app.js loading from asset compilation
- - auto generate local.js file if not present with a grunt-template task
+ - set up localjs task for production
 
 ### Need more research
 
@@ -31,33 +29,45 @@ Code documentation can be found on deveo.com: https://app.deveo.com/scott-stadt/
 
 ### Setup
 
-Copy the following to config/local.js and fill in values:
+Install docker: https://www.docker.com/community-edition
 
-```javascript
-module.exports = {
-  email: {
-    gmail: {
-      address: 'your gmail testing address',
-      password: 'app password for gmail testing address'
-    },
-    mailGunKey: 'mailgun API key' // production only
-  },
-
-  hash: 'unique hash', // https://www.grc.com/passwords.htm
-
-  swApi: {
-    url: 'http://localhost:1338/', //address/port API is being run on
-    key: 'key from API interface'
-  },
-};
-```
-
-Install and start `mongod`: https://docs.mongodb.com/manual/installation/
-
-In a separate terminal, run the following commands:
+Build the container
 
 ```bash
-npm install -g sails
-cd /path/to/project
-npm install && sails lift
+cd /path/to/repo
+docker-compose build
+```
+
+Install local modules and generate local.js
+
+```bash
+npm install && grunt localjs
+```
+
+In order to register a new account on the app locally, you will need to set up an app password with a gmail account and plug the credentials into local.js.
+
+### Development
+
+The container can be started and stopped per docker-compose: `docker-compose --help`. Be sure to run `grunt localjs` before starting the container, of sails will error out.
+
+While running the container, forever will reload app.js when api or config changes are mad eto the application. You may reload the application in the browser manually, though in most cases this is not necessary as the websocket will reconnect itself without a browser refresh.
+
+Asset compilation is separated from the node process in development, so you will need to use grunt to test and compile front end assets.
+
+#### Compile and watch assets
+
+```bash
+grunt dev
+```
+
+#### Compile assets and run tests
+
+```bash
+grunt karma
+```
+
+#### Run tests without compiling assets
+
+```bash
+grunt test
 ```

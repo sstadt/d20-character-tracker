@@ -21,6 +21,28 @@ module.exports = function(grunt) {
         }
       },
       files: files
+    },
+    dev_localjs: {
+      options: {
+        data: {
+          db_host: '172.18.0.2',
+          prod: false
+        }
+      },
+      files: {
+        'config/local.js': ['tasks/templates/local.js.tpl']
+      }
+    },
+    prod_localjs: {
+      options: {
+        data: {
+          db_host: 'localhost',
+          prod: true
+        }
+      },
+      files: {
+        'config/local.js': ['tasks/templates/local.js.tpl']
+      }
     }
   });
 
