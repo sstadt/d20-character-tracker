@@ -6,7 +6,7 @@ Code documentation can be found on deveo.com: https://app.deveo.com/scott-stadt/
 
 #### as able
 
- - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging
+ - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging - hold off until canvas rebuild for mapViewer component
  - set up csrf with all socket calls
 
 #### testing todos
@@ -16,10 +16,6 @@ Code documentation can be found on deveo.com: https://app.deveo.com/scott-stadt/
  - gameBrowser
  - mapViewer
  - starWarsCrawl
-
-### DevOps to do:
-
- - set up localjs task for production
 
 ### Need more research
 
@@ -71,3 +67,39 @@ grunt karma
 ```bash
 grunt test
 ```
+
+### Roadmap
+
+#### 0.1 - Ready for Play
+
+ - manual Characters and NPCs
+ - freeform game data
+ - encounters
+ - maps
+ - crawls
+ - dice roll shortcuts, chat
+
+#### 0.2 - Game Data API
+
+ - integrated Character and NPCs - temporary (xp only) export for existing characters
+ - curated game data - option for freeform
+ - game data API app
+ - game data API integration
+ - character and NPC wizards
+ - variable sized NPC map tokens (large creatures, etc.)
+
+#### 0.3 - Game Data Stores
+
+ - game info panel - precursor to journal
+ - integrated XP and credit spending
+ - GM xp awards (group or individual)
+ - gear storefronts with configurable player access
+ - add loot caches to encounters
+
+#### 0.4 - Maps !!!
+
+ - mapViewer canvas rebuild
+
+#### 0.x - TBD
+
+ - game journal
