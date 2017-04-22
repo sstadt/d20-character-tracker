@@ -48,7 +48,11 @@ docker-compose build
 npm install && grunt localjs
 ```
 
-In order to register a new account on the app locally, you will need to set up an app password with a gmail account and plug the credentials into `local.js`. Alternatively, you could browse the documents locally after
+#### Registering a new User in the app
+
+In order to complete user registration on the app locally, you will need to set up an app password with a gmail account and plug the credentials into `local.js` so you can send registration emails.
+
+Alternatively, you could browse the user collection by connecting to the mongo container and change the `confirmed` property of the user document you've registered to `true`.
 
 ### Development
 
