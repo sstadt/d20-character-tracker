@@ -1,6 +1,6 @@
 # FaD Game Table
 
-Code documentation can be found on deveo.com: https://app.deveo.com/scott-stadt/projects/star_wars_game_table/repositories/sw-game-table-wiki/tree/master
+Documentation: https://github.com/sstadt/sw-game-table-wiki
 
 ### Dev to do:
 
@@ -17,6 +17,10 @@ Code documentation can be found on deveo.com: https://app.deveo.com/scott-stadt/
  - mapViewer
  - starWarsCrawl
 
+#### devops todo
+
+ - only build assets on initial lift in production to get application back online faster if an error occurs
+
 ### Need more research
 
  - waterline isn't behaving as expected when querying against dates
@@ -25,22 +29,26 @@ Code documentation can be found on deveo.com: https://app.deveo.com/scott-stadt/
 
 ### Setup
 
-Install docker: https://www.docker.com/community-edition
+#### Install Docker
 
-Build the container
+https://www.docker.com/community-edition
+
+You will need to add the `/data/db` folder to docker's shared folders via Preferences -> File Sharing.
+
+#### Build the container
 
 ```bash
 cd /path/to/repo
 docker-compose build
 ```
 
-Install local modules and generate local.js
+#### Install local modules and generate local.js
 
 ```bash
 npm install && grunt localjs
 ```
 
-In order to register a new account on the app locally, you will need to set up an app password with a gmail account and plug the credentials into local.js.
+In order to register a new account on the app locally, you will need to set up an app password with a gmail account and plug the credentials into `local.js`. Alternatively, you could browse the documents locally after
 
 ### Development
 
