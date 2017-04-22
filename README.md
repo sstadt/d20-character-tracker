@@ -48,17 +48,17 @@ docker-compose build
 npm install && grunt localjs
 ```
 
-#### Registering a new User in the app
-
-In order to complete user registration on the app locally, you will need to set up an app password with a gmail account and plug the credentials into `local.js` so you can send registration emails.
-
-Alternatively, you could browse the user collection by connecting to the mongo container and change the `confirmed` property of the user document you've registered to `true`.
-
 ### Development
 
-The container can be started and stopped per docker-compose: `docker-compose --help`. Be sure to run `grunt localjs` before starting the container, of sails will error out.
+Start the container.
 
-While running the container, forever will reload app.js when api or config changes are mad eto the application. You may reload the application in the browser manually, though in most cases this is not necessary as the websocket will reconnect itself without a browser refresh.
+```bash
+docker-compose up -d
+```
+
+Be sure to run `grunt localjs` before starting the container, or sails will error out. `docker-compose stop` will halt the container. `docker-compose --help` for additional commands.
+
+While running the container, forever will reload app.js when api or config changes are made to the application. You may reload the application in the browser manually, though in most cases this is not necessary as the websocket will reconnect itself without a browser refresh.
 
 Asset compilation is separated from the node process in development, so you will need to use grunt to test and compile front end assets.
 
@@ -80,6 +80,12 @@ grunt karma
 grunt test
 ```
 
+#### Registering a new User in the app
+
+In order to complete user registration on the app locally, you will need to set up an app password with a gmail account and plug the credentials into `local.js` so you can send registration emails.
+
+Alternatively, you could browse the user collection by connecting to the mongo container and change the `confirmed` property of the user document you've registered to `true`.
+
 ### Roadmap
 
 #### 0.1 - Ready for Play
@@ -93,7 +99,7 @@ grunt test
 
 #### 0.2 - Game Data API
 
- - integrated Character and NPCs - temporary (xp only) export for existing characters
+ - integrated Character and NPCs - temporary export for existing characters
  - curated game data - option for freeform
  - game data API app
  - game data API integration
