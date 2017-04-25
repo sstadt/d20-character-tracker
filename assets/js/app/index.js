@@ -22,6 +22,7 @@ require('../components/confirmButton/confirmButton.js');
 require('../components/confirmMenuItem/confirmMenuItem.js');
 require('../components/radialMenu/radialMenu.js');
 require('../components/radialMenuItem/radialMenuItem.js');
+require('../components/draggablePanel/draggablePanel.js');
 
 // user components
 require('../components/userProfile/userProfile.js');
@@ -41,6 +42,7 @@ require('../components/destinyTokens/destinyTokens.js');
 // character/NPC components
 require('../components/combatAvatar/combatAvatar.js');
 require('../components/encounter/encounter.js');
+require('../components/combatantCard/combatantCard.js');
 
 new Vue({
   el: '#app',

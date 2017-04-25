@@ -86,7 +86,7 @@
 
         <h3>Skills</h3>
         <div class="row small-up-3 pad-bottom">
-          <div class="column" v-for="(skill, index) in npcForm.fields.skills.value">
+          <div class="column" v-for="(skill, index) in npcForm.fields.skills.value" :key="skill.name">
             <number-picker
               v-model="skill.rank"
               :label="skill.name"
@@ -101,7 +101,7 @@
             <h1 class="md-title">Talents &amp; Abilities</h1>
             <md-button class="float-right md-icon-button" @click.native="addTalent">
               <md-icon>add</md-icon>
-              <md-tooltip md-direction="left">Add Talent</md-button>
+              <md-tooltip md-direction="left">Add Talent</md-tooltip>
             </md-button>
           </md-toolbar>
           <md-table>
@@ -139,7 +139,7 @@
             <h1 class="md-title">Force Powers</h1>
             <md-button class="float-right md-icon-button" @click.native="addForcePower">
               <md-icon>add</md-icon>
-              <md-tooltip md-direction="left">Add Force Power</md-button>
+              <md-tooltip md-direction="left">Add Force Power</md-tooltip>
             </md-button>
           </md-toolbar>
           <md-table v-if="npcForm.fields.powers.value.length > 0">
@@ -194,7 +194,7 @@
                 <md-table-cell colspan="3">
                   <md-button class="md-icon-button" @click.native="addForcePowerUpgrade(power.id)">
                     <icon name="add-upgrade"></icon>
-                    <md-tooltip md-direction="left">Add Upgrade</md-button>
+                    <md-tooltip md-direction="left">Add Upgrade</md-tooltip>
                   </md-button>
                 </md-table-cell>
               </md-table-row>
@@ -207,7 +207,7 @@
             <h1 class="md-title">Weapons</h1>
             <md-button class="md-icon-button" @click.native="addEquipment('weapon')">
               <md-icon>add</md-icon>
-              <md-tooltip md-direction="left">Add Weapon</md-button>
+              <md-tooltip md-direction="left">Add Weapon</md-tooltip>
             </md-button>
           </md-toolbar>
           <md-table>
@@ -231,7 +231,7 @@
                 </md-table-cell>
                 <md-table-cell>
                   <md-select v-model="weapon.skill">
-                    <md-option v-for="skill in combatSkills" :value="skill.name">{{ skill.name }}</md-option>
+                    <md-option v-for="skill in combatSkills" :value="skill.name" :key="skill.name">{{ skill.name }}</md-option>
                   </md-select>
                 </md-table-cell>
                 <md-table-cell>
@@ -242,7 +242,7 @@
                 </md-table-cell>
                 <md-table-cell>
                   <md-select v-model="weapon.range">
-                    <md-option v-for="range in rangeBands" :value="range">{{ range }}</md-option>
+                    <md-option v-for="range in rangeBands" :value="range" :key="range">{{ range }}</md-option>
                   </md-select>
                 </md-table-cell>
                 <md-table-cell>
@@ -263,7 +263,7 @@
             <h1 class="md-title">Armor</h1>
             <md-button class="md-icon-button" @click.native="addEquipment('armor')">
               <md-icon>add</md-icon>
-              <md-tooltip md-direction="left">Add Armor</md-button>
+              <md-tooltip md-direction="left">Add Armor</md-tooltip>
             </md-button>
           </md-toolbar>
           <md-table>
@@ -307,7 +307,7 @@
             <h1 class="md-title">Gear</h1>
             <md-button class="md-icon-button" @click.native="addEquipment('gear')">
               <md-icon>add</md-icon>
-              <md-tooltip md-direction="left">Add Gear</md-button>
+              <md-tooltip md-direction="left">Add Gear</md-tooltip>
             </md-button>
           </md-toolbar>
           <md-table>

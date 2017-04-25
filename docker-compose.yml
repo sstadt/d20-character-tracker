@@ -2,6 +2,8 @@ version: "2"
 services:
   sails:
     build: .
+    depends_on:
+      - mongo
     command: forever -wc 'node --harmony' app.js
     ports:
       - "1337:1337"

@@ -1,4 +1,10 @@
 
+.git
+.tmp
 assets
 tasks
 views
+
+package.json
+build.json
+README.md

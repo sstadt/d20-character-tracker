@@ -32,9 +32,9 @@
           <md-menu-item v-else @click.native="removeMyToken">Remove My Token</md-menu-item>
         </md-menu-content>
       </md-menu>
-      <md-button class="md-icon-button" @click.native="centerMap"><icon name="target"></i></md-button>
+      <md-button class="md-icon-button" @click.native="centerMap"><icon name="target"></icon></md-button>
       <input type="range" v-model="mapZoom" />
-      <md-button v-if="showGmTools" class="md-icon-button" @click.native="toggleGrid"><icon :name="tokenIcon"></i></md-button>
+      <md-button v-if="showGmTools" class="md-icon-button" @click.native="toggleGrid"><icon :name="tokenIcon"></icon></md-button>
     </div>
-  </div>
+  </transition>
 </div>

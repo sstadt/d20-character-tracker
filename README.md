@@ -1,4 +1,4 @@
-# FaD Game Table
+# Star Wars Game Table
 
 Documentation: https://github.com/sstadt/sw-game-table-wiki
 
@@ -50,13 +50,13 @@ npm install && grunt localjs
 
 ### Development
 
-Start the container.
+Build/start the container.
 
 ```bash
 docker-compose up -d
 ```
 
-Be sure to run `grunt localjs` before starting the container, or sails will error out. `docker-compose stop` will halt the container. `docker-compose --help` for additional commands.
+Be sure to run `grunt localjs` before starting the container, or sails will error out. You may also need to configure the IP of your mongo container in `config/local.js`.
 
 While running the container, forever will reload app.js when api or config changes are made to the application. You may reload the application in the browser manually, though in most cases this is not necessary as the websocket will reconnect itself without a browser refresh.
 
@@ -79,6 +79,14 @@ grunt karma
 ```bash
 grunt test
 ```
+
+#### Create a new Vue.js component
+
+```bash
+grunt component --name=myComponent --parent=parentComponent
+```
+
+Components will be created in `assets/js/components`. The parent parameter is optional, and further nests the created component. For example, passing `someCoponent` as the parent parameter will build the component at `assets/js/components/someComponent/`.
 
 #### Registering a new User in the app
 

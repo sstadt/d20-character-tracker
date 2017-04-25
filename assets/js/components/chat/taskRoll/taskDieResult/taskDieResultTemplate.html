@@ -10,13 +10,13 @@
     'absolute-center': true,
     'light-icons': type === 'difficulty'
   }">
-    <icon name="success" v-for="n in result.success"></icon>
-    <icon name="advantage" v-for="n in result.advantage"></icon>
-    <icon name="triumph" v-for="n in result.triumph"></icon>
-    <icon name="failure" v-for="n in result.failure"></icon>
-    <icon name="threat" v-for="n in result.threat"></icon>
-    <icon name="despair" v-for="n in result.despair"></icon>
-    <icon name="dark-side-point" v-for="n in result.dark"></icon>
-    <icon name="light-side-point" v-for="n in result.light"></icon>
+    <icon name="success" v-for="n in result.success" :key="n"></icon>
+    <icon name="advantage" v-for="n in result.advantage" :key="n"></icon>
+    <icon name="triumph" v-for="n in result.triumph" :key="n"></icon>
+    <icon name="failure" v-for="n in result.failure" :key="n"></icon>
+    <icon name="threat" v-for="n in result.threat" :key="n"></icon>
+    <icon name="despair" v-for="n in result.despair" :key="n"></icon>
+    <icon name="dark-side-point" v-for="n in result.dark" :key="n"></icon>
+    <icon name="light-side-point" v-for="n in result.light" :key="n"></icon>
   </span>
 </span>

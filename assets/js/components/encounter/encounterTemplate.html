@@ -6,7 +6,7 @@
     @close="confirmClear">
   </md-dialog-confirm>
   <div class="combatant-list" :style="{ 'max-width': encounterWidthPx }">
-    <div class="combatant" v-for="npc in combatants">
+    <div class="combatant" v-for="npc in combatants" :key="npc.id">
       <transition name="zoom-in">
         <md-button v-if="npc.changed" class="md-icon-button save-button overlay-button" @click.native="saveCombatant(npc.id)">
           <md-icon>done</md-icon>
@@ -26,24 +26,25 @@
       </combat-avatar>
     </div>
   </div>
-    <div v-if="isGm"class="encounter-controls">
-      <transition-group name="slide-fade-up">
-        <md-menu md-direction="top right" :md-align-trigger="true" md-size="4" key="favorites">
-          <md-button class="md-icon-button" md-menu-trigger><icon name="add-npc"></icon></md-button>
-          <md-tooltip md-delay="400" md-direction="top">Add NPC</md-tooltip>
-          <md-menu-content>
-            <md-menu-item v-for="npc in npcs" @selected="addCombatant(npc)">{{ npc.name }}</md-menu-item>
-            <md-menu-item v-if="npcs.length === 0">No Favorites Added</md-menu-item>
-          </md-menu-content>
-        </md-menu>
-        <md-button v-if="combatants.length > 0" class="md-icon-button" @click.native="clearCombatants" key="clear">
-          <icon name="clear-npc"></icon>
-          <md-tooltip md-delay="400" md-direction="top">Clear Encounter</md-tooltip>
-        </md-button>
-        <md-button v-if="combatants.length > 0 && map.id" class="md-icon-button" @click.native="addMapTokens" key="tokens">
-          <icon name="add-to-map"></icon>
-          <md-tooltip md-delay="400" md-direction="top">Add Map Tokens</md-tooltip>
-        </md-button>
-      </transition-group>
-    </div>
+  <combatant-card></combatant-card>
+  <div v-if="isGm"class="encounter-controls">
+    <transition-group name="slide-fade-up">
+      <md-menu md-direction="top right" :md-align-trigger="true" md-size="4" key="favorites">
+        <md-button class="md-icon-button" md-menu-trigger><icon name="add-npc"></icon></md-button>
+        <md-tooltip md-delay="400" md-direction="top">Add NPC</md-tooltip>
+        <md-menu-content>
+          <md-menu-item v-for="npc in npcs" :key="npc.id" @selected="addCombatant(npc)">{{ npc.name }}</md-menu-item>
+          <md-menu-item v-if="npcs.length === 0">No Favorites Added</md-menu-item>
+        </md-menu-content>
+      </md-menu>
+      <md-button v-if="combatants.length > 0" class="md-icon-button" @click.native="clearCombatants" key="clear">
+        <icon name="clear-npc"></icon>
+        <md-tooltip md-delay="400" md-direction="top">Clear Encounter</md-tooltip>
+      </md-button>
+      <md-button v-if="combatants.length > 0 && map.id" class="md-icon-button" @click.native="addMapTokens" key="tokens">
+        <icon name="add-to-map"></icon>
+        <md-tooltip md-delay="400" md-direction="top">Add Map Tokens</md-tooltip>
+      </md-button>
+    </transition-group>
+  </div>
 </div>

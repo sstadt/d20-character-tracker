@@ -90,8 +90,9 @@ module.exports = {
    * ----------------------------
    */
   localStorageKeys: {
-    npcFavorites: 'NPC_FAVORITES',
-    mapSettings: 'MAP_SETTINGS'
+    npcFavorites: 'SWGT-NPC_FAVORITES',
+    mapSettings: 'SWGT-MAP_SETTINGS',
+    draggablePanel: 'SWGT-DRAGGABLE_PANEL'
   },
 
   /*

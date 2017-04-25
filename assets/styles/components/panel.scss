@@ -7,4 +7,14 @@
   &.content {
     padding: $panel-padding * 2;
   }
+
+  &[draggable="true"] {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    &.dragging {
+      cursor: move;
+    }
+  }
 }

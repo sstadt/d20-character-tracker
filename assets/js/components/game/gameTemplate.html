@@ -8,7 +8,7 @@
         <md-button class="md-icon-button" md-menu-trigger><icon name="map"></icon></md-button>
         <md-tooltip md-direction="bottom">Maps</md-tooltip>
         <md-menu-content>
-          <md-menu-item v-for="map in maps" v-if="userIsGameMaster || map.shared" @selected="setActiveMap(map.id)">{{ map.name }}</md-menu-item>
+          <md-menu-item v-for="map in maps" :key="map.id" v-if="userIsGameMaster || map.shared" @selected="setActiveMap(map.id)">{{ map.name }}</md-menu-item>
           <md-menu-item @selected="clearActiveMap">Hide Map</md-menu-item>
         </md-menu-content>
       </md-menu>

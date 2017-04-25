@@ -7,27 +7,28 @@
   <p class="message"><span class="message-author">{{ chatHandle }}</span> {{ rollDescription }}</p>
   <p class="successes text-right" v-if="showSuccessIcons">
     <em>success</em>
-    <icon name="success" v-for="n in numSuccessIcons"></icon>
-    <icon name="advantage" v-for="n in message.overallResults.advantage"></icon>
-    <icon name="triumph" v-for="n in message.overallResults.triumph"></icon>
+    <icon name="success" v-for="n in numSuccessIcons" :key="n"></icon>
+    <icon name="advantage" v-for="n in message.overallResults.advantage" :key="n"></icon>
+    <icon name="triumph" v-for="n in message.overallResults.triumph" :key="n"></icon>
   </p>
   <p class="failures text-right" v-if="showFailIcons">
     <em>failure</em>
-    <icon name="failure" v-for="n in numFailureIcons"></icon>
-    <icon name="threat" v-for="n in message.overallResults.threat"></icon>
-    <icon name="despair" v-for="n in message.overallResults.despair"></icon>
+    <icon name="failure" v-for="n in numFailureIcons" :key="n"></icon>
+    <icon name="threat" v-for="n in message.overallResults.threat" :key="n"></icon>
+    <icon name="despair" v-for="n in message.overallResults.despair" :key="n"></icon>
   </p>
   <p class="force text-right" v-if="message.overallResults.dark > 0 || message.overallResults.light > 0">
     <em>force</em>
-    <icon name="light-side-point" v-for="n in message.overallResults.light"></icon>
-    <icon name="dark-side-point" v-for="n in message.overallResults.dark"></icon>
+    <icon name="light-side-point" v-for="n in message.overallResults.light" :key="n"></icon>
+    <icon name="dark-side-point" v-for="n in message.overallResults.dark" :key="n"></icon>
   </p>
   <md-tooltip md-delay="400" md-direction="bottom">
-    <span v-for="type in dieTypes">
+    <span v-for="type in dieTypes" :key="type">
       <component
         is="taskDieResult"
         v-if="message.results[type]"
         v-for="result in message.results[type]"
+        key="x"
         :result="result"
         :type="type">
       </component>

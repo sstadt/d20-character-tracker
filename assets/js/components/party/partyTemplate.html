@@ -1,4 +1,4 @@
 
 <div class="party">
-  <component is="player" v-for="player in game.players" :online="game.online" :player="player"></component>
+  <component is="player" v-for="player in game.players" :key="player.id" :online="game.online" :player="player"></component>
 </div>

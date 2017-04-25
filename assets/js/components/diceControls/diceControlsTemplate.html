@@ -1,4 +1,4 @@
 
 <div class="dice-controls">
-  <component is="dieControl" v-for="die in dice" :die="die" @die-click="dieClick(die)"></component>
+  <component is="dieControl" v-for="die in dice" :key="die" :die="die" @die-click="dieClick(die)"></component>
 </div>
