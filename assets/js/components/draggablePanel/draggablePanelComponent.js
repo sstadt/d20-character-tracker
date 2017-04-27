@@ -6,7 +6,7 @@ var storageService = require('../../services/storageService.js');
 module.exports = {
   template: require('./draggablePanelTemplate.html'),
   props: {
-    key: {
+    panelId: {
       type: String,
       required: true
     }
@@ -22,7 +22,7 @@ module.exports = {
   },
   computed: {
     storageKey() {
-      return `${this.key}-${config.localStorageKeys.draggablePanel}`;
+      return `${config.localStorageKeys.draggablePanel}-${this.panelId}`;
     }
   },
   created() {
@@ -30,7 +30,7 @@ module.exports = {
   },
   methods: {
     getStartingPosition() {
-      var localPosition = storageService.getLocal(this.storageKey, { defaultsTo: false }),
+      var localPosition = storageService.getLocal(this.storageKey, { defaultsTo: {} }),
         defaultPosition = { top: 150, left: 150 };
 
       if (!_.isNumber(localPosition.top)) {
@@ -58,7 +58,6 @@ module.exports = {
       this.lastMouseLeft = event.clientX;
       this.lastMouseTop = event.clientY;
       this.dragging = true;
-      console.log('start dragging');
     },
     dragHandler(event) {
       var offsetX = event.clientX - this.lastMouseLeft,
@@ -69,16 +68,12 @@ module.exports = {
         this.savePosition();
       }
 
-      console.log(this.left, this.top);
-
       this.lastMouseLeft = event.clientX;
       this.lastMouseTop = event.clientY;
     },
     stopDragging(event) {
       var offsetX = event.clientX - this.lastMouseLeft,
         offsetY = event.clientY - this.lastMouseTop;
-
-      console.log('stop draggin');
 
       this.dragging = false;
       this.updatePosition(offsetX, offsetY);

@@ -1,11 +1,17 @@
 
 .card-stat {
   position: relative;
+  font-size: rem-calc(20);
 
   &:after {
     content: '';
     display: block;
     padding-bottom: 100%;
+  }
+
+  .heading {
+    font-size: rem-calc(10);
+    color: #7a7a7a;
   }
 
   .stat-wrap {
@@ -14,6 +20,8 @@
     left: 0;
     height: 100%;
     width: 100%;
-
+    border-radius: $global-radius;
+    text-align: center;
+    box-shadow: 2px 2px 2px inset #aaa;
   }
 }
