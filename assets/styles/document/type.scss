@@ -51,3 +51,19 @@ a {
     -2px 2px 2px #000,
     2px 2px 2px #000;
 }
+
+.match-btn-height {
+  line-height: 42.75px;
+  margin: 0;
+}
+
+.match-icon-btn-height {
+  line-height: 40px;
+  margin: 0;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -40,8 +40,9 @@ require('../components/diceControls/diceControls.js');
 require('../components/destinyTokens/destinyTokens.js');
 
 // character/NPC components
-require('../components/combatAvatar/combatAvatar.js');
 require('../components/encounter/encounter.js');
+require('../components/cardStat/cardStat.js');
+require('../components/combatAvatar/combatAvatar.js');
 require('../components/combatantCard/combatantCard.js');
 
 new Vue({

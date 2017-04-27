@@ -45,6 +45,19 @@
     @error="notifyError">
   </map-viewer>
 
+  <!-- chat window and dice controls -->
+  <div class="panel main-window flex-column">
+    <div class="chat-container fill-height">
+      <chat v-if="gameLog.log" :log="gameLog.log" :game="game.id" @play-crawl="playCrawl"></chat>
+      <md-spinner v-else :md-size="150" :md-stroke="1" md-indeterminate></md-spinner>
+    </div>
+    <div class="dice-pool-container no-shrink">
+      <dice-pool v-if="game.id" ref="dicePool" :game="game.id" @error="notifyError"></dice-pool>
+      <dice-controls @die-click="addDieToPool"></dice-controls>
+      <destiny-tokens :is-game-master="userIsGameMaster" :light="lightTokens" :dark="darkTokens"></destiny-tokens>
+    </div>
+  </div>
+
   <!-- notifications -->
   <notification ref="notifications"></notification>
 
@@ -62,19 +75,6 @@
     @add-map-tokens="addCombatantsToMap"
     @error="notifyError">
   </encounter>
-
-  <!-- chat window and dice controls -->
-  <div class="panel main-window flex-column">
-    <div class="chat-container fill-height">
-      <chat v-if="gameLog.log" :log="gameLog.log" :game="game.id" @play-crawl="playCrawl"></chat>
-      <md-spinner v-else :md-size="150" :md-stroke="1" md-indeterminate></md-spinner>
-    </div>
-    <div class="dice-pool-container no-shrink">
-      <dice-pool v-if="game.id" ref="dicePool" :game="game.id" @error="notifyError"></dice-pool>
-      <dice-controls @die-click="addDieToPool"></dice-controls>
-      <destiny-tokens :is-game-master="userIsGameMaster" :light="lightTokens" :dark="darkTokens"></destiny-tokens>
-    </div>
-  </div>
 
   <!-- crawl -->
   <star-wars-crawl

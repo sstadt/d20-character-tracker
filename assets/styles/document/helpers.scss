@@ -11,6 +11,19 @@
   padding-top: $header-margin;
 }
 
+.pad-left {
+  padding-left: $global-gutter / 2;
+}
+
+.pad-right {
+  padding-right: $global-gutter / 2;
+}
+
+.pad-sides {
+  padding-left: -($global-gutter / 2);
+  padding-right: -($global-gutter / 2);
+}
+
 .pad-top {
   margin-top: 1rem;
 }
@@ -40,4 +53,18 @@
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+}
+
+.bg-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mb-0 {
+  margin-bottom: 0;
 }

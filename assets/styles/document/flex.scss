@@ -22,6 +22,8 @@
 }
 
 .flex-row {
+  min-width: 0;
+
   svg.icon-image + .md-input-container,
   .md-input-container + svg.icon-image {
     margin-left: 10px;
@@ -32,12 +34,12 @@
   display: flex;
   flex: 1;
 
-  .fill-height, .fill-width {
+  > .fill-height, > .fill-width {
     display: flex;
     flex: 2;
   }
 
-  .no-shrink {
+  > .no-shrink {
     flex: 0;
   }
 }
