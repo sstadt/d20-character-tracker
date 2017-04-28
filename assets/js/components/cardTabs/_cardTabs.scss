@@ -23,4 +23,13 @@
       }
     }
   }
+
+  .slide-wrap {
+    overflow: hidden;
+  }
+
+  .tab-content {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
 }

@@ -2,10 +2,10 @@
 <draggable-panel panel-id="combatant-card">
   <div class="combatant-card">
     <div class="combatant-header">
-          <div class="flex-row card-row">
-            <h1 class="fill-width ellipsis match-icon-btn-height">Stormtrooper</h1>
-            <md-button class="md-primary md-icon-button float-right" type="button"><md-icon>cached</md-icon></md-button>
-          </div>
+      <div class="flex-row card-row">
+        <h1 class="fill-width ellipsis match-icon-btn-height">Stormtrooper</h1>
+        <md-button class="md-primary md-icon-button float-right" type="button"><md-icon>cached</md-icon></md-button>
+      </div>
       <div class="row">
         <div class="small-4 column">
           <div class="avatar bg-image" style="background-image: url(https://cdn.thisiswhyimbroke.com/images/stormtrooper-helmet-replica-640x533.jpg)"></div>
@@ -31,13 +31,13 @@
               <card-stat heading="pre" :value="3"></card-stat>
             </div>
             <div class="column">
-              <card-stat heading="soak" :value="3"></card-stat>
-            </div>
-            <div class="column">
               <card-stat heading="wounds" :value="3" :total="11"></card-stat>
             </div>
             <div class="column">
               <card-stat heading="strain" :value="0" :total="0"></card-stat>
+            </div>
+            <div class="column">
+              <card-stat heading="soak" :value="3"></card-stat>
             </div>
             <div class="column">
               <card-stat heading="def (m)" :value="3"></card-stat>
@@ -48,6 +48,8 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="combatant-details">
       <div class="row">
         <div class="small-12 column">
           <card-tabs>
