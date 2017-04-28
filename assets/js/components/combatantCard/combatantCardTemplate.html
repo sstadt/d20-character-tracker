@@ -2,16 +2,16 @@
 <draggable-panel panel-id="combatant-card">
   <div class="combatant-card">
     <div class="combatant-header">
+          <div class="flex-row card-row">
+            <h1 class="fill-width ellipsis match-icon-btn-height">Stormtrooper</h1>
+            <md-button class="md-primary md-icon-button float-right" type="button"><md-icon>cached</md-icon></md-button>
+          </div>
       <div class="row">
         <div class="small-4 column">
           <div class="avatar bg-image" style="background-image: url(https://cdn.thisiswhyimbroke.com/images/stormtrooper-helmet-replica-640x533.jpg)"></div>
         </div>
         <div class="small-8 column">
-          <div class="flex-row card-row">
-            <h1 class="fill-width ellipsis match-icon-btn-height">Stormtrooper</h1>
-            <md-button class="md-primary md-icon-button float-right" type="button"><md-icon>cached</md-icon></md-button>
-          </div>
-          <div class="row small-up-6 card-row">
+          <div class="row small-up-6">
             <div class="column">
               <card-stat heading="bra" :value="2"></card-stat>
             </div>
@@ -30,8 +30,6 @@
             <div class="column">
               <card-stat heading="pre" :value="3"></card-stat>
             </div>
-          </div>
-          <div class="row small-up-6 card-row">
             <div class="column">
               <card-stat heading="soak" :value="3"></card-stat>
             </div>
@@ -48,6 +46,30 @@
               <card-stat heading="def (r)" :value="3"></card-stat>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 column">
+          <card-tabs>
+            <card-tab name="Skills">
+              <p>skills tab</p>
+            </card-tab>
+            <card-tab name="Talents/Abilities">
+              <p>talents tab</p>
+            </card-tab>
+            <card-tab name="Force Powers">
+              <p>force powers tab</p>
+            </card-tab>
+            <card-tab name="Weapons">
+              <p>weapons tab</p>
+            </card-tab>
+            <card-tab name="Armor">
+              <p>armor tab</p>
+            </card-tab>
+            <card-tab name="Gear">
+              <p>gear tab</p>
+            </card-tab>
+          </card-tabs>
         </div>
       </div>
     </div>

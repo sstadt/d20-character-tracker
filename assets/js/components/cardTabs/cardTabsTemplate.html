@@ -1,0 +1,12 @@
+
+<div class="card-tabs">
+  <ul class="tab-nav">
+    <li v-for="tab in tabs" :class="{ 'active': tab.active }" @click="activate(tab)">
+      {{ tab.name }}
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <slot></slot>
+  </div>
+</div>
