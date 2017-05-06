@@ -3,7 +3,6 @@
   @dragstart.stop="startDragging($event)"
   @drag.stop.prevent="dragHandler($event)"
   @dragend.stop="stopDragging($event)"
-  @mousewheel="scrollHandler($event)"
   :class="{
     'dragging': dragging,
     'panel': true

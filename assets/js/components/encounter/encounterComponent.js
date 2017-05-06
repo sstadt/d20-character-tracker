@@ -55,6 +55,9 @@ module.exports = {
     },
     showMenu() {
       return this.encounter.npcs.length === 0 || this.hovering;
+    },
+    activeNpc() {
+      return (this.encounter && this.encounter.npcs.length > 0) ? this.encounter.npcs[0] : {};
     }
   },
   created() {

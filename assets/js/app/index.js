@@ -6,6 +6,7 @@ require('../themes/starwars.js');
 // filters
 require('../filters/chatTimestamp.js');
 require('../filters/statAbbr.js');
+require('../filters/skillAbbr.js');
 
 // directives
 require('../directives/focus.js');
@@ -46,6 +47,7 @@ require('../components/cardTabs/cardTabs.js');
 require('../components/cardTab/cardTab.js');
 require('../components/combatAvatar/combatAvatar.js');
 require('../components/combatantCard/combatantCard.js');
+require('../components/skillShortcut/skillShortcut.js');
 
 new Vue({
   el: '#app',

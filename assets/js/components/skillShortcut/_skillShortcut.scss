@@ -1,0 +1,23 @@
+
+.skill-shortcut {
+  margin-top: 4px;
+
+  & > div {
+    line-height: 20px;
+  }
+
+  .fill-width {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .value {
+    width: 15px;
+    min-width: 15px;
+  }
+
+  .md-button {
+    margin: 0;
+  }
+}
