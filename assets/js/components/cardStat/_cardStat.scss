@@ -23,5 +23,17 @@
     border-radius: $global-radius;
     text-align: center;
     box-shadow: 2px 2px 2px inset #aaa;
+
+    .stat-contents {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+
+      p {
+        margin: 0;
+      }
+    }
   }
 }

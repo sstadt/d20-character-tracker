@@ -1,4 +1,8 @@
 
+var config = require('../../lib/config.js');
+
+var DicePool = require('../../classes/DicePool.js');
+
 module.exports = {
   template: require('./combatantCardTemplate.html'),
   props: {
@@ -33,6 +37,18 @@ module.exports = {
     },
     close() {
       this.show = false;
+    },
+    rollSkill(skill) {
+      var abilityScore = this.combatant.template[skill.ability] || 0,
+        proficiency = Math.min(abilityScore, skill.rank),
+        ability = Math.max(abilityScore, skill.rank) - proficiency,
+        pool = new DicePool({
+          description: `rolls ${skill.name} (${skill.ability})`,
+          ability, proficiency
+        }),
+        event = new CustomEvent(config.events.dicePool, { detail: pool });
+
+      window.dispatchEvent(event);
     }
   }
 };

@@ -39,8 +39,18 @@ module.exports = {
         gameId: self.game
       }
     });
+
+    window.addEventListener(config.events.dicePool, this.setDicePool);
   },
   methods: {
+    setDicePool(event) {
+      var pool = event.detail;
+
+      if (pool.description) this.rollDescription = pool.description;
+      for (let type in this.dice) {
+        if (pool[type] && _.isNumber(pool[type])) this.dice[type] = pool[type];
+      }
+    },
     roll() {
       var self = this,
         deferred = q.defer(),

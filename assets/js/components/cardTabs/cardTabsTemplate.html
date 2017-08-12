@@ -6,11 +6,7 @@
     </li>
   </ul>
 
-  <div class="slide-wrap">
-    <transition name="slide-down">
-      <div v-show="showTabs" class="tab-content">
-        <slot></slot>
-      </div>
-    </transition>
+  <div class="tab-content">
+    <slot></slot>
   </div>
 </div>

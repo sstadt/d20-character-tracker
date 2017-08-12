@@ -108,6 +108,15 @@ module.exports = {
   },
 
   /*
+   * Global Events
+   * ----------------------------
+   */
+
+  events: {
+    dicePool: 'dice-pool'
+  },
+
+  /*
    * Misc
    * ----------------------------
    */

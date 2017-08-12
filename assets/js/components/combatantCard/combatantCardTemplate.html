@@ -8,11 +8,28 @@
         <md-button class="md-primary md-icon-button" type="button"><md-icon>close</md-icon></md-button>
       </div>
       <div class="row">
-        <div class="small-4 column">
+        <div class="small-3 column">
           <div class="avatar bg-image" :style="{ 'background-image': combatantAvatar }"></div>
-        </div>
-        <div class="small-8 column">
-          <div class="row small-up-6">
+          <div class="row small-up-2">
+            <div class="column">
+              <card-stat heading="wounds" :value="combatant.currentWounds" :total="combatant.template.woundThreshold"></card-stat>
+            </div>
+            <div class="column">
+              <card-stat heading="strain" v-if="combatant.template.strainThreshold !== 0" :value="combatant.currentStrain" :total="combatant.template.strainThreshold"></card-stat>
+            </div>
+          </div>
+          <div class="row small-up-3">
+            <div class="column">
+              <card-stat heading="soak" :value="combatant.template.soak"></card-stat>
+            </div>
+            <div class="column">
+              <card-stat heading="def (m)" :value="combatant.template.defenseMelee"></card-stat>
+            </div>
+            <div class="column">
+              <card-stat heading="def (r)" :value="combatant.template.defenseRanged"></card-stat>
+            </div>
+          </div>
+          <div class="row small-up-3">
             <div class="column">
               <card-stat heading="bra" :value="combatant.template.brawn"></card-stat>
             </div>
@@ -31,80 +48,79 @@
             <div class="column">
               <card-stat heading="pre" :value="combatant.template.presence"></card-stat>
             </div>
-            <div class="column">
-              <card-stat heading="wounds" :value="combatant.currentWounds" :total="combatant.template.woundThreshold"></card-stat>
-            </div>
-            <div class="column">
-              <card-stat heading="strain" v-if="combatant.currentStrain" :value="combatant.currentStrain" :total="combatant.template.strainThreshold"></card-stat>
-            </div>
-            <div class="column">
-              <card-stat heading="soak" :value="combatant.template.soak"></card-stat>
-            </div>
-            <div class="column">
-              <card-stat heading="def (m)" :value="combatant.template.defenseMelee"></card-stat>
-            </div>
-            <div class="column">
-              <card-stat heading="def (r)" :value="combatant.template.defenseRanged"></card-stat>
-            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="combatant-details">
-      <div class="row">
-        <div class="small-12 column">
-          <card-tabs>
+        <div class="small-9 column">
+          <div class="combatant-details">
+            <card-tabs>
 
-            <card-tab name="Skills">
-              <div class="row">
-                <div class="small-9 column">
-                  <div class="row small-up-3">
-                    <div class="column" v-for="skill in generalSkills">
-                      <skill-shortcut
-                        :name="skill.name"
-                        :ranks="skill.rank"
-                        :ability="combatant.template[skill.ability]"
-                        :key="skill.name">
-                      </skill-shortcut>
-                    </div>
+              <card-tab name="Skills" :selected="true">
+                <div class="row">
+                  <div class="small-4 column">
+                    <skill-shortcut
+                      v-for="(skill, index) in generalSkills"
+                      v-if="index < 12"
+                      :name="skill.name"
+                      :ranks="skill.rank"
+                      :ability="combatant.template[skill.ability]"
+                      :key="skill.name"
+                      @click.native="rollSkill(skill)">
+                    </skill-shortcut>
+                  </div>
+                  <div class="small-4 column">
+                    <skill-shortcut
+                      v-for="(skill, index) in generalSkills"
+                      v-if="index >= 12 && index < 24"
+                      :name="skill.name"
+                      :ranks="skill.rank"
+                      :ability="combatant.template[skill.ability]"
+                      :key="skill.name"
+                      @click.native="rollSkill(skill)">
+                    </skill-shortcut>
+                  </div>
+                  <div class="small-4 column">
+                    <skill-shortcut
+                      v-for="(skill, index) in generalSkills"
+                      v-if="index >= 24"
+                      :name="skill.name"
+                      :ranks="skill.rank"
+                      :ability="combatant.template[skill.ability]"
+                      :key="skill.name"
+                      @click.native="rollSkill(skill)">
+                    </skill-shortcut>
+                    <skill-shortcut
+                      v-for="skill in combatSkills"
+                      :name="skill.name"
+                      :ranks="skill.rank"
+                      :ability="combatant.template[skill.ability]"
+                      :key="skill.name">
+                    </skill-shortcut>
                   </div>
                 </div>
-                <div class="small-3 column">
-                  <div class="row small-up-1">
-                    <div class="column" v-for="skill in combatSkills">
-                      <skill-shortcut
-                        :name="skill.name"
-                        :ranks="skill.rank"
-                        :ability="combatant.template[skill.ability]"
-                        :key="skill.name">
-                      </skill-shortcut>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </card-tab>
+              </card-tab>
 
-            <card-tab name="Talents/Abilities">
-              <p>talents tab</p>
-            </card-tab>
+              <card-tab name="Abilities">
+                <p>talents tab</p>
+              </card-tab>
 
-            <card-tab name="Force Powers">
-              <p>force powers tab</p>
-            </card-tab>
+              <card-tab name="Force Powers">
+                <p>force powers tab</p>
+              </card-tab>
 
-            <card-tab name="Weapons">
-              <p>weapons tab</p>
-            </card-tab>
+              <card-tab name="Weapons">
+                <p>weapons tab</p>
+              </card-tab>
 
-            <card-tab name="Armor">
-              <p>armor tab</p>
-            </card-tab>
+              <card-tab name="Armor">
+                <p>armor tab</p>
+              </card-tab>
 
-            <card-tab name="Gear">
-              <p>gear tab</p>
-            </card-tab>
+              <card-tab name="Gear">
+                <p>gear tab</p>
+              </card-tab>
 
-          </card-tabs>
+            </card-tabs>
+          </div>
         </div>
       </div>
     </div>
