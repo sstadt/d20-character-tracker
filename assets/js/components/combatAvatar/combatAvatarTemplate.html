@@ -26,9 +26,9 @@
         </md-button>
       </radial-menu-item>
       <radial-menu-item :radius="menuSize" :position="35">
-        <md-button class="md-icon-button overlay-button">
+        <md-button class="md-icon-button overlay-button" @click.native="showCard()">
           <icon name="npc"></icon>
-          <md-tooltip md-delay="400" md-direction="top">Menu</md-tooltip>
+          <md-tooltip md-delay="400" md-direction="top">Card</md-tooltip>
         </md-button>
       </radial-menu-item>
       <!-- strain -->

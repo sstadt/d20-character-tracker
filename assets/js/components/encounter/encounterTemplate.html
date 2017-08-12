@@ -22,11 +22,12 @@
         :size="avatarSize"
         :show-admin="isGm"
         @heal="healCombatant($event, npc.id)"
-        @damage="damageCombatant($event, npc.id)">
+        @damage="damageCombatant($event, npc.id)"
+        @show-card="showNpcCard(npc)">
       </combat-avatar>
     </div>
   </div>
-  <combatant-card v-if="activeNpc.name" :combatant="activeNpc"></combatant-card>
+  <combatant-card ref="npcCard" v-if="activeNpc.name" :combatant="activeNpc"></combatant-card>
   <div v-if="isGm"class="encounter-controls">
     <transition-group name="slide-fade-up">
       <md-menu md-direction="top right" :md-align-trigger="true" md-size="4" key="favorites">

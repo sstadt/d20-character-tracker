@@ -29,6 +29,9 @@ module.exports = {
       return _.filter(this.combatant.template.skills, function (skill) {
         return skill.combat === true;
       });
+    },
+    hasCombatant() {
+      return Boolean(this.combatant.template);
     }
   },
   methods: {

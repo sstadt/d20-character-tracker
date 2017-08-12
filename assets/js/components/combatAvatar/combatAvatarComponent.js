@@ -100,6 +100,9 @@ module.exports = {
     },
     damage(type) {
       this.$emit('damage', type);
+    },
+    showCard() {
+      this.$emit('show-card');
     }
   }
 };

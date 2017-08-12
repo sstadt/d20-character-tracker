@@ -45,7 +45,8 @@ module.exports = {
       hovering: false,
       favorites: storageService.getLocal(config.localStorageKeys.npcFavorites, { defaultsTo: [], onUpdate: this.favoritesUpdated }),
       combatants: this.encounter.npcs,
-      gameService: undefined
+      gameService: undefined,
+      activeNpc: {}
     };
   },
   computed: {
@@ -55,9 +56,6 @@ module.exports = {
     },
     showMenu() {
       return this.encounter.npcs.length === 0 || this.hovering;
-    },
-    activeNpc() {
-      return (this.encounter && this.encounter.npcs.length > 0) ? this.encounter.npcs[0] : {};
     }
   },
   created() {
@@ -168,6 +166,10 @@ module.exports = {
         .done(() => deferred.resolve());
 
       return deferred.promise;
+    },
+    showNpcCard(npc) {
+      this.activeNpc = npc;
+      Vue.nextTick(() => this.$refs.npcCard.open());
     }
   }
 };

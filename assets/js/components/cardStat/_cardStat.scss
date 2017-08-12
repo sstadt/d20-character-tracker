@@ -2,6 +2,7 @@
 .card-stat {
   position: relative;
   font-size: rem-calc(20);
+  margin-top: 12px;
 
   &:after {
     content: '';
@@ -11,7 +12,8 @@
 
   .heading {
     font-size: rem-calc(10);
-    color: #7a7a7a;
+    color: $alert-text-color;
+    margin-bottom: 2%;
   }
 
   .stat-wrap {
@@ -25,14 +27,29 @@
     box-shadow: 2px 2px 2px inset #aaa;
 
     .stat-contents {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100%;
       width: 100%;
 
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: $alert-bg-color;
+        border-radius: $global-radius;
+      }
+
       p {
+        line-height: 1;
         margin: 0;
+        color: $alert-text-color;
       }
     }
   }
