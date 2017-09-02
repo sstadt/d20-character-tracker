@@ -225,6 +225,7 @@ module.exports = {
     },
     playerRequestedJoin(data) {
       this.game.requestingPlayers.push(data.player);
+      this.$refs.notifications.success(`${data.player.chatHandle} wants to join the game!`);
     },
     playerJoinApproved(data) {
       var playerIndex = util.getIndexById(this.game.requestingPlayers, data.player.id);

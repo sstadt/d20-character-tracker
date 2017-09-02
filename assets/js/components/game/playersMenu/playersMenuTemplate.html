@@ -10,7 +10,7 @@
           <div class="md-subhead">Active Player</div>
         </md-card-header>
         <md-card-media md-ratio="16:9">
-          <img :src="player.config.avatar" :alt="player.chatHandle" v-if="player.config.avatar">
+          <img :src="player.config.avatar" :alt="player.chatHandle" v-if="player.config && player.config.avatar">
           <img src="/images/avatar_ph.jpg" :alt="player.chatHandle" v-else>
         </md-card-media>
         <md-card-actions>

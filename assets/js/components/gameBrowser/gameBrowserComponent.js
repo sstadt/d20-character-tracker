@@ -67,6 +67,9 @@ module.exports = {
     }
   },
   methods: {
+    closeDialog(ref) {
+      this.$refs.gameBrowserPrompt.close();
+    },
     newGame() {
       this.$refs.gameBrowserPrompt.open();
     },
@@ -74,12 +77,13 @@ module.exports = {
       var self = this,
         title = self.gameBrowserPrompt.value;
 
-      if (name !== '') {
+      if (title !== '') {
         self.gameService.create({ title })
           .then(function success(game) {
             self.myGames.push(game);
+            self.closeDialog();
           }, function (reason) {
-            self.$refs.notifications.error(reason.err);
+            self.$refs.notifications.alert(reason.err);
           });
       } else {
         self.gameBrowserPrompt.error = 'Game name cannot be empty';
@@ -100,6 +104,7 @@ module.exports = {
         userIndex = util.getIndexById(this.filteredGames[filteredGamesIndex].requestingPlayers, this.user.id);
 
       this.myGames.push(data.game);
+      this.$refs.notifications.success(`Your request to join ${data.game.title} has been approved!`);
 
       if (filteredGamesIndex > -1) {
         this.filteredGames[filteredGamesIndex].requestingPlayers.splice(userIndex, 1);
@@ -108,16 +113,21 @@ module.exports = {
     },
     playerJoinDeclined(data) {
       var filteredGamesIndex = util.getIndexById(this.filteredGames, data.game.id),
-        userIndex = util.getIndexById(this.filteredGames[filteredGamesIndex].requestingPlayers, this.user.id);
+        userIndex;
+
+      this.$refs.notifications.warning(`Your request to join ${data.game.title} has been declined`);
 
       if (filteredGamesIndex > -1) {
+        userIndex = util.getIndexById(this.filteredGames[filteredGamesIndex].requestingPlayers, this.user.id);
         this.filteredGames[filteredGamesIndex].requestingPlayers.splice(userIndex, 1);
       }
     },
     removedFromGame(data) {
       var filteredGamesIndex = util.getIndexById(this.filteredGames, data.game.id),
         myGamesIndex = util.getIndexById(this.myGames, data.game.id),
-        userIndex = util.getIndexById(this.filteredGames[filteredGamesIndex].players, this.user.id);
+        userIndex = util.getIndexById(this.filteredGames[filteredGamesIndex].players || -1, this.user.id);
+
+      console.log('removed from game');
 
       if (filteredGamesIndex > -1) {
         this.filteredGames[filteredGamesIndex].players.splice(userIndex, 1);
