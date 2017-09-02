@@ -111,32 +111,23 @@
                 <card-tab name="Weapons">
                   <table>
                     <thead>
-                      <tr><!-- roll shortcut, name, skill, damage, crit, range, encumbrance -->
+                      <tr>
                         <th>Name</th>
                         <th>Skill</th>
                         <th>Damage</th>
                         <th>Crit</th>
                         <th>Range</th>
-                        <th>Encumbrance</th>
+                        <th>Encum</th>
                       </tr>
                     </thead>
-
-                    <!--
-                      crit:2
-                      damage:6
-                      encumbrance:1
-                      hardPoints:0
-                      id:"e71ceda54958e37221575f4a5838559d3b27a732"
-                      name:"Lightsaber"
-                      price:0
-                      range:"engaged"
-                      skill:"Lightsaber"
-                      type:"weapon"
-                    -->
-
                     <tbody>
                       <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'weapon'" :key="index">
-                        <td>{{ item.name }}</td>
+                        <td>
+                          <md-button class="md-icon-button shortcut-button" @click.native="rollWeapon(item)">
+                            <icon name="roll-shortcut"></icon>
+                          </md-button>
+                          {{ item.name }}
+                        </td>
                         <td>{{ item.skill }}</td>
                         <td>{{ item.damage }}</td>
                         <td>{{ item.crit }}</td>
@@ -150,27 +141,13 @@
                 <card-tab name="Armor">
                   <table>
                     <thead>
-                      <tr><!-- name, defense, soak, encumbrance -->
+                      <tr>
                         <th>Name</th>
                         <th>Defense</th>
                         <th>Soak</th>
-                        <th>Encumbrance</th>
+                        <th>Encum</th>
                       </tr>
                     </thead>
-
-                    <!--
-                      crit:2
-                      damage:6
-                      encumbrance:1
-                      hardPoints:0
-                      id:"e71ceda54958e37221575f4a5838559d3b27a732"
-                      name:"Lightsaber"
-                      price:0
-                      range:"engaged"
-                      skill:"Lightsaber"
-                      type:"weapon"
-                    -->
-
                     <tbody>
                       <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'armor'" :key="index">
                         <td>{{ item.name }}</td>
@@ -187,23 +164,9 @@
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Encumbrance</th>
+                        <th>Encum</th>
                       </tr>
                     </thead>
-
-                    <!--
-                      crit:2
-                      damage:6
-                      encumbrance:1
-                      hardPoints:0
-                      id:"e71ceda54958e37221575f4a5838559d3b27a732"
-                      name:"Lightsaber"
-                      price:0
-                      range:"engaged"
-                      skill:"Lightsaber"
-                      type:"weapon"
-                    -->
-
                     <tbody>
                       <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'gear'" :key="index">
                         <td>{{ item.name }}</td>

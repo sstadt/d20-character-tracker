@@ -52,6 +52,13 @@ module.exports = {
         event = new CustomEvent(config.events.dicePool, { detail: pool });
 
       window.dispatchEvent(event);
+    },
+    rollWeapon(weapon) {
+      var skill = _.find(this.combatSkills, function (combatSkill) {
+        return combatSkill.name === weapon.skill;
+      });
+
+      this.rollSkill(skill);
     }
   }
 };
