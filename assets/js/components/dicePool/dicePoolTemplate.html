@@ -15,25 +15,25 @@
         </div>
       </transition-group>
     </div>
-    <span class="die-block" @click.native="removeDie('ability')">
+    <span class="die-block" @click="removeDie('ability')">
       <icon name="die-ability" v-for="n in dice.ability" :key="n"></icon>
     </span>
-    <span class="die-block" @click.native="removeDie('proficiency')">
+    <span class="die-block" @click="removeDie('proficiency')">
       <icon name="die-proficiency" v-for="n in dice.proficiency" :key="n"></icon>
     </span>
-    <span class="die-block" @click.native="removeDie('difficulty')">
+    <span class="die-block" @click="removeDie('difficulty')">
       <icon name="die-difficulty" v-for="n in dice.difficulty" :key="n"></icon>
     </span>
-    <span class="die-block" @click.native="removeDie('challenge')">
+    <span class="die-block" @click="removeDie('challenge')">
       <icon name="die-challenge" v-for="n in dice.challenge" :key="n"></icon>
     </span>
-    <span class="die-block" @click.native="removeDie('boost')">
+    <span class="die-block" @click="removeDie('boost')">
       <icon name="die-boost" v-for="n in dice.boost" :key="n"></icon>
     </span>
-    <span class="die-block" @click.native="removeDie('setback')">
+    <span class="die-block" @click="removeDie('setback')">
       <icon name="die-setback" v-for="n in dice.setback" :key="n"></icon>
     </span>
-    <span class="die-block" @click.native="removeDie('force')">
+    <span class="die-block" @click="removeDie('force')">
       <icon name="die-force" v-for="n in dice.force" :key="n"></icon>
     </span>
   </div>
