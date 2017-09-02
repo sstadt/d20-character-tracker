@@ -170,6 +170,24 @@ module.exports = {
     showNpcCard(npc) {
       this.activeNpc = npc;
       Vue.nextTick(() => this.$refs.npcCard.open());
+    },
+    syncActiveCombatant() {
+      var self = this,
+        updatedTemplate = _.find(this.npcs, function (npc) {
+          return npc.id === self.activeNpc.template.id;
+        }),
+        combatant;
+
+      if (!_.isEqual(updatedTemplate, self.activeNpc.template)) {
+        combatant = _.find(self.combatants, function (item) {
+          return item.id === self.activeNpc.id;
+        });
+
+        combatant.name = updatedTemplate.name;
+        combatant.imageUrl = updatedTemplate.imageUrl;
+        combatant.template = updatedTemplate;
+        this.saveCombatant(combatant.id);
+      }
     }
   }
 };

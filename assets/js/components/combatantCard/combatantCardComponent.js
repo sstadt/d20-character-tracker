@@ -41,6 +41,9 @@ module.exports = {
     close() {
       this.show = false;
     },
+    refresh() {
+      this.$emit('refresh-combatant');
+    },
     rollSkill(skill) {
       var abilityScore = this.combatant.template[skill.ability] || 0,
         proficiency = Math.min(abilityScore, skill.rank),

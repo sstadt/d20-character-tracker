@@ -5,7 +5,7 @@
       <div class="combatant-header">
         <div class="flex-row card-row">
           <h1 class="fill-width ellipsis match-icon-btn-height">{{ combatant.name }}</h1>
-          <md-button class="md-primary md-icon-button" type="button"><md-icon>cached</md-icon></md-button>
+          <md-button class="md-primary md-icon-button" type="button" @click.native="refresh()"><md-icon>cached</md-icon></md-button>
           <md-button class="md-primary md-icon-button" type="button" @click.native="close()"><md-icon>close</md-icon></md-button>
         </div>
         <div class="row">
