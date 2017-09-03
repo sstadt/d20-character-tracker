@@ -1,0 +1,18 @@
+
+<div class="card-power">
+  <md-card>
+    <md-card-header>
+      <div class="md-title">{{ power.name }}</div>
+    </md-card-header>
+    <md-card-content>
+      {{ power.description }}
+      <div class="power-upgrade" v-if="power.upgrades">
+        <h4 class="section-title"><icon name="upgrade"></icon> Upgrades</h4>
+        <div v-for="upgrade in power.upgrades">
+          <h5 class="title">{{ upgrade.name }}</h5>
+          <p class="description">{{ upgrade.description }}</p>
+        </div>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>

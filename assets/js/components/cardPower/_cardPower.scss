@@ -1,0 +1,21 @@
+
+.card-power {
+  margin-top: $panel-padding;
+
+  .section-title {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .power-upgrade {
+    .title {
+      text-transform: uppercase;
+      margin-bottom: 0;
+      margin-top: 5px;
+    }
+
+    .description {
+      margin: 0;
+    }
+  }
+}

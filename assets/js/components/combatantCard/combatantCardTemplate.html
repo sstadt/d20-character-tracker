@@ -1,7 +1,7 @@
 
 <transition name="slide-fade">
   <draggable-panel panel-id="combatant-card" v-if="hasCombatant" v-show="show">
-    <div class="combatant-card">
+    <div class="card combatant-card">
       <div class="combatant-header">
         <div class="flex-row card-row">
           <h1 class="fill-width ellipsis match-icon-btn-height">{{ combatant.name }}</h1>
@@ -101,23 +101,22 @@
                 </card-tab>
 
                 <card-tab name="Abilities">
-                  <p>talents tab</p>
+                  <div class="row small-up-2">
+                    <div class="column" v-for="ability in combatant.template.talents">
+                      <card-ability :ability="ability"></card-ability>
+                    </div>
+                  </div>
                 </card-tab>
 
                 <card-tab name="Force Powers">
-                  <p>force powers tab</p>
+                  <card-power v-for="power in combatant.template.powers" :power="power"></card-power>
                 </card-tab>
 
                 <card-tab name="Weapons">
                   <table>
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Skill</th>
-                        <th>Damage</th>
-                        <th>Crit</th>
-                        <th>Range</th>
-                        <th>Encum</th>
+                        <th>Name</th> <th>Skill</th> <th>Damage</th> <th>Crit</th> <th>Range</th> <th>Encum</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -142,18 +141,12 @@
                   <table>
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Defense</th>
-                        <th>Soak</th>
-                        <th>Encum</th>
+                        <th>Name</th> <th>Defense</th> <th>Soak</th> <th>Encum</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'armor'" :key="index">
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.defense }}</td>
-                        <td>{{ item.soak }}</td>
-                        <td>{{ item.encumbrance }}</td>
+                        <td>{{ item.name }}</td> <td>{{ item.defense }}</td> <td>{{ item.soak }}</td> <td>{{ item.encumbrance }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -163,14 +156,12 @@
                   <table>
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Encum</th>
+                        <th>Name</th> <th>Encum</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'gear'" :key="index">
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.encumbrance }}</td>
+                        <td>{{ item.name }}</td> <td>{{ item.encumbrance }}</td>
                       </tr>
                     </tbody>
                   </table>

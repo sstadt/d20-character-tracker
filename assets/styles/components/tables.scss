@@ -12,14 +12,9 @@ table {
     }
   }
 
-  thead {
-    background-color: $table-bg-color;
-  }
-
   th {
     font-weight: bold;
     text-transform: uppercase;
-    color: white;
     font-size: rem-calc(10);
     line-height: rem-calc(10);
   }

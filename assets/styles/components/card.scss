@@ -1,4 +1,17 @@
 
-.card-row {
-  margin-bottom: $panel-padding;
+.card {
+  .card-tabs {
+    thead {
+      background-color: $table-bg-color;
+
+      th {
+        color: white;
+      }
+    }
+
+    .tab {
+      padding-right: $panel-padding;
+      padding-bottom: 3px;
+    }
+  }
 }

@@ -42,6 +42,8 @@ require('../components/destinyTokens/destinyTokens.js');
 
 // character/NPC components
 require('../components/encounter/encounter.js');
+require('../components/cardAbility/cardAbility.js');
+require('../components/cardPower/cardPower.js');
 require('../components/cardStat/cardStat.js');
 require('../components/cardTabs/cardTabs.js');
 require('../components/cardTab/cardTab.js');

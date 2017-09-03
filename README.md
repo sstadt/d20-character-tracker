@@ -88,22 +88,27 @@ grunt component --name=myComponent --parent=parentComponent
 
 Components will be created in `assets/js/components`. The parent parameter is optional, and further nests the created component. For example, passing `someCoponent` as the parent parameter will build the component at `assets/js/components/someComponent/`.
 
+#### Dev Resources
+
+A list of the current icons can be access while running the app at http://localhost:1337/dev/icons
+
+There is a wiki - which currently only scratches the surface and needs metric boat loads of love - on github: https://github.com/sstadt/sw-game-table-wiki
+
 #### Registering a new User in the app
 
 In order to complete user registration on the app locally, you will need to set up an app password with a gmail account and plug the credentials into `local.js` so you can send registration emails.
 
 Alternatively, you could browse the user collection by connecting to the mongo container and change the `confirmed` property of the user document you've registered to `true`.
 
-### Roadmap
+### Roadmap - needs re-evaluated from 0.2 on, no longer pursuing automated integration and character wizards
 
 #### 0.1 - Ready for Play
 
- - manual Characters and NPCs
- - freeform game data
- - encounters
- - maps
- - crawls
- - dice roll shortcuts, chat
+ - manual Characters and NPCs - NEED CHARACTERS
+ - encounters - DONE
+ - maps - DONE
+ - crawls - NEED VOLUME CONTROL
+ - dice roll shortcuts, chat - DONE
 
 #### 0.2 - Game Data API
 
