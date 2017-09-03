@@ -67,7 +67,7 @@
   	text-align: justify;
 	  overflow: hidden;
     transform-origin: 50% 100%;
-    transform: perspective(400px) rotateX(28deg);
+    transform: perspective(370px) rotateX(28deg);
 
     > div {
 	    position: absolute;
@@ -105,7 +105,7 @@
   	width: $swLogoWidth;
     margin: (- $swLogoWidth / 2) 0 0 (- $swLogoWidth / 2);
 
-    transform: scale(2.75);
+    transform: scale(5);
     opacity: 1;
   }
 	50% {
