@@ -1,9 +1,24 @@
 
-/* Colors
--------------------------------- */
+.jukebox {
+  position: fixed;
+  top: $page-controls-offset;
+  left: $page-controls-offset;
 
-/* Settings
--------------------------------- */
+  .volume-controls {
+    svg.icon-image:not(.md-image) {
+      fill: $page-controls-color;
+    }
 
-/* Styling
--------------------------------- */
+    input[type="range"] {
+      margin-top: 14px;
+      opacity: 0;
+      transform: translateX(-5px);
+      transition: all 0.3s ease;
+    }
+
+    &:hover input[type="range"] {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}

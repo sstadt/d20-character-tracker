@@ -15,8 +15,8 @@
 
   .page-controls {
     position: fixed;
-    top: $global-gutter / 2;
-    right: $global-gutter;
+    top: $page-controls-offset;
+    right: $page-controls-offset;
     z-index: 1;
     border-radius: $global-radius;
     background-color: $panel-bg-color-dark;

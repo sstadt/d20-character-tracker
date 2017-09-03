@@ -1,6 +1,12 @@
 
 <div class="jukebox">
-  <audio preload="auto" v-for="track in playlist" :ref="track.name" @ended="trackFinished(track.name)">
+  <audio class="track" preload="auto" v-for="track in playlist" :ref="track.name" @ended="trackFinished(track.name)">
     <source :src="track.src" type="audio/mpeg" />
   </audio>
+  <div class="volume-controls">
+    <md-button class="md-icon-button" @click.native="toggleMute">
+      <icon :name="soundStatusIcon"></icon>
+    </md-button>
+    <input class="volume-slider" type="range" v-model="volumeControl" />
+  </div>
 </div>
