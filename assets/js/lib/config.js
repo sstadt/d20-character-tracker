@@ -82,6 +82,13 @@ module.exports = {
       addCombatant: '/game/addEncounterCombatant',
       removeCombatant: '/game/removeEncounterCombatant',
       updateCombatant: '/game/updateEncounterCombatant'
+    },
+    character: {
+       get: '/character/get',
+       getParty: '/character/getParty',
+       createCharacter: '/character/create',
+       updateCharacter: '/character/update',
+       destroyCharacter: '/character/destroy'
     }
   },
 

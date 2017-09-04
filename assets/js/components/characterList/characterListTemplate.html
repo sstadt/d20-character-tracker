@@ -1,0 +1,19 @@
+
+<div class="character-list">
+  <div class="row small-up-2">
+    <div class="column character-card" v-for="character in characters" :key="character.id">
+      <md-card>
+        <md-card-media md-ratio="16:9">
+          <img :src="character.imageUrl" :alt="character.name">
+        </md-card-media>
+        <md-card-header>
+          <div class="md-title">{{ character.name }}</div>
+        </md-card-header>
+        <md-card-actions>
+          <md-button @click.native="openCharacter(character)">Open</md-button>
+          <confirm-button @submit="deleteCharacter(character.id)">Delete</confirm-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
+</div>

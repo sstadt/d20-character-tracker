@@ -50,6 +50,7 @@ require('../components/cardTab/cardTab.js');
 require('../components/combatAvatar/combatAvatar.js');
 require('../components/combatantCard/combatantCard.js');
 require('../components/skillShortcut/skillShortcut.js');
+require('../components/characterList/characterList.js');
 
 new Vue({
   el: '#app',
