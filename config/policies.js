@@ -107,6 +107,15 @@ module.exports.policies = {
     'clearEncounter'  : ['socketSessionAuth', 'gameMaster']
   },
 
+  CharacterController: {
+    '*'        : false,
+    'get'      : ['socketSessionAuth'],
+    'getParty' : ['socketSessionAuth', 'gamePlayer'],
+    'create'   : ['socketSessionAuth'],
+    'update'   : ['socketSessionAuth', 'characterOwner'],
+    'destroy'  : ['socketSessionAuth', 'characterOwner']
+  },
+
   ApiController: {
     '*'     : false,
     'index' : true,
