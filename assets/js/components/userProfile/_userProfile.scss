@@ -4,6 +4,28 @@ $user-profile-header-size: 32px;
 $user-profile-header-margin: 15px;
 $user-profile-views-offset: $user-profile-offset - (($user-profile-header-size + $user-profile-header-margin) * 2 + $user-profile-header-margin);
 
+.page-nav {
+  position: relative;
+  transition: all 0.3s ease;
+
+  .icon-image {
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    opacity: 0;
+  }
+
+  &.active {
+    margin-left: 30px;
+
+    .icon-image {
+      opacity: 1;
+    }
+  }
+}
+
 .user-profile {
   .md-list.md-theme-default {
     background-color: transparent;
@@ -11,6 +33,7 @@ $user-profile-views-offset: $user-profile-offset - (($user-profile-header-size +
 
   .panel {
     margin-top: $user-profile-offset;
+    margin-bottom: $global-gutter / 2;
 
     h1 {
       font-size: rem-calc($user-profile-header-size);

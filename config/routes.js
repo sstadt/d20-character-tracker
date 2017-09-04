@@ -151,15 +151,27 @@ module.exports.routes = {
   },
 
   /*
-    FaD API
+    Character
    */
-  '/api/:model': {
-    controller: 'api',
-    action: 'index'
+  '/character/get': {
+    controller: 'character',
+    action: 'get'
   },
-  '/api/:model/:id': {
-    controller: 'api',
-    action: 'show'
+  '/character/getParty': {
+    controller: 'character',
+    action: 'getParty'
+  },
+  '/character/create': {
+    controller: 'character',
+    action: 'create'
+  },
+  '/character/update': {
+    controller: 'character',
+    action: 'update'
+  },
+  '/character/destroy': {
+    controller: 'character',
+    action: 'destroy'
   },
 
   /*

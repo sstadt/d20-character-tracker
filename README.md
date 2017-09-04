@@ -10,6 +10,7 @@ Documentation: https://github.com/sstadt/sw-game-table-wiki
  - need to reset the npc panel after adding/updating
  - absolute position/translateY volume slider
  - policies for NPC controller
+ - remove all the FaD/SW API placeholder code
  - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging - hold off until canvas rebuild for mapViewer component
  - set up csrf with all socket calls
 
