@@ -6,6 +6,8 @@ Documentation: https://github.com/sstadt/sw-game-table-wiki
 
 #### as able
 
+ - need to reset the npc panel after adding/updating
+ - absolute position/translateY volume slider
  - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging - hold off until canvas rebuild for mapViewer component
  - set up csrf with all socket calls
 
@@ -100,36 +102,42 @@ In order to complete user registration on the app locally, you will need to set 
 
 Alternatively, you could browse the user collection by connecting to the mongo container and change the `confirmed` property of the user document you've registered to `true`.
 
-### Roadmap - needs re-evaluated from 0.2 on, no longer pursuing automated integration and character wizards
+### Roadmap
 
 #### 0.1 - Ready for Play
 
  - manual Characters and NPCs - NEED CHARACTERS
  - encounters - DONE
  - maps - DONE
- - crawls - NEED VOLUME CONTROL
+ - crawls - DONE
  - dice roll shortcuts, chat - DONE
 
-#### 0.2 - Game Data API
+#### 0.2 - Polish
 
- - integrated Character and NPCs - temporary export for existing characters
- - curated game data - option for freeform
- - game data API app
- - game data API integration
- - character and NPC wizards
+ - rebuild NPCs creation with character tools
+ - rebuild maps with html5 canvas
+ - rebuild jukebox for streaming youtube videos as background music
+
+#### 0.3 - Storefronts
+
+ - Game Items
+ - item qualities
+ - import gear from store
+ - send gear to player
+ - gear storefronts with configurable player access
  - variable sized NPC map tokens (large creatures, etc.)
 
-#### 0.3 - Game Data Stores
+#### 0.4 - Game Data Stores
 
  - game info panel - precursor to journal
- - integrated XP and credit spending
- - GM xp awards (group or individual)
- - gear storefronts with configurable player access
- - add loot caches to encounters
+ - saved encounters - one click encounter start
+ - encounter loot
+ - need before greed roller
 
-#### 0.4 - Maps !!!
+#### 0.5 - Initiative Tracker
 
- - mapViewer canvas rebuild
+ - encounter initiative tracker
+ - ships
 
 #### 0.x - TBD
 
