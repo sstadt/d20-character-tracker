@@ -75,14 +75,14 @@ module.exports = {
     }
 
     PasswordService.hashPassword(values.password)
-      .fail(function (err) {
-        next(err);
-      })
-      .done(function (encryptedPassword) {
+      .then(function (encryptedPassword) {
         delete values.password;
         delete values.confirmation;
         values.encryptedPassword = encryptedPassword;
         next();
+      })
+      .fail(function (err) {
+        next(err);
       });
   }
 };

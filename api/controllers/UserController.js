@@ -71,6 +71,7 @@ module.exports = {
     if (PasswordService.isSecure(userObj.password, userObj.confirmation)) {
       User.create(userObj, function userCreated(err, user) {
         if (err) {
+          console.log(err);
           var errorMsg = userErrors.cannotCreateUser;
 
           if (err.code === 'E_VALIDATION') {

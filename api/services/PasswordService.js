@@ -142,7 +142,7 @@ module.exports = {
   hashPassword: function (password) {
     var deferred = Q.defer();
 
-    bcrypt.hash(password, 10, function passwordEncryption(err, encryptedPassword) {
+    bcrypt.hash(password, bcrypt.genSaltSync(10), null, function passwordEncryption(err, encryptedPassword) {
       if (err) {
         deferred.reject(err);
       } else {
