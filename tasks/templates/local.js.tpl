@@ -22,9 +22,8 @@ module.exports = {
 
   hash: '', // https://www.grc.com/passwords.htm
 
-  swApi: {
-    url: '',
-    key: ''
+  apiKeys: {
+    googleCustomSearch: ''
   },
 
   db: {
