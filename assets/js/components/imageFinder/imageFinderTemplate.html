@@ -1,1 +1,34 @@
-<p>{{ greeting }}</p>
+
+<div class="image-finder">
+  <div class="image-preview" :style="previewStyle"></div>
+  <div class="image-search">
+    <form @submit.prevent="search">
+      <input class="card-input" type="text" v-model="imageSearch" />
+      <md-button type="submit" class="md-icon-button">
+        <icon name="search"></icon>
+      </md-button>
+    </form>
+  </div>
+  <div class="search-results panel">
+    <div class="row small-up-3">
+      <div class="column">
+        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
+      </div>
+      <div class="column">
+        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
+      </div>
+      <div class="column">
+        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
+      </div>
+      <div class="column">
+        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
+      </div>
+      <div class="column">
+        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
+      </div>
+      <div class="column">
+        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
+      </div>
+    </div>
+  </div>
+</div>
