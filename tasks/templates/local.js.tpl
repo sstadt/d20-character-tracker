@@ -23,7 +23,10 @@ module.exports = {
   hash: '', // https://www.grc.com/passwords.htm
 
   apiKeys: {
-    googleCustomSearch: ''
+    googleCustomSearch: {
+      key: '',
+      id: ''
+    }
   },
 
   db: {

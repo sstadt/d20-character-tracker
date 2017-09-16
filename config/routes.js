@@ -175,6 +175,14 @@ module.exports.routes = {
   },
 
   /*
+    Image Search
+   */
+  '/imageSearch': {
+    controller: 'imageSearch',
+    action: 'index'
+  },
+
+  /*
     Dev
    */
   '/dev/sandbox': {

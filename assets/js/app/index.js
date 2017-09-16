@@ -24,6 +24,7 @@ require('../components/confirmMenuItem/confirmMenuItem.js');
 require('../components/radialMenu/radialMenu.js');
 require('../components/radialMenuItem/radialMenuItem.js');
 require('../components/draggablePanel/draggablePanel.js');
+require('../components/imageFinder/imageFinder.js');
 
 // user components
 require('../components/userProfile/userProfile.js');
@@ -51,6 +52,7 @@ require('../components/combatAvatar/combatAvatar.js');
 require('../components/combatantCard/combatantCard.js');
 require('../components/skillShortcut/skillShortcut.js');
 require('../components/characterList/characterList.js');
+require('../components/characterCard/characterCard.js');
 
 new Vue({
   el: '#app',
