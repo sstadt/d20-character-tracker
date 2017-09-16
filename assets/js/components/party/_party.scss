@@ -3,4 +3,8 @@
   position: absolute;
   top: 70px;
   left: $global-gutter;
+
+  [draggable="true"] {
+    z-index: 1;
+  }
 }
