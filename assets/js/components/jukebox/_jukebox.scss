@@ -10,15 +10,17 @@
     }
 
     input[type="range"] {
-      margin-top: 14px;
       opacity: 0;
-      transform: translateX(-5px);
+      transform: translateX(-5px) translateY(-50%);
       transition: all 0.3s ease;
+      position: absolute;
+      top: 50%;
+      left: 50px;
     }
 
     &:hover input[type="range"] {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateX(0) translateY(-50%);
     }
   }
 }
