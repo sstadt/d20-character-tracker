@@ -84,11 +84,14 @@ module.exports = {
       updateCombatant: '/game/updateEncounterCombatant'
     },
     character: {
-       get: '/character/get',
-       getParty: '/character/getParty',
-       createCharacter: '/character/create',
-       updateCharacter: '/character/update',
-       destroyCharacter: '/character/destroy'
+      get: '/character/get',
+      getParty: '/character/getParty',
+      createCharacter: '/character/create',
+      updateCharacter: '/character/update',
+      destroyCharacter: '/character/destroy'
+    },
+    api: {
+      imageSearch: '/imageSearch'
     }
   },
 
