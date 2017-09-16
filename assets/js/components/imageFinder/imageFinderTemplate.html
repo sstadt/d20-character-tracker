@@ -1,34 +1,43 @@
 
-<div class="image-finder">
+<div :class="{
+  'image-finder': true,
+  'portrait': aspect === 'portrait',
+  'landscape': aspect === 'landscape'
+}">
   <div class="image-preview" :style="previewStyle"></div>
   <div class="image-search">
     <form @submit.prevent="search">
       <input class="card-input" type="text" v-model="imageSearch" />
-      <md-button type="submit" class="md-icon-button">
+      <md-spinner md-indeterminate :md-size="26" v-if="searching"></md-spinner>
+      <md-button type="submit" v-else class="md-icon-button">
         <icon name="search"></icon>
       </md-button>
     </form>
   </div>
-  <div class="search-results panel">
-    <div class="row small-up-3">
-      <div class="column">
-        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
-      </div>
-      <div class="column">
-        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
-      </div>
-      <div class="column">
-        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
-      </div>
-      <div class="column">
-        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
-      </div>
-      <div class="column">
-        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
-      </div>
-      <div class="column">
-        <div class="image-preview" style="background-image: url(//placehold.it/300x300)"></div>
+  <transition name="slide-fade">
+    <div class="search-results" v-show="show">
+      <div class="panel">
+        <md-button class="md-icon-button" :disabled="prevDisabled" @click.native="previousPage()">
+          <icon name="chevron-left"></icon>
+        </md-button>
+        <md-button class="md-icon-button" :disabled="nextDisabled" @click.native="nextPage()">
+          <icon name="chevron-right"></icon>
+        </md-button>
+        <md-button class="md-icon-button float-right" @click.native="show = false"><md-icon>close</md-icon></md-button>
+        <div :class="{
+          'row': true,
+          'small-up-3': aspect === 'landscape',
+          'small-up-5': aspect === 'portrait'
+        }">
+          <div class="column" v-for="(image, index) in searchResults" v-if="startIndex <= index && index <= endIndex">
+            <div
+              class="image-preview"
+              :style="{ 'background-image': 'url(' + image  + ')' }"
+              @click="setImage(image)">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </div>

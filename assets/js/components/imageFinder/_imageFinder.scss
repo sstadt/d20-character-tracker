@@ -8,6 +8,10 @@
     content: '';
     display: block;
     padding-bottom: 65%;
+
+    .portrait & {
+      padding-bottom: 130%;
+    }
   }
 }
 
@@ -25,7 +29,7 @@
     bottom: 10px;
     padding: 0 10px;
     width: 100%;
-    // opacity: 0;
+    opacity: 0;
     transition: all 0.3s ease;
 
     input {
@@ -38,27 +42,33 @@
       }
     }
 
-    .md-icon-button {
-      margin: 0 0 0 8px;
+    .md-icon-button, .md-spinner {
       position: absolute;
+    }
+
+    .md-spinner {
+      right: 13px;
+      bottom: 3px;
+    }
+
+    .md-icon-button {
       right: 10px;
       bottom: 0;
+      margin: 0;
     }
   }
 
   .search-results {
     position: absolute;
-    width: 350px;
-    bottom: -10px;
-    right: 0;
+    width: 500px;
+    bottom: $panel-padding + 5;
+    left: $panel-padding / 2;
+    padding-top: $panel-padding;
     transform: translateY(100%);
-
-    .column:nth-child(n+4) {
-      margin-top: $panel-padding;
-    }
 
     .image-preview {
       cursor: pointer;
+      margin-top: $panel-padding;
     }
   }
 }
