@@ -6,30 +6,23 @@ Documentation: https://github.com/sstadt/sw-game-table-wiki
 
 #### as able
 
+ - something is wrong with the join game socket calls
+ - adding requesting players should check to make sure the player doesn't already exist
  - need to reset the npc panel after adding/updating
- - absolute position/translateY volume slider
  - policies for NPC controller
  - remove all the FaD/SW API placeholder code
  - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging - hold off until canvas rebuild for mapViewer component
  - set up csrf with all socket calls
 
-#### testing todos
-
- - userProfile
- - game
- - gameBrowser
- - mapViewer
- - starWarsCrawl
-
 #### devops todo
 
+ - autorun `grunt localjs` if local.js doesn't exist
  - only build assets on initial lift in production to get application back online faster if an error occurs
 
 ### Need more research
 
  - waterline isn't behaving as expected when querying against dates
  - ... need to figure out a TTL solution that will not infringe upon registration while expiring reset tokens after 24 hours
- - set up grunt-autoprefixer
 
 ### Setup
 
@@ -116,8 +109,10 @@ Alternatively, you could browse the user collection by connecting to the mongo c
 
 #### 0.2 - Polish
 
+ - encounter initiative tracker (display vertically alongside chat)
  - rebuild NPCs creation with character tools
  - rebuild maps with html5 canvas
+ - variable sized NPC map tokens (large creatures, etc.)
  - rebuild jukebox for streaming youtube videos as background music
 
 #### 0.3 - Storefronts
@@ -127,7 +122,6 @@ Alternatively, you could browse the user collection by connecting to the mongo c
  - import gear from store
  - send gear to player
  - gear storefronts with configurable player access
- - variable sized NPC map tokens (large creatures, etc.)
 
 #### 0.4 - Game Data Stores
 
@@ -136,11 +130,7 @@ Alternatively, you could browse the user collection by connecting to the mongo c
  - encounter loot
  - need before greed roller
 
-#### 0.5 - Initiative Tracker
+#### 0.5 - Extras
 
- - encounter initiative tracker
  - ships
-
-#### 0.x - TBD
-
  - game journal

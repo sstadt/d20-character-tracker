@@ -116,9 +116,8 @@ module.exports.policies = {
     'destroy'  : ['socketSessionAuth', 'characterOwner']
   },
 
-  ApiController: {
+  ImageSearchController: {
     '*'     : false,
-    'index' : true,
-    'show'  : true
+    'index' : ['socketSessionAuth']
   }
 };
