@@ -1,12 +1,18 @@
 
 <transition name="slide-fade">
-  <draggable-panel panel-id="character-card--test">
-    <div class="card character-card">
+  <draggable-panel panel-id="character-card--test" v-show="show">
+    <div class="card character-card" v-if="hasCharacter">
       <div class="row">
         <div class="small-4 column">
-          <image-finder aspect="portrait"></image-finder>
+          <image-finder aspect="portrait" v-model="character.imageUrl"></image-finder>
         </div>
-        <div class="small-8 column"></div>
+        <div class="small-8 column">
+          <div class="flex-row">
+            <h2 class="heading fill-width ellipsis">{{ character.name }}</h2>
+            <md-spinner :size="30" v-if="saving"></md-spinner>
+            <md-button class="md-icon-button" @click.native="close()"><md-icon>close</md-icon></md-button>
+          </div>
+        </div>
       </div>
     </div>
   </draggable-panel>

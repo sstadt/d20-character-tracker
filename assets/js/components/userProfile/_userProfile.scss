@@ -31,7 +31,11 @@ $user-profile-views-offset: $user-profile-offset - (($user-profile-header-size +
     background-color: transparent;
   }
 
-  .panel {
+  .md-list-item {
+    z-index: auto;
+  }
+
+  .user-profile-panel {
     margin-top: $user-profile-offset;
     margin-bottom: $global-gutter / 2;
 
@@ -72,5 +76,9 @@ $user-profile-views-offset: $user-profile-offset - (($user-profile-header-size +
     .views {
       padding-top: $user-profile-views-offset;
     }
+  }
+
+  .user-profile-content {
+    z-index: 1;
   }
 }
