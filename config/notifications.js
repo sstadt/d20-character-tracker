@@ -318,25 +318,27 @@ module.exports.notifications = {
   },
 
   Character: { // 800
-    notFound: {
-      code: 800,
-      message: 'Character not found'
-    },
-    listNotFound: {
-      code: 801,
-      message: 'Characters not found'
-    },
-    cannotCreate: {
-      code: 802,
-      message: 'Error creating Character'
-    },
-    cannotUpdate: {
-      code: 803,
-      message: 'Error updating Character'
-    },
-    cannotDelete: {
-      code: 804,
-      message: 'Error deleting Character'
+    error: {
+      notFound: {
+        code: 800,
+        message: 'Character not found'
+      },
+      listNotFound: {
+        code: 801,
+        message: 'Characters not found'
+      },
+      cannotCreate: {
+        code: 802,
+        message: 'Error creating Character'
+      },
+      cannotUpdate: {
+        code: 803,
+        message: 'Error updating Character'
+      },
+      cannotDelete: {
+        code: 804,
+        message: 'Error deleting Character'
+      }
     }
   }
 };

@@ -122,7 +122,8 @@ module.exports = {
    */
 
   events: {
-    dicePool: 'dice-pool'
+    dicePool: 'dice-pool',
+    notify: 'notify-user'
   },
 
   /*

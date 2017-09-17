@@ -1,5 +1,5 @@
 
 <span>
-  <md-button v-if="!confirmed" @click.native="confirm"><slot>Delete</slot></md-button>
-  <md-button v-else class="md-accent md-raised" @click.native="submit">Confirm?</md-button>
+  <md-button v-if="!confirmed" @click.native="confirm" :disabled="disabled"><slot>Delete</slot></md-button>
+  <md-button v-else class="md-accent md-raised" @click.native="submit" :disabled="disabled">Confirm?</md-button>
 </span>
