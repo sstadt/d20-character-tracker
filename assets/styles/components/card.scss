@@ -1,5 +1,7 @@
 
 .card {
+  position: relative;
+
   .card-tabs {
     thead {
       background-color: $table-bg-color;
@@ -12,6 +14,31 @@
     .tab {
       padding-right: $panel-padding;
       padding-bottom: 3px;
+    }
+  }
+
+  .card-nav {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    transform: translateX(calc(100% + #{$panel-padding}));
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      background-color: $panel-bg-color;
+      opacity: 0.5;
+      border-top-right-radius: $global-radius;
+      border-bottom-right-radius: $global-radius;
+
+      .md-button {
+        margin: 0;
+      }
+
+      &.active {
+        opacity: 1;
+      }
     }
   }
 }

@@ -5,5 +5,9 @@
   .heading {
     margin: 0;
     line-height: 40px;
+
+    & + .md-spinner {
+      margin-top: 10px;
+    }
   }
 }

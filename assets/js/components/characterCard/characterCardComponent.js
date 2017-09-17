@@ -18,7 +18,8 @@ module.exports = {
     return {
       show: false,
       characterService: null,
-      saving: false
+      saving: false,
+      currentView: 'main'
     };
   },
   computed: {
@@ -39,6 +40,9 @@ module.exports = {
     close() {
       this.stopSync();
       this.show = false;
+    },
+    setView(view) {
+      this.currentView = view;
     },
     startSync() {
       if (syncInterval) this.stopSync();
