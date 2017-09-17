@@ -2,18 +2,41 @@
 <transition name="slide-fade">
   <draggable-panel panel-id="character-card--test" v-show="show">
     <div class="card character-card" v-if="hasCharacter">
-      <div class="row">
+
+      <div class="flex-row">
+        <h2 class="heading fill-width ellipsis">{{ character.name }}</h2>
+        <md-spinner md-indeterminate :md-size="20" v-if="saving"></md-spinner>
+        <md-button class="md-icon-button" @click.native="close()"><md-icon>close</md-icon></md-button>
+      </div>
+
+      <ul class="card-nav">
+        <li :class="{ 'active': currentView === 'main' }">
+          <md-button class="md-icon-button" @click.native="setView('main')"><icon name="user"></icon></md-button>
+        </li>
+        <li :class="{ 'active': currentView === 'skills' }">
+          <md-button class="md-icon-button" @click.native="setView('skills')"><icon name="skills"></icon></md-button>
+        </li>
+        <li :class="{ 'active': currentView === 'inventory' }">
+          <md-button class="md-icon-button" @click.native="setView('inventory')"><icon name="inventory"></icon></md-button>
+        </li>
+        <li :class="{ 'active': currentView === 'notes' }">
+          <md-button class="md-icon-button" @click.native="setView('notes')"><icon name="notes"></icon></md-button>
+        </li>
+      </ul>
+
+      <div class="row" v-if="currentView === 'main'">
         <div class="small-4 column">
           <image-finder aspect="portrait" v-model="character.imageUrl"></image-finder>
         </div>
-        <div class="small-8 column">
-          <div class="flex-row">
-            <h2 class="heading fill-width ellipsis">{{ character.name }}</h2>
-            <md-spinner :size="30" v-if="saving"></md-spinner>
-            <md-button class="md-icon-button" @click.native="close()"><md-icon>close</md-icon></md-button>
-          </div>
-        </div>
+        <div class="small-8 column"></div>
       </div>
+
+      <div class="row" v-show="currentView === 'skills'" >Skills</div>
+
+      <div class="row" v-show="currentView === 'inventory'">Inventory</div>
+
+      <div class="row" v-show="currentView === 'notes'">Notes</div>
+
     </div>
   </draggable-panel>
 </transition>
