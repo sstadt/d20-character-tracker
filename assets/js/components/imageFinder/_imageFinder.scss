@@ -32,6 +32,16 @@
     opacity: 0;
     transition: all 0.3s ease;
 
+    &.hide-search {
+      .md-icon-button, .md-spinner {
+        display: none;
+      }
+
+      input {
+        padding-right: 8px;
+      }
+    }
+
     input {
       padding: 0 32px 0 8px;
       border-radius: $global-radius;

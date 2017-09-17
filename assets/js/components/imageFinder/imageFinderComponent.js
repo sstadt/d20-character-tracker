@@ -58,6 +58,9 @@ module.exports = {
     },
     nextDisabled() {
       return this.currentPage > this.numPages - 1;
+    },
+    hideSearch() {
+      return this.imageSearch.match(urlRegex);
     }
   },
   created() {
@@ -80,14 +83,20 @@ module.exports = {
     search() {
       var self = this;
 
+      // if this is the same thing, show search results
       if (self.imageSearch === self.lastSearch && self.imageSearch !== '') {
         self.show = true;
+
+      // if this is new, and a full url, update the model
+      } else if (self.hideSearch) {
+        this.setImage(self.imageSearch);
+
+      // search if we aren't already searching
       } else if (!self.searching) {
         self.searching = true;
 
         this.apiService.imageSearch({ q: self.imageSearch })
           .then(function (response) {
-            console.log(response);
             self.lastSearch = self.imageSearch;
             self.searchResults = self.parseResults(response.items);
             self.show = self.searchResults.length > 0;
