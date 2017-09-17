@@ -16,15 +16,7 @@ module.exports = {
       dropzone: {},
       uploadProgress: 0,
       myGames: [],
-      myCharacters: [
-        {id: 1, name: 'Luke Skywalker', imageUrl: 'https://www.dailydot.com/wp-content/uploads/f49/d9/f66e75bc5e9ee939825e6b468706a0d6.jpg'},
-        {id: 2, name: 'Obi Wan Kenobi', imageUrl: 'http://cdn.images.express.co.uk/img/dynamic/36/590x/secondary/alecobi-682521.jpg'},
-        {id: 3, name: 'Han Solo', imageUrl: 'https://static.independent.co.uk/s3fs-public/thumbnails/image/2016/01/26/15/harrison-ford-han-solo.jpg'},
-        {id: 4, name: 'Chewbacca', imageUrl: 'http://cf.broadsheet.ie/wp-content/uploads/2016/11/Chewbacca-starwars.jpg'},
-        {id: 5, name: 'Princess Leia', imageUrl: 'http://images.hellogiggles.com/uploads/2017/01/13231646/Princess-Leia-11.jpg'},
-        {id: 6, name: 'C-3PO', imageUrl: 'https://lumiere-a.akamaihd.net/v1/images/C-3PO-See-Threepio_68fe125c.jpeg?region=0%2C45%2C1408%2C704'},
-        {id: 7, name: 'R2-D2', imageUrl: 'https://i.ytimg.com/vi/8tjMM67-aao/maxresdefault.jpg'}
-      ],
+      myCharacters: [],
       gameService: undefined,
       characterService: undefined
     };
@@ -58,10 +50,14 @@ module.exports = {
     // get user characters
     self.characterService.get()
       .then(function success(myCharacters) {
-        // self.myCharacters = myCharacters;
+        self.myCharacters = myCharacters;
       }, function error(reason) {
         self.$refs.notifications.alert(reason);
       });
+
+    window.addEventListener(config.events.notify, function (event) {
+      self.$refs.notifications[event.detail.type](event.detail.msg);
+    });
   },
   components: {
     profile: require('./profile/profileComponent.js'),
@@ -120,6 +116,9 @@ module.exports = {
       UserPipe.on('playerConfigUpdated', this.playerConfigUpdated);
       UserPipe.on('playerJoinApproved', this.playerJoinApproved);
       UserPipe.on('removedFromGame', this.removedFromGame);
+      UserPipe.on('newCharacterCreated', this.newCharacterCreated);
+      UserPipe.on('characterUpdated', this.characterUpdated);
+      UserPipe.on('characterRemoved', this.characterRemoved);
     },
     playerConfigUpdated(data) {
       if (data.config) {
@@ -134,6 +133,23 @@ module.exports = {
 
       if (myGamesIndex > -1) {
         this.myGames.splice(myGamesIndex, 1);
+      }
+    },
+    newCharacterCreated(data) {
+      this.myCharacters.push(data.character);
+    },
+    characterUpdated(data) {
+      var characterIndex = util.getIndexById(this.myCharacters, data.character.id);
+
+      if (characterIndex > -1) {
+        this.myCharacters.splice(characterIndex, 1, _.extend(data.character));
+      }
+    },
+    characterRemoved(data) {
+      var characterIndex = util.getIndexById(this.myCharacters, data.character);
+
+      if (characterIndex > -1) {
+        this.myCharacters.splice(characterIndex, 1);
       }
     }
   }

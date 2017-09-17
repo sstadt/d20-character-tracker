@@ -18,11 +18,11 @@ module.exports = {
     },
     name: {
       type: 'string',
-      required: true
+      defaultsTo: 'New Character'
     },
     imageUrl: {
       type: 'string',
-      required: true
+      defaultsTo: '/images/avatar_ph.jpg'
     },
     brawn: {
       type: 'integer',

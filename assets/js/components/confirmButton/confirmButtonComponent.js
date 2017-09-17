@@ -5,6 +5,10 @@ module.exports = {
     delay: {
       type: Number,
       default: 10000
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

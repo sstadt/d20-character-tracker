@@ -36,7 +36,7 @@ module.exports = {
 	},
 
 	create: function (req, res) {
-		var newCharacter = req.param('character');
+		var newCharacter = req.param('character') || {};
 
 		newCharacter.owner = req.session.User.id;
 
@@ -45,8 +45,12 @@ module.exports = {
 				console.log(err);
 				res.jsonError(characterErrors.cannotCreate);
 			} else {
-		    if (character) User.subscribe(req.socket, character);
-				res.json({ character });
+				User.message(character.owner, {
+					type: 'newCharacterCreated',
+					data: { character: character }
+				});
+
+				res.send(200);
 			}
 		});
 	},
@@ -58,10 +62,18 @@ module.exports = {
 			if (err) {
 				res.jsonError(characterErrors.cannotUpdate);
 			} else {
-				Character.message(character.id, {
+				User.message(character[0].owner, {
 					type: 'characterUpdated',
 					data: { character: character[0] }
 				});
+
+				if (character[0].game) {
+					Game.message(character[0].game, {
+						type: 'partyMemberUpdated',
+						data: { character: character[0] }
+					});
+				}
+
 				res.send(200);
 			}
 		});
@@ -75,10 +87,18 @@ module.exports = {
 			if (err) {
 				res.jsonError(characterErrors.cannotDelete);
 			} else {
-				Character.message(gameId, {
+				User.message(req.session.User.id, {
 					type: 'characterRemoved',
 					data: { character: characterId }
 				});
+
+				if (gameId) {
+					Game.message(gameId, {
+						type: 'partyMemberRemoved',
+						data: { character: characterId }
+					});
+				}
+
 				res.send(200);
 			}
 		});

@@ -10,8 +10,16 @@
           <div class="md-title">{{ character.name }}</div>
         </md-card-header>
         <md-card-actions>
-          <md-button @click.native="openCharacter(character)">Open</md-button>
-          <confirm-button @submit="deleteCharacter(character.id)">Delete</confirm-button>
+          <md-button @click.native="openCharacter(character)" :disabled="deletingCharacter.indexOf(character.id) !== -1">Open</md-button>
+          <confirm-button @submit="deleteCharacter(character.id)" :disabled="deletingCharacter.indexOf(character.id) !== -1">Delete</confirm-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+    <div class="column action-card">
+      <md-card>
+        <md-card-actions>
+          <icon name="user"></icon>
+          <md-button @click.native="newCharacter()" :disabled="creatingCharacter">New Character</md-button>
         </md-card-actions>
       </md-card>
     </div>

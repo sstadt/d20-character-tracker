@@ -2,6 +2,8 @@
 var sha1 = require('sha1');
 var moment = require('moment');
 
+var config = require('./config.js');
+
 module.exports = {
 
   /**
@@ -83,5 +85,9 @@ module.exports = {
       randomNum = Math.random() * (100000 - 1) + 1;
 
     return sha1(`${timestamp}${randomNum}`);
+  },
+
+  sendNotification(msg, type) {
+    window.dispatchEvent(new CustomEvent(config.events.notify, { detail: { msg, type } }));
   }
 };

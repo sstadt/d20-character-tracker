@@ -42,3 +42,38 @@
     padding: 4px;
   }
 }
+
+.action-card {
+  .md-card {
+    position: relative;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-bottom: 80%;
+    }
+  }
+
+  .md-card-actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    @extend .flex-column;
+    @extend .v-center;
+    @extend .h-center;
+
+    svg.icon-image {
+      height: 90px;
+      width: 90px;
+      margin-bottom: 20px;
+    }
+
+    .md-button {
+      line-height: 50px;
+      padding: 0 24px;
+      font-size: 16px;
+    }
+  }
+}
