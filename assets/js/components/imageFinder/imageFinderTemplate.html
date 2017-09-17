@@ -5,7 +5,7 @@
   'landscape': aspect === 'landscape'
 }">
   <div class="image-preview" :style="previewStyle"></div>
-  <div class="image-search">
+  <div :class="{ 'image-search': true, 'hide-search': hideSearch }">
     <form @submit.prevent="search">
       <input class="card-input" type="text" v-model="imageSearch" />
       <md-spinner md-indeterminate :md-size="26" v-if="searching"></md-spinner>
