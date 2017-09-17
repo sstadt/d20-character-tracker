@@ -14,6 +14,7 @@ module.exports = {
   data() {
     return {
       characterService: null,
+      currentCharacter: {},
       creatingCharacter: false,
       deletingCharacter: []
     };
@@ -26,7 +27,7 @@ module.exports = {
   methods: {
     newCharacter() {
       var self = this;
-      console.log('create new character');
+
       if (!self.creatingCharacter) {
         self.creatingCharacter = true;
         this.characterService.createCharacter()
@@ -37,7 +38,8 @@ module.exports = {
       }
     },
     openCharacter(character) {
-      console.log(`open ${character.name}`);
+      this.currentCharacter = _.clone(character);
+      Vue.nextTick(() => this.$refs.characterCard.open());
     },
     deleteCharacter(characterId) {
       var self = this;
