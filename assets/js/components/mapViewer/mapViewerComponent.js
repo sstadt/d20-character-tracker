@@ -45,11 +45,24 @@ module.exports = {
     mapTransform() {
       return `translateX(-50%) translateY(-50%) scale(${this.mapScale}, ${this.mapScale})`;
     },
-    tokenIcon() {
+    gridIcon() {
       return this.resizingGrid ? 'resize' : 'grid';
     },
     playerHasToken() {
       return util.getIndexById(this.map.tokens, this.user.id) > -1;
+    },
+    combatantIds() {
+      var ids = [];
+
+      if (this.map.tokens) {
+        for (var i = 0, j = this.map.tokens.length; i < j; i++) {
+          if (this.map.tokens[i].type = 'npc') {
+            ids.push(this.map.tokens[i].id);
+          }
+        }
+      }
+
+      return ids;
     }
   },
   watch: {
@@ -235,6 +248,18 @@ module.exports = {
         });
 
       self.gameService.addMapToken({ mapId: self.map.id, tokens })
+        .fail(function (reason) {
+          self.$emit('error', reason.err);
+        })
+        .done(() => deferred.resolve());
+
+      return deferred.promise;
+    },
+    clearCombatants(tokenId) {
+      var self = this,
+        deferred = q.defer();
+
+      self.gameService.removeMapToken({ mapId: self.map.id, tokenId })
         .fail(function (reason) {
           self.$emit('error', reason.err);
         })

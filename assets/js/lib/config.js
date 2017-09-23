@@ -71,7 +71,6 @@ module.exports = {
       deleteMap: '/map/destroy',
       addMapToken: '/map/addToken',
       removeMapToken: '/map/removeToken',
-      deleteMapToken: '/map/removeToken',
       moveMapToken: '/map/moveToken',
       getNpcs: '/npc/get',
       createNpc: '/npc/create',

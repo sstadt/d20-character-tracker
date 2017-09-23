@@ -88,20 +88,32 @@ module.exports = {
 	removeToken: function (req, res) {
 		var gameId = req.param('gameId'),
 			mapId = req.param('mapId'),
-			tokenId = req.param('tokenId');
+			tokenIds = req.param('tokenId');
+
+		if (!Array.isArray(tokenIds)) {
+			tokenIds = [tokenID];
+		}
 
 		Map.findOne(mapId, function (err, map) {
 			if (err) {
 				res.jsonError(mapErrors.notFound);
-			} else if (_.isUndefined(tokenId)) {
+			} else if (_.isUndefined(tokenIds)) {
 				res.jsonError(mapErrors.invalidToken);
 			} else {
-				var tokenIndex = _.findIndex(map.tokens, function (token) {
-					return tokenId === token.id;
-				});
+				var changed = false;
 
-				if (tokenIndex > -1) {
-					map.tokens.splice(tokenIndex, 1);
+				for (var i = 0, j = tokenIds.length; i < j; i++) {
+					var tokenIndex = _.findIndex(map.tokens, function (token) {
+						return tokenIds[i] === token.id;
+					});
+
+					if (tokenIndex > -1) {
+						changed = true;
+						map.tokens.splice(tokenIndex, 1);
+					}
+				}
+
+				if (changed) {
 					map.save(function (err, newMap) {
 						if (err) {
 							res.jsonError(mapErrors.cannotRemoveToken);
@@ -110,7 +122,7 @@ module.exports = {
 								type: 'mapTokenRemoved',
 								data: {
 									mapId: mapId,
-									tokenId: tokenId
+									tokenIds: tokenIds
 								}
 							});
 							res.send(200);
@@ -118,7 +130,7 @@ module.exports = {
 
 					});
 				} else {
-					res.jsonError(mapErrors.tokenExists);
+					res.send(200);
 				}
 			}
 		});

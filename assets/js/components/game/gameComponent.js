@@ -343,11 +343,15 @@ module.exports = {
       }
     },
     mapTokenRemoved(data) {
-      var mapIndex = util.getIndexById(this.maps, data.mapId),
-        tokenIndex = (mapIndex === -1) ? -1 : util.getIndexById(this.maps[mapIndex].tokens, data.tokenId);
+      var mapIndex = util.getIndexById(this.maps, data.mapId);
 
-      if (tokenIndex > -1) {
-        this.maps[mapIndex].tokens.splice(tokenIndex, 1);
+      if (mapIndex > -1) {
+        for (var i = 0, j = data.tokenIds.length; i < j; i++) {
+          var tokenIndex = util.getIndexById(this.maps[mapIndex].tokens, data.tokenIds[i]);
+          if (tokenIndex > -1) {
+            this.maps[mapIndex].tokens.splice(tokenIndex, 1);
+          }
+        }
       }
     },
     mapTokenMoved(data) {

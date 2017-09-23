@@ -34,7 +34,8 @@
       </md-menu>
       <md-button class="md-icon-button" @click.native="centerMap"><icon name="target"></icon></md-button>
       <input type="range" v-model="mapZoom" />
-      <md-button v-if="showGmTools" class="md-icon-button" @click.native="toggleGrid"><icon :name="tokenIcon"></icon></md-button>
+      <md-button v-if="showGmTools" class="md-icon-button" @click.native="toggleGrid"><icon :name="gridIcon"></icon></md-button>
+      <md-button v-if="showGmTools && combatantIds.length > 0" class="md-icon-button" @click.native="clearCombatants(combatantIds)"><icon name="remove-users"></icon></md-button>
     </div>
   </transition>
 </div>
