@@ -31,7 +31,43 @@
         <div class="small-8 column"></div>
       </div>
 
-      <div class="row" v-show="currentView === 'skills'" >Skills</div>
+      <div class="row" v-show="currentView === 'skills'" >
+        <div class="small-4 column">
+          <skill-shortcut
+            v-for="(skill, index) in generalSkills"
+            :name="skill.name"
+            :ranks="skill.rank"
+            :ability="character[skill.ability]"
+            :key="skill.name"
+            @click.native="rollSkill(skill)">
+          </skill-shortcut>
+        </div>
+        <div class="small-8 column">
+          <div class="row">
+            <div class="small-6 column">
+              <skill-shortcut
+                v-for="(skill, index) in knowledgeSkills"
+                :name="skill.name"
+                :ranks="skill.rank"
+                :ability="character[skill.ability]"
+                :key="skill.name"
+                @click.native="rollSkill(skill)">
+              </skill-shortcut>
+            </div>
+            <div class="small-6 column">
+              <skill-shortcut
+                v-for="(skill, index) in combatSkills"
+                :name="skill.name"
+                :ranks="skill.rank"
+                :ability="character[skill.ability]"
+                :key="skill.name"
+                @click.native="rollSkill(skill)">
+              </skill-shortcut>
+            </div>
+          </div>
+          abilities
+        </div>
+      </div>
 
       <div class="row" v-show="currentView === 'inventory'">Inventory</div>
 

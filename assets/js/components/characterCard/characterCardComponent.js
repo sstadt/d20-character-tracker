@@ -25,6 +25,33 @@ module.exports = {
   computed: {
     hasCharacter() {
       return Boolean(this.character.id);
+    },
+    generalSkills() {
+      if (Boolean(!this.character)) {
+        return [];
+      }
+
+      return _.filter(this.character.skills, function (skill) {
+        return !skill.combat && !skill.knowledge;
+      });
+    },
+    knowledgeSkills() {
+      if (Boolean(!this.character)) {
+        return [];
+      }
+
+      return _.filter(this.character.skills, function (skill) {
+        return skill.knowledge;
+      });
+    },
+    combatSkills() {
+      if (Boolean(!this.character)) {
+        return [];
+      }
+
+      return _.filter(this.character.skills, function (skill) {
+        return skill.combat;
+      });
     }
   },
   created() {

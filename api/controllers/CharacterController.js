@@ -39,6 +39,7 @@ module.exports = {
 		var newCharacter = req.param('character') || {};
 
 		newCharacter.owner = req.session.User.id;
+		newCharacter.skills = CharacterService.getNewSkillList();
 
 		Character.create(newCharacter, function (err, character) {
 			if (err) {
