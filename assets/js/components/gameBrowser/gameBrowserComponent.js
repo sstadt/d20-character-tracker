@@ -95,9 +95,17 @@ module.exports = {
     initUserPipe() {
       var UserPipe = new Pipe('user');
 
+      UserPipe.on('joinRequestReceived', this.joinRequestReceived);
       UserPipe.on('playerJoinApproved', this.playerJoinApproved);
       UserPipe.on('playerJoinDeclined', this.playerJoinDeclined);
       UserPipe.on('removedFromGame', this.removedFromGame);
+    },
+    joinRequestReceived(data) {
+      var gameIndex = util.getIndexById(this.filteredGames, data.gameId);
+
+      if (gameIndex > -1) {
+        this.filteredGames[gameIndex].requestingPlayers.push(this.user.id);
+      }
     },
     playerJoinApproved(data) {
       var filteredGamesIndex = util.getIndexById(this.filteredGames, data.game.id),
@@ -126,8 +134,6 @@ module.exports = {
       var filteredGamesIndex = util.getIndexById(this.filteredGames, data.game.id),
         myGamesIndex = util.getIndexById(this.myGames, data.game.id),
         userIndex = util.getIndexById(this.filteredGames[filteredGamesIndex].players || -1, this.user.id);
-
-      console.log('removed from game');
 
       if (filteredGamesIndex > -1) {
         this.filteredGames[filteredGamesIndex].players.splice(userIndex, 1);

@@ -185,8 +185,12 @@ module.exports.notifications = {
           code: 611,
           message: 'Player not found'
         },
+        alreadyJoined: {
+          code: 613,
+          message: 'You have already joined this game'
+        },
         logNotFound: {
-          code: 612,
+          code: 614,
           message: 'Game log not found'
         }
       }

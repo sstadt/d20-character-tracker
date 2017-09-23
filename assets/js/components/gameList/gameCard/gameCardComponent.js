@@ -1,5 +1,6 @@
 
 var config = require('../../../lib/config.js');
+var util = require('../../../lib/util.js');
 
 var Service = require('../../../classes/Service.js');
 
@@ -34,14 +35,24 @@ module.exports = {
     launchGameLink() {
       return '/play/' + this.game.id;
     },
-    canLaunchGame() {
-      return this.hasJoined();
+    hasRequestedJoin() {
+      return this.game.requestingPlayers.indexOf(this.user.id) > -1;
+    },
+    hasJoined() {
+      var playerIndex = _.findIndex(this.game.players, (player) => {
+        return player.id === this.user.id;
+      });
+
+      return this.game.gameMaster.id === this.user.id || playerIndex > -1;
     },
     canJoinGame() {
-      return this.user.id && !this.hasJoined() && !this.hasRequestedJoin();
+      return this.user.id && !this.hasJoined && !this.hasRequestedJoin;
     },
     joinIsPending() {
-      return !this.hasJoined() && this.hasRequestedJoin();
+      return !this.hasJoined && this.hasRequestedJoin;
+    },
+    canLaunchGame() {
+      return this.hasJoined;
     },
     joinedPlayerList() {
       var playerNames = _.extend(this.game.players).map(function (player) {
@@ -52,30 +63,13 @@ module.exports = {
     }
   },
   methods: {
-    hasRequestedJoin() {
-      var self = this;
-
-      var playerIndex = _.findIndex(self.game.requestingPlayers, function (player) {
-        return player.id === self.user.id;
-      });
-
-      return playerIndex > -1;
-    },
-    hasJoined() {
-      var self = this;
-
-      var playerIndex = _.findIndex(self.game.players, function (player) {
-        return player.id === self.user.id;
-      });
-
-      return self.game.gameMaster.id === self.user.id || playerIndex > -1;
-    },
     joinGame() {
       var self = this,
         deferred = q.defer();
 
       self.gameService.join({ game: self.game.id })
         .fail(function error(reason) {
+          // TODO: hook this up to window notifications event, install handler in gameBrowser and userProfile
           self.$emit('error', reason.err);
         })
         .done(function () {

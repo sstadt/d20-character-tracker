@@ -156,24 +156,38 @@ module.exports = {
 		Game.findOne(req.param('game'))
 			.populate('requestingPlayers')
 			.exec(function (err, game) {
+        console.log(game);
 				if (err) {
 					res.jsonError(err);
 				} else if (!game) {
 					res.json(gameErrors.gameNotFound);
-				} else {
-					game.requestingPlayers.add(req.session.User.id);
-					game.save(function (err) {
-						if (err) {
-							res.jsonError(err);
-						} else {
-							Game.message(game.id, {
-								type: 'playerRequestedJoin',
-								game: game.id,
-								data: { player: req.session.User }
-							});
-							res.send(200);
-						}
-					});
+        } else {
+          var playerIndex = _.findIndex(game.requestingPlayers, function (player) {
+            return player.id === req.session.User.id;
+          });
+
+          if (playerIndex > -1) {
+            res.json(gameErrors.alreadyJoined);
+          } else {
+            game.requestingPlayers.add(req.session.User.id);
+            game.save(function (err) {
+              if (err) {
+                res.jsonError(err);
+              } else {
+                User.message(req.session.User.id, {
+                  type: 'joinRequestReceived',
+                  data: { gameId: game.id }
+                });
+
+                Game.message(game.id, {
+                  type: 'playerRequestedJoin',
+                  data: { player: req.session.User }
+                });
+
+                res.send(200);
+              }
+            });
+          }
 				}
 			});
 	},

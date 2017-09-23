@@ -33,32 +33,6 @@ describe('The gameCard component', function () {
       componentInstance = new Vue(component);
     });
 
-    describe('#hasRequestedJoin', function () {
-      it('should return true if the player is in the game\'s requestingPlayers', function () {
-        componentInstance.user = { id: 'player2' };
-        expect(componentInstance.hasRequestedJoin()).toEqual(true);
-      });
-
-      it('should return false if the player is not in the game\'s requestingPlayers', function () {
-        componentInstance.user = { id: 'player1' };
-        expect(componentInstance.hasRequestedJoin()).toEqual(false);
-      });
-    });
-
-    describe('#hasJoined', function () {
-      it('should return true if the player is the GM or in the players', function () {
-        componentInstance.user = { id: 'player3' };
-        expect(componentInstance.hasJoined()).toEqual(true);
-        componentInstance.user = { id: 'player1' };
-        expect(componentInstance.hasJoined()).toEqual(true);
-      });
-
-      it('should return false if the player is not the GM or in the players', function () {
-        componentInstance.user = { id: 'player2' };
-        expect(componentInstance.hasJoined()).toEqual(false);
-      });
-    });
-
     describe('#joinGame', function () {
       describe('on error', function () {
         beforeEach(function (done) {
