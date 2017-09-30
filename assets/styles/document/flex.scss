@@ -19,6 +19,15 @@
 
 .flex-column {
   flex-flow: column;
+  height: 100%;
+
+  .flex-item-50 {
+    height: 50%;
+  }
+}
+
+[class*="flex-item"] {
+  display: flex;
 }
 
 .flex-row {
@@ -33,6 +42,10 @@
 .flex-column, .flex-row {
   display: flex;
   flex: 1;
+
+  > .flex-item {
+    display: flex;
+  }
 
   > .fill-height, > .fill-width {
     display: flex;

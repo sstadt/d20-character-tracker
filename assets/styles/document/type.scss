@@ -67,3 +67,7 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+h2 {
+  @include icon-size(30px);
+}

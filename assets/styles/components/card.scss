@@ -2,6 +2,27 @@
 .card {
   position: relative;
 
+  .fixed-header {
+    max-height: 100%;
+    position: relative;
+
+    .header {
+      position: absolute;
+      top: 0;
+      line-height: 20px;
+      width: 100%;
+      padding-right: 8px;
+    }
+
+    .scroll-content {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      max-height: calc(100% - 25px);
+      margin-top: 25px;
+      width: 100%;
+    }
+  }
+
   .card-tabs {
     thead {
       background-color: $table-bg-color;
