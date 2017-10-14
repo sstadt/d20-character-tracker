@@ -81,7 +81,7 @@
               <div class="flex-column">
                 <div class="no-shrink">
                   <h3 class="card-section-header">Weapons</h3>
-                  <md-button class="md-icon-button" @click.native="addWeapon"><md-icon>add</md-icon></md-button>
+                  <md-button class="md-icon-button" @click.native="addEquipment('weapon')"><md-icon>add</md-icon></md-button>
                 </div>
                 <div class="flex-item fixed-header">
                   <div class="header">
@@ -101,7 +101,12 @@
                   </div>
                   <div class="scroll-content">
                     <div class="row" v-for="item in character.equipment" v-if="item.type === 'weapon'" :key="item.id">
-                      <div class="small-3 columns ellipsis">{{ item.name }}</div>
+                      <div class="small-3 columns ellipsis">
+                        {{ item.name }}
+                        <md-tooltip md-direction="bottom" v-if="item.description !== ''">
+                          <markdown :content="item.description"></markdown>
+                        </md-tooltip>
+                      </div>
                       <div class="small-2 columns">{{ item.skill }}</div>
                       <div class="small-2 columns">{{ item.range }}</div>
                       <div class="small-1 columns">{{ item.damage }}</div>
@@ -112,7 +117,7 @@
                         <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
                           <md-button class="md-icon-button" md-menu-trigger><md-icon>more_horiz</md-icon></md-button>
                           <md-menu-content>
-                            <md-menu-item @selected="editWeapon(item)">Edit</md-menu-item>
+                            <md-menu-item @selected="editEquipment(item)">Edit</md-menu-item>
                             <confirm-menu-item @submit="deleteEquipment(item.id)"></confirm-menu-item>
                           </md-menu-content>
                         </md-menu>
@@ -125,21 +130,93 @@
             <div class="flex-item-50">
               <div class="row">
                 <div class="small-7 column">
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
-                  <p>Armor</p>
+                  <div class="flex-column">
+                    <div class="no-shrink">
+                      <h3 class="card-section-header">Armor</h3>
+                      <md-button class="md-icon-button" @click.native="addEquipment('armor')"><md-icon>add</md-icon></md-button>
+                    </div>
+                    <div class="flex-item fixed-header">
+                      <div class="header">
+                        <div class="row">
+                          <div class="small-7 columns">Name</div>
+                          <div class="small-1 columns">Def</div>
+                          <div class="small-1 columns">Sk</div>
+                          <div class="small-1 columns">Enc</div>
+                          <div class="small-1 columns">
+                            <icon name="user"></icon>
+                            <md-tooltip md-direction="bottom">Equipped</md-tooltip>
+                          </div>
+                          <div class="small-1 columns"></div>
+                        </div>
+                      </div>
+                      <div class="scroll-content">
+                        <div class="row" v-for="item in character.equipment" v-if="item.type === 'armor'" :key="item.id">
+                          <div class="small-7 columns ellipsis">
+                            {{ item.name }}
+                            <md-tooltip md-direction="bottom" v-if="item.description !== ''">
+                              <markdown :content="item.description"></markdown>
+                            </md-tooltip>
+                          </div>
+                          <div class="small-1 columns">{{ item.defense }}</div>
+                          <div class="small-1 columns">{{ item.soak }}</div>
+                          <div class="small-1 columns">{{ item.encumbrance }}</div>
+                          <div class="small-1 columns"><md-checkbox v-model="item.equipped"></md-checkbox></div>
+                          <div class="small-1 columns">
+                            <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+                              <md-button class="md-icon-button" md-menu-trigger><md-icon>more_horiz</md-icon></md-button>
+                              <md-menu-content>
+                                <md-menu-item @selected="editEquipment(item)">Edit</md-menu-item>
+                                <confirm-menu-item @submit="deleteEquipment(item.id)"></confirm-menu-item>
+                              </md-menu-content>
+                            </md-menu>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="small-5 column"><p>Gear</p></div>
+                <div class="small-5 column">
+                  <div class="flex-column">
+                    <div class="no-shrink">
+                      <h3 class="card-section-header">Gear</h3>
+                      <md-button class="md-icon-button" @click.native="addEquipment('gear')"><md-icon>add</md-icon></md-button>
+                    </div>
+                    <div class="flex-item fixed-header">
+                      <div class="header">
+                        <div class="row">
+                          <div class="small-6 columns">Name</div>
+                          <div class="small-2 columns">Enc</div>
+                          <div class="small-2 columns">
+                            <icon name="user"></icon>
+                            <md-tooltip md-direction="bottom">Equipped</md-tooltip>
+                          </div>
+                          <div class="small-2 columns"></div>
+                        </div>
+                      </div>
+                      <div class="scroll-content">
+                        <div class="row" v-for="item in character.equipment" v-if="item.type === 'gear'" :key="item.id">
+                          <div class="small-6 columns ellipsis">
+                            {{ item.name }}
+                            <md-tooltip md-direction="bottom" v-if="item.description !== ''">
+                              <markdown :content="item.description"></markdown>
+                            </md-tooltip>
+                          </div>
+                          <div class="small-2 columns">{{ item.encumbrance }}</div>
+                          <div class="small-2 columns"><md-checkbox v-model="item.equipped"></md-checkbox></div>
+                          <div class="small-2 columns">
+                            <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+                              <md-button class="md-icon-button" md-menu-trigger><md-icon>more_horiz</md-icon></md-button>
+                              <md-menu-content>
+                                <md-menu-item @selected="editEquipment(item)">Edit</md-menu-item>
+                                <confirm-menu-item @submit="deleteEquipment(item.id)"></confirm-menu-item>
+                              </md-menu-content>
+                            </md-menu>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -209,7 +286,83 @@
     </md-dialog-content>
     <md-dialog-actions>
       <md-button class="md-primary" @click.native="closeDialog('weapon')">Cancel</md-button>
-      <md-button class="md-primary" @click.native="saveWeapon()">Save</md-button>
+      <md-button class="md-primary" @click.native="saveEquipment(currentWeapon)">Save</md-button>
+    </md-dialog-actions>
+  </md-dialog>
+
+  <!-- Armor Editor -->
+  <md-dialog ref="armorDialog">
+    <md-dialog-title>
+      <p>Armor</p>
+    </md-dialog-title>
+    <md-dialog-content>
+      <form @submit.stop.prevent="saveEquipment(currentArmor)">
+        <div class="row">
+          <div class="small-12 column">
+            <md-input-container>
+              <label>Name</label>
+              <md-input type="text" v-model="currentArmor.name"></md-input>
+            </md-input-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-4 column">
+            <number-picker v-model="currentArmor.defense" label="Defense"></number-picker>
+          </div>
+          <div class="small-4 column">
+            <number-picker v-model="currentArmor.soak" label="Soak"></number-picker>
+          </div>
+          <div class="small-4 column">
+            <number-picker v-model="currentArmor.encumbrance" label="Encum"></number-picker>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 column">
+            <md-input-container>
+              <label>Notes</label>
+              <md-textarea v-model="currentArmor.description" type="text"></md-textarea>
+            </md-input-container>
+          </div>
+        </div>
+      </form>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button class="md-primary" @click.native="closeDialog('armor')">Cancel</md-button>
+      <md-button class="md-primary" @click.native="saveEquipment(currentArmor)">Save</md-button>
+    </md-dialog-actions>
+  </md-dialog>
+
+  <!-- Gear Editor -->
+  <md-dialog ref="gearDialog">
+    <md-dialog-title>
+      <p>Gear</p>
+    </md-dialog-title>
+    <md-dialog-content>
+      <form @submit.stop.prevent="saveEquipment(currentGear)">
+        <div class="row">
+          <div class="small-7 column">
+            <md-input-container>
+              <label>Name</label>
+              <md-input type="text" v-model="currentGear.name"></md-input>
+            </md-input-container>
+          </div>
+          <div class="small-5 column">
+            <number-picker v-model="currentGear.encumbrance" label="Encum"></number-picker>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 column">
+            <md-input-container>
+              <label>Notes</label>
+              <md-textarea v-model="currentGear.description" type="text"></md-textarea>
+            </md-input-container>
+          </div>
+        </div>
+      </form>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button class="md-primary" @click.native="closeDialog('gear')">Cancel</md-button>
+      <md-button class="md-primary" @click.native="saveEquipment(currentGear)">Save</md-button>
     </md-dialog-actions>
   </md-dialog>
 </div>

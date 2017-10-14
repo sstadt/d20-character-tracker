@@ -89,5 +89,9 @@ module.exports = {
 
   sendNotification(msg, type) {
     window.dispatchEvent(new CustomEvent(config.events.notify, { detail: { msg, type } }));
+  },
+
+  ucFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 };

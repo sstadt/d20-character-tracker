@@ -26,7 +26,9 @@ module.exports = {
       saving: false,
       currentView: 'main',
       rangeBands: config.rangeBands,
-      currentWeapon: {}
+      currentWeapon: {},
+      currentArmor: {},
+      currentGear: {}
     };
   },
   computed: {
@@ -115,25 +117,25 @@ module.exports = {
           .done(() => this.saving = false);
       }
     },
-    addWeapon() {
-      this.currentWeapon = new Equipment({ type: 'weapon' });
-      this.openDialog('weapon');
+    addEquipment(type) {
+      this[`current${util.ucFirst(type)}`] = new Equipment({ type });
+      this.openDialog(type);
     },
-    editWeapon(weapon) {
-      this.currentWeapon = _.clone(weapon);
-      this.openDialog('weapon');
+    editEquipment(equipment) {
+      this.currentWeapon = _.clone(equipment);
+      this.openDialog(equipment.type);
     },
-    saveWeapon() {
-      var itemIndex = util.getIndexById(this.character.equipment, this.currentWeapon.id),
-        newWeapon = _.clone(this.currentWeapon);
-
+    saveEquipment(equipment) {
+      var itemIndex = util.getIndexById(this.character.equipment, equipment.id),
+        newWeapon = _.clone(equipment);
+      console.log(equipment);
       if (itemIndex > -1) {
         this.character.equipment.splice(itemIndex, 1, newWeapon);
       } else {
         this.character.equipment.push(newWeapon);
       }
 
-      this.closeDialog('weapon');
+      this.closeDialog(equipment.type);
     },
     deleteEquipment(weaponId) {
       var itemIndex = util.getIndexById(this.character.equipment, weaponId);

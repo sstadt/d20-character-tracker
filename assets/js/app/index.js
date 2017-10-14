@@ -25,6 +25,7 @@ require('../components/radialMenu/radialMenu.js');
 require('../components/radialMenuItem/radialMenuItem.js');
 require('../components/draggablePanel/draggablePanel.js');
 require('../components/imageFinder/imageFinder.js');
+require('../components/markdown/markdown.js');
 
 // user components
 require('../components/userProfile/userProfile.js');
