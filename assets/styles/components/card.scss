@@ -58,6 +58,14 @@
       border-top-right-radius: $global-radius;
       border-bottom-right-radius: $global-radius;
 
+      .panel-tint.character & {
+        background-color: $panel-bg-color-character;
+      }
+
+      .panel-tint.npc & {
+        background-color: $panel-bg-color-npc;
+      }
+
       .md-button {
         margin: 0;
       }

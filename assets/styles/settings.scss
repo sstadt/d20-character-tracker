@@ -170,8 +170,11 @@ $scroll-bar-color: $base;
 // Panel
 // ---------------------------
 
-$panel-bg-color: rgba($white, 0.95);
+$panel-bg-alpha: 0.95;
+$panel-bg-color: rgba($white, $panel-bg-alpha);
 $panel-bg-color-dark: rgba($black, 0.6);
+$panel-bg-color-npc: rgba(#fff9f9, $panel-bg-alpha);
+$panel-bg-color-character: rgba(#f9f9ff, $panel-bg-alpha);
 $panel-radius: $global-radius;
 $panel-padding: $global-gutter / 2;
 

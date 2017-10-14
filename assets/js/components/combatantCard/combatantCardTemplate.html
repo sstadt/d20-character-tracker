@@ -1,177 +1,179 @@
 
-<transition name="slide-fade">
-  <draggable-panel panel-id="combatant-card" v-if="hasCombatant" v-show="show">
-    <div class="card combatant-card">
-      <div class="combatant-header">
-        <div class="flex-row card-row">
-          <h1 class="fill-width ellipsis match-icon-btn-height">{{ combatant.name }}</h1>
-          <md-button class="md-primary md-icon-button" type="button" @click.native="refresh()"><md-icon>cached</md-icon></md-button>
-          <md-button class="md-primary md-icon-button" type="button" @click.native="close()"><md-icon>close</md-icon></md-button>
-        </div>
-        <div class="row">
-          <div class="small-3 column">
-            <div class="avatar bg-image" :style="{ 'background-image': combatantAvatar }"></div>
-            <div class="row small-up-2">
-              <div class="column">
-                <card-stat heading="wounds" :value="combatant.currentWounds" :total="combatant.template.woundThreshold"></card-stat>
-              </div>
-              <div class="column">
-                <card-stat heading="strain" v-if="combatant.template.strainThreshold !== 0" :value="combatant.currentStrain" :total="combatant.template.strainThreshold"></card-stat>
-              </div>
-            </div>
-            <div class="row small-up-3">
-              <div class="column">
-                <card-stat heading="soak" :value="combatant.template.soak"></card-stat>
-              </div>
-              <div class="column">
-                <card-stat heading="m-def" :value="combatant.template.defenseMelee"></card-stat>
-              </div>
-              <div class="column">
-                <card-stat heading="r-def" :value="combatant.template.defenseRanged"></card-stat>
-              </div>
-            </div>
-            <div class="row small-up-3">
-              <div class="column">
-                <card-stat heading="bra" :value="combatant.template.brawn"></card-stat>
-              </div>
-              <div class="column">
-                <card-stat heading="agi" :value="combatant.template.agility"></card-stat>
-              </div>
-              <div class="column">
-                <card-stat heading="int" :value="combatant.template.intellect"></card-stat>
-              </div>
-              <div class="column">
-                <card-stat heading="cun" :value="combatant.template.cunning"></card-stat>
-              </div>
-              <div class="column">
-                <card-stat heading="will" :value="combatant.template.willpower"></card-stat>
-              </div>
-              <div class="column">
-                <card-stat heading="pre" :value="combatant.template.presence"></card-stat>
-              </div>
-            </div>
+<div class="panel-tint npc">
+  <transition name="slide-fade">
+    <draggable-panel panel-id="combatant-card" v-if="hasCombatant" v-show="show">
+      <div class="card combatant-card">
+        <div class="combatant-header">
+          <div class="flex-row card-row">
+            <h1 class="fill-width ellipsis match-icon-btn-height">{{ combatant.name }}</h1>
+            <md-button class="md-primary md-icon-button" type="button" @click.native="refresh()"><md-icon>cached</md-icon></md-button>
+            <md-button class="md-primary md-icon-button" type="button" @click.native="close()"><md-icon>close</md-icon></md-button>
           </div>
-          <div class="small-9 column">
-            <div class="combatant-details">
-              <card-tabs>
+          <div class="row">
+            <div class="small-3 column">
+              <div class="avatar bg-image" :style="{ 'background-image': combatantAvatar }"></div>
+              <div class="row small-up-2">
+                <div class="column">
+                  <card-stat heading="wounds" :value="combatant.currentWounds" :total="combatant.template.woundThreshold"></card-stat>
+                </div>
+                <div class="column">
+                  <card-stat heading="strain" v-if="combatant.template.strainThreshold !== 0" :value="combatant.currentStrain" :total="combatant.template.strainThreshold"></card-stat>
+                </div>
+              </div>
+              <div class="row small-up-3">
+                <div class="column">
+                  <card-stat heading="soak" :value="combatant.template.soak"></card-stat>
+                </div>
+                <div class="column">
+                  <card-stat heading="m-def" :value="combatant.template.defenseMelee"></card-stat>
+                </div>
+                <div class="column">
+                  <card-stat heading="r-def" :value="combatant.template.defenseRanged"></card-stat>
+                </div>
+              </div>
+              <div class="row small-up-3">
+                <div class="column">
+                  <card-stat heading="bra" :value="combatant.template.brawn"></card-stat>
+                </div>
+                <div class="column">
+                  <card-stat heading="agi" :value="combatant.template.agility"></card-stat>
+                </div>
+                <div class="column">
+                  <card-stat heading="int" :value="combatant.template.intellect"></card-stat>
+                </div>
+                <div class="column">
+                  <card-stat heading="cun" :value="combatant.template.cunning"></card-stat>
+                </div>
+                <div class="column">
+                  <card-stat heading="will" :value="combatant.template.willpower"></card-stat>
+                </div>
+                <div class="column">
+                  <card-stat heading="pre" :value="combatant.template.presence"></card-stat>
+                </div>
+              </div>
+            </div>
+            <div class="small-9 column">
+              <div class="combatant-details">
+                <card-tabs>
 
-                <card-tab name="Skills" :selected="true">
-                  <div class="row">
-                    <div class="small-4 column">
-                      <skill-shortcut
-                        v-for="(skill, index) in generalSkills"
-                        v-if="index < 13"
-                        :name="skill.name"
-                        :ranks="skill.rank"
-                        :ability="combatant.template[skill.ability]"
-                        :key="skill.name"
-                        @click.native="rollSkill(skill)">
-                      </skill-shortcut>
+                  <card-tab name="Skills" :selected="true">
+                    <div class="row">
+                      <div class="small-4 column">
+                        <skill-shortcut
+                          v-for="(skill, index) in generalSkills"
+                          v-if="index < 13"
+                          :name="skill.name"
+                          :ranks="skill.rank"
+                          :ability="combatant.template[skill.ability]"
+                          :key="skill.name"
+                          @click.native="rollSkill(skill)">
+                        </skill-shortcut>
+                      </div>
+                      <div class="small-4 column">
+                        <skill-shortcut
+                          v-for="(skill, index) in generalSkills"
+                          v-if="index >= 13 && index < 26"
+                          :name="skill.name"
+                          :ranks="skill.rank"
+                          :ability="combatant.template[skill.ability]"
+                          :key="skill.name"
+                          @click.native="rollSkill(skill)">
+                        </skill-shortcut>
+                      </div>
+                      <div class="small-4 column">
+                        <skill-shortcut
+                          v-for="(skill, index) in generalSkills"
+                          v-if="index >= 26"
+                          :name="skill.name"
+                          :ranks="skill.rank"
+                          :ability="combatant.template[skill.ability]"
+                          :key="skill.name"
+                          @click.native="rollSkill(skill)">
+                        </skill-shortcut>
+                        <skill-shortcut
+                          v-for="skill in combatSkills"
+                          :name="skill.name"
+                          :ranks="skill.rank"
+                          :ability="combatant.template[skill.ability]"
+                          :key="skill.name">
+                        </skill-shortcut>
+                      </div>
                     </div>
-                    <div class="small-4 column">
-                      <skill-shortcut
-                        v-for="(skill, index) in generalSkills"
-                        v-if="index >= 13 && index < 26"
-                        :name="skill.name"
-                        :ranks="skill.rank"
-                        :ability="combatant.template[skill.ability]"
-                        :key="skill.name"
-                        @click.native="rollSkill(skill)">
-                      </skill-shortcut>
+                  </card-tab>
+
+                  <card-tab name="Abilities">
+                    <div class="row small-up-2">
+                      <div class="column" v-for="ability in combatant.template.talents">
+                        <card-ability :ability="ability"></card-ability>
+                      </div>
                     </div>
-                    <div class="small-4 column">
-                      <skill-shortcut
-                        v-for="(skill, index) in generalSkills"
-                        v-if="index >= 26"
-                        :name="skill.name"
-                        :ranks="skill.rank"
-                        :ability="combatant.template[skill.ability]"
-                        :key="skill.name"
-                        @click.native="rollSkill(skill)">
-                      </skill-shortcut>
-                      <skill-shortcut
-                        v-for="skill in combatSkills"
-                        :name="skill.name"
-                        :ranks="skill.rank"
-                        :ability="combatant.template[skill.ability]"
-                        :key="skill.name">
-                      </skill-shortcut>
-                    </div>
-                  </div>
-                </card-tab>
+                  </card-tab>
 
-                <card-tab name="Abilities">
-                  <div class="row small-up-2">
-                    <div class="column" v-for="ability in combatant.template.talents">
-                      <card-ability :ability="ability"></card-ability>
-                    </div>
-                  </div>
-                </card-tab>
+                  <card-tab name="Force Powers">
+                    <card-power v-for="power in combatant.template.powers" :power="power"></card-power>
+                  </card-tab>
 
-                <card-tab name="Force Powers">
-                  <card-power v-for="power in combatant.template.powers" :power="power"></card-power>
-                </card-tab>
+                  <card-tab name="Weapons">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Name</th> <th>Skill</th> <th>Damage</th> <th>Crit</th> <th>Range</th> <th>Encum</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'weapon'" :key="index">
+                          <td>
+                            <md-button class="md-icon-button shortcut-button" @click.native="rollWeapon(item)">
+                              <icon name="roll-shortcut"></icon>
+                            </md-button>
+                            {{ item.name }}
+                          </td>
+                          <td>{{ item.skill }}</td>
+                          <td>{{ item.damage }}</td>
+                          <td>{{ item.crit }}</td>
+                          <td>{{ item.range }}</td>
+                          <td>{{ item.encumbrance }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </card-tab>
 
-                <card-tab name="Weapons">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Name</th> <th>Skill</th> <th>Damage</th> <th>Crit</th> <th>Range</th> <th>Encum</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'weapon'" :key="index">
-                        <td>
-                          <md-button class="md-icon-button shortcut-button" @click.native="rollWeapon(item)">
-                            <icon name="roll-shortcut"></icon>
-                          </md-button>
-                          {{ item.name }}
-                        </td>
-                        <td>{{ item.skill }}</td>
-                        <td>{{ item.damage }}</td>
-                        <td>{{ item.crit }}</td>
-                        <td>{{ item.range }}</td>
-                        <td>{{ item.encumbrance }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </card-tab>
+                  <card-tab name="Armor">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Name</th> <th>Defense</th> <th>Soak</th> <th>Encum</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'armor'" :key="index">
+                          <td>{{ item.name }}</td> <td>{{ item.defense }}</td> <td>{{ item.soak }}</td> <td>{{ item.encumbrance }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </card-tab>
 
-                <card-tab name="Armor">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Name</th> <th>Defense</th> <th>Soak</th> <th>Encum</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'armor'" :key="index">
-                        <td>{{ item.name }}</td> <td>{{ item.defense }}</td> <td>{{ item.soak }}</td> <td>{{ item.encumbrance }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </card-tab>
+                  <card-tab name="Gear">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Name</th> <th>Encum</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'gear'" :key="index">
+                          <td>{{ item.name }}</td> <td>{{ item.encumbrance }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </card-tab>
 
-                <card-tab name="Gear">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Name</th> <th>Encum</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(item, index) in combatant.template.equipment" v-if="item.type === 'gear'" :key="index">
-                        <td>{{ item.name }}</td> <td>{{ item.encumbrance }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </card-tab>
-
-              </card-tabs>
+                </card-tabs>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </draggable-panel>
-</transition>
+    </draggable-panel>
+  </transition>
+</div>

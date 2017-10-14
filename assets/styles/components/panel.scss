@@ -4,6 +4,14 @@
   border-radius: $panel-radius;
   padding: $panel-padding;
 
+  .panel-tint.character & {
+    background-color: $panel-bg-color-character;
+  }
+
+  .panel-tint.npc & {
+    background-color: $panel-bg-color-npc;
+  }
+
   &.content {
     padding: $panel-padding * 2;
   }
