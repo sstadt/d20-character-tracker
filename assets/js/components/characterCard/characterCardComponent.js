@@ -1,7 +1,12 @@
 
 var config = require('../../lib/config.js');
 var util = require('../../lib/util.js');
+
 var Service = require('../../classes/Service.js');
+
+var Equipment = require('../../classes/characters/Equipment.js');
+var ForcePower = require('../../classes/characters/ForcePower.js');
+var Talent = require('../../classes/characters/Talent.js');
 
 const SYNC_TIMER = 5000;
 
@@ -19,7 +24,9 @@ module.exports = {
       show: false,
       characterService: null,
       saving: false,
-      currentView: 'main'
+      currentView: 'main',
+      rangeBands: config.rangeBands,
+      currentWeapon: {}
     };
   },
   computed: {
@@ -68,19 +75,25 @@ module.exports = {
       this.stopSync();
       this.show = false;
     },
+    openDialog(name) {
+      this.$refs[`${name}Dialog`].open();
+    },
+    closeDialog(name) {
+      this.$refs[`${name}Dialog`].close();
+    },
     setView(view) {
       this.currentView = view;
     },
     startSync() {
       if (syncInterval) this.stopSync();
 
-      lastCharacterState = _.clone(this.character);
+      lastCharacterState = JSON.parse(JSON.stringify(this.character));
 
       syncInterval = setInterval(() => {
         if (!this.hasCharacter) {
           this.stopSync();
         } else if (!_.isEqual(this.character, lastCharacterState)) {
-          lastCharacterState = _.clone(this.character);
+          lastCharacterState = JSON.parse(JSON.stringify(this.character));
           this.saveCharacter();
         }
       }, SYNC_TIMER);
@@ -100,6 +113,33 @@ module.exports = {
             util.sendNotification(error.err, 'alert');
           })
           .done(() => this.saving = false);
+      }
+    },
+    addWeapon() {
+      this.currentWeapon = new Equipment({ type: 'weapon' });
+      this.openDialog('weapon');
+    },
+    editWeapon(weapon) {
+      this.currentWeapon = _.clone(weapon);
+      this.openDialog('weapon');
+    },
+    saveWeapon() {
+      var itemIndex = util.getIndexById(this.character.equipment, this.currentWeapon.id),
+        newWeapon = _.clone(this.currentWeapon);
+
+      if (itemIndex > -1) {
+        this.character.equipment.splice(itemIndex, 1, newWeapon);
+      } else {
+        this.character.equipment.push(newWeapon);
+      }
+
+      this.closeDialog('weapon');
+    },
+    deleteEquipment(weaponId) {
+      var itemIndex = util.getIndexById(this.character.equipment, weaponId);
+
+      if (itemIndex > -1) {
+        this.character.equipment.splice(itemIndex, 1);
       }
     }
   }

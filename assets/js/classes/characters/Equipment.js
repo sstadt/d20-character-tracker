@@ -4,9 +4,11 @@ var util = require('../../lib/util.js');
 function Equipment(options = {}) {
   this.id = util.guid();
   this.type = options.type || 'gear';
-  this.name = '';
+  this.name = `New ${this.type}`;
   this.encumbrance = 0;
   this.price = 0;
+  this.description = '';
+  this.equipped = false;
 
   switch (options.type) {
     case 'weapon':

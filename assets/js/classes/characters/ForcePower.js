@@ -10,7 +10,7 @@ function Upgrade() {
 
 function ForcePower() {
   this.id = util.guid();
-  this.name = '';
+  this.name = 'New Force Power';
   this.xpCost = 0;
   this.description = '';
   this.upgrades = [];

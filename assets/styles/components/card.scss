@@ -15,15 +15,20 @@
     }
 
     .scroll-content {
-      overflow-y: scroll;
+      overflow-y: auto;
       overflow-x: hidden;
       max-height: calc(100% - 25px);
       margin-top: 25px;
       width: 100%;
+
+      & > .row {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
     }
   }
 
-  .card-tabs {
+  .card-tabs { /* npc tabs - deprecate after revamping npcs */
     thead {
       background-color: $table-bg-color;
 
@@ -60,6 +65,30 @@
       &.active {
         opacity: 1;
       }
+    }
+  }
+
+  .card-content {
+    .md-icon-button {
+      height: 24px;
+      min-height: 24px;
+      width: 24px;
+      min-width: 24px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .md-checkbox {
+      margin: 0;
+    }
+  }
+
+  .card-section-header {
+    display: inline-block;
+
+    & + .md-button {
+      margin-top: 11px;
+      margin-left: 8px;
     }
   }
 }

@@ -1,213 +1,215 @@
 
-<transition name="slide-fade">
-  <draggable-panel panel-id="character-card--test" v-show="show">
-    <div class="card character-card" v-if="hasCharacter">
+<div>
+  <transition name="slide-fade">
+    <draggable-panel panel-id="character-card--test" v-show="show">
+      <div class="card character-card" v-if="hasCharacter">
 
-      <div class="flex-row">
-        <h2 class="heading fill-width ellipsis">{{ character.name }}</h2>
-        <md-spinner md-indeterminate :md-size="20" v-if="saving"></md-spinner>
-        <md-button class="md-icon-button" @click.native="close()"><md-icon>close</md-icon></md-button>
-      </div>
-
-      <ul class="card-nav">
-        <li :class="{ 'active': currentView === 'main' }">
-          <md-button class="md-icon-button" @click.native="setView('main')"><icon name="user"></icon></md-button>
-        </li>
-        <li :class="{ 'active': currentView === 'skills' }">
-          <md-button class="md-icon-button" @click.native="setView('skills')"><icon name="skills"></icon></md-button>
-        </li>
-        <li :class="{ 'active': currentView === 'inventory' }">
-          <md-button class="md-icon-button" @click.native="setView('inventory')"><icon name="inventory"></icon></md-button>
-        </li>
-        <li :class="{ 'active': currentView === 'notes' }">
-          <md-button class="md-icon-button" @click.native="setView('notes')"><icon name="notes"></icon></md-button>
-        </li>
-      </ul>
-
-      <div class="card-content" v-if="currentView === 'main'">
-        <div class="row">
-          <div class="small-4 column">
-            <image-finder aspect="portrait" v-model="character.imageUrl"></image-finder>
-          </div>
-          <div class="small-8 column"></div>
+        <div class="flex-row">
+          <h2 class="heading fill-width ellipsis">{{ character.name }}</h2>
+          <md-spinner md-indeterminate :md-size="20" v-if="saving"></md-spinner>
+          <md-button class="md-icon-button" @click.native="close()"><md-icon>close</md-icon></md-button>
         </div>
-      </div>
 
-      <div class="card-content" v-show="currentView === 'skills'">
-        <div class="row">
-          <div class="small-4 column">
-            <skill-shortcut
-              v-for="(skill, index) in generalSkills"
-              :name="skill.name"
-              :ranks="skill.rank"
-              :ability="character[skill.ability]"
-              :key="skill.name"
-              @click.native="rollSkill(skill)">
-            </skill-shortcut>
-          </div>
-          <div class="small-8 column">
-            <div class="row">
-              <div class="small-6 column">
-                <skill-shortcut
-                  v-for="(skill, index) in knowledgeSkills"
-                  :name="skill.name"
-                  :ranks="skill.rank"
-                  :ability="character[skill.ability]"
-                  :key="skill.name"
-                  @click.native="rollSkill(skill)">
-                </skill-shortcut>
-              </div>
-              <div class="small-6 column">
-                <skill-shortcut
-                  v-for="(skill, index) in combatSkills"
-                  :name="skill.name"
-                  :ranks="skill.rank"
-                  :ability="character[skill.ability]"
-                  :key="skill.name"
-                  @click.native="rollSkill(skill)">
-                </skill-shortcut>
-              </div>
+        <ul class="card-nav">
+          <li :class="{ 'active': currentView === 'main' }">
+            <md-button class="md-icon-button" @click.native="setView('main')"><icon name="user"></icon></md-button>
+          </li>
+          <li :class="{ 'active': currentView === 'skills' }">
+            <md-button class="md-icon-button" @click.native="setView('skills')"><icon name="skills"></icon></md-button>
+          </li>
+          <li :class="{ 'active': currentView === 'inventory' }">
+            <md-button class="md-icon-button" @click.native="setView('inventory')"><icon name="inventory"></icon></md-button>
+          </li>
+          <li :class="{ 'active': currentView === 'notes' }">
+            <md-button class="md-icon-button" @click.native="setView('notes')"><icon name="notes"></icon></md-button>
+          </li>
+        </ul>
+
+        <div class="card-content" v-if="currentView === 'main'">
+          <div class="row">
+            <div class="small-4 column">
+              <image-finder aspect="portrait" v-model="character.imageUrl"></image-finder>
             </div>
-            abilities
+            <div class="small-8 column"></div>
           </div>
         </div>
-      </div>
 
-      <div class="card-content" v-show="currentView === 'inventory'">
-        <div class="flex-column">
-          <div class="flex-item-50">
-            <div class="flex-column">
-              <h3 class="no-shrink">Weapons</h3>
-              <div class="flex-item fixed-header">
-                <div class="header">
-                  <div class="row">
-                    <div class="small-4 columns">Name</div>
-                    <div class="small-2 columns">Skill</div>
-                    <div class="small-1 columns">Dmg</div>
-                    <div class="small-1 columns">Crit</div>
-                    <div class="small-2 columns">Range</div>
-                    <div class="small-1 columns">Enc</div>
-                    <div class="small-1 columns">
-                      <icon name="user"></icon>
-                      <md-tooltip md-direction="bottom">Equipped</md-tooltip>
+        <div class="card-content" v-show="currentView === 'skills'">
+          <div class="row">
+            <div class="small-4 column">
+              <skill-shortcut
+                v-for="(skill, index) in generalSkills"
+                :name="skill.name"
+                :ranks="skill.rank"
+                :ability="character[skill.ability]"
+                :key="skill.name"
+                @click.native="rollSkill(skill)">
+              </skill-shortcut>
+            </div>
+            <div class="small-8 column">
+              <div class="row">
+                <div class="small-6 column">
+                  <skill-shortcut
+                    v-for="(skill, index) in knowledgeSkills"
+                    :name="skill.name"
+                    :ranks="skill.rank"
+                    :ability="character[skill.ability]"
+                    :key="skill.name"
+                    @click.native="rollSkill(skill)">
+                  </skill-shortcut>
+                </div>
+                <div class="small-6 column">
+                  <skill-shortcut
+                    v-for="(skill, index) in combatSkills"
+                    :name="skill.name"
+                    :ranks="skill.rank"
+                    :ability="character[skill.ability]"
+                    :key="skill.name"
+                    @click.native="rollSkill(skill)">
+                  </skill-shortcut>
+                </div>
+              </div>
+              abilities
+            </div>
+          </div>
+        </div>
+
+        <!-- Inventory -->
+        <div class="card-content" v-show="currentView === 'inventory'">
+          <div class="flex-column">
+            <div class="flex-item-50">
+              <div class="flex-column">
+                <div class="no-shrink">
+                  <h3 class="card-section-header">Weapons</h3>
+                  <md-button class="md-icon-button" @click.native="addWeapon"><md-icon>add</md-icon></md-button>
+                </div>
+                <div class="flex-item fixed-header">
+                  <div class="header">
+                    <div class="row">
+                      <div class="small-3 columns">Name</div>
+                      <div class="small-2 columns">Skill</div>
+                      <div class="small-2 columns">Range</div>
+                      <div class="small-1 columns">Dmg</div>
+                      <div class="small-1 columns">Crit</div>
+                      <div class="small-1 columns">Enc</div>
+                      <div class="small-1 columns">
+                        <icon name="user"></icon>
+                        <md-tooltip md-direction="bottom">Equipped</md-tooltip>
+                      </div>
+                      <div class="small-1 columns"></div>
+                    </div>
+                  </div>
+                  <div class="scroll-content">
+                    <div class="row" v-for="item in character.equipment" v-if="item.type === 'weapon'" :key="item.id">
+                      <div class="small-3 columns ellipsis">{{ item.name }}</div>
+                      <div class="small-2 columns">{{ item.skill }}</div>
+                      <div class="small-2 columns">{{ item.range }}</div>
+                      <div class="small-1 columns">{{ item.damage }}</div>
+                      <div class="small-1 columns">{{ item.crit }}</div>
+                      <div class="small-1 columns">{{ item.encumbrance }}</div>
+                      <div class="small-1 columns"><md-checkbox v-model="item.equipped"></md-checkbox></div>
+                      <div class="small-1 columns">
+                        <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+                          <md-button class="md-icon-button" md-menu-trigger><md-icon>more_horiz</md-icon></md-button>
+                          <md-menu-content>
+                            <md-menu-item @selected="editWeapon(item)">Edit</md-menu-item>
+                            <confirm-menu-item @submit="deleteEquipment(item.id)"></confirm-menu-item>
+                          </md-menu-content>
+                        </md-menu>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="scroll-content">
-                  <div class="row">
-                    <div class="small-4 columns">Lightsaber</div>
-                    <div class="small-2 columns">lightsaber</div>
-                    <div class="small-1 columns">6</div>
-                    <div class="small-1 columns">2</div>
-                    <div class="small-2 columns">engaged</div>
-                    <div class="small-1 columns">1</div>
-                    <div class="small-1 columns"><md-checkbox></md-checkbox></div>
-                  </div>
-                  <div class="row">
-                    <div class="small-4 columns">Lightsaber</div>
-                    <div class="small-2 columns">lightsaber</div>
-                    <div class="small-1 columns">6</div>
-                    <div class="small-1 columns">2</div>
-                    <div class="small-2 columns">engaged</div>
-                    <div class="small-1 columns">1</div>
-                    <div class="small-1 columns"><md-checkbox></md-checkbox></div>
-                  </div>
-                  <div class="row">
-                    <div class="small-4 columns">Lightsaber</div>
-                    <div class="small-2 columns">lightsaber</div>
-                    <div class="small-1 columns">6</div>
-                    <div class="small-1 columns">2</div>
-                    <div class="small-2 columns">engaged</div>
-                    <div class="small-1 columns">1</div>
-                    <div class="small-1 columns"><md-checkbox></md-checkbox></div>
-                  </div>
-                  <div class="row">
-                    <div class="small-4 columns">Lightsaber</div>
-                    <div class="small-2 columns">lightsaber</div>
-                    <div class="small-1 columns">6</div>
-                    <div class="small-1 columns">2</div>
-                    <div class="small-2 columns">engaged</div>
-                    <div class="small-1 columns">1</div>
-                    <div class="small-1 columns"><md-checkbox></md-checkbox></div>
-                  </div>
-                  <div class="row">
-                    <div class="small-4 columns">Lightsaber</div>
-                    <div class="small-2 columns">lightsaber</div>
-                    <div class="small-1 columns">6</div>
-                    <div class="small-1 columns">2</div>
-                    <div class="small-2 columns">engaged</div>
-                    <div class="small-1 columns">1</div>
-                    <div class="small-1 columns"><md-checkbox></md-checkbox></div>
-                  </div>
-                  <div class="row">
-                    <div class="small-4 columns">Lightsaber</div>
-                    <div class="small-2 columns">lightsaber</div>
-                    <div class="small-1 columns">6</div>
-                    <div class="small-1 columns">2</div>
-                    <div class="small-2 columns">engaged</div>
-                    <div class="small-1 columns">1</div>
-                    <div class="small-1 columns"><md-checkbox></md-checkbox></div>
-                  </div>
-                  <div class="row">
-                    <div class="small-4 columns">Lightsaber</div>
-                    <div class="small-2 columns">lightsaber</div>
-                    <div class="small-1 columns">6</div>
-                    <div class="small-1 columns">2</div>
-                    <div class="small-2 columns">engaged</div>
-                    <div class="small-1 columns">1</div>
-                    <div class="small-1 columns"><md-checkbox></md-checkbox></div>
-                  </div>
-                  <div class="row">
-                    <div class="small-4 columns">Lightsaber</div>
-                    <div class="small-2 columns">lightsaber</div>
-                    <div class="small-1 columns">6</div>
-                    <div class="small-1 columns">2</div>
-                    <div class="small-2 columns">engaged</div>
-                    <div class="small-1 columns">1</div>
-                    <div class="small-1 columns"><md-checkbox></md-checkbox></div>
-                  </div>
-                </div>
-                <!-- <th>Name</th>
-                <th>Skill</th>
-                <th>Damage</th>
-                <th>Crit</th>
-                <th>Range</th>
-                <th>Encumbrance</th>
-                <th>
-                </th>
-                <tr>
-                  <td>Lightsaber</td> <td>lightsaber</td> <td>6</td> <td>2</td> <td>engaged</td> <td>1</td> <td><md-checkbox></md-checkbox></td>
-                </tr> -->
               </div>
             </div>
-          </div>
-          <div class="flex-item-50">
-            <div class="row">
-              <div class="small-7 column">
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
-                <p>Armor</p>
+            <div class="flex-item-50">
+              <div class="row">
+                <div class="small-7 column">
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                  <p>Armor</p>
+                </div>
+                <div class="small-5 column"><p>Gear</p></div>
               </div>
-              <div class="small-5 column"><p>Gear</p></div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card-content" v-show="currentView === 'notes'">
-        <div class="row">Notes</div>
-      </div>
+        <div class="card-content" v-show="currentView === 'notes'">
+          <div class="row">Notes</div>
+        </div>
 
-    </div>
-  </draggable-panel>
-</transition>
+      </div>
+    </draggable-panel>
+  </transition>
+
+  <!-- Weapon Editor -->
+  <md-dialog ref="weaponDialog">
+    <md-dialog-title>
+      <p>Weapon</p>
+    </md-dialog-title>
+    <md-dialog-content>
+      <form @submit.stop.prevent="saveWeapon">
+        <div class="row">
+          <div class="small-12 column">
+            <md-input-container>
+              <label>Name</label>
+              <md-input type="text" v-model="currentWeapon.name"></md-input>
+            </md-input-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-6 column">
+            <md-input-container>
+              <label>Skill</label>
+              <md-select v-model="currentWeapon.skill">
+                <md-option v-for="skill in combatSkills" :value="skill.name" :key="skill.name">{{ skill.name }}</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div class="small-6 column">
+            <md-input-container>
+              <label>Range</label>
+              <md-select v-model="currentWeapon.range">
+                <md-option v-for="range in rangeBands" :value="range" :key="range">{{ range }}</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-4 column">
+            <number-picker v-model="currentWeapon.damage" label="Damage"></number-picker>
+          </div>
+          <div class="small-4 column">
+            <number-picker v-model="currentWeapon.crit" label="Crit"></number-picker>
+          </div>
+          <div class="small-4 column">
+            <number-picker v-model="currentWeapon.encumbrance" label="Encum"></number-picker>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 column">
+            <md-input-container>
+              <label>Notes</label>
+              <md-textarea v-model="currentWeapon.description" type="text"></md-textarea>
+            </md-input-container>
+          </div>
+        </div>
+      </form>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button class="md-primary" @click.native="closeDialog('weapon')">Cancel</md-button>
+      <md-button class="md-primary" @click.native="saveWeapon()">Save</md-button>
+    </md-dialog-actions>
+  </md-dialog>
+</div>

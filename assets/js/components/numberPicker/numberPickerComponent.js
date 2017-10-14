@@ -15,6 +15,13 @@ module.exports = {
   watch: {
     innerValue() {
       this.$emit('input', this.innerValue);
+    },
+    value() {
+      var val = parseInt(this.value, 10);
+
+      if (!_.isNaN(val)) {
+        this.innerValue = val;
+      }
     }
   },
   methods: {
