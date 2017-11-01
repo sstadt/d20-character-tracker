@@ -123,6 +123,4 @@ Alternatively, you could browse the user collection by connecting to the mongo c
 
  - rebuild jukebox for streaming youtube videos as background music
 
-#### 1.0 - Extras
-
- - ships
+#### 1.0 - Feature Complete
