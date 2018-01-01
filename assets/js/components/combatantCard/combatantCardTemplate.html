@@ -62,8 +62,8 @@
                         <skill-shortcut
                           v-for="(skill, index) in generalSkills"
                           v-if="index < 13"
+                          v-model="skill.rank"
                           :name="skill.name"
-                          :ranks="skill.rank"
                           :ability="combatant.template[skill.ability]"
                           :key="skill.name"
                           @click.native="rollSkill(skill)">
@@ -73,8 +73,8 @@
                         <skill-shortcut
                           v-for="(skill, index) in generalSkills"
                           v-if="index >= 13 && index < 26"
+                          v-model="skill.rank"
                           :name="skill.name"
-                          :ranks="skill.rank"
                           :ability="combatant.template[skill.ability]"
                           :key="skill.name"
                           @click.native="rollSkill(skill)">
@@ -84,16 +84,16 @@
                         <skill-shortcut
                           v-for="(skill, index) in generalSkills"
                           v-if="index >= 26"
+                          v-model="skill.rank"
                           :name="skill.name"
-                          :ranks="skill.rank"
                           :ability="combatant.template[skill.ability]"
                           :key="skill.name"
                           @click.native="rollSkill(skill)">
                         </skill-shortcut>
                         <skill-shortcut
                           v-for="skill in combatSkills"
+                          v-model="skill.rank"
                           :name="skill.name"
-                          :ranks="skill.rank"
                           :ability="combatant.template[skill.ability]"
                           :key="skill.name">
                         </skill-shortcut>

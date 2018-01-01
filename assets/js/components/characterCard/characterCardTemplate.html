@@ -39,8 +39,8 @@
             <div class="character-skills-general">
               <skill-shortcut
                 v-for="(skill, index) in generalSkills"
+                v-model="skill.rank"
                 :name="skill.name"
-                :ranks="skill.rank"
                 :ability="character[skill.ability]"
                 :key="skill.name"
                 @click.native="rollSkill(skill)">
@@ -49,8 +49,8 @@
             <div class="character-skills-knowledge">
               <skill-shortcut
                 v-for="(skill, index) in knowledgeSkills"
+                v-model="skill.rank"
                 :name="skill.name"
-                :ranks="skill.rank"
                 :ability="character[skill.ability]"
                 :key="skill.name"
                 @click.native="rollSkill(skill)">
@@ -59,42 +59,30 @@
             <div class="character-skills-combat">
               <skill-shortcut
                 v-for="(skill, index) in combatSkills"
+                v-model="skill.rank"
                 :name="skill.name"
-                :ranks="skill.rank"
                 :ability="character[skill.ability]"
                 :key="skill.name"
                 @click.native="rollSkill(skill)">
               </skill-shortcut>
             </div>
             <div class="character-skills-talents scroll-y">
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
-              <p>abilities</p>
+              <div class="character-talent" v-for="talent in character.talents" :key="talent.id">
+                <div class="flex-row">
+                  <h4 class="title fill-width">{{ talent.name }}</h4>
+                  <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+                    <md-button class="md-icon-button" md-menu-trigger><md-icon>more_horiz</md-icon></md-button>
+                    <md-menu-content>
+                      <md-menu-item @selected="editTalent(talent)">Edit</md-menu-item>
+                      <confirm-menu-item @submit="deleteTalent(talent.id)"></confirm-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+                </div>
+                <div class="description">
+                  <markdown :content="talent.description"></markdown>
+                </div>
+              </div>
+              <md-button class="block-align-center gutter-top" @click.native="addTalent">Add Talent/Power</md-button>
             </div>
           </div>
         </div>
@@ -254,6 +242,37 @@
       </div>
     </draggable-panel>
   </transition>
+
+  <!-- Talent Editor -->
+  <md-dialog ref="talentDialog" class="wide">
+    <md-dialog-title>
+      <p>Talent</p>
+    </md-dialog-title>
+    <md-dialog-content>
+      <form @submit.stop.prevent="saveTalent">
+        <div class="row">
+          <div class="small-12 column">
+            <md-input-container>
+              <label>Name</label>
+              <md-input type="text" v-model="currentTalent.name"></md-input>
+            </md-input-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 column">
+            <md-input-container>
+              <label>Description</label>
+              <md-textarea v-model="currentTalent.description" type="text"></md-textarea>
+            </md-input-container>
+          </div>
+        </div>
+      </form>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button class="md-primary" @click.native="closeDialog('talent')">Cancel</md-button>
+      <md-button class="md-primary" @click.native="saveTalent(currentTalent)">Save</md-button>
+    </md-dialog-actions>
+  </md-dialog>
 
   <!-- Weapon Editor -->
   <md-dialog ref="weaponDialog">

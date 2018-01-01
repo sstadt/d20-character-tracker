@@ -110,3 +110,11 @@ div.md-theme-default.md-tabs > .md-tabs-navigation.md-whiteframe {
     margin-right: auto;
   }
 }
+
+.md-dialog-container.wide .md-dialog {
+  min-width: 500px;
+}
+
+.md-dialog-container.full .md-dialog {
+  min-width: 80%;
+}

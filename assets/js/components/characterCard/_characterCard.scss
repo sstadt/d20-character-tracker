@@ -13,13 +13,25 @@
 
   .card-content {
     height: 550px;
-    overflow: hidden;
+    // overflow: hidden;
   }
 
   .skill-shortcut {
     margin-top: 1px;
   }
 }
+
+.character-talent {
+  margin-top: 1rem;
+  padding-right: $panel-padding;
+
+  .title, .description p {
+    margin: 0 0 $panel-padding;
+  }
+}
+
+
+
 
 .character-skills-general {
   grid-area: general;
@@ -42,7 +54,7 @@
   height: 100%;
   width: 100%;
   grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 200px calc(100% - 200px);
+  grid-template-rows: 180px calc(100% - 180px);
   grid-template-areas:
     "general knowledge combat"
     "general talents talents";

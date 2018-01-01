@@ -6,18 +6,35 @@ module.exports = {
       type: String,
       required: true
     },
-    ranks: {
-      type: Number,
-      required: true
-    },
     ability: {
       type: Number,
       required: true
+    },
+    value: {
+      type: Number,
+      required: true
+    },
+    max: {
+      type: Number,
+      default: 5
+    }
+  },
+  data() {
+    return {
+      ranks: this.value
+    };
+  },
+  watch: {
+    ranks() {
+      this.$emit('input', this.ranks);
     }
   },
   methods: {
-    sayHi() {
-      console.log('hi!');
+    increment() {
+      if (this.ranks < this.max) this.ranks++;
+    },
+    decrement() {
+      if (this.ranks > 0) this.ranks--;
     }
   }
 };

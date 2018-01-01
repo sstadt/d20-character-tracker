@@ -76,10 +76,6 @@ module.exports = {
       type: 'array',
       defaultsTo: []
     },
-    abilities: {
-      type: 'array',
-      defaultsTo: []
-    },
     equipment: {
       type: 'array',
       defaultsTo: []

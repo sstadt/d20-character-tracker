@@ -26,6 +26,7 @@ module.exports = {
       saving: false,
       currentView: 'main',
       rangeBands: config.rangeBands,
+      currentTalent: {},
       currentWeapon: {},
       currentArmor: {},
       currentGear: {}
@@ -117,6 +118,33 @@ module.exports = {
           .done(() => this.saving = false);
       }
     },
+    addTalent() {
+      this.currentTalent = new Talent();
+      this.openDialog('talent');
+    },
+    editTalent(talent) {
+      this.currentTalent = _.clone(talent);
+      this.openDialog('talent');
+    },
+    saveTalent() {
+      var talentIndex = util.getIndexById(this.character.talents, this.currentTalent.id),
+        newTalent = _.clone(this.currentTalent);
+
+      if (talentIndex > -1) {
+        this.character.talents.splice(talentIndex, 1, newTalent);
+      } else {
+        this.character.talents.push(newTalent);
+      }
+
+      this.closeDialog('talent');
+    },
+    deleteTalent(talentId) {
+      var talentIndex = util.getIndexById(this.character.talents, talentId);
+
+      if (talentIndex > -1) {
+        this.character.talents.splice(talentIndex, 1);
+      }
+    },
     addEquipment(type) {
       this[`current${util.ucFirst(type)}`] = new Equipment({ type });
       this.openDialog(type);
@@ -128,7 +156,7 @@ module.exports = {
     saveEquipment(equipment) {
       var itemIndex = util.getIndexById(this.character.equipment, equipment.id),
         newWeapon = _.clone(equipment);
-      console.log(equipment);
+
       if (itemIndex > -1) {
         this.character.equipment.splice(itemIndex, 1, newWeapon);
       } else {
