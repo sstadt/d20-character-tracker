@@ -35,8 +35,8 @@
         </div>
 
         <div class="card-content" v-show="currentView === 'skills'">
-          <div class="row">
-            <div class="small-4 column">
+          <div class="character-skills-grid">
+            <div class="character-skills-general">
               <skill-shortcut
                 v-for="(skill, index) in generalSkills"
                 :name="skill.name"
@@ -46,30 +46,55 @@
                 @click.native="rollSkill(skill)">
               </skill-shortcut>
             </div>
-            <div class="small-8 column">
-              <div class="row">
-                <div class="small-6 column">
-                  <skill-shortcut
-                    v-for="(skill, index) in knowledgeSkills"
-                    :name="skill.name"
-                    :ranks="skill.rank"
-                    :ability="character[skill.ability]"
-                    :key="skill.name"
-                    @click.native="rollSkill(skill)">
-                  </skill-shortcut>
-                </div>
-                <div class="small-6 column">
-                  <skill-shortcut
-                    v-for="(skill, index) in combatSkills"
-                    :name="skill.name"
-                    :ranks="skill.rank"
-                    :ability="character[skill.ability]"
-                    :key="skill.name"
-                    @click.native="rollSkill(skill)">
-                  </skill-shortcut>
-                </div>
-              </div>
-              abilities
+            <div class="character-skills-knowledge">
+              <skill-shortcut
+                v-for="(skill, index) in knowledgeSkills"
+                :name="skill.name"
+                :ranks="skill.rank"
+                :ability="character[skill.ability]"
+                :key="skill.name"
+                @click.native="rollSkill(skill)">
+              </skill-shortcut>
+            </div>
+            <div class="character-skills-combat">
+              <skill-shortcut
+                v-for="(skill, index) in combatSkills"
+                :name="skill.name"
+                :ranks="skill.rank"
+                :ability="character[skill.ability]"
+                :key="skill.name"
+                @click.native="rollSkill(skill)">
+              </skill-shortcut>
+            </div>
+            <div class="character-skills-talents scroll-y">
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
+              <p>abilities</p>
             </div>
           </div>
         </div>

@@ -12,7 +12,38 @@
   }
 
   .card-content {
-    height: 535px;
+    height: 550px;
     overflow: hidden;
   }
+
+  .skill-shortcut {
+    margin-top: 1px;
+  }
+}
+
+.character-skills-general {
+  grid-area: general;
+}
+
+.character-skills-knowledge {
+  grid-area: knowledge;
+}
+
+.character-skills-combat {
+  grid-area: combat;
+}
+
+.character-skills-talents {
+  grid-area: talents;
+}
+
+.character-skills-grid {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 200px calc(100% - 200px);
+  grid-template-areas:
+    "general knowledge combat"
+    "general talents talents";
 }
