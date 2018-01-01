@@ -100,36 +100,27 @@ Alternatively, you could browse the user collection by connecting to the mongo c
 
 #### 0.1 - Ready for Play
 
- - manual Characters and NPCs - NEED CHARACTERS
+ - manual Characters and NPCs - IN PROGRESS
  - encounters - DONE
  - maps - DONE
  - crawls - DONE
  - dice roll shortcuts, chat - DONE
 
-#### 0.2 - Polish
+#### 0.2 - Initiative Tracker
 
  - encounter initiative tracker (display vertically alongside chat)
+
+#### 0.3 - NPC Rebuild
+
  - rebuild NPCs creation with character tools
+ 
+#### 0.4 - Map Rebuild
+
  - rebuild maps with html5 canvas
  - variable sized NPC map tokens (large creatures, etc.)
+ 
+#### 0.5 - Jukebox Rebuild
+
  - rebuild jukebox for streaming youtube videos as background music
 
-#### 0.3 - Storefronts
-
- - Game Items
- - item qualities
- - import gear from store
- - send gear to player
- - gear storefronts with configurable player access
-
-#### 0.4 - Game Data Stores
-
- - game info panel - precursor to journal
- - saved encounters - one click encounter start
- - encounter loot
- - need before greed roller
-
-#### 0.5 - Extras
-
- - ships
- - game journal
+#### 1.0 - Feature Complete
