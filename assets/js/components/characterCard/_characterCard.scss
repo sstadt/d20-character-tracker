@@ -26,7 +26,7 @@
   padding-right: $panel-padding;
 
   .title, .description p {
-    margin: 0 0 $panel-padding;
+    margin: 0;
   }
 }
 
@@ -58,4 +58,25 @@
   grid-template-areas:
     "general knowledge combat"
     "general talents talents";
+}
+
+
+.character-notes-public {
+  grid-area: public;
+}
+
+.character-notes-private {
+  grid-area: private;
+}
+
+.character-notes-grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-row-gap: $panel-padding;
+  grid-template-columns: 100%;
+  grid-template-rows: 25% calc(75% - #{$panel-padding});
+  grid-template-areas:
+    "public"
+    "private";
 }

@@ -5,7 +5,8 @@
       <div class="card character-card" v-if="hasCharacter">
 
         <div class="flex-row">
-          <h2 class="heading fill-width ellipsis">{{ character.name }}</h2>
+          <!-- <h2 class="heading fill-width ellipsis">{{ character.name }}</h2> -->
+          <input type="text" class="card-input header-input fill-width" v-model="character.name" />
           <md-spinner md-indeterminate :md-size="20" v-if="saving"></md-spinner>
           <md-button class="md-icon-button" @click.native="close()"><md-icon>close</md-icon></md-button>
         </div>
@@ -236,7 +237,16 @@
         </div>
 
         <div class="card-content" v-show="currentView === 'notes'">
-          <div class="row">Notes</div>
+          <div class="character-notes-grid">
+            <div class="character-notes-public flex-column">
+              <label>Description (public)</label>
+              <textarea class="card-input fill-height" v-model="character.description"></textarea>
+            </div>
+            <div class="character-notes-private flex-column">
+              <label>Notes</label>
+              <textarea class="card-input fill-height" v-model="character.notes"></textarea>
+            </div>
+          </div>
         </div>
 
       </div>

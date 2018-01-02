@@ -79,6 +79,14 @@ module.exports = {
     equipment: {
       type: 'array',
       defaultsTo: []
+    },
+    description: {
+      type: 'string',
+      defaultsTo: ''
+    },
+    notes: {
+      type: 'string',
+      defaultsTo: ''
     }
   }
 };

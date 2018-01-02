@@ -106,17 +106,22 @@
   border: none;
   width: 100%;
   height: 32px;
-  padding: 0;
+  padding: 6px;
   display: block;
   flex: 1;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   color: rgba(0, 0, 0, 0.54);
   font-family: inherit;
   font-size: rem-calc(16);
-  line-height: 32px;
+  line-height: 1.2;
+  resize: none;
+  border: 1px solid transparent;
 
-  &:focus {
-    border: 1px solid rgba(0, 0, 0, 0.54);
+  &:focus:not(.header-input) {
+    animation-name: borderflash;
+    animation-duration: 0.3s;
+    outline: none;
+    border: 1px solid rgba(0.5, 0.5, 0.5, 0.1);
   }
 
   & + .md-icon-button {
@@ -125,6 +130,29 @@
     width: 32px;
     min-width: 32px;
     padding: 4px;
+  }
+
+  &.header-input {
+    font-size: 1.5rem;
+    font-family: $headerFontFamily;
+    color: $black;
+    padding-left: 0;
+    border: none;
+    font-weight: bold;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+@keyframes borderflash {
+  from {
+    border: 1px solid rgba(0.5, 0.5, 0.5, 0.3);
+  }
+
+  to {
+    border: 1px solid rgba(0.5, 0.5, 0.5, 0.1);
   }
 }
 
