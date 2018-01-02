@@ -80,3 +80,38 @@
     "public"
     "private";
 }
+
+
+.character-dashboard-portrait {
+  grid-area: portrait;
+}
+
+.character-dashboard-details {
+  grid-area: details;
+}
+
+.character-dashboard-stats {
+  grid-area: stats;
+}
+
+.character-dashboard-shortcuts {
+  grid-area: shortcuts;
+}
+
+.character-dashboard-weapons {
+  grid-area: weapons;
+}
+
+.character-dashboard-grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-column-gap: $panel-padding;
+  grid-row-gap: $panel-padding;
+  grid-template-columns: 30% calc(20% - #{$panel-padding}) calc(50% - #{$panel-padding});
+  grid-template-rows: 10% calc(40% - #{$panel-padding}) calc(50% - #{$panel-padding});
+  grid-template-areas:
+    "portrait details details"
+    "portrait stats stats"
+    "shortcuts shortcuts weapons";
+}

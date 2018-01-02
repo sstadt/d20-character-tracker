@@ -27,11 +27,65 @@
         </ul>
 
         <div class="card-content" v-if="currentView === 'main'">
-          <div class="row">
-            <div class="small-4 column">
+          <div class="character-dashboard-grid">
+            <div class="character-dashboard-portrait">
               <image-finder aspect="portrait" v-model="character.imageUrl"></image-finder>
             </div>
-            <div class="small-8 column"></div>
+            <div class="character-dashboard-details">
+              <div class="row">
+                <div class="small-3 column">
+                  <md-input-container>
+                    <label>Race</label>
+                    <md-input type="text" v-model="character.race"></md-input>
+                  </md-input-container>
+                </div>
+                <div class="small-3 column">
+                  <md-input-container>
+                    <label>Career</label>
+                    <md-input type="text" v-model="character.career"></md-input>
+                  </md-input-container>
+                </div>
+                <div class="small-6 column">
+                  <md-input-container>
+                    <label>Spacializations</label>
+                    <md-input type="text" v-model="character.specialization"></md-input>
+                  </md-input-container>
+                </div>
+              </div>
+            </div>
+            <div class="character-dashboard-stats">
+              
+            </div>
+            <div class="character-dashboard-shortcuts scroll-y">
+              <skill-shortcut
+                v-for="(skill, index) in quickSkills"
+                v-model="skill.rank"
+                :name="skill.name"
+                :ability="character[skill.ability]"
+                :key="skill.name"
+                :icon="false">
+              </skill-shortcut>
+            </div>
+            <div class="character-dashboard-weapons scroll-y">
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+              <p>weapons</p>
+            </div>
           </div>
         </div>
 
@@ -44,7 +98,8 @@
                 :name="skill.name"
                 :ability="character[skill.ability]"
                 :key="skill.name"
-                @click.native="rollSkill(skill)">
+                :edit="canEdit"
+                :icon="false">
               </skill-shortcut>
             </div>
             <div class="character-skills-knowledge">
@@ -54,7 +109,8 @@
                 :name="skill.name"
                 :ability="character[skill.ability]"
                 :key="skill.name"
-                @click.native="rollSkill(skill)">
+                :edit="canEdit"
+                :icon="false">
               </skill-shortcut>
             </div>
             <div class="character-skills-combat">
@@ -64,14 +120,15 @@
                 :name="skill.name"
                 :ability="character[skill.ability]"
                 :key="skill.name"
-                @click.native="rollSkill(skill)">
+                :edit="canEdit"
+                :icon="false">
               </skill-shortcut>
             </div>
             <div class="character-skills-talents scroll-y">
               <div class="character-talent" v-for="talent in character.talents" :key="talent.id">
                 <div class="flex-row">
                   <h4 class="title fill-width">{{ talent.name }}</h4>
-                  <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+                  <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4" v-if="canEdit">
                     <md-button class="md-icon-button" md-menu-trigger><md-icon>more_horiz</md-icon></md-button>
                     <md-menu-content>
                       <md-menu-item @selected="editTalent(talent)">Edit</md-menu-item>
@@ -95,7 +152,7 @@
               <div class="flex-column">
                 <div class="no-shrink">
                   <h3 class="card-section-header">Weapons</h3>
-                  <md-button class="md-icon-button" @click.native="addEquipment('weapon')"><md-icon>add</md-icon></md-button>
+                  <md-button class="md-icon-button" @click.native="addEquipment('weapon')" v-if="canEdit"><md-icon>add</md-icon></md-button>
                 </div>
                 <div class="flex-item fixed-header">
                   <div class="header">
@@ -128,7 +185,7 @@
                       <div class="small-1 columns">{{ item.encumbrance }}</div>
                       <div class="small-1 columns"><md-checkbox v-model="item.equipped"></md-checkbox></div>
                       <div class="small-1 columns">
-                        <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+                        <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4" v-if="canEdit">
                           <md-button class="md-icon-button" md-menu-trigger><md-icon>more_horiz</md-icon></md-button>
                           <md-menu-content>
                             <md-menu-item @selected="editEquipment(item)">Edit</md-menu-item>
@@ -176,7 +233,7 @@
                           <div class="small-1 columns">{{ item.encumbrance }}</div>
                           <div class="small-1 columns"><md-checkbox v-model="item.equipped"></md-checkbox></div>
                           <div class="small-1 columns">
-                            <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+                            <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4" v-if="canEdit">
                               <md-button class="md-icon-button" md-menu-trigger><md-icon>more_horiz</md-icon></md-button>
                               <md-menu-content>
                                 <md-menu-item @selected="editEquipment(item)">Edit</md-menu-item>
@@ -218,7 +275,7 @@
                           <div class="small-2 columns">{{ item.encumbrance }}</div>
                           <div class="small-2 columns"><md-checkbox v-model="item.equipped"></md-checkbox></div>
                           <div class="small-2 columns">
-                            <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4">
+                            <md-menu md-direction="bottom left" :md-align-trigger="true" md-size="4" v-if="canEdit">
                               <md-button class="md-icon-button" md-menu-trigger><md-icon>more_horiz</md-icon></md-button>
                               <md-menu-content>
                                 <md-menu-item @selected="editEquipment(item)">Edit</md-menu-item>

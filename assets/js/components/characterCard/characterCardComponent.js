@@ -17,6 +17,10 @@ module.exports = {
   props: {
     character: {
       type: Object
+    },
+    canEdit: {
+      type: Boolean,
+      default: true // default this to false
     }
   },
   data() {
@@ -61,6 +65,19 @@ module.exports = {
 
       return _.filter(this.character.skills, function (skill) {
         return skill.combat;
+      });
+    },
+    quickSkills() {
+      let commonSkills = [
+        'Cool', 'Vigilance', 'Perception'
+      ];
+
+      if (Boolean(!this.character)) {
+        return [];
+      }
+
+      return _.filter(this.character.skills, function (skill) {
+        return skill.rank > 0 || commonSkills.indexOf(skill.name) > -1;
       });
     }
   },

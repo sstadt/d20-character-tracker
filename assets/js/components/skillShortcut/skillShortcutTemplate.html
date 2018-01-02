@@ -1,9 +1,9 @@
 
-<div class="skill-shortcut flex-row" @mouseenter.native="enter" @mouseleave.native="leave">
-  <md-button class="md-icon-button shortcut-button"><icon name="roll-shortcut"></icon></md-button>
+<div class="skill-shortcut flex-row">
+  <md-button class="md-icon-button shortcut-button" v-if="icon" @click.native="click"><icon name="roll-shortcut"></icon></md-button>
   <div class="value text-center">{{ ranks }}</div>
   <div class="fill-width">{{ name | skillAbbr }}</div>
-  <div class="controls">
+  <div class="controls" v-if="edit">
     <button type="button" class="skill-control" @click="decrement"><md-icon>remove</md-icon></button>
     <button type="button" class="skill-control" @click="increment"><md-icon>add</md-icon></button>
   </div>

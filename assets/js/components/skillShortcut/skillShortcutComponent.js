@@ -6,10 +6,6 @@ module.exports = {
       type: String,
       required: true
     },
-    ability: {
-      type: Number,
-      required: true
-    },
     value: {
       type: Number,
       required: true
@@ -17,6 +13,14 @@ module.exports = {
     max: {
       type: Number,
       default: 5
+    },
+    edit: {
+      type: Boolean,
+      default: false
+    },
+    icon: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

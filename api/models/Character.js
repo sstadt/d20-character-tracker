@@ -20,6 +20,18 @@ module.exports = {
       type: 'string',
       defaultsTo: 'New Character'
     },
+    race: {
+      type: 'string',
+      defaultsTo: ''
+    },
+    career: {
+      type: 'string',
+      defaultsTo: ''
+    },
+    specialization: {
+      type: 'string',
+      defaultsTo: ''
+    },
     imageUrl: {
       type: 'string',
       defaultsTo: '/images/avatar_ph.jpg'
