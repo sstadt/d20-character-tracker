@@ -42,6 +42,31 @@
   }
 }
 
+.weapon-shortcut {
+  &:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  .md-icon-button {
+    height: 24px !important;
+    min-height: 24px !important;
+    width: 24px !important;
+    min-width: 24px !important;
+    padding: 2px;
+    margin: 0;
+    @include icon-size(20px);
+  }
+
+  .details {
+    padding-left: 4px;
+
+    .title {
+      line-height: 24px;
+      font-weight: normal;
+    }
+  }
+}
+
 
 
 .character-skills-general {
@@ -109,6 +134,10 @@
   grid-area: shortcuts;
 }
 
+.character-dashboard-talents {
+  grid-area: talents;
+}
+
 .character-dashboard-weapons {
   grid-area: weapons;
 }
@@ -119,12 +148,12 @@
   height: 100%;
   grid-column-gap: $panel-padding;
   grid-row-gap: $panel-padding;
-  grid-template-columns: 30% calc(20% - #{$panel-padding}) calc(50% - #{$panel-padding});
+  grid-template-columns: 30% calc(35% - #{$panel-padding}) calc(35% - #{$panel-padding});
   grid-template-rows: 10% calc(40% - #{$panel-padding}) calc(50% - #{$panel-padding});
   grid-template-areas:
     "portrait details details"
     "portrait stats stats"
-    "shortcuts shortcuts weapons";
+    "shortcuts talents weapons";
 }
 
 

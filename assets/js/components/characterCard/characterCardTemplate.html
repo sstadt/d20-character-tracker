@@ -163,35 +163,49 @@
                 </div>
               </div>
             </div>
-            <div class="character-dashboard-shortcuts scroll-y">
-              <skill-shortcut
-                v-for="(skill, index) in quickSkills"
-                v-model="skill.rank"
-                :name="skill.name"
-                :ability="character[skill.ability]"
-                :key="skill.name"
-                :icon="false">
-              </skill-shortcut>
+            <div class="character-dashboard-shortcuts flex-column">
+              <h3 class="mt-0">Quick Skills</h3>
+              <div class="fill-height">
+                <div class="scroll-y expand">
+                  <skill-shortcut
+                    v-for="(skill, index) in quickSkills"
+                    v-model="skill.rank"
+                    :name="skill.name"
+                    :ability="character[skill.ability]"
+                    :key="skill.name"
+                    :icon="false">
+                  </skill-shortcut>
+                </div>
+              </div>
             </div>
-            <div class="character-dashboard-weapons scroll-y">
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
-              <p>weapons</p>
+            <div class="character-dashboard-talents flex-column">
+              <h3 class="mt-0">Talents</h3>
+              <div class="fill-height">
+                <div class="scroll-y expand">
+                  <p>coming soon</p>
+                </div>
+              </div>
+            </div>
+            <div class="character-dashboard-weapons flex-column">
+              <h3 class="mt-0">Weapons</h3>
+              <div class="fill-height">
+                <div class="scroll-y expand">
+                  <div class="weapon-shortcut" v-for="weapon in equippedWeapons" :key="weapon.id">
+                    <div class="flex-row">
+                      <md-button class="md-icon-button"><icon name="rebel"></icon></md-button>
+                      <div class="fill-width details">
+                        <p class="mt-0 mb-0 ellipsis title">{{ weapon.name }}</p>
+                        <md-tooltip>
+                          <strong>{{ weapon.name }}</strong><br/>
+                          Damage: {{ weapon.damage }}<br/>
+                          Crit: {{ weapon.crit }}<br/>
+                          Range: {{ weapon.range }}
+                        </md-tooltip>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -79,6 +79,15 @@ module.exports = {
       return _.filter(this.character.skills, function (skill) {
         return skill.rank > 0 || commonSkills.indexOf(skill.name) > -1;
       });
+    },
+    equippedWeapons() {
+      if (Boolean(!this.character)) {
+        return [];
+      }
+
+      return _.filter(this.character.equipment, function (item) {
+        return item.type === 'weapon' && item.equipped;
+      });
     }
   },
   created() {
