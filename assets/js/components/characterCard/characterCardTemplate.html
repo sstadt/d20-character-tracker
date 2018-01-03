@@ -55,18 +55,106 @@
             </div>
             <div class="character-dashboard-stats">
               <div class="character-stats-grid">
-                <div class="character-stats-brawn">brawn</div>
-                <div class="character-stats-agility">agility</div>
-                <div class="character-stats-intellect">intellect</div>
-                <div class="character-stats-cunning">cunning</div>
-                <div class="character-stats-willpower">willpower</div>
-                <div class="character-stats-presence">presence</div>
-                <div class="character-stats-wounds">wounds</div>
-                <div class="character-stats-strain">strain</div>
-                <div class="character-stats-defense">defense</div>
-                <div class="character-stats-force-rating">force rating</div>
-                <div class="character-stats-conflict">conflict</div>
-                <div class="character-stats-experience">experience</div>
+                <div class="character-stats-brawn">
+                  <div class="stat-input">
+                    <label>Brawn</label>
+                    <input type="number" v-model="character.brawn" />
+                  </div>
+                </div>
+                <div class="character-stats-agility">
+                  <div class="stat-input">
+                    <label>Agility</label>
+                    <input type="number" v-model="character.agility" />
+                  </div>
+                </div>
+                <div class="character-stats-intellect">
+                  <div class="stat-input">
+                    <label>Intellect</label>
+                    <input type="number" v-model="character.intellect" />
+                  </div>
+                </div>
+                <div class="character-stats-cunning">
+                  <div class="stat-input">
+                    <label>Cunning</label>
+                    <input type="number" v-model="character.cunning" />
+                  </div>
+                </div>
+                <div class="character-stats-willpower">
+                  <div class="stat-input">
+                    <label>Willpower</label>
+                    <input type="number" v-model="character.willpower" />
+                  </div>
+                </div>
+                <div class="character-stats-presence">
+                  <div class="stat-input">
+                    <label>Presence</label>
+                    <input type="number" v-model="character.presence" />
+                  </div>
+                </div>
+                <div class="character-stats-wounds">
+                  <div class="stat-input-group">
+                    <div class="stat-input">
+                      <label>Wounds</label>
+                      <input type="number" v-model="character.currentWounds" />
+                    </div>
+                    <div class="stat-input">
+                      <label>Threshold</label>
+                      <input type="number" v-model="character.woundThreshold" />
+                    </div>
+                  </div>
+                </div>
+                <div class="character-stats-strain">
+                  <div class="stat-input-group">
+                    <div class="stat-input">
+                      <label>Strain</label>
+                      <input type="number" v-model="character.currentStrain" />
+                    </div>
+                    <div class="stat-input">
+                      <label>Threshold</label>
+                      <input type="number" v-model="character.strainThreshold" />
+                    </div>
+                  </div>
+                </div>
+                <div class="character-stats-defense">
+                  <div class="stat-input-group thirds">
+                    <div class="stat-input">
+                      <label>Soak</label>
+                      <input type="number" v-model="character.soak" />
+                    </div>
+                    <div class="stat-input">
+                      <label>Range</label>
+                      <input type="number" v-model="character.defenseMelee" />
+                    </div>
+                    <div class="stat-input">
+                      <label>Melee</label>
+                      <input type="number" v-model="character.defenseRanged" />
+                    </div>
+                  </div>
+                </div>
+                <div class="character-stats-force-rating">
+                  <div class="stat-input">
+                    <label>Force Rating</label>
+                    <input type="number" v-model="character.forceRating" />
+                  </div>
+                </div>
+                <div class="character-stats-conflict">
+                  <div class="stat-input">
+                    <label>conflict</label>
+                    <input type="number" v-model="character.conflict" />
+                  </div>
+                </div>
+                <div class="character-stats-experience">
+                  <div class="stat-input-group vertical">
+                    <div class="stat-input">
+                      <label>Spent XP</label>
+                      <input type="number" v-model="character.experience" />
+                    </div>
+                    <div class="stat-input">
+                      <label>Total XP</label>
+                      <input type="number" v-model="character.spentExperience" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="character-dashboard-shortcuts scroll-y">

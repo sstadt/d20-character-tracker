@@ -88,6 +88,22 @@ module.exports = {
       type: 'integer',
       defaultsTo: 0
     },
+    forceRating: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+    conflict: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+    experience: {
+      type: 'integer',
+      defaultsTo: 100
+    },
+    spentExperience: {
+      type: 'integer',
+      defaultsTo: 0
+    },
     skills: {
       type: 'array',
       defaultsTo: []
