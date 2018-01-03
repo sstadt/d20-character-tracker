@@ -50,6 +50,7 @@ require('../components/cardPower/cardPower.js');
 require('../components/cardStat/cardStat.js');
 require('../components/cardTabs/cardTabs.js');
 require('../components/cardTab/cardTab.js');
+require('../components/statInput/statInput.js');
 require('../components/combatAvatar/combatAvatar.js');
 require('../components/combatantCard/combatantCard.js');
 require('../components/skillShortcut/skillShortcut.js');

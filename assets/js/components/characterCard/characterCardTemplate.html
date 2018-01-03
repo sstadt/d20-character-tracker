@@ -59,106 +59,52 @@
             <div class="character-dashboard-stats">
               <div class="character-stats-grid">
                 <div class="character-stats-brawn">
-                  <div class="stat-input">
-                    <label>Brawn</label>
-                    <input type="number" v-model="character.brawn" />
-                  </div>
+                  <stat-input v-model="character.brawn" label="Brawn"></stat-input>
                 </div>
                 <div class="character-stats-agility">
-                  <div class="stat-input">
-                    <label>Agility</label>
-                    <input type="number" v-model="character.agility" />
-                  </div>
+                  <stat-input v-model="character.agility" label="Agility"></stat-input>
                 </div>
                 <div class="character-stats-intellect">
-                  <div class="stat-input">
-                    <label>Intellect</label>
-                    <input type="number" v-model="character.intellect" />
-                  </div>
+                  <stat-input v-model="character.intellect" label="Intellect"></stat-input>
                 </div>
                 <div class="character-stats-cunning">
-                  <div class="stat-input">
-                    <label>Cunning</label>
-                    <input type="number" v-model="character.cunning" />
-                  </div>
+                  <stat-input v-model="character.cunning" label="Cunning"></stat-input>
                 </div>
                 <div class="character-stats-willpower">
-                  <div class="stat-input">
-                    <label>Willpower</label>
-                    <input type="number" v-model="character.willpower" />
-                  </div>
+                  <stat-input v-model="character.willpower" label="Willpower"></stat-input>
                 </div>
                 <div class="character-stats-presence">
-                  <div class="stat-input">
-                    <label>Presence</label>
-                    <input type="number" v-model="character.presence" />
-                  </div>
+                  <stat-input v-model="character.presence" label="Presence"></stat-input>
                 </div>
                 <div class="character-stats-wounds">
                   <div class="stat-input-group">
-                    <div class="stat-input">
-                      <label>Wounds</label>
-                      <input type="number" v-model="character.currentWounds" />
-                    </div>
-                    <div class="stat-input">
-                      <icon name="wounds" tooltip="Wounds"></icon>
-                      <label>Threshold</label>
-                      <input type="number" v-model="character.woundThreshold" />
-                    </div>
+                    <stat-input v-model="character.currentWounds" label="Wounds"></stat-input>
+                    <stat-input v-model="character.woundThreshold" label="Threshold" icon="wounds"></stat-input>
                   </div>
                 </div>
                 <div class="character-stats-strain">
                   <div class="stat-input-group">
-                    <div class="stat-input">
-                      <label>Strain</label>
-                      <input type="number" v-model="character.currentStrain" />
-                    </div>
-                    <div class="stat-input">
-                      <icon name="strain" tooltip="Strain"></icon>
-                      <label>Threshold</label>
-                      <input type="number" v-model="character.strainThreshold" />
-                    </div>
+                    <stat-input v-model="character.currentStrain" label="Strain"></stat-input>
+                    <stat-input v-model="character.strainThreshold" label="Threshold" icon="strain"></stat-input>
                   </div>
                 </div>
                 <div class="character-stats-defense">
                   <div class="stat-input-group thirds">
-                    <div class="stat-input">
-                      <label>Soak</label>
-                      <input type="number" v-model="character.soak" />
-                    </div>
-                    <div class="stat-input divider">
-                      <label>Range</label>
-                      <input type="number" v-model="character.defenseMelee" />
-                    </div>
-                    <div class="stat-input">
-                      <icon name="defense" tooltip="Defense"></icon>
-                      <label>Melee</label>
-                      <input type="number" v-model="character.defenseRanged" />
-                    </div>
+                    <stat-input v-model="character.soak" label="Soak"></stat-input>
+                    <stat-input v-model="character.defenseMelee" label="Melee" :divider="true"></stat-input>
+                    <stat-input v-model="character.defenseRanged" label="Range" icon="defense"></stat-input>
                   </div>
                 </div>
                 <div class="character-stats-force-rating">
-                  <div class="stat-input">
-                    <label>Force Rating</label>
-                    <input type="number" v-model="character.forceRating" />
-                  </div>
+                  <stat-input v-model="character.forceRating" label="Force Rating"></stat-input>
                 </div>
                 <div class="character-stats-conflict">
-                  <div class="stat-input">
-                    <label>conflict</label>
-                    <input type="number" v-model="character.conflict" />
-                  </div>
+                  <stat-input v-model="character.conflict" label="Conflict"></stat-input>
                 </div>
                 <div class="character-stats-experience">
                   <div class="stat-input-group vertical">
-                    <div class="stat-input">
-                      <label>Spent XP</label>
-                      <input type="number" v-model="character.experience" />
-                    </div>
-                    <div class="stat-input">
-                      <label>Total XP</label>
-                      <input type="number" v-model="character.spentExperience" />
-                    </div>
+                    <stat-input v-model="character.spentExperience" label="Spent XP"></stat-input>
+                    <stat-input v-model="character.experience" label="Total XP"></stat-input>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,6 @@
+
+<div :class="{ 'stat-input': true, 'divider': divider }">
+  <icon :name="icon" v-if="icon"></icon>
+  <label>{{ label }}</label>
+  <input type="number" v-model="currentVal" />
+</div>
