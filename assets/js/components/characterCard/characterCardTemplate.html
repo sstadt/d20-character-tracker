@@ -4,13 +4,15 @@
     <draggable-panel panel-id="character-card--test" v-show="show">
       <div class="card character-card" v-if="hasCharacter">
 
-        <div class="flex-row">
+        <!-- header -->
+        <div class="flex-row character-card-header">
           <!-- <h2 class="heading fill-width ellipsis">{{ character.name }}</h2> -->
           <input type="text" class="card-input header-input fill-width" v-model="character.name" />
           <md-spinner md-indeterminate :md-size="20" v-if="saving"></md-spinner>
           <md-button class="md-icon-button" @click.native="close()"><md-icon>close</md-icon></md-button>
         </div>
 
+        <!-- card tabs -->
         <ul class="card-nav">
           <li :class="{ 'active': currentView === 'main' }">
             <md-button class="md-icon-button" @click.native="setView('main')"><icon name="user"></icon></md-button>
@@ -26,6 +28,7 @@
           </li>
         </ul>
 
+        <!-- character dashboard -->
         <div class="card-content" v-if="currentView === 'main'">
           <div class="character-dashboard-grid">
             <div class="character-dashboard-portrait">
@@ -98,6 +101,7 @@
                       <input type="number" v-model="character.currentWounds" />
                     </div>
                     <div class="stat-input">
+                      <icon name="wounds" tooltip="Wounds"></icon>
                       <label>Threshold</label>
                       <input type="number" v-model="character.woundThreshold" />
                     </div>
@@ -110,6 +114,7 @@
                       <input type="number" v-model="character.currentStrain" />
                     </div>
                     <div class="stat-input">
+                      <icon name="strain" tooltip="Strain"></icon>
                       <label>Threshold</label>
                       <input type="number" v-model="character.strainThreshold" />
                     </div>
@@ -121,11 +126,12 @@
                       <label>Soak</label>
                       <input type="number" v-model="character.soak" />
                     </div>
-                    <div class="stat-input">
+                    <div class="stat-input divider">
                       <label>Range</label>
                       <input type="number" v-model="character.defenseMelee" />
                     </div>
                     <div class="stat-input">
+                      <icon name="defense" tooltip="Defense"></icon>
                       <label>Melee</label>
                       <input type="number" v-model="character.defenseRanged" />
                     </div>
@@ -190,6 +196,7 @@
           </div>
         </div>
 
+        <!-- character skills/abilities -->
         <div class="card-content" v-show="currentView === 'skills'">
           <div class="character-skills-grid">
             <div class="character-skills-general">
@@ -246,7 +253,7 @@
           </div>
         </div>
 
-        <!-- Inventory -->
+        <!-- character inventory -->
         <div class="card-content" v-show="currentView === 'inventory'">
           <div class="flex-column">
             <div class="flex-item-50">
@@ -394,6 +401,7 @@
           </div>
         </div>
 
+        <!-- character notes -->
         <div class="card-content" v-show="currentView === 'notes'">
           <div class="character-notes-grid">
             <div class="character-notes-public flex-column">

@@ -88,11 +88,11 @@ module.exports = {
   },
   methods: {
     open() {
-      this.startSync();
+      if (this.canEdit) this.startSync();
       this.show = true;
     },
     close() {
-      this.stopSync();
+      if (this.canEdit) this.stopSync();
       this.show = false;
     },
     openDialog(name) {

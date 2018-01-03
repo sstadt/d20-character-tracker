@@ -3,7 +3,7 @@ var iconTemplate = require('./iconTemplate.html');
 
 module.exports = {
   template: iconTemplate,
-  props: ['name'],
+  props: ['name','tooltip'],
   computed: {
     iconClass() {
       var classObj = {

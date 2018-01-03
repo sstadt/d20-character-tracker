@@ -170,7 +170,7 @@ $scroll-bar-color: $base;
 // Panel
 // ---------------------------
 
-$panel-bg-alpha: 0.95;
+$panel-bg-alpha: 0.98;
 $panel-bg-color: rgba($white, $panel-bg-alpha);
 $panel-bg-color-dark: rgba($black, 0.6);
 $panel-bg-color-npc: rgba(#fff9f9, $panel-bg-alpha);
@@ -238,6 +238,11 @@ $dice-controls-icon-size: 30px;
 // ---------------------------
 
 $dice-pool-bg-color: $alert-bg-color-success;
+
+// Cards
+// ---------------------------
+
+$card-input-border-color: rgba(0.5, 0.5, 0.5, 0.1);
 
 // Character/NPCs
 // ---------------------------

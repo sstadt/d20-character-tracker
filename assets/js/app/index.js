@@ -10,6 +10,7 @@ require('../filters/skillAbbr.js');
 
 // directives
 require('../directives/focus.js');
+require('../directives/preventDrag.js');
 
 // general components
 require('../components/alert/alert.js');

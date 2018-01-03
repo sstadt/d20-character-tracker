@@ -2,15 +2,6 @@
 .character-card {
   width: 700px;
 
-  .heading {
-    margin: 0;
-    line-height: 40px;
-
-    & + .md-spinner {
-      margin-top: 10px;
-    }
-  }
-
   .card-content {
     height: 550px;
     // overflow: hidden;
@@ -30,6 +21,26 @@
   }
 }
 
+.character-card-header {
+  height: 40px;
+
+  .heading {
+    margin: 0;
+    line-height: 40px;
+  }
+
+  .md-spinner {
+    margin-top: 6px;
+  }
+
+  .md-icon-button {
+    height: 32px;
+    min-height: 32px;
+    width: 32px;
+    min-width: 32px;
+    padding: 4px;
+  }
+}
 
 
 

@@ -1,0 +1,10 @@
+
+@keyframes borderflash {
+  from {
+    border-color: rgba(0.5, 0.5, 0.5, 0.3);
+  }
+
+  to {
+    border-color: $card-input-border-color;
+  }
+}

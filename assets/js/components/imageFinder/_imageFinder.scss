@@ -63,8 +63,9 @@
 
     .md-icon-button {
       right: 10px;
-      bottom: 0;
+      top: 50%;
       margin: 0;
+      transform: translateY(-50%);
     }
   }
 
@@ -75,6 +76,7 @@
     left: $panel-padding / 2;
     padding-top: $panel-padding;
     transform: translateY(100%);
+    z-index: 1;
 
     .image-preview {
       cursor: pointer;
