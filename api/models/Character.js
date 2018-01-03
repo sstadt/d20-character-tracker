@@ -32,6 +32,14 @@ module.exports = {
       type: 'string',
       defaultsTo: ''
     },
+    experience: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+    spentExperience: {
+      type: 'integer',
+      defaultsTo: 0
+    },
     imageUrl: {
       type: 'string',
       defaultsTo: '/images/avatar_ph.jpg'

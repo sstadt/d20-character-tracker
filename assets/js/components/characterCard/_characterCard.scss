@@ -115,3 +115,66 @@
     "portrait stats stats"
     "shortcuts shortcuts weapons";
 }
+
+
+.character-stats-brawn {
+  grid-area: brawn;
+}
+
+.character-stats-agility {
+  grid-area: agility;
+}
+
+.character-stats-intellect {
+  grid-area: intellect;
+}
+
+.character-stats-cunning {
+  grid-area: cunning;
+}
+
+.character-stats-willpower {
+  grid-area: willpower;
+}
+
+.character-stats-presence {
+  grid-area: presence;
+}
+
+.character-stats-wounds {
+  grid-area: wounds;
+}
+
+.character-stats-strain {
+  grid-area: strain;
+}
+
+.character-stats-defense {
+  grid-area: defense;
+}
+
+.character-stats-force-rating {
+  grid-area: force;
+}
+
+.character-stats-conflict {
+  grid-area: conflict;
+}
+
+.character-stats-experience {
+  grid-area: experience;
+}
+
+.character-stats-grid {
+  display: grid;
+  width: 400px;
+  height: 175px;
+  grid-column-gap: $panel-padding;
+  grid-row-gap: $panel-padding;
+  grid-template-columns: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
+  grid-template-rows: 33% 33% 33%;
+  grid-template-areas:
+    "brawn agility intellect cunning willpower presence"
+    "wounds wounds defense defense defense experience"
+    "strain strain force conflict null experience";
+}
