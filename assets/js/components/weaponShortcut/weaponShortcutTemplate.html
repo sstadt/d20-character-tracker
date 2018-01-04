@@ -1,0 +1,15 @@
+
+<div class="weapon-shortcut">
+  <div class="flex-row">
+    <md-button class="md-icon-button"><icon :name="icon"></icon></md-button>
+    <div class="fill-width details">
+      <p class="mt-0 mb-0 ellipsis title">{{ weapon.name }}</p>
+      <md-tooltip>
+        <strong>{{ weapon.name }}</strong><br/>
+        Damage: {{ weapon.damage }}<br/>
+        Crit: {{ weapon.crit }}<br/>
+        Range: {{ weapon.range }}
+      </md-tooltip>
+    </div>
+  </div>
+</div>
