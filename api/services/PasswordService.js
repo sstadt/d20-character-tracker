@@ -67,7 +67,7 @@ module.exports = {
 
     lastError = [];
 
-    return error;
+    return error[error.length - 1];
   },
 
   /**
