@@ -1,33 +1,5 @@
 Demo app: https://sw.scottstadt.com
 
-### Dev to do:
-
-#### as able
-
- - organize js components atomically
- - need to reset the npc panel after adding/updating
- - absolute position/translateY volume slider
- - handle draggable cursor better for dice pool, destiny tokens, and maps - should be a move/grab icon while dragging - hold off until canvas rebuild for mapViewer component
- - set up csrf with all socket calls
-
-#### testing todos
-
- - userProfile
- - game
- - gameBrowser
- - mapViewer
- - starWarsCrawl
-
-#### devops todo
-
- - only build assets on initial lift in production to get application back online faster if an error occurs
-
-### Need more research
-
- - waterline isn't behaving as expected when querying against dates
- - ... need to figure out a TTL solution that will not infringe upon registration while expiring reset tokens after 24 hours
- - set up grunt-autoprefixer
-
 ### Setup
 
 #### Install Docker
