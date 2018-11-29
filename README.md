@@ -1,6 +1,4 @@
-# Star Wars Game Table
-
-Documentation: https://github.com/sstadt/sw-game-table-wiki
+Demo app: https://sw.scottstadt.com
 
 ### Dev to do:
 
